@@ -1,0 +1,141 @@
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using ArcadeEngine.Core;
+using ArcadeEngine.Exceptions;
+using ArcadeEngine.Models.Workers.WorkerCreateParamsProperties;
+
+namespace ArcadeEngine.Models.Workers;
+
+/// <summary>
+/// Create a worker
+/// </summary>
+public sealed record class WorkerCreateParams : ParamsBase
+{
+    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+
+    public required string ID
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("id", out JsonElement element))
+                throw new ArcadeInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
+
+            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
+                ?? throw new ArcadeInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
+        }
+        set
+        {
+            this.BodyProperties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public bool? Enabled
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("enabled", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["enabled"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public HTTP? HTTP
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("http", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<HTTP?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["http"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public Mcp? Mcp
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("mcp", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<Mcp?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["mcp"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public string? Type
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("type", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.BodyProperties["type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override Uri Url(IArcadeClient client)
+    {
+        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/v1/workers")
+        {
+            Query = this.QueryString(client),
+        }.Uri;
+    }
+
+    internal override StringContent? BodyContent()
+    {
+        return new(
+            JsonSerializer.Serialize(this.BodyProperties),
+            Encoding.UTF8,
+            "application/json"
+        );
+    }
+
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IArcadeClient client)
+    {
+        ParamsBase.AddDefaultHeaders(request, client);
+        foreach (var item in this.HeaderProperties)
+        {
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+        }
+    }
+}
