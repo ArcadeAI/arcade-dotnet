@@ -5,7 +5,7 @@
 >
 > This library has not yet been exhaustively tested in production environments and may be missing some features you'd expect in a stable release. As we continue development, there may be breaking changes that require updates to your code.
 >
-> **We'd love your feedback!** Please share any suggestions, bug reports, feature requests, or general thoughts by [filing an issue](https://www.github.com/stainless-sdks/arcade-engine-csharp/issues/new).
+> **We'd love your feedback!** Please share any suggestions, bug reports, feature requests, or general thoughts by [filing an issue](https://www.github.com/ArcadeAI/arcade-csharp/issues/new).
 
 The Arcade C# SDK provides convenient access to the [Arcade REST API](https://docs.arcade.dev) from applications written in C#.
 
@@ -16,8 +16,8 @@ The REST API documentation can be found on [docs.arcade.dev](https://docs.arcade
 ## Installation
 
 ```bash
-git clone git@github.com:stainless-sdks/arcade-engine-csharp.git
-dotnet add reference arcade-engine-csharp/src/ArcadeEngine
+git clone git@github.com:ArcadeAI/arcade-csharp.git
+dotnet add reference arcade-csharp/src/ArcadeEngine
 ```
 
 ## Requirements
@@ -116,4 +116,4 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/arcade-engine-csharp/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/ArcadeAI/arcade-csharp/issues) with questions, bugs, or suggestions.
