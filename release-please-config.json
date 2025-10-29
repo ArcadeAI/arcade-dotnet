@@ -64,7 +64,7 @@
     "README.md",
     {
       "type": "xml",
-      "path": "src/ArcadeEngine/ArcadeEngine.csproj",
+      "path": "src/ArcadeDotnet/ArcadeDotnet.csproj",
       "xpath": "//Project/PropertyGroup/VersionPrefix"
     }
   ]
