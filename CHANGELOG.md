@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1 (2025-10-31)
+
+Full Changelog: [v0.1.0...v0.1.1](https://github.com/ArcadeAI/arcade-dotnet/compare/v0.1.0...v0.1.1)
+
+### Chores
+
+* **internal:** full qualify some references ([46bb02c](https://github.com/ArcadeAI/arcade-dotnet/commit/46bb02caf8591105fcbcfcb00095ebdc506203ee))
+
 ## 0.1.0 (2025-10-29)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/ArcadeAI/arcade-dotnet/compare/v0.0.1...v0.1.0)

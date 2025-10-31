@@ -14,9 +14,10 @@ public enum Binding
     Account,
 }
 
-sealed class BindingConverter : JsonConverter<Binding>
+sealed class BindingConverter
+    : JsonConverter<global::ArcadeDotnet.Models.Workers.WorkerResponseProperties.HTTPProperties.SecretProperties.Binding>
 {
-    public override Binding Read(
+    public override global::ArcadeDotnet.Models.Workers.WorkerResponseProperties.HTTPProperties.SecretProperties.Binding Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -28,11 +29,18 @@ sealed class BindingConverter : JsonConverter<Binding>
             "tenant" => Binding.Tenant,
             "project" => Binding.Project,
             "account" => Binding.Account,
-            _ => (Binding)(-1),
+            _ =>
+                (global::ArcadeDotnet.Models.Workers.WorkerResponseProperties.HTTPProperties.SecretProperties.Binding)(
+                    -1
+                ),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Binding value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::ArcadeDotnet.Models.Workers.WorkerResponseProperties.HTTPProperties.SecretProperties.Binding value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,

@@ -9,8 +9,12 @@ using ArcadeDotnet.Models.Tools.ExecuteToolResponseProperties.OutputProperties.E
 
 namespace ArcadeDotnet.Models.Tools.ExecuteToolResponseProperties.OutputProperties;
 
-[JsonConverter(typeof(ModelConverter<Error>))]
-public sealed record class Error : ModelBase, IFromRaw<Error>
+[JsonConverter(
+    typeof(ModelConverter<global::ArcadeDotnet.Models.Tools.ExecuteToolResponseProperties.OutputProperties.Error>)
+)]
+public sealed record class Error
+    : ModelBase,
+        IFromRaw<global::ArcadeDotnet.Models.Tools.ExecuteToolResponseProperties.OutputProperties.Error>
 {
     public required bool CanRetry
     {
@@ -222,7 +226,9 @@ public sealed record class Error : ModelBase, IFromRaw<Error>
     }
 #pragma warning restore CS8618
 
-    public static Error FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::ArcadeDotnet.Models.Tools.ExecuteToolResponseProperties.OutputProperties.Error FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }
