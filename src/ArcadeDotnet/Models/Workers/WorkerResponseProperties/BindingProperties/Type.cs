@@ -5,7 +5,9 @@ using System = System;
 
 namespace ArcadeDotnet.Models.Workers.WorkerResponseProperties.BindingProperties;
 
-[JsonConverter(typeof(TypeConverter))]
+[JsonConverter(
+    typeof(global::ArcadeDotnet.Models.Workers.WorkerResponseProperties.BindingProperties.TypeConverter)
+)]
 public enum Type
 {
     Static,
@@ -14,9 +16,10 @@ public enum Type
     Account,
 }
 
-sealed class TypeConverter : JsonConverter<Type>
+sealed class TypeConverter
+    : JsonConverter<global::ArcadeDotnet.Models.Workers.WorkerResponseProperties.BindingProperties.Type>
 {
-    public override Type Read(
+    public override global::ArcadeDotnet.Models.Workers.WorkerResponseProperties.BindingProperties.Type Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -28,11 +31,18 @@ sealed class TypeConverter : JsonConverter<Type>
             "tenant" => BindingProperties.Type.Tenant,
             "project" => BindingProperties.Type.Project,
             "account" => BindingProperties.Type.Account,
-            _ => (Type)(-1),
+            _ =>
+                (global::ArcadeDotnet.Models.Workers.WorkerResponseProperties.BindingProperties.Type)(
+                    -1
+                ),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Type value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::ArcadeDotnet.Models.Workers.WorkerResponseProperties.BindingProperties.Type value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
