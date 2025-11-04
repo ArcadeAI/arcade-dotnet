@@ -407,13 +407,7 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     public override void Validate()
     {
         _ = this.FrequencyPenalty;
-        if (this.LogitBias != null)
-        {
-            foreach (var item in this.LogitBias.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.LogitBias;
         _ = this.Logprobs;
         _ = this.MaxTokens;
         foreach (var item in this.Messages ?? [])
@@ -426,10 +420,7 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         _ = this.PresencePenalty;
         this.ResponseFormat?.Validate();
         _ = this.Seed;
-        foreach (var item in this.Stop ?? [])
-        {
-            _ = item;
-        }
+        _ = this.Stop;
         _ = this.Stream;
         this.StreamOptions?.Validate();
         _ = this.Temperature;

@@ -23,7 +23,14 @@ public sealed class AuthService : IAuthService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<AuthorizationResponse>().ConfigureAwait(false);
+        var authorizationResponse = await response
+            .Deserialize<AuthorizationResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            authorizationResponse.Validate();
+        }
+        return authorizationResponse;
     }
 
     public async Task<ConfirmUserResponse> ConfirmUser(AuthConfirmUserParams parameters)
@@ -34,7 +41,14 @@ public sealed class AuthService : IAuthService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<ConfirmUserResponse>().ConfigureAwait(false);
+        var confirmUserResponse = await response
+            .Deserialize<ConfirmUserResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            confirmUserResponse.Validate();
+        }
+        return confirmUserResponse;
     }
 
     public async Task<AuthorizationResponse> Status(AuthStatusParams parameters)
@@ -45,6 +59,13 @@ public sealed class AuthService : IAuthService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<AuthorizationResponse>().ConfigureAwait(false);
+        var authorizationResponse = await response
+            .Deserialize<AuthorizationResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            authorizationResponse.Validate();
+        }
+        return authorizationResponse;
     }
 }

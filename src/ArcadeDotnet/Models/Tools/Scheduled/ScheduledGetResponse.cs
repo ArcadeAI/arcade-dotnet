@@ -278,13 +278,7 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
         _ = this.ExecutionStatus;
         _ = this.ExecutionType;
         _ = this.FinishedAt;
-        if (this.Input != null)
-        {
-            foreach (var item in this.Input.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Input;
         _ = this.RunAt;
         _ = this.StartedAt;
         _ = this.ToolName;

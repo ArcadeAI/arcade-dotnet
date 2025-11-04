@@ -147,13 +147,7 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
     {
         _ = this.ToolName;
         _ = this.IncludeErrorStacktrace;
-        if (this.Input != null)
-        {
-            foreach (var item in this.Input.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Input;
         _ = this.RunAt;
         _ = this.ToolVersion;
         _ = this.UserID;

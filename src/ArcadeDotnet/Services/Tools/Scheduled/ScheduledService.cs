@@ -24,7 +24,12 @@ public sealed class ScheduledService : IScheduledService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<ScheduledListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<ScheduledListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task<ScheduledGetResponse> Get(ScheduledGetParams parameters)
@@ -35,6 +40,11 @@ public sealed class ScheduledService : IScheduledService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<ScheduledGetResponse>().ConfigureAwait(false);
+        var scheduled = await response.Deserialize<ScheduledGetResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            scheduled.Validate();
+        }
+        return scheduled;
     }
 }

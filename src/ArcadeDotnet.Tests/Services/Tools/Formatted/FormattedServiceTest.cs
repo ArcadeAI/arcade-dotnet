@@ -14,7 +14,6 @@ public class FormattedServiceTest : TestBase
     [Fact]
     public async Task Get_Works()
     {
-        var formatted = await this.client.Tools.Formatted.Get(new() { Name = "name" });
-        _ = formatted;
+        await this.client.Tools.Formatted.Get(new() { Name = "name" });
     }
 }

@@ -25,7 +25,12 @@ public sealed class FormattedService : IFormattedService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<FormattedListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<FormattedListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task<JsonElement> Get(FormattedGetParams parameters)

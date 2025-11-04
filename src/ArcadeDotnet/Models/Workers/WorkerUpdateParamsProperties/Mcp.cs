@@ -126,22 +126,10 @@ public sealed record class Mcp : ModelBase, IFromRaw<Mcp>
 
     public override void Validate()
     {
-        if (this.Headers != null)
-        {
-            foreach (var item in this.Headers.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Headers;
         this.Oauth2?.Validate();
         _ = this.Retry;
-        if (this.Secrets != null)
-        {
-            foreach (var item in this.Secrets.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Secrets;
         _ = this.Timeout;
         _ = this.Uri;
     }

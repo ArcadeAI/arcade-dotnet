@@ -147,10 +147,7 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
         _ = this.ID;
         this.Context?.Validate();
         _ = this.ProviderID;
-        foreach (var item in this.Scopes ?? [])
-        {
-            _ = item;
-        }
+        _ = this.Scopes;
         this.Status?.Validate();
         _ = this.URL;
         _ = this.UserID;

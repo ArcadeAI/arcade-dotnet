@@ -190,22 +190,10 @@ public sealed record class TokenIntrospectionRequest
         this.Triggers.Validate();
         _ = this.AuthMethod;
         _ = this.Method;
-        if (this.Params != null)
-        {
-            foreach (var item in this.Params.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Params;
         this.RequestContentType?.Validate();
         this.ResponseContentType?.Validate();
-        if (this.ResponseMap != null)
-        {
-            foreach (var item in this.ResponseMap.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.ResponseMap;
     }
 
     public TokenIntrospectionRequest() { }

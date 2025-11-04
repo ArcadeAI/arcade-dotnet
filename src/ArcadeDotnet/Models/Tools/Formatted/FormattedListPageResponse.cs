@@ -106,10 +106,7 @@ public sealed record class FormattedListPageResponse
 
     public override void Validate()
     {
-        foreach (var item in this.Items ?? [])
-        {
-            _ = item;
-        }
+        _ = this.Items;
         _ = this.Limit;
         _ = this.Offset;
         _ = this.PageCount;

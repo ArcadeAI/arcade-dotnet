@@ -22,7 +22,12 @@ public sealed class WorkerService : IWorkerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<WorkerResponse>().ConfigureAwait(false);
+        var workerResponse = await response.Deserialize<WorkerResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            workerResponse.Validate();
+        }
+        return workerResponse;
     }
 
     public async Task<WorkerResponse> Update(WorkerUpdateParams parameters)
@@ -33,7 +38,12 @@ public sealed class WorkerService : IWorkerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<WorkerResponse>().ConfigureAwait(false);
+        var workerResponse = await response.Deserialize<WorkerResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            workerResponse.Validate();
+        }
+        return workerResponse;
     }
 
     public async Task<WorkerListPageResponse> List(WorkerListParams? parameters = null)
@@ -46,7 +56,12 @@ public sealed class WorkerService : IWorkerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<WorkerListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<WorkerListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task Delete(WorkerDeleteParams parameters)
@@ -57,7 +72,6 @@ public sealed class WorkerService : IWorkerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return;
     }
 
     public async Task<WorkerResponse> Get(WorkerGetParams parameters)
@@ -68,7 +82,12 @@ public sealed class WorkerService : IWorkerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<WorkerResponse>().ConfigureAwait(false);
+        var workerResponse = await response.Deserialize<WorkerResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            workerResponse.Validate();
+        }
+        return workerResponse;
     }
 
     public async Task<WorkerHealthResponse> Health(WorkerHealthParams parameters)
@@ -79,7 +98,14 @@ public sealed class WorkerService : IWorkerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<WorkerHealthResponse>().ConfigureAwait(false);
+        var workerHealthResponse = await response
+            .Deserialize<WorkerHealthResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            workerHealthResponse.Validate();
+        }
+        return workerHealthResponse;
     }
 
     public async Task<WorkerToolsPageResponse> Tools(WorkerToolsParams parameters)
@@ -90,6 +116,11 @@ public sealed class WorkerService : IWorkerService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<WorkerToolsPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<WorkerToolsPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 }
