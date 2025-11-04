@@ -17,6 +17,8 @@ public struct ClientOptions()
         set { _baseUrl = new(() => value); }
     }
 
+    public TimeSpan Timeout { get; set; } = TimeSpan.FromMinutes(1);
+
     /// <summary>
     /// API key used for authorization in header
     /// </summary>

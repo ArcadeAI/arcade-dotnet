@@ -17,6 +17,8 @@ public interface IArcadeClient
 
     Uri BaseUrl { get; init; }
 
+    TimeSpan Timeout { get; init; }
+
     /// <summary>
     /// API key used for authorization in header
     /// </summary>
