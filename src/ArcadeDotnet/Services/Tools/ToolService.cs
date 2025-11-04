@@ -42,7 +42,12 @@ public sealed class ToolService : IToolService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<ToolListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<ToolListPageResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task<AuthorizationResponse> Authorize(ToolAuthorizeParams parameters)
@@ -53,7 +58,14 @@ public sealed class ToolService : IToolService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<AuthorizationResponse>().ConfigureAwait(false);
+        var authorizationResponse = await response
+            .Deserialize<AuthorizationResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            authorizationResponse.Validate();
+        }
+        return authorizationResponse;
     }
 
     public async Task<ExecuteToolResponse> Execute(ToolExecuteParams parameters)
@@ -64,13 +76,25 @@ public sealed class ToolService : IToolService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<ExecuteToolResponse>().ConfigureAwait(false);
+        var executeToolResponse = await response
+            .Deserialize<ExecuteToolResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            executeToolResponse.Validate();
+        }
+        return executeToolResponse;
     }
 
     public async Task<ToolDefinition> Get(ToolGetParams parameters)
     {
         HttpRequest<ToolGetParams> request = new() { Method = HttpMethod.Get, Params = parameters };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<ToolDefinition>().ConfigureAwait(false);
+        var toolDefinition = await response.Deserialize<ToolDefinition>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            toolDefinition.Validate();
+        }
+        return toolDefinition;
     }
 }

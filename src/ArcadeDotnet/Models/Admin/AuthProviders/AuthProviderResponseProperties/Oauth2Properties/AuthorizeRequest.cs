@@ -165,22 +165,10 @@ public sealed record class AuthorizeRequest : ModelBase, IFromRaw<AuthorizeReque
         _ = this.Endpoint;
         _ = this.ExpirationFormat;
         _ = this.Method;
-        if (this.Params != null)
-        {
-            foreach (var item in this.Params.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Params;
         _ = this.RequestContentType;
         _ = this.ResponseContentType;
-        if (this.ResponseMap != null)
-        {
-            foreach (var item in this.ResponseMap.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.ResponseMap;
     }
 
     public AuthorizeRequest() { }

@@ -204,13 +204,7 @@ public sealed record class Error
         _ = this.Message;
         _ = this.AdditionalPromptContent;
         _ = this.DeveloperMessage;
-        if (this.Extra != null)
-        {
-            foreach (var item in this.Extra.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Extra;
         _ = this.RetryAfterMs;
         _ = this.Stacktrace;
         _ = this.StatusCode;

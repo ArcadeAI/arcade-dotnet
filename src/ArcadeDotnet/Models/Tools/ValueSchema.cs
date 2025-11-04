@@ -75,10 +75,7 @@ public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
     public override void Validate()
     {
         _ = this.ValType;
-        foreach (var item in this.Enum ?? [])
-        {
-            _ = item;
-        }
+        _ = this.Enum;
         _ = this.InnerValType;
     }
 

@@ -223,13 +223,7 @@ public sealed record class ToolDefinition : ModelBase, IFromRaw<ToolDefinition>
         _ = this.QualifiedName;
         this.Toolkit.Validate();
         _ = this.Description;
-        if (this.FormattedSchema != null)
-        {
-            foreach (var item in this.FormattedSchema.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.FormattedSchema;
         this.Output?.Validate();
         this.Requirements?.Validate();
     }

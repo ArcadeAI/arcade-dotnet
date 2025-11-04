@@ -180,10 +180,7 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
         _ = this.ProviderID;
         _ = this.ProviderType;
         _ = this.ProviderUserInfo;
-        foreach (var item in this.Scopes ?? [])
-        {
-            _ = item;
-        }
+        _ = this.Scopes;
         _ = this.UserID;
     }
 

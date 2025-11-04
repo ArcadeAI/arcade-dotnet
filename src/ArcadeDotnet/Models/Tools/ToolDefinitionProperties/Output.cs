@@ -65,10 +65,7 @@ public sealed record class Output : ModelBase, IFromRaw<Output>
 
     public override void Validate()
     {
-        foreach (var item in this.AvailableModes ?? [])
-        {
-            _ = item;
-        }
+        _ = this.AvailableModes;
         _ = this.Description;
         this.ValueSchema?.Validate();
     }

@@ -24,7 +24,12 @@ public sealed class SecretService : ISecretService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<SecretListResponse>().ConfigureAwait(false);
+        var secrets = await response.Deserialize<SecretListResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            secrets.Validate();
+        }
+        return secrets;
     }
 
     public async Task Delete(SecretDeleteParams parameters)
@@ -35,6 +40,5 @@ public sealed class SecretService : ISecretService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return;
     }
 }

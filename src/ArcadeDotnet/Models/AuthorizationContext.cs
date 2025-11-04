@@ -51,13 +51,7 @@ public sealed record class AuthorizationContext : ModelBase, IFromRaw<Authorizat
     public override void Validate()
     {
         _ = this.Token;
-        if (this.UserInfo != null)
-        {
-            foreach (var item in this.UserInfo.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.UserInfo;
     }
 
     public AuthorizationContext() { }

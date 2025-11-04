@@ -29,10 +29,7 @@ public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
 
     public override void Validate()
     {
-        foreach (var item in this.Scopes ?? [])
-        {
-            _ = item;
-        }
+        _ = this.Scopes;
     }
 
     public Oauth2() { }

@@ -26,7 +26,14 @@ public sealed class UserConnectionService : IUserConnectionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<UserConnectionListPageResponse>().ConfigureAwait(false);
+        var page = await response
+            .Deserialize<UserConnectionListPageResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return page;
     }
 
     public async Task Delete(UserConnectionDeleteParams parameters)
@@ -37,6 +44,5 @@ public sealed class UserConnectionService : IUserConnectionService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return;
     }
 }

@@ -24,6 +24,11 @@ public sealed class HealthService : IHealthService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<HealthSchema>().ConfigureAwait(false);
+        var healthSchema = await response.Deserialize<HealthSchema>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            healthSchema.Validate();
+        }
+        return healthSchema;
     }
 }

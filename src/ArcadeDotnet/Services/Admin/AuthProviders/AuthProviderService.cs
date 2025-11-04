@@ -22,7 +22,14 @@ public sealed class AuthProviderService : IAuthProviderService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<AuthProviderResponse>().ConfigureAwait(false);
+        var authProviderResponse = await response
+            .Deserialize<AuthProviderResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            authProviderResponse.Validate();
+        }
+        return authProviderResponse;
     }
 
     public async Task<AuthProviderListResponse> List(AuthProviderListParams? parameters = null)
@@ -35,7 +42,14 @@ public sealed class AuthProviderService : IAuthProviderService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<AuthProviderListResponse>().ConfigureAwait(false);
+        var authProviders = await response
+            .Deserialize<AuthProviderListResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            authProviders.Validate();
+        }
+        return authProviders;
     }
 
     public async Task<AuthProviderResponse> Delete(AuthProviderDeleteParams parameters)
@@ -46,7 +60,14 @@ public sealed class AuthProviderService : IAuthProviderService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<AuthProviderResponse>().ConfigureAwait(false);
+        var authProviderResponse = await response
+            .Deserialize<AuthProviderResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            authProviderResponse.Validate();
+        }
+        return authProviderResponse;
     }
 
     public async Task<AuthProviderResponse> Get(AuthProviderGetParams parameters)
@@ -57,7 +78,14 @@ public sealed class AuthProviderService : IAuthProviderService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<AuthProviderResponse>().ConfigureAwait(false);
+        var authProviderResponse = await response
+            .Deserialize<AuthProviderResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            authProviderResponse.Validate();
+        }
+        return authProviderResponse;
     }
 
     public async Task<AuthProviderResponse> Patch(AuthProviderPatchParams parameters)
@@ -68,6 +96,13 @@ public sealed class AuthProviderService : IAuthProviderService
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return await response.Deserialize<AuthProviderResponse>().ConfigureAwait(false);
+        var authProviderResponse = await response
+            .Deserialize<AuthProviderResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            authProviderResponse.Validate();
+        }
+        return authProviderResponse;
     }
 }
