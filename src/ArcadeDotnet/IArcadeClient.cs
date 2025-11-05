@@ -26,6 +26,8 @@ public interface IArcadeClient
     /// </summary>
     string APIKey { get; init; }
 
+    IArcadeClient WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     IAdminService Admin { get; }
 
     IAuthService Auth { get; }

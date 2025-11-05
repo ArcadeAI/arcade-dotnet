@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
@@ -7,6 +8,11 @@ namespace ArcadeDotnet.Services.Health;
 
 public sealed class HealthService : IHealthService
 {
+    public IHealthService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new HealthService(this._client.WithOptions(modifier));
+    }
+
     readonly IArcadeClient _client;
 
     public HealthService(IArcadeClient client)

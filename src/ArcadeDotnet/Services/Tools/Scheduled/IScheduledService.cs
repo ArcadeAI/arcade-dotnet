@@ -1,10 +1,14 @@
+using System;
 using System.Threading.Tasks;
+using ArcadeDotnet.Core;
 using ArcadeDotnet.Models.Tools.Scheduled;
 
 namespace ArcadeDotnet.Services.Tools.Scheduled;
 
 public interface IScheduledService
 {
+    IScheduledService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// Returns a page of scheduled tool executions
     /// </summary>

@@ -11,6 +11,11 @@ namespace ArcadeDotnet.Services.Tools;
 
 public sealed class ToolService : IToolService
 {
+    public IToolService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new ToolService(this._client.WithOptions(modifier));
+    }
+
     readonly IArcadeClient _client;
 
     public ToolService(IArcadeClient client)
