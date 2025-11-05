@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
@@ -7,6 +8,11 @@ namespace ArcadeDotnet.Services.Tools.Scheduled;
 
 public sealed class ScheduledService : IScheduledService
 {
+    public IScheduledService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new ScheduledService(this._client.WithOptions(modifier));
+    }
+
     readonly IArcadeClient _client;
 
     public ScheduledService(IArcadeClient client)

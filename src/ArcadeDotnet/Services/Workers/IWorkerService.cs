@@ -1,10 +1,14 @@
+using System;
 using System.Threading.Tasks;
+using ArcadeDotnet.Core;
 using ArcadeDotnet.Models.Workers;
 
 namespace ArcadeDotnet.Services.Workers;
 
 public interface IWorkerService
 {
+    IWorkerService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// Create a worker
     /// </summary>

@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -8,6 +9,11 @@ namespace ArcadeDotnet.Services.Tools.Formatted;
 
 public sealed class FormattedService : IFormattedService
 {
+    public IFormattedService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new FormattedService(this._client.WithOptions(modifier));
+    }
+
     readonly IArcadeClient _client;
 
     public FormattedService(IArcadeClient client)

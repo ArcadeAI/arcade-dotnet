@@ -15,7 +15,7 @@ namespace ArcadeDotnet;
 
 public sealed class ArcadeClient : IArcadeClient
 {
-    readonly ClientOptions _options = new();
+    readonly ClientOptions _options;
 
     public HttpClient HttpClient
     {
@@ -45,6 +45,11 @@ public sealed class ArcadeClient : IArcadeClient
     {
         get { return this._options.APIKey; }
         init { this._options.APIKey = value; }
+    }
+
+    public IArcadeClient WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new ArcadeClient(modifier(this._options));
     }
 
     readonly Lazy<IAdminService> _admin;
@@ -130,11 +135,19 @@ public sealed class ArcadeClient : IArcadeClient
 
     public ArcadeClient()
     {
+        _options = new();
+
         _admin = new(() => new AdminService(this));
         _auth = new(() => new AuthService(this));
         _health = new(() => new HealthService(this));
         _chat = new(() => new ChatService(this));
         _tools = new(() => new ToolService(this));
         _workers = new(() => new WorkerService(this));
+    }
+
+    public ArcadeClient(ClientOptions options)
+        : this()
+    {
+        _options = options;
     }
 }

@@ -1,10 +1,14 @@
+using System;
 using System.Threading.Tasks;
+using ArcadeDotnet.Core;
 using ArcadeDotnet.Models.Admin.AuthProviders;
 
 namespace ArcadeDotnet.Services.Admin.AuthProviders;
 
 public interface IAuthProviderService
 {
+    IAuthProviderService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// Create a new auth provider
     /// </summary>

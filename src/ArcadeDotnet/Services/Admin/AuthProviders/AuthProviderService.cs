@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
@@ -7,6 +8,11 @@ namespace ArcadeDotnet.Services.Admin.AuthProviders;
 
 public sealed class AuthProviderService : IAuthProviderService
 {
+    public IAuthProviderService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new AuthProviderService(this._client.WithOptions(modifier));
+    }
+
     readonly IArcadeClient _client;
 
     public AuthProviderService(IArcadeClient client)

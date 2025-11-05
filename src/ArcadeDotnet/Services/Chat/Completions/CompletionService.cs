@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
@@ -8,6 +9,11 @@ namespace ArcadeDotnet.Services.Chat.Completions;
 
 public sealed class CompletionService : ICompletionService
 {
+    public ICompletionService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new CompletionService(this._client.WithOptions(modifier));
+    }
+
     readonly IArcadeClient _client;
 
     public CompletionService(IArcadeClient client)

@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
@@ -7,6 +8,11 @@ namespace ArcadeDotnet.Services.Admin.UserConnections;
 
 public sealed class UserConnectionService : IUserConnectionService
 {
+    public IUserConnectionService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new UserConnectionService(this._client.WithOptions(modifier));
+    }
+
     readonly IArcadeClient _client;
 
     public UserConnectionService(IArcadeClient client)

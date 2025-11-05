@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using ArcadeDotnet.Core;
 using ArcadeDotnet.Models;
 using ArcadeDotnet.Models.Auth;
 
@@ -6,6 +8,8 @@ namespace ArcadeDotnet.Services.Auth;
 
 public interface IAuthService
 {
+    IAuthService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     /// <summary>
     /// Starts the authorization process for given authorization requirements
     /// </summary>

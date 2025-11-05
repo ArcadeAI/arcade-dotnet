@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using ArcadeDotnet.Core;
 using ArcadeDotnet.Models;
 using ArcadeDotnet.Models.Tools;
 using ArcadeDotnet.Services.Tools.Formatted;
@@ -8,6 +10,8 @@ namespace ArcadeDotnet.Services.Tools;
 
 public interface IToolService
 {
+    IToolService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
     IScheduledService Scheduled { get; }
 
     IFormattedService Formatted { get; }

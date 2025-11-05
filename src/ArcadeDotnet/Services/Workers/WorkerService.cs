@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
@@ -7,6 +8,11 @@ namespace ArcadeDotnet.Services.Workers;
 
 public sealed class WorkerService : IWorkerService
 {
+    public IWorkerService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new WorkerService(this._client.WithOptions(modifier));
+    }
+
     readonly IArcadeClient _client;
 
     public WorkerService(IArcadeClient client)
