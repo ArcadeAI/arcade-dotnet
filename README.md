@@ -73,6 +73,27 @@ See this table for the available options:
 | `APIKey`  | `ARCADE_API_KEY`     | true     | -                          |
 | `BaseUrl` | `ARCADE_BASE_URL`    | true     | `"https://api.arcade.dev"` |
 
+### Modifying configuration
+
+To temporarily use a modified client configuration, while reusing the same connection and thread pools, call `WithOptions` on any client or service:
+
+```csharp
+using System;
+using ArcadeDotnet;
+
+IArcadeClient clientWithOptions = client.WithOptions(options =>
+    options with
+    {
+        BaseUrl = new("https://example.com"),
+        Timeout = TimeSpan.FromSeconds(42),
+    }
+);
+```
+
+Using a [`with` expression](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression) makes it easy to construct the modified options.
+
+The `WithOptions` method does not affect the original client or service.
+
 ## Requests and responses
 
 To send a request to the Arcade API, build an instance of some `Params` class and pass it to the corresponding client method. When the response is received, it will be deserialized into an instance of a C# class.
