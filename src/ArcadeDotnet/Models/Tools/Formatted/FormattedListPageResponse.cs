@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class FormattedListPageResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("items", out JsonElement element))
+            if (!this._properties.TryGetValue("items", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<JsonElement>?>(
@@ -23,9 +24,9 @@ public sealed record class FormattedListPageResponse
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["items"] = JsonSerializer.SerializeToElement(
+            this._properties["items"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -36,14 +37,14 @@ public sealed record class FormattedListPageResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("limit", out JsonElement element))
+            if (!this._properties.TryGetValue("limit", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["limit"] = JsonSerializer.SerializeToElement(
+            this._properties["limit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -54,14 +55,14 @@ public sealed record class FormattedListPageResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("offset", out JsonElement element))
+            if (!this._properties.TryGetValue("offset", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["offset"] = JsonSerializer.SerializeToElement(
+            this._properties["offset"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -72,14 +73,14 @@ public sealed record class FormattedListPageResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("page_count", out JsonElement element))
+            if (!this._properties.TryGetValue("page_count", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["page_count"] = JsonSerializer.SerializeToElement(
+            this._properties["page_count"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -90,14 +91,14 @@ public sealed record class FormattedListPageResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("total_count", out JsonElement element))
+            if (!this._properties.TryGetValue("total_count", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["total_count"] = JsonSerializer.SerializeToElement(
+            this._properties["total_count"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -115,18 +116,23 @@ public sealed record class FormattedListPageResponse
 
     public FormattedListPageResponse() { }
 
+    public FormattedListPageResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FormattedListPageResponse(Dictionary<string, JsonElement> properties)
+    FormattedListPageResponse(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
     public static FormattedListPageResponse FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> properties
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

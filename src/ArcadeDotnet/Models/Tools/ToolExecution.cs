@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -13,14 +14,14 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -31,14 +32,14 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out JsonElement element))
+            if (!this._properties.TryGetValue("created_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["created_at"] = JsonSerializer.SerializeToElement(
+            this._properties["created_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -49,14 +50,14 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
     {
         get
         {
-            if (!this.Properties.TryGetValue("execution_status", out JsonElement element))
+            if (!this._properties.TryGetValue("execution_status", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["execution_status"] = JsonSerializer.SerializeToElement(
+            this._properties["execution_status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -67,14 +68,14 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
     {
         get
         {
-            if (!this.Properties.TryGetValue("execution_type", out JsonElement element))
+            if (!this._properties.TryGetValue("execution_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["execution_type"] = JsonSerializer.SerializeToElement(
+            this._properties["execution_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -85,14 +86,14 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
     {
         get
         {
-            if (!this.Properties.TryGetValue("finished_at", out JsonElement element))
+            if (!this._properties.TryGetValue("finished_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["finished_at"] = JsonSerializer.SerializeToElement(
+            this._properties["finished_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -103,14 +104,14 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
     {
         get
         {
-            if (!this.Properties.TryGetValue("run_at", out JsonElement element))
+            if (!this._properties.TryGetValue("run_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["run_at"] = JsonSerializer.SerializeToElement(
+            this._properties["run_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -121,14 +122,14 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
     {
         get
         {
-            if (!this.Properties.TryGetValue("started_at", out JsonElement element))
+            if (!this._properties.TryGetValue("started_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["started_at"] = JsonSerializer.SerializeToElement(
+            this._properties["started_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -139,14 +140,14 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
     {
         get
         {
-            if (!this.Properties.TryGetValue("tool_name", out JsonElement element))
+            if (!this._properties.TryGetValue("tool_name", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["tool_name"] = JsonSerializer.SerializeToElement(
+            this._properties["tool_name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -157,14 +158,14 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
     {
         get
         {
-            if (!this.Properties.TryGetValue("toolkit_name", out JsonElement element))
+            if (!this._properties.TryGetValue("toolkit_name", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["toolkit_name"] = JsonSerializer.SerializeToElement(
+            this._properties["toolkit_name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -175,14 +176,14 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
     {
         get
         {
-            if (!this.Properties.TryGetValue("toolkit_version", out JsonElement element))
+            if (!this._properties.TryGetValue("toolkit_version", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["toolkit_version"] = JsonSerializer.SerializeToElement(
+            this._properties["toolkit_version"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -193,14 +194,14 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
     {
         get
         {
-            if (!this.Properties.TryGetValue("updated_at", out JsonElement element))
+            if (!this._properties.TryGetValue("updated_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["updated_at"] = JsonSerializer.SerializeToElement(
+            this._properties["updated_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -211,14 +212,14 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
     {
         get
         {
-            if (!this.Properties.TryGetValue("user_id", out JsonElement element))
+            if (!this._properties.TryGetValue("user_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["user_id"] = JsonSerializer.SerializeToElement(
+            this._properties["user_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -243,16 +244,23 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
 
     public ToolExecution() { }
 
+    public ToolExecution(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ToolExecution(Dictionary<string, JsonElement> properties)
+    ToolExecution(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static ToolExecution FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static ToolExecution FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

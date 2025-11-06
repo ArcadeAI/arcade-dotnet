@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
@@ -15,13 +16,17 @@ namespace ArcadeDotnet.Models.Auth;
 /// </summary>
 public sealed record class AuthAuthorizeParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
     public required AuthRequirement AuthRequirement
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("auth_requirement", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("auth_requirement", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'auth_requirement' cannot be null",
                     new ArgumentOutOfRangeException("auth_requirement", "Missing required argument")
@@ -33,9 +38,9 @@ public sealed record class AuthAuthorizeParams : ParamsBase
                     new ArgumentNullException("auth_requirement")
                 );
         }
-        set
+        init
         {
-            this.BodyProperties["auth_requirement"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["auth_requirement"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -46,7 +51,7 @@ public sealed record class AuthAuthorizeParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("user_id", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("user_id", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'user_id' cannot be null",
                     new ArgumentOutOfRangeException("user_id", "Missing required argument")
@@ -58,9 +63,9 @@ public sealed record class AuthAuthorizeParams : ParamsBase
                     new ArgumentNullException("user_id")
                 );
         }
-        set
+        init
         {
-            this.BodyProperties["user_id"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["user_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -74,18 +79,58 @@ public sealed record class AuthAuthorizeParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("next_uri", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("next_uri", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["next_uri"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["next_uri"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public AuthAuthorizeParams() { }
+
+    public AuthAuthorizeParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AuthAuthorizeParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static AuthAuthorizeParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override Uri Url(IArcadeClient client)
@@ -125,14 +170,14 @@ public sealed record class AuthRequirement : ModelBase, IFromRaw<AuthRequirement
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -143,14 +188,14 @@ public sealed record class AuthRequirement : ModelBase, IFromRaw<AuthRequirement
     {
         get
         {
-            if (!this.Properties.TryGetValue("oauth2", out JsonElement element))
+            if (!this._properties.TryGetValue("oauth2", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Oauth2?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["oauth2"] = JsonSerializer.SerializeToElement(
+            this._properties["oauth2"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -164,14 +209,14 @@ public sealed record class AuthRequirement : ModelBase, IFromRaw<AuthRequirement
     {
         get
         {
-            if (!this.Properties.TryGetValue("provider_id", out JsonElement element))
+            if (!this._properties.TryGetValue("provider_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["provider_id"] = JsonSerializer.SerializeToElement(
+            this._properties["provider_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -182,14 +227,14 @@ public sealed record class AuthRequirement : ModelBase, IFromRaw<AuthRequirement
     {
         get
         {
-            if (!this.Properties.TryGetValue("provider_type", out JsonElement element))
+            if (!this._properties.TryGetValue("provider_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["provider_type"] = JsonSerializer.SerializeToElement(
+            this._properties["provider_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -206,17 +251,24 @@ public sealed record class AuthRequirement : ModelBase, IFromRaw<AuthRequirement
 
     public AuthRequirement() { }
 
+    public AuthRequirement(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AuthRequirement(Dictionary<string, JsonElement> properties)
+    AuthRequirement(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static AuthRequirement FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static AuthRequirement FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
@@ -227,14 +279,14 @@ public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
     {
         get
         {
-            if (!this.Properties.TryGetValue("scopes", out JsonElement element))
+            if (!this._properties.TryGetValue("scopes", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["scopes"] = JsonSerializer.SerializeToElement(
+            this._properties["scopes"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -248,16 +300,21 @@ public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
 
     public Oauth2() { }
 
+    public Oauth2(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Oauth2(Dictionary<string, JsonElement> properties)
+    Oauth2(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Oauth2 FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Oauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

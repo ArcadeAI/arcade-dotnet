@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -13,7 +14,7 @@ public sealed record class SecretListResponse : ModelBase, IFromRaw<SecretListRe
     {
         get
         {
-            if (!this.Properties.TryGetValue("items", out JsonElement element))
+            if (!this._properties.TryGetValue("items", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<SecretResponse>?>(
@@ -21,9 +22,9 @@ public sealed record class SecretListResponse : ModelBase, IFromRaw<SecretListRe
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["items"] = JsonSerializer.SerializeToElement(
+            this._properties["items"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -34,14 +35,14 @@ public sealed record class SecretListResponse : ModelBase, IFromRaw<SecretListRe
     {
         get
         {
-            if (!this.Properties.TryGetValue("limit", out JsonElement element))
+            if (!this._properties.TryGetValue("limit", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["limit"] = JsonSerializer.SerializeToElement(
+            this._properties["limit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -52,14 +53,14 @@ public sealed record class SecretListResponse : ModelBase, IFromRaw<SecretListRe
     {
         get
         {
-            if (!this.Properties.TryGetValue("offset", out JsonElement element))
+            if (!this._properties.TryGetValue("offset", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["offset"] = JsonSerializer.SerializeToElement(
+            this._properties["offset"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -70,14 +71,14 @@ public sealed record class SecretListResponse : ModelBase, IFromRaw<SecretListRe
     {
         get
         {
-            if (!this.Properties.TryGetValue("page_count", out JsonElement element))
+            if (!this._properties.TryGetValue("page_count", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["page_count"] = JsonSerializer.SerializeToElement(
+            this._properties["page_count"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -88,14 +89,14 @@ public sealed record class SecretListResponse : ModelBase, IFromRaw<SecretListRe
     {
         get
         {
-            if (!this.Properties.TryGetValue("total_count", out JsonElement element))
+            if (!this._properties.TryGetValue("total_count", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["total_count"] = JsonSerializer.SerializeToElement(
+            this._properties["total_count"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -116,16 +117,23 @@ public sealed record class SecretListResponse : ModelBase, IFromRaw<SecretListRe
 
     public SecretListResponse() { }
 
+    public SecretListResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SecretListResponse(Dictionary<string, JsonElement> properties)
+    SecretListResponse(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static SecretListResponse FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static SecretListResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -13,14 +14,14 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
     {
         get
         {
-            if (!this.Properties.TryGetValue("completion_tokens", out JsonElement element))
+            if (!this._properties.TryGetValue("completion_tokens", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["completion_tokens"] = JsonSerializer.SerializeToElement(
+            this._properties["completion_tokens"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -31,14 +32,14 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
     {
         get
         {
-            if (!this.Properties.TryGetValue("prompt_tokens", out JsonElement element))
+            if (!this._properties.TryGetValue("prompt_tokens", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["prompt_tokens"] = JsonSerializer.SerializeToElement(
+            this._properties["prompt_tokens"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -49,14 +50,14 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
     {
         get
         {
-            if (!this.Properties.TryGetValue("total_tokens", out JsonElement element))
+            if (!this._properties.TryGetValue("total_tokens", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["total_tokens"] = JsonSerializer.SerializeToElement(
+            this._properties["total_tokens"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -72,16 +73,21 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
 
     public Usage() { }
 
+    public Usage(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Usage(Dictionary<string, JsonElement> properties)
+    Usage(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Usage FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Usage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

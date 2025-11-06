@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,14 +16,14 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -33,7 +34,7 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
     {
         get
         {
-            if (!this.Properties.TryGetValue("context", out JsonElement element))
+            if (!this._properties.TryGetValue("context", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<AuthorizationContext?>(
@@ -41,9 +42,9 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["context"] = JsonSerializer.SerializeToElement(
+            this._properties["context"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -54,14 +55,14 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
     {
         get
         {
-            if (!this.Properties.TryGetValue("provider_id", out JsonElement element))
+            if (!this._properties.TryGetValue("provider_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["provider_id"] = JsonSerializer.SerializeToElement(
+            this._properties["provider_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -72,14 +73,14 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
     {
         get
         {
-            if (!this.Properties.TryGetValue("scopes", out JsonElement element))
+            if (!this._properties.TryGetValue("scopes", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["scopes"] = JsonSerializer.SerializeToElement(
+            this._properties["scopes"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -90,7 +91,7 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
     {
         get
         {
-            if (!this.Properties.TryGetValue("status", out JsonElement element))
+            if (!this._properties.TryGetValue("status", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<string, Status>?>(
@@ -98,9 +99,9 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["status"] = JsonSerializer.SerializeToElement(
+            this._properties["status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -111,14 +112,14 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
     {
         get
         {
-            if (!this.Properties.TryGetValue("url", out JsonElement element))
+            if (!this._properties.TryGetValue("url", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["url"] = JsonSerializer.SerializeToElement(
+            this._properties["url"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -129,14 +130,14 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
     {
         get
         {
-            if (!this.Properties.TryGetValue("user_id", out JsonElement element))
+            if (!this._properties.TryGetValue("user_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["user_id"] = JsonSerializer.SerializeToElement(
+            this._properties["user_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -156,17 +157,24 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
 
     public AuthorizationResponse() { }
 
+    public AuthorizationResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AuthorizationResponse(Dictionary<string, JsonElement> properties)
+    AuthorizationResponse(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static AuthorizationResponse FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static AuthorizationResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
