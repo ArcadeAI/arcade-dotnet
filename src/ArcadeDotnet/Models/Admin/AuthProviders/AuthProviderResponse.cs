@@ -570,6 +570,24 @@ public sealed record class Oauth22 : ModelBase, IFromRaw<Oauth22>
 [JsonConverter(typeof(ModelConverter<AuthorizeRequest2>))]
 public sealed record class AuthorizeRequest2 : ModelBase, IFromRaw<AuthorizeRequest2>
 {
+    public string? AuthHeaderValueFormat
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("auth_header_value_format", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["auth_header_value_format"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public string? AuthMethod
     {
         get
@@ -722,6 +740,7 @@ public sealed record class AuthorizeRequest2 : ModelBase, IFromRaw<AuthorizeRequ
 
     public override void Validate()
     {
+        _ = this.AuthHeaderValueFormat;
         _ = this.AuthMethod;
         _ = this.Endpoint;
         _ = this.ExpirationFormat;
@@ -1000,6 +1019,24 @@ public sealed record class Pkce2 : ModelBase, IFromRaw<Pkce2>
 [JsonConverter(typeof(ModelConverter<RefreshRequest2>))]
 public sealed record class RefreshRequest2 : ModelBase, IFromRaw<RefreshRequest2>
 {
+    public string? AuthHeaderValueFormat
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("auth_header_value_format", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["auth_header_value_format"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public string? AuthMethod
     {
         get
@@ -1152,6 +1189,7 @@ public sealed record class RefreshRequest2 : ModelBase, IFromRaw<RefreshRequest2
 
     public override void Validate()
     {
+        _ = this.AuthHeaderValueFormat;
         _ = this.AuthMethod;
         _ = this.Endpoint;
         _ = this.ExpirationFormat;
@@ -1190,6 +1228,24 @@ public sealed record class TokenIntrospectionRequest1
     : ModelBase,
         IFromRaw<TokenIntrospectionRequest1>
 {
+    public string? AuthHeaderValueFormat
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("auth_header_value_format", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["auth_header_value_format"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public string? AuthMethod
     {
         get
@@ -1378,6 +1434,7 @@ public sealed record class TokenIntrospectionRequest1
 
     public override void Validate()
     {
+        _ = this.AuthHeaderValueFormat;
         _ = this.AuthMethod;
         _ = this.Enabled;
         _ = this.Endpoint;
@@ -1482,6 +1539,24 @@ public sealed record class Triggers4 : ModelBase, IFromRaw<Triggers4>
 [JsonConverter(typeof(ModelConverter<TokenRequest2>))]
 public sealed record class TokenRequest2 : ModelBase, IFromRaw<TokenRequest2>
 {
+    public string? AuthHeaderValueFormat
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("auth_header_value_format", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["auth_header_value_format"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public string? AuthMethod
     {
         get
@@ -1634,6 +1709,7 @@ public sealed record class TokenRequest2 : ModelBase, IFromRaw<TokenRequest2>
 
     public override void Validate()
     {
+        _ = this.AuthHeaderValueFormat;
         _ = this.AuthMethod;
         _ = this.Endpoint;
         _ = this.ExpirationFormat;
@@ -1670,6 +1746,24 @@ public sealed record class TokenRequest2 : ModelBase, IFromRaw<TokenRequest2>
 [JsonConverter(typeof(ModelConverter<UserInfoRequest2>))]
 public sealed record class UserInfoRequest2 : ModelBase, IFromRaw<UserInfoRequest2>
 {
+    public string? AuthHeaderValueFormat
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("auth_header_value_format", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            this._properties["auth_header_value_format"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     public string? AuthMethod
     {
         get
@@ -1840,6 +1934,7 @@ public sealed record class UserInfoRequest2 : ModelBase, IFromRaw<UserInfoReques
 
     public override void Validate()
     {
+        _ = this.AuthHeaderValueFormat;
         _ = this.AuthMethod;
         _ = this.Endpoint;
         _ = this.ExpirationFormat;
