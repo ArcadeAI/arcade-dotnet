@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,14 +16,14 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -33,14 +34,14 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
     {
         get
         {
-            if (!this.Properties.TryGetValue("binding", out JsonElement element))
+            if (!this._properties.TryGetValue("binding", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Binding?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["binding"] = JsonSerializer.SerializeToElement(
+            this._properties["binding"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -51,14 +52,14 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out JsonElement element))
+            if (!this._properties.TryGetValue("created_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["created_at"] = JsonSerializer.SerializeToElement(
+            this._properties["created_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -69,14 +70,14 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
     {
         get
         {
-            if (!this.Properties.TryGetValue("description", out JsonElement element))
+            if (!this._properties.TryGetValue("description", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["description"] = JsonSerializer.SerializeToElement(
+            this._properties["description"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -87,14 +88,14 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
     {
         get
         {
-            if (!this.Properties.TryGetValue("hint", out JsonElement element))
+            if (!this._properties.TryGetValue("hint", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["hint"] = JsonSerializer.SerializeToElement(
+            this._properties["hint"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -105,14 +106,14 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
     {
         get
         {
-            if (!this.Properties.TryGetValue("key", out JsonElement element))
+            if (!this._properties.TryGetValue("key", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["key"] = JsonSerializer.SerializeToElement(
+            this._properties["key"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -123,14 +124,14 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
     {
         get
         {
-            if (!this.Properties.TryGetValue("last_accessed_at", out JsonElement element))
+            if (!this._properties.TryGetValue("last_accessed_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["last_accessed_at"] = JsonSerializer.SerializeToElement(
+            this._properties["last_accessed_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -141,14 +142,14 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
     {
         get
         {
-            if (!this.Properties.TryGetValue("updated_at", out JsonElement element))
+            if (!this._properties.TryGetValue("updated_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["updated_at"] = JsonSerializer.SerializeToElement(
+            this._properties["updated_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -169,17 +170,24 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
 
     public SecretResponse() { }
 
+    public SecretResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SecretResponse(Dictionary<string, JsonElement> properties)
+    SecretResponse(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static SecretResponse FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static SecretResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
@@ -190,14 +198,14 @@ public sealed record class Binding : ModelBase, IFromRaw<Binding>
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -208,7 +216,7 @@ public sealed record class Binding : ModelBase, IFromRaw<Binding>
     {
         get
         {
-            if (!this.Properties.TryGetValue("type", out JsonElement element))
+            if (!this._properties.TryGetValue("type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<
@@ -216,9 +224,9 @@ public sealed record class Binding : ModelBase, IFromRaw<Binding>
                 global::ArcadeDotnet.Models.Admin.Secrets.Type
             >?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["type"] = JsonSerializer.SerializeToElement(
+            this._properties["type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -233,17 +241,22 @@ public sealed record class Binding : ModelBase, IFromRaw<Binding>
 
     public Binding() { }
 
+    public Binding(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Binding(Dictionary<string, JsonElement> properties)
+    Binding(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Binding FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static Binding FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 

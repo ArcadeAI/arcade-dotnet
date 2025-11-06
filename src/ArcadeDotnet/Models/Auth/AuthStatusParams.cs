@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
 using ArcadeDotnet.Core;
@@ -20,7 +23,7 @@ public sealed record class AuthStatusParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("id", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("id", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'id' cannot be null",
                     new ArgumentOutOfRangeException("id", "Missing required argument")
@@ -32,9 +35,9 @@ public sealed record class AuthStatusParams : ParamsBase
                     new ArgumentNullException("id")
                 );
         }
-        set
+        init
         {
-            this.QueryProperties["id"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -48,18 +51,52 @@ public sealed record class AuthStatusParams : ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("wait", out JsonElement element))
+            if (!this._queryProperties.TryGetValue("wait", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.QueryProperties["wait"] = JsonSerializer.SerializeToElement(
+            this._queryProperties["wait"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public AuthStatusParams() { }
+
+    public AuthStatusParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AuthStatusParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+    }
+#pragma warning restore CS8618
+
+    public static AuthStatusParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties)
+        );
     }
 
     public override Uri Url(IArcadeClient client)

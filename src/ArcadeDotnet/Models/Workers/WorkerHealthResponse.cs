@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -13,14 +14,14 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -31,14 +32,14 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
     {
         get
         {
-            if (!this.Properties.TryGetValue("enabled", out JsonElement element))
+            if (!this._properties.TryGetValue("enabled", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["enabled"] = JsonSerializer.SerializeToElement(
+            this._properties["enabled"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -49,14 +50,14 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
     {
         get
         {
-            if (!this.Properties.TryGetValue("healthy", out JsonElement element))
+            if (!this._properties.TryGetValue("healthy", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["healthy"] = JsonSerializer.SerializeToElement(
+            this._properties["healthy"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -67,14 +68,14 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
     {
         get
         {
-            if (!this.Properties.TryGetValue("message", out JsonElement element))
+            if (!this._properties.TryGetValue("message", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["message"] = JsonSerializer.SerializeToElement(
+            this._properties["message"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -91,16 +92,23 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
 
     public WorkerHealthResponse() { }
 
+    public WorkerHealthResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    WorkerHealthResponse(Dictionary<string, JsonElement> properties)
+    WorkerHealthResponse(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static WorkerHealthResponse FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static WorkerHealthResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

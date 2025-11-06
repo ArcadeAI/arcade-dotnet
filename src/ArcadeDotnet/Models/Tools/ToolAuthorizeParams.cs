@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -13,13 +15,17 @@ namespace ArcadeDotnet.Models.Tools;
 /// </summary>
 public sealed record class ToolAuthorizeParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
     public required string ToolName
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("tool_name", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("tool_name", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'tool_name' cannot be null",
                     new ArgumentOutOfRangeException("tool_name", "Missing required argument")
@@ -31,9 +37,9 @@ public sealed record class ToolAuthorizeParams : ParamsBase
                     new ArgumentNullException("tool_name")
                 );
         }
-        set
+        init
         {
-            this.BodyProperties["tool_name"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["tool_name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -47,14 +53,14 @@ public sealed record class ToolAuthorizeParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("next_uri", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("next_uri", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["next_uri"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["next_uri"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -68,14 +74,14 @@ public sealed record class ToolAuthorizeParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("tool_version", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("tool_version", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["tool_version"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["tool_version"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -89,18 +95,58 @@ public sealed record class ToolAuthorizeParams : ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("user_id", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("user_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["user_id"] = JsonSerializer.SerializeToElement(
+            this._bodyProperties["user_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
+    }
+
+    public ToolAuthorizeParams() { }
+
+    public ToolAuthorizeParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ToolAuthorizeParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static ToolAuthorizeParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
     }
 
     public override Uri Url(IArcadeClient client)
