@@ -151,10 +151,7 @@ using System;
 
 var chatResponse = await client
     .WithOptions(options =>
-        options with
-        {
-            Timeout = TimeSpan.FromSeconds(42)
-        }
+        options with { Timeout = TimeSpan.FromSeconds(42) }
     )
     .Chat.Completions.Create();
 
@@ -193,10 +190,7 @@ using System;
 
 var executeToolResponse = await client
     .WithOptions(options =>
-        options with
-        {
-            ResponseValidation = true
-        }
+        options with { ResponseValidation = true }
     )
     .Tools.Execute(parameters);
 
