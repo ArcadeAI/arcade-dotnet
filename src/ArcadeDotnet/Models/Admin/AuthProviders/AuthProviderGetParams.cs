@@ -1,6 +1,6 @@
-using System;
 using System.Net.Http;
 using ArcadeDotnet.Core;
+using System = System;
 
 namespace ArcadeDotnet.Models.Admin.AuthProviders;
 
@@ -11,9 +11,9 @@ public sealed record class AuthProviderGetParams : ParamsBase
 {
     public required string ID;
 
-    public override Uri Url(IArcadeClient client)
+    public override System::Uri Url(IArcadeClient client)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             client.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/v1/admin/auth_providers/{0}", this.ID)
         )

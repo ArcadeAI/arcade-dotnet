@@ -3,7 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
-using ArcadeDotnet.Models.Admin.Secrets.SecretResponseProperties;
+using ArcadeDotnet.Exceptions;
+using System = System;
 
 namespace ArcadeDotnet.Models.Admin.Secrets;
 
@@ -179,5 +180,119 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
     public static SecretResponse FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<Binding>))]
+public sealed record class Binding : ModelBase, IFromRaw<Binding>
+{
+    public string? ID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public ApiEnum<string, global::ArcadeDotnet.Models.Admin.Secrets.Type>? Type
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("type", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                global::ArcadeDotnet.Models.Admin.Secrets.Type
+            >?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.ID;
+        this.Type?.Validate();
+    }
+
+    public Binding() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Binding(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static Binding FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(TypeConverter))]
+public enum Type
+{
+    Static,
+    Tenant,
+    Project,
+    Account,
+}
+
+sealed class TypeConverter : JsonConverter<global::ArcadeDotnet.Models.Admin.Secrets.Type>
+{
+    public override global::ArcadeDotnet.Models.Admin.Secrets.Type Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "static" => global::ArcadeDotnet.Models.Admin.Secrets.Type.Static,
+            "tenant" => global::ArcadeDotnet.Models.Admin.Secrets.Type.Tenant,
+            "project" => global::ArcadeDotnet.Models.Admin.Secrets.Type.Project,
+            "account" => global::ArcadeDotnet.Models.Admin.Secrets.Type.Account,
+            _ => (global::ArcadeDotnet.Models.Admin.Secrets.Type)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::ArcadeDotnet.Models.Admin.Secrets.Type value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::ArcadeDotnet.Models.Admin.Secrets.Type.Static => "static",
+                global::ArcadeDotnet.Models.Admin.Secrets.Type.Tenant => "tenant",
+                global::ArcadeDotnet.Models.Admin.Secrets.Type.Project => "project",
+                global::ArcadeDotnet.Models.Admin.Secrets.Type.Account => "account",
+                _ => throw new ArcadeInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

@@ -3,7 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
-using ArcadeDotnet.Models.AuthorizationResponseProperties;
+using ArcadeDotnet.Exceptions;
+using System = System;
 
 namespace ArcadeDotnet.Models;
 
@@ -166,5 +167,51 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
     public static AuthorizationResponse FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
+    }
+}
+
+[JsonConverter(typeof(StatusConverter))]
+public enum Status
+{
+    NotStarted,
+    Pending,
+    Completed,
+    Failed,
+}
+
+sealed class StatusConverter : JsonConverter<Status>
+{
+    public override Status Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "not_started" => Status.NotStarted,
+            "pending" => Status.Pending,
+            "completed" => Status.Completed,
+            "failed" => Status.Failed,
+            _ => (Status)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Status value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Status.NotStarted => "not_started",
+                Status.Pending => "pending",
+                Status.Completed => "completed",
+                Status.Failed => "failed",
+                _ => throw new ArcadeInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

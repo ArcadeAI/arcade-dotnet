@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
-using ArcadeDotnet.Models.Workers;
+using Workers = ArcadeDotnet.Models.Workers;
 
 namespace ArcadeDotnet.Services.Workers;
 
@@ -12,35 +12,35 @@ public interface IWorkerService
     /// <summary>
     /// Create a worker
     /// </summary>
-    Task<WorkerResponse> Create(WorkerCreateParams parameters);
+    Task<Workers::WorkerResponse> Create(Workers::WorkerCreateParams parameters);
 
     /// <summary>
     /// Update a worker
     /// </summary>
-    Task<WorkerResponse> Update(WorkerUpdateParams parameters);
+    Task<Workers::WorkerResponse> Update(Workers::WorkerUpdateParams parameters);
 
     /// <summary>
     /// List all workers with their definitions
     /// </summary>
-    Task<WorkerListPageResponse> List(WorkerListParams? parameters = null);
+    Task<Workers::WorkerListPageResponse> List(Workers::WorkerListParams? parameters = null);
 
     /// <summary>
     /// Delete a worker
     /// </summary>
-    Task Delete(WorkerDeleteParams parameters);
+    Task Delete(Workers::WorkerDeleteParams parameters);
 
     /// <summary>
     /// Get a worker by ID
     /// </summary>
-    Task<WorkerResponse> Get(WorkerGetParams parameters);
+    Task<Workers::WorkerResponse> Get(Workers::WorkerGetParams parameters);
 
     /// <summary>
     /// Get the health of a worker
     /// </summary>
-    Task<WorkerHealthResponse> Health(WorkerHealthParams parameters);
+    Task<Workers::WorkerHealthResponse> Health(Workers::WorkerHealthParams parameters);
 
     /// <summary>
     /// Returns a page of tools
     /// </summary>
-    Task<WorkerToolsPageResponse> Tools(WorkerToolsParams parameters);
+    Task<Workers::WorkerToolsPageResponse> Tools(Workers::WorkerToolsParams parameters);
 }

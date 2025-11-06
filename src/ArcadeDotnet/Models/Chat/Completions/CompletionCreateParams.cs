@@ -1,10 +1,12 @@
-using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
-using ArcadeDotnet.Models.Chat.Completions.CompletionCreateParamsProperties;
+using ArcadeDotnet.Exceptions;
+using System = System;
 
 namespace ArcadeDotnet.Models.Chat.Completions;
 
@@ -197,14 +199,14 @@ public sealed record class CompletionCreateParams : ParamsBase
         }
     }
 
-    public ResponseFormat? ResponseFormat
+    public global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat? ResponseFormat
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("response_format", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ResponseFormat?>(
+            return JsonSerializer.Deserialize<global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -275,14 +277,17 @@ public sealed record class CompletionCreateParams : ParamsBase
     /// <summary>
     /// Options for streaming response. Only set this when you set stream: true.
     /// </summary>
-    public StreamOptions? StreamOptions
+    public global::ArcadeDotnet.Models.Chat.Completions.StreamOptions? StreamOptions
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("stream_options", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<StreamOptions?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<global::ArcadeDotnet.Models.Chat.Completions.StreamOptions?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         set
         {
@@ -409,9 +414,11 @@ public sealed record class CompletionCreateParams : ParamsBase
         }
     }
 
-    public override Uri Url(IArcadeClient client)
+    public override System::Uri Url(IArcadeClient client)
     {
-        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/v1/chat/completions")
+        return new System::UriBuilder(
+            client.BaseUrl.ToString().TrimEnd('/') + "/v1/chat/completions"
+        )
         {
             Query = this.QueryString(client),
         }.Uri;
@@ -433,5 +440,153 @@ public sealed record class CompletionCreateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat>))]
+public sealed record class ResponseFormat
+    : ModelBase,
+        IFromRaw<global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat>
+{
+    public ApiEnum<string, global::ArcadeDotnet.Models.Chat.Completions.Type>? Type
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("type", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                global::ArcadeDotnet.Models.Chat.Completions.Type
+            >?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        this.Type?.Validate();
+    }
+
+    public ResponseFormat() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ResponseFormat(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(global::ArcadeDotnet.Models.Chat.Completions.TypeConverter))]
+public enum Type
+{
+    JsonObject,
+    Text,
+}
+
+sealed class TypeConverter : JsonConverter<global::ArcadeDotnet.Models.Chat.Completions.Type>
+{
+    public override global::ArcadeDotnet.Models.Chat.Completions.Type Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "json_object" => global::ArcadeDotnet.Models.Chat.Completions.Type.JsonObject,
+            "text" => global::ArcadeDotnet.Models.Chat.Completions.Type.Text,
+            _ => (global::ArcadeDotnet.Models.Chat.Completions.Type)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::ArcadeDotnet.Models.Chat.Completions.Type value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::ArcadeDotnet.Models.Chat.Completions.Type.JsonObject => "json_object",
+                global::ArcadeDotnet.Models.Chat.Completions.Type.Text => "text",
+                _ => throw new ArcadeInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Options for streaming response. Only set this when you set stream: true.
+/// </summary>
+[JsonConverter(typeof(ModelConverter<global::ArcadeDotnet.Models.Chat.Completions.StreamOptions>))]
+public sealed record class StreamOptions
+    : ModelBase,
+        IFromRaw<global::ArcadeDotnet.Models.Chat.Completions.StreamOptions>
+{
+    /// <summary>
+    /// If set, an additional chunk will be streamed before the data: [DONE] message.
+    /// The usage field on this chunk shows the token usage statistics for the entire
+    /// request, and the choices field will always be an empty array. All other chunks
+    /// will also include a usage field, but with a null value.
+    /// </summary>
+    public bool? IncludeUsage
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("include_usage", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["include_usage"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.IncludeUsage;
+    }
+
+    public StreamOptions() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    StreamOptions(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static global::ArcadeDotnet.Models.Chat.Completions.StreamOptions FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
+    {
+        return new(properties);
     }
 }

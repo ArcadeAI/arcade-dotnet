@@ -1,6 +1,6 @@
-using System;
 using System.Net.Http;
 using ArcadeDotnet.Core;
+using System = System;
 
 namespace ArcadeDotnet.Models.Admin.Secrets;
 
@@ -9,9 +9,9 @@ namespace ArcadeDotnet.Models.Admin.Secrets;
 /// </summary>
 public sealed record class SecretListParams : ParamsBase
 {
-    public override Uri Url(IArcadeClient client)
+    public override System::Uri Url(IArcadeClient client)
     {
-        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/v1/admin/secrets")
+        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/v1/admin/secrets")
         {
             Query = this.QueryString(client),
         }.Uri;

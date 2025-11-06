@@ -2,7 +2,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
-using ArcadeDotnet.Models.Workers;
+using Workers = ArcadeDotnet.Models.Workers;
 
 namespace ArcadeDotnet.Services.Workers;
 
@@ -20,15 +20,17 @@ public sealed class WorkerService : IWorkerService
         _client = client;
     }
 
-    public async Task<WorkerResponse> Create(WorkerCreateParams parameters)
+    public async Task<Workers::WorkerResponse> Create(Workers::WorkerCreateParams parameters)
     {
-        HttpRequest<WorkerCreateParams> request = new()
+        HttpRequest<Workers::WorkerCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var workerResponse = await response.Deserialize<WorkerResponse>().ConfigureAwait(false);
+        var workerResponse = await response
+            .Deserialize<Workers::WorkerResponse>()
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             workerResponse.Validate();
@@ -36,15 +38,17 @@ public sealed class WorkerService : IWorkerService
         return workerResponse;
     }
 
-    public async Task<WorkerResponse> Update(WorkerUpdateParams parameters)
+    public async Task<Workers::WorkerResponse> Update(Workers::WorkerUpdateParams parameters)
     {
-        HttpRequest<WorkerUpdateParams> request = new()
+        HttpRequest<Workers::WorkerUpdateParams> request = new()
         {
             Method = HttpMethod.Patch,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var workerResponse = await response.Deserialize<WorkerResponse>().ConfigureAwait(false);
+        var workerResponse = await response
+            .Deserialize<Workers::WorkerResponse>()
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             workerResponse.Validate();
@@ -52,17 +56,21 @@ public sealed class WorkerService : IWorkerService
         return workerResponse;
     }
 
-    public async Task<WorkerListPageResponse> List(WorkerListParams? parameters = null)
+    public async Task<Workers::WorkerListPageResponse> List(
+        Workers::WorkerListParams? parameters = null
+    )
     {
         parameters ??= new();
 
-        HttpRequest<WorkerListParams> request = new()
+        HttpRequest<Workers::WorkerListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var page = await response.Deserialize<WorkerListPageResponse>().ConfigureAwait(false);
+        var page = await response
+            .Deserialize<Workers::WorkerListPageResponse>()
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             page.Validate();
@@ -70,9 +78,9 @@ public sealed class WorkerService : IWorkerService
         return page;
     }
 
-    public async Task Delete(WorkerDeleteParams parameters)
+    public async Task Delete(Workers::WorkerDeleteParams parameters)
     {
-        HttpRequest<WorkerDeleteParams> request = new()
+        HttpRequest<Workers::WorkerDeleteParams> request = new()
         {
             Method = HttpMethod.Delete,
             Params = parameters,
@@ -80,15 +88,17 @@ public sealed class WorkerService : IWorkerService
         using var response = await this._client.Execute(request).ConfigureAwait(false);
     }
 
-    public async Task<WorkerResponse> Get(WorkerGetParams parameters)
+    public async Task<Workers::WorkerResponse> Get(Workers::WorkerGetParams parameters)
     {
-        HttpRequest<WorkerGetParams> request = new()
+        HttpRequest<Workers::WorkerGetParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var workerResponse = await response.Deserialize<WorkerResponse>().ConfigureAwait(false);
+        var workerResponse = await response
+            .Deserialize<Workers::WorkerResponse>()
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             workerResponse.Validate();
@@ -96,16 +106,16 @@ public sealed class WorkerService : IWorkerService
         return workerResponse;
     }
 
-    public async Task<WorkerHealthResponse> Health(WorkerHealthParams parameters)
+    public async Task<Workers::WorkerHealthResponse> Health(Workers::WorkerHealthParams parameters)
     {
-        HttpRequest<WorkerHealthParams> request = new()
+        HttpRequest<Workers::WorkerHealthParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
         var workerHealthResponse = await response
-            .Deserialize<WorkerHealthResponse>()
+            .Deserialize<Workers::WorkerHealthResponse>()
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -114,15 +124,17 @@ public sealed class WorkerService : IWorkerService
         return workerHealthResponse;
     }
 
-    public async Task<WorkerToolsPageResponse> Tools(WorkerToolsParams parameters)
+    public async Task<Workers::WorkerToolsPageResponse> Tools(Workers::WorkerToolsParams parameters)
     {
-        HttpRequest<WorkerToolsParams> request = new()
+        HttpRequest<Workers::WorkerToolsParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var page = await response.Deserialize<WorkerToolsPageResponse>().ConfigureAwait(false);
+        var page = await response
+            .Deserialize<Workers::WorkerToolsPageResponse>()
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             page.Validate();

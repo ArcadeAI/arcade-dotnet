@@ -1,7 +1,7 @@
-using System;
 using System.Net.Http;
 using System.Text.Json;
 using ArcadeDotnet.Core;
+using System = System;
 
 namespace ArcadeDotnet.Models.Workers;
 
@@ -52,9 +52,9 @@ public sealed record class WorkerListParams : ParamsBase
         }
     }
 
-    public override Uri Url(IArcadeClient client)
+    public override System::Uri Url(IArcadeClient client)
     {
-        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/v1/workers")
+        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/v1/workers")
         {
             Query = this.QueryString(client),
         }.Uri;

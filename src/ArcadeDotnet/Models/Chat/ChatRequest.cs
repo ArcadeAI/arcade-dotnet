@@ -3,7 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
-using ArcadeDotnet.Models.Chat.ChatRequestProperties;
+using ArcadeDotnet.Exceptions;
+using System = System;
 
 namespace ArcadeDotnet.Models.Chat;
 
@@ -442,6 +443,146 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
 #pragma warning restore CS8618
 
     public static ChatRequest FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<ResponseFormat>))]
+public sealed record class ResponseFormat : ModelBase, IFromRaw<ResponseFormat>
+{
+    public ApiEnum<string, TypeModel>? Type
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("type", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<ApiEnum<string, TypeModel>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        this.Type?.Validate();
+    }
+
+    public ResponseFormat() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ResponseFormat(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static ResponseFormat FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(TypeModelConverter))]
+public enum TypeModel
+{
+    JsonObject,
+    Text,
+}
+
+sealed class TypeModelConverter : JsonConverter<TypeModel>
+{
+    public override TypeModel Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "json_object" => TypeModel.JsonObject,
+            "text" => TypeModel.Text,
+            _ => (TypeModel)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        TypeModel value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                TypeModel.JsonObject => "json_object",
+                TypeModel.Text => "text",
+                _ => throw new ArcadeInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Options for streaming response. Only set this when you set stream: true.
+/// </summary>
+[JsonConverter(typeof(ModelConverter<StreamOptions>))]
+public sealed record class StreamOptions : ModelBase, IFromRaw<StreamOptions>
+{
+    /// <summary>
+    /// If set, an additional chunk will be streamed before the data: [DONE] message.
+    /// The usage field on this chunk shows the token usage statistics for the entire
+    /// request, and the choices field will always be an empty array. All other chunks
+    /// will also include a usage field, but with a null value.
+    /// </summary>
+    public bool? IncludeUsage
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("include_usage", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["include_usage"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.IncludeUsage;
+    }
+
+    public StreamOptions() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    StreamOptions(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static StreamOptions FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

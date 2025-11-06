@@ -5,14 +5,13 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
 using ArcadeDotnet.Exceptions;
-using ArcadeDotnet.Models.Auth.AuthRequestProperties;
 
 namespace ArcadeDotnet.Models.Auth;
 
 [JsonConverter(typeof(ModelConverter<AuthRequest>))]
 public sealed record class AuthRequest : ModelBase, IFromRaw<AuthRequest>
 {
-    public required AuthRequirement AuthRequirement
+    public required AuthRequirementModel AuthRequirement
     {
         get
         {
@@ -22,7 +21,10 @@ public sealed record class AuthRequest : ModelBase, IFromRaw<AuthRequest>
                     new ArgumentOutOfRangeException("auth_requirement", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<AuthRequirement>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<AuthRequirementModel>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new ArcadeInvalidDataException(
                     "'auth_requirement' cannot be null",
                     new ArgumentNullException("auth_requirement")
@@ -101,6 +103,153 @@ public sealed record class AuthRequest : ModelBase, IFromRaw<AuthRequest>
 #pragma warning restore CS8618
 
     public static AuthRequest FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<AuthRequirementModel>))]
+public sealed record class AuthRequirementModel : ModelBase, IFromRaw<AuthRequirementModel>
+{
+    /// <summary>
+    /// one of ID or ProviderID must be set
+    /// </summary>
+    public string? ID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public Oauth2Model? Oauth2
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("oauth2", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<Oauth2Model?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["oauth2"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// one of ID or ProviderID must be set
+    /// </summary>
+    public string? ProviderID
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("provider_id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["provider_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public string? ProviderType
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("provider_type", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["provider_type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.ID;
+        this.Oauth2?.Validate();
+        _ = this.ProviderID;
+        _ = this.ProviderType;
+    }
+
+    public AuthRequirementModel() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AuthRequirementModel(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static AuthRequirementModel FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    {
+        return new(properties);
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<Oauth2Model>))]
+public sealed record class Oauth2Model : ModelBase, IFromRaw<Oauth2Model>
+{
+    public List<string>? Scopes
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("scopes", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["scopes"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.Scopes;
+    }
+
+    public Oauth2Model() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Oauth2Model(Dictionary<string, JsonElement> properties)
+    {
+        Properties = properties;
+    }
+#pragma warning restore CS8618
+
+    public static Oauth2Model FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

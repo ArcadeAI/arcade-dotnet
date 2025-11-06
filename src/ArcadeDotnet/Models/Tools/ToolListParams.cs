@@ -1,9 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
-using ArcadeDotnet.Models.Tools.ToolListParamsProperties;
+using ArcadeDotnet.Exceptions;
+using System = System;
 
 namespace ArcadeDotnet.Models.Tools;
 
@@ -120,9 +121,9 @@ public sealed record class ToolListParams : ParamsBase
         }
     }
 
-    public override Uri Url(IArcadeClient client)
+    public override System::Uri Url(IArcadeClient client)
     {
-        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/v1/tools")
+        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/v1/tools")
         {
             Query = this.QueryString(client),
         }.Uri;
@@ -135,5 +136,52 @@ public sealed record class ToolListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+[JsonConverter(typeof(IncludeFormatConverter))]
+public enum IncludeFormat
+{
+    Arcade,
+    OpenAI,
+    Anthropic,
+}
+
+sealed class IncludeFormatConverter : JsonConverter<IncludeFormat>
+{
+    public override IncludeFormat Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "arcade" => IncludeFormat.Arcade,
+            "openai" => IncludeFormat.OpenAI,
+            "anthropic" => IncludeFormat.Anthropic,
+            _ => (IncludeFormat)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        IncludeFormat value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                IncludeFormat.Arcade => "arcade",
+                IncludeFormat.OpenAI => "openai",
+                IncludeFormat.Anthropic => "anthropic",
+                _ => throw new ArcadeInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }
