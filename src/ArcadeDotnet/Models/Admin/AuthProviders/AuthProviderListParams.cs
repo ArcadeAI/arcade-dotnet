@@ -1,6 +1,6 @@
-using System;
 using System.Net.Http;
 using ArcadeDotnet.Core;
+using System = System;
 
 namespace ArcadeDotnet.Models.Admin.AuthProviders;
 
@@ -9,9 +9,11 @@ namespace ArcadeDotnet.Models.Admin.AuthProviders;
 /// </summary>
 public sealed record class AuthProviderListParams : ParamsBase
 {
-    public override Uri Url(IArcadeClient client)
+    public override System::Uri Url(IArcadeClient client)
     {
-        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/v1/admin/auth_providers")
+        return new System::UriBuilder(
+            client.BaseUrl.ToString().TrimEnd('/') + "/v1/admin/auth_providers"
+        )
         {
             Query = this.QueryString(client),
         }.Uri;

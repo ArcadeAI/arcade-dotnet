@@ -1,28 +1,12 @@
 using System.Collections.Generic;
 using System.Text.Json;
-using ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateRequestProperties.Oauth2Properties;
-using ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateRequestProperties.Oauth2Properties.AuthorizeRequestProperties;
-using ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderResponseProperties.BindingProperties;
-using ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderResponseProperties.Oauth2Properties.ClientSecretProperties;
-using ArcadeDotnet.Models.AuthorizationResponseProperties;
-using ArcadeDotnet.Models.Tools.ExecuteToolResponseProperties.OutputProperties.ErrorProperties;
-using ArcadeDotnet.Models.Tools.ToolListParamsProperties;
-using AuthorizationProperties = ArcadeDotnet.Models.Tools.ToolDefinitionProperties.RequirementsProperties.AuthorizationProperties;
-using AuthorizeRequestProperties = ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderUpdateRequestProperties.Oauth2Properties.AuthorizeRequestProperties;
-using BindingProperties = ArcadeDotnet.Models.Admin.Secrets.SecretResponseProperties.BindingProperties;
-using ClientSecretProperties = ArcadeDotnet.Models.Workers.WorkerResponseProperties.McpProperties.Oauth2Properties.ClientSecretProperties;
-using ErrorProperties = ArcadeDotnet.Models.Tools.ToolExecutionAttemptProperties.OutputProperties.ErrorProperties;
-using Oauth2Properties = ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderUpdateRequestProperties.Oauth2Properties;
-using RefreshRequestProperties = ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateRequestProperties.Oauth2Properties.RefreshRequestProperties;
-using ResponseFormatProperties = ArcadeDotnet.Models.Chat.ChatRequestProperties.ResponseFormatProperties;
-using SecretProperties = ArcadeDotnet.Models.Workers.WorkerResponseProperties.HTTPProperties.SecretProperties;
-using SecretsItemProperties = ArcadeDotnet.Models.Workers.WorkerResponseProperties.McpProperties.SecretsProperties.SecretsItemProperties;
-using TokenIntrospectionRequestProperties = ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateRequestProperties.Oauth2Properties.TokenIntrospectionRequestProperties;
-using TokenRequestProperties = ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateRequestProperties.Oauth2Properties.TokenRequestProperties;
-using ToolCallProperties = ArcadeDotnet.Models.Chat.ChatMessageProperties.ToolCallProperties;
-using ToolGetParamsProperties = ArcadeDotnet.Models.Tools.ToolGetParamsProperties;
-using UserInfoRequestProperties = ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateRequestProperties.Oauth2Properties.UserInfoRequestProperties;
-using WorkerResponseProperties = ArcadeDotnet.Models.Workers.WorkerResponseProperties;
+using ArcadeDotnet.Models;
+using ArcadeDotnet.Models.Admin.Secrets;
+using AuthProviders = ArcadeDotnet.Models.Admin.AuthProviders;
+using Chat = ArcadeDotnet.Models.Chat;
+using Completions = ArcadeDotnet.Models.Chat.Completions;
+using Tools = ArcadeDotnet.Models.Tools;
+using Workers = ArcadeDotnet.Models.Workers;
 
 namespace ArcadeDotnet.Core;
 
@@ -35,150 +19,63 @@ public abstract record class ModelBase
         Converters =
         {
             new ApiEnumConverter<string, Status>(),
-            new ApiEnumConverter<string, RequestContentType>(),
-            new ApiEnumConverter<string, ResponseContentType>(),
-            new ApiEnumConverter<string, RefreshRequestProperties::RequestContentType>(),
-            new ApiEnumConverter<string, RefreshRequestProperties::ResponseContentType>(),
-            new ApiEnumConverter<string, ScopeDelimiter>(),
-            new ApiEnumConverter<string, TokenIntrospectionRequestProperties::RequestContentType>(),
-            new ApiEnumConverter<
-                string,
-                TokenIntrospectionRequestProperties::ResponseContentType
-            >(),
-            new ApiEnumConverter<string, TokenRequestProperties::RequestContentType>(),
-            new ApiEnumConverter<string, TokenRequestProperties::ResponseContentType>(),
-            new ApiEnumConverter<string, UserInfoRequestProperties::RequestContentType>(),
-            new ApiEnumConverter<string, UserInfoRequestProperties::ResponseContentType>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType8>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType8>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType9>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType9>(),
+            new ApiEnumConverter<string, AuthProviders::ScopeDelimiter1>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType10>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType10>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType11>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType11>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType12>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType12>(),
+            new ApiEnumConverter<string, AuthProviders::Type>(),
+            new ApiEnumConverter<string, AuthProviders::BindingModel>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType13>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType13>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType14>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType14>(),
+            new ApiEnumConverter<string, AuthProviders::ScopeDelimiter2>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType15>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType15>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType16>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType16>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentTypeModel>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentTypeModel>(),
+            new ApiEnumConverter<string, AuthProviders::ScopeDelimiter>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType1>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType1>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType2>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType2>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType3>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType3>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType4>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType4>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType5>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType5>(),
+            new ApiEnumConverter<string, AuthProviders::ScopeDelimiterModel>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType6>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType6>(),
+            new ApiEnumConverter<string, AuthProviders::RequestContentType7>(),
+            new ApiEnumConverter<string, AuthProviders::ResponseContentType7>(),
             new ApiEnumConverter<string, Type>(),
-            new ApiEnumConverter<string, Binding>(),
-            new ApiEnumConverter<string, AuthorizeRequestProperties::RequestContentType>(),
-            new ApiEnumConverter<string, AuthorizeRequestProperties::ResponseContentType>(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderUpdateRequestProperties.Oauth2Properties.RefreshRequestProperties.RequestContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderUpdateRequestProperties.Oauth2Properties.RefreshRequestProperties.ResponseContentType
-            >(),
-            new ApiEnumConverter<string, Oauth2Properties::ScopeDelimiter>(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderUpdateRequestProperties.Oauth2Properties.TokenRequestProperties.RequestContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderUpdateRequestProperties.Oauth2Properties.TokenRequestProperties.ResponseContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderUpdateRequestProperties.Oauth2Properties.UserInfoRequestProperties.RequestContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderUpdateRequestProperties.Oauth2Properties.UserInfoRequestProperties.ResponseContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateParamsProperties.Oauth2Properties.AuthorizeRequestProperties.RequestContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateParamsProperties.Oauth2Properties.AuthorizeRequestProperties.ResponseContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateParamsProperties.Oauth2Properties.RefreshRequestProperties.RequestContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateParamsProperties.Oauth2Properties.RefreshRequestProperties.ResponseContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateParamsProperties.Oauth2Properties.ScopeDelimiter
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateParamsProperties.Oauth2Properties.TokenIntrospectionRequestProperties.RequestContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateParamsProperties.Oauth2Properties.TokenIntrospectionRequestProperties.ResponseContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateParamsProperties.Oauth2Properties.TokenRequestProperties.RequestContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateParamsProperties.Oauth2Properties.TokenRequestProperties.ResponseContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateParamsProperties.Oauth2Properties.UserInfoRequestProperties.RequestContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderCreateParamsProperties.Oauth2Properties.UserInfoRequestProperties.ResponseContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderPatchParamsProperties.Oauth2Properties.AuthorizeRequestProperties.RequestContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderPatchParamsProperties.Oauth2Properties.AuthorizeRequestProperties.ResponseContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderPatchParamsProperties.Oauth2Properties.RefreshRequestProperties.RequestContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderPatchParamsProperties.Oauth2Properties.RefreshRequestProperties.ResponseContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderPatchParamsProperties.Oauth2Properties.ScopeDelimiter
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderPatchParamsProperties.Oauth2Properties.TokenRequestProperties.RequestContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderPatchParamsProperties.Oauth2Properties.TokenRequestProperties.ResponseContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderPatchParamsProperties.Oauth2Properties.UserInfoRequestProperties.RequestContentType
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Admin.AuthProviders.AuthProviderPatchParamsProperties.Oauth2Properties.UserInfoRequestProperties.ResponseContentType
-            >(),
-            new ApiEnumConverter<string, BindingProperties::Type>(),
-            new ApiEnumConverter<string, ToolCallProperties::Type>(),
-            new ApiEnumConverter<string, ResponseFormatProperties::Type>(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Chat.Completions.CompletionCreateParamsProperties.ResponseFormatProperties.Type
-            >(),
-            new ApiEnumConverter<string, Kind>(),
-            new ApiEnumConverter<string, AuthorizationProperties::Status>(),
-            new ApiEnumConverter<string, AuthorizationProperties::TokenStatus>(),
-            new ApiEnumConverter<string, ErrorProperties::Kind>(),
-            new ApiEnumConverter<string, IncludeFormat>(),
-            new ApiEnumConverter<string, ToolGetParamsProperties::IncludeFormat>(),
-            new ApiEnumConverter<
-                string,
-                global::ArcadeDotnet.Models.Workers.WorkerResponseProperties.BindingProperties.Type
-            >(),
-            new ApiEnumConverter<string, SecretProperties::Binding>(),
-            new ApiEnumConverter<string, ClientSecretProperties::Binding>(),
-            new ApiEnumConverter<string, SecretsItemProperties::Binding>(),
-            new ApiEnumConverter<string, WorkerResponseProperties::Type>(),
+            new ApiEnumConverter<string, Chat::Type>(),
+            new ApiEnumConverter<string, Chat::TypeModel>(),
+            new ApiEnumConverter<string, Completions::Type>(),
+            new ApiEnumConverter<string, Tools::Kind>(),
+            new ApiEnumConverter<string, Tools::Status>(),
+            new ApiEnumConverter<string, Tools::TokenStatus>(),
+            new ApiEnumConverter<string, Tools::KindModel>(),
+            new ApiEnumConverter<string, Tools::IncludeFormat>(),
+            new ApiEnumConverter<string, Tools::IncludeFormatModel>(),
+            new ApiEnumConverter<string, Workers::Type>(),
+            new ApiEnumConverter<string, Workers::BindingModel>(),
+            new ApiEnumConverter<string, Workers::Binding1>(),
+            new ApiEnumConverter<string, Workers::Binding2>(),
+            new ApiEnumConverter<string, Workers::TypeModel>(),
         },
     };
 

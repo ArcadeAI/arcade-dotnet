@@ -3,9 +3,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
 using ArcadeDotnet.Models;
-using ArcadeDotnet.Models.Tools;
 using ArcadeDotnet.Services.Tools.Formatted;
 using ArcadeDotnet.Services.Tools.Scheduled;
+using Tools = ArcadeDotnet.Models.Tools;
 
 namespace ArcadeDotnet.Services.Tools;
 
@@ -37,17 +37,17 @@ public sealed class ToolService : IToolService
         get { return _formatted.Value; }
     }
 
-    public async Task<ToolListPageResponse> List(ToolListParams? parameters = null)
+    public async Task<Tools::ToolListPageResponse> List(Tools::ToolListParams? parameters = null)
     {
         parameters ??= new();
 
-        HttpRequest<ToolListParams> request = new()
+        HttpRequest<Tools::ToolListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var page = await response.Deserialize<ToolListPageResponse>().ConfigureAwait(false);
+        var page = await response.Deserialize<Tools::ToolListPageResponse>().ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             page.Validate();
@@ -55,9 +55,9 @@ public sealed class ToolService : IToolService
         return page;
     }
 
-    public async Task<AuthorizationResponse> Authorize(ToolAuthorizeParams parameters)
+    public async Task<AuthorizationResponse> Authorize(Tools::ToolAuthorizeParams parameters)
     {
-        HttpRequest<ToolAuthorizeParams> request = new()
+        HttpRequest<Tools::ToolAuthorizeParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -73,16 +73,16 @@ public sealed class ToolService : IToolService
         return authorizationResponse;
     }
 
-    public async Task<ExecuteToolResponse> Execute(ToolExecuteParams parameters)
+    public async Task<Tools::ExecuteToolResponse> Execute(Tools::ToolExecuteParams parameters)
     {
-        HttpRequest<ToolExecuteParams> request = new()
+        HttpRequest<Tools::ToolExecuteParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
         var executeToolResponse = await response
-            .Deserialize<ExecuteToolResponse>()
+            .Deserialize<Tools::ExecuteToolResponse>()
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -91,11 +91,17 @@ public sealed class ToolService : IToolService
         return executeToolResponse;
     }
 
-    public async Task<ToolDefinition> Get(ToolGetParams parameters)
+    public async Task<Tools::ToolDefinition> Get(Tools::ToolGetParams parameters)
     {
-        HttpRequest<ToolGetParams> request = new() { Method = HttpMethod.Get, Params = parameters };
+        HttpRequest<Tools::ToolGetParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
         using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var toolDefinition = await response.Deserialize<ToolDefinition>().ConfigureAwait(false);
+        var toolDefinition = await response
+            .Deserialize<Tools::ToolDefinition>()
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             toolDefinition.Validate();
