@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
 using Chat = ArcadeDotnet.Models.Chat;
@@ -13,5 +14,8 @@ public interface ICompletionService
     /// <summary>
     /// Interact with language models via OpenAI's chat completions API
     /// </summary>
-    Task<Chat::ChatResponse> Create(Completions::CompletionCreateParams? parameters = null);
+    Task<Chat::ChatResponse> Create(
+        Completions::CompletionCreateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }

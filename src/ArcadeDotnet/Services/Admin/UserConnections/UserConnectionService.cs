@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
 using ArcadeDotnet.Models.Admin.UserConnections;
@@ -21,7 +22,8 @@ public sealed class UserConnectionService : IUserConnectionService
     }
 
     public async Task<UserConnectionListPageResponse> List(
-        UserConnectionListParams? parameters = null
+        UserConnectionListParams? parameters = null,
+        CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
@@ -31,9 +33,11 @@ public sealed class UserConnectionService : IUserConnectionService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var page = await response
-            .Deserialize<UserConnectionListPageResponse>()
+            .Deserialize<UserConnectionListPageResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -42,13 +46,18 @@ public sealed class UserConnectionService : IUserConnectionService
         return page;
     }
 
-    public async Task Delete(UserConnectionDeleteParams parameters)
+    public async Task Delete(
+        UserConnectionDeleteParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<UserConnectionDeleteParams> request = new()
         {
             Method = HttpMethod.Delete,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
     }
 }

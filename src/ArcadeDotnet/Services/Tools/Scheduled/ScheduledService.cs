@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
 using ArcadeDotnet.Models.Tools.Scheduled;
@@ -20,7 +21,10 @@ public sealed class ScheduledService : IScheduledService
         _client = client;
     }
 
-    public async Task<ScheduledListPageResponse> List(ScheduledListParams? parameters = null)
+    public async Task<ScheduledListPageResponse> List(
+        ScheduledListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
     {
         parameters ??= new();
 
@@ -29,8 +33,12 @@ public sealed class ScheduledService : IScheduledService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var page = await response.Deserialize<ScheduledListPageResponse>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var page = await response
+            .Deserialize<ScheduledListPageResponse>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             page.Validate();
@@ -38,15 +46,22 @@ public sealed class ScheduledService : IScheduledService
         return page;
     }
 
-    public async Task<ScheduledGetResponse> Get(ScheduledGetParams parameters)
+    public async Task<ScheduledGetResponse> Get(
+        ScheduledGetParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<ScheduledGetParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        var scheduled = await response.Deserialize<ScheduledGetResponse>().ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var scheduled = await response
+            .Deserialize<ScheduledGetResponse>(cancellationToken)
+            .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
             scheduled.Validate();

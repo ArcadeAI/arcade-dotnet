@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
 using AuthProviders = ArcadeDotnet.Models.Admin.AuthProviders;
@@ -21,7 +22,8 @@ public sealed class AuthProviderService : IAuthProviderService
     }
 
     public async Task<AuthProviders::AuthProviderResponse> Create(
-        AuthProviders::AuthProviderCreateParams parameters
+        AuthProviders::AuthProviderCreateParams parameters,
+        CancellationToken cancellationToken = default
     )
     {
         HttpRequest<AuthProviders::AuthProviderCreateParams> request = new()
@@ -29,9 +31,11 @@ public sealed class AuthProviderService : IAuthProviderService
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var authProviderResponse = await response
-            .Deserialize<AuthProviders::AuthProviderResponse>()
+            .Deserialize<AuthProviders::AuthProviderResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -41,7 +45,8 @@ public sealed class AuthProviderService : IAuthProviderService
     }
 
     public async Task<AuthProviders::AuthProviderListResponse> List(
-        AuthProviders::AuthProviderListParams? parameters = null
+        AuthProviders::AuthProviderListParams? parameters = null,
+        CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
@@ -51,9 +56,11 @@ public sealed class AuthProviderService : IAuthProviderService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var authProviders = await response
-            .Deserialize<AuthProviders::AuthProviderListResponse>()
+            .Deserialize<AuthProviders::AuthProviderListResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -63,7 +70,8 @@ public sealed class AuthProviderService : IAuthProviderService
     }
 
     public async Task<AuthProviders::AuthProviderResponse> Delete(
-        AuthProviders::AuthProviderDeleteParams parameters
+        AuthProviders::AuthProviderDeleteParams parameters,
+        CancellationToken cancellationToken = default
     )
     {
         HttpRequest<AuthProviders::AuthProviderDeleteParams> request = new()
@@ -71,9 +79,11 @@ public sealed class AuthProviderService : IAuthProviderService
             Method = HttpMethod.Delete,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var authProviderResponse = await response
-            .Deserialize<AuthProviders::AuthProviderResponse>()
+            .Deserialize<AuthProviders::AuthProviderResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -83,7 +93,8 @@ public sealed class AuthProviderService : IAuthProviderService
     }
 
     public async Task<AuthProviders::AuthProviderResponse> Get(
-        AuthProviders::AuthProviderGetParams parameters
+        AuthProviders::AuthProviderGetParams parameters,
+        CancellationToken cancellationToken = default
     )
     {
         HttpRequest<AuthProviders::AuthProviderGetParams> request = new()
@@ -91,9 +102,11 @@ public sealed class AuthProviderService : IAuthProviderService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var authProviderResponse = await response
-            .Deserialize<AuthProviders::AuthProviderResponse>()
+            .Deserialize<AuthProviders::AuthProviderResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -103,7 +116,8 @@ public sealed class AuthProviderService : IAuthProviderService
     }
 
     public async Task<AuthProviders::AuthProviderResponse> Patch(
-        AuthProviders::AuthProviderPatchParams parameters
+        AuthProviders::AuthProviderPatchParams parameters,
+        CancellationToken cancellationToken = default
     )
     {
         HttpRequest<AuthProviders::AuthProviderPatchParams> request = new()
@@ -111,9 +125,11 @@ public sealed class AuthProviderService : IAuthProviderService
             Method = HttpMethod.Patch,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var authProviderResponse = await response
-            .Deserialize<AuthProviders::AuthProviderResponse>()
+            .Deserialize<AuthProviders::AuthProviderResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {

@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
 using ArcadeDotnet.Models.Health;
@@ -12,5 +13,8 @@ public interface IHealthService
     /// <summary>
     /// Check if Arcade Engine is healthy
     /// </summary>
-    Task<HealthSchema> Check(HealthCheckParams? parameters = null);
+    Task<HealthSchema> Check(
+        HealthCheckParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }
