@@ -22,6 +22,8 @@ public interface IArcadeClient
 
     TimeSpan Timeout { get; init; }
 
+    int MaxRetries { get; init; }
+
     /// <summary>
     /// API key used for authorization in header
     /// </summary>
