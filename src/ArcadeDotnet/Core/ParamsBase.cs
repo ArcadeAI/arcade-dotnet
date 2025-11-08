@@ -194,6 +194,7 @@ public abstract record class ParamsBase
         {
             request.Headers.Add("Authorization", options.APIKey);
         }
+        request.Headers.Add("X-Stainless-Timeout", options.Timeout.TotalSeconds.ToString());
     }
 
     static string GetUserAgent() => $"{typeof(ArcadeClient).Name}/C# {GetPackageVersion()}";
