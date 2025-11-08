@@ -178,17 +178,17 @@ public sealed record class FormattedListParams : ParamsBase
         );
     }
 
-    public override Uri Url(IArcadeClient client)
+    public override Uri Url(ClientOptions options)
     {
-        return new UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/v1/formatted_tools")
+        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/v1/formatted_tools")
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    internal override void AddHeadersToRequest(HttpRequestMessage request, IArcadeClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, options);
         foreach (var item in this.HeaderProperties)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

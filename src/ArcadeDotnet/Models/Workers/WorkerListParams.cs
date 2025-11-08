@@ -99,17 +99,17 @@ public sealed record class WorkerListParams : ParamsBase
         );
     }
 
-    public override System::Uri Url(IArcadeClient client)
+    public override System::Uri Url(ClientOptions options)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/v1/workers")
+        return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/v1/workers")
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    internal override void AddHeadersToRequest(HttpRequestMessage request, IArcadeClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, options);
         foreach (var item in this.HeaderProperties)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
