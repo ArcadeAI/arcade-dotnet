@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
 using Secrets = ArcadeDotnet.Models.Admin.Secrets;
@@ -12,10 +13,16 @@ public interface ISecretService
     /// <summary>
     /// List all secrets that are visible to the caller
     /// </summary>
-    Task<Secrets::SecretListResponse> List(Secrets::SecretListParams? parameters = null);
+    Task<Secrets::SecretListResponse> List(
+        Secrets::SecretListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// Delete a secret by its ID
     /// </summary>
-    Task Delete(Secrets::SecretDeleteParams parameters);
+    Task Delete(
+        Secrets::SecretDeleteParams parameters,
+        CancellationToken cancellationToken = default
+    );
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
 using ArcadeDotnet.Models;
@@ -21,16 +22,21 @@ public sealed class AuthService : IAuthService
         _client = client;
     }
 
-    public async Task<AuthorizationResponse> Authorize(AuthAuthorizeParams parameters)
+    public async Task<AuthorizationResponse> Authorize(
+        AuthAuthorizeParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<AuthAuthorizeParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var authorizationResponse = await response
-            .Deserialize<AuthorizationResponse>()
+            .Deserialize<AuthorizationResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -39,16 +45,21 @@ public sealed class AuthService : IAuthService
         return authorizationResponse;
     }
 
-    public async Task<ConfirmUserResponse> ConfirmUser(AuthConfirmUserParams parameters)
+    public async Task<ConfirmUserResponse> ConfirmUser(
+        AuthConfirmUserParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<AuthConfirmUserParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var confirmUserResponse = await response
-            .Deserialize<ConfirmUserResponse>()
+            .Deserialize<ConfirmUserResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -57,16 +68,21 @@ public sealed class AuthService : IAuthService
         return confirmUserResponse;
     }
 
-    public async Task<AuthorizationResponse> Status(AuthStatusParams parameters)
+    public async Task<AuthorizationResponse> Status(
+        AuthStatusParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequest<AuthStatusParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
         var authorizationResponse = await response
-            .Deserialize<AuthorizationResponse>()
+            .Deserialize<AuthorizationResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
