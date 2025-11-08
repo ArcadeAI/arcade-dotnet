@@ -25,7 +25,7 @@ public abstract record class ParamsBase
         get { return this._headerProperties.Freeze(); }
     }
 
-    public abstract Uri Url(IArcadeClient client);
+    public abstract Uri Url(ClientOptions options);
 
     protected static void AddQueryElementToCollection(
         NameValueCollection collection,
@@ -131,7 +131,7 @@ public abstract record class ParamsBase
         }
     }
 
-    protected string QueryString(IArcadeClient client)
+    protected string QueryString(ClientOptions options)
     {
         NameValueCollection collection = [];
         foreach (var item in this.QueryProperties)
@@ -157,18 +157,18 @@ public abstract record class ParamsBase
         return sb.ToString();
     }
 
-    internal abstract void AddHeadersToRequest(HttpRequestMessage request, IArcadeClient client);
+    internal abstract void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options);
 
     internal virtual StringContent? BodyContent()
     {
         return null;
     }
 
-    protected static void AddDefaultHeaders(HttpRequestMessage request, IArcadeClient client)
+    protected static void AddDefaultHeaders(HttpRequestMessage request, ClientOptions options)
     {
-        if (client.APIKey != null)
+        if (options.APIKey != null)
         {
-            request.Headers.Add("Authorization", client.APIKey);
+            request.Headers.Add("Authorization", options.APIKey);
         }
     }
 }
