@@ -21,6 +21,8 @@ public struct ClientOptions()
 
     public TimeSpan Timeout { get; set; } = TimeSpan.FromMinutes(1);
 
+    public int MaxRetries { get; set; } = 2;
+
     /// <summary>
     /// API key used for authorization in header
     /// </summary>
