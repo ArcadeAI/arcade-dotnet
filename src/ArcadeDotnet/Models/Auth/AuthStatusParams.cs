@@ -58,6 +58,11 @@ public sealed record class AuthStatusParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._queryProperties["wait"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

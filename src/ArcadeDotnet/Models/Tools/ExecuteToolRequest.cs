@@ -52,6 +52,11 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["include_error_stacktrace"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -76,6 +81,11 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["input"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -98,6 +108,11 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["run_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -119,6 +134,11 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["tool_version"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -137,6 +157,11 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["user_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

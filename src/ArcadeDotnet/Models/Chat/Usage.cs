@@ -21,6 +21,11 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["completion_tokens"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -39,6 +44,11 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["prompt_tokens"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -57,6 +67,11 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["total_tokens"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

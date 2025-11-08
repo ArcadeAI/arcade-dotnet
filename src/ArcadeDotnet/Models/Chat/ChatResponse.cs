@@ -21,6 +21,11 @@ public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -39,6 +44,11 @@ public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["choices"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -57,6 +67,11 @@ public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["created"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -75,6 +90,11 @@ public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["model"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -93,6 +113,11 @@ public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["object"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -111,6 +136,11 @@ public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["system_fingerprint"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -129,6 +159,11 @@ public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["usage"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

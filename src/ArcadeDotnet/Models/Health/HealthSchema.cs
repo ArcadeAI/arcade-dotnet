@@ -21,6 +21,11 @@ public sealed record class HealthSchema : ModelBase, IFromRaw<HealthSchema>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["healthy"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

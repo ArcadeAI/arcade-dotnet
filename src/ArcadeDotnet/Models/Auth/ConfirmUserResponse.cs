@@ -48,6 +48,11 @@ public sealed record class ConfirmUserResponse : ModelBase, IFromRaw<ConfirmUser
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["next_uri"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

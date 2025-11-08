@@ -21,6 +21,11 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -39,6 +44,11 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["created_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -57,6 +67,11 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["execution_status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -75,6 +90,11 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["execution_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -93,6 +113,11 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["finished_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -111,6 +136,11 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["run_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -129,6 +159,11 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["started_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -147,6 +182,11 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["tool_name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -165,6 +205,11 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["toolkit_name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -183,6 +228,11 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["toolkit_version"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -201,6 +251,11 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["updated_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -219,6 +274,11 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["user_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

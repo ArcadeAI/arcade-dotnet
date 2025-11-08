@@ -48,6 +48,11 @@ public sealed record class CreateWorkerRequest : ModelBase, IFromRaw<CreateWorke
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["enabled"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -66,6 +71,11 @@ public sealed record class CreateWorkerRequest : ModelBase, IFromRaw<CreateWorke
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["http"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -84,6 +94,11 @@ public sealed record class CreateWorkerRequest : ModelBase, IFromRaw<CreateWorke
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["mcp"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -102,6 +117,11 @@ public sealed record class CreateWorkerRequest : ModelBase, IFromRaw<CreateWorke
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -356,6 +376,11 @@ public sealed record class Mcp1 : ModelBase, IFromRaw<Mcp1>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["headers"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -374,6 +399,11 @@ public sealed record class Mcp1 : ModelBase, IFromRaw<Mcp1>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["oauth2"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -395,6 +425,11 @@ public sealed record class Mcp1 : ModelBase, IFromRaw<Mcp1>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["secrets"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -447,6 +482,11 @@ public sealed record class Oauth21 : ModelBase, IFromRaw<Oauth21>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["authorization_url"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -465,6 +505,11 @@ public sealed record class Oauth21 : ModelBase, IFromRaw<Oauth21>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["client_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -483,6 +528,11 @@ public sealed record class Oauth21 : ModelBase, IFromRaw<Oauth21>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["client_secret"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -501,6 +551,11 @@ public sealed record class Oauth21 : ModelBase, IFromRaw<Oauth21>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["external_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

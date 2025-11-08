@@ -23,6 +23,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["frequency_penalty"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -49,6 +54,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["logit_bias"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -73,6 +83,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["logprobs"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -91,6 +106,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["max_tokens"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -112,6 +132,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["messages"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -130,6 +155,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["model"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -148,6 +178,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["n"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -169,6 +204,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["parallel_tool_calls"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -187,6 +227,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["presence_penalty"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -208,6 +253,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["response_format"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -226,6 +276,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["seed"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -244,6 +299,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["stop"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -262,6 +322,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["stream"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -283,6 +348,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["stream_options"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -301,6 +371,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["temperature"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -322,6 +397,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["tool_choice"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -340,6 +420,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["tools"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -363,6 +448,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["top_logprobs"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -381,6 +471,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["top_p"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -399,6 +494,11 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["user"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -471,6 +571,11 @@ public sealed record class ResponseFormat : ModelBase, IFromRaw<ResponseFormat>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -573,6 +678,11 @@ public sealed record class StreamOptions : ModelBase, IFromRaw<StreamOptions>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["include_usage"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

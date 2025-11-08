@@ -21,6 +21,11 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -39,6 +44,11 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["connection_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -57,6 +67,11 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["connection_status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -75,6 +90,11 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["provider_description"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -93,6 +113,11 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["provider_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -111,6 +136,11 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["provider_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -129,6 +159,11 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["provider_user_info"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -147,6 +182,11 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["scopes"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -165,6 +205,11 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["user_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

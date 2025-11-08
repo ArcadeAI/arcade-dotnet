@@ -86,6 +86,11 @@ public sealed record class AuthAuthorizeParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["next_uri"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -177,6 +182,11 @@ public sealed record class AuthRequirement : ModelBase, IFromRaw<AuthRequirement
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -195,6 +205,11 @@ public sealed record class AuthRequirement : ModelBase, IFromRaw<AuthRequirement
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["oauth2"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -216,6 +231,11 @@ public sealed record class AuthRequirement : ModelBase, IFromRaw<AuthRequirement
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["provider_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -234,6 +254,11 @@ public sealed record class AuthRequirement : ModelBase, IFromRaw<AuthRequirement
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["provider_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -286,6 +311,11 @@ public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["scopes"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

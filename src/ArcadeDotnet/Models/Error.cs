@@ -21,6 +21,11 @@ public sealed record class Error : ModelBase, IFromRaw<Error>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["message"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -39,6 +44,11 @@ public sealed record class Error : ModelBase, IFromRaw<Error>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

@@ -51,6 +51,11 @@ public sealed record class AuthorizeToolRequest : ModelBase, IFromRaw<AuthorizeT
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["next_uri"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -72,6 +77,11 @@ public sealed record class AuthorizeToolRequest : ModelBase, IFromRaw<AuthorizeT
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["tool_version"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -93,6 +103,11 @@ public sealed record class AuthorizeToolRequest : ModelBase, IFromRaw<AuthorizeT
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["user_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
