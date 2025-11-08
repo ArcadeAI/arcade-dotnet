@@ -20,9 +20,9 @@ public interface IArcadeClient
 
     bool ResponseValidation { get; init; }
 
-    TimeSpan Timeout { get; init; }
-
     int MaxRetries { get; init; }
+
+    TimeSpan Timeout { get; init; }
 
     /// <summary>
     /// API key used for authorization in header
