@@ -69,8 +69,7 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     /// <summary>
     /// LogProbs indicates whether to return log probabilities of the output tokens
     /// or not. If true, returns the log probabilities of each output token returned
-    /// in the content of message. This option is currently not available on the
-    /// gpt-4-vision-preview model.
+    /// in the content of message. This option is currently not available on the gpt-4-vision-preview model.
     /// </summary>
     public bool? Logprobs
     {
