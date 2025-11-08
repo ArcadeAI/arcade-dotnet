@@ -23,6 +23,11 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -44,6 +49,11 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["context"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -62,6 +72,11 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["provider_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -80,6 +95,11 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["scopes"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -101,6 +121,11 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -119,6 +144,11 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["url"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -137,6 +167,11 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["user_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

@@ -82,6 +82,11 @@ public sealed record class ChatMessage : ModelBase, IFromRaw<ChatMessage>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -103,6 +108,11 @@ public sealed record class ChatMessage : ModelBase, IFromRaw<ChatMessage>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["tool_call_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -127,6 +137,11 @@ public sealed record class ChatMessage : ModelBase, IFromRaw<ChatMessage>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["tool_calls"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -181,6 +196,11 @@ public sealed record class ToolCall : ModelBase, IFromRaw<ToolCall>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -199,6 +219,11 @@ public sealed record class ToolCall : ModelBase, IFromRaw<ToolCall>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["function"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -220,6 +245,11 @@ public sealed record class ToolCall : ModelBase, IFromRaw<ToolCall>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -269,6 +299,11 @@ public sealed record class Function : ModelBase, IFromRaw<Function>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["arguments"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -287,6 +322,11 @@ public sealed record class Function : ModelBase, IFromRaw<Function>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

@@ -23,6 +23,11 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -41,6 +46,11 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["finished_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -59,6 +69,11 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["output"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -77,6 +92,11 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["started_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -95,6 +115,11 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["success"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -113,6 +138,11 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["system_error_message"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -170,6 +200,11 @@ public sealed record class Output1 : ModelBase, IFromRaw<Output1>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["authorization"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -188,6 +223,11 @@ public sealed record class Output1 : ModelBase, IFromRaw<Output1>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["error"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -209,6 +249,11 @@ public sealed record class Output1 : ModelBase, IFromRaw<Output1>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["logs"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -227,6 +272,11 @@ public sealed record class Output1 : ModelBase, IFromRaw<Output1>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["value"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -353,6 +403,11 @@ public sealed record class ErrorModel : ModelBase, IFromRaw<ErrorModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["additional_prompt_content"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -371,6 +426,11 @@ public sealed record class ErrorModel : ModelBase, IFromRaw<ErrorModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["developer_message"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -392,6 +452,11 @@ public sealed record class ErrorModel : ModelBase, IFromRaw<ErrorModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["extra"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -410,6 +475,11 @@ public sealed record class ErrorModel : ModelBase, IFromRaw<ErrorModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["retry_after_ms"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -428,6 +498,11 @@ public sealed record class ErrorModel : ModelBase, IFromRaw<ErrorModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["stacktrace"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -446,6 +521,11 @@ public sealed record class ErrorModel : ModelBase, IFromRaw<ErrorModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["status_code"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -643,6 +723,11 @@ public sealed record class LogModel : ModelBase, IFromRaw<LogModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["subtype"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

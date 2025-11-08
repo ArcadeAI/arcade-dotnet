@@ -34,6 +34,11 @@ public sealed record class WorkerUpdateParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["enabled"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -52,6 +57,11 @@ public sealed record class WorkerUpdateParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["http"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -70,6 +80,11 @@ public sealed record class WorkerUpdateParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["mcp"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -160,6 +175,11 @@ public sealed record class HTTPModel : ModelBase, IFromRaw<HTTPModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["retry"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -178,6 +198,11 @@ public sealed record class HTTPModel : ModelBase, IFromRaw<HTTPModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["secret"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -196,6 +221,11 @@ public sealed record class HTTPModel : ModelBase, IFromRaw<HTTPModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["timeout"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -214,6 +244,11 @@ public sealed record class HTTPModel : ModelBase, IFromRaw<HTTPModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["uri"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -267,6 +302,11 @@ public sealed record class McpModel : ModelBase, IFromRaw<McpModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["headers"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -285,6 +325,11 @@ public sealed record class McpModel : ModelBase, IFromRaw<McpModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["oauth2"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -303,6 +348,11 @@ public sealed record class McpModel : ModelBase, IFromRaw<McpModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["retry"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -324,6 +374,11 @@ public sealed record class McpModel : ModelBase, IFromRaw<McpModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["secrets"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -342,6 +397,11 @@ public sealed record class McpModel : ModelBase, IFromRaw<McpModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["timeout"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -360,6 +420,11 @@ public sealed record class McpModel : ModelBase, IFromRaw<McpModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["uri"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -412,6 +477,11 @@ public sealed record class Oauth2Model : ModelBase, IFromRaw<Oauth2Model>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["authorization_url"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -430,6 +500,11 @@ public sealed record class Oauth2Model : ModelBase, IFromRaw<Oauth2Model>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["client_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -448,6 +523,11 @@ public sealed record class Oauth2Model : ModelBase, IFromRaw<Oauth2Model>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["client_secret"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

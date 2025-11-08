@@ -23,6 +23,11 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -41,6 +46,11 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["binding"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -59,6 +69,11 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["created_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -77,6 +92,11 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["description"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -95,6 +115,11 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["hint"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -113,6 +138,11 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["key"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -131,6 +161,11 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["last_accessed_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -149,6 +184,11 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["updated_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -205,6 +245,11 @@ public sealed record class Binding : ModelBase, IFromRaw<Binding>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -226,6 +271,11 @@ public sealed record class Binding : ModelBase, IFromRaw<Binding>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

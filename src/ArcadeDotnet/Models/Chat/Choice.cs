@@ -21,6 +21,11 @@ public sealed record class Choice : ModelBase, IFromRaw<Choice>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["finish_reason"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -39,6 +44,11 @@ public sealed record class Choice : ModelBase, IFromRaw<Choice>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["index"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -57,6 +67,11 @@ public sealed record class Choice : ModelBase, IFromRaw<Choice>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["logprobs"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -75,6 +90,11 @@ public sealed record class Choice : ModelBase, IFromRaw<Choice>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["message"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -96,6 +116,11 @@ public sealed record class Choice : ModelBase, IFromRaw<Choice>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["tool_authorizations"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -117,6 +142,11 @@ public sealed record class Choice : ModelBase, IFromRaw<Choice>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["tool_messages"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

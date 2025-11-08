@@ -48,6 +48,11 @@ public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["enum"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -66,6 +71,11 @@ public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["inner_val_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

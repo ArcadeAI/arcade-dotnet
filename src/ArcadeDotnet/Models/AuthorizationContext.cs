@@ -21,6 +21,11 @@ public sealed record class AuthorizationContext : ModelBase, IFromRaw<Authorizat
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["token"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -42,6 +47,11 @@ public sealed record class AuthorizationContext : ModelBase, IFromRaw<Authorizat
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["user_info"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

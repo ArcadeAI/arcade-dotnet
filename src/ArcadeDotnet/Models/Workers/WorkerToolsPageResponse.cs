@@ -25,6 +25,11 @@ public sealed record class WorkerToolsPageResponse : ModelBase, IFromRaw<WorkerT
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["items"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -43,6 +48,11 @@ public sealed record class WorkerToolsPageResponse : ModelBase, IFromRaw<WorkerT
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["limit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -61,6 +71,11 @@ public sealed record class WorkerToolsPageResponse : ModelBase, IFromRaw<WorkerT
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["offset"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -79,6 +94,11 @@ public sealed record class WorkerToolsPageResponse : ModelBase, IFromRaw<WorkerT
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["page_count"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -97,6 +117,11 @@ public sealed record class WorkerToolsPageResponse : ModelBase, IFromRaw<WorkerT
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["total_count"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

@@ -21,6 +21,11 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -39,6 +44,11 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["enabled"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -57,6 +67,11 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["healthy"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -75,6 +90,11 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["message"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

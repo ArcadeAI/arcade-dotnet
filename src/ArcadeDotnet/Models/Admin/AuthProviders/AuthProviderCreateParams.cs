@@ -58,6 +58,11 @@ public sealed record class AuthProviderCreateParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["description"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -79,6 +84,11 @@ public sealed record class AuthProviderCreateParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["external_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -97,6 +107,11 @@ public sealed record class AuthProviderCreateParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["oauth2"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -115,6 +130,11 @@ public sealed record class AuthProviderCreateParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["provider_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -133,6 +153,11 @@ public sealed record class AuthProviderCreateParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -151,6 +176,11 @@ public sealed record class AuthProviderCreateParams : ParamsBase
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._bodyProperties["type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -272,6 +302,11 @@ public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["authorize_request"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -290,6 +325,11 @@ public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["client_secret"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -308,6 +348,11 @@ public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["pkce"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -329,6 +374,11 @@ public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["refresh_request"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -350,6 +400,11 @@ public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["scope_delimiter"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -376,6 +431,11 @@ public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["token_introspection_request"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -394,6 +454,11 @@ public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["token_request"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -415,6 +480,11 @@ public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["user_info_request"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -502,6 +572,11 @@ public sealed record class AuthorizeRequest : ModelBase, IFromRaw<AuthorizeReque
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["auth_header_value_format"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -520,6 +595,11 @@ public sealed record class AuthorizeRequest : ModelBase, IFromRaw<AuthorizeReque
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["auth_method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -538,6 +618,11 @@ public sealed record class AuthorizeRequest : ModelBase, IFromRaw<AuthorizeReque
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -559,6 +644,11 @@ public sealed record class AuthorizeRequest : ModelBase, IFromRaw<AuthorizeReque
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["params"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -580,6 +670,11 @@ public sealed record class AuthorizeRequest : ModelBase, IFromRaw<AuthorizeReque
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["request_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -601,6 +696,11 @@ public sealed record class AuthorizeRequest : ModelBase, IFromRaw<AuthorizeReque
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["response_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -622,6 +722,11 @@ public sealed record class AuthorizeRequest : ModelBase, IFromRaw<AuthorizeReque
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["response_map"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -776,6 +881,11 @@ public sealed record class Pkce : ModelBase, IFromRaw<Pkce>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["code_challenge_method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -794,6 +904,11 @@ public sealed record class Pkce : ModelBase, IFromRaw<Pkce>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["enabled"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -867,6 +982,11 @@ public sealed record class RefreshRequest : ModelBase, IFromRaw<RefreshRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["auth_header_value_format"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -885,6 +1005,11 @@ public sealed record class RefreshRequest : ModelBase, IFromRaw<RefreshRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["auth_method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -903,6 +1028,11 @@ public sealed record class RefreshRequest : ModelBase, IFromRaw<RefreshRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -924,6 +1054,11 @@ public sealed record class RefreshRequest : ModelBase, IFromRaw<RefreshRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["params"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -945,6 +1080,11 @@ public sealed record class RefreshRequest : ModelBase, IFromRaw<RefreshRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["request_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -966,6 +1106,11 @@ public sealed record class RefreshRequest : ModelBase, IFromRaw<RefreshRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["response_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -987,6 +1132,11 @@ public sealed record class RefreshRequest : ModelBase, IFromRaw<RefreshRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["response_map"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1238,6 +1388,11 @@ public sealed record class TokenIntrospectionRequest
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["auth_header_value_format"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1256,6 +1411,11 @@ public sealed record class TokenIntrospectionRequest
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["auth_method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1274,6 +1434,11 @@ public sealed record class TokenIntrospectionRequest
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1295,6 +1460,11 @@ public sealed record class TokenIntrospectionRequest
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["params"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1316,6 +1486,11 @@ public sealed record class TokenIntrospectionRequest
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["request_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1337,6 +1512,11 @@ public sealed record class TokenIntrospectionRequest
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["response_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1358,6 +1538,11 @@ public sealed record class TokenIntrospectionRequest
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["response_map"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1415,6 +1600,11 @@ public sealed record class Triggers : ModelBase, IFromRaw<Triggers>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["on_token_grant"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1433,6 +1623,11 @@ public sealed record class Triggers : ModelBase, IFromRaw<Triggers>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["on_token_refresh"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1598,6 +1793,11 @@ public sealed record class TokenRequest : ModelBase, IFromRaw<TokenRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["auth_header_value_format"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1616,6 +1816,11 @@ public sealed record class TokenRequest : ModelBase, IFromRaw<TokenRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["auth_method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1634,6 +1839,11 @@ public sealed record class TokenRequest : ModelBase, IFromRaw<TokenRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1655,6 +1865,11 @@ public sealed record class TokenRequest : ModelBase, IFromRaw<TokenRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["params"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1676,6 +1891,11 @@ public sealed record class TokenRequest : ModelBase, IFromRaw<TokenRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["request_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1697,6 +1917,11 @@ public sealed record class TokenRequest : ModelBase, IFromRaw<TokenRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["response_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1718,6 +1943,11 @@ public sealed record class TokenRequest : ModelBase, IFromRaw<TokenRequest>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["response_map"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1921,6 +2151,11 @@ public sealed record class UserInfoRequest : ModelBase, IFromRaw<UserInfoRequest
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["auth_header_value_format"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1939,6 +2174,11 @@ public sealed record class UserInfoRequest : ModelBase, IFromRaw<UserInfoRequest
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["auth_method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1957,6 +2197,11 @@ public sealed record class UserInfoRequest : ModelBase, IFromRaw<UserInfoRequest
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1978,6 +2223,11 @@ public sealed record class UserInfoRequest : ModelBase, IFromRaw<UserInfoRequest
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["params"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -1999,6 +2249,11 @@ public sealed record class UserInfoRequest : ModelBase, IFromRaw<UserInfoRequest
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["request_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -2020,6 +2275,11 @@ public sealed record class UserInfoRequest : ModelBase, IFromRaw<UserInfoRequest
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["response_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -2041,6 +2301,11 @@ public sealed record class UserInfoRequest : ModelBase, IFromRaw<UserInfoRequest
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["response_map"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -2098,6 +2363,11 @@ public sealed record class TriggersModel : ModelBase, IFromRaw<TriggersModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["on_token_grant"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -2116,6 +2386,11 @@ public sealed record class TriggersModel : ModelBase, IFromRaw<TriggersModel>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["on_token_refresh"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions

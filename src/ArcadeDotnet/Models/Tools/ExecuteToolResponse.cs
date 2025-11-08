@@ -23,6 +23,11 @@ public sealed record class ExecuteToolResponse : ModelBase, IFromRaw<ExecuteTool
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -41,6 +46,11 @@ public sealed record class ExecuteToolResponse : ModelBase, IFromRaw<ExecuteTool
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["duration"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -59,6 +69,11 @@ public sealed record class ExecuteToolResponse : ModelBase, IFromRaw<ExecuteTool
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["execution_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -77,6 +92,11 @@ public sealed record class ExecuteToolResponse : ModelBase, IFromRaw<ExecuteTool
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["execution_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -95,6 +115,11 @@ public sealed record class ExecuteToolResponse : ModelBase, IFromRaw<ExecuteTool
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["finished_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -113,6 +138,11 @@ public sealed record class ExecuteToolResponse : ModelBase, IFromRaw<ExecuteTool
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["output"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -131,6 +161,11 @@ public sealed record class ExecuteToolResponse : ModelBase, IFromRaw<ExecuteTool
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["run_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -149,6 +184,11 @@ public sealed record class ExecuteToolResponse : ModelBase, IFromRaw<ExecuteTool
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -172,6 +212,11 @@ public sealed record class ExecuteToolResponse : ModelBase, IFromRaw<ExecuteTool
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["success"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -232,6 +277,11 @@ public sealed record class Output : ModelBase, IFromRaw<Output>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["authorization"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -253,6 +303,11 @@ public sealed record class Output : ModelBase, IFromRaw<Output>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["error"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -271,6 +326,11 @@ public sealed record class Output : ModelBase, IFromRaw<Output>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["logs"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -289,6 +349,11 @@ public sealed record class Output : ModelBase, IFromRaw<Output>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["value"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -415,6 +480,11 @@ public sealed record class Error : ModelBase, IFromRaw<global::ArcadeDotnet.Mode
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["additional_prompt_content"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -433,6 +503,11 @@ public sealed record class Error : ModelBase, IFromRaw<global::ArcadeDotnet.Mode
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["developer_message"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -454,6 +529,11 @@ public sealed record class Error : ModelBase, IFromRaw<global::ArcadeDotnet.Mode
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["extra"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -472,6 +552,11 @@ public sealed record class Error : ModelBase, IFromRaw<global::ArcadeDotnet.Mode
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["retry_after_ms"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -490,6 +575,11 @@ public sealed record class Error : ModelBase, IFromRaw<global::ArcadeDotnet.Mode
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["stacktrace"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -508,6 +598,11 @@ public sealed record class Error : ModelBase, IFromRaw<global::ArcadeDotnet.Mode
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["status_code"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
@@ -703,6 +798,11 @@ public sealed record class Log : ModelBase, IFromRaw<Log>
         }
         init
         {
+            if (value == null)
+            {
+                return;
+            }
+
             this._properties["subtype"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
