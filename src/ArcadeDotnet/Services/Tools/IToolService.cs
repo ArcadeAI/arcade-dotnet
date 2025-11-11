@@ -3,9 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
 using ArcadeDotnet.Models;
+using ArcadeDotnet.Models.Tools;
 using ArcadeDotnet.Services.Tools.Formatted;
 using ArcadeDotnet.Services.Tools.Scheduled;
-using Tools = ArcadeDotnet.Models.Tools;
 
 namespace ArcadeDotnet.Services.Tools;
 
@@ -21,8 +21,8 @@ public interface IToolService
     /// Returns a page of tools from the engine configuration, optionally filtered
     /// by toolkit
     /// </summary>
-    Task<Tools::ToolListPageResponse> List(
-        Tools::ToolListParams? parameters = null,
+    Task<ToolListPageResponse> List(
+        ToolListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 
@@ -30,23 +30,23 @@ public interface IToolService
     /// Authorizes a user for a specific tool by name
     /// </summary>
     Task<AuthorizationResponse> Authorize(
-        Tools::ToolAuthorizeParams parameters,
+        ToolAuthorizeParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// Executes a tool by name and arguments
     /// </summary>
-    Task<Tools::ExecuteToolResponse> Execute(
-        Tools::ToolExecuteParams parameters,
+    Task<ExecuteToolResponse> Execute(
+        ToolExecuteParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// Returns the arcade tool specification for a specific tool
     /// </summary>
-    Task<Tools::ToolDefinition> Get(
-        Tools::ToolGetParams parameters,
+    Task<ToolDefinition> Get(
+        ToolGetParams parameters,
         CancellationToken cancellationToken = default
     );
 }

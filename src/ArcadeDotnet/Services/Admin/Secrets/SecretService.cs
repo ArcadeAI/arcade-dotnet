@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
-using Secrets = ArcadeDotnet.Models.Admin.Secrets;
+using ArcadeDotnet.Models.Admin.Secrets;
 
 namespace ArcadeDotnet.Services.Admin.Secrets;
 
@@ -21,14 +21,14 @@ public sealed class SecretService : ISecretService
         _client = client;
     }
 
-    public async Task<Secrets::SecretListResponse> List(
-        Secrets::SecretListParams? parameters = null,
+    public async Task<SecretListResponse> List(
+        SecretListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        HttpRequest<Secrets::SecretListParams> request = new()
+        HttpRequest<SecretListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -37,7 +37,7 @@ public sealed class SecretService : ISecretService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var secrets = await response
-            .Deserialize<Secrets::SecretListResponse>(cancellationToken)
+            .Deserialize<SecretListResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -47,11 +47,11 @@ public sealed class SecretService : ISecretService
     }
 
     public async Task Delete(
-        Secrets::SecretDeleteParams parameters,
+        SecretDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Secrets::SecretDeleteParams> request = new()
+        HttpRequest<SecretDeleteParams> request = new()
         {
             Method = HttpMethod.Delete,
             Params = parameters,
