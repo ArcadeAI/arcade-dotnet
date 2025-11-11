@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
-using Workers = ArcadeDotnet.Models.Workers;
+using ArcadeDotnet.Models.Workers;
 
 namespace ArcadeDotnet.Services.Workers;
 
@@ -21,12 +21,12 @@ public sealed class WorkerService : IWorkerService
         _client = client;
     }
 
-    public async Task<Workers::WorkerResponse> Create(
-        Workers::WorkerCreateParams parameters,
+    public async Task<WorkerResponse> Create(
+        WorkerCreateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Workers::WorkerCreateParams> request = new()
+        HttpRequest<WorkerCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -35,7 +35,7 @@ public sealed class WorkerService : IWorkerService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var workerResponse = await response
-            .Deserialize<Workers::WorkerResponse>(cancellationToken)
+            .Deserialize<WorkerResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -44,12 +44,12 @@ public sealed class WorkerService : IWorkerService
         return workerResponse;
     }
 
-    public async Task<Workers::WorkerResponse> Update(
-        Workers::WorkerUpdateParams parameters,
+    public async Task<WorkerResponse> Update(
+        WorkerUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Workers::WorkerUpdateParams> request = new()
+        HttpRequest<WorkerUpdateParams> request = new()
         {
             Method = HttpMethod.Patch,
             Params = parameters,
@@ -58,7 +58,7 @@ public sealed class WorkerService : IWorkerService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var workerResponse = await response
-            .Deserialize<Workers::WorkerResponse>(cancellationToken)
+            .Deserialize<WorkerResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -67,14 +67,14 @@ public sealed class WorkerService : IWorkerService
         return workerResponse;
     }
 
-    public async Task<Workers::WorkerListPageResponse> List(
-        Workers::WorkerListParams? parameters = null,
+    public async Task<WorkerListPageResponse> List(
+        WorkerListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        HttpRequest<Workers::WorkerListParams> request = new()
+        HttpRequest<WorkerListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -83,7 +83,7 @@ public sealed class WorkerService : IWorkerService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var page = await response
-            .Deserialize<Workers::WorkerListPageResponse>(cancellationToken)
+            .Deserialize<WorkerListPageResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -93,11 +93,11 @@ public sealed class WorkerService : IWorkerService
     }
 
     public async Task Delete(
-        Workers::WorkerDeleteParams parameters,
+        WorkerDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Workers::WorkerDeleteParams> request = new()
+        HttpRequest<WorkerDeleteParams> request = new()
         {
             Method = HttpMethod.Delete,
             Params = parameters,
@@ -107,12 +107,12 @@ public sealed class WorkerService : IWorkerService
             .ConfigureAwait(false);
     }
 
-    public async Task<Workers::WorkerResponse> Get(
-        Workers::WorkerGetParams parameters,
+    public async Task<WorkerResponse> Get(
+        WorkerGetParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Workers::WorkerGetParams> request = new()
+        HttpRequest<WorkerGetParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -121,7 +121,7 @@ public sealed class WorkerService : IWorkerService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var workerResponse = await response
-            .Deserialize<Workers::WorkerResponse>(cancellationToken)
+            .Deserialize<WorkerResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -130,12 +130,12 @@ public sealed class WorkerService : IWorkerService
         return workerResponse;
     }
 
-    public async Task<Workers::WorkerHealthResponse> Health(
-        Workers::WorkerHealthParams parameters,
+    public async Task<WorkerHealthResponse> Health(
+        WorkerHealthParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Workers::WorkerHealthParams> request = new()
+        HttpRequest<WorkerHealthParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -144,7 +144,7 @@ public sealed class WorkerService : IWorkerService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var workerHealthResponse = await response
-            .Deserialize<Workers::WorkerHealthResponse>(cancellationToken)
+            .Deserialize<WorkerHealthResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {
@@ -153,12 +153,12 @@ public sealed class WorkerService : IWorkerService
         return workerHealthResponse;
     }
 
-    public async Task<Workers::WorkerToolsPageResponse> Tools(
-        Workers::WorkerToolsParams parameters,
+    public async Task<WorkerToolsPageResponse> Tools(
+        WorkerToolsParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<Workers::WorkerToolsParams> request = new()
+        HttpRequest<WorkerToolsParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -167,7 +167,7 @@ public sealed class WorkerService : IWorkerService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var page = await response
-            .Deserialize<Workers::WorkerToolsPageResponse>(cancellationToken)
+            .Deserialize<WorkerToolsPageResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {

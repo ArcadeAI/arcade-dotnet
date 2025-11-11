@@ -3,8 +3,8 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
-using Chat = ArcadeDotnet.Models.Chat;
-using Completions = ArcadeDotnet.Models.Chat.Completions;
+using ArcadeDotnet.Models.Chat;
+using ArcadeDotnet.Models.Chat.Completions;
 
 namespace ArcadeDotnet.Services.Chat.Completions;
 
@@ -22,14 +22,14 @@ public sealed class CompletionService : ICompletionService
         _client = client;
     }
 
-    public async Task<Chat::ChatResponse> Create(
-        Completions::CompletionCreateParams? parameters = null,
+    public async Task<ChatResponse> Create(
+        CompletionCreateParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        HttpRequest<Completions::CompletionCreateParams> request = new()
+        HttpRequest<CompletionCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -38,7 +38,7 @@ public sealed class CompletionService : ICompletionService
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
         var chatResponse = await response
-            .Deserialize<Chat::ChatResponse>(cancellationToken)
+            .Deserialize<ChatResponse>(cancellationToken)
             .ConfigureAwait(false);
         if (this._client.ResponseValidation)
         {

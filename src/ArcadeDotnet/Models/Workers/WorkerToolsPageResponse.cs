@@ -4,21 +4,21 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
-using Tools = ArcadeDotnet.Models.Tools;
+using ArcadeDotnet.Models.Tools;
 
 namespace ArcadeDotnet.Models.Workers;
 
 [JsonConverter(typeof(ModelConverter<WorkerToolsPageResponse>))]
 public sealed record class WorkerToolsPageResponse : ModelBase, IFromRaw<WorkerToolsPageResponse>
 {
-    public List<Tools::ToolDefinition>? Items
+    public List<ToolDefinition>? Items
     {
         get
         {
             if (!this._properties.TryGetValue("items", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<Tools::ToolDefinition>?>(
+            return JsonSerializer.Deserialize<List<ToolDefinition>?>(
                 element,
                 ModelBase.SerializerOptions
             );

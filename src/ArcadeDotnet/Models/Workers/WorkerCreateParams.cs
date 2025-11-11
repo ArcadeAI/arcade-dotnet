@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -7,7 +8,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
 using ArcadeDotnet.Exceptions;
-using System = System;
 
 namespace ArcadeDotnet.Models.Workers;
 
@@ -29,13 +29,13 @@ public sealed record class WorkerCreateParams : ParamsBase
             if (!this._bodyProperties.TryGetValue("id", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'id' cannot be null",
-                    new System::ArgumentOutOfRangeException("id", "Missing required argument")
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArcadeInvalidDataException(
                     "'id' cannot be null",
-                    new System::ArgumentNullException("id")
+                    new ArgumentNullException("id")
                 );
         }
         init
@@ -179,9 +179,9 @@ public sealed record class WorkerCreateParams : ParamsBase
         );
     }
 
-    public override System::Uri Url(ClientOptions options)
+    public override Uri Url(ClientOptions options)
     {
-        return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/v1/workers")
+        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/v1/workers")
         {
             Query = this.QueryString(options),
         }.Uri;
@@ -216,7 +216,7 @@ public sealed record class HTTP : ModelBase, IFromRaw<HTTP>
             if (!this._properties.TryGetValue("retry", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'retry' cannot be null",
-                    new System::ArgumentOutOfRangeException("retry", "Missing required argument")
+                    new ArgumentOutOfRangeException("retry", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
@@ -237,13 +237,13 @@ public sealed record class HTTP : ModelBase, IFromRaw<HTTP>
             if (!this._properties.TryGetValue("secret", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'secret' cannot be null",
-                    new System::ArgumentOutOfRangeException("secret", "Missing required argument")
+                    new ArgumentOutOfRangeException("secret", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArcadeInvalidDataException(
                     "'secret' cannot be null",
-                    new System::ArgumentNullException("secret")
+                    new ArgumentNullException("secret")
                 );
         }
         init
@@ -262,7 +262,7 @@ public sealed record class HTTP : ModelBase, IFromRaw<HTTP>
             if (!this._properties.TryGetValue("timeout", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'timeout' cannot be null",
-                    new System::ArgumentOutOfRangeException("timeout", "Missing required argument")
+                    new ArgumentOutOfRangeException("timeout", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
@@ -283,13 +283,13 @@ public sealed record class HTTP : ModelBase, IFromRaw<HTTP>
             if (!this._properties.TryGetValue("uri", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'uri' cannot be null",
-                    new System::ArgumentOutOfRangeException("uri", "Missing required argument")
+                    new ArgumentOutOfRangeException("uri", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArcadeInvalidDataException(
                     "'uri' cannot be null",
-                    new System::ArgumentNullException("uri")
+                    new ArgumentNullException("uri")
                 );
         }
         init
@@ -340,7 +340,7 @@ public sealed record class Mcp : ModelBase, IFromRaw<Mcp>
             if (!this._properties.TryGetValue("retry", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'retry' cannot be null",
-                    new System::ArgumentOutOfRangeException("retry", "Missing required argument")
+                    new ArgumentOutOfRangeException("retry", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
@@ -361,7 +361,7 @@ public sealed record class Mcp : ModelBase, IFromRaw<Mcp>
             if (!this._properties.TryGetValue("timeout", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'timeout' cannot be null",
-                    new System::ArgumentOutOfRangeException("timeout", "Missing required argument")
+                    new ArgumentOutOfRangeException("timeout", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
@@ -382,13 +382,13 @@ public sealed record class Mcp : ModelBase, IFromRaw<Mcp>
             if (!this._properties.TryGetValue("uri", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'uri' cannot be null",
-                    new System::ArgumentOutOfRangeException("uri", "Missing required argument")
+                    new ArgumentOutOfRangeException("uri", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArcadeInvalidDataException(
                     "'uri' cannot be null",
-                    new System::ArgumentNullException("uri")
+                    new ArgumentNullException("uri")
                 );
         }
         init

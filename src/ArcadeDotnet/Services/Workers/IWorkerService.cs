@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
-using Workers = ArcadeDotnet.Models.Workers;
+using ArcadeDotnet.Models.Workers;
 
 namespace ArcadeDotnet.Services.Workers;
 
@@ -13,56 +13,53 @@ public interface IWorkerService
     /// <summary>
     /// Create a worker
     /// </summary>
-    Task<Workers::WorkerResponse> Create(
-        Workers::WorkerCreateParams parameters,
+    Task<WorkerResponse> Create(
+        WorkerCreateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// Update a worker
     /// </summary>
-    Task<Workers::WorkerResponse> Update(
-        Workers::WorkerUpdateParams parameters,
+    Task<WorkerResponse> Update(
+        WorkerUpdateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// List all workers with their definitions
     /// </summary>
-    Task<Workers::WorkerListPageResponse> List(
-        Workers::WorkerListParams? parameters = null,
+    Task<WorkerListPageResponse> List(
+        WorkerListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// Delete a worker
     /// </summary>
-    Task Delete(
-        Workers::WorkerDeleteParams parameters,
-        CancellationToken cancellationToken = default
-    );
+    Task Delete(WorkerDeleteParams parameters, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Get a worker by ID
     /// </summary>
-    Task<Workers::WorkerResponse> Get(
-        Workers::WorkerGetParams parameters,
+    Task<WorkerResponse> Get(
+        WorkerGetParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// Get the health of a worker
     /// </summary>
-    Task<Workers::WorkerHealthResponse> Health(
-        Workers::WorkerHealthParams parameters,
+    Task<WorkerHealthResponse> Health(
+        WorkerHealthParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// Returns a page of tools
     /// </summary>
-    Task<Workers::WorkerToolsPageResponse> Tools(
-        Workers::WorkerToolsParams parameters,
+    Task<WorkerToolsPageResponse> Tools(
+        WorkerToolsParams parameters,
         CancellationToken cancellationToken = default
     );
 }
