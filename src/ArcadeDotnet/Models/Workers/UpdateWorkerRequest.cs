@@ -33,14 +33,17 @@ public sealed record class UpdateWorkerRequest : ModelBase, IFromRaw<UpdateWorke
         }
     }
 
-    public HTTP2? HTTP
+    public UpdateWorkerRequestHTTP? HTTP
     {
         get
         {
             if (!this._properties.TryGetValue("http", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<HTTP2?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<UpdateWorkerRequestHTTP?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -56,14 +59,17 @@ public sealed record class UpdateWorkerRequest : ModelBase, IFromRaw<UpdateWorke
         }
     }
 
-    public Mcp2? Mcp
+    public UpdateWorkerRequestMcp? Mcp
     {
         get
         {
             if (!this._properties.TryGetValue("mcp", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Mcp2?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<UpdateWorkerRequestMcp?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -109,8 +115,8 @@ public sealed record class UpdateWorkerRequest : ModelBase, IFromRaw<UpdateWorke
     }
 }
 
-[JsonConverter(typeof(ModelConverter<HTTP2>))]
-public sealed record class HTTP2 : ModelBase, IFromRaw<HTTP2>
+[JsonConverter(typeof(ModelConverter<UpdateWorkerRequestHTTP>))]
+public sealed record class UpdateWorkerRequestHTTP : ModelBase, IFromRaw<UpdateWorkerRequestHTTP>
 {
     public long? Retry
     {
@@ -212,29 +218,31 @@ public sealed record class HTTP2 : ModelBase, IFromRaw<HTTP2>
         _ = this.Uri;
     }
 
-    public HTTP2() { }
+    public UpdateWorkerRequestHTTP() { }
 
-    public HTTP2(IReadOnlyDictionary<string, JsonElement> properties)
+    public UpdateWorkerRequestHTTP(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    HTTP2(FrozenDictionary<string, JsonElement> properties)
+    UpdateWorkerRequestHTTP(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static HTTP2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static UpdateWorkerRequestHTTP FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Mcp2>))]
-public sealed record class Mcp2 : ModelBase, IFromRaw<Mcp2>
+[JsonConverter(typeof(ModelConverter<UpdateWorkerRequestMcp>))]
+public sealed record class UpdateWorkerRequestMcp : ModelBase, IFromRaw<UpdateWorkerRequestMcp>
 {
     public Dictionary<string, string>? Headers
     {
@@ -262,14 +270,17 @@ public sealed record class Mcp2 : ModelBase, IFromRaw<Mcp2>
         }
     }
 
-    public Oauth22? Oauth2
+    public UpdateWorkerRequestMcpOauth2? Oauth2
     {
         get
         {
             if (!this._properties.TryGetValue("oauth2", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Oauth22?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<UpdateWorkerRequestMcpOauth2?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -390,29 +401,33 @@ public sealed record class Mcp2 : ModelBase, IFromRaw<Mcp2>
         _ = this.Uri;
     }
 
-    public Mcp2() { }
+    public UpdateWorkerRequestMcp() { }
 
-    public Mcp2(IReadOnlyDictionary<string, JsonElement> properties)
+    public UpdateWorkerRequestMcp(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Mcp2(FrozenDictionary<string, JsonElement> properties)
+    UpdateWorkerRequestMcp(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Mcp2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static UpdateWorkerRequestMcp FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Oauth22>))]
-public sealed record class Oauth22 : ModelBase, IFromRaw<Oauth22>
+[JsonConverter(typeof(ModelConverter<UpdateWorkerRequestMcpOauth2>))]
+public sealed record class UpdateWorkerRequestMcpOauth2
+    : ModelBase,
+        IFromRaw<UpdateWorkerRequestMcpOauth2>
 {
     public string? AuthorizationURL
     {
@@ -490,22 +505,24 @@ public sealed record class Oauth22 : ModelBase, IFromRaw<Oauth22>
         _ = this.ClientSecret;
     }
 
-    public Oauth22() { }
+    public UpdateWorkerRequestMcpOauth2() { }
 
-    public Oauth22(IReadOnlyDictionary<string, JsonElement> properties)
+    public UpdateWorkerRequestMcpOauth2(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Oauth22(FrozenDictionary<string, JsonElement> properties)
+    UpdateWorkerRequestMcpOauth2(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Oauth22 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static UpdateWorkerRequestMcpOauth2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }

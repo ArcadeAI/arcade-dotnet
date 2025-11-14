@@ -556,14 +556,14 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
 [JsonConverter(typeof(ModelConverter<ResponseFormat>))]
 public sealed record class ResponseFormat : ModelBase, IFromRaw<ResponseFormat>
 {
-    public ApiEnum<string, TypeModel>? Type
+    public ApiEnum<string, ResponseFormatType>? Type
     {
         get
         {
             if (!this._properties.TryGetValue("type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, TypeModel>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, ResponseFormatType>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -610,16 +610,16 @@ public sealed record class ResponseFormat : ModelBase, IFromRaw<ResponseFormat>
     }
 }
 
-[JsonConverter(typeof(TypeModelConverter))]
-public enum TypeModel
+[JsonConverter(typeof(ResponseFormatTypeConverter))]
+public enum ResponseFormatType
 {
     JsonObject,
     Text,
 }
 
-sealed class TypeModelConverter : JsonConverter<TypeModel>
+sealed class ResponseFormatTypeConverter : JsonConverter<ResponseFormatType>
 {
-    public override TypeModel Read(
+    public override ResponseFormatType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -627,15 +627,15 @@ sealed class TypeModelConverter : JsonConverter<TypeModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "json_object" => TypeModel.JsonObject,
-            "text" => TypeModel.Text,
-            _ => (TypeModel)(-1),
+            "json_object" => ResponseFormatType.JsonObject,
+            "text" => ResponseFormatType.Text,
+            _ => (ResponseFormatType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        TypeModel value,
+        ResponseFormatType value,
         JsonSerializerOptions options
     )
     {
@@ -643,8 +643,8 @@ sealed class TypeModelConverter : JsonConverter<TypeModel>
             writer,
             value switch
             {
-                TypeModel.JsonObject => "json_object",
-                TypeModel.Text => "text",
+                ResponseFormatType.JsonObject => "json_object",
+                ResponseFormatType.Text => "text",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

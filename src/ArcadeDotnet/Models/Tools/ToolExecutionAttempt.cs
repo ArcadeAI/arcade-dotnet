@@ -58,14 +58,17 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
         }
     }
 
-    public Output1? Output
+    public ToolExecutionAttemptOutput? Output
     {
         get
         {
             if (!this._properties.TryGetValue("output", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Output1?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ToolExecutionAttemptOutput?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -183,8 +186,10 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Output1>))]
-public sealed record class Output1 : ModelBase, IFromRaw<Output1>
+[JsonConverter(typeof(ModelConverter<ToolExecutionAttemptOutput>))]
+public sealed record class ToolExecutionAttemptOutput
+    : ModelBase,
+        IFromRaw<ToolExecutionAttemptOutput>
 {
     public AuthorizationResponse? Authorization
     {
@@ -212,14 +217,17 @@ public sealed record class Output1 : ModelBase, IFromRaw<Output1>
         }
     }
 
-    public ErrorModel? Error
+    public ToolExecutionAttemptOutputError? Error
     {
         get
         {
             if (!this._properties.TryGetValue("error", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ErrorModel?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ToolExecutionAttemptOutputError?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -295,29 +303,33 @@ public sealed record class Output1 : ModelBase, IFromRaw<Output1>
         _ = this.Value;
     }
 
-    public Output1() { }
+    public ToolExecutionAttemptOutput() { }
 
-    public Output1(IReadOnlyDictionary<string, JsonElement> properties)
+    public ToolExecutionAttemptOutput(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Output1(FrozenDictionary<string, JsonElement> properties)
+    ToolExecutionAttemptOutput(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Output1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static ToolExecutionAttemptOutput FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ErrorModel>))]
-public sealed record class ErrorModel : ModelBase, IFromRaw<ErrorModel>
+[JsonConverter(typeof(ModelConverter<ToolExecutionAttemptOutputError>))]
+public sealed record class ToolExecutionAttemptOutputError
+    : ModelBase,
+        IFromRaw<ToolExecutionAttemptOutputError>
 {
     public required bool CanRetry
     {
@@ -343,7 +355,7 @@ public sealed record class ErrorModel : ModelBase, IFromRaw<ErrorModel>
         }
     }
 
-    public required ApiEnum<string, KindModel> Kind
+    public required ApiEnum<string, ToolExecutionAttemptOutputErrorKind> Kind
     {
         get
         {
@@ -353,7 +365,7 @@ public sealed record class ErrorModel : ModelBase, IFromRaw<ErrorModel>
                     new System::ArgumentOutOfRangeException("kind", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<ApiEnum<string, KindModel>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, ToolExecutionAttemptOutputErrorKind>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -546,29 +558,31 @@ public sealed record class ErrorModel : ModelBase, IFromRaw<ErrorModel>
         _ = this.StatusCode;
     }
 
-    public ErrorModel() { }
+    public ToolExecutionAttemptOutputError() { }
 
-    public ErrorModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public ToolExecutionAttemptOutputError(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ErrorModel(FrozenDictionary<string, JsonElement> properties)
+    ToolExecutionAttemptOutputError(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static ErrorModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static ToolExecutionAttemptOutputError FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
-[JsonConverter(typeof(KindModelConverter))]
-public enum KindModel
+[JsonConverter(typeof(ToolExecutionAttemptOutputErrorKindConverter))]
+public enum ToolExecutionAttemptOutputErrorKind
 {
     ToolkitLoadFailed,
     ToolDefinitionBadDefinition,
@@ -590,9 +604,10 @@ public enum KindModel
     Unknown,
 }
 
-sealed class KindModelConverter : JsonConverter<KindModel>
+sealed class ToolExecutionAttemptOutputErrorKindConverter
+    : JsonConverter<ToolExecutionAttemptOutputErrorKind>
 {
-    public override KindModel Read(
+    public override ToolExecutionAttemptOutputErrorKind Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -600,31 +615,45 @@ sealed class KindModelConverter : JsonConverter<KindModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "TOOLKIT_LOAD_FAILED" => KindModel.ToolkitLoadFailed,
-            "TOOL_DEFINITION_BAD_DEFINITION" => KindModel.ToolDefinitionBadDefinition,
-            "TOOL_DEFINITION_BAD_INPUT_SCHEMA" => KindModel.ToolDefinitionBadInputSchema,
-            "TOOL_DEFINITION_BAD_OUTPUT_SCHEMA" => KindModel.ToolDefinitionBadOutputSchema,
-            "TOOL_REQUIREMENTS_NOT_MET" => KindModel.ToolRequirementsNotMet,
-            "TOOL_RUNTIME_BAD_INPUT_VALUE" => KindModel.ToolRuntimeBadInputValue,
-            "TOOL_RUNTIME_BAD_OUTPUT_VALUE" => KindModel.ToolRuntimeBadOutputValue,
-            "TOOL_RUNTIME_RETRY" => KindModel.ToolRuntimeRetry,
-            "TOOL_RUNTIME_CONTEXT_REQUIRED" => KindModel.ToolRuntimeContextRequired,
-            "TOOL_RUNTIME_FATAL" => KindModel.ToolRuntimeFatal,
-            "UPSTREAM_RUNTIME_BAD_REQUEST" => KindModel.UpstreamRuntimeBadRequest,
-            "UPSTREAM_RUNTIME_AUTH_ERROR" => KindModel.UpstreamRuntimeAuthError,
-            "UPSTREAM_RUNTIME_NOT_FOUND" => KindModel.UpstreamRuntimeNotFound,
-            "UPSTREAM_RUNTIME_VALIDATION_ERROR" => KindModel.UpstreamRuntimeValidationError,
-            "UPSTREAM_RUNTIME_RATE_LIMIT" => KindModel.UpstreamRuntimeRateLimit,
-            "UPSTREAM_RUNTIME_SERVER_ERROR" => KindModel.UpstreamRuntimeServerError,
-            "UPSTREAM_RUNTIME_UNMAPPED" => KindModel.UpstreamRuntimeUnmapped,
-            "UNKNOWN" => KindModel.Unknown,
-            _ => (KindModel)(-1),
+            "TOOLKIT_LOAD_FAILED" => ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+            "TOOL_DEFINITION_BAD_DEFINITION" =>
+                ToolExecutionAttemptOutputErrorKind.ToolDefinitionBadDefinition,
+            "TOOL_DEFINITION_BAD_INPUT_SCHEMA" =>
+                ToolExecutionAttemptOutputErrorKind.ToolDefinitionBadInputSchema,
+            "TOOL_DEFINITION_BAD_OUTPUT_SCHEMA" =>
+                ToolExecutionAttemptOutputErrorKind.ToolDefinitionBadOutputSchema,
+            "TOOL_REQUIREMENTS_NOT_MET" =>
+                ToolExecutionAttemptOutputErrorKind.ToolRequirementsNotMet,
+            "TOOL_RUNTIME_BAD_INPUT_VALUE" =>
+                ToolExecutionAttemptOutputErrorKind.ToolRuntimeBadInputValue,
+            "TOOL_RUNTIME_BAD_OUTPUT_VALUE" =>
+                ToolExecutionAttemptOutputErrorKind.ToolRuntimeBadOutputValue,
+            "TOOL_RUNTIME_RETRY" => ToolExecutionAttemptOutputErrorKind.ToolRuntimeRetry,
+            "TOOL_RUNTIME_CONTEXT_REQUIRED" =>
+                ToolExecutionAttemptOutputErrorKind.ToolRuntimeContextRequired,
+            "TOOL_RUNTIME_FATAL" => ToolExecutionAttemptOutputErrorKind.ToolRuntimeFatal,
+            "UPSTREAM_RUNTIME_BAD_REQUEST" =>
+                ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeBadRequest,
+            "UPSTREAM_RUNTIME_AUTH_ERROR" =>
+                ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeAuthError,
+            "UPSTREAM_RUNTIME_NOT_FOUND" =>
+                ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeNotFound,
+            "UPSTREAM_RUNTIME_VALIDATION_ERROR" =>
+                ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeValidationError,
+            "UPSTREAM_RUNTIME_RATE_LIMIT" =>
+                ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeRateLimit,
+            "UPSTREAM_RUNTIME_SERVER_ERROR" =>
+                ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeServerError,
+            "UPSTREAM_RUNTIME_UNMAPPED" =>
+                ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeUnmapped,
+            "UNKNOWN" => ToolExecutionAttemptOutputErrorKind.Unknown,
+            _ => (ToolExecutionAttemptOutputErrorKind)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        KindModel value,
+        ToolExecutionAttemptOutputErrorKind value,
         JsonSerializerOptions options
     )
     {
@@ -632,24 +661,38 @@ sealed class KindModelConverter : JsonConverter<KindModel>
             writer,
             value switch
             {
-                KindModel.ToolkitLoadFailed => "TOOLKIT_LOAD_FAILED",
-                KindModel.ToolDefinitionBadDefinition => "TOOL_DEFINITION_BAD_DEFINITION",
-                KindModel.ToolDefinitionBadInputSchema => "TOOL_DEFINITION_BAD_INPUT_SCHEMA",
-                KindModel.ToolDefinitionBadOutputSchema => "TOOL_DEFINITION_BAD_OUTPUT_SCHEMA",
-                KindModel.ToolRequirementsNotMet => "TOOL_REQUIREMENTS_NOT_MET",
-                KindModel.ToolRuntimeBadInputValue => "TOOL_RUNTIME_BAD_INPUT_VALUE",
-                KindModel.ToolRuntimeBadOutputValue => "TOOL_RUNTIME_BAD_OUTPUT_VALUE",
-                KindModel.ToolRuntimeRetry => "TOOL_RUNTIME_RETRY",
-                KindModel.ToolRuntimeContextRequired => "TOOL_RUNTIME_CONTEXT_REQUIRED",
-                KindModel.ToolRuntimeFatal => "TOOL_RUNTIME_FATAL",
-                KindModel.UpstreamRuntimeBadRequest => "UPSTREAM_RUNTIME_BAD_REQUEST",
-                KindModel.UpstreamRuntimeAuthError => "UPSTREAM_RUNTIME_AUTH_ERROR",
-                KindModel.UpstreamRuntimeNotFound => "UPSTREAM_RUNTIME_NOT_FOUND",
-                KindModel.UpstreamRuntimeValidationError => "UPSTREAM_RUNTIME_VALIDATION_ERROR",
-                KindModel.UpstreamRuntimeRateLimit => "UPSTREAM_RUNTIME_RATE_LIMIT",
-                KindModel.UpstreamRuntimeServerError => "UPSTREAM_RUNTIME_SERVER_ERROR",
-                KindModel.UpstreamRuntimeUnmapped => "UPSTREAM_RUNTIME_UNMAPPED",
-                KindModel.Unknown => "UNKNOWN",
+                ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed => "TOOLKIT_LOAD_FAILED",
+                ToolExecutionAttemptOutputErrorKind.ToolDefinitionBadDefinition =>
+                    "TOOL_DEFINITION_BAD_DEFINITION",
+                ToolExecutionAttemptOutputErrorKind.ToolDefinitionBadInputSchema =>
+                    "TOOL_DEFINITION_BAD_INPUT_SCHEMA",
+                ToolExecutionAttemptOutputErrorKind.ToolDefinitionBadOutputSchema =>
+                    "TOOL_DEFINITION_BAD_OUTPUT_SCHEMA",
+                ToolExecutionAttemptOutputErrorKind.ToolRequirementsNotMet =>
+                    "TOOL_REQUIREMENTS_NOT_MET",
+                ToolExecutionAttemptOutputErrorKind.ToolRuntimeBadInputValue =>
+                    "TOOL_RUNTIME_BAD_INPUT_VALUE",
+                ToolExecutionAttemptOutputErrorKind.ToolRuntimeBadOutputValue =>
+                    "TOOL_RUNTIME_BAD_OUTPUT_VALUE",
+                ToolExecutionAttemptOutputErrorKind.ToolRuntimeRetry => "TOOL_RUNTIME_RETRY",
+                ToolExecutionAttemptOutputErrorKind.ToolRuntimeContextRequired =>
+                    "TOOL_RUNTIME_CONTEXT_REQUIRED",
+                ToolExecutionAttemptOutputErrorKind.ToolRuntimeFatal => "TOOL_RUNTIME_FATAL",
+                ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeBadRequest =>
+                    "UPSTREAM_RUNTIME_BAD_REQUEST",
+                ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeAuthError =>
+                    "UPSTREAM_RUNTIME_AUTH_ERROR",
+                ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeNotFound =>
+                    "UPSTREAM_RUNTIME_NOT_FOUND",
+                ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeValidationError =>
+                    "UPSTREAM_RUNTIME_VALIDATION_ERROR",
+                ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeRateLimit =>
+                    "UPSTREAM_RUNTIME_RATE_LIMIT",
+                ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeServerError =>
+                    "UPSTREAM_RUNTIME_SERVER_ERROR",
+                ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeUnmapped =>
+                    "UPSTREAM_RUNTIME_UNMAPPED",
+                ToolExecutionAttemptOutputErrorKind.Unknown => "UNKNOWN",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

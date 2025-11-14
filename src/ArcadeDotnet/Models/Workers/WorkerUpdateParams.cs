@@ -314,14 +314,17 @@ public sealed record class McpModel : ModelBase, IFromRaw<McpModel>
         }
     }
 
-    public Oauth2Model? Oauth2
+    public McpModelOauth2? Oauth2
     {
         get
         {
             if (!this._properties.TryGetValue("oauth2", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Oauth2Model?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<McpModelOauth2?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -463,8 +466,8 @@ public sealed record class McpModel : ModelBase, IFromRaw<McpModel>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Oauth2Model>))]
-public sealed record class Oauth2Model : ModelBase, IFromRaw<Oauth2Model>
+[JsonConverter(typeof(ModelConverter<McpModelOauth2>))]
+public sealed record class McpModelOauth2 : ModelBase, IFromRaw<McpModelOauth2>
 {
     public string? AuthorizationURL
     {
@@ -542,22 +545,24 @@ public sealed record class Oauth2Model : ModelBase, IFromRaw<Oauth2Model>
         _ = this.ClientSecret;
     }
 
-    public Oauth2Model() { }
+    public McpModelOauth2() { }
 
-    public Oauth2Model(IReadOnlyDictionary<string, JsonElement> properties)
+    public McpModelOauth2(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Oauth2Model(FrozenDictionary<string, JsonElement> properties)
+    McpModelOauth2(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Oauth2Model FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static McpModelOauth2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }

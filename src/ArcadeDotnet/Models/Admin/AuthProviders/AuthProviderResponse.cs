@@ -104,14 +104,17 @@ public sealed record class AuthProviderResponse : ModelBase, IFromRaw<AuthProvid
         }
     }
 
-    public Oauth22? Oauth2
+    public AuthProviderResponseOauth2? Oauth2
     {
         get
         {
             if (!this._properties.TryGetValue("oauth2", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Oauth22?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<AuthProviderResponseOauth2?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -384,17 +387,19 @@ sealed class TypeConverter : JsonConverter<global::ArcadeDotnet.Models.Admin.Aut
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Oauth22>))]
-public sealed record class Oauth22 : ModelBase, IFromRaw<Oauth22>
+[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2>))]
+public sealed record class AuthProviderResponseOauth2
+    : ModelBase,
+        IFromRaw<AuthProviderResponseOauth2>
 {
-    public AuthorizeRequest2? AuthorizeRequest
+    public AuthProviderResponseOauth2AuthorizeRequest? AuthorizeRequest
     {
         get
         {
             if (!this._properties.TryGetValue("authorize_request", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<AuthorizeRequest2?>(
+            return JsonSerializer.Deserialize<AuthProviderResponseOauth2AuthorizeRequest?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -459,14 +464,17 @@ public sealed record class Oauth22 : ModelBase, IFromRaw<Oauth22>
         }
     }
 
-    public Pkce2? Pkce
+    public AuthProviderResponseOauth2Pkce? Pkce
     {
         get
         {
             if (!this._properties.TryGetValue("pkce", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Pkce2?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<AuthProviderResponseOauth2Pkce?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -508,14 +516,14 @@ public sealed record class Oauth22 : ModelBase, IFromRaw<Oauth22>
         }
     }
 
-    public RefreshRequest2? RefreshRequest
+    public AuthProviderResponseOauth2RefreshRequest? RefreshRequest
     {
         get
         {
             if (!this._properties.TryGetValue("refresh_request", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<RefreshRequest2?>(
+            return JsonSerializer.Deserialize<AuthProviderResponseOauth2RefreshRequest?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -557,7 +565,7 @@ public sealed record class Oauth22 : ModelBase, IFromRaw<Oauth22>
         }
     }
 
-    public TokenIntrospectionRequest1? TokenIntrospectionRequest
+    public AuthProviderResponseOauth2TokenIntrospectionRequest? TokenIntrospectionRequest
     {
         get
         {
@@ -569,7 +577,7 @@ public sealed record class Oauth22 : ModelBase, IFromRaw<Oauth22>
             )
                 return null;
 
-            return JsonSerializer.Deserialize<TokenIntrospectionRequest1?>(
+            return JsonSerializer.Deserialize<AuthProviderResponseOauth2TokenIntrospectionRequest?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -588,14 +596,17 @@ public sealed record class Oauth22 : ModelBase, IFromRaw<Oauth22>
         }
     }
 
-    public TokenRequest2? TokenRequest
+    public AuthProviderResponseOauth2TokenRequest? TokenRequest
     {
         get
         {
             if (!this._properties.TryGetValue("token_request", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<TokenRequest2?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<AuthProviderResponseOauth2TokenRequest?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -611,14 +622,14 @@ public sealed record class Oauth22 : ModelBase, IFromRaw<Oauth22>
         }
     }
 
-    public UserInfoRequest2? UserInfoRequest
+    public AuthProviderResponseOauth2UserInfoRequest? UserInfoRequest
     {
         get
         {
             if (!this._properties.TryGetValue("user_info_request", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<UserInfoRequest2?>(
+            return JsonSerializer.Deserialize<AuthProviderResponseOauth2UserInfoRequest?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -651,29 +662,33 @@ public sealed record class Oauth22 : ModelBase, IFromRaw<Oauth22>
         this.UserInfoRequest?.Validate();
     }
 
-    public Oauth22() { }
+    public AuthProviderResponseOauth2() { }
 
-    public Oauth22(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderResponseOauth2(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Oauth22(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderResponseOauth2(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Oauth22 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static AuthProviderResponseOauth2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthorizeRequest2>))]
-public sealed record class AuthorizeRequest2 : ModelBase, IFromRaw<AuthorizeRequest2>
+[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2AuthorizeRequest>))]
+public sealed record class AuthProviderResponseOauth2AuthorizeRequest
+    : ModelBase,
+        IFromRaw<AuthProviderResponseOauth2AuthorizeRequest>
 {
     public string? AuthHeaderValueFormat
     {
@@ -901,22 +916,24 @@ public sealed record class AuthorizeRequest2 : ModelBase, IFromRaw<AuthorizeRequ
         _ = this.ResponseMap;
     }
 
-    public AuthorizeRequest2() { }
+    public AuthProviderResponseOauth2AuthorizeRequest() { }
 
-    public AuthorizeRequest2(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderResponseOauth2AuthorizeRequest(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AuthorizeRequest2(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderResponseOauth2AuthorizeRequest(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static AuthorizeRequest2 FromRawUnchecked(
+    public static AuthProviderResponseOauth2AuthorizeRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -927,14 +944,14 @@ public sealed record class AuthorizeRequest2 : ModelBase, IFromRaw<AuthorizeRequ
 [JsonConverter(typeof(ModelConverter<ClientSecret>))]
 public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
 {
-    public ApiEnum<string, BindingModel>? Binding
+    public ApiEnum<string, ClientSecretBinding>? Binding
     {
         get
         {
             if (!this._properties.TryGetValue("binding", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, BindingModel>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, ClientSecretBinding>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1075,8 +1092,8 @@ public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
     }
 }
 
-[JsonConverter(typeof(BindingModelConverter))]
-public enum BindingModel
+[JsonConverter(typeof(ClientSecretBindingConverter))]
+public enum ClientSecretBinding
 {
     Static,
     Tenant,
@@ -1084,9 +1101,9 @@ public enum BindingModel
     Account,
 }
 
-sealed class BindingModelConverter : JsonConverter<BindingModel>
+sealed class ClientSecretBindingConverter : JsonConverter<ClientSecretBinding>
 {
-    public override BindingModel Read(
+    public override ClientSecretBinding Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1094,17 +1111,17 @@ sealed class BindingModelConverter : JsonConverter<BindingModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "static" => BindingModel.Static,
-            "tenant" => BindingModel.Tenant,
-            "project" => BindingModel.Project,
-            "account" => BindingModel.Account,
-            _ => (BindingModel)(-1),
+            "static" => ClientSecretBinding.Static,
+            "tenant" => ClientSecretBinding.Tenant,
+            "project" => ClientSecretBinding.Project,
+            "account" => ClientSecretBinding.Account,
+            _ => (ClientSecretBinding)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        BindingModel value,
+        ClientSecretBinding value,
         JsonSerializerOptions options
     )
     {
@@ -1112,10 +1129,10 @@ sealed class BindingModelConverter : JsonConverter<BindingModel>
             writer,
             value switch
             {
-                BindingModel.Static => "static",
-                BindingModel.Tenant => "tenant",
-                BindingModel.Project => "project",
-                BindingModel.Account => "account",
+                ClientSecretBinding.Static => "static",
+                ClientSecretBinding.Tenant => "tenant",
+                ClientSecretBinding.Project => "project",
+                ClientSecretBinding.Account => "account",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1125,8 +1142,10 @@ sealed class BindingModelConverter : JsonConverter<BindingModel>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Pkce2>))]
-public sealed record class Pkce2 : ModelBase, IFromRaw<Pkce2>
+[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2Pkce>))]
+public sealed record class AuthProviderResponseOauth2Pkce
+    : ModelBase,
+        IFromRaw<AuthProviderResponseOauth2Pkce>
 {
     public string? CodeChallengeMethod
     {
@@ -1180,29 +1199,33 @@ public sealed record class Pkce2 : ModelBase, IFromRaw<Pkce2>
         _ = this.Enabled;
     }
 
-    public Pkce2() { }
+    public AuthProviderResponseOauth2Pkce() { }
 
-    public Pkce2(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderResponseOauth2Pkce(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Pkce2(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderResponseOauth2Pkce(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Pkce2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static AuthProviderResponseOauth2Pkce FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
-[JsonConverter(typeof(ModelConverter<RefreshRequest2>))]
-public sealed record class RefreshRequest2 : ModelBase, IFromRaw<RefreshRequest2>
+[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2RefreshRequest>))]
+public sealed record class AuthProviderResponseOauth2RefreshRequest
+    : ModelBase,
+        IFromRaw<AuthProviderResponseOauth2RefreshRequest>
 {
     public string? AuthHeaderValueFormat
     {
@@ -1430,22 +1453,24 @@ public sealed record class RefreshRequest2 : ModelBase, IFromRaw<RefreshRequest2
         _ = this.ResponseMap;
     }
 
-    public RefreshRequest2() { }
+    public AuthProviderResponseOauth2RefreshRequest() { }
 
-    public RefreshRequest2(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderResponseOauth2RefreshRequest(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    RefreshRequest2(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderResponseOauth2RefreshRequest(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static RefreshRequest2 FromRawUnchecked(
+    public static AuthProviderResponseOauth2RefreshRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -1453,10 +1478,10 @@ public sealed record class RefreshRequest2 : ModelBase, IFromRaw<RefreshRequest2
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TokenIntrospectionRequest1>))]
-public sealed record class TokenIntrospectionRequest1
+[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2TokenIntrospectionRequest>))]
+public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequest
     : ModelBase,
-        IFromRaw<TokenIntrospectionRequest1>
+        IFromRaw<AuthProviderResponseOauth2TokenIntrospectionRequest>
 {
     public string? AuthHeaderValueFormat
     {
@@ -1694,14 +1719,17 @@ public sealed record class TokenIntrospectionRequest1
         }
     }
 
-    public Triggers4? Triggers
+    public AuthProviderResponseOauth2TokenIntrospectionRequestTriggers? Triggers
     {
         get
         {
             if (!this._properties.TryGetValue("triggers", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Triggers4?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<AuthProviderResponseOauth2TokenIntrospectionRequestTriggers?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -1732,22 +1760,26 @@ public sealed record class TokenIntrospectionRequest1
         this.Triggers?.Validate();
     }
 
-    public TokenIntrospectionRequest1() { }
+    public AuthProviderResponseOauth2TokenIntrospectionRequest() { }
 
-    public TokenIntrospectionRequest1(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderResponseOauth2TokenIntrospectionRequest(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TokenIntrospectionRequest1(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderResponseOauth2TokenIntrospectionRequest(
+        FrozenDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static TokenIntrospectionRequest1 FromRawUnchecked(
+    public static AuthProviderResponseOauth2TokenIntrospectionRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -1755,8 +1787,10 @@ public sealed record class TokenIntrospectionRequest1
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Triggers4>))]
-public sealed record class Triggers4 : ModelBase, IFromRaw<Triggers4>
+[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2TokenIntrospectionRequestTriggers>))]
+public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequestTriggers
+    : ModelBase,
+        IFromRaw<AuthProviderResponseOauth2TokenIntrospectionRequestTriggers>
 {
     public bool? OnTokenGrant
     {
@@ -1810,29 +1844,37 @@ public sealed record class Triggers4 : ModelBase, IFromRaw<Triggers4>
         _ = this.OnTokenRefresh;
     }
 
-    public Triggers4() { }
+    public AuthProviderResponseOauth2TokenIntrospectionRequestTriggers() { }
 
-    public Triggers4(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderResponseOauth2TokenIntrospectionRequestTriggers(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Triggers4(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderResponseOauth2TokenIntrospectionRequestTriggers(
+        FrozenDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Triggers4 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static AuthProviderResponseOauth2TokenIntrospectionRequestTriggers FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TokenRequest2>))]
-public sealed record class TokenRequest2 : ModelBase, IFromRaw<TokenRequest2>
+[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2TokenRequest>))]
+public sealed record class AuthProviderResponseOauth2TokenRequest
+    : ModelBase,
+        IFromRaw<AuthProviderResponseOauth2TokenRequest>
 {
     public string? AuthHeaderValueFormat
     {
@@ -2060,22 +2102,24 @@ public sealed record class TokenRequest2 : ModelBase, IFromRaw<TokenRequest2>
         _ = this.ResponseMap;
     }
 
-    public TokenRequest2() { }
+    public AuthProviderResponseOauth2TokenRequest() { }
 
-    public TokenRequest2(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderResponseOauth2TokenRequest(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TokenRequest2(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderResponseOauth2TokenRequest(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static TokenRequest2 FromRawUnchecked(
+    public static AuthProviderResponseOauth2TokenRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -2083,8 +2127,10 @@ public sealed record class TokenRequest2 : ModelBase, IFromRaw<TokenRequest2>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<UserInfoRequest2>))]
-public sealed record class UserInfoRequest2 : ModelBase, IFromRaw<UserInfoRequest2>
+[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2UserInfoRequest>))]
+public sealed record class AuthProviderResponseOauth2UserInfoRequest
+    : ModelBase,
+        IFromRaw<AuthProviderResponseOauth2UserInfoRequest>
 {
     public string? AuthHeaderValueFormat
     {
@@ -2299,14 +2345,17 @@ public sealed record class UserInfoRequest2 : ModelBase, IFromRaw<UserInfoReques
         }
     }
 
-    public Triggers5? Triggers
+    public AuthProviderResponseOauth2UserInfoRequestTriggers? Triggers
     {
         get
         {
             if (!this._properties.TryGetValue("triggers", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Triggers5?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<AuthProviderResponseOauth2UserInfoRequestTriggers?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -2336,22 +2385,24 @@ public sealed record class UserInfoRequest2 : ModelBase, IFromRaw<UserInfoReques
         this.Triggers?.Validate();
     }
 
-    public UserInfoRequest2() { }
+    public AuthProviderResponseOauth2UserInfoRequest() { }
 
-    public UserInfoRequest2(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderResponseOauth2UserInfoRequest(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UserInfoRequest2(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderResponseOauth2UserInfoRequest(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static UserInfoRequest2 FromRawUnchecked(
+    public static AuthProviderResponseOauth2UserInfoRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -2359,8 +2410,10 @@ public sealed record class UserInfoRequest2 : ModelBase, IFromRaw<UserInfoReques
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Triggers5>))]
-public sealed record class Triggers5 : ModelBase, IFromRaw<Triggers5>
+[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2UserInfoRequestTriggers>))]
+public sealed record class AuthProviderResponseOauth2UserInfoRequestTriggers
+    : ModelBase,
+        IFromRaw<AuthProviderResponseOauth2UserInfoRequestTriggers>
 {
     public bool? OnTokenGrant
     {
@@ -2414,22 +2467,28 @@ public sealed record class Triggers5 : ModelBase, IFromRaw<Triggers5>
         _ = this.OnTokenRefresh;
     }
 
-    public Triggers5() { }
+    public AuthProviderResponseOauth2UserInfoRequestTriggers() { }
 
-    public Triggers5(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderResponseOauth2UserInfoRequestTriggers(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Triggers5(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderResponseOauth2UserInfoRequestTriggers(
+        FrozenDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Triggers5 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static AuthProviderResponseOauth2UserInfoRequestTriggers FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }

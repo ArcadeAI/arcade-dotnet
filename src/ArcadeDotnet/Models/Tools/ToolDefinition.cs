@@ -192,14 +192,17 @@ public sealed record class ToolDefinition : ModelBase, IFromRaw<ToolDefinition>
         }
     }
 
-    public OutputModel? Output
+    public ToolDefinitionOutput? Output
     {
         get
         {
             if (!this._properties.TryGetValue("output", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<OutputModel?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ToolDefinitionOutput?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -596,8 +599,8 @@ public sealed record class Toolkit : ModelBase, IFromRaw<Toolkit>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<OutputModel>))]
-public sealed record class OutputModel : ModelBase, IFromRaw<OutputModel>
+[JsonConverter(typeof(ModelConverter<ToolDefinitionOutput>))]
+public sealed record class ToolDefinitionOutput : ModelBase, IFromRaw<ToolDefinitionOutput>
 {
     public List<string>? AvailableModes
     {
@@ -675,22 +678,24 @@ public sealed record class OutputModel : ModelBase, IFromRaw<OutputModel>
         this.ValueSchema?.Validate();
     }
 
-    public OutputModel() { }
+    public ToolDefinitionOutput() { }
 
-    public OutputModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public ToolDefinitionOutput(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    OutputModel(FrozenDictionary<string, JsonElement> properties)
+    ToolDefinitionOutput(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static OutputModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static ToolDefinitionOutput FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
