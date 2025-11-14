@@ -81,14 +81,17 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
         }
     }
 
-    public HTTP3? HTTP
+    public WorkerResponseHTTP? HTTP
     {
         get
         {
             if (!this._properties.TryGetValue("http", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<HTTP3?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<WorkerResponseHTTP?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -127,14 +130,17 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
         }
     }
 
-    public Mcp3? Mcp
+    public WorkerResponseMcp? Mcp
     {
         get
         {
             if (!this._properties.TryGetValue("mcp", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Mcp3?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<WorkerResponseMcp?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -173,14 +179,14 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
         }
     }
 
-    public ApiEnum<string, TypeModel>? Type
+    public ApiEnum<string, WorkerResponseType>? Type
     {
         get
         {
             if (!this._properties.TryGetValue("type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, TypeModel>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, WorkerResponseType>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -363,8 +369,8 @@ sealed class TypeConverter : JsonConverter<global::ArcadeDotnet.Models.Workers.T
     }
 }
 
-[JsonConverter(typeof(ModelConverter<HTTP3>))]
-public sealed record class HTTP3 : ModelBase, IFromRaw<HTTP3>
+[JsonConverter(typeof(ModelConverter<WorkerResponseHTTP>))]
+public sealed record class WorkerResponseHTTP : ModelBase, IFromRaw<WorkerResponseHTTP>
 {
     public long? Retry
     {
@@ -466,22 +472,24 @@ public sealed record class HTTP3 : ModelBase, IFromRaw<HTTP3>
         _ = this.Uri;
     }
 
-    public HTTP3() { }
+    public WorkerResponseHTTP() { }
 
-    public HTTP3(IReadOnlyDictionary<string, JsonElement> properties)
+    public WorkerResponseHTTP(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    HTTP3(FrozenDictionary<string, JsonElement> properties)
+    WorkerResponseHTTP(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static HTTP3 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static WorkerResponseHTTP FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
@@ -490,14 +498,14 @@ public sealed record class HTTP3 : ModelBase, IFromRaw<HTTP3>
 [JsonConverter(typeof(ModelConverter<Secret>))]
 public sealed record class Secret : ModelBase, IFromRaw<Secret>
 {
-    public ApiEnum<string, BindingModel>? Binding
+    public ApiEnum<string, SecretBinding>? Binding
     {
         get
         {
             if (!this._properties.TryGetValue("binding", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, BindingModel>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, SecretBinding>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -638,8 +646,8 @@ public sealed record class Secret : ModelBase, IFromRaw<Secret>
     }
 }
 
-[JsonConverter(typeof(BindingModelConverter))]
-public enum BindingModel
+[JsonConverter(typeof(SecretBindingConverter))]
+public enum SecretBinding
 {
     Static,
     Tenant,
@@ -647,9 +655,9 @@ public enum BindingModel
     Account,
 }
 
-sealed class BindingModelConverter : JsonConverter<BindingModel>
+sealed class SecretBindingConverter : JsonConverter<SecretBinding>
 {
-    public override BindingModel Read(
+    public override SecretBinding Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -657,17 +665,17 @@ sealed class BindingModelConverter : JsonConverter<BindingModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "static" => BindingModel.Static,
-            "tenant" => BindingModel.Tenant,
-            "project" => BindingModel.Project,
-            "account" => BindingModel.Account,
-            _ => (BindingModel)(-1),
+            "static" => SecretBinding.Static,
+            "tenant" => SecretBinding.Tenant,
+            "project" => SecretBinding.Project,
+            "account" => SecretBinding.Account,
+            _ => (SecretBinding)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        BindingModel value,
+        SecretBinding value,
         JsonSerializerOptions options
     )
     {
@@ -675,10 +683,10 @@ sealed class BindingModelConverter : JsonConverter<BindingModel>
             writer,
             value switch
             {
-                BindingModel.Static => "static",
-                BindingModel.Tenant => "tenant",
-                BindingModel.Project => "project",
-                BindingModel.Account => "account",
+                SecretBinding.Static => "static",
+                SecretBinding.Tenant => "tenant",
+                SecretBinding.Project => "project",
+                SecretBinding.Account => "account",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -688,8 +696,8 @@ sealed class BindingModelConverter : JsonConverter<BindingModel>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Mcp3>))]
-public sealed record class Mcp3 : ModelBase, IFromRaw<Mcp3>
+[JsonConverter(typeof(ModelConverter<WorkerResponseMcp>))]
+public sealed record class WorkerResponseMcp : ModelBase, IFromRaw<WorkerResponseMcp>
 {
     public Dictionary<string, string>? Headers
     {
@@ -717,14 +725,17 @@ public sealed record class Mcp3 : ModelBase, IFromRaw<Mcp3>
         }
     }
 
-    public Oauth23? Oauth2
+    public WorkerResponseMcpOauth2? Oauth2
     {
         get
         {
             if (!this._properties.TryGetValue("oauth2", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Oauth23?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<WorkerResponseMcpOauth2?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -851,29 +862,31 @@ public sealed record class Mcp3 : ModelBase, IFromRaw<Mcp3>
         _ = this.Uri;
     }
 
-    public Mcp3() { }
+    public WorkerResponseMcp() { }
 
-    public Mcp3(IReadOnlyDictionary<string, JsonElement> properties)
+    public WorkerResponseMcp(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Mcp3(FrozenDictionary<string, JsonElement> properties)
+    WorkerResponseMcp(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Mcp3 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static WorkerResponseMcp FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Oauth23>))]
-public sealed record class Oauth23 : ModelBase, IFromRaw<Oauth23>
+[JsonConverter(typeof(ModelConverter<WorkerResponseMcpOauth2>))]
+public sealed record class WorkerResponseMcpOauth2 : ModelBase, IFromRaw<WorkerResponseMcpOauth2>
 {
     public string? AuthorizationURL
     {
@@ -975,22 +988,24 @@ public sealed record class Oauth23 : ModelBase, IFromRaw<Oauth23>
         _ = this.RedirectUri;
     }
 
-    public Oauth23() { }
+    public WorkerResponseMcpOauth2() { }
 
-    public Oauth23(IReadOnlyDictionary<string, JsonElement> properties)
+    public WorkerResponseMcpOauth2(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Oauth23(FrozenDictionary<string, JsonElement> properties)
+    WorkerResponseMcpOauth2(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Oauth23 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static WorkerResponseMcpOauth2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
@@ -999,14 +1014,14 @@ public sealed record class Oauth23 : ModelBase, IFromRaw<Oauth23>
 [JsonConverter(typeof(ModelConverter<ClientSecret>))]
 public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
 {
-    public ApiEnum<string, Binding1>? Binding
+    public ApiEnum<string, ClientSecretBinding>? Binding
     {
         get
         {
             if (!this._properties.TryGetValue("binding", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Binding1>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, ClientSecretBinding>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1147,8 +1162,8 @@ public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
     }
 }
 
-[JsonConverter(typeof(Binding1Converter))]
-public enum Binding1
+[JsonConverter(typeof(ClientSecretBindingConverter))]
+public enum ClientSecretBinding
 {
     Static,
     Tenant,
@@ -1156,9 +1171,9 @@ public enum Binding1
     Account,
 }
 
-sealed class Binding1Converter : JsonConverter<Binding1>
+sealed class ClientSecretBindingConverter : JsonConverter<ClientSecretBinding>
 {
-    public override Binding1 Read(
+    public override ClientSecretBinding Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1166,24 +1181,28 @@ sealed class Binding1Converter : JsonConverter<Binding1>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "static" => Binding1.Static,
-            "tenant" => Binding1.Tenant,
-            "project" => Binding1.Project,
-            "account" => Binding1.Account,
-            _ => (Binding1)(-1),
+            "static" => ClientSecretBinding.Static,
+            "tenant" => ClientSecretBinding.Tenant,
+            "project" => ClientSecretBinding.Project,
+            "account" => ClientSecretBinding.Account,
+            _ => (ClientSecretBinding)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Binding1 value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        ClientSecretBinding value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Binding1.Static => "static",
-                Binding1.Tenant => "tenant",
-                Binding1.Project => "project",
-                Binding1.Account => "account",
+                ClientSecretBinding.Static => "static",
+                ClientSecretBinding.Tenant => "tenant",
+                ClientSecretBinding.Project => "project",
+                ClientSecretBinding.Account => "account",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1196,14 +1215,14 @@ sealed class Binding1Converter : JsonConverter<Binding1>
 [JsonConverter(typeof(ModelConverter<SecretsItem>))]
 public sealed record class SecretsItem : ModelBase, IFromRaw<SecretsItem>
 {
-    public ApiEnum<string, Binding2>? Binding
+    public ApiEnum<string, SecretsItemBinding>? Binding
     {
         get
         {
             if (!this._properties.TryGetValue("binding", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Binding2>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, SecretsItemBinding>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1344,8 +1363,8 @@ public sealed record class SecretsItem : ModelBase, IFromRaw<SecretsItem>
     }
 }
 
-[JsonConverter(typeof(Binding2Converter))]
-public enum Binding2
+[JsonConverter(typeof(SecretsItemBindingConverter))]
+public enum SecretsItemBinding
 {
     Static,
     Tenant,
@@ -1353,9 +1372,9 @@ public enum Binding2
     Account,
 }
 
-sealed class Binding2Converter : JsonConverter<Binding2>
+sealed class SecretsItemBindingConverter : JsonConverter<SecretsItemBinding>
 {
-    public override Binding2 Read(
+    public override SecretsItemBinding Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1363,24 +1382,28 @@ sealed class Binding2Converter : JsonConverter<Binding2>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "static" => Binding2.Static,
-            "tenant" => Binding2.Tenant,
-            "project" => Binding2.Project,
-            "account" => Binding2.Account,
-            _ => (Binding2)(-1),
+            "static" => SecretsItemBinding.Static,
+            "tenant" => SecretsItemBinding.Tenant,
+            "project" => SecretsItemBinding.Project,
+            "account" => SecretsItemBinding.Account,
+            _ => (SecretsItemBinding)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Binding2 value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        SecretsItemBinding value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Binding2.Static => "static",
-                Binding2.Tenant => "tenant",
-                Binding2.Project => "project",
-                Binding2.Account => "account",
+                SecretsItemBinding.Static => "static",
+                SecretsItemBinding.Tenant => "tenant",
+                SecretsItemBinding.Project => "project",
+                SecretsItemBinding.Account => "account",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1492,14 +1515,17 @@ public sealed record class Authorization : ModelBase, IFromRaw<Authorization>
         }
     }
 
-    public Oauth24? Oauth2
+    public AuthorizationOauth2? Oauth2
     {
         get
         {
             if (!this._properties.TryGetValue("oauth2", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Oauth24?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<AuthorizationOauth2?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -1544,8 +1570,8 @@ public sealed record class Authorization : ModelBase, IFromRaw<Authorization>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Oauth24>))]
-public sealed record class Oauth24 : ModelBase, IFromRaw<Oauth24>
+[JsonConverter(typeof(ModelConverter<AuthorizationOauth2>))]
+public sealed record class AuthorizationOauth2 : ModelBase, IFromRaw<AuthorizationOauth2>
 {
     public bool? Met
     {
@@ -1575,38 +1601,40 @@ public sealed record class Oauth24 : ModelBase, IFromRaw<Oauth24>
         _ = this.Met;
     }
 
-    public Oauth24() { }
+    public AuthorizationOauth2() { }
 
-    public Oauth24(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthorizationOauth2(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Oauth24(FrozenDictionary<string, JsonElement> properties)
+    AuthorizationOauth2(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Oauth24 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static AuthorizationOauth2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
-[JsonConverter(typeof(TypeModelConverter))]
-public enum TypeModel
+[JsonConverter(typeof(WorkerResponseTypeConverter))]
+public enum WorkerResponseType
 {
     HTTP,
     Mcp,
     Unknown,
 }
 
-sealed class TypeModelConverter : JsonConverter<TypeModel>
+sealed class WorkerResponseTypeConverter : JsonConverter<WorkerResponseType>
 {
-    public override TypeModel Read(
+    public override WorkerResponseType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1614,16 +1642,16 @@ sealed class TypeModelConverter : JsonConverter<TypeModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "http" => TypeModel.HTTP,
-            "mcp" => TypeModel.Mcp,
-            "unknown" => TypeModel.Unknown,
-            _ => (TypeModel)(-1),
+            "http" => WorkerResponseType.HTTP,
+            "mcp" => WorkerResponseType.Mcp,
+            "unknown" => WorkerResponseType.Unknown,
+            _ => (WorkerResponseType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        TypeModel value,
+        WorkerResponseType value,
         JsonSerializerOptions options
     )
     {
@@ -1631,9 +1659,9 @@ sealed class TypeModelConverter : JsonConverter<TypeModel>
             writer,
             value switch
             {
-                TypeModel.HTTP => "http",
-                TypeModel.Mcp => "mcp",
-                TypeModel.Unknown => "unknown",
+                WorkerResponseType.HTTP => "http",
+                WorkerResponseType.Mcp => "mcp",
+                WorkerResponseType.Unknown => "unknown",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

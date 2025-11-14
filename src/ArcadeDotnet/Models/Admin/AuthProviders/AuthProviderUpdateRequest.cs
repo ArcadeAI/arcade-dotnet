@@ -60,14 +60,17 @@ public sealed record class AuthProviderUpdateRequest
         }
     }
 
-    public Oauth23? Oauth2
+    public AuthProviderUpdateRequestOauth2? Oauth2
     {
         get
         {
             if (!this._properties.TryGetValue("oauth2", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Oauth23?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -185,17 +188,19 @@ public sealed record class AuthProviderUpdateRequest
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Oauth23>))]
-public sealed record class Oauth23 : ModelBase, IFromRaw<Oauth23>
+[JsonConverter(typeof(ModelConverter<AuthProviderUpdateRequestOauth2>))]
+public sealed record class AuthProviderUpdateRequestOauth2
+    : ModelBase,
+        IFromRaw<AuthProviderUpdateRequestOauth2>
 {
-    public AuthorizeRequest3? AuthorizeRequest
+    public AuthProviderUpdateRequestOauth2AuthorizeRequest? AuthorizeRequest
     {
         get
         {
             if (!this._properties.TryGetValue("authorize_request", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<AuthorizeRequest3?>(
+            return JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2AuthorizeRequest?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -260,14 +265,17 @@ public sealed record class Oauth23 : ModelBase, IFromRaw<Oauth23>
         }
     }
 
-    public Pkce3? Pkce
+    public AuthProviderUpdateRequestOauth2Pkce? Pkce
     {
         get
         {
             if (!this._properties.TryGetValue("pkce", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Pkce3?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2Pkce?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -283,14 +291,14 @@ public sealed record class Oauth23 : ModelBase, IFromRaw<Oauth23>
         }
     }
 
-    public RefreshRequest3? RefreshRequest
+    public AuthProviderUpdateRequestOauth2RefreshRequest? RefreshRequest
     {
         get
         {
             if (!this._properties.TryGetValue("refresh_request", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<RefreshRequest3?>(
+            return JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2RefreshRequest?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -309,17 +317,17 @@ public sealed record class Oauth23 : ModelBase, IFromRaw<Oauth23>
         }
     }
 
-    public ApiEnum<string, ScopeDelimiter2>? ScopeDelimiter
+    public ApiEnum<string, AuthProviderUpdateRequestOauth2ScopeDelimiter>? ScopeDelimiter
     {
         get
         {
             if (!this._properties.TryGetValue("scope_delimiter", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ScopeDelimiter2>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2ScopeDelimiter
+            >?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -335,14 +343,17 @@ public sealed record class Oauth23 : ModelBase, IFromRaw<Oauth23>
         }
     }
 
-    public TokenRequest3? TokenRequest
+    public AuthProviderUpdateRequestOauth2TokenRequest? TokenRequest
     {
         get
         {
             if (!this._properties.TryGetValue("token_request", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<TokenRequest3?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2TokenRequest?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -358,14 +369,14 @@ public sealed record class Oauth23 : ModelBase, IFromRaw<Oauth23>
         }
     }
 
-    public UserInfoRequest3? UserInfoRequest
+    public AuthProviderUpdateRequestOauth2UserInfoRequest? UserInfoRequest
     {
         get
         {
             if (!this._properties.TryGetValue("user_info_request", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<UserInfoRequest3?>(
+            return JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2UserInfoRequest?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -396,29 +407,33 @@ public sealed record class Oauth23 : ModelBase, IFromRaw<Oauth23>
         this.UserInfoRequest?.Validate();
     }
 
-    public Oauth23() { }
+    public AuthProviderUpdateRequestOauth2() { }
 
-    public Oauth23(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderUpdateRequestOauth2(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Oauth23(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderUpdateRequestOauth2(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Oauth23 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static AuthProviderUpdateRequestOauth2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthorizeRequest3>))]
-public sealed record class AuthorizeRequest3 : ModelBase, IFromRaw<AuthorizeRequest3>
+[JsonConverter(typeof(ModelConverter<AuthProviderUpdateRequestOauth2AuthorizeRequest>))]
+public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
+    : ModelBase,
+        IFromRaw<AuthProviderUpdateRequestOauth2AuthorizeRequest>
 {
     public string? AuthHeaderValueFormat
     {
@@ -538,17 +553,20 @@ public sealed record class AuthorizeRequest3 : ModelBase, IFromRaw<AuthorizeRequ
         }
     }
 
-    public ApiEnum<string, RequestContentType13>? RequestContentType
+    public ApiEnum<
+        string,
+        AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType
+    >? RequestContentType
     {
         get
         {
             if (!this._properties.TryGetValue("request_content_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, RequestContentType13>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType
+            >?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -564,17 +582,20 @@ public sealed record class AuthorizeRequest3 : ModelBase, IFromRaw<AuthorizeRequ
         }
     }
 
-    public ApiEnum<string, ResponseContentType13>? ResponseContentType
+    public ApiEnum<
+        string,
+        AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType
+    >? ResponseContentType
     {
         get
         {
             if (!this._properties.TryGetValue("response_content_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ResponseContentType13>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType
+            >?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -628,22 +649,26 @@ public sealed record class AuthorizeRequest3 : ModelBase, IFromRaw<AuthorizeRequ
         _ = this.ResponseMap;
     }
 
-    public AuthorizeRequest3() { }
+    public AuthProviderUpdateRequestOauth2AuthorizeRequest() { }
 
-    public AuthorizeRequest3(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderUpdateRequestOauth2AuthorizeRequest(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AuthorizeRequest3(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderUpdateRequestOauth2AuthorizeRequest(
+        FrozenDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static AuthorizeRequest3 FromRawUnchecked(
+    public static AuthProviderUpdateRequestOauth2AuthorizeRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -651,16 +676,17 @@ public sealed record class AuthorizeRequest3 : ModelBase, IFromRaw<AuthorizeRequ
     }
 }
 
-[JsonConverter(typeof(RequestContentType13Converter))]
-public enum RequestContentType13
+[JsonConverter(typeof(AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentTypeConverter))]
+public enum AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class RequestContentType13Converter : JsonConverter<RequestContentType13>
+sealed class AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentTypeConverter
+    : JsonConverter<AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType>
 {
-    public override RequestContentType13 Read(
+    public override AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -669,15 +695,16 @@ sealed class RequestContentType13Converter : JsonConverter<RequestContentType13>
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                RequestContentType13.ApplicationXWwwFormUrlencoded,
-            "application/json" => RequestContentType13.ApplicationJson,
-            _ => (RequestContentType13)(-1),
+                AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType.ApplicationJson,
+            _ => (AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        RequestContentType13 value,
+        AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType value,
         JsonSerializerOptions options
     )
     {
@@ -685,9 +712,10 @@ sealed class RequestContentType13Converter : JsonConverter<RequestContentType13>
             writer,
             value switch
             {
-                RequestContentType13.ApplicationXWwwFormUrlencoded =>
+                AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                RequestContentType13.ApplicationJson => "application/json",
+                AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType.ApplicationJson =>
+                    "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -697,16 +725,17 @@ sealed class RequestContentType13Converter : JsonConverter<RequestContentType13>
     }
 }
 
-[JsonConverter(typeof(ResponseContentType13Converter))]
-public enum ResponseContentType13
+[JsonConverter(typeof(AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentTypeConverter))]
+public enum AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class ResponseContentType13Converter : JsonConverter<ResponseContentType13>
+sealed class AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentTypeConverter
+    : JsonConverter<AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType>
 {
-    public override ResponseContentType13 Read(
+    public override AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -715,15 +744,16 @@ sealed class ResponseContentType13Converter : JsonConverter<ResponseContentType1
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                ResponseContentType13.ApplicationXWwwFormUrlencoded,
-            "application/json" => ResponseContentType13.ApplicationJson,
-            _ => (ResponseContentType13)(-1),
+                AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType.ApplicationJson,
+            _ => (AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ResponseContentType13 value,
+        AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType value,
         JsonSerializerOptions options
     )
     {
@@ -731,9 +761,10 @@ sealed class ResponseContentType13Converter : JsonConverter<ResponseContentType1
             writer,
             value switch
             {
-                ResponseContentType13.ApplicationXWwwFormUrlencoded =>
+                AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                ResponseContentType13.ApplicationJson => "application/json",
+                AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType.ApplicationJson =>
+                    "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -743,8 +774,10 @@ sealed class ResponseContentType13Converter : JsonConverter<ResponseContentType1
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Pkce3>))]
-public sealed record class Pkce3 : ModelBase, IFromRaw<Pkce3>
+[JsonConverter(typeof(ModelConverter<AuthProviderUpdateRequestOauth2Pkce>))]
+public sealed record class AuthProviderUpdateRequestOauth2Pkce
+    : ModelBase,
+        IFromRaw<AuthProviderUpdateRequestOauth2Pkce>
 {
     public string? CodeChallengeMethod
     {
@@ -798,29 +831,33 @@ public sealed record class Pkce3 : ModelBase, IFromRaw<Pkce3>
         _ = this.Enabled;
     }
 
-    public Pkce3() { }
+    public AuthProviderUpdateRequestOauth2Pkce() { }
 
-    public Pkce3(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderUpdateRequestOauth2Pkce(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Pkce3(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderUpdateRequestOauth2Pkce(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Pkce3 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static AuthProviderUpdateRequestOauth2Pkce FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }
 
-[JsonConverter(typeof(ModelConverter<RefreshRequest3>))]
-public sealed record class RefreshRequest3 : ModelBase, IFromRaw<RefreshRequest3>
+[JsonConverter(typeof(ModelConverter<AuthProviderUpdateRequestOauth2RefreshRequest>))]
+public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
+    : ModelBase,
+        IFromRaw<AuthProviderUpdateRequestOauth2RefreshRequest>
 {
     public string? AuthHeaderValueFormat
     {
@@ -940,17 +977,20 @@ public sealed record class RefreshRequest3 : ModelBase, IFromRaw<RefreshRequest3
         }
     }
 
-    public ApiEnum<string, RequestContentType14>? RequestContentType
+    public ApiEnum<
+        string,
+        AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType
+    >? RequestContentType
     {
         get
         {
             if (!this._properties.TryGetValue("request_content_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, RequestContentType14>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType
+            >?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -966,17 +1006,20 @@ public sealed record class RefreshRequest3 : ModelBase, IFromRaw<RefreshRequest3
         }
     }
 
-    public ApiEnum<string, ResponseContentType14>? ResponseContentType
+    public ApiEnum<
+        string,
+        AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType
+    >? ResponseContentType
     {
         get
         {
             if (!this._properties.TryGetValue("response_content_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ResponseContentType14>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType
+            >?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -1030,22 +1073,24 @@ public sealed record class RefreshRequest3 : ModelBase, IFromRaw<RefreshRequest3
         _ = this.ResponseMap;
     }
 
-    public RefreshRequest3() { }
+    public AuthProviderUpdateRequestOauth2RefreshRequest() { }
 
-    public RefreshRequest3(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderUpdateRequestOauth2RefreshRequest(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    RefreshRequest3(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderUpdateRequestOauth2RefreshRequest(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static RefreshRequest3 FromRawUnchecked(
+    public static AuthProviderUpdateRequestOauth2RefreshRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -1053,16 +1098,17 @@ public sealed record class RefreshRequest3 : ModelBase, IFromRaw<RefreshRequest3
     }
 }
 
-[JsonConverter(typeof(RequestContentType14Converter))]
-public enum RequestContentType14
+[JsonConverter(typeof(AuthProviderUpdateRequestOauth2RefreshRequestRequestContentTypeConverter))]
+public enum AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class RequestContentType14Converter : JsonConverter<RequestContentType14>
+sealed class AuthProviderUpdateRequestOauth2RefreshRequestRequestContentTypeConverter
+    : JsonConverter<AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType>
 {
-    public override RequestContentType14 Read(
+    public override AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1071,15 +1117,16 @@ sealed class RequestContentType14Converter : JsonConverter<RequestContentType14>
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                RequestContentType14.ApplicationXWwwFormUrlencoded,
-            "application/json" => RequestContentType14.ApplicationJson,
-            _ => (RequestContentType14)(-1),
+                AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType.ApplicationJson,
+            _ => (AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        RequestContentType14 value,
+        AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType value,
         JsonSerializerOptions options
     )
     {
@@ -1087,9 +1134,10 @@ sealed class RequestContentType14Converter : JsonConverter<RequestContentType14>
             writer,
             value switch
             {
-                RequestContentType14.ApplicationXWwwFormUrlencoded =>
+                AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                RequestContentType14.ApplicationJson => "application/json",
+                AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType.ApplicationJson =>
+                    "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1099,16 +1147,17 @@ sealed class RequestContentType14Converter : JsonConverter<RequestContentType14>
     }
 }
 
-[JsonConverter(typeof(ResponseContentType14Converter))]
-public enum ResponseContentType14
+[JsonConverter(typeof(AuthProviderUpdateRequestOauth2RefreshRequestResponseContentTypeConverter))]
+public enum AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class ResponseContentType14Converter : JsonConverter<ResponseContentType14>
+sealed class AuthProviderUpdateRequestOauth2RefreshRequestResponseContentTypeConverter
+    : JsonConverter<AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType>
 {
-    public override ResponseContentType14 Read(
+    public override AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1117,15 +1166,16 @@ sealed class ResponseContentType14Converter : JsonConverter<ResponseContentType1
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                ResponseContentType14.ApplicationXWwwFormUrlencoded,
-            "application/json" => ResponseContentType14.ApplicationJson,
-            _ => (ResponseContentType14)(-1),
+                AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType.ApplicationJson,
+            _ => (AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ResponseContentType14 value,
+        AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType value,
         JsonSerializerOptions options
     )
     {
@@ -1133,9 +1183,10 @@ sealed class ResponseContentType14Converter : JsonConverter<ResponseContentType1
             writer,
             value switch
             {
-                ResponseContentType14.ApplicationXWwwFormUrlencoded =>
+                AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                ResponseContentType14.ApplicationJson => "application/json",
+                AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType.ApplicationJson =>
+                    "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1145,16 +1196,17 @@ sealed class ResponseContentType14Converter : JsonConverter<ResponseContentType1
     }
 }
 
-[JsonConverter(typeof(ScopeDelimiter2Converter))]
-public enum ScopeDelimiter2
+[JsonConverter(typeof(AuthProviderUpdateRequestOauth2ScopeDelimiterConverter))]
+public enum AuthProviderUpdateRequestOauth2ScopeDelimiter
 {
     Undefined,
     V1,
 }
 
-sealed class ScopeDelimiter2Converter : JsonConverter<ScopeDelimiter2>
+sealed class AuthProviderUpdateRequestOauth2ScopeDelimiterConverter
+    : JsonConverter<AuthProviderUpdateRequestOauth2ScopeDelimiter>
 {
-    public override ScopeDelimiter2 Read(
+    public override AuthProviderUpdateRequestOauth2ScopeDelimiter Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1162,15 +1214,15 @@ sealed class ScopeDelimiter2Converter : JsonConverter<ScopeDelimiter2>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "," => ScopeDelimiter2.Undefined,
-            " " => ScopeDelimiter2.V1,
-            _ => (ScopeDelimiter2)(-1),
+            "," => AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined,
+            " " => AuthProviderUpdateRequestOauth2ScopeDelimiter.V1,
+            _ => (AuthProviderUpdateRequestOauth2ScopeDelimiter)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ScopeDelimiter2 value,
+        AuthProviderUpdateRequestOauth2ScopeDelimiter value,
         JsonSerializerOptions options
     )
     {
@@ -1178,8 +1230,8 @@ sealed class ScopeDelimiter2Converter : JsonConverter<ScopeDelimiter2>
             writer,
             value switch
             {
-                ScopeDelimiter2.Undefined => ",",
-                ScopeDelimiter2.V1 => " ",
+                AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined => ",",
+                AuthProviderUpdateRequestOauth2ScopeDelimiter.V1 => " ",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1189,8 +1241,10 @@ sealed class ScopeDelimiter2Converter : JsonConverter<ScopeDelimiter2>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TokenRequest3>))]
-public sealed record class TokenRequest3 : ModelBase, IFromRaw<TokenRequest3>
+[JsonConverter(typeof(ModelConverter<AuthProviderUpdateRequestOauth2TokenRequest>))]
+public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
+    : ModelBase,
+        IFromRaw<AuthProviderUpdateRequestOauth2TokenRequest>
 {
     public string? AuthHeaderValueFormat
     {
@@ -1310,17 +1364,20 @@ public sealed record class TokenRequest3 : ModelBase, IFromRaw<TokenRequest3>
         }
     }
 
-    public ApiEnum<string, RequestContentType15>? RequestContentType
+    public ApiEnum<
+        string,
+        AuthProviderUpdateRequestOauth2TokenRequestRequestContentType
+    >? RequestContentType
     {
         get
         {
             if (!this._properties.TryGetValue("request_content_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, RequestContentType15>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2TokenRequestRequestContentType
+            >?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -1336,17 +1393,20 @@ public sealed record class TokenRequest3 : ModelBase, IFromRaw<TokenRequest3>
         }
     }
 
-    public ApiEnum<string, ResponseContentType15>? ResponseContentType
+    public ApiEnum<
+        string,
+        AuthProviderUpdateRequestOauth2TokenRequestResponseContentType
+    >? ResponseContentType
     {
         get
         {
             if (!this._properties.TryGetValue("response_content_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ResponseContentType15>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2TokenRequestResponseContentType
+            >?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -1400,22 +1460,24 @@ public sealed record class TokenRequest3 : ModelBase, IFromRaw<TokenRequest3>
         _ = this.ResponseMap;
     }
 
-    public TokenRequest3() { }
+    public AuthProviderUpdateRequestOauth2TokenRequest() { }
 
-    public TokenRequest3(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderUpdateRequestOauth2TokenRequest(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TokenRequest3(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderUpdateRequestOauth2TokenRequest(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static TokenRequest3 FromRawUnchecked(
+    public static AuthProviderUpdateRequestOauth2TokenRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -1423,16 +1485,17 @@ public sealed record class TokenRequest3 : ModelBase, IFromRaw<TokenRequest3>
     }
 }
 
-[JsonConverter(typeof(RequestContentType15Converter))]
-public enum RequestContentType15
+[JsonConverter(typeof(AuthProviderUpdateRequestOauth2TokenRequestRequestContentTypeConverter))]
+public enum AuthProviderUpdateRequestOauth2TokenRequestRequestContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class RequestContentType15Converter : JsonConverter<RequestContentType15>
+sealed class AuthProviderUpdateRequestOauth2TokenRequestRequestContentTypeConverter
+    : JsonConverter<AuthProviderUpdateRequestOauth2TokenRequestRequestContentType>
 {
-    public override RequestContentType15 Read(
+    public override AuthProviderUpdateRequestOauth2TokenRequestRequestContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1441,15 +1504,16 @@ sealed class RequestContentType15Converter : JsonConverter<RequestContentType15>
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                RequestContentType15.ApplicationXWwwFormUrlencoded,
-            "application/json" => RequestContentType15.ApplicationJson,
-            _ => (RequestContentType15)(-1),
+                AuthProviderUpdateRequestOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderUpdateRequestOauth2TokenRequestRequestContentType.ApplicationJson,
+            _ => (AuthProviderUpdateRequestOauth2TokenRequestRequestContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        RequestContentType15 value,
+        AuthProviderUpdateRequestOauth2TokenRequestRequestContentType value,
         JsonSerializerOptions options
     )
     {
@@ -1457,9 +1521,10 @@ sealed class RequestContentType15Converter : JsonConverter<RequestContentType15>
             writer,
             value switch
             {
-                RequestContentType15.ApplicationXWwwFormUrlencoded =>
+                AuthProviderUpdateRequestOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                RequestContentType15.ApplicationJson => "application/json",
+                AuthProviderUpdateRequestOauth2TokenRequestRequestContentType.ApplicationJson =>
+                    "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1469,16 +1534,17 @@ sealed class RequestContentType15Converter : JsonConverter<RequestContentType15>
     }
 }
 
-[JsonConverter(typeof(ResponseContentType15Converter))]
-public enum ResponseContentType15
+[JsonConverter(typeof(AuthProviderUpdateRequestOauth2TokenRequestResponseContentTypeConverter))]
+public enum AuthProviderUpdateRequestOauth2TokenRequestResponseContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class ResponseContentType15Converter : JsonConverter<ResponseContentType15>
+sealed class AuthProviderUpdateRequestOauth2TokenRequestResponseContentTypeConverter
+    : JsonConverter<AuthProviderUpdateRequestOauth2TokenRequestResponseContentType>
 {
-    public override ResponseContentType15 Read(
+    public override AuthProviderUpdateRequestOauth2TokenRequestResponseContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1487,15 +1553,16 @@ sealed class ResponseContentType15Converter : JsonConverter<ResponseContentType1
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                ResponseContentType15.ApplicationXWwwFormUrlencoded,
-            "application/json" => ResponseContentType15.ApplicationJson,
-            _ => (ResponseContentType15)(-1),
+                AuthProviderUpdateRequestOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderUpdateRequestOauth2TokenRequestResponseContentType.ApplicationJson,
+            _ => (AuthProviderUpdateRequestOauth2TokenRequestResponseContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ResponseContentType15 value,
+        AuthProviderUpdateRequestOauth2TokenRequestResponseContentType value,
         JsonSerializerOptions options
     )
     {
@@ -1503,9 +1570,10 @@ sealed class ResponseContentType15Converter : JsonConverter<ResponseContentType1
             writer,
             value switch
             {
-                ResponseContentType15.ApplicationXWwwFormUrlencoded =>
+                AuthProviderUpdateRequestOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                ResponseContentType15.ApplicationJson => "application/json",
+                AuthProviderUpdateRequestOauth2TokenRequestResponseContentType.ApplicationJson =>
+                    "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1515,8 +1583,10 @@ sealed class ResponseContentType15Converter : JsonConverter<ResponseContentType1
     }
 }
 
-[JsonConverter(typeof(ModelConverter<UserInfoRequest3>))]
-public sealed record class UserInfoRequest3 : ModelBase, IFromRaw<UserInfoRequest3>
+[JsonConverter(typeof(ModelConverter<AuthProviderUpdateRequestOauth2UserInfoRequest>))]
+public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
+    : ModelBase,
+        IFromRaw<AuthProviderUpdateRequestOauth2UserInfoRequest>
 {
     public string? AuthHeaderValueFormat
     {
@@ -1636,17 +1706,20 @@ public sealed record class UserInfoRequest3 : ModelBase, IFromRaw<UserInfoReques
         }
     }
 
-    public ApiEnum<string, RequestContentType16>? RequestContentType
+    public ApiEnum<
+        string,
+        AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType
+    >? RequestContentType
     {
         get
         {
             if (!this._properties.TryGetValue("request_content_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, RequestContentType16>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType
+            >?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -1662,17 +1735,20 @@ public sealed record class UserInfoRequest3 : ModelBase, IFromRaw<UserInfoReques
         }
     }
 
-    public ApiEnum<string, ResponseContentType16>? ResponseContentType
+    public ApiEnum<
+        string,
+        AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType
+    >? ResponseContentType
     {
         get
         {
             if (!this._properties.TryGetValue("response_content_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ResponseContentType16>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType
+            >?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -1714,14 +1790,17 @@ public sealed record class UserInfoRequest3 : ModelBase, IFromRaw<UserInfoReques
         }
     }
 
-    public Triggers6? Triggers
+    public AuthProviderUpdateRequestOauth2UserInfoRequestTriggers? Triggers
     {
         get
         {
             if (!this._properties.TryGetValue("triggers", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Triggers6?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2UserInfoRequestTriggers?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -1750,22 +1829,24 @@ public sealed record class UserInfoRequest3 : ModelBase, IFromRaw<UserInfoReques
         this.Triggers?.Validate();
     }
 
-    public UserInfoRequest3() { }
+    public AuthProviderUpdateRequestOauth2UserInfoRequest() { }
 
-    public UserInfoRequest3(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderUpdateRequestOauth2UserInfoRequest(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UserInfoRequest3(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderUpdateRequestOauth2UserInfoRequest(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static UserInfoRequest3 FromRawUnchecked(
+    public static AuthProviderUpdateRequestOauth2UserInfoRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -1773,16 +1854,17 @@ public sealed record class UserInfoRequest3 : ModelBase, IFromRaw<UserInfoReques
     }
 }
 
-[JsonConverter(typeof(RequestContentType16Converter))]
-public enum RequestContentType16
+[JsonConverter(typeof(AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentTypeConverter))]
+public enum AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class RequestContentType16Converter : JsonConverter<RequestContentType16>
+sealed class AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentTypeConverter
+    : JsonConverter<AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType>
 {
-    public override RequestContentType16 Read(
+    public override AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1791,15 +1873,16 @@ sealed class RequestContentType16Converter : JsonConverter<RequestContentType16>
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                RequestContentType16.ApplicationXWwwFormUrlencoded,
-            "application/json" => RequestContentType16.ApplicationJson,
-            _ => (RequestContentType16)(-1),
+                AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType.ApplicationJson,
+            _ => (AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        RequestContentType16 value,
+        AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType value,
         JsonSerializerOptions options
     )
     {
@@ -1807,9 +1890,10 @@ sealed class RequestContentType16Converter : JsonConverter<RequestContentType16>
             writer,
             value switch
             {
-                RequestContentType16.ApplicationXWwwFormUrlencoded =>
+                AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                RequestContentType16.ApplicationJson => "application/json",
+                AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType.ApplicationJson =>
+                    "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1819,16 +1903,17 @@ sealed class RequestContentType16Converter : JsonConverter<RequestContentType16>
     }
 }
 
-[JsonConverter(typeof(ResponseContentType16Converter))]
-public enum ResponseContentType16
+[JsonConverter(typeof(AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentTypeConverter))]
+public enum AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class ResponseContentType16Converter : JsonConverter<ResponseContentType16>
+sealed class AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentTypeConverter
+    : JsonConverter<AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType>
 {
-    public override ResponseContentType16 Read(
+    public override AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1837,15 +1922,16 @@ sealed class ResponseContentType16Converter : JsonConverter<ResponseContentType1
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                ResponseContentType16.ApplicationXWwwFormUrlencoded,
-            "application/json" => ResponseContentType16.ApplicationJson,
-            _ => (ResponseContentType16)(-1),
+                AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType.ApplicationJson,
+            _ => (AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ResponseContentType16 value,
+        AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType value,
         JsonSerializerOptions options
     )
     {
@@ -1853,9 +1939,10 @@ sealed class ResponseContentType16Converter : JsonConverter<ResponseContentType1
             writer,
             value switch
             {
-                ResponseContentType16.ApplicationXWwwFormUrlencoded =>
+                AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                ResponseContentType16.ApplicationJson => "application/json",
+                AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType.ApplicationJson =>
+                    "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1865,8 +1952,10 @@ sealed class ResponseContentType16Converter : JsonConverter<ResponseContentType1
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Triggers6>))]
-public sealed record class Triggers6 : ModelBase, IFromRaw<Triggers6>
+[JsonConverter(typeof(ModelConverter<AuthProviderUpdateRequestOauth2UserInfoRequestTriggers>))]
+public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTriggers
+    : ModelBase,
+        IFromRaw<AuthProviderUpdateRequestOauth2UserInfoRequestTriggers>
 {
     public bool? OnTokenGrant
     {
@@ -1920,22 +2009,28 @@ public sealed record class Triggers6 : ModelBase, IFromRaw<Triggers6>
         _ = this.OnTokenRefresh;
     }
 
-    public Triggers6() { }
+    public AuthProviderUpdateRequestOauth2UserInfoRequestTriggers() { }
 
-    public Triggers6(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderUpdateRequestOauth2UserInfoRequestTriggers(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Triggers6(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderUpdateRequestOauth2UserInfoRequestTriggers(
+        FrozenDictionary<string, JsonElement> properties
+    )
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Triggers6 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static AuthProviderUpdateRequestOauth2UserInfoRequestTriggers FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }

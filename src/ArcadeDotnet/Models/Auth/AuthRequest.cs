@@ -12,7 +12,7 @@ namespace ArcadeDotnet.Models.Auth;
 [JsonConverter(typeof(ModelConverter<AuthRequest>))]
 public sealed record class AuthRequest : ModelBase, IFromRaw<AuthRequest>
 {
-    public required AuthRequirementModel AuthRequirement
+    public required AuthRequestAuthRequirement AuthRequirement
     {
         get
         {
@@ -22,7 +22,7 @@ public sealed record class AuthRequest : ModelBase, IFromRaw<AuthRequest>
                     new ArgumentOutOfRangeException("auth_requirement", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<AuthRequirementModel>(
+            return JsonSerializer.Deserialize<AuthRequestAuthRequirement>(
                     element,
                     ModelBase.SerializerOptions
                 )
@@ -119,8 +119,10 @@ public sealed record class AuthRequest : ModelBase, IFromRaw<AuthRequest>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthRequirementModel>))]
-public sealed record class AuthRequirementModel : ModelBase, IFromRaw<AuthRequirementModel>
+[JsonConverter(typeof(ModelConverter<AuthRequestAuthRequirement>))]
+public sealed record class AuthRequestAuthRequirement
+    : ModelBase,
+        IFromRaw<AuthRequestAuthRequirement>
 {
     /// <summary>
     /// one of ID or ProviderID must be set
@@ -148,14 +150,17 @@ public sealed record class AuthRequirementModel : ModelBase, IFromRaw<AuthRequir
         }
     }
 
-    public Oauth2Model? Oauth2
+    public AuthRequestAuthRequirementOauth2? Oauth2
     {
         get
         {
             if (!this._properties.TryGetValue("oauth2", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Oauth2Model?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<AuthRequestAuthRequirementOauth2?>(
+                element,
+                ModelBase.SerializerOptions
+            );
         }
         init
         {
@@ -228,22 +233,22 @@ public sealed record class AuthRequirementModel : ModelBase, IFromRaw<AuthRequir
         _ = this.ProviderType;
     }
 
-    public AuthRequirementModel() { }
+    public AuthRequestAuthRequirement() { }
 
-    public AuthRequirementModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthRequestAuthRequirement(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AuthRequirementModel(FrozenDictionary<string, JsonElement> properties)
+    AuthRequestAuthRequirement(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static AuthRequirementModel FromRawUnchecked(
+    public static AuthRequestAuthRequirement FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -251,8 +256,10 @@ public sealed record class AuthRequirementModel : ModelBase, IFromRaw<AuthRequir
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Oauth2Model>))]
-public sealed record class Oauth2Model : ModelBase, IFromRaw<Oauth2Model>
+[JsonConverter(typeof(ModelConverter<AuthRequestAuthRequirementOauth2>))]
+public sealed record class AuthRequestAuthRequirementOauth2
+    : ModelBase,
+        IFromRaw<AuthRequestAuthRequirementOauth2>
 {
     public List<string>? Scopes
     {
@@ -282,22 +289,24 @@ public sealed record class Oauth2Model : ModelBase, IFromRaw<Oauth2Model>
         _ = this.Scopes;
     }
 
-    public Oauth2Model() { }
+    public AuthRequestAuthRequirementOauth2() { }
 
-    public Oauth2Model(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthRequestAuthRequirementOauth2(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Oauth2Model(FrozenDictionary<string, JsonElement> properties)
+    AuthRequestAuthRequirementOauth2(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static Oauth2Model FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static AuthRequestAuthRequirementOauth2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(properties));
     }

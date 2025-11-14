@@ -24,63 +24,153 @@ public abstract record class ModelBase
         Converters =
         {
             new ApiEnumConverter<string, Status>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentType8>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentType8>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentType9>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentType9>(),
-            new ApiEnumConverter<string, AuthProviders::ScopeDelimiter1>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentType10>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentType10>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentType11>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentType11>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentType12>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentType12>(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderCreateRequestOauth2RefreshRequestRequestContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderCreateRequestOauth2RefreshRequestResponseContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderCreateRequestOauth2ScopeDelimiter
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderCreateRequestOauth2TokenRequestRequestContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderCreateRequestOauth2TokenRequestResponseContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderCreateRequestOauth2UserInfoRequestRequestContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderCreateRequestOauth2UserInfoRequestResponseContentType
+            >(),
             new ApiEnumConverter<string, AuthProviders::Type>(),
-            new ApiEnumConverter<string, AuthProviders::BindingModel>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentType13>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentType13>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentType14>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentType14>(),
-            new ApiEnumConverter<string, AuthProviders::ScopeDelimiter2>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentType15>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentType15>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentType16>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentType16>(),
+            new ApiEnumConverter<string, AuthProviders::ClientSecretBinding>(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderUpdateRequestOauth2ScopeDelimiter
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderUpdateRequestOauth2TokenRequestRequestContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderUpdateRequestOauth2TokenRequestResponseContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType
+            >(),
             new ApiEnumConverter<string, AuthProviders::RequestContentType>(),
             new ApiEnumConverter<string, AuthProviders::ResponseContentType>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentTypeModel>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentTypeModel>(),
+            new ApiEnumConverter<string, AuthProviders::RefreshRequestRequestContentType>(),
+            new ApiEnumConverter<string, AuthProviders::RefreshRequestResponseContentType>(),
             new ApiEnumConverter<string, AuthProviders::ScopeDelimiter>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentType1>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentType1>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentType2>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentType2>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentType3>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentType3>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentType4>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentType4>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentType5>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentType5>(),
-            new ApiEnumConverter<string, AuthProviders::ScopeDelimiterModel>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentType6>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentType6>(),
-            new ApiEnumConverter<string, AuthProviders::RequestContentType7>(),
-            new ApiEnumConverter<string, AuthProviders::ResponseContentType7>(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::TokenIntrospectionRequestRequestContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::TokenIntrospectionRequestResponseContentType
+            >(),
+            new ApiEnumConverter<string, AuthProviders::TokenRequestRequestContentType>(),
+            new ApiEnumConverter<string, AuthProviders::TokenRequestResponseContentType>(),
+            new ApiEnumConverter<string, AuthProviders::UserInfoRequestRequestContentType>(),
+            new ApiEnumConverter<string, AuthProviders::UserInfoRequestResponseContentType>(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::Oauth2ModelAuthorizeRequestRequestContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::Oauth2ModelAuthorizeRequestResponseContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::Oauth2ModelRefreshRequestRequestContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::Oauth2ModelRefreshRequestResponseContentType
+            >(),
+            new ApiEnumConverter<string, AuthProviders::Oauth2ModelScopeDelimiter>(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::Oauth2ModelTokenRequestRequestContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::Oauth2ModelTokenRequestResponseContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::Oauth2ModelUserInfoRequestRequestContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviders::Oauth2ModelUserInfoRequestResponseContentType
+            >(),
             new ApiEnumConverter<string, Type>(),
             new ApiEnumConverter<string, Chat::Type>(),
-            new ApiEnumConverter<string, Chat::TypeModel>(),
+            new ApiEnumConverter<string, Chat::ResponseFormatType>(),
             new ApiEnumConverter<string, Completions::Type>(),
             new ApiEnumConverter<string, Tools::Kind>(),
             new ApiEnumConverter<string, Tools::Status>(),
             new ApiEnumConverter<string, Tools::TokenStatus>(),
-            new ApiEnumConverter<string, Tools::KindModel>(),
+            new ApiEnumConverter<string, Tools::ToolExecutionAttemptOutputErrorKind>(),
             new ApiEnumConverter<string, Tools::IncludeFormat>(),
             new ApiEnumConverter<string, Tools::IncludeFormatModel>(),
             new ApiEnumConverter<string, Workers::Type>(),
-            new ApiEnumConverter<string, Workers::BindingModel>(),
-            new ApiEnumConverter<string, Workers::Binding1>(),
-            new ApiEnumConverter<string, Workers::Binding2>(),
-            new ApiEnumConverter<string, Workers::TypeModel>(),
+            new ApiEnumConverter<string, Workers::SecretBinding>(),
+            new ApiEnumConverter<string, Workers::ClientSecretBinding>(),
+            new ApiEnumConverter<string, Workers::SecretsItemBinding>(),
+            new ApiEnumConverter<string, Workers::WorkerResponseType>(),
         },
     };
 

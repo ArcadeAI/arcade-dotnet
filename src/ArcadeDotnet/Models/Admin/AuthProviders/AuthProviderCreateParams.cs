@@ -1066,14 +1066,14 @@ public sealed record class RefreshRequest : ModelBase, IFromRaw<RefreshRequest>
         }
     }
 
-    public ApiEnum<string, RequestContentTypeModel>? RequestContentType
+    public ApiEnum<string, RefreshRequestRequestContentType>? RequestContentType
     {
         get
         {
             if (!this._properties.TryGetValue("request_content_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, RequestContentTypeModel>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, RefreshRequestRequestContentType>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1092,14 +1092,14 @@ public sealed record class RefreshRequest : ModelBase, IFromRaw<RefreshRequest>
         }
     }
 
-    public ApiEnum<string, ResponseContentTypeModel>? ResponseContentType
+    public ApiEnum<string, RefreshRequestResponseContentType>? ResponseContentType
     {
         get
         {
             if (!this._properties.TryGetValue("response_content_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ResponseContentTypeModel>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, RefreshRequestResponseContentType>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1186,16 +1186,17 @@ public sealed record class RefreshRequest : ModelBase, IFromRaw<RefreshRequest>
     }
 }
 
-[JsonConverter(typeof(RequestContentTypeModelConverter))]
-public enum RequestContentTypeModel
+[JsonConverter(typeof(RefreshRequestRequestContentTypeConverter))]
+public enum RefreshRequestRequestContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class RequestContentTypeModelConverter : JsonConverter<RequestContentTypeModel>
+sealed class RefreshRequestRequestContentTypeConverter
+    : JsonConverter<RefreshRequestRequestContentType>
 {
-    public override RequestContentTypeModel Read(
+    public override RefreshRequestRequestContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1204,15 +1205,15 @@ sealed class RequestContentTypeModelConverter : JsonConverter<RequestContentType
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                RequestContentTypeModel.ApplicationXWwwFormUrlencoded,
-            "application/json" => RequestContentTypeModel.ApplicationJson,
-            _ => (RequestContentTypeModel)(-1),
+                RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" => RefreshRequestRequestContentType.ApplicationJson,
+            _ => (RefreshRequestRequestContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        RequestContentTypeModel value,
+        RefreshRequestRequestContentType value,
         JsonSerializerOptions options
     )
     {
@@ -1220,9 +1221,9 @@ sealed class RequestContentTypeModelConverter : JsonConverter<RequestContentType
             writer,
             value switch
             {
-                RequestContentTypeModel.ApplicationXWwwFormUrlencoded =>
+                RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                RequestContentTypeModel.ApplicationJson => "application/json",
+                RefreshRequestRequestContentType.ApplicationJson => "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1232,16 +1233,17 @@ sealed class RequestContentTypeModelConverter : JsonConverter<RequestContentType
     }
 }
 
-[JsonConverter(typeof(ResponseContentTypeModelConverter))]
-public enum ResponseContentTypeModel
+[JsonConverter(typeof(RefreshRequestResponseContentTypeConverter))]
+public enum RefreshRequestResponseContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class ResponseContentTypeModelConverter : JsonConverter<ResponseContentTypeModel>
+sealed class RefreshRequestResponseContentTypeConverter
+    : JsonConverter<RefreshRequestResponseContentType>
 {
-    public override ResponseContentTypeModel Read(
+    public override RefreshRequestResponseContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1250,15 +1252,15 @@ sealed class ResponseContentTypeModelConverter : JsonConverter<ResponseContentTy
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                ResponseContentTypeModel.ApplicationXWwwFormUrlencoded,
-            "application/json" => ResponseContentTypeModel.ApplicationJson,
-            _ => (ResponseContentTypeModel)(-1),
+                RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" => RefreshRequestResponseContentType.ApplicationJson,
+            _ => (RefreshRequestResponseContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ResponseContentTypeModel value,
+        RefreshRequestResponseContentType value,
         JsonSerializerOptions options
     )
     {
@@ -1266,9 +1268,9 @@ sealed class ResponseContentTypeModelConverter : JsonConverter<ResponseContentTy
             writer,
             value switch
             {
-                ResponseContentTypeModel.ApplicationXWwwFormUrlencoded =>
+                RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                ResponseContentTypeModel.ApplicationJson => "application/json",
+                RefreshRequestResponseContentType.ApplicationJson => "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1472,17 +1474,17 @@ public sealed record class TokenIntrospectionRequest
         }
     }
 
-    public ApiEnum<string, RequestContentType1>? RequestContentType
+    public ApiEnum<string, TokenIntrospectionRequestRequestContentType>? RequestContentType
     {
         get
         {
             if (!this._properties.TryGetValue("request_content_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, RequestContentType1>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                TokenIntrospectionRequestRequestContentType
+            >?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -1498,17 +1500,17 @@ public sealed record class TokenIntrospectionRequest
         }
     }
 
-    public ApiEnum<string, ResponseContentType1>? ResponseContentType
+    public ApiEnum<string, TokenIntrospectionRequestResponseContentType>? ResponseContentType
     {
         get
         {
             if (!this._properties.TryGetValue("response_content_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ResponseContentType1>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return JsonSerializer.Deserialize<ApiEnum<
+                string,
+                TokenIntrospectionRequestResponseContentType
+            >?>(element, ModelBase.SerializerOptions);
         }
         init
         {
@@ -1662,16 +1664,17 @@ public sealed record class Triggers : ModelBase, IFromRaw<Triggers>
     }
 }
 
-[JsonConverter(typeof(RequestContentType1Converter))]
-public enum RequestContentType1
+[JsonConverter(typeof(TokenIntrospectionRequestRequestContentTypeConverter))]
+public enum TokenIntrospectionRequestRequestContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class RequestContentType1Converter : JsonConverter<RequestContentType1>
+sealed class TokenIntrospectionRequestRequestContentTypeConverter
+    : JsonConverter<TokenIntrospectionRequestRequestContentType>
 {
-    public override RequestContentType1 Read(
+    public override TokenIntrospectionRequestRequestContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1680,15 +1683,15 @@ sealed class RequestContentType1Converter : JsonConverter<RequestContentType1>
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                RequestContentType1.ApplicationXWwwFormUrlencoded,
-            "application/json" => RequestContentType1.ApplicationJson,
-            _ => (RequestContentType1)(-1),
+                TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" => TokenIntrospectionRequestRequestContentType.ApplicationJson,
+            _ => (TokenIntrospectionRequestRequestContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        RequestContentType1 value,
+        TokenIntrospectionRequestRequestContentType value,
         JsonSerializerOptions options
     )
     {
@@ -1696,9 +1699,9 @@ sealed class RequestContentType1Converter : JsonConverter<RequestContentType1>
             writer,
             value switch
             {
-                RequestContentType1.ApplicationXWwwFormUrlencoded =>
+                TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                RequestContentType1.ApplicationJson => "application/json",
+                TokenIntrospectionRequestRequestContentType.ApplicationJson => "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1708,16 +1711,17 @@ sealed class RequestContentType1Converter : JsonConverter<RequestContentType1>
     }
 }
 
-[JsonConverter(typeof(ResponseContentType1Converter))]
-public enum ResponseContentType1
+[JsonConverter(typeof(TokenIntrospectionRequestResponseContentTypeConverter))]
+public enum TokenIntrospectionRequestResponseContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class ResponseContentType1Converter : JsonConverter<ResponseContentType1>
+sealed class TokenIntrospectionRequestResponseContentTypeConverter
+    : JsonConverter<TokenIntrospectionRequestResponseContentType>
 {
-    public override ResponseContentType1 Read(
+    public override TokenIntrospectionRequestResponseContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1726,15 +1730,15 @@ sealed class ResponseContentType1Converter : JsonConverter<ResponseContentType1>
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                ResponseContentType1.ApplicationXWwwFormUrlencoded,
-            "application/json" => ResponseContentType1.ApplicationJson,
-            _ => (ResponseContentType1)(-1),
+                TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" => TokenIntrospectionRequestResponseContentType.ApplicationJson,
+            _ => (TokenIntrospectionRequestResponseContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ResponseContentType1 value,
+        TokenIntrospectionRequestResponseContentType value,
         JsonSerializerOptions options
     )
     {
@@ -1742,9 +1746,9 @@ sealed class ResponseContentType1Converter : JsonConverter<ResponseContentType1>
             writer,
             value switch
             {
-                ResponseContentType1.ApplicationXWwwFormUrlencoded =>
+                TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                ResponseContentType1.ApplicationJson => "application/json",
+                TokenIntrospectionRequestResponseContentType.ApplicationJson => "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1877,14 +1881,14 @@ public sealed record class TokenRequest : ModelBase, IFromRaw<TokenRequest>
         }
     }
 
-    public ApiEnum<string, RequestContentType2>? RequestContentType
+    public ApiEnum<string, TokenRequestRequestContentType>? RequestContentType
     {
         get
         {
             if (!this._properties.TryGetValue("request_content_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, RequestContentType2>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, TokenRequestRequestContentType>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1903,14 +1907,14 @@ public sealed record class TokenRequest : ModelBase, IFromRaw<TokenRequest>
         }
     }
 
-    public ApiEnum<string, ResponseContentType2>? ResponseContentType
+    public ApiEnum<string, TokenRequestResponseContentType>? ResponseContentType
     {
         get
         {
             if (!this._properties.TryGetValue("response_content_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ResponseContentType2>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, TokenRequestResponseContentType>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1995,16 +1999,16 @@ public sealed record class TokenRequest : ModelBase, IFromRaw<TokenRequest>
     }
 }
 
-[JsonConverter(typeof(RequestContentType2Converter))]
-public enum RequestContentType2
+[JsonConverter(typeof(TokenRequestRequestContentTypeConverter))]
+public enum TokenRequestRequestContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class RequestContentType2Converter : JsonConverter<RequestContentType2>
+sealed class TokenRequestRequestContentTypeConverter : JsonConverter<TokenRequestRequestContentType>
 {
-    public override RequestContentType2 Read(
+    public override TokenRequestRequestContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -2013,15 +2017,15 @@ sealed class RequestContentType2Converter : JsonConverter<RequestContentType2>
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                RequestContentType2.ApplicationXWwwFormUrlencoded,
-            "application/json" => RequestContentType2.ApplicationJson,
-            _ => (RequestContentType2)(-1),
+                TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" => TokenRequestRequestContentType.ApplicationJson,
+            _ => (TokenRequestRequestContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        RequestContentType2 value,
+        TokenRequestRequestContentType value,
         JsonSerializerOptions options
     )
     {
@@ -2029,9 +2033,9 @@ sealed class RequestContentType2Converter : JsonConverter<RequestContentType2>
             writer,
             value switch
             {
-                RequestContentType2.ApplicationXWwwFormUrlencoded =>
+                TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                RequestContentType2.ApplicationJson => "application/json",
+                TokenRequestRequestContentType.ApplicationJson => "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -2041,16 +2045,17 @@ sealed class RequestContentType2Converter : JsonConverter<RequestContentType2>
     }
 }
 
-[JsonConverter(typeof(ResponseContentType2Converter))]
-public enum ResponseContentType2
+[JsonConverter(typeof(TokenRequestResponseContentTypeConverter))]
+public enum TokenRequestResponseContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class ResponseContentType2Converter : JsonConverter<ResponseContentType2>
+sealed class TokenRequestResponseContentTypeConverter
+    : JsonConverter<TokenRequestResponseContentType>
 {
-    public override ResponseContentType2 Read(
+    public override TokenRequestResponseContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -2059,15 +2064,15 @@ sealed class ResponseContentType2Converter : JsonConverter<ResponseContentType2>
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                ResponseContentType2.ApplicationXWwwFormUrlencoded,
-            "application/json" => ResponseContentType2.ApplicationJson,
-            _ => (ResponseContentType2)(-1),
+                TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" => TokenRequestResponseContentType.ApplicationJson,
+            _ => (TokenRequestResponseContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ResponseContentType2 value,
+        TokenRequestResponseContentType value,
         JsonSerializerOptions options
     )
     {
@@ -2075,9 +2080,9 @@ sealed class ResponseContentType2Converter : JsonConverter<ResponseContentType2>
             writer,
             value switch
             {
-                ResponseContentType2.ApplicationXWwwFormUrlencoded =>
+                TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                ResponseContentType2.ApplicationJson => "application/json",
+                TokenRequestResponseContentType.ApplicationJson => "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -2115,7 +2120,7 @@ public sealed record class UserInfoRequest : ModelBase, IFromRaw<UserInfoRequest
         }
     }
 
-    public required TriggersModel Triggers
+    public required UserInfoRequestTriggers Triggers
     {
         get
         {
@@ -2125,7 +2130,10 @@ public sealed record class UserInfoRequest : ModelBase, IFromRaw<UserInfoRequest
                     new System::ArgumentOutOfRangeException("triggers", "Missing required argument")
                 );
 
-            return JsonSerializer.Deserialize<TriggersModel>(element, ModelBase.SerializerOptions)
+            return JsonSerializer.Deserialize<UserInfoRequestTriggers>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
                 ?? throw new ArcadeInvalidDataException(
                     "'triggers' cannot be null",
                     new System::ArgumentNullException("triggers")
@@ -2235,14 +2243,14 @@ public sealed record class UserInfoRequest : ModelBase, IFromRaw<UserInfoRequest
         }
     }
 
-    public ApiEnum<string, RequestContentType3>? RequestContentType
+    public ApiEnum<string, UserInfoRequestRequestContentType>? RequestContentType
     {
         get
         {
             if (!this._properties.TryGetValue("request_content_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, RequestContentType3>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, UserInfoRequestRequestContentType>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2261,14 +2269,14 @@ public sealed record class UserInfoRequest : ModelBase, IFromRaw<UserInfoRequest
         }
     }
 
-    public ApiEnum<string, ResponseContentType3>? ResponseContentType
+    public ApiEnum<string, UserInfoRequestResponseContentType>? ResponseContentType
     {
         get
         {
             if (!this._properties.TryGetValue("response_content_type", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<ApiEnum<string, ResponseContentType3>?>(
+            return JsonSerializer.Deserialize<ApiEnum<string, UserInfoRequestResponseContentType>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2349,8 +2357,8 @@ public sealed record class UserInfoRequest : ModelBase, IFromRaw<UserInfoRequest
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TriggersModel>))]
-public sealed record class TriggersModel : ModelBase, IFromRaw<TriggersModel>
+[JsonConverter(typeof(ModelConverter<UserInfoRequestTriggers>))]
+public sealed record class UserInfoRequestTriggers : ModelBase, IFromRaw<UserInfoRequestTriggers>
 {
     public bool? OnTokenGrant
     {
@@ -2404,22 +2412,22 @@ public sealed record class TriggersModel : ModelBase, IFromRaw<TriggersModel>
         _ = this.OnTokenRefresh;
     }
 
-    public TriggersModel() { }
+    public UserInfoRequestTriggers() { }
 
-    public TriggersModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public UserInfoRequestTriggers(IReadOnlyDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TriggersModel(FrozenDictionary<string, JsonElement> properties)
+    UserInfoRequestTriggers(FrozenDictionary<string, JsonElement> properties)
     {
         this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static TriggersModel FromRawUnchecked(
+    public static UserInfoRequestTriggers FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> properties
     )
     {
@@ -2427,16 +2435,17 @@ public sealed record class TriggersModel : ModelBase, IFromRaw<TriggersModel>
     }
 }
 
-[JsonConverter(typeof(RequestContentType3Converter))]
-public enum RequestContentType3
+[JsonConverter(typeof(UserInfoRequestRequestContentTypeConverter))]
+public enum UserInfoRequestRequestContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class RequestContentType3Converter : JsonConverter<RequestContentType3>
+sealed class UserInfoRequestRequestContentTypeConverter
+    : JsonConverter<UserInfoRequestRequestContentType>
 {
-    public override RequestContentType3 Read(
+    public override UserInfoRequestRequestContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -2445,15 +2454,15 @@ sealed class RequestContentType3Converter : JsonConverter<RequestContentType3>
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                RequestContentType3.ApplicationXWwwFormUrlencoded,
-            "application/json" => RequestContentType3.ApplicationJson,
-            _ => (RequestContentType3)(-1),
+                UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" => UserInfoRequestRequestContentType.ApplicationJson,
+            _ => (UserInfoRequestRequestContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        RequestContentType3 value,
+        UserInfoRequestRequestContentType value,
         JsonSerializerOptions options
     )
     {
@@ -2461,9 +2470,9 @@ sealed class RequestContentType3Converter : JsonConverter<RequestContentType3>
             writer,
             value switch
             {
-                RequestContentType3.ApplicationXWwwFormUrlencoded =>
+                UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                RequestContentType3.ApplicationJson => "application/json",
+                UserInfoRequestRequestContentType.ApplicationJson => "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -2473,16 +2482,17 @@ sealed class RequestContentType3Converter : JsonConverter<RequestContentType3>
     }
 }
 
-[JsonConverter(typeof(ResponseContentType3Converter))]
-public enum ResponseContentType3
+[JsonConverter(typeof(UserInfoRequestResponseContentTypeConverter))]
+public enum UserInfoRequestResponseContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class ResponseContentType3Converter : JsonConverter<ResponseContentType3>
+sealed class UserInfoRequestResponseContentTypeConverter
+    : JsonConverter<UserInfoRequestResponseContentType>
 {
-    public override ResponseContentType3 Read(
+    public override UserInfoRequestResponseContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -2491,15 +2501,15 @@ sealed class ResponseContentType3Converter : JsonConverter<ResponseContentType3>
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                ResponseContentType3.ApplicationXWwwFormUrlencoded,
-            "application/json" => ResponseContentType3.ApplicationJson,
-            _ => (ResponseContentType3)(-1),
+                UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" => UserInfoRequestResponseContentType.ApplicationJson,
+            _ => (UserInfoRequestResponseContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ResponseContentType3 value,
+        UserInfoRequestResponseContentType value,
         JsonSerializerOptions options
     )
     {
@@ -2507,9 +2517,9 @@ sealed class ResponseContentType3Converter : JsonConverter<ResponseContentType3>
             writer,
             value switch
             {
-                ResponseContentType3.ApplicationXWwwFormUrlencoded =>
+                UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                ResponseContentType3.ApplicationJson => "application/json",
+                UserInfoRequestResponseContentType.ApplicationJson => "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
