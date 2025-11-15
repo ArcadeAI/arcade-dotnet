@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
     {
         get
         {
-            if (!this.Properties.TryGetValue("val_type", out JsonElement element))
+            if (!this._properties.TryGetValue("val_type", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'val_type' cannot be null",
                     new ArgumentOutOfRangeException("val_type", "Missing required argument")
@@ -27,9 +28,9 @@ public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
                     new ArgumentNullException("val_type")
                 );
         }
-        set
+        init
         {
-            this.Properties["val_type"] = JsonSerializer.SerializeToElement(
+            this._properties["val_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -40,14 +41,19 @@ public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
     {
         get
         {
-            if (!this.Properties.TryGetValue("enum", out JsonElement element))
+            if (!this._properties.TryGetValue("enum", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["enum"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["enum"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -58,14 +64,19 @@ public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
     {
         get
         {
-            if (!this.Properties.TryGetValue("inner_val_type", out JsonElement element))
+            if (!this._properties.TryGetValue("inner_val_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["inner_val_type"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["inner_val_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -75,26 +86,28 @@ public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
     public override void Validate()
     {
         _ = this.ValType;
-        foreach (var item in this.Enum ?? [])
-        {
-            _ = item;
-        }
+        _ = this.Enum;
         _ = this.InnerValType;
     }
 
     public ValueSchema() { }
 
+    public ValueSchema(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ValueSchema(Dictionary<string, JsonElement> properties)
+    ValueSchema(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static ValueSchema FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static ValueSchema FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]

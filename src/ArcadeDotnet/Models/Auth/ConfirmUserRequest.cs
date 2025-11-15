@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class ConfirmUserRequest : ModelBase, IFromRaw<ConfirmUserR
     {
         get
         {
-            if (!this.Properties.TryGetValue("flow_id", out JsonElement element))
+            if (!this._properties.TryGetValue("flow_id", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'flow_id' cannot be null",
                     new ArgumentOutOfRangeException("flow_id", "Missing required argument")
@@ -27,9 +28,9 @@ public sealed record class ConfirmUserRequest : ModelBase, IFromRaw<ConfirmUserR
                     new ArgumentNullException("flow_id")
                 );
         }
-        set
+        init
         {
-            this.Properties["flow_id"] = JsonSerializer.SerializeToElement(
+            this._properties["flow_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -40,7 +41,7 @@ public sealed record class ConfirmUserRequest : ModelBase, IFromRaw<ConfirmUserR
     {
         get
         {
-            if (!this.Properties.TryGetValue("user_id", out JsonElement element))
+            if (!this._properties.TryGetValue("user_id", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'user_id' cannot be null",
                     new ArgumentOutOfRangeException("user_id", "Missing required argument")
@@ -52,9 +53,9 @@ public sealed record class ConfirmUserRequest : ModelBase, IFromRaw<ConfirmUserR
                     new ArgumentNullException("user_id")
                 );
         }
-        set
+        init
         {
-            this.Properties["user_id"] = JsonSerializer.SerializeToElement(
+            this._properties["user_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -69,16 +70,23 @@ public sealed record class ConfirmUserRequest : ModelBase, IFromRaw<ConfirmUserR
 
     public ConfirmUserRequest() { }
 
+    public ConfirmUserRequest(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ConfirmUserRequest(Dictionary<string, JsonElement> properties)
+    ConfirmUserRequest(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static ConfirmUserRequest FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static ConfirmUserRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

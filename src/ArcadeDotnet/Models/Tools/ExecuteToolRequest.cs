@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
     {
         get
         {
-            if (!this.Properties.TryGetValue("tool_name", out JsonElement element))
+            if (!this._properties.TryGetValue("tool_name", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'tool_name' cannot be null",
                     new ArgumentOutOfRangeException("tool_name", "Missing required argument")
@@ -27,9 +28,9 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
                     new ArgumentNullException("tool_name")
                 );
         }
-        set
+        init
         {
-            this.Properties["tool_name"] = JsonSerializer.SerializeToElement(
+            this._properties["tool_name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -44,14 +45,19 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
     {
         get
         {
-            if (!this.Properties.TryGetValue("include_error_stacktrace", out JsonElement element))
+            if (!this._properties.TryGetValue("include_error_stacktrace", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["include_error_stacktrace"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["include_error_stacktrace"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -65,7 +71,7 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
     {
         get
         {
-            if (!this.Properties.TryGetValue("input", out JsonElement element))
+            if (!this._properties.TryGetValue("input", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, JsonElement>?>(
@@ -73,9 +79,14 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["input"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["input"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -90,14 +101,19 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
     {
         get
         {
-            if (!this.Properties.TryGetValue("run_at", out JsonElement element))
+            if (!this._properties.TryGetValue("run_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["run_at"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["run_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -111,14 +127,19 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
     {
         get
         {
-            if (!this.Properties.TryGetValue("tool_version", out JsonElement element))
+            if (!this._properties.TryGetValue("tool_version", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["tool_version"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["tool_version"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -129,14 +150,19 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
     {
         get
         {
-            if (!this.Properties.TryGetValue("user_id", out JsonElement element))
+            if (!this._properties.TryGetValue("user_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["user_id"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["user_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -147,13 +173,7 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
     {
         _ = this.ToolName;
         _ = this.IncludeErrorStacktrace;
-        if (this.Input != null)
-        {
-            foreach (var item in this.Input.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Input;
         _ = this.RunAt;
         _ = this.ToolVersion;
         _ = this.UserID;
@@ -161,17 +181,24 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
 
     public ExecuteToolRequest() { }
 
+    public ExecuteToolRequest(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ExecuteToolRequest(Dictionary<string, JsonElement> properties)
+    ExecuteToolRequest(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static ExecuteToolRequest FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static ExecuteToolRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 
     [SetsRequiredMembers]

@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
-using ArcadeDotnet.Models.Workers.WorkerUpdateParamsProperties;
 
 namespace ArcadeDotnet.Models.Workers;
 
@@ -13,71 +15,130 @@ namespace ArcadeDotnet.Models.Workers;
 /// </summary>
 public sealed record class WorkerUpdateParams : ParamsBase
 {
-    public Dictionary<string, JsonElement> BodyProperties { get; set; } = [];
+    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
+    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    {
+        get { return this._bodyProperties.Freeze(); }
+    }
 
-    public required string ID;
+    public required string ID { get; init; }
 
     public bool? Enabled
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("enabled", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("enabled", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["enabled"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._bodyProperties["enabled"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
     }
 
-    public HTTP? HTTP
+    public HTTPModel? HTTP
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("http", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("http", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<HTTP?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<HTTPModel?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["http"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._bodyProperties["http"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
     }
 
-    public Mcp? Mcp
+    public McpModel? Mcp
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("mcp", out JsonElement element))
+            if (!this._bodyProperties.TryGetValue("mcp", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<Mcp?>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<McpModel?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.BodyProperties["mcp"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._bodyProperties["mcp"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
         }
     }
 
-    public override Uri Url(IArcadeClient client)
+    public WorkerUpdateParams() { }
+
+    public WorkerUpdateParams(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    WorkerUpdateParams(
+        FrozenDictionary<string, JsonElement> headerProperties,
+        FrozenDictionary<string, JsonElement> queryProperties,
+        FrozenDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        this._headerProperties = [.. headerProperties];
+        this._queryProperties = [.. queryProperties];
+        this._bodyProperties = [.. bodyProperties];
+    }
+#pragma warning restore CS8618
+
+    public static WorkerUpdateParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> headerProperties,
+        IReadOnlyDictionary<string, JsonElement> queryProperties,
+        IReadOnlyDictionary<string, JsonElement> bodyProperties
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(headerProperties),
+            FrozenDictionary.ToFrozenDictionary(queryProperties),
+            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/') + string.Format("/v1/workers/{0}", this.ID)
+            options.BaseUrl.ToString().TrimEnd('/') + string.Format("/v1/workers/{0}", this.ID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
@@ -90,12 +151,419 @@ public sealed record class WorkerUpdateParams : ParamsBase
         );
     }
 
-    internal override void AddHeadersToRequest(HttpRequestMessage request, IArcadeClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, client);
+        ParamsBase.AddDefaultHeaders(request, options);
         foreach (var item in this.HeaderProperties)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<HTTPModel>))]
+public sealed record class HTTPModel : ModelBase, IFromRaw<HTTPModel>
+{
+    public long? Retry
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("retry", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["retry"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public string? Secret
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("secret", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["secret"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public long? Timeout
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("timeout", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["timeout"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public string? Uri
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("uri", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["uri"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.Retry;
+        _ = this.Secret;
+        _ = this.Timeout;
+        _ = this.Uri;
+    }
+
+    public HTTPModel() { }
+
+    public HTTPModel(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    HTTPModel(FrozenDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+#pragma warning restore CS8618
+
+    public static HTTPModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<McpModel>))]
+public sealed record class McpModel : ModelBase, IFromRaw<McpModel>
+{
+    public Dictionary<string, string>? Headers
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("headers", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<Dictionary<string, string>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["headers"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public McpModelOauth2? Oauth2
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("oauth2", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<McpModelOauth2?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["oauth2"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public long? Retry
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("retry", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["retry"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public Dictionary<string, string>? Secrets
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("secrets", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<Dictionary<string, string>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["secrets"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public long? Timeout
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("timeout", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["timeout"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public string? Uri
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("uri", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["uri"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.Headers;
+        this.Oauth2?.Validate();
+        _ = this.Retry;
+        _ = this.Secrets;
+        _ = this.Timeout;
+        _ = this.Uri;
+    }
+
+    public McpModel() { }
+
+    public McpModel(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    McpModel(FrozenDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+#pragma warning restore CS8618
+
+    public static McpModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<McpModelOauth2>))]
+public sealed record class McpModelOauth2 : ModelBase, IFromRaw<McpModelOauth2>
+{
+    public string? AuthorizationURL
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("authorization_url", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["authorization_url"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public string? ClientID
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("client_id", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["client_id"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public string? ClientSecret
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("client_secret", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["client_secret"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.AuthorizationURL;
+        _ = this.ClientID;
+        _ = this.ClientSecret;
+    }
+
+    public McpModelOauth2() { }
+
+    public McpModelOauth2(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    McpModelOauth2(FrozenDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+#pragma warning restore CS8618
+
+    public static McpModelOauth2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

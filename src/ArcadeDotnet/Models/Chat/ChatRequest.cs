@@ -1,9 +1,11 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
-using ArcadeDotnet.Models.Chat.ChatRequestProperties;
+using ArcadeDotnet.Exceptions;
+using System = System;
 
 namespace ArcadeDotnet.Models.Chat;
 
@@ -14,14 +16,19 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("frequency_penalty", out JsonElement element))
+            if (!this._properties.TryGetValue("frequency_penalty", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["frequency_penalty"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["frequency_penalty"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -37,7 +44,7 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("logit_bias", out JsonElement element))
+            if (!this._properties.TryGetValue("logit_bias", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, long>?>(
@@ -45,9 +52,14 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["logit_bias"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["logit_bias"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -57,21 +69,25 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     /// <summary>
     /// LogProbs indicates whether to return log probabilities of the output tokens
     /// or not. If true, returns the log probabilities of each output token returned
-    /// in the content of message. This option is currently not available on the
-    /// gpt-4-vision-preview model.
+    /// in the content of message. This option is currently not available on the gpt-4-vision-preview model.
     /// </summary>
     public bool? Logprobs
     {
         get
         {
-            if (!this.Properties.TryGetValue("logprobs", out JsonElement element))
+            if (!this._properties.TryGetValue("logprobs", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["logprobs"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["logprobs"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -82,14 +98,19 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("max_tokens", out JsonElement element))
+            if (!this._properties.TryGetValue("max_tokens", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["max_tokens"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["max_tokens"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -100,7 +121,7 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("messages", out JsonElement element))
+            if (!this._properties.TryGetValue("messages", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<ChatMessage>?>(
@@ -108,9 +129,14 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["messages"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["messages"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -121,14 +147,19 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("model", out JsonElement element))
+            if (!this._properties.TryGetValue("model", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["model"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["model"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -139,14 +170,19 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("n", out JsonElement element))
+            if (!this._properties.TryGetValue("n", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["n"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["n"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -160,14 +196,19 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("parallel_tool_calls", out JsonElement element))
+            if (!this._properties.TryGetValue("parallel_tool_calls", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["parallel_tool_calls"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["parallel_tool_calls"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -178,14 +219,19 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("presence_penalty", out JsonElement element))
+            if (!this._properties.TryGetValue("presence_penalty", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["presence_penalty"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["presence_penalty"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -196,7 +242,7 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("response_format", out JsonElement element))
+            if (!this._properties.TryGetValue("response_format", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ResponseFormat?>(
@@ -204,9 +250,14 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["response_format"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["response_format"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -217,14 +268,19 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("seed", out JsonElement element))
+            if (!this._properties.TryGetValue("seed", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["seed"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["seed"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -235,14 +291,19 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("stop", out JsonElement element))
+            if (!this._properties.TryGetValue("stop", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["stop"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["stop"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -253,14 +314,19 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("stream", out JsonElement element))
+            if (!this._properties.TryGetValue("stream", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["stream"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["stream"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -274,14 +340,19 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("stream_options", out JsonElement element))
+            if (!this._properties.TryGetValue("stream_options", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<StreamOptions?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["stream_options"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["stream_options"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -292,14 +363,19 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("temperature", out JsonElement element))
+            if (!this._properties.TryGetValue("temperature", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["temperature"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["temperature"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -313,14 +389,19 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("tool_choice", out JsonElement element))
+            if (!this._properties.TryGetValue("tool_choice", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<JsonElement?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["tool_choice"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["tool_choice"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -331,14 +412,19 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("tools", out JsonElement element))
+            if (!this._properties.TryGetValue("tools", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<JsonElement?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["tools"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["tools"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -354,14 +440,19 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("top_logprobs", out JsonElement element))
+            if (!this._properties.TryGetValue("top_logprobs", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["top_logprobs"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["top_logprobs"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -372,14 +463,19 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("top_p", out JsonElement element))
+            if (!this._properties.TryGetValue("top_p", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["top_p"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["top_p"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -390,14 +486,19 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     {
         get
         {
-            if (!this.Properties.TryGetValue("user", out JsonElement element))
+            if (!this._properties.TryGetValue("user", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["user"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["user"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -407,13 +508,7 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     public override void Validate()
     {
         _ = this.FrequencyPenalty;
-        if (this.LogitBias != null)
-        {
-            foreach (var item in this.LogitBias.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.LogitBias;
         _ = this.Logprobs;
         _ = this.MaxTokens;
         foreach (var item in this.Messages ?? [])
@@ -426,10 +521,7 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
         _ = this.PresencePenalty;
         this.ResponseFormat?.Validate();
         _ = this.Seed;
-        foreach (var item in this.Stop ?? [])
-        {
-            _ = item;
-        }
+        _ = this.Stop;
         _ = this.Stream;
         this.StreamOptions?.Validate();
         _ = this.Temperature;
@@ -442,16 +534,185 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
 
     public ChatRequest() { }
 
+    public ChatRequest(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ChatRequest(Dictionary<string, JsonElement> properties)
+    ChatRequest(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static ChatRequest FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static ChatRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
+    }
+}
+
+[JsonConverter(typeof(ModelConverter<ResponseFormat>))]
+public sealed record class ResponseFormat : ModelBase, IFromRaw<ResponseFormat>
+{
+    public ApiEnum<string, ResponseFormatType>? Type
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("type", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<ApiEnum<string, ResponseFormatType>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        this.Type?.Validate();
+    }
+
+    public ResponseFormat() { }
+
+    public ResponseFormat(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ResponseFormat(FrozenDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+#pragma warning restore CS8618
+
+    public static ResponseFormat FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
+    }
+}
+
+[JsonConverter(typeof(ResponseFormatTypeConverter))]
+public enum ResponseFormatType
+{
+    JsonObject,
+    Text,
+}
+
+sealed class ResponseFormatTypeConverter : JsonConverter<ResponseFormatType>
+{
+    public override ResponseFormatType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "json_object" => ResponseFormatType.JsonObject,
+            "text" => ResponseFormatType.Text,
+            _ => (ResponseFormatType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ResponseFormatType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ResponseFormatType.JsonObject => "json_object",
+                ResponseFormatType.Text => "text",
+                _ => throw new ArcadeInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Options for streaming response. Only set this when you set stream: true.
+/// </summary>
+[JsonConverter(typeof(ModelConverter<StreamOptions>))]
+public sealed record class StreamOptions : ModelBase, IFromRaw<StreamOptions>
+{
+    /// <summary>
+    /// If set, an additional chunk will be streamed before the data: [DONE] message.
+    /// The usage field on this chunk shows the token usage statistics for the entire
+    /// request, and the choices field will always be an empty array. All other chunks
+    /// will also include a usage field, but with a null value.
+    /// </summary>
+    public bool? IncludeUsage
+    {
+        get
+        {
+            if (!this._properties.TryGetValue("include_usage", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["include_usage"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public override void Validate()
+    {
+        _ = this.IncludeUsage;
+    }
+
+    public StreamOptions() { }
+
+    public StreamOptions(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    StreamOptions(FrozenDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+#pragma warning restore CS8618
+
+    public static StreamOptions FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

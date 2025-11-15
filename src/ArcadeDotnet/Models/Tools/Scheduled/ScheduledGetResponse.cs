@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -13,14 +14,19 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._properties.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -31,7 +37,7 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
     {
         get
         {
-            if (!this.Properties.TryGetValue("attempts", out JsonElement element))
+            if (!this._properties.TryGetValue("attempts", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<ToolExecutionAttempt>?>(
@@ -39,9 +45,14 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["attempts"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["attempts"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -52,14 +63,19 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out JsonElement element))
+            if (!this._properties.TryGetValue("created_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["created_at"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["created_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -70,14 +86,19 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
     {
         get
         {
-            if (!this.Properties.TryGetValue("execution_status", out JsonElement element))
+            if (!this._properties.TryGetValue("execution_status", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["execution_status"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["execution_status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -88,14 +109,19 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
     {
         get
         {
-            if (!this.Properties.TryGetValue("execution_type", out JsonElement element))
+            if (!this._properties.TryGetValue("execution_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["execution_type"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["execution_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -106,14 +132,19 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
     {
         get
         {
-            if (!this.Properties.TryGetValue("finished_at", out JsonElement element))
+            if (!this._properties.TryGetValue("finished_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["finished_at"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["finished_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -124,7 +155,7 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
     {
         get
         {
-            if (!this.Properties.TryGetValue("input", out JsonElement element))
+            if (!this._properties.TryGetValue("input", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, JsonElement>?>(
@@ -132,9 +163,14 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["input"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["input"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -145,14 +181,19 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
     {
         get
         {
-            if (!this.Properties.TryGetValue("run_at", out JsonElement element))
+            if (!this._properties.TryGetValue("run_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["run_at"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["run_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -163,14 +204,19 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
     {
         get
         {
-            if (!this.Properties.TryGetValue("started_at", out JsonElement element))
+            if (!this._properties.TryGetValue("started_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["started_at"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["started_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -181,14 +227,19 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
     {
         get
         {
-            if (!this.Properties.TryGetValue("tool_name", out JsonElement element))
+            if (!this._properties.TryGetValue("tool_name", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["tool_name"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["tool_name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -199,14 +250,19 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
     {
         get
         {
-            if (!this.Properties.TryGetValue("toolkit_name", out JsonElement element))
+            if (!this._properties.TryGetValue("toolkit_name", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["toolkit_name"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["toolkit_name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -217,14 +273,19 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
     {
         get
         {
-            if (!this.Properties.TryGetValue("toolkit_version", out JsonElement element))
+            if (!this._properties.TryGetValue("toolkit_version", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["toolkit_version"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["toolkit_version"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -235,14 +296,19 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
     {
         get
         {
-            if (!this.Properties.TryGetValue("updated_at", out JsonElement element))
+            if (!this._properties.TryGetValue("updated_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["updated_at"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["updated_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -253,14 +319,19 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
     {
         get
         {
-            if (!this.Properties.TryGetValue("user_id", out JsonElement element))
+            if (!this._properties.TryGetValue("user_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["user_id"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._properties["user_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -278,13 +349,7 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
         _ = this.ExecutionStatus;
         _ = this.ExecutionType;
         _ = this.FinishedAt;
-        if (this.Input != null)
-        {
-            foreach (var item in this.Input.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Input;
         _ = this.RunAt;
         _ = this.StartedAt;
         _ = this.ToolName;
@@ -296,16 +361,23 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
 
     public ScheduledGetResponse() { }
 
+    public ScheduledGetResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    {
+        this._properties = [.. properties];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ScheduledGetResponse(Dictionary<string, JsonElement> properties)
+    ScheduledGetResponse(FrozenDictionary<string, JsonElement> properties)
     {
-        Properties = properties;
+        this._properties = [.. properties];
     }
 #pragma warning restore CS8618
 
-    public static ScheduledGetResponse FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static ScheduledGetResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> properties
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(properties));
     }
 }

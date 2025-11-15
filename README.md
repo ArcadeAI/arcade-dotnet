@@ -35,7 +35,6 @@ using System;
 using ArcadeDotnet;
 using ArcadeDotnet.Models.Tools;
 
-// Configured using the ARCADE_API_KEY and ARCADE_BASE_URL environment variables
 ArcadeClient client = new();
 
 ToolExecuteParams parameters = new() { ToolName = "Google.ListEmails" };
@@ -45,7 +44,7 @@ var executeToolResponse = await client.Tools.Execute(parameters);
 Console.WriteLine(executeToolResponse);
 ```
 
-## Client Configuration
+## Client configuration
 
 Configure the client using environment variables:
 
@@ -72,6 +71,30 @@ See this table for the available options:
 | --------- | -------------------- | -------- | -------------------------- |
 | `APIKey`  | `ARCADE_API_KEY`     | true     | -                          |
 | `BaseUrl` | `ARCADE_BASE_URL`    | true     | `"https://api.arcade.dev"` |
+
+### Modifying configuration
+
+To temporarily use a modified client configuration, while reusing the same connection and thread pools, call `WithOptions` on any client or service:
+
+```csharp
+using System;
+
+var chatResponse = await client
+    .WithOptions(options =>
+        options with
+        {
+            BaseUrl = new("https://example.com"),
+            Timeout = TimeSpan.FromSeconds(42),
+        }
+    )
+    .Chat.Completions.Create();
+
+Console.WriteLine(chatResponse);
+```
+
+Using a [`with` expression](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression) makes it easy to construct the modified options.
+
+The `WithOptions` method does not affect the original client or service.
 
 ## Requests and responses
 
@@ -105,6 +128,110 @@ false
 - `ArcadeInvalidDataException`: Failure to interpret successfully parsed data. For example, when accessing a property that's supposed to be required, but the API unexpectedly omitted it from the response.
 
 - `ArcadeException`: Base class for all exceptions.
+
+## Network options
+
+### Retries
+
+The SDK automatically retries 2 times by default, with a short exponential backoff between requests.
+
+Only the following error types are retried:
+
+- Connection errors (for example, due to a network connectivity problem)
+- 408 Request Timeout
+- 409 Conflict
+- 429 Rate Limit
+- 5xx Internal
+
+The API may also explicitly instruct the SDK to retry or not retry a request.
+
+To set a custom number of retries, configure the client using the `MaxRetries` method:
+
+```csharp
+using ArcadeDotnet;
+
+ArcadeClient client = new() { MaxRetries = 3 };
+```
+
+Or configure a single method call using [`WithOptions`](#modifying-configuration):
+
+```csharp
+using System;
+
+var chatResponse = await client
+    .WithOptions(options =>
+        options with { MaxRetries = 3 }
+    )
+    .Chat.Completions.Create();
+
+Console.WriteLine(chatResponse);
+```
+
+### Timeouts
+
+Requests time out after 1 minute by default.
+
+To set a custom timeout, configure the client using the `Timeout` option:
+
+```csharp
+using System;
+using ArcadeDotnet;
+
+ArcadeClient client = new() { Timeout = TimeSpan.FromSeconds(42) };
+```
+
+Or configure a single method call using [`WithOptions`](#modifying-configuration):
+
+```csharp
+using System;
+
+var chatResponse = await client
+    .WithOptions(options =>
+        options with { Timeout = TimeSpan.FromSeconds(42) }
+    )
+    .Chat.Completions.Create();
+
+Console.WriteLine(chatResponse);
+```
+
+## Undocumented API functionality
+
+The SDK is typed for convenient usage of the documented API. However, it also supports working with undocumented or not yet supported parts of the API.
+
+### Response validation
+
+In rare cases, the API may return a response that doesn't match the expected type. For example, the SDK may expect a property to contain a `string`, but the API could return something else.
+
+By default, the SDK will not throw an exception in this case. It will throw `ArcadeInvalidDataException` only if you directly access the property.
+
+If you would prefer to check that the response is completely well-typed upfront, then either call `Validate`:
+
+```csharp
+var executeToolResponse = client.Tools.Execute(parameters);
+executeToolResponse.Validate();
+```
+
+Or configure the client using the `ResponseValidation` option:
+
+```csharp
+using ArcadeDotnet;
+
+ArcadeClient client = new() { ResponseValidation = true };
+```
+
+Or configure a single method call using [`WithOptions`](#modifying-configuration):
+
+```csharp
+using System;
+
+var executeToolResponse = await client
+    .WithOptions(options =>
+        options with { ResponseValidation = true }
+    )
+    .Tools.Execute(parameters);
+
+Console.WriteLine(executeToolResponse);
+```
 
 ## Semantic versioning
 
