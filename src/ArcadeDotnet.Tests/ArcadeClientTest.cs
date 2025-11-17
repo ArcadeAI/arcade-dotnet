@@ -166,13 +166,13 @@ public class ArcadeClientTest
     }
 
     [Fact]
-    public void Client_ShouldNotHaveHealthService()
+    public void Client_ShouldHaveHealthService()
     {
-        // Assert - Health should not be on interface
+        // Assert - Health should be on interface for operational monitoring
         var interfaceType = typeof(IArcadeClient);
         var healthProperty = interfaceType.GetProperty("Health");
         
-        Assert.Null(healthProperty); // Health removed from main client
+        Assert.NotNull(healthProperty); // Health service available
     }
 }
 

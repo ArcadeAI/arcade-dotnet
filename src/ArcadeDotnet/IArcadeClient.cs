@@ -5,6 +5,7 @@ using ArcadeDotnet.Core;
 using ArcadeDotnet.Services.Admin;
 using ArcadeDotnet.Services.Auth;
 using ArcadeDotnet.Services.Chat;
+using ArcadeDotnet.Services.Health;
 using ArcadeDotnet.Services.Tools;
 using ArcadeDotnet.Services.Workers;
 
@@ -29,6 +30,7 @@ public interface IArcadeClient
 
     IAuthService Auth { get; }
 
+    IHealthService Health { get; }
 
     IChatService Chat { get; }
 

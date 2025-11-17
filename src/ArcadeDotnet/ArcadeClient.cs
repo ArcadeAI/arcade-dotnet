@@ -6,6 +6,7 @@ using ArcadeDotnet.Exceptions;
 using ArcadeDotnet.Services.Admin;
 using ArcadeDotnet.Services.Auth;
 using ArcadeDotnet.Services.Chat;
+using ArcadeDotnet.Services.Health;
 using ArcadeDotnet.Services.Tools;
 using ArcadeDotnet.Services.Workers;
 
@@ -41,6 +42,10 @@ public sealed partial class ArcadeClient : IArcadeClient
     /// </summary>
     public IAuthService Auth { get; }
 
+    /// <summary>
+    /// Gets the health check service.
+    /// </summary>
+    public IHealthService Health { get; }
 
     /// <summary>
     /// Gets the chat service.
@@ -151,6 +156,7 @@ public sealed partial class ArcadeClient : IArcadeClient
         // Initialize services
         Admin = new AdminService(this);
         Auth = new AuthService(this);
+        Health = new HealthService(this);
         Chat = new ChatService(this);
         Tools = new ToolService(this);
         Workers = new WorkerService(this);
