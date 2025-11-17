@@ -25,4 +25,3 @@ app.MapGet("/health", async (IArcadeClient arcade) =>
 });
 
 app.Run();
-

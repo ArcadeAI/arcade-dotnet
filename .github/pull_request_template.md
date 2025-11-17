@@ -13,4 +13,3 @@
 ## Checklist
 - [ ] Code formatted (`dotnet format`)
 - [ ] Documentation updated
-

@@ -53,7 +53,7 @@ public sealed record ArcadeClientOptions
     {
         if (string.IsNullOrEmpty(url))
             return null;
-        
+
         try
         {
             return new Uri(url);
@@ -64,4 +64,3 @@ public sealed record ArcadeClientOptions
         }
     }
 }
-

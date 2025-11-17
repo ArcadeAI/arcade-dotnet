@@ -7,4 +7,3 @@
     <ProjectReference Include="..\..\src\ArcadeDotnet\ArcadeDotnet.csproj" />
   </ItemGroup>
 </Project>
-

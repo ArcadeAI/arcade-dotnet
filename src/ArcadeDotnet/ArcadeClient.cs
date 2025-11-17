@@ -141,11 +141,11 @@ public sealed partial class ArcadeClient : IArcadeClient
         ArgumentNullException.ThrowIfNull(options);
 
         // Configure base URL
-        BaseUrl = options.BaseUrl 
+        BaseUrl = options.BaseUrl
             ?? new Uri(ArcadeClientOptions.DefaultBaseUrl);
 
         // Configure API key (required)
-        APIKey = options.ApiKey 
+        APIKey = options.ApiKey
             ?? throw new ArcadeInvalidDataException(
                 $"API key is required. Set via {nameof(ArcadeClientOptions)}.{nameof(ArcadeClientOptions.ApiKey)} " +
                 $"or {ArcadeClientOptions.ApiKeyEnvironmentVariable} environment variable.");

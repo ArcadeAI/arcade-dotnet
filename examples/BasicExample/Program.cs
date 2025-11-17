@@ -35,7 +35,7 @@ class Program
 
             var result = await client.Tools.Execute(executeParams);
             result.Validate();
-            
+
             Console.WriteLine($"✅ Tool executed successfully!");
             Console.WriteLine($"   Execution ID: {result.ExecutionID}");
             Console.WriteLine($"   Status: {result.Status}");
@@ -70,7 +70,7 @@ class Program
             Console.WriteLine("   Authorizing tool access...");
             var authResponse = await client.Tools.Authorize(authorizeParams);
             authResponse.Validate();
-            
+
             Console.WriteLine($"   ✅ Authorization initiated!");
             if (authResponse.Status != null)
             {
@@ -81,7 +81,7 @@ class Program
                 Console.WriteLine($"   OAuth URL: {authResponse.URL}");
             }
             Console.WriteLine($"   Note: Complete OAuth flow, then use UserID in Execute()");
-            
+
             // After OAuth completes, execute with UserID:
             // var executeParams = new ToolExecuteParams
             // {
@@ -108,7 +108,7 @@ class Program
             tools.Validate();
             var count = tools.Items?.Count ?? 0;
             Console.WriteLine($"✅ Found {count} available tools");
-            
+
             if (tools.Items != null && tools.Items.Count > 0)
             {
                 Console.WriteLine($"   First tool: {tools.Items[0].Name}");

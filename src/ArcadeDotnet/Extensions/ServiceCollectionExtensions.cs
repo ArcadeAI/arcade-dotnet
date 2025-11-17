@@ -25,7 +25,7 @@ public static class ServiceCollectionExtensions
             client.BaseAddress = baseUrl ?? new Uri(ArcadeClientOptions.DefaultBaseUrl);
             client.DefaultRequestHeaders.UserAgent.ParseAdd("arcade-dotnet/0.2.0");
         });
-        
+
         services.AddSingleton<IArcadeClient>(sp =>
         {
             var httpClientFactory = sp.GetRequiredService<IHttpClientFactory>();
@@ -55,7 +55,7 @@ public static class ServiceCollectionExtensions
             client.BaseAddress = baseUrl ?? new Uri(ArcadeClientOptions.DefaultBaseUrl);
             client.DefaultRequestHeaders.UserAgent.ParseAdd("arcade-dotnet/0.2.0");
         });
-        
+
         services.AddSingleton<IArcadeClient>(sp =>
         {
             var httpClientFactory = sp.GetRequiredService<IHttpClientFactory>();
@@ -70,4 +70,3 @@ public static class ServiceCollectionExtensions
         return services;
     }
 }
-
