@@ -4,10 +4,6 @@ namespace ArcadeDotnet.Tests.Services.Health;
 
 public class HealthServiceTest : TestBase
 {
-    [Fact]
-    public async Task Check_Works()
-    {
-        var healthSchema = await this.Client.Health.Check();
-        healthSchema.Validate();
-    }
+    // Health service removed from main client - it's for ops/monitoring, not business logic
+    // If needed, health checks can be done directly via HTTP GET to /v1/health
 }

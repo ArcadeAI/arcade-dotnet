@@ -6,7 +6,6 @@ using ArcadeDotnet.Exceptions;
 using ArcadeDotnet.Services.Admin;
 using ArcadeDotnet.Services.Auth;
 using ArcadeDotnet.Services.Chat;
-using ArcadeDotnet.Services.Health;
 using ArcadeDotnet.Services.Tools;
 using ArcadeDotnet.Services.Workers;
 
@@ -16,18 +15,11 @@ namespace ArcadeDotnet;
 /// The main client for interacting with the Arcade API.
 /// </summary>
 /// <remarks>
-/// Implements <see cref="IDisposable"/> for proper resource management.
 /// When using dependency injection, register as a singleton.
 /// </remarks>
-public sealed class ArcadeClient : IArcadeClient, IDisposable
+public sealed partial class ArcadeClient : IArcadeClient
 {
-    private readonly bool _ownsHttpClient;
     private readonly HttpClient _httpClient;
-
-    /// <summary>
-    /// Gets the HttpClient instance used for making HTTP requests.
-    /// </summary>
-    public HttpClient HttpClient => _httpClient;
 
     /// <summary>
     /// Gets the base URL for the API.
@@ -49,10 +41,6 @@ public sealed class ArcadeClient : IArcadeClient, IDisposable
     /// </summary>
     public IAuthService Auth { get; }
 
-    /// <summary>
-    /// Gets the health check service.
-    /// </summary>
-    public IHealthService Health { get; }
 
     /// <summary>
     /// Gets the chat service.
@@ -92,7 +80,7 @@ public sealed class ArcadeClient : IArcadeClient, IDisposable
         HttpResponseMessage responseMessage;
         try
         {
-            responseMessage = await HttpClient
+            responseMessage = await _httpClient
                 .SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead)
                 .ConfigureAwait(false);
         }
@@ -121,10 +109,19 @@ public sealed class ArcadeClient : IArcadeClient, IDisposable
         return new ArcadeResponse { Message = responseMessage };
     }
 
+
     /// <summary>
     /// Initializes a new instance using configuration from environment variables.
     /// </summary>
-    public ArcadeClient() : this(ArcadeClientOptions.FromEnvironment())
+    /// <remarks>
+    /// Reads ARCADE_API_KEY and ARCADE_BASE_URL from environment variables.
+    /// Creates a new HttpClient instance for this client.
+    /// </remarks>
+    public ArcadeClient() : this(new ArcadeClientOptions
+    {
+        ApiKey = Environment.GetEnvironmentVariable(ArcadeClientOptions.ApiKeyEnvironmentVariable),
+        BaseUrl = TryParseBaseUrl(Environment.GetEnvironmentVariable(ArcadeClientOptions.BaseUrlEnvironmentVariable))
+    })
     {
     }
 
@@ -148,35 +145,17 @@ public sealed class ArcadeClient : IArcadeClient, IDisposable
                 $"API key is required. Set via {nameof(ArcadeClientOptions)}.{nameof(ArcadeClientOptions.ApiKey)} " +
                 $"or {ArcadeClientOptions.ApiKeyEnvironmentVariable} environment variable.");
 
-        // Configure HttpClient
-        if (options.HttpClient != null)
-        {
-            _httpClient = options.HttpClient;
-            _ownsHttpClient = false;
-        }
-        else
-        {
-            _httpClient = new HttpClient();
-            _ownsHttpClient = true;
-        }
+        // HttpClient: use provided or create new (caller responsible for disposal)
+        _httpClient = options.HttpClient ?? new HttpClient();
 
         // Initialize services
         Admin = new AdminService(this);
         Auth = new AuthService(this);
-        Health = new HealthService(this);
         Chat = new ChatService(this);
         Tools = new ToolService(this);
         Workers = new WorkerService(this);
     }
 
-    /// <summary>
-    /// Disposes resources.
-    /// </summary>
-    public void Dispose()
-    {
-        if (_ownsHttpClient)
-        {
-            _httpClient.Dispose();
-        }
-    }
+    private static Uri? TryParseBaseUrl(string? url) =>
+        string.IsNullOrEmpty(url) ? null : new Uri(url);
 }

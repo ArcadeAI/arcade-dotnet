@@ -35,28 +35,10 @@ public sealed record ArcadeClientOptions
 
     /// <summary>
     /// Gets the HttpClient instance to use for requests.
+    /// If not provided, ArcadeClient will use a shared instance (not recommended for production).
     /// </summary>
     public HttpClient? HttpClient { get; init; }
 
-    /// <summary>
-    /// Creates options from environment variables.
-    /// </summary>
-    /// <returns>A new <see cref="ArcadeClientOptions"/> instance.</returns>
-    public static ArcadeClientOptions FromEnvironment() => new()
-    {
-        ApiKey = Environment.GetEnvironmentVariable(ApiKeyEnvironmentVariable),
-        BaseUrl = TryParseBaseUrl(Environment.GetEnvironmentVariable(BaseUrlEnvironmentVariable))
-    };
-
-    /// <summary>
-    /// Creates options with the specified API key.
-    /// </summary>
-    /// <param name="apiKey">The API key.</param>
-    /// <returns>A new <see cref="ArcadeClientOptions"/> instance.</returns>
-    public static ArcadeClientOptions WithApiKey(string apiKey) => new()
-    {
-        ApiKey = apiKey
-    };
 
     private static Uri? TryParseBaseUrl(string? url) =>
         string.IsNullOrEmpty(url) ? null : new Uri(url);

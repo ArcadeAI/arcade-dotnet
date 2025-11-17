@@ -5,7 +5,6 @@ using ArcadeDotnet.Core;
 using ArcadeDotnet.Services.Admin;
 using ArcadeDotnet.Services.Auth;
 using ArcadeDotnet.Services.Chat;
-using ArcadeDotnet.Services.Health;
 using ArcadeDotnet.Services.Tools;
 using ArcadeDotnet.Services.Workers;
 
@@ -16,11 +15,6 @@ namespace ArcadeDotnet;
 /// </summary>
 public interface IArcadeClient
 {
-    /// <summary>
-    /// Gets the HttpClient instance used for making HTTP requests.
-    /// </summary>
-    HttpClient HttpClient { get; }
-
     /// <summary>
     /// Gets the base URL for the API.
     /// </summary>
@@ -35,7 +29,6 @@ public interface IArcadeClient
 
     IAuthService Auth { get; }
 
-    IHealthService Health { get; }
 
     IChatService Chat { get; }
 
