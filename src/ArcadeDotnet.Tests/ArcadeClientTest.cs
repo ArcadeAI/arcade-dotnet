@@ -157,13 +157,6 @@ public class ArcadeClientTest
     [Fact]
     public void Client_ShouldNotExposeHttpClient()
     {
-        // Arrange
-        var client = new ArcadeClient(new ArcadeClientOptions
-        {
-            ApiKey = "test-key",
-            HttpClient = new HttpClient()
-        });
-
         // Assert - HttpClient should not be on public interface
         var type = typeof(ArcadeClient);
         var property = type.GetProperty("HttpClient", 
@@ -175,13 +168,6 @@ public class ArcadeClientTest
     [Fact]
     public void Client_ShouldNotHaveHealthService()
     {
-        // Arrange
-        var client = new ArcadeClient(new ArcadeClientOptions
-        {
-            ApiKey = "test-key",
-            HttpClient = new HttpClient()
-        });
-
         // Assert - Health should not be on interface
         var interfaceType = typeof(IArcadeClient);
         var healthProperty = interfaceType.GetProperty("Health");
