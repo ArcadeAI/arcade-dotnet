@@ -1,0 +1,28 @@
+# Mark generated files
+src/ArcadeDotnet/Models/** linguist-generated=true
+src/ArcadeDotnet/Core/ModelBase.cs linguist-generated=true
+src/ArcadeDotnet/Core/ModelConverter.cs linguist-generated=true
+src/ArcadeDotnet/Core/ParamsBase.cs linguist-generated=true
+
+# Line endings - preserve original for generated code
+src/ArcadeDotnet/Models/** -text
+src/ArcadeDotnet/Core/ModelBase.cs -text
+src/ArcadeDotnet/Core/ModelConverter.cs -text
+src/ArcadeDotnet/Core/ParamsBase.cs -text
+src/ArcadeDotnet/Services/** -text
+
+# New code uses LF
+src/ArcadeDotnet/Extensions/** text eol=lf
+src/ArcadeDotnet.Tests/Extensions/** text eol=lf
+examples/** text eol=lf
+docs/** text eol=lf
+.github/** text eol=lf
+
+# Binary files
+*.dll binary
+*.exe binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+

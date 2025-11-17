@@ -39,8 +39,29 @@ public sealed record ArcadeClientOptions
     /// </summary>
     public HttpClient? HttpClient { get; init; }
 
+    /// <summary>
+    /// Gets the IHttpClientFactory to use for creating HttpClient instances.
+    /// </summary>
+    public IHttpClientFactory? HttpClientFactory { get; init; }
 
-    private static Uri? TryParseBaseUrl(string? url) =>
-        string.IsNullOrEmpty(url) ? null : new Uri(url);
+    /// <summary>
+    /// Gets the named HttpClient name to use with IHttpClientFactory.
+    /// </summary>
+    public string HttpClientName { get; init; } = "ArcadeClient";
+
+    internal static Uri? TryParseBaseUrl(string? url)
+    {
+        if (string.IsNullOrEmpty(url))
+            return null;
+        
+        try
+        {
+            return new Uri(url);
+        }
+        catch (UriFormatException)
+        {
+            return null;
+        }
+    }
 }
 

@@ -19,7 +19,7 @@ public static class ArcadeClientFactory
         return new ArcadeClient(new ArcadeClientOptions
         {
             ApiKey = Environment.GetEnvironmentVariable(ArcadeClientOptions.ApiKeyEnvironmentVariable),
-            BaseUrl = TryParseBaseUrl(Environment.GetEnvironmentVariable(ArcadeClientOptions.BaseUrlEnvironmentVariable)),
+            BaseUrl = ArcadeClientOptions.TryParseBaseUrl(Environment.GetEnvironmentVariable(ArcadeClientOptions.BaseUrlEnvironmentVariable)),
             HttpClient = _sharedHttpClient.Value
         });
     }
@@ -38,7 +38,5 @@ public static class ArcadeClientFactory
         });
     }
 
-    private static Uri? TryParseBaseUrl(string? url) =>
-        string.IsNullOrEmpty(url) ? null : new Uri(url);
 }
 

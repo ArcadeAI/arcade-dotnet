@@ -125,7 +125,7 @@ public sealed partial class ArcadeClient : IArcadeClient
     public ArcadeClient() : this(new ArcadeClientOptions
     {
         ApiKey = Environment.GetEnvironmentVariable(ArcadeClientOptions.ApiKeyEnvironmentVariable),
-        BaseUrl = TryParseBaseUrl(Environment.GetEnvironmentVariable(ArcadeClientOptions.BaseUrlEnvironmentVariable))
+        BaseUrl = ArcadeClientOptions.TryParseBaseUrl(Environment.GetEnvironmentVariable(ArcadeClientOptions.BaseUrlEnvironmentVariable))
     })
     {
     }
@@ -151,7 +151,9 @@ public sealed partial class ArcadeClient : IArcadeClient
                 $"or {ArcadeClientOptions.ApiKeyEnvironmentVariable} environment variable.");
 
         // HttpClient: use provided or create new (caller responsible for disposal)
-        _httpClient = options.HttpClient ?? new HttpClient();
+        _httpClient = options.HttpClientFactory?.CreateClient(options.HttpClientName ?? "ArcadeClient")
+            ?? options.HttpClient
+            ?? new HttpClient();
 
         // Initialize services
         Admin = new AdminService(this);
@@ -162,6 +164,4 @@ public sealed partial class ArcadeClient : IArcadeClient
         Workers = new WorkerService(this);
     }
 
-    private static Uri? TryParseBaseUrl(string? url) =>
-        string.IsNullOrEmpty(url) ? null : new Uri(url);
 }
