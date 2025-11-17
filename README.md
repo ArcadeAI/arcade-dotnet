@@ -30,19 +30,79 @@ This library requires .NET 8 or later.
 
 See the [`examples`](examples) directory for complete and runnable examples.
 
+### Execute a Tool
+
+**Simple tool (no OAuth):**
 ```csharp
-using System;
 using ArcadeDotnet;
 using ArcadeDotnet.Models.Tools;
 
-// Configured using the ARCADE_API_KEY and ARCADE_BASE_URL environment variables
-ArcadeClient client = new();
+var client = new ArcadeClient();
 
-ToolExecuteParams parameters = new() { ToolName = "Google.ListEmails" };
+var executeParams = new ToolExecuteParams
+{
+    ToolName = "CheckArcadeEngineHealth" // Example: simple tool
+};
 
-var executeToolResponse = await client.Tools.Execute(parameters);
+var result = await client.Tools.Execute(executeParams);
+result.Validate();
+Console.WriteLine($"Execution ID: {result.ExecutionID}");
+Console.WriteLine($"Status: {result.Status}");
+```
 
-Console.WriteLine(executeToolResponse);
+**Tool requiring OAuth (e.g., GitHub):**
+```csharp
+// Step 1: Authorize the tool
+var authResponse = await client.Tools.Authorize(new ToolAuthorizeParams
+{
+    ToolName = "GitHub.ListRepositories"
+});
+
+// Step 2: After OAuth completes, execute with UserID
+var executeParams = new ToolExecuteParams
+{
+    ToolName = "GitHub.ListRepositories",
+    UserID = authResponse.UserID // From authorization response
+};
+
+var result = await client.Tools.Execute(executeParams);
+```
+
+### List Available Tools
+
+```csharp
+using ArcadeDotnet;
+
+var client = new ArcadeClient();
+var tools = await client.Tools.List();
+tools.Validate();
+Console.WriteLine($"Found {tools.Items?.Count ?? 0} tools");
+```
+
+### With Options
+
+```csharp
+using ArcadeDotnet;
+using System.Net.Http;
+
+var client = new ArcadeClient(new ArcadeClientOptions
+{
+    ApiKey = "your-api-key",
+    BaseUrl = new Uri("https://api.arcade.dev"),
+    HttpClient = new HttpClient() // Optional: inject your own HttpClient
+});
+```
+
+### Using Factory
+
+```csharp
+using ArcadeDotnet;
+
+// Factory method with shared HttpClient
+var client = ArcadeClientFactory.Create("your-api-key");
+
+// Or using environment variables
+var clientFromEnv = ArcadeClientFactory.Create();
 ```
 
 ## Client Configuration
@@ -53,25 +113,30 @@ Configure the client using environment variables:
 using ArcadeDotnet;
 
 // Configured using the ARCADE_API_KEY and ARCADE_BASE_URL environment variables
-ArcadeClient client = new();
+var client = new ArcadeClient();
 ```
 
-Or manually:
+Or with explicit options:
 
 ```csharp
 using ArcadeDotnet;
+using System.Net.Http;
 
-ArcadeClient client = new() { APIKey = "My API Key" };
+var client = new ArcadeClient(new ArcadeClientOptions
+{
+    ApiKey = "your-api-key",
+    BaseUrl = new Uri("https://api.arcade.dev"),
+    HttpClient = new HttpClient() // Optional
+});
 ```
-
-Or using a combination of the two approaches.
 
 See this table for the available options:
 
-| Property  | Environment variable | Required | Default value              |
-| --------- | -------------------- | -------- | -------------------------- |
-| `APIKey`  | `ARCADE_API_KEY`     | true     | -                          |
-| `BaseUrl` | `ARCADE_BASE_URL`    | true     | `"https://api.arcade.dev"` |
+| Property     | Environment variable | Required | Default value              |
+| ------------ | ------------------- | -------- | ------------------------- |
+| `ApiKey`     | `ARCADE_API_KEY`    | true     | -                         |
+| `BaseUrl`    | `ARCADE_BASE_URL`   | false    | `"https://api.arcade.dev"` |
+| `HttpClient` | -                   | false    | New instance created      |
 
 ## Requests and responses
 
