@@ -144,8 +144,11 @@ public class ArcadeClientEdgeCasesTest
 
         try
         {
-            // Act & Assert - Should throw because URL parsing fails
-            Assert.Throws<UriFormatException>(() => new ArcadeClient());
+            // Act - Invalid URL should be ignored and default used
+            var client = new ArcadeClient();
+
+            // Assert - Should use default base URL
+            Assert.Equal(new Uri(ArcadeClientOptions.DefaultBaseUrl), client.BaseUrl);
         }
         finally
         {
