@@ -12,115 +12,171 @@ using ArcadeDotnet.Services.Workers;
 
 namespace ArcadeDotnet;
 
-public sealed class ArcadeClient : IArcadeClient
+/// <summary>
+/// The main client for interacting with the Arcade API.
+/// </summary>
+/// <remarks>
+/// Implements <see cref="IDisposable"/> for proper resource management.
+/// When using dependency injection, register as a singleton.
+/// </remarks>
+public sealed class ArcadeClient : IArcadeClient, IDisposable
 {
-    public HttpClient HttpClient { get; init; } = new();
+    private readonly bool _ownsHttpClient;
+    private readonly HttpClient _httpClient;
 
-    Lazy<Uri> _baseUrl = new(() =>
-        new Uri(Environment.GetEnvironmentVariable("ARCADE_BASE_URL") ?? "https://api.arcade.dev")
-    );
-    public Uri BaseUrl
-    {
-        get { return _baseUrl.Value; }
-        init { _baseUrl = new(() => value); }
-    }
+    /// <summary>
+    /// Gets the HttpClient instance used for making HTTP requests.
+    /// </summary>
+    public HttpClient HttpClient => _httpClient;
 
-    Lazy<string> _apiKey = new(() =>
-        Environment.GetEnvironmentVariable("ARCADE_API_KEY")
-        ?? throw new ArcadeInvalidDataException(
-            string.Format("{0} cannot be null", nameof(APIKey)),
-            new ArgumentNullException(nameof(APIKey))
-        )
-    );
-    public string APIKey
-    {
-        get { return _apiKey.Value; }
-        init { _apiKey = new(() => value); }
-    }
+    /// <summary>
+    /// Gets the base URL for the API.
+    /// </summary>
+    public Uri BaseUrl { get; }
 
-    readonly Lazy<IAdminService> _admin;
-    public IAdminService Admin
-    {
-        get { return _admin.Value; }
-    }
+    /// <summary>
+    /// Gets the API key used for authorization.
+    /// </summary>
+    public string APIKey { get; }
 
-    readonly Lazy<IAuthService> _auth;
-    public IAuthService Auth
-    {
-        get { return _auth.Value; }
-    }
+    /// <summary>
+    /// Gets the admin service for administrative operations.
+    /// </summary>
+    public IAdminService Admin { get; }
 
-    readonly Lazy<IHealthService> _health;
-    public IHealthService Health
-    {
-        get { return _health.Value; }
-    }
+    /// <summary>
+    /// Gets the authentication service.
+    /// </summary>
+    public IAuthService Auth { get; }
 
-    readonly Lazy<IChatService> _chat;
-    public IChatService Chat
-    {
-        get { return _chat.Value; }
-    }
+    /// <summary>
+    /// Gets the health check service.
+    /// </summary>
+    public IHealthService Health { get; }
 
-    readonly Lazy<IToolService> _tools;
-    public IToolService Tools
-    {
-        get { return _tools.Value; }
-    }
+    /// <summary>
+    /// Gets the chat service.
+    /// </summary>
+    public IChatService Chat { get; }
 
-    readonly Lazy<IWorkerService> _workers;
-    public IWorkerService Workers
-    {
-        get { return _workers.Value; }
-    }
+    /// <summary>
+    /// Gets the tool service.
+    /// </summary>
+    public IToolService Tools { get; }
 
-    public async Task<HttpResponse> Execute<T>(HttpRequest<T> request)
-        where T : ParamsBase
+    /// <summary>
+    /// Gets the worker service.
+    /// </summary>
+    public IWorkerService Workers { get; }
+
+    /// <summary>
+    /// Executes an API request and returns the response.
+    /// </summary>
+    /// <typeparam name="TParams">The type of parameters.</typeparam>
+    /// <param name="request">The request to execute.</param>
+    /// <returns>The API response.</returns>
+    /// <exception cref="ArcadeIOException">Thrown when an I/O error occurs.</exception>
+    /// <exception cref="ArcadeApiException">Thrown when the API returns an error.</exception>
+    public async Task<ArcadeResponse> Execute<TParams>(ArcadeRequest<TParams> request)
+        where TParams : ParamsBase
     {
+        ArgumentNullException.ThrowIfNull(request);
+        ArgumentNullException.ThrowIfNull(request.Params);
+
         using HttpRequestMessage requestMessage = new(request.Method, request.Params.Url(this))
         {
             Content = request.Params.BodyContent(),
         };
         request.Params.AddHeadersToRequest(requestMessage, this);
+
         HttpResponseMessage responseMessage;
         try
         {
-            responseMessage = await this
-                .HttpClient.SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead)
+            responseMessage = await HttpClient
+                .SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead)
                 .ConfigureAwait(false);
         }
-        catch (HttpRequestException e1)
+        catch (HttpRequestException ex)
         {
-            throw new ArcadeIOException("I/O exception", e1);
+            throw new ArcadeIOException("I/O exception occurred during HTTP request", ex);
         }
+
         if (!responseMessage.IsSuccessStatusCode)
         {
             try
             {
-                throw ArcadeExceptionFactory.CreateApiException(
-                    responseMessage.StatusCode,
-                    await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false)
-                );
+                var responseBody = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                throw ArcadeExceptionFactory.CreateApiException(responseMessage.StatusCode, responseBody);
             }
-            catch (HttpRequestException e)
+            catch (HttpRequestException ex)
             {
-                throw new ArcadeIOException("I/O Exception", e);
+                throw new ArcadeIOException("I/O exception occurred while reading error response", ex);
             }
             finally
             {
                 responseMessage.Dispose();
             }
         }
-        return new() { Message = responseMessage };
+
+        return new ArcadeResponse { Message = responseMessage };
     }
 
-    public ArcadeClient()
+    /// <summary>
+    /// Initializes a new instance using configuration from environment variables.
+    /// </summary>
+    public ArcadeClient() : this(ArcadeClientOptions.FromEnvironment())
     {
-        _admin = new(() => new AdminService(this));
-        _auth = new(() => new AuthService(this));
-        _health = new(() => new HealthService(this));
-        _chat = new(() => new ChatService(this));
-        _tools = new(() => new ToolService(this));
-        _workers = new(() => new WorkerService(this));
+    }
+
+    /// <summary>
+    /// Initializes a new instance with the specified options.
+    /// </summary>
+    /// <param name="options">The configuration options.</param>
+    /// <exception cref="ArgumentNullException">Thrown when options is null.</exception>
+    /// <exception cref="ArcadeInvalidDataException">Thrown when required configuration is missing.</exception>
+    public ArcadeClient(ArcadeClientOptions options)
+    {
+        ArgumentNullException.ThrowIfNull(options);
+
+        // Configure base URL
+        BaseUrl = options.BaseUrl 
+            ?? new Uri(ArcadeClientOptions.DefaultBaseUrl);
+
+        // Configure API key (required)
+        APIKey = options.ApiKey 
+            ?? throw new ArcadeInvalidDataException(
+                $"API key is required. Set via {nameof(ArcadeClientOptions)}.{nameof(ArcadeClientOptions.ApiKey)} " +
+                $"or {ArcadeClientOptions.ApiKeyEnvironmentVariable} environment variable.");
+
+        // Configure HttpClient
+        if (options.HttpClient != null)
+        {
+            _httpClient = options.HttpClient;
+            _ownsHttpClient = false;
+        }
+        else
+        {
+            _httpClient = new HttpClient();
+            _ownsHttpClient = true;
+        }
+
+        // Initialize services
+        Admin = new AdminService(this);
+        Auth = new AuthService(this);
+        Health = new HealthService(this);
+        Chat = new ChatService(this);
+        Tools = new ToolService(this);
+        Workers = new WorkerService(this);
+    }
+
+    /// <summary>
+    /// Disposes resources.
+    /// </summary>
+    public void Dispose()
+    {
+        if (_ownsHttpClient)
+        {
+            _httpClient.Dispose();
+        }
     }
 }

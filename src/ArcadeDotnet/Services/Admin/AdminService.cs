@@ -7,28 +7,31 @@ namespace ArcadeDotnet.Services.Admin;
 
 public sealed class AdminService : IAdminService
 {
+    /// <summary>
+    /// Gets the user connections service.
+    /// </summary>
+    public IUserConnectionService UserConnections { get; }
+
+    /// <summary>
+    /// Gets the auth providers service.
+    /// </summary>
+    public IAuthProviderService AuthProviders { get; }
+
+    /// <summary>
+    /// Gets the secrets service.
+    /// </summary>
+    public ISecretService Secrets { get; }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AdminService"/> class.
+    /// </summary>
+    /// <param name="client">The Arcade client instance.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="client"/> is null.</exception>
     public AdminService(IArcadeClient client)
     {
-        _userConnections = new(() => new UserConnectionService(client));
-        _authProviders = new(() => new AuthProviderService(client));
-        _secrets = new(() => new SecretService(client));
-    }
-
-    readonly Lazy<IUserConnectionService> _userConnections;
-    public IUserConnectionService UserConnections
-    {
-        get { return _userConnections.Value; }
-    }
-
-    readonly Lazy<IAuthProviderService> _authProviders;
-    public IAuthProviderService AuthProviders
-    {
-        get { return _authProviders.Value; }
-    }
-
-    readonly Lazy<ISecretService> _secrets;
-    public ISecretService Secrets
-    {
-        get { return _secrets.Value; }
+        ArgumentNullException.ThrowIfNull(client);
+        UserConnections = new UserConnectionService(client);
+        AuthProviders = new AuthProviderService(client);
+        Secrets = new SecretService(client);
     }
 }

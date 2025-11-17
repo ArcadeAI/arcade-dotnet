@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
@@ -7,23 +8,24 @@ namespace ArcadeDotnet.Services.Health;
 
 public sealed class HealthService : IHealthService
 {
-    readonly IArcadeClient _client;
+    private readonly IArcadeClient _client;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="HealthService"/> class.
+    /// </summary>
+    /// <param name="client">The Arcade client instance.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="client"/> is null.</exception>
     public HealthService(IArcadeClient client)
     {
+        ArgumentNullException.ThrowIfNull(client);
         _client = client;
     }
 
     public async Task<HealthSchema> Check(HealthCheckParams? parameters = null)
     {
         parameters ??= new();
-
-        HttpRequest<HealthCheckParams> request = new()
-        {
-            Method = HttpMethod.Get,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<HealthCheckParams>(HttpMethod.Get, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<HealthSchema>().ConfigureAwait(false);
     }
 }

@@ -11,66 +11,57 @@ namespace ArcadeDotnet.Services.Tools;
 
 public sealed class ToolService : IToolService
 {
-    readonly IArcadeClient _client;
+    private readonly IArcadeClient _client;
 
+    /// <summary>
+    /// Gets the scheduled tools service.
+    /// </summary>
+    public IScheduledService Scheduled { get; }
+
+    /// <summary>
+    /// Gets the formatted tools service.
+    /// </summary>
+    public IFormattedService Formatted { get; }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ToolService"/> class.
+    /// </summary>
+    /// <param name="client">The Arcade client instance.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="client"/> is null.</exception>
     public ToolService(IArcadeClient client)
     {
+        ArgumentNullException.ThrowIfNull(client);
         _client = client;
-        _scheduled = new(() => new ScheduledService(client));
-        _formatted = new(() => new FormattedService(client));
-    }
-
-    readonly Lazy<IScheduledService> _scheduled;
-    public IScheduledService Scheduled
-    {
-        get { return _scheduled.Value; }
-    }
-
-    readonly Lazy<IFormattedService> _formatted;
-    public IFormattedService Formatted
-    {
-        get { return _formatted.Value; }
+        Scheduled = new ScheduledService(client);
+        Formatted = new FormattedService(client);
     }
 
     public async Task<ToolListPageResponse> List(ToolListParams? parameters = null)
     {
         parameters ??= new();
-
-        HttpRequest<ToolListParams> request = new()
-        {
-            Method = HttpMethod.Get,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<ToolListParams>(HttpMethod.Get, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<ToolListPageResponse>().ConfigureAwait(false);
     }
 
     public async Task<AuthorizationResponse> Authorize(ToolAuthorizeParams parameters)
     {
-        HttpRequest<ToolAuthorizeParams> request = new()
-        {
-            Method = HttpMethod.Post,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<ToolAuthorizeParams>(HttpMethod.Post, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<AuthorizationResponse>().ConfigureAwait(false);
     }
 
     public async Task<ExecuteToolResponse> Execute(ToolExecuteParams parameters)
     {
-        HttpRequest<ToolExecuteParams> request = new()
-        {
-            Method = HttpMethod.Post,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<ToolExecuteParams>(HttpMethod.Post, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<ExecuteToolResponse>().ConfigureAwait(false);
     }
 
     public async Task<ToolDefinition> Get(ToolGetParams parameters)
     {
-        HttpRequest<ToolGetParams> request = new() { Method = HttpMethod.Get, Params = parameters };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<ToolGetParams>(HttpMethod.Get, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<ToolDefinition>().ConfigureAwait(false);
     }
 }

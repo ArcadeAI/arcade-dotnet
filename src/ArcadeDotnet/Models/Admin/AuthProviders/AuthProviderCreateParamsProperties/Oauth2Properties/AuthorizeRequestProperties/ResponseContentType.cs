@@ -12,7 +12,7 @@ public enum ResponseContentType
     ApplicationJson,
 }
 
-sealed class ResponseContentTypeConverter : JsonConverter<ResponseContentType>
+internal sealed class ResponseContentTypeConverter : JsonConverter<ResponseContentType>
 {
     public override ResponseContentType Read(
         ref Utf8JsonReader reader,
@@ -43,7 +43,7 @@ sealed class ResponseContentTypeConverter : JsonConverter<ResponseContentType>
                     "application/x-www-form-urlencoded",
                 ResponseContentType.ApplicationJson => "application/json",
                 _ => throw new ArcadeInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                    $"Invalid value '{value}' in {nameof(value)}"
                 ),
             },
             options

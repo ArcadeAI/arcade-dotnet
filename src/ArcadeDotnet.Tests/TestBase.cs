@@ -3,18 +3,18 @@ using ArcadeDotnet;
 
 namespace ArcadeDotnet.Tests;
 
-public class TestBase
+public abstract class TestBase
 {
-    protected IArcadeClient client;
+    protected readonly IArcadeClient Client;
 
-    public TestBase()
+    protected TestBase()
     {
-        client = new ArcadeClient()
+        Client = new ArcadeClient(new ArcadeClientOptions
         {
             BaseUrl = new Uri(
                 Environment.GetEnvironmentVariable("TEST_API_BASE_URL") ?? "http://localhost:4010"
             ),
-            APIKey = "My API Key",
-        };
+            ApiKey = "My API Key"
+        });
     }
 }

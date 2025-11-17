@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
@@ -7,67 +8,52 @@ namespace ArcadeDotnet.Services.Admin.AuthProviders;
 
 public sealed class AuthProviderService : IAuthProviderService
 {
-    readonly IArcadeClient _client;
+    private readonly IArcadeClient _client;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AuthProviderService"/> class.
+    /// </summary>
+    /// <param name="client">The Arcade client instance.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="client"/> is null.</exception>
     public AuthProviderService(IArcadeClient client)
     {
+        ArgumentNullException.ThrowIfNull(client);
         _client = client;
     }
 
     public async Task<AuthProviderResponse> Create(AuthProviderCreateParams parameters)
     {
-        HttpRequest<AuthProviderCreateParams> request = new()
-        {
-            Method = HttpMethod.Post,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<AuthProviderCreateParams>(HttpMethod.Post, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<AuthProviderResponse>().ConfigureAwait(false);
     }
 
     public async Task<AuthProviderListResponse> List(AuthProviderListParams? parameters = null)
     {
         parameters ??= new();
-
-        HttpRequest<AuthProviderListParams> request = new()
-        {
-            Method = HttpMethod.Get,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<AuthProviderListParams>(HttpMethod.Get, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<AuthProviderListResponse>().ConfigureAwait(false);
     }
 
     public async Task<AuthProviderResponse> Delete(AuthProviderDeleteParams parameters)
     {
-        HttpRequest<AuthProviderDeleteParams> request = new()
-        {
-            Method = HttpMethod.Delete,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<AuthProviderDeleteParams>(HttpMethod.Delete, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<AuthProviderResponse>().ConfigureAwait(false);
     }
 
     public async Task<AuthProviderResponse> Get(AuthProviderGetParams parameters)
     {
-        HttpRequest<AuthProviderGetParams> request = new()
-        {
-            Method = HttpMethod.Get,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<AuthProviderGetParams>(HttpMethod.Get, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<AuthProviderResponse>().ConfigureAwait(false);
     }
 
     public async Task<AuthProviderResponse> Patch(AuthProviderPatchParams parameters)
     {
-        HttpRequest<AuthProviderPatchParams> request = new()
-        {
-            Method = HttpMethod.Patch,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<AuthProviderPatchParams>(HttpMethod.Patch, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<AuthProviderResponse>().ConfigureAwait(false);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
@@ -7,89 +8,65 @@ namespace ArcadeDotnet.Services.Workers;
 
 public sealed class WorkerService : IWorkerService
 {
-    readonly IArcadeClient _client;
+    private readonly IArcadeClient _client;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="WorkerService"/> class.
+    /// </summary>
+    /// <param name="client">The Arcade client instance.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="client"/> is null.</exception>
     public WorkerService(IArcadeClient client)
     {
+        ArgumentNullException.ThrowIfNull(client);
         _client = client;
     }
 
     public async Task<WorkerResponse> Create(WorkerCreateParams parameters)
     {
-        HttpRequest<WorkerCreateParams> request = new()
-        {
-            Method = HttpMethod.Post,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<WorkerCreateParams>(HttpMethod.Post, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<WorkerResponse>().ConfigureAwait(false);
     }
 
     public async Task<WorkerResponse> Update(WorkerUpdateParams parameters)
     {
-        HttpRequest<WorkerUpdateParams> request = new()
-        {
-            Method = HttpMethod.Patch,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<WorkerUpdateParams>(HttpMethod.Patch, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<WorkerResponse>().ConfigureAwait(false);
     }
 
     public async Task<WorkerListPageResponse> List(WorkerListParams? parameters = null)
     {
         parameters ??= new();
-
-        HttpRequest<WorkerListParams> request = new()
-        {
-            Method = HttpMethod.Get,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<WorkerListParams>(HttpMethod.Get, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<WorkerListPageResponse>().ConfigureAwait(false);
     }
 
     public async Task Delete(WorkerDeleteParams parameters)
     {
-        HttpRequest<WorkerDeleteParams> request = new()
-        {
-            Method = HttpMethod.Delete,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return;
+        var request = new ArcadeRequest<WorkerDeleteParams>(HttpMethod.Delete, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
     }
 
     public async Task<WorkerResponse> Get(WorkerGetParams parameters)
     {
-        HttpRequest<WorkerGetParams> request = new()
-        {
-            Method = HttpMethod.Get,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<WorkerGetParams>(HttpMethod.Get, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<WorkerResponse>().ConfigureAwait(false);
     }
 
     public async Task<WorkerHealthResponse> Health(WorkerHealthParams parameters)
     {
-        HttpRequest<WorkerHealthParams> request = new()
-        {
-            Method = HttpMethod.Get,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<WorkerHealthParams>(HttpMethod.Get, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<WorkerHealthResponse>().ConfigureAwait(false);
     }
 
     public async Task<WorkerToolsPageResponse> Tools(WorkerToolsParams parameters)
     {
-        HttpRequest<WorkerToolsParams> request = new()
-        {
-            Method = HttpMethod.Get,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<WorkerToolsParams>(HttpMethod.Get, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<WorkerToolsPageResponse>().ConfigureAwait(false);
     }
 }

@@ -7,7 +7,7 @@ public class AuthServiceTest : TestBase
     [Fact]
     public async Task Authorize_Works()
     {
-        var authorizationResponse = await this.client.Auth.Authorize(
+        var authorizationResponse = await this.Client.Auth.Authorize(
             new()
             {
                 AuthRequirement = new()
@@ -26,7 +26,7 @@ public class AuthServiceTest : TestBase
     [Fact]
     public async Task ConfirmUser_Works()
     {
-        var confirmUserResponse = await this.client.Auth.ConfirmUser(
+        var confirmUserResponse = await this.Client.Auth.ConfirmUser(
             new() { FlowID = "flow_id", UserID = "user_id" }
         );
         confirmUserResponse.Validate();
@@ -35,7 +35,7 @@ public class AuthServiceTest : TestBase
     [Fact]
     public async Task Status_Works()
     {
-        var authorizationResponse = await this.client.Auth.Status(new() { ID = "id" });
+        var authorizationResponse = await this.Client.Auth.Status(new() { ID = "id" });
         authorizationResponse.Validate();
     }
 }

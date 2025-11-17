@@ -7,13 +7,13 @@ public class UserConnectionServiceTest : TestBase
     [Fact]
     public async Task List_Works()
     {
-        var page = await this.client.Admin.UserConnections.List();
+        var page = await this.Client.Admin.UserConnections.List();
         page.Validate();
     }
 
     [Fact]
     public async Task Delete_Works()
     {
-        await this.client.Admin.UserConnections.Delete(new() { ID = "id" });
+        await this.Client.Admin.UserConnections.Delete(new() { ID = "id" });
     }
 }

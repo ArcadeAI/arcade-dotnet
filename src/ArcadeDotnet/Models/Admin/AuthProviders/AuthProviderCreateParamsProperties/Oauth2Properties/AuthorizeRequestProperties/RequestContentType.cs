@@ -12,7 +12,7 @@ public enum RequestContentType
     ApplicationJson,
 }
 
-sealed class RequestContentTypeConverter : JsonConverter<RequestContentType>
+internal sealed class RequestContentTypeConverter : JsonConverter<RequestContentType>
 {
     public override RequestContentType Read(
         ref Utf8JsonReader reader,
@@ -42,7 +42,7 @@ sealed class RequestContentTypeConverter : JsonConverter<RequestContentType>
                     "application/x-www-form-urlencoded",
                 RequestContentType.ApplicationJson => "application/json",
                 _ => throw new ArcadeInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                    $"Invalid value '{value}' in {nameof(value)}"
                 ),
             },
             options

@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
@@ -7,34 +8,30 @@ namespace ArcadeDotnet.Services.Admin.Secrets;
 
 public sealed class SecretService : ISecretService
 {
-    readonly IArcadeClient _client;
+    private readonly IArcadeClient _client;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SecretService"/> class.
+    /// </summary>
+    /// <param name="client">The Arcade client instance.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="client"/> is null.</exception>
     public SecretService(IArcadeClient client)
     {
+        ArgumentNullException.ThrowIfNull(client);
         _client = client;
     }
 
     public async Task<SecretListResponse> List(SecretListParams? parameters = null)
     {
         parameters ??= new();
-
-        HttpRequest<SecretListParams> request = new()
-        {
-            Method = HttpMethod.Get,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var request = new ArcadeRequest<SecretListParams>(HttpMethod.Get, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
         return await response.Deserialize<SecretListResponse>().ConfigureAwait(false);
     }
 
     public async Task Delete(SecretDeleteParams parameters)
     {
-        HttpRequest<SecretDeleteParams> request = new()
-        {
-            Method = HttpMethod.Delete,
-            Params = parameters,
-        };
-        using var response = await this._client.Execute(request).ConfigureAwait(false);
-        return;
+        var request = new ArcadeRequest<SecretDeleteParams>(HttpMethod.Delete, parameters);
+        using var response = await _client.Execute(request).ConfigureAwait(false);
     }
 }

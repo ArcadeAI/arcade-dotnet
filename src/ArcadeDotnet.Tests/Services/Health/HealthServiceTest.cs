@@ -7,7 +7,7 @@ public class HealthServiceTest : TestBase
     [Fact]
     public async Task Check_Works()
     {
-        var healthSchema = await this.client.Health.Check();
+        var healthSchema = await this.Client.Health.Check();
         healthSchema.Validate();
     }
 }

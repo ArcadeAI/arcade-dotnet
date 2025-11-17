@@ -2,8 +2,17 @@ using System.Net;
 
 namespace ArcadeDotnet.Exceptions;
 
-public class ArcadeExceptionFactory
+/// <summary>
+/// Factory for creating exception instances based on HTTP status codes.
+/// </summary>
+public static class ArcadeExceptionFactory
 {
+    /// <summary>
+    /// Creates an appropriate exception for the given HTTP status code.
+    /// </summary>
+    /// <param name="statusCode">The HTTP status code.</param>
+    /// <param name="responseBody">The response body containing error details.</param>
+    /// <returns>An <see cref="ArcadeApiException"/> or derived type.</returns>
     public static ArcadeApiException CreateApiException(
         HttpStatusCode statusCode,
         string responseBody
