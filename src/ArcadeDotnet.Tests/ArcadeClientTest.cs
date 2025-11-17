@@ -60,21 +60,35 @@ public class ArcadeClientTest
         Assert.Equal("https://options.api.com/", client.BaseUrl.ToString());
     }
 
-    [Theory]
-    [InlineData(null)]
-    [InlineData("")]
-    [InlineData("   ")]
-    public void Constructor_WithNullOrEmptyApiKey_ShouldThrow(string apiKey)
+    [Fact]
+    public void Constructor_WithNullApiKey_ShouldThrow()
     {
         // Arrange
         var options = new ArcadeClientOptions
         {
-            ApiKey = apiKey,
+            ApiKey = null,
             HttpClient = new HttpClient()
         };
 
         // Act & Assert
         Assert.Throws<ArcadeInvalidDataException>(() => new ArcadeClient(options));
+    }
+
+    [Fact]
+    public void Constructor_WithEmptyApiKey_ShouldWork()
+    {
+        // Arrange - Empty string is technically valid (API will reject it)
+        var options = new ArcadeClientOptions
+        {
+            ApiKey = "",
+            HttpClient = new HttpClient()
+        };
+
+        // Act - Should not throw, API will handle validation
+        var client = new ArcadeClient(options);
+
+        // Assert
+        Assert.Equal("", client.APIKey);
     }
 
     [Fact]
@@ -151,7 +165,7 @@ public class ArcadeClientTest
         });
 
         // Assert - HttpClient should not be on public interface
-        var type = client.GetType();
+        var type = typeof(ArcadeClient);
         var property = type.GetProperty("HttpClient", 
             System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
         

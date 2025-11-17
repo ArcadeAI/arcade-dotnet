@@ -90,9 +90,9 @@ public class ApiEnumTest
     [Fact]
     public void Validate_WithInvalidEnumValue_ShouldThrow()
     {
-        // Arrange - Create an invalid enum value
-        var json = JsonSerializer.SerializeToElement((int)999); // Invalid Status value
-        var apiEnum = new ApiEnum<int, Status>(json);
+        // Arrange - Create an invalid enum value using a valid string that maps to undefined enum
+        var json = JsonSerializer.SerializeToElement("invalid_status_value");
+        var apiEnum = new ApiEnum<string, Status>(json);
 
         // Act & Assert
         var exception = Assert.Throws<ArcadeInvalidDataException>(() => apiEnum.Validate());
