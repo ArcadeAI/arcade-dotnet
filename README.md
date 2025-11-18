@@ -32,12 +32,22 @@ See the [`examples`](examples) directory for complete and runnable examples.
 
 ```csharp
 using System;
+using System.Collections.Generic;
+using System.Text.Json;
 using ArcadeDotnet;
 using ArcadeDotnet.Models.Tools;
 
 ArcadeClient client = new();
 
-ToolExecuteParams parameters = new() { ToolName = "Google.ListEmails" };
+ToolExecuteParams parameters = new()
+{
+    ToolName = "Google.ListEmails",
+    Input = new Dictionary<string, JsonElement>()
+    {
+        { "n_emails", JsonSerializer.SerializeToElement(10) }
+    },
+    UserID = "user@example.com",
+};
 
 var executeToolResponse = await client.Tools.Execute(parameters);
 
@@ -87,7 +97,7 @@ var chatResponse = await client
             Timeout = TimeSpan.FromSeconds(42),
         }
     )
-    .Chat.Completions.Create();
+    .Chat.Completions.Create(parameters);
 
 Console.WriteLine(chatResponse);
 ```
@@ -162,7 +172,7 @@ var chatResponse = await client
     .WithOptions(options =>
         options with { MaxRetries = 3 }
     )
-    .Chat.Completions.Create();
+    .Chat.Completions.Create(parameters);
 
 Console.WriteLine(chatResponse);
 ```
@@ -189,7 +199,7 @@ var chatResponse = await client
     .WithOptions(options =>
         options with { Timeout = TimeSpan.FromSeconds(42) }
     )
-    .Chat.Completions.Create();
+    .Chat.Completions.Create(parameters);
 
 Console.WriteLine(chatResponse);
 ```
