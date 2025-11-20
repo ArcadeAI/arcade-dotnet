@@ -30,4 +30,13 @@ public interface IScheduledService
         ScheduledGetParams parameters,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// Returns the details for a specific scheduled tool execution
+    /// </summary>
+    Task<ScheduledGetResponse> Get(
+        string id,
+        ScheduledGetParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }

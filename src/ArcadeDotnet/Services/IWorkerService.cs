@@ -32,6 +32,15 @@ public interface IWorkerService
     );
 
     /// <summary>
+    /// Update a worker
+    /// </summary>
+    Task<WorkerResponse> Update(
+        string id,
+        WorkerUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// List all workers with their definitions
     /// </summary>
     Task<WorkerListPageResponse> List(
@@ -45,10 +54,28 @@ public interface IWorkerService
     Task Delete(WorkerDeleteParams parameters, CancellationToken cancellationToken = default);
 
     /// <summary>
+    /// Delete a worker
+    /// </summary>
+    Task Delete(
+        string id,
+        WorkerDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Get a worker by ID
     /// </summary>
     Task<WorkerResponse> Get(
         WorkerGetParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Get a worker by ID
+    /// </summary>
+    Task<WorkerResponse> Get(
+        string id,
+        WorkerGetParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 
@@ -61,10 +88,28 @@ public interface IWorkerService
     );
 
     /// <summary>
+    /// Get the health of a worker
+    /// </summary>
+    Task<WorkerHealthResponse> Health(
+        string id,
+        WorkerHealthParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Returns a page of tools
     /// </summary>
     Task<WorkerToolsPageResponse> Tools(
         WorkerToolsParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a page of tools
+    /// </summary>
+    Task<WorkerToolsPageResponse> Tools(
+        string id,
+        WorkerToolsParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }

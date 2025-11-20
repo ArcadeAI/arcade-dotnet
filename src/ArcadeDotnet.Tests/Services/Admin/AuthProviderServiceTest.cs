@@ -23,23 +23,21 @@ public class AuthProviderServiceTest : TestBase
     [Fact]
     public async Task Delete_Works()
     {
-        var authProviderResponse = await this.client.Admin.AuthProviders.Delete(
-            new() { ID = "id" }
-        );
+        var authProviderResponse = await this.client.Admin.AuthProviders.Delete("id");
         authProviderResponse.Validate();
     }
 
     [Fact]
     public async Task Get_Works()
     {
-        var authProviderResponse = await this.client.Admin.AuthProviders.Get(new() { ID = "id" });
+        var authProviderResponse = await this.client.Admin.AuthProviders.Get("id");
         authProviderResponse.Validate();
     }
 
     [Fact]
     public async Task Patch_Works()
     {
-        var authProviderResponse = await this.client.Admin.AuthProviders.Patch(new() { ID = "id" });
+        var authProviderResponse = await this.client.Admin.AuthProviders.Patch("id");
         authProviderResponse.Validate();
     }
 }

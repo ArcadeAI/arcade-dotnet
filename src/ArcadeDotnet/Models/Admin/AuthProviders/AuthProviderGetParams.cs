@@ -13,7 +13,7 @@ namespace ArcadeDotnet.Models.Admin.AuthProviders;
 /// </summary>
 public sealed record class AuthProviderGetParams : ParamsBase
 {
-    public required string ID { get; init; }
+    public string? ID { get; init; }
 
     public AuthProviderGetParams() { }
 

@@ -27,4 +27,13 @@ public interface ISecretService
     /// Delete a secret by its ID
     /// </summary>
     Task Delete(SecretDeleteParams parameters, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Delete a secret by its ID
+    /// </summary>
+    Task Delete(
+        string secretID,
+        SecretDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }

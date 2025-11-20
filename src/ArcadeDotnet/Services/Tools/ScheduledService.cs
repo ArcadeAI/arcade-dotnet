@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
+using ArcadeDotnet.Exceptions;
 using ArcadeDotnet.Models.Tools.Scheduled;
 
 namespace ArcadeDotnet.Services.Tools;
@@ -51,6 +52,11 @@ public sealed class ScheduledService : IScheduledService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ID == null)
+        {
+            throw new ArcadeInvalidDataException("'parameters.ID' cannot be null");
+        }
+
         HttpRequest<ScheduledGetParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -67,5 +73,16 @@ public sealed class ScheduledService : IScheduledService
             scheduled.Validate();
         }
         return scheduled;
+    }
+
+    public async Task<ScheduledGetResponse> Get(
+        string id,
+        ScheduledGetParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Get(parameters with { ID = id }, cancellationToken);
     }
 }

@@ -13,7 +13,7 @@ namespace ArcadeDotnet.Models.Workers;
 /// </summary>
 public sealed record class WorkerToolsParams : ParamsBase
 {
-    public required string ID { get; init; }
+    public string? ID { get; init; }
 
     /// <summary>
     /// Number of items to return (default: 25, max: 100)

@@ -14,6 +14,6 @@ public class UserConnectionServiceTest : TestBase
     [Fact]
     public async Task Delete_Works()
     {
-        await this.client.Admin.UserConnections.Delete(new() { ID = "id" });
+        await this.client.Admin.UserConnections.Delete("id");
     }
 }

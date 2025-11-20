@@ -32,4 +32,13 @@ public interface IFormattedService
         FormattedGetParams parameters,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// Returns the formatted tool specification for a specific tool, given a provider
+    /// </summary>
+    Task<JsonElement> Get(
+        string name,
+        FormattedGetParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }

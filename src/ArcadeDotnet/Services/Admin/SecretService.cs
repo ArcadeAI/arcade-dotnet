@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
+using ArcadeDotnet.Exceptions;
 using ArcadeDotnet.Models.Admin.Secrets;
 
 namespace ArcadeDotnet.Services.Admin;
@@ -51,6 +52,11 @@ public sealed class SecretService : ISecretService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.SecretID == null)
+        {
+            throw new ArcadeInvalidDataException("'parameters.SecretID' cannot be null");
+        }
+
         HttpRequest<SecretDeleteParams> request = new()
         {
             Method = HttpMethod.Delete,
@@ -59,5 +65,16 @@ public sealed class SecretService : ISecretService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
+    }
+
+    public async Task Delete(
+        string secretID,
+        SecretDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        await this.Delete(parameters with { SecretID = secretID }, cancellationToken);
     }
 }

@@ -30,7 +30,7 @@ public class ToolServiceTest : TestBase
     [Fact]
     public async Task Get_Works()
     {
-        var toolDefinition = await this.client.Tools.Get(new() { Name = "name" });
+        var toolDefinition = await this.client.Tools.Get("name");
         toolDefinition.Validate();
     }
 }
