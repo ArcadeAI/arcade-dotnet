@@ -13,7 +13,7 @@ namespace ArcadeDotnet.Models.Tools.Formatted;
 /// </summary>
 public sealed record class FormattedGetParams : ParamsBase
 {
-    public required string Name { get; init; }
+    public string? Name { get; init; }
 
     /// <summary>
     /// Provider format

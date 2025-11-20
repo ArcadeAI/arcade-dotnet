@@ -13,7 +13,7 @@ namespace ArcadeDotnet.Models.Tools.Scheduled;
 /// </summary>
 public sealed record class ScheduledGetParams : ParamsBase
 {
-    public required string ID { get; init; }
+    public string? ID { get; init; }
 
     public ScheduledGetParams() { }
 

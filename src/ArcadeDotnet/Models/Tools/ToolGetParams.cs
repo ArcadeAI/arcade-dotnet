@@ -15,7 +15,7 @@ namespace ArcadeDotnet.Models.Tools;
 /// </summary>
 public sealed record class ToolGetParams : ParamsBase
 {
-    public required string Name { get; init; }
+    public string? Name { get; init; }
 
     /// <summary>
     /// Comma separated tool formats that will be included in the response.

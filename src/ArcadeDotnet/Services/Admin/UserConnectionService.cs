@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
+using ArcadeDotnet.Exceptions;
 using ArcadeDotnet.Models.Admin.UserConnections;
 
 namespace ArcadeDotnet.Services.Admin;
@@ -51,6 +52,11 @@ public sealed class UserConnectionService : IUserConnectionService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ID == null)
+        {
+            throw new ArcadeInvalidDataException("'parameters.ID' cannot be null");
+        }
+
         HttpRequest<UserConnectionDeleteParams> request = new()
         {
             Method = HttpMethod.Delete,
@@ -59,5 +65,16 @@ public sealed class UserConnectionService : IUserConnectionService
         using var response = await this
             ._client.Execute(request, cancellationToken)
             .ConfigureAwait(false);
+    }
+
+    public async Task Delete(
+        string id,
+        UserConnectionDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        await this.Delete(parameters with { ID = id }, cancellationToken);
     }
 }

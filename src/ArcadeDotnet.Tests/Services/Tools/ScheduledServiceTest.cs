@@ -14,7 +14,7 @@ public class ScheduledServiceTest : TestBase
     [Fact]
     public async Task Get_Works()
     {
-        var scheduled = await this.client.Tools.Scheduled.Get(new() { ID = "id" });
+        var scheduled = await this.client.Tools.Scheduled.Get("id");
         scheduled.Validate();
     }
 }

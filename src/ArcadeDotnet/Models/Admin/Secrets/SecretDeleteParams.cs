@@ -13,7 +13,7 @@ namespace ArcadeDotnet.Models.Admin.Secrets;
 /// </summary>
 public sealed record class SecretDeleteParams : ParamsBase
 {
-    public required string SecretID { get; init; }
+    public string? SecretID { get; init; }
 
     public SecretDeleteParams() { }
 

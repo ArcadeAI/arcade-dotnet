@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
+using ArcadeDotnet.Exceptions;
 using ArcadeDotnet.Models;
 using ArcadeDotnet.Models.Tools;
 using ArcadeDotnet.Services.Tools;
@@ -113,6 +114,11 @@ public sealed class ToolService : IToolService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.Name == null)
+        {
+            throw new ArcadeInvalidDataException("'parameters.Name' cannot be null");
+        }
+
         HttpRequest<ToolGetParams> request = new() { Method = HttpMethod.Get, Params = parameters };
         using var response = await this
             ._client.Execute(request, cancellationToken)
@@ -125,5 +131,16 @@ public sealed class ToolService : IToolService
             toolDefinition.Validate();
         }
         return toolDefinition;
+    }
+
+    public async Task<ToolDefinition> Get(
+        string name,
+        ToolGetParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Get(parameters with { Name = name }, cancellationToken);
     }
 }

@@ -13,7 +13,7 @@ namespace ArcadeDotnet.Models.Workers;
 /// </summary>
 public sealed record class WorkerDeleteParams : ParamsBase
 {
-    public required string ID { get; init; }
+    public string? ID { get; init; }
 
     public WorkerDeleteParams() { }
 

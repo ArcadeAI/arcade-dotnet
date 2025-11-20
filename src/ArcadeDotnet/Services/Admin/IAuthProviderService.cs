@@ -40,6 +40,15 @@ public interface IAuthProviderService
     );
 
     /// <summary>
+    /// Delete a specific auth provider
+    /// </summary>
+    Task<AuthProviderResponse> Delete(
+        string id,
+        AuthProviderDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Get the details of a specific auth provider
     /// </summary>
     Task<AuthProviderResponse> Get(
@@ -48,10 +57,28 @@ public interface IAuthProviderService
     );
 
     /// <summary>
+    /// Get the details of a specific auth provider
+    /// </summary>
+    Task<AuthProviderResponse> Get(
+        string id,
+        AuthProviderGetParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Patch an existing auth provider
     /// </summary>
     Task<AuthProviderResponse> Patch(
         AuthProviderPatchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Patch an existing auth provider
+    /// </summary>
+    Task<AuthProviderResponse> Patch(
+        string id,
+        AuthProviderPatchParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }

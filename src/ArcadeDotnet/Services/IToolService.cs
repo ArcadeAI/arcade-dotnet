@@ -53,4 +53,13 @@ public interface IToolService
         ToolGetParams parameters,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// Returns the arcade tool specification for a specific tool
+    /// </summary>
+    Task<ToolDefinition> Get(
+        string name,
+        ToolGetParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }

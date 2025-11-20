@@ -13,7 +13,7 @@ namespace ArcadeDotnet.Models.Admin.UserConnections;
 /// </summary>
 public sealed record class UserConnectionDeleteParams : ParamsBase
 {
-    public required string ID { get; init; }
+    public string? ID { get; init; }
 
     public UserConnectionDeleteParams() { }
 

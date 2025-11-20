@@ -14,7 +14,7 @@ public class WorkerServiceTest : TestBase
     [Fact]
     public async Task Update_Works()
     {
-        var workerResponse = await this.client.Workers.Update(new() { ID = "id" });
+        var workerResponse = await this.client.Workers.Update("id");
         workerResponse.Validate();
     }
 
@@ -28,27 +28,27 @@ public class WorkerServiceTest : TestBase
     [Fact]
     public async Task Delete_Works()
     {
-        await this.client.Workers.Delete(new() { ID = "id" });
+        await this.client.Workers.Delete("id");
     }
 
     [Fact]
     public async Task Get_Works()
     {
-        var workerResponse = await this.client.Workers.Get(new() { ID = "id" });
+        var workerResponse = await this.client.Workers.Get("id");
         workerResponse.Validate();
     }
 
     [Fact]
     public async Task Health_Works()
     {
-        var workerHealthResponse = await this.client.Workers.Health(new() { ID = "id" });
+        var workerHealthResponse = await this.client.Workers.Health("id");
         workerHealthResponse.Validate();
     }
 
     [Fact]
     public async Task Tools_Works()
     {
-        var page = await this.client.Workers.Tools(new() { ID = "id" });
+        var page = await this.client.Workers.Tools("id");
         page.Validate();
     }
 }

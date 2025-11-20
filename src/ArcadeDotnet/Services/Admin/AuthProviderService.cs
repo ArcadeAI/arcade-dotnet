@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
+using ArcadeDotnet.Exceptions;
 using ArcadeDotnet.Models.Admin.AuthProviders;
 
 namespace ArcadeDotnet.Services.Admin;
@@ -74,6 +75,11 @@ public sealed class AuthProviderService : IAuthProviderService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ID == null)
+        {
+            throw new ArcadeInvalidDataException("'parameters.ID' cannot be null");
+        }
+
         HttpRequest<AuthProviderDeleteParams> request = new()
         {
             Method = HttpMethod.Delete,
@@ -92,11 +98,27 @@ public sealed class AuthProviderService : IAuthProviderService
         return authProviderResponse;
     }
 
+    public async Task<AuthProviderResponse> Delete(
+        string id,
+        AuthProviderDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Delete(parameters with { ID = id }, cancellationToken);
+    }
+
     public async Task<AuthProviderResponse> Get(
         AuthProviderGetParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ID == null)
+        {
+            throw new ArcadeInvalidDataException("'parameters.ID' cannot be null");
+        }
+
         HttpRequest<AuthProviderGetParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -115,11 +137,27 @@ public sealed class AuthProviderService : IAuthProviderService
         return authProviderResponse;
     }
 
+    public async Task<AuthProviderResponse> Get(
+        string id,
+        AuthProviderGetParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Get(parameters with { ID = id }, cancellationToken);
+    }
+
     public async Task<AuthProviderResponse> Patch(
         AuthProviderPatchParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ID == null)
+        {
+            throw new ArcadeInvalidDataException("'parameters.ID' cannot be null");
+        }
+
         HttpRequest<AuthProviderPatchParams> request = new()
         {
             Method = HttpMethod.Patch,
@@ -136,5 +174,16 @@ public sealed class AuthProviderService : IAuthProviderService
             authProviderResponse.Validate();
         }
         return authProviderResponse;
+    }
+
+    public async Task<AuthProviderResponse> Patch(
+        string id,
+        AuthProviderPatchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Patch(parameters with { ID = id }, cancellationToken);
     }
 }

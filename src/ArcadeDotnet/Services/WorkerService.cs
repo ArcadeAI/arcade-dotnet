@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
+using ArcadeDotnet.Exceptions;
 using ArcadeDotnet.Models.Workers;
 
 namespace ArcadeDotnet.Services;
@@ -49,6 +50,11 @@ public sealed class WorkerService : IWorkerService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ID == null)
+        {
+            throw new ArcadeInvalidDataException("'parameters.ID' cannot be null");
+        }
+
         HttpRequest<WorkerUpdateParams> request = new()
         {
             Method = HttpMethod.Patch,
@@ -65,6 +71,17 @@ public sealed class WorkerService : IWorkerService
             workerResponse.Validate();
         }
         return workerResponse;
+    }
+
+    public async Task<WorkerResponse> Update(
+        string id,
+        WorkerUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Update(parameters with { ID = id }, cancellationToken);
     }
 
     public async Task<WorkerListPageResponse> List(
@@ -97,6 +114,11 @@ public sealed class WorkerService : IWorkerService
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ID == null)
+        {
+            throw new ArcadeInvalidDataException("'parameters.ID' cannot be null");
+        }
+
         HttpRequest<WorkerDeleteParams> request = new()
         {
             Method = HttpMethod.Delete,
@@ -107,11 +129,27 @@ public sealed class WorkerService : IWorkerService
             .ConfigureAwait(false);
     }
 
+    public async Task Delete(
+        string id,
+        WorkerDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        await this.Delete(parameters with { ID = id }, cancellationToken);
+    }
+
     public async Task<WorkerResponse> Get(
         WorkerGetParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ID == null)
+        {
+            throw new ArcadeInvalidDataException("'parameters.ID' cannot be null");
+        }
+
         HttpRequest<WorkerGetParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -130,11 +168,27 @@ public sealed class WorkerService : IWorkerService
         return workerResponse;
     }
 
+    public async Task<WorkerResponse> Get(
+        string id,
+        WorkerGetParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Get(parameters with { ID = id }, cancellationToken);
+    }
+
     public async Task<WorkerHealthResponse> Health(
         WorkerHealthParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ID == null)
+        {
+            throw new ArcadeInvalidDataException("'parameters.ID' cannot be null");
+        }
+
         HttpRequest<WorkerHealthParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -153,11 +207,27 @@ public sealed class WorkerService : IWorkerService
         return workerHealthResponse;
     }
 
+    public async Task<WorkerHealthResponse> Health(
+        string id,
+        WorkerHealthParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Health(parameters with { ID = id }, cancellationToken);
+    }
+
     public async Task<WorkerToolsPageResponse> Tools(
         WorkerToolsParams parameters,
         CancellationToken cancellationToken = default
     )
     {
+        if (parameters.ID == null)
+        {
+            throw new ArcadeInvalidDataException("'parameters.ID' cannot be null");
+        }
+
         HttpRequest<WorkerToolsParams> request = new()
         {
             Method = HttpMethod.Get,
@@ -174,5 +244,16 @@ public sealed class WorkerService : IWorkerService
             page.Validate();
         }
         return page;
+    }
+
+    public async Task<WorkerToolsPageResponse> Tools(
+        string id,
+        WorkerToolsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return await this.Tools(parameters with { ID = id }, cancellationToken);
     }
 }

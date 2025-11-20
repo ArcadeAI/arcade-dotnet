@@ -30,4 +30,13 @@ public interface IUserConnectionService
         UserConnectionDeleteParams parameters,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// Delete a user/auth provider connection
+    /// </summary>
+    Task Delete(
+        string id,
+        UserConnectionDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }
