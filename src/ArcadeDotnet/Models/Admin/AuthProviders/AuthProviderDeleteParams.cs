@@ -1,5 +1,9 @@
 using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
+using System.Text.Json;
 using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Admin.AuthProviders;
@@ -9,23 +13,57 @@ namespace ArcadeDotnet.Models.Admin.AuthProviders;
 /// </summary>
 public sealed record class AuthProviderDeleteParams : ParamsBase
 {
-    public required string ID;
+    public string? ID { get; init; }
 
-    public override Uri Url(IArcadeClient client)
+    public AuthProviderDeleteParams() { }
+
+    public AuthProviderDeleteParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = [.. rawHeaderData];
+        this._rawQueryData = [.. rawQueryData];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AuthProviderDeleteParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = [.. rawHeaderData];
+        this._rawQueryData = [.. rawQueryData];
+    }
+#pragma warning restore CS8618
+
+    public static AuthProviderDeleteParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/v1/admin/auth_providers/{0}", this.ID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    internal override void AddHeadersToRequest(HttpRequestMessage request, IArcadeClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }

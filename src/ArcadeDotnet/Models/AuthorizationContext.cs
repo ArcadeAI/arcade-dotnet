@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -13,14 +14,19 @@ public sealed record class AuthorizationContext : ModelBase, IFromRaw<Authorizat
     {
         get
         {
-            if (!this.Properties.TryGetValue("token", out JsonElement element))
+            if (!this._rawData.TryGetValue("token", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["token"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["token"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -31,7 +37,7 @@ public sealed record class AuthorizationContext : ModelBase, IFromRaw<Authorizat
     {
         get
         {
-            if (!this.Properties.TryGetValue("user_info", out JsonElement element))
+            if (!this._rawData.TryGetValue("user_info", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, JsonElement>?>(
@@ -39,9 +45,14 @@ public sealed record class AuthorizationContext : ModelBase, IFromRaw<Authorizat
                 ModelBase.SerializerOptions
             );
         }
-        set
+        init
         {
-            this.Properties["user_info"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["user_info"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -51,27 +62,28 @@ public sealed record class AuthorizationContext : ModelBase, IFromRaw<Authorizat
     public override void Validate()
     {
         _ = this.Token;
-        if (this.UserInfo != null)
-        {
-            foreach (var item in this.UserInfo.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.UserInfo;
     }
 
     public AuthorizationContext() { }
 
+    public AuthorizationContext(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = [.. rawData];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AuthorizationContext(Dictionary<string, JsonElement> properties)
+    AuthorizationContext(FrozenDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static AuthorizationContext FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static AuthorizationContext FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

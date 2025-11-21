@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -13,14 +14,19 @@ public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -31,14 +37,19 @@ public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
     {
         get
         {
-            if (!this.Properties.TryGetValue("choices", out JsonElement element))
+            if (!this._rawData.TryGetValue("choices", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<Choice>?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["choices"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["choices"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -49,14 +60,19 @@ public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
     {
         get
         {
-            if (!this.Properties.TryGetValue("created", out JsonElement element))
+            if (!this._rawData.TryGetValue("created", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["created"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["created"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -67,14 +83,19 @@ public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
     {
         get
         {
-            if (!this.Properties.TryGetValue("model", out JsonElement element))
+            if (!this._rawData.TryGetValue("model", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["model"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["model"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -85,14 +106,19 @@ public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
     {
         get
         {
-            if (!this.Properties.TryGetValue("object", out JsonElement element))
+            if (!this._rawData.TryGetValue("object", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["object"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["object"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -103,14 +129,19 @@ public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
     {
         get
         {
-            if (!this.Properties.TryGetValue("system_fingerprint", out JsonElement element))
+            if (!this._rawData.TryGetValue("system_fingerprint", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["system_fingerprint"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["system_fingerprint"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -121,14 +152,19 @@ public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
     {
         get
         {
-            if (!this.Properties.TryGetValue("usage", out JsonElement element))
+            if (!this._rawData.TryGetValue("usage", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Usage?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["usage"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["usage"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -151,16 +187,21 @@ public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
 
     public ChatResponse() { }
 
+    public ChatResponse(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = [.. rawData];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ChatResponse(Dictionary<string, JsonElement> properties)
+    ChatResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static ChatResponse FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static ChatResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

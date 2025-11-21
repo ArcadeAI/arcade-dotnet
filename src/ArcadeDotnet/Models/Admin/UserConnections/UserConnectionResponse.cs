@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -13,14 +14,19 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -31,14 +37,19 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
     {
         get
         {
-            if (!this.Properties.TryGetValue("connection_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("connection_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["connection_id"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["connection_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -49,14 +60,19 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
     {
         get
         {
-            if (!this.Properties.TryGetValue("connection_status", out JsonElement element))
+            if (!this._rawData.TryGetValue("connection_status", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["connection_status"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["connection_status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -67,14 +83,19 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
     {
         get
         {
-            if (!this.Properties.TryGetValue("provider_description", out JsonElement element))
+            if (!this._rawData.TryGetValue("provider_description", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["provider_description"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["provider_description"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -85,14 +106,19 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
     {
         get
         {
-            if (!this.Properties.TryGetValue("provider_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("provider_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["provider_id"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["provider_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -103,14 +129,19 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
     {
         get
         {
-            if (!this.Properties.TryGetValue("provider_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("provider_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["provider_type"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["provider_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -121,14 +152,19 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
     {
         get
         {
-            if (!this.Properties.TryGetValue("provider_user_info", out JsonElement element))
+            if (!this._rawData.TryGetValue("provider_user_info", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<JsonElement?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["provider_user_info"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["provider_user_info"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -139,14 +175,19 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
     {
         get
         {
-            if (!this.Properties.TryGetValue("scopes", out JsonElement element))
+            if (!this._rawData.TryGetValue("scopes", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["scopes"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["scopes"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -157,14 +198,19 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
     {
         get
         {
-            if (!this.Properties.TryGetValue("user_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("user_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["user_id"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["user_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -180,27 +226,29 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
         _ = this.ProviderID;
         _ = this.ProviderType;
         _ = this.ProviderUserInfo;
-        foreach (var item in this.Scopes ?? [])
-        {
-            _ = item;
-        }
+        _ = this.Scopes;
         _ = this.UserID;
     }
 
     public UserConnectionResponse() { }
 
+    public UserConnectionResponse(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = [.. rawData];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UserConnectionResponse(Dictionary<string, JsonElement> properties)
+    UserConnectionResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static UserConnectionResponse FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

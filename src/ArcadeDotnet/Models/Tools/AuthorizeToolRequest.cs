@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -15,7 +16,7 @@ public sealed record class AuthorizeToolRequest : ModelBase, IFromRaw<AuthorizeT
     {
         get
         {
-            if (!this.Properties.TryGetValue("tool_name", out JsonElement element))
+            if (!this._rawData.TryGetValue("tool_name", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'tool_name' cannot be null",
                     new ArgumentOutOfRangeException("tool_name", "Missing required argument")
@@ -27,9 +28,9 @@ public sealed record class AuthorizeToolRequest : ModelBase, IFromRaw<AuthorizeT
                     new ArgumentNullException("tool_name")
                 );
         }
-        set
+        init
         {
-            this.Properties["tool_name"] = JsonSerializer.SerializeToElement(
+            this._rawData["tool_name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -43,14 +44,19 @@ public sealed record class AuthorizeToolRequest : ModelBase, IFromRaw<AuthorizeT
     {
         get
         {
-            if (!this.Properties.TryGetValue("next_uri", out JsonElement element))
+            if (!this._rawData.TryGetValue("next_uri", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["next_uri"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["next_uri"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -64,14 +70,19 @@ public sealed record class AuthorizeToolRequest : ModelBase, IFromRaw<AuthorizeT
     {
         get
         {
-            if (!this.Properties.TryGetValue("tool_version", out JsonElement element))
+            if (!this._rawData.TryGetValue("tool_version", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["tool_version"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["tool_version"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -85,14 +96,19 @@ public sealed record class AuthorizeToolRequest : ModelBase, IFromRaw<AuthorizeT
     {
         get
         {
-            if (!this.Properties.TryGetValue("user_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("user_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["user_id"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["user_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -109,17 +125,24 @@ public sealed record class AuthorizeToolRequest : ModelBase, IFromRaw<AuthorizeT
 
     public AuthorizeToolRequest() { }
 
+    public AuthorizeToolRequest(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = [.. rawData];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AuthorizeToolRequest(Dictionary<string, JsonElement> properties)
+    AuthorizeToolRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static AuthorizeToolRequest FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static AuthorizeToolRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

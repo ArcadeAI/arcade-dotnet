@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
@@ -13,14 +14,19 @@ public sealed record class HealthSchema : ModelBase, IFromRaw<HealthSchema>
     {
         get
         {
-            if (!this.Properties.TryGetValue("healthy", out JsonElement element))
+            if (!this._rawData.TryGetValue("healthy", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
         }
-        set
+        init
         {
-            this.Properties["healthy"] = JsonSerializer.SerializeToElement(
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData["healthy"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -34,16 +40,21 @@ public sealed record class HealthSchema : ModelBase, IFromRaw<HealthSchema>
 
     public HealthSchema() { }
 
+    public HealthSchema(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = [.. rawData];
+    }
+
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    HealthSchema(Dictionary<string, JsonElement> properties)
+    HealthSchema(FrozenDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static HealthSchema FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static HealthSchema FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
