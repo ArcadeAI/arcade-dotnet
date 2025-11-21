@@ -16,7 +16,7 @@ public sealed record class ConfirmUserResponse : ModelBase, IFromRaw<ConfirmUser
     {
         get
         {
-            if (!this._properties.TryGetValue("auth_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("auth_id", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'auth_id' cannot be null",
                     new ArgumentOutOfRangeException("auth_id", "Missing required argument")
@@ -30,7 +30,7 @@ public sealed record class ConfirmUserResponse : ModelBase, IFromRaw<ConfirmUser
         }
         init
         {
-            this._properties["auth_id"] = JsonSerializer.SerializeToElement(
+            this._rawData["auth_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -41,7 +41,7 @@ public sealed record class ConfirmUserResponse : ModelBase, IFromRaw<ConfirmUser
     {
         get
         {
-            if (!this._properties.TryGetValue("next_uri", out JsonElement element))
+            if (!this._rawData.TryGetValue("next_uri", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -53,7 +53,7 @@ public sealed record class ConfirmUserResponse : ModelBase, IFromRaw<ConfirmUser
                 return;
             }
 
-            this._properties["next_uri"] = JsonSerializer.SerializeToElement(
+            this._rawData["next_uri"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -68,24 +68,24 @@ public sealed record class ConfirmUserResponse : ModelBase, IFromRaw<ConfirmUser
 
     public ConfirmUserResponse() { }
 
-    public ConfirmUserResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    public ConfirmUserResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ConfirmUserResponse(FrozenDictionary<string, JsonElement> properties)
+    ConfirmUserResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static ConfirmUserResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

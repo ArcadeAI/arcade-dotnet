@@ -14,7 +14,7 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
     {
         get
         {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -26,7 +26,7 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
                 return;
             }
 
-            this._properties["id"] = JsonSerializer.SerializeToElement(
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -37,7 +37,7 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
     {
         get
         {
-            if (!this._properties.TryGetValue("enabled", out JsonElement element))
+            if (!this._rawData.TryGetValue("enabled", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -49,7 +49,7 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
                 return;
             }
 
-            this._properties["enabled"] = JsonSerializer.SerializeToElement(
+            this._rawData["enabled"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -60,7 +60,7 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
     {
         get
         {
-            if (!this._properties.TryGetValue("healthy", out JsonElement element))
+            if (!this._rawData.TryGetValue("healthy", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -72,7 +72,7 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
                 return;
             }
 
-            this._properties["healthy"] = JsonSerializer.SerializeToElement(
+            this._rawData["healthy"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -83,7 +83,7 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
     {
         get
         {
-            if (!this._properties.TryGetValue("message", out JsonElement element))
+            if (!this._rawData.TryGetValue("message", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -95,7 +95,7 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
                 return;
             }
 
-            this._properties["message"] = JsonSerializer.SerializeToElement(
+            this._rawData["message"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -112,23 +112,23 @@ public sealed record class WorkerHealthResponse : ModelBase, IFromRaw<WorkerHeal
 
     public WorkerHealthResponse() { }
 
-    public WorkerHealthResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    public WorkerHealthResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    WorkerHealthResponse(FrozenDictionary<string, JsonElement> properties)
+    WorkerHealthResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static WorkerHealthResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

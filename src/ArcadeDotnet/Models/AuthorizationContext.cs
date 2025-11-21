@@ -14,7 +14,7 @@ public sealed record class AuthorizationContext : ModelBase, IFromRaw<Authorizat
     {
         get
         {
-            if (!this._properties.TryGetValue("token", out JsonElement element))
+            if (!this._rawData.TryGetValue("token", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -26,7 +26,7 @@ public sealed record class AuthorizationContext : ModelBase, IFromRaw<Authorizat
                 return;
             }
 
-            this._properties["token"] = JsonSerializer.SerializeToElement(
+            this._rawData["token"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -37,7 +37,7 @@ public sealed record class AuthorizationContext : ModelBase, IFromRaw<Authorizat
     {
         get
         {
-            if (!this._properties.TryGetValue("user_info", out JsonElement element))
+            if (!this._rawData.TryGetValue("user_info", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, JsonElement>?>(
@@ -52,7 +52,7 @@ public sealed record class AuthorizationContext : ModelBase, IFromRaw<Authorizat
                 return;
             }
 
-            this._properties["user_info"] = JsonSerializer.SerializeToElement(
+            this._rawData["user_info"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -67,23 +67,23 @@ public sealed record class AuthorizationContext : ModelBase, IFromRaw<Authorizat
 
     public AuthorizationContext() { }
 
-    public AuthorizationContext(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthorizationContext(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AuthorizationContext(FrozenDictionary<string, JsonElement> properties)
+    AuthorizationContext(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static AuthorizationContext FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

@@ -21,7 +21,7 @@ public sealed record class UserConnectionListParams : ParamsBase
     {
         get
         {
-            if (!this._queryProperties.TryGetValue("limit", out JsonElement element))
+            if (!this._rawQueryData.TryGetValue("limit", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
@@ -33,7 +33,7 @@ public sealed record class UserConnectionListParams : ParamsBase
                 return;
             }
 
-            this._queryProperties["limit"] = JsonSerializer.SerializeToElement(
+            this._rawQueryData["limit"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -47,7 +47,7 @@ public sealed record class UserConnectionListParams : ParamsBase
     {
         get
         {
-            if (!this._queryProperties.TryGetValue("offset", out JsonElement element))
+            if (!this._rawQueryData.TryGetValue("offset", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
@@ -59,7 +59,7 @@ public sealed record class UserConnectionListParams : ParamsBase
                 return;
             }
 
-            this._queryProperties["offset"] = JsonSerializer.SerializeToElement(
+            this._rawQueryData["offset"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -70,7 +70,7 @@ public sealed record class UserConnectionListParams : ParamsBase
     {
         get
         {
-            if (!this._queryProperties.TryGetValue("provider", out JsonElement element))
+            if (!this._rawQueryData.TryGetValue("provider", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Provider?>(element, ModelBase.SerializerOptions);
@@ -82,7 +82,7 @@ public sealed record class UserConnectionListParams : ParamsBase
                 return;
             }
 
-            this._queryProperties["provider"] = JsonSerializer.SerializeToElement(
+            this._rawQueryData["provider"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -93,7 +93,7 @@ public sealed record class UserConnectionListParams : ParamsBase
     {
         get
         {
-            if (!this._queryProperties.TryGetValue("user", out JsonElement element))
+            if (!this._rawQueryData.TryGetValue("user", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<User?>(element, ModelBase.SerializerOptions);
@@ -105,7 +105,7 @@ public sealed record class UserConnectionListParams : ParamsBase
                 return;
             }
 
-            this._queryProperties["user"] = JsonSerializer.SerializeToElement(
+            this._rawQueryData["user"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -115,34 +115,34 @@ public sealed record class UserConnectionListParams : ParamsBase
     public UserConnectionListParams() { }
 
     public UserConnectionListParams(
-        IReadOnlyDictionary<string, JsonElement> headerProperties,
-        IReadOnlyDictionary<string, JsonElement> queryProperties
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._headerProperties = [.. headerProperties];
-        this._queryProperties = [.. queryProperties];
+        this._rawHeaderData = [.. rawHeaderData];
+        this._rawQueryData = [.. rawQueryData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     UserConnectionListParams(
-        FrozenDictionary<string, JsonElement> headerProperties,
-        FrozenDictionary<string, JsonElement> queryProperties
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._headerProperties = [.. headerProperties];
-        this._queryProperties = [.. queryProperties];
+        this._rawHeaderData = [.. rawHeaderData];
+        this._rawQueryData = [.. rawQueryData];
     }
 #pragma warning restore CS8618
 
     public static UserConnectionListParams FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> headerProperties,
-        IReadOnlyDictionary<string, JsonElement> queryProperties
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
         return new(
-            FrozenDictionary.ToFrozenDictionary(headerProperties),
-            FrozenDictionary.ToFrozenDictionary(queryProperties)
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
         );
     }
 
@@ -159,7 +159,7 @@ public sealed record class UserConnectionListParams : ParamsBase
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
         ParamsBase.AddDefaultHeaders(request, options);
-        foreach (var item in this.HeaderProperties)
+        foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
@@ -176,7 +176,7 @@ public sealed record class Provider : ModelBase, IFromRaw<Provider>
     {
         get
         {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -188,7 +188,7 @@ public sealed record class Provider : ModelBase, IFromRaw<Provider>
                 return;
             }
 
-            this._properties["id"] = JsonSerializer.SerializeToElement(
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -202,22 +202,22 @@ public sealed record class Provider : ModelBase, IFromRaw<Provider>
 
     public Provider() { }
 
-    public Provider(IReadOnlyDictionary<string, JsonElement> properties)
+    public Provider(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Provider(FrozenDictionary<string, JsonElement> properties)
+    Provider(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Provider FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static Provider FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -231,7 +231,7 @@ public sealed record class User : ModelBase, IFromRaw<User>
     {
         get
         {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -243,7 +243,7 @@ public sealed record class User : ModelBase, IFromRaw<User>
                 return;
             }
 
-            this._properties["id"] = JsonSerializer.SerializeToElement(
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -257,21 +257,21 @@ public sealed record class User : ModelBase, IFromRaw<User>
 
     public User() { }
 
-    public User(IReadOnlyDictionary<string, JsonElement> properties)
+    public User(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    User(FrozenDictionary<string, JsonElement> properties)
+    User(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static User FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static User FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

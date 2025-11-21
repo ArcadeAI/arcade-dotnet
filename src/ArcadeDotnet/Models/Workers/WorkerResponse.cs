@@ -16,7 +16,7 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
     {
         get
         {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -28,7 +28,7 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
                 return;
             }
 
-            this._properties["id"] = JsonSerializer.SerializeToElement(
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -39,7 +39,7 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
     {
         get
         {
-            if (!this._properties.TryGetValue("binding", out JsonElement element))
+            if (!this._rawData.TryGetValue("binding", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Binding?>(element, ModelBase.SerializerOptions);
@@ -51,7 +51,7 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
                 return;
             }
 
-            this._properties["binding"] = JsonSerializer.SerializeToElement(
+            this._rawData["binding"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -62,7 +62,7 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
     {
         get
         {
-            if (!this._properties.TryGetValue("enabled", out JsonElement element))
+            if (!this._rawData.TryGetValue("enabled", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -74,7 +74,7 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
                 return;
             }
 
-            this._properties["enabled"] = JsonSerializer.SerializeToElement(
+            this._rawData["enabled"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -85,7 +85,7 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
     {
         get
         {
-            if (!this._properties.TryGetValue("http", out JsonElement element))
+            if (!this._rawData.TryGetValue("http", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<WorkerResponseHTTP?>(
@@ -100,7 +100,7 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
                 return;
             }
 
-            this._properties["http"] = JsonSerializer.SerializeToElement(
+            this._rawData["http"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -111,7 +111,7 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
     {
         get
         {
-            if (!this._properties.TryGetValue("managed", out JsonElement element))
+            if (!this._rawData.TryGetValue("managed", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -123,7 +123,7 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
                 return;
             }
 
-            this._properties["managed"] = JsonSerializer.SerializeToElement(
+            this._rawData["managed"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -134,7 +134,7 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
     {
         get
         {
-            if (!this._properties.TryGetValue("mcp", out JsonElement element))
+            if (!this._rawData.TryGetValue("mcp", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<WorkerResponseMcp?>(
@@ -149,7 +149,7 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
                 return;
             }
 
-            this._properties["mcp"] = JsonSerializer.SerializeToElement(
+            this._rawData["mcp"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -160,7 +160,7 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
     {
         get
         {
-            if (!this._properties.TryGetValue("requirements", out JsonElement element))
+            if (!this._rawData.TryGetValue("requirements", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Requirements?>(element, ModelBase.SerializerOptions);
@@ -172,7 +172,7 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
                 return;
             }
 
-            this._properties["requirements"] = JsonSerializer.SerializeToElement(
+            this._rawData["requirements"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -183,7 +183,7 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
     {
         get
         {
-            if (!this._properties.TryGetValue("type", out JsonElement element))
+            if (!this._rawData.TryGetValue("type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<string, WorkerResponseType>?>(
@@ -198,7 +198,7 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
                 return;
             }
 
-            this._properties["type"] = JsonSerializer.SerializeToElement(
+            this._rawData["type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -219,24 +219,22 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
 
     public WorkerResponse() { }
 
-    public WorkerResponse(IReadOnlyDictionary<string, JsonElement> properties)
+    public WorkerResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    WorkerResponse(FrozenDictionary<string, JsonElement> properties)
+    WorkerResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static WorkerResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
-    )
+    public static WorkerResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -247,7 +245,7 @@ public sealed record class Binding : ModelBase, IFromRaw<Binding>
     {
         get
         {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -259,7 +257,7 @@ public sealed record class Binding : ModelBase, IFromRaw<Binding>
                 return;
             }
 
-            this._properties["id"] = JsonSerializer.SerializeToElement(
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -270,7 +268,7 @@ public sealed record class Binding : ModelBase, IFromRaw<Binding>
     {
         get
         {
-            if (!this._properties.TryGetValue("type", out JsonElement element))
+            if (!this._rawData.TryGetValue("type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<
@@ -285,7 +283,7 @@ public sealed record class Binding : ModelBase, IFromRaw<Binding>
                 return;
             }
 
-            this._properties["type"] = JsonSerializer.SerializeToElement(
+            this._rawData["type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -300,22 +298,22 @@ public sealed record class Binding : ModelBase, IFromRaw<Binding>
 
     public Binding() { }
 
-    public Binding(IReadOnlyDictionary<string, JsonElement> properties)
+    public Binding(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Binding(FrozenDictionary<string, JsonElement> properties)
+    Binding(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Binding FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static Binding FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -376,7 +374,7 @@ public sealed record class WorkerResponseHTTP : ModelBase, IFromRaw<WorkerRespon
     {
         get
         {
-            if (!this._properties.TryGetValue("retry", out JsonElement element))
+            if (!this._rawData.TryGetValue("retry", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
@@ -388,7 +386,7 @@ public sealed record class WorkerResponseHTTP : ModelBase, IFromRaw<WorkerRespon
                 return;
             }
 
-            this._properties["retry"] = JsonSerializer.SerializeToElement(
+            this._rawData["retry"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -399,7 +397,7 @@ public sealed record class WorkerResponseHTTP : ModelBase, IFromRaw<WorkerRespon
     {
         get
         {
-            if (!this._properties.TryGetValue("secret", out JsonElement element))
+            if (!this._rawData.TryGetValue("secret", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Secret?>(element, ModelBase.SerializerOptions);
@@ -411,7 +409,7 @@ public sealed record class WorkerResponseHTTP : ModelBase, IFromRaw<WorkerRespon
                 return;
             }
 
-            this._properties["secret"] = JsonSerializer.SerializeToElement(
+            this._rawData["secret"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -422,7 +420,7 @@ public sealed record class WorkerResponseHTTP : ModelBase, IFromRaw<WorkerRespon
     {
         get
         {
-            if (!this._properties.TryGetValue("timeout", out JsonElement element))
+            if (!this._rawData.TryGetValue("timeout", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
@@ -434,7 +432,7 @@ public sealed record class WorkerResponseHTTP : ModelBase, IFromRaw<WorkerRespon
                 return;
             }
 
-            this._properties["timeout"] = JsonSerializer.SerializeToElement(
+            this._rawData["timeout"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -445,7 +443,7 @@ public sealed record class WorkerResponseHTTP : ModelBase, IFromRaw<WorkerRespon
     {
         get
         {
-            if (!this._properties.TryGetValue("uri", out JsonElement element))
+            if (!this._rawData.TryGetValue("uri", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -457,7 +455,7 @@ public sealed record class WorkerResponseHTTP : ModelBase, IFromRaw<WorkerRespon
                 return;
             }
 
-            this._properties["uri"] = JsonSerializer.SerializeToElement(
+            this._rawData["uri"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -474,24 +472,24 @@ public sealed record class WorkerResponseHTTP : ModelBase, IFromRaw<WorkerRespon
 
     public WorkerResponseHTTP() { }
 
-    public WorkerResponseHTTP(IReadOnlyDictionary<string, JsonElement> properties)
+    public WorkerResponseHTTP(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    WorkerResponseHTTP(FrozenDictionary<string, JsonElement> properties)
+    WorkerResponseHTTP(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static WorkerResponseHTTP FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -502,7 +500,7 @@ public sealed record class Secret : ModelBase, IFromRaw<Secret>
     {
         get
         {
-            if (!this._properties.TryGetValue("binding", out JsonElement element))
+            if (!this._rawData.TryGetValue("binding", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<string, SecretBinding>?>(
@@ -517,7 +515,7 @@ public sealed record class Secret : ModelBase, IFromRaw<Secret>
                 return;
             }
 
-            this._properties["binding"] = JsonSerializer.SerializeToElement(
+            this._rawData["binding"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -528,7 +526,7 @@ public sealed record class Secret : ModelBase, IFromRaw<Secret>
     {
         get
         {
-            if (!this._properties.TryGetValue("editable", out JsonElement element))
+            if (!this._rawData.TryGetValue("editable", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -540,7 +538,7 @@ public sealed record class Secret : ModelBase, IFromRaw<Secret>
                 return;
             }
 
-            this._properties["editable"] = JsonSerializer.SerializeToElement(
+            this._rawData["editable"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -551,7 +549,7 @@ public sealed record class Secret : ModelBase, IFromRaw<Secret>
     {
         get
         {
-            if (!this._properties.TryGetValue("exists", out JsonElement element))
+            if (!this._rawData.TryGetValue("exists", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -563,7 +561,7 @@ public sealed record class Secret : ModelBase, IFromRaw<Secret>
                 return;
             }
 
-            this._properties["exists"] = JsonSerializer.SerializeToElement(
+            this._rawData["exists"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -574,7 +572,7 @@ public sealed record class Secret : ModelBase, IFromRaw<Secret>
     {
         get
         {
-            if (!this._properties.TryGetValue("hint", out JsonElement element))
+            if (!this._rawData.TryGetValue("hint", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -586,7 +584,7 @@ public sealed record class Secret : ModelBase, IFromRaw<Secret>
                 return;
             }
 
-            this._properties["hint"] = JsonSerializer.SerializeToElement(
+            this._rawData["hint"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -597,7 +595,7 @@ public sealed record class Secret : ModelBase, IFromRaw<Secret>
     {
         get
         {
-            if (!this._properties.TryGetValue("value", out JsonElement element))
+            if (!this._rawData.TryGetValue("value", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -609,7 +607,7 @@ public sealed record class Secret : ModelBase, IFromRaw<Secret>
                 return;
             }
 
-            this._properties["value"] = JsonSerializer.SerializeToElement(
+            this._rawData["value"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -627,22 +625,22 @@ public sealed record class Secret : ModelBase, IFromRaw<Secret>
 
     public Secret() { }
 
-    public Secret(IReadOnlyDictionary<string, JsonElement> properties)
+    public Secret(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Secret(FrozenDictionary<string, JsonElement> properties)
+    Secret(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Secret FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static Secret FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -703,7 +701,7 @@ public sealed record class WorkerResponseMcp : ModelBase, IFromRaw<WorkerRespons
     {
         get
         {
-            if (!this._properties.TryGetValue("headers", out JsonElement element))
+            if (!this._rawData.TryGetValue("headers", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, string>?>(
@@ -718,7 +716,7 @@ public sealed record class WorkerResponseMcp : ModelBase, IFromRaw<WorkerRespons
                 return;
             }
 
-            this._properties["headers"] = JsonSerializer.SerializeToElement(
+            this._rawData["headers"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -729,7 +727,7 @@ public sealed record class WorkerResponseMcp : ModelBase, IFromRaw<WorkerRespons
     {
         get
         {
-            if (!this._properties.TryGetValue("oauth2", out JsonElement element))
+            if (!this._rawData.TryGetValue("oauth2", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<WorkerResponseMcpOauth2?>(
@@ -744,7 +742,7 @@ public sealed record class WorkerResponseMcp : ModelBase, IFromRaw<WorkerRespons
                 return;
             }
 
-            this._properties["oauth2"] = JsonSerializer.SerializeToElement(
+            this._rawData["oauth2"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -755,7 +753,7 @@ public sealed record class WorkerResponseMcp : ModelBase, IFromRaw<WorkerRespons
     {
         get
         {
-            if (!this._properties.TryGetValue("retry", out JsonElement element))
+            if (!this._rawData.TryGetValue("retry", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
@@ -767,7 +765,7 @@ public sealed record class WorkerResponseMcp : ModelBase, IFromRaw<WorkerRespons
                 return;
             }
 
-            this._properties["retry"] = JsonSerializer.SerializeToElement(
+            this._rawData["retry"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -778,7 +776,7 @@ public sealed record class WorkerResponseMcp : ModelBase, IFromRaw<WorkerRespons
     {
         get
         {
-            if (!this._properties.TryGetValue("secrets", out JsonElement element))
+            if (!this._rawData.TryGetValue("secrets", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, SecretsItem>?>(
@@ -793,7 +791,7 @@ public sealed record class WorkerResponseMcp : ModelBase, IFromRaw<WorkerRespons
                 return;
             }
 
-            this._properties["secrets"] = JsonSerializer.SerializeToElement(
+            this._rawData["secrets"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -804,7 +802,7 @@ public sealed record class WorkerResponseMcp : ModelBase, IFromRaw<WorkerRespons
     {
         get
         {
-            if (!this._properties.TryGetValue("timeout", out JsonElement element))
+            if (!this._rawData.TryGetValue("timeout", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
@@ -816,7 +814,7 @@ public sealed record class WorkerResponseMcp : ModelBase, IFromRaw<WorkerRespons
                 return;
             }
 
-            this._properties["timeout"] = JsonSerializer.SerializeToElement(
+            this._rawData["timeout"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -827,7 +825,7 @@ public sealed record class WorkerResponseMcp : ModelBase, IFromRaw<WorkerRespons
     {
         get
         {
-            if (!this._properties.TryGetValue("uri", out JsonElement element))
+            if (!this._rawData.TryGetValue("uri", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -839,7 +837,7 @@ public sealed record class WorkerResponseMcp : ModelBase, IFromRaw<WorkerRespons
                 return;
             }
 
-            this._properties["uri"] = JsonSerializer.SerializeToElement(
+            this._rawData["uri"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -864,24 +862,24 @@ public sealed record class WorkerResponseMcp : ModelBase, IFromRaw<WorkerRespons
 
     public WorkerResponseMcp() { }
 
-    public WorkerResponseMcp(IReadOnlyDictionary<string, JsonElement> properties)
+    public WorkerResponseMcp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    WorkerResponseMcp(FrozenDictionary<string, JsonElement> properties)
+    WorkerResponseMcp(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static WorkerResponseMcp FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -892,7 +890,7 @@ public sealed record class WorkerResponseMcpOauth2 : ModelBase, IFromRaw<WorkerR
     {
         get
         {
-            if (!this._properties.TryGetValue("authorization_url", out JsonElement element))
+            if (!this._rawData.TryGetValue("authorization_url", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -904,7 +902,7 @@ public sealed record class WorkerResponseMcpOauth2 : ModelBase, IFromRaw<WorkerR
                 return;
             }
 
-            this._properties["authorization_url"] = JsonSerializer.SerializeToElement(
+            this._rawData["authorization_url"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -915,7 +913,7 @@ public sealed record class WorkerResponseMcpOauth2 : ModelBase, IFromRaw<WorkerR
     {
         get
         {
-            if (!this._properties.TryGetValue("client_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("client_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -927,7 +925,7 @@ public sealed record class WorkerResponseMcpOauth2 : ModelBase, IFromRaw<WorkerR
                 return;
             }
 
-            this._properties["client_id"] = JsonSerializer.SerializeToElement(
+            this._rawData["client_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -938,7 +936,7 @@ public sealed record class WorkerResponseMcpOauth2 : ModelBase, IFromRaw<WorkerR
     {
         get
         {
-            if (!this._properties.TryGetValue("client_secret", out JsonElement element))
+            if (!this._rawData.TryGetValue("client_secret", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ClientSecret?>(element, ModelBase.SerializerOptions);
@@ -950,7 +948,7 @@ public sealed record class WorkerResponseMcpOauth2 : ModelBase, IFromRaw<WorkerR
                 return;
             }
 
-            this._properties["client_secret"] = JsonSerializer.SerializeToElement(
+            this._rawData["client_secret"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -961,7 +959,7 @@ public sealed record class WorkerResponseMcpOauth2 : ModelBase, IFromRaw<WorkerR
     {
         get
         {
-            if (!this._properties.TryGetValue("redirect_uri", out JsonElement element))
+            if (!this._rawData.TryGetValue("redirect_uri", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -973,7 +971,7 @@ public sealed record class WorkerResponseMcpOauth2 : ModelBase, IFromRaw<WorkerR
                 return;
             }
 
-            this._properties["redirect_uri"] = JsonSerializer.SerializeToElement(
+            this._rawData["redirect_uri"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -990,24 +988,24 @@ public sealed record class WorkerResponseMcpOauth2 : ModelBase, IFromRaw<WorkerR
 
     public WorkerResponseMcpOauth2() { }
 
-    public WorkerResponseMcpOauth2(IReadOnlyDictionary<string, JsonElement> properties)
+    public WorkerResponseMcpOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    WorkerResponseMcpOauth2(FrozenDictionary<string, JsonElement> properties)
+    WorkerResponseMcpOauth2(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static WorkerResponseMcpOauth2 FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -1018,7 +1016,7 @@ public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
     {
         get
         {
-            if (!this._properties.TryGetValue("binding", out JsonElement element))
+            if (!this._rawData.TryGetValue("binding", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<string, ClientSecretBinding>?>(
@@ -1033,7 +1031,7 @@ public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
                 return;
             }
 
-            this._properties["binding"] = JsonSerializer.SerializeToElement(
+            this._rawData["binding"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1044,7 +1042,7 @@ public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
     {
         get
         {
-            if (!this._properties.TryGetValue("editable", out JsonElement element))
+            if (!this._rawData.TryGetValue("editable", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -1056,7 +1054,7 @@ public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
                 return;
             }
 
-            this._properties["editable"] = JsonSerializer.SerializeToElement(
+            this._rawData["editable"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1067,7 +1065,7 @@ public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
     {
         get
         {
-            if (!this._properties.TryGetValue("exists", out JsonElement element))
+            if (!this._rawData.TryGetValue("exists", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -1079,7 +1077,7 @@ public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
                 return;
             }
 
-            this._properties["exists"] = JsonSerializer.SerializeToElement(
+            this._rawData["exists"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1090,7 +1088,7 @@ public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
     {
         get
         {
-            if (!this._properties.TryGetValue("hint", out JsonElement element))
+            if (!this._rawData.TryGetValue("hint", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -1102,7 +1100,7 @@ public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
                 return;
             }
 
-            this._properties["hint"] = JsonSerializer.SerializeToElement(
+            this._rawData["hint"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1113,7 +1111,7 @@ public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
     {
         get
         {
-            if (!this._properties.TryGetValue("value", out JsonElement element))
+            if (!this._rawData.TryGetValue("value", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -1125,7 +1123,7 @@ public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
                 return;
             }
 
-            this._properties["value"] = JsonSerializer.SerializeToElement(
+            this._rawData["value"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1143,22 +1141,22 @@ public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
 
     public ClientSecret() { }
 
-    public ClientSecret(IReadOnlyDictionary<string, JsonElement> properties)
+    public ClientSecret(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ClientSecret(FrozenDictionary<string, JsonElement> properties)
+    ClientSecret(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static ClientSecret FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static ClientSecret FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -1219,7 +1217,7 @@ public sealed record class SecretsItem : ModelBase, IFromRaw<SecretsItem>
     {
         get
         {
-            if (!this._properties.TryGetValue("binding", out JsonElement element))
+            if (!this._rawData.TryGetValue("binding", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<string, SecretsItemBinding>?>(
@@ -1234,7 +1232,7 @@ public sealed record class SecretsItem : ModelBase, IFromRaw<SecretsItem>
                 return;
             }
 
-            this._properties["binding"] = JsonSerializer.SerializeToElement(
+            this._rawData["binding"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1245,7 +1243,7 @@ public sealed record class SecretsItem : ModelBase, IFromRaw<SecretsItem>
     {
         get
         {
-            if (!this._properties.TryGetValue("editable", out JsonElement element))
+            if (!this._rawData.TryGetValue("editable", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -1257,7 +1255,7 @@ public sealed record class SecretsItem : ModelBase, IFromRaw<SecretsItem>
                 return;
             }
 
-            this._properties["editable"] = JsonSerializer.SerializeToElement(
+            this._rawData["editable"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1268,7 +1266,7 @@ public sealed record class SecretsItem : ModelBase, IFromRaw<SecretsItem>
     {
         get
         {
-            if (!this._properties.TryGetValue("exists", out JsonElement element))
+            if (!this._rawData.TryGetValue("exists", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -1280,7 +1278,7 @@ public sealed record class SecretsItem : ModelBase, IFromRaw<SecretsItem>
                 return;
             }
 
-            this._properties["exists"] = JsonSerializer.SerializeToElement(
+            this._rawData["exists"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1291,7 +1289,7 @@ public sealed record class SecretsItem : ModelBase, IFromRaw<SecretsItem>
     {
         get
         {
-            if (!this._properties.TryGetValue("hint", out JsonElement element))
+            if (!this._rawData.TryGetValue("hint", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -1303,7 +1301,7 @@ public sealed record class SecretsItem : ModelBase, IFromRaw<SecretsItem>
                 return;
             }
 
-            this._properties["hint"] = JsonSerializer.SerializeToElement(
+            this._rawData["hint"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1314,7 +1312,7 @@ public sealed record class SecretsItem : ModelBase, IFromRaw<SecretsItem>
     {
         get
         {
-            if (!this._properties.TryGetValue("value", out JsonElement element))
+            if (!this._rawData.TryGetValue("value", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -1326,7 +1324,7 @@ public sealed record class SecretsItem : ModelBase, IFromRaw<SecretsItem>
                 return;
             }
 
-            this._properties["value"] = JsonSerializer.SerializeToElement(
+            this._rawData["value"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1344,22 +1342,22 @@ public sealed record class SecretsItem : ModelBase, IFromRaw<SecretsItem>
 
     public SecretsItem() { }
 
-    public SecretsItem(IReadOnlyDictionary<string, JsonElement> properties)
+    public SecretsItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SecretsItem(FrozenDictionary<string, JsonElement> properties)
+    SecretsItem(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static SecretsItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static SecretsItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -1420,7 +1418,7 @@ public sealed record class Requirements : ModelBase, IFromRaw<Requirements>
     {
         get
         {
-            if (!this._properties.TryGetValue("authorization", out JsonElement element))
+            if (!this._rawData.TryGetValue("authorization", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Authorization?>(element, ModelBase.SerializerOptions);
@@ -1432,7 +1430,7 @@ public sealed record class Requirements : ModelBase, IFromRaw<Requirements>
                 return;
             }
 
-            this._properties["authorization"] = JsonSerializer.SerializeToElement(
+            this._rawData["authorization"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1443,7 +1441,7 @@ public sealed record class Requirements : ModelBase, IFromRaw<Requirements>
     {
         get
         {
-            if (!this._properties.TryGetValue("met", out JsonElement element))
+            if (!this._rawData.TryGetValue("met", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -1455,7 +1453,7 @@ public sealed record class Requirements : ModelBase, IFromRaw<Requirements>
                 return;
             }
 
-            this._properties["met"] = JsonSerializer.SerializeToElement(
+            this._rawData["met"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1470,22 +1468,22 @@ public sealed record class Requirements : ModelBase, IFromRaw<Requirements>
 
     public Requirements() { }
 
-    public Requirements(IReadOnlyDictionary<string, JsonElement> properties)
+    public Requirements(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Requirements(FrozenDictionary<string, JsonElement> properties)
+    Requirements(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Requirements FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static Requirements FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -1496,7 +1494,7 @@ public sealed record class Authorization : ModelBase, IFromRaw<Authorization>
     {
         get
         {
-            if (!this._properties.TryGetValue("met", out JsonElement element))
+            if (!this._rawData.TryGetValue("met", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -1508,7 +1506,7 @@ public sealed record class Authorization : ModelBase, IFromRaw<Authorization>
                 return;
             }
 
-            this._properties["met"] = JsonSerializer.SerializeToElement(
+            this._rawData["met"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1519,7 +1517,7 @@ public sealed record class Authorization : ModelBase, IFromRaw<Authorization>
     {
         get
         {
-            if (!this._properties.TryGetValue("oauth2", out JsonElement element))
+            if (!this._rawData.TryGetValue("oauth2", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<AuthorizationOauth2?>(
@@ -1534,7 +1532,7 @@ public sealed record class Authorization : ModelBase, IFromRaw<Authorization>
                 return;
             }
 
-            this._properties["oauth2"] = JsonSerializer.SerializeToElement(
+            this._rawData["oauth2"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1549,24 +1547,22 @@ public sealed record class Authorization : ModelBase, IFromRaw<Authorization>
 
     public Authorization() { }
 
-    public Authorization(IReadOnlyDictionary<string, JsonElement> properties)
+    public Authorization(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Authorization(FrozenDictionary<string, JsonElement> properties)
+    Authorization(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Authorization FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
-    )
+    public static Authorization FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -1577,7 +1573,7 @@ public sealed record class AuthorizationOauth2 : ModelBase, IFromRaw<Authorizati
     {
         get
         {
-            if (!this._properties.TryGetValue("met", out JsonElement element))
+            if (!this._rawData.TryGetValue("met", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -1589,7 +1585,7 @@ public sealed record class AuthorizationOauth2 : ModelBase, IFromRaw<Authorizati
                 return;
             }
 
-            this._properties["met"] = JsonSerializer.SerializeToElement(
+            this._rawData["met"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1603,24 +1599,24 @@ public sealed record class AuthorizationOauth2 : ModelBase, IFromRaw<Authorizati
 
     public AuthorizationOauth2() { }
 
-    public AuthorizationOauth2(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthorizationOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AuthorizationOauth2(FrozenDictionary<string, JsonElement> properties)
+    AuthorizationOauth2(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static AuthorizationOauth2 FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
