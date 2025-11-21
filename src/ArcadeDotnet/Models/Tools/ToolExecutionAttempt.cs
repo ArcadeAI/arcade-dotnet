@@ -16,7 +16,7 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
     {
         get
         {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -28,7 +28,7 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
                 return;
             }
 
-            this._properties["id"] = JsonSerializer.SerializeToElement(
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -39,7 +39,7 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
     {
         get
         {
-            if (!this._properties.TryGetValue("finished_at", out JsonElement element))
+            if (!this._rawData.TryGetValue("finished_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -51,7 +51,7 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
                 return;
             }
 
-            this._properties["finished_at"] = JsonSerializer.SerializeToElement(
+            this._rawData["finished_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -62,7 +62,7 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
     {
         get
         {
-            if (!this._properties.TryGetValue("output", out JsonElement element))
+            if (!this._rawData.TryGetValue("output", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ToolExecutionAttemptOutput?>(
@@ -77,7 +77,7 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
                 return;
             }
 
-            this._properties["output"] = JsonSerializer.SerializeToElement(
+            this._rawData["output"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -88,7 +88,7 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
     {
         get
         {
-            if (!this._properties.TryGetValue("started_at", out JsonElement element))
+            if (!this._rawData.TryGetValue("started_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -100,7 +100,7 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
                 return;
             }
 
-            this._properties["started_at"] = JsonSerializer.SerializeToElement(
+            this._rawData["started_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -111,7 +111,7 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
     {
         get
         {
-            if (!this._properties.TryGetValue("success", out JsonElement element))
+            if (!this._rawData.TryGetValue("success", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -123,7 +123,7 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
                 return;
             }
 
-            this._properties["success"] = JsonSerializer.SerializeToElement(
+            this._rawData["success"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -134,7 +134,7 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
     {
         get
         {
-            if (!this._properties.TryGetValue("system_error_message", out JsonElement element))
+            if (!this._rawData.TryGetValue("system_error_message", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -146,7 +146,7 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
                 return;
             }
 
-            this._properties["system_error_message"] = JsonSerializer.SerializeToElement(
+            this._rawData["system_error_message"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -165,24 +165,24 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
 
     public ToolExecutionAttempt() { }
 
-    public ToolExecutionAttempt(IReadOnlyDictionary<string, JsonElement> properties)
+    public ToolExecutionAttempt(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ToolExecutionAttempt(FrozenDictionary<string, JsonElement> properties)
+    ToolExecutionAttempt(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static ToolExecutionAttempt FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -195,7 +195,7 @@ public sealed record class ToolExecutionAttemptOutput
     {
         get
         {
-            if (!this._properties.TryGetValue("authorization", out JsonElement element))
+            if (!this._rawData.TryGetValue("authorization", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<AuthorizationResponse?>(
@@ -210,7 +210,7 @@ public sealed record class ToolExecutionAttemptOutput
                 return;
             }
 
-            this._properties["authorization"] = JsonSerializer.SerializeToElement(
+            this._rawData["authorization"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -221,7 +221,7 @@ public sealed record class ToolExecutionAttemptOutput
     {
         get
         {
-            if (!this._properties.TryGetValue("error", out JsonElement element))
+            if (!this._rawData.TryGetValue("error", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ToolExecutionAttemptOutputError?>(
@@ -236,7 +236,7 @@ public sealed record class ToolExecutionAttemptOutput
                 return;
             }
 
-            this._properties["error"] = JsonSerializer.SerializeToElement(
+            this._rawData["error"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -247,7 +247,7 @@ public sealed record class ToolExecutionAttemptOutput
     {
         get
         {
-            if (!this._properties.TryGetValue("logs", out JsonElement element))
+            if (!this._rawData.TryGetValue("logs", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<LogModel>?>(
@@ -262,7 +262,7 @@ public sealed record class ToolExecutionAttemptOutput
                 return;
             }
 
-            this._properties["logs"] = JsonSerializer.SerializeToElement(
+            this._rawData["logs"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -273,7 +273,7 @@ public sealed record class ToolExecutionAttemptOutput
     {
         get
         {
-            if (!this._properties.TryGetValue("value", out JsonElement element))
+            if (!this._rawData.TryGetValue("value", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<JsonElement?>(element, ModelBase.SerializerOptions);
@@ -285,7 +285,7 @@ public sealed record class ToolExecutionAttemptOutput
                 return;
             }
 
-            this._properties["value"] = JsonSerializer.SerializeToElement(
+            this._rawData["value"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -305,24 +305,24 @@ public sealed record class ToolExecutionAttemptOutput
 
     public ToolExecutionAttemptOutput() { }
 
-    public ToolExecutionAttemptOutput(IReadOnlyDictionary<string, JsonElement> properties)
+    public ToolExecutionAttemptOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ToolExecutionAttemptOutput(FrozenDictionary<string, JsonElement> properties)
+    ToolExecutionAttemptOutput(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static ToolExecutionAttemptOutput FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -335,7 +335,7 @@ public sealed record class ToolExecutionAttemptOutputError
     {
         get
         {
-            if (!this._properties.TryGetValue("can_retry", out JsonElement element))
+            if (!this._rawData.TryGetValue("can_retry", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'can_retry' cannot be null",
                     new System::ArgumentOutOfRangeException(
@@ -348,7 +348,7 @@ public sealed record class ToolExecutionAttemptOutputError
         }
         init
         {
-            this._properties["can_retry"] = JsonSerializer.SerializeToElement(
+            this._rawData["can_retry"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -359,7 +359,7 @@ public sealed record class ToolExecutionAttemptOutputError
     {
         get
         {
-            if (!this._properties.TryGetValue("kind", out JsonElement element))
+            if (!this._rawData.TryGetValue("kind", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'kind' cannot be null",
                     new System::ArgumentOutOfRangeException("kind", "Missing required argument")
@@ -372,7 +372,7 @@ public sealed record class ToolExecutionAttemptOutputError
         }
         init
         {
-            this._properties["kind"] = JsonSerializer.SerializeToElement(
+            this._rawData["kind"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -383,7 +383,7 @@ public sealed record class ToolExecutionAttemptOutputError
     {
         get
         {
-            if (!this._properties.TryGetValue("message", out JsonElement element))
+            if (!this._rawData.TryGetValue("message", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'message' cannot be null",
                     new System::ArgumentOutOfRangeException("message", "Missing required argument")
@@ -397,7 +397,7 @@ public sealed record class ToolExecutionAttemptOutputError
         }
         init
         {
-            this._properties["message"] = JsonSerializer.SerializeToElement(
+            this._rawData["message"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -408,7 +408,7 @@ public sealed record class ToolExecutionAttemptOutputError
     {
         get
         {
-            if (!this._properties.TryGetValue("additional_prompt_content", out JsonElement element))
+            if (!this._rawData.TryGetValue("additional_prompt_content", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -420,7 +420,7 @@ public sealed record class ToolExecutionAttemptOutputError
                 return;
             }
 
-            this._properties["additional_prompt_content"] = JsonSerializer.SerializeToElement(
+            this._rawData["additional_prompt_content"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -431,7 +431,7 @@ public sealed record class ToolExecutionAttemptOutputError
     {
         get
         {
-            if (!this._properties.TryGetValue("developer_message", out JsonElement element))
+            if (!this._rawData.TryGetValue("developer_message", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -443,7 +443,7 @@ public sealed record class ToolExecutionAttemptOutputError
                 return;
             }
 
-            this._properties["developer_message"] = JsonSerializer.SerializeToElement(
+            this._rawData["developer_message"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -454,7 +454,7 @@ public sealed record class ToolExecutionAttemptOutputError
     {
         get
         {
-            if (!this._properties.TryGetValue("extra", out JsonElement element))
+            if (!this._rawData.TryGetValue("extra", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, JsonElement>?>(
@@ -469,7 +469,7 @@ public sealed record class ToolExecutionAttemptOutputError
                 return;
             }
 
-            this._properties["extra"] = JsonSerializer.SerializeToElement(
+            this._rawData["extra"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -480,7 +480,7 @@ public sealed record class ToolExecutionAttemptOutputError
     {
         get
         {
-            if (!this._properties.TryGetValue("retry_after_ms", out JsonElement element))
+            if (!this._rawData.TryGetValue("retry_after_ms", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
@@ -492,7 +492,7 @@ public sealed record class ToolExecutionAttemptOutputError
                 return;
             }
 
-            this._properties["retry_after_ms"] = JsonSerializer.SerializeToElement(
+            this._rawData["retry_after_ms"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -503,7 +503,7 @@ public sealed record class ToolExecutionAttemptOutputError
     {
         get
         {
-            if (!this._properties.TryGetValue("stacktrace", out JsonElement element))
+            if (!this._rawData.TryGetValue("stacktrace", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -515,7 +515,7 @@ public sealed record class ToolExecutionAttemptOutputError
                 return;
             }
 
-            this._properties["stacktrace"] = JsonSerializer.SerializeToElement(
+            this._rawData["stacktrace"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -526,7 +526,7 @@ public sealed record class ToolExecutionAttemptOutputError
     {
         get
         {
-            if (!this._properties.TryGetValue("status_code", out JsonElement element))
+            if (!this._rawData.TryGetValue("status_code", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
@@ -538,7 +538,7 @@ public sealed record class ToolExecutionAttemptOutputError
                 return;
             }
 
-            this._properties["status_code"] = JsonSerializer.SerializeToElement(
+            this._rawData["status_code"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -560,24 +560,24 @@ public sealed record class ToolExecutionAttemptOutputError
 
     public ToolExecutionAttemptOutputError() { }
 
-    public ToolExecutionAttemptOutputError(IReadOnlyDictionary<string, JsonElement> properties)
+    public ToolExecutionAttemptOutputError(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ToolExecutionAttemptOutputError(FrozenDictionary<string, JsonElement> properties)
+    ToolExecutionAttemptOutputError(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static ToolExecutionAttemptOutputError FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -709,7 +709,7 @@ public sealed record class LogModel : ModelBase, IFromRaw<LogModel>
     {
         get
         {
-            if (!this._properties.TryGetValue("level", out JsonElement element))
+            if (!this._rawData.TryGetValue("level", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'level' cannot be null",
                     new System::ArgumentOutOfRangeException("level", "Missing required argument")
@@ -723,7 +723,7 @@ public sealed record class LogModel : ModelBase, IFromRaw<LogModel>
         }
         init
         {
-            this._properties["level"] = JsonSerializer.SerializeToElement(
+            this._rawData["level"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -734,7 +734,7 @@ public sealed record class LogModel : ModelBase, IFromRaw<LogModel>
     {
         get
         {
-            if (!this._properties.TryGetValue("message", out JsonElement element))
+            if (!this._rawData.TryGetValue("message", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'message' cannot be null",
                     new System::ArgumentOutOfRangeException("message", "Missing required argument")
@@ -748,7 +748,7 @@ public sealed record class LogModel : ModelBase, IFromRaw<LogModel>
         }
         init
         {
-            this._properties["message"] = JsonSerializer.SerializeToElement(
+            this._rawData["message"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -759,7 +759,7 @@ public sealed record class LogModel : ModelBase, IFromRaw<LogModel>
     {
         get
         {
-            if (!this._properties.TryGetValue("subtype", out JsonElement element))
+            if (!this._rawData.TryGetValue("subtype", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -771,7 +771,7 @@ public sealed record class LogModel : ModelBase, IFromRaw<LogModel>
                 return;
             }
 
-            this._properties["subtype"] = JsonSerializer.SerializeToElement(
+            this._rawData["subtype"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -787,21 +787,21 @@ public sealed record class LogModel : ModelBase, IFromRaw<LogModel>
 
     public LogModel() { }
 
-    public LogModel(IReadOnlyDictionary<string, JsonElement> properties)
+    public LogModel(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    LogModel(FrozenDictionary<string, JsonElement> properties)
+    LogModel(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static LogModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static LogModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

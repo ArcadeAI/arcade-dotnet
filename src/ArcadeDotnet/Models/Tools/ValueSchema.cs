@@ -16,7 +16,7 @@ public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
     {
         get
         {
-            if (!this._properties.TryGetValue("val_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("val_type", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'val_type' cannot be null",
                     new ArgumentOutOfRangeException("val_type", "Missing required argument")
@@ -30,7 +30,7 @@ public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
         }
         init
         {
-            this._properties["val_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["val_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -41,7 +41,7 @@ public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
     {
         get
         {
-            if (!this._properties.TryGetValue("enum", out JsonElement element))
+            if (!this._rawData.TryGetValue("enum", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
@@ -53,7 +53,7 @@ public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
                 return;
             }
 
-            this._properties["enum"] = JsonSerializer.SerializeToElement(
+            this._rawData["enum"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -64,7 +64,7 @@ public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
     {
         get
         {
-            if (!this._properties.TryGetValue("inner_val_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("inner_val_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -76,7 +76,7 @@ public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
                 return;
             }
 
-            this._properties["inner_val_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["inner_val_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -92,22 +92,22 @@ public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
 
     public ValueSchema() { }
 
-    public ValueSchema(IReadOnlyDictionary<string, JsonElement> properties)
+    public ValueSchema(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ValueSchema(FrozenDictionary<string, JsonElement> properties)
+    ValueSchema(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static ValueSchema FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static ValueSchema FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

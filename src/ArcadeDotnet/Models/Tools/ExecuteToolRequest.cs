@@ -16,7 +16,7 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
     {
         get
         {
-            if (!this._properties.TryGetValue("tool_name", out JsonElement element))
+            if (!this._rawData.TryGetValue("tool_name", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'tool_name' cannot be null",
                     new ArgumentOutOfRangeException("tool_name", "Missing required argument")
@@ -30,7 +30,7 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
         }
         init
         {
-            this._properties["tool_name"] = JsonSerializer.SerializeToElement(
+            this._rawData["tool_name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -45,7 +45,7 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
     {
         get
         {
-            if (!this._properties.TryGetValue("include_error_stacktrace", out JsonElement element))
+            if (!this._rawData.TryGetValue("include_error_stacktrace", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -57,7 +57,7 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
                 return;
             }
 
-            this._properties["include_error_stacktrace"] = JsonSerializer.SerializeToElement(
+            this._rawData["include_error_stacktrace"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -71,7 +71,7 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
     {
         get
         {
-            if (!this._properties.TryGetValue("input", out JsonElement element))
+            if (!this._rawData.TryGetValue("input", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, JsonElement>?>(
@@ -86,7 +86,7 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
                 return;
             }
 
-            this._properties["input"] = JsonSerializer.SerializeToElement(
+            this._rawData["input"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -101,7 +101,7 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
     {
         get
         {
-            if (!this._properties.TryGetValue("run_at", out JsonElement element))
+            if (!this._rawData.TryGetValue("run_at", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -113,7 +113,7 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
                 return;
             }
 
-            this._properties["run_at"] = JsonSerializer.SerializeToElement(
+            this._rawData["run_at"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -127,7 +127,7 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
     {
         get
         {
-            if (!this._properties.TryGetValue("tool_version", out JsonElement element))
+            if (!this._rawData.TryGetValue("tool_version", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -139,7 +139,7 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
                 return;
             }
 
-            this._properties["tool_version"] = JsonSerializer.SerializeToElement(
+            this._rawData["tool_version"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -150,7 +150,7 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
     {
         get
         {
-            if (!this._properties.TryGetValue("user_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("user_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -162,7 +162,7 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
                 return;
             }
 
-            this._properties["user_id"] = JsonSerializer.SerializeToElement(
+            this._rawData["user_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -181,24 +181,24 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
 
     public ExecuteToolRequest() { }
 
-    public ExecuteToolRequest(IReadOnlyDictionary<string, JsonElement> properties)
+    public ExecuteToolRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ExecuteToolRequest(FrozenDictionary<string, JsonElement> properties)
+    ExecuteToolRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static ExecuteToolRequest FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]

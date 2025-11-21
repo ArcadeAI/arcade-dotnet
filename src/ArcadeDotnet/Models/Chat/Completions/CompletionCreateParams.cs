@@ -16,17 +16,17 @@ namespace ArcadeDotnet.Models.Chat.Completions;
 /// </summary>
 public sealed record class CompletionCreateParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _bodyProperties = [];
-    public IReadOnlyDictionary<string, JsonElement> BodyProperties
+    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
-        get { return this._bodyProperties.Freeze(); }
+        get { return this._rawBodyData.Freeze(); }
     }
 
     public double? FrequencyPenalty
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("frequency_penalty", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("frequency_penalty", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
@@ -38,7 +38,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["frequency_penalty"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["frequency_penalty"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -54,7 +54,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("logit_bias", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("logit_bias", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, long>?>(
@@ -69,7 +69,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["logit_bias"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["logit_bias"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -85,7 +85,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("logprobs", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("logprobs", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -97,7 +97,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["logprobs"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["logprobs"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -108,7 +108,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("max_tokens", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("max_tokens", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
@@ -120,7 +120,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["max_tokens"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["max_tokens"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -131,7 +131,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("messages", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("messages", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<ChatMessage>?>(
@@ -146,7 +146,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["messages"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["messages"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -157,7 +157,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("model", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("model", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -169,7 +169,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["model"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["model"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -180,7 +180,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("n", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("n", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
@@ -192,7 +192,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["n"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["n"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -206,7 +206,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("parallel_tool_calls", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("parallel_tool_calls", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -218,7 +218,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["parallel_tool_calls"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["parallel_tool_calls"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -229,7 +229,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("presence_penalty", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("presence_penalty", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
@@ -241,7 +241,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["presence_penalty"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["presence_penalty"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -252,7 +252,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("response_format", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("response_format", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat?>(
@@ -267,7 +267,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["response_format"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["response_format"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -278,7 +278,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("seed", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("seed", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
@@ -290,7 +290,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["seed"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["seed"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -301,7 +301,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("stop", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("stop", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
@@ -313,7 +313,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["stop"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["stop"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -324,7 +324,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("stream", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("stream", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -336,7 +336,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["stream"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["stream"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -350,7 +350,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("stream_options", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("stream_options", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<global::ArcadeDotnet.Models.Chat.Completions.StreamOptions?>(
@@ -365,7 +365,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["stream_options"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["stream_options"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -376,7 +376,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("temperature", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("temperature", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
@@ -388,7 +388,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["temperature"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["temperature"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -402,7 +402,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("tool_choice", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("tool_choice", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<JsonElement?>(element, ModelBase.SerializerOptions);
@@ -414,7 +414,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["tool_choice"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["tool_choice"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -425,7 +425,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("tools", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("tools", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<JsonElement?>(element, ModelBase.SerializerOptions);
@@ -437,7 +437,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["tools"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["tools"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -453,7 +453,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("top_logprobs", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("top_logprobs", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
@@ -465,7 +465,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["top_logprobs"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["top_logprobs"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -476,7 +476,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("top_p", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("top_p", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
@@ -488,7 +488,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["top_p"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["top_p"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -499,7 +499,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._bodyProperties.TryGetValue("user", out JsonElement element))
+            if (!this._rawBodyData.TryGetValue("user", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -511,7 +511,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._bodyProperties["user"] = JsonSerializer.SerializeToElement(
+            this._rawBodyData["user"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -521,40 +521,40 @@ public sealed record class CompletionCreateParams : ParamsBase
     public CompletionCreateParams() { }
 
     public CompletionCreateParams(
-        IReadOnlyDictionary<string, JsonElement> headerProperties,
-        IReadOnlyDictionary<string, JsonElement> queryProperties,
-        IReadOnlyDictionary<string, JsonElement> bodyProperties
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._headerProperties = [.. headerProperties];
-        this._queryProperties = [.. queryProperties];
-        this._bodyProperties = [.. bodyProperties];
+        this._rawHeaderData = [.. rawHeaderData];
+        this._rawQueryData = [.. rawQueryData];
+        this._rawBodyData = [.. rawBodyData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     CompletionCreateParams(
-        FrozenDictionary<string, JsonElement> headerProperties,
-        FrozenDictionary<string, JsonElement> queryProperties,
-        FrozenDictionary<string, JsonElement> bodyProperties
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._headerProperties = [.. headerProperties];
-        this._queryProperties = [.. queryProperties];
-        this._bodyProperties = [.. bodyProperties];
+        this._rawHeaderData = [.. rawHeaderData];
+        this._rawQueryData = [.. rawQueryData];
+        this._rawBodyData = [.. rawBodyData];
     }
 #pragma warning restore CS8618
 
     public static CompletionCreateParams FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> headerProperties,
-        IReadOnlyDictionary<string, JsonElement> queryProperties,
-        IReadOnlyDictionary<string, JsonElement> bodyProperties
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
         return new(
-            FrozenDictionary.ToFrozenDictionary(headerProperties),
-            FrozenDictionary.ToFrozenDictionary(queryProperties),
-            FrozenDictionary.ToFrozenDictionary(bodyProperties)
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            FrozenDictionary.ToFrozenDictionary(rawBodyData)
         );
     }
 
@@ -570,17 +570,13 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     internal override StringContent? BodyContent()
     {
-        return new(
-            JsonSerializer.Serialize(this.BodyProperties),
-            Encoding.UTF8,
-            "application/json"
-        );
+        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
         ParamsBase.AddDefaultHeaders(request, options);
-        foreach (var item in this.HeaderProperties)
+        foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
@@ -596,7 +592,7 @@ public sealed record class ResponseFormat
     {
         get
         {
-            if (!this._properties.TryGetValue("type", out JsonElement element))
+            if (!this._rawData.TryGetValue("type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<
@@ -611,7 +607,7 @@ public sealed record class ResponseFormat
                 return;
             }
 
-            this._properties["type"] = JsonSerializer.SerializeToElement(
+            this._rawData["type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -625,24 +621,24 @@ public sealed record class ResponseFormat
 
     public ResponseFormat() { }
 
-    public ResponseFormat(IReadOnlyDictionary<string, JsonElement> properties)
+    public ResponseFormat(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ResponseFormat(FrozenDictionary<string, JsonElement> properties)
+    ResponseFormat(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -708,7 +704,7 @@ public sealed record class StreamOptions
     {
         get
         {
-            if (!this._properties.TryGetValue("include_usage", out JsonElement element))
+            if (!this._rawData.TryGetValue("include_usage", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -720,7 +716,7 @@ public sealed record class StreamOptions
                 return;
             }
 
-            this._properties["include_usage"] = JsonSerializer.SerializeToElement(
+            this._rawData["include_usage"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -734,23 +730,23 @@ public sealed record class StreamOptions
 
     public StreamOptions() { }
 
-    public StreamOptions(IReadOnlyDictionary<string, JsonElement> properties)
+    public StreamOptions(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    StreamOptions(FrozenDictionary<string, JsonElement> properties)
+    StreamOptions(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static global::ArcadeDotnet.Models.Chat.Completions.StreamOptions FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

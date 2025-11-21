@@ -14,7 +14,7 @@ public sealed record class Error : ModelBase, IFromRaw<Error>
     {
         get
         {
-            if (!this._properties.TryGetValue("message", out JsonElement element))
+            if (!this._rawData.TryGetValue("message", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -26,7 +26,7 @@ public sealed record class Error : ModelBase, IFromRaw<Error>
                 return;
             }
 
-            this._properties["message"] = JsonSerializer.SerializeToElement(
+            this._rawData["message"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -37,7 +37,7 @@ public sealed record class Error : ModelBase, IFromRaw<Error>
     {
         get
         {
-            if (!this._properties.TryGetValue("name", out JsonElement element))
+            if (!this._rawData.TryGetValue("name", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -49,7 +49,7 @@ public sealed record class Error : ModelBase, IFromRaw<Error>
                 return;
             }
 
-            this._properties["name"] = JsonSerializer.SerializeToElement(
+            this._rawData["name"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -64,21 +64,21 @@ public sealed record class Error : ModelBase, IFromRaw<Error>
 
     public Error() { }
 
-    public Error(IReadOnlyDictionary<string, JsonElement> properties)
+    public Error(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Error(FrozenDictionary<string, JsonElement> properties)
+    Error(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Error FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> properties)
+    public static Error FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }

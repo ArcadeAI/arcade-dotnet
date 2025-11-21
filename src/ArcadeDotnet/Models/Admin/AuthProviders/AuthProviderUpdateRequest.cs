@@ -18,7 +18,7 @@ public sealed record class AuthProviderUpdateRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("id", out JsonElement element))
+            if (!this._rawData.TryGetValue("id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -30,7 +30,7 @@ public sealed record class AuthProviderUpdateRequest
                 return;
             }
 
-            this._properties["id"] = JsonSerializer.SerializeToElement(
+            this._rawData["id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -41,7 +41,7 @@ public sealed record class AuthProviderUpdateRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("description", out JsonElement element))
+            if (!this._rawData.TryGetValue("description", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -53,7 +53,7 @@ public sealed record class AuthProviderUpdateRequest
                 return;
             }
 
-            this._properties["description"] = JsonSerializer.SerializeToElement(
+            this._rawData["description"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -64,7 +64,7 @@ public sealed record class AuthProviderUpdateRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("oauth2", out JsonElement element))
+            if (!this._rawData.TryGetValue("oauth2", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2?>(
@@ -79,7 +79,7 @@ public sealed record class AuthProviderUpdateRequest
                 return;
             }
 
-            this._properties["oauth2"] = JsonSerializer.SerializeToElement(
+            this._rawData["oauth2"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -90,7 +90,7 @@ public sealed record class AuthProviderUpdateRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("provider_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("provider_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -102,7 +102,7 @@ public sealed record class AuthProviderUpdateRequest
                 return;
             }
 
-            this._properties["provider_id"] = JsonSerializer.SerializeToElement(
+            this._rawData["provider_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -113,7 +113,7 @@ public sealed record class AuthProviderUpdateRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("status", out JsonElement element))
+            if (!this._rawData.TryGetValue("status", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -125,7 +125,7 @@ public sealed record class AuthProviderUpdateRequest
                 return;
             }
 
-            this._properties["status"] = JsonSerializer.SerializeToElement(
+            this._rawData["status"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -136,7 +136,7 @@ public sealed record class AuthProviderUpdateRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("type", out JsonElement element))
+            if (!this._rawData.TryGetValue("type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -148,7 +148,7 @@ public sealed record class AuthProviderUpdateRequest
                 return;
             }
 
-            this._properties["type"] = JsonSerializer.SerializeToElement(
+            this._rawData["type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -167,24 +167,24 @@ public sealed record class AuthProviderUpdateRequest
 
     public AuthProviderUpdateRequest() { }
 
-    public AuthProviderUpdateRequest(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderUpdateRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AuthProviderUpdateRequest(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderUpdateRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static AuthProviderUpdateRequest FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -197,7 +197,7 @@ public sealed record class AuthProviderUpdateRequestOauth2
     {
         get
         {
-            if (!this._properties.TryGetValue("authorize_request", out JsonElement element))
+            if (!this._rawData.TryGetValue("authorize_request", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2AuthorizeRequest?>(
@@ -212,7 +212,7 @@ public sealed record class AuthProviderUpdateRequestOauth2
                 return;
             }
 
-            this._properties["authorize_request"] = JsonSerializer.SerializeToElement(
+            this._rawData["authorize_request"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -223,7 +223,7 @@ public sealed record class AuthProviderUpdateRequestOauth2
     {
         get
         {
-            if (!this._properties.TryGetValue("client_id", out JsonElement element))
+            if (!this._rawData.TryGetValue("client_id", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -235,7 +235,7 @@ public sealed record class AuthProviderUpdateRequestOauth2
                 return;
             }
 
-            this._properties["client_id"] = JsonSerializer.SerializeToElement(
+            this._rawData["client_id"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -246,7 +246,7 @@ public sealed record class AuthProviderUpdateRequestOauth2
     {
         get
         {
-            if (!this._properties.TryGetValue("client_secret", out JsonElement element))
+            if (!this._rawData.TryGetValue("client_secret", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -258,7 +258,7 @@ public sealed record class AuthProviderUpdateRequestOauth2
                 return;
             }
 
-            this._properties["client_secret"] = JsonSerializer.SerializeToElement(
+            this._rawData["client_secret"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -269,7 +269,7 @@ public sealed record class AuthProviderUpdateRequestOauth2
     {
         get
         {
-            if (!this._properties.TryGetValue("pkce", out JsonElement element))
+            if (!this._rawData.TryGetValue("pkce", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2Pkce?>(
@@ -284,7 +284,7 @@ public sealed record class AuthProviderUpdateRequestOauth2
                 return;
             }
 
-            this._properties["pkce"] = JsonSerializer.SerializeToElement(
+            this._rawData["pkce"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -295,7 +295,7 @@ public sealed record class AuthProviderUpdateRequestOauth2
     {
         get
         {
-            if (!this._properties.TryGetValue("refresh_request", out JsonElement element))
+            if (!this._rawData.TryGetValue("refresh_request", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2RefreshRequest?>(
@@ -310,7 +310,7 @@ public sealed record class AuthProviderUpdateRequestOauth2
                 return;
             }
 
-            this._properties["refresh_request"] = JsonSerializer.SerializeToElement(
+            this._rawData["refresh_request"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -321,7 +321,7 @@ public sealed record class AuthProviderUpdateRequestOauth2
     {
         get
         {
-            if (!this._properties.TryGetValue("scope_delimiter", out JsonElement element))
+            if (!this._rawData.TryGetValue("scope_delimiter", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<
@@ -336,7 +336,7 @@ public sealed record class AuthProviderUpdateRequestOauth2
                 return;
             }
 
-            this._properties["scope_delimiter"] = JsonSerializer.SerializeToElement(
+            this._rawData["scope_delimiter"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -347,7 +347,7 @@ public sealed record class AuthProviderUpdateRequestOauth2
     {
         get
         {
-            if (!this._properties.TryGetValue("token_request", out JsonElement element))
+            if (!this._rawData.TryGetValue("token_request", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2TokenRequest?>(
@@ -362,7 +362,7 @@ public sealed record class AuthProviderUpdateRequestOauth2
                 return;
             }
 
-            this._properties["token_request"] = JsonSerializer.SerializeToElement(
+            this._rawData["token_request"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -373,7 +373,7 @@ public sealed record class AuthProviderUpdateRequestOauth2
     {
         get
         {
-            if (!this._properties.TryGetValue("user_info_request", out JsonElement element))
+            if (!this._rawData.TryGetValue("user_info_request", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2UserInfoRequest?>(
@@ -388,7 +388,7 @@ public sealed record class AuthProviderUpdateRequestOauth2
                 return;
             }
 
-            this._properties["user_info_request"] = JsonSerializer.SerializeToElement(
+            this._rawData["user_info_request"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -409,24 +409,24 @@ public sealed record class AuthProviderUpdateRequestOauth2
 
     public AuthProviderUpdateRequestOauth2() { }
 
-    public AuthProviderUpdateRequestOauth2(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderUpdateRequestOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AuthProviderUpdateRequestOauth2(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderUpdateRequestOauth2(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static AuthProviderUpdateRequestOauth2 FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -439,7 +439,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("auth_header_value_format", out JsonElement element))
+            if (!this._rawData.TryGetValue("auth_header_value_format", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -451,7 +451,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
                 return;
             }
 
-            this._properties["auth_header_value_format"] = JsonSerializer.SerializeToElement(
+            this._rawData["auth_header_value_format"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -462,7 +462,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("auth_method", out JsonElement element))
+            if (!this._rawData.TryGetValue("auth_method", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -474,7 +474,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
                 return;
             }
 
-            this._properties["auth_method"] = JsonSerializer.SerializeToElement(
+            this._rawData["auth_method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -485,7 +485,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("endpoint", out JsonElement element))
+            if (!this._rawData.TryGetValue("endpoint", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -497,7 +497,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
                 return;
             }
 
-            this._properties["endpoint"] = JsonSerializer.SerializeToElement(
+            this._rawData["endpoint"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -508,7 +508,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("method", out JsonElement element))
+            if (!this._rawData.TryGetValue("method", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -520,7 +520,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
                 return;
             }
 
-            this._properties["method"] = JsonSerializer.SerializeToElement(
+            this._rawData["method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -531,7 +531,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("params", out JsonElement element))
+            if (!this._rawData.TryGetValue("params", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, string>?>(
@@ -546,7 +546,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
                 return;
             }
 
-            this._properties["params"] = JsonSerializer.SerializeToElement(
+            this._rawData["params"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -560,7 +560,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("request_content_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("request_content_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<
@@ -575,7 +575,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
                 return;
             }
 
-            this._properties["request_content_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["request_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -589,7 +589,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("response_content_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("response_content_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<
@@ -604,7 +604,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
                 return;
             }
 
-            this._properties["response_content_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["response_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -615,7 +615,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("response_map", out JsonElement element))
+            if (!this._rawData.TryGetValue("response_map", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, string>?>(
@@ -630,7 +630,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
                 return;
             }
 
-            this._properties["response_map"] = JsonSerializer.SerializeToElement(
+            this._rawData["response_map"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -652,27 +652,25 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest
     public AuthProviderUpdateRequestOauth2AuthorizeRequest() { }
 
     public AuthProviderUpdateRequestOauth2AuthorizeRequest(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AuthProviderUpdateRequestOauth2AuthorizeRequest(
-        FrozenDictionary<string, JsonElement> properties
-    )
+    AuthProviderUpdateRequestOauth2AuthorizeRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static AuthProviderUpdateRequestOauth2AuthorizeRequest FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -783,7 +781,7 @@ public sealed record class AuthProviderUpdateRequestOauth2Pkce
     {
         get
         {
-            if (!this._properties.TryGetValue("code_challenge_method", out JsonElement element))
+            if (!this._rawData.TryGetValue("code_challenge_method", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -795,7 +793,7 @@ public sealed record class AuthProviderUpdateRequestOauth2Pkce
                 return;
             }
 
-            this._properties["code_challenge_method"] = JsonSerializer.SerializeToElement(
+            this._rawData["code_challenge_method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -806,7 +804,7 @@ public sealed record class AuthProviderUpdateRequestOauth2Pkce
     {
         get
         {
-            if (!this._properties.TryGetValue("enabled", out JsonElement element))
+            if (!this._rawData.TryGetValue("enabled", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -818,7 +816,7 @@ public sealed record class AuthProviderUpdateRequestOauth2Pkce
                 return;
             }
 
-            this._properties["enabled"] = JsonSerializer.SerializeToElement(
+            this._rawData["enabled"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -833,24 +831,24 @@ public sealed record class AuthProviderUpdateRequestOauth2Pkce
 
     public AuthProviderUpdateRequestOauth2Pkce() { }
 
-    public AuthProviderUpdateRequestOauth2Pkce(IReadOnlyDictionary<string, JsonElement> properties)
+    public AuthProviderUpdateRequestOauth2Pkce(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AuthProviderUpdateRequestOauth2Pkce(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderUpdateRequestOauth2Pkce(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static AuthProviderUpdateRequestOauth2Pkce FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -863,7 +861,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("auth_header_value_format", out JsonElement element))
+            if (!this._rawData.TryGetValue("auth_header_value_format", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -875,7 +873,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
                 return;
             }
 
-            this._properties["auth_header_value_format"] = JsonSerializer.SerializeToElement(
+            this._rawData["auth_header_value_format"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -886,7 +884,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("auth_method", out JsonElement element))
+            if (!this._rawData.TryGetValue("auth_method", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -898,7 +896,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
                 return;
             }
 
-            this._properties["auth_method"] = JsonSerializer.SerializeToElement(
+            this._rawData["auth_method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -909,7 +907,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("endpoint", out JsonElement element))
+            if (!this._rawData.TryGetValue("endpoint", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -921,7 +919,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
                 return;
             }
 
-            this._properties["endpoint"] = JsonSerializer.SerializeToElement(
+            this._rawData["endpoint"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -932,7 +930,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("method", out JsonElement element))
+            if (!this._rawData.TryGetValue("method", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -944,7 +942,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
                 return;
             }
 
-            this._properties["method"] = JsonSerializer.SerializeToElement(
+            this._rawData["method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -955,7 +953,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("params", out JsonElement element))
+            if (!this._rawData.TryGetValue("params", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, string>?>(
@@ -970,7 +968,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
                 return;
             }
 
-            this._properties["params"] = JsonSerializer.SerializeToElement(
+            this._rawData["params"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -984,7 +982,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("request_content_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("request_content_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<
@@ -999,7 +997,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
                 return;
             }
 
-            this._properties["request_content_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["request_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1013,7 +1011,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("response_content_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("response_content_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<
@@ -1028,7 +1026,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
                 return;
             }
 
-            this._properties["response_content_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["response_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1039,7 +1037,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("response_map", out JsonElement element))
+            if (!this._rawData.TryGetValue("response_map", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, string>?>(
@@ -1054,7 +1052,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
                 return;
             }
 
-            this._properties["response_map"] = JsonSerializer.SerializeToElement(
+            this._rawData["response_map"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1076,25 +1074,25 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest
     public AuthProviderUpdateRequestOauth2RefreshRequest() { }
 
     public AuthProviderUpdateRequestOauth2RefreshRequest(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AuthProviderUpdateRequestOauth2RefreshRequest(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderUpdateRequestOauth2RefreshRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static AuthProviderUpdateRequestOauth2RefreshRequest FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -1250,7 +1248,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("auth_header_value_format", out JsonElement element))
+            if (!this._rawData.TryGetValue("auth_header_value_format", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -1262,7 +1260,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
                 return;
             }
 
-            this._properties["auth_header_value_format"] = JsonSerializer.SerializeToElement(
+            this._rawData["auth_header_value_format"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1273,7 +1271,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("auth_method", out JsonElement element))
+            if (!this._rawData.TryGetValue("auth_method", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -1285,7 +1283,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
                 return;
             }
 
-            this._properties["auth_method"] = JsonSerializer.SerializeToElement(
+            this._rawData["auth_method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1296,7 +1294,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("endpoint", out JsonElement element))
+            if (!this._rawData.TryGetValue("endpoint", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -1308,7 +1306,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
                 return;
             }
 
-            this._properties["endpoint"] = JsonSerializer.SerializeToElement(
+            this._rawData["endpoint"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1319,7 +1317,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("method", out JsonElement element))
+            if (!this._rawData.TryGetValue("method", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -1331,7 +1329,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
                 return;
             }
 
-            this._properties["method"] = JsonSerializer.SerializeToElement(
+            this._rawData["method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1342,7 +1340,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("params", out JsonElement element))
+            if (!this._rawData.TryGetValue("params", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, string>?>(
@@ -1357,7 +1355,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
                 return;
             }
 
-            this._properties["params"] = JsonSerializer.SerializeToElement(
+            this._rawData["params"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1371,7 +1369,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("request_content_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("request_content_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<
@@ -1386,7 +1384,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
                 return;
             }
 
-            this._properties["request_content_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["request_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1400,7 +1398,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("response_content_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("response_content_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<
@@ -1415,7 +1413,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
                 return;
             }
 
-            this._properties["response_content_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["response_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1426,7 +1424,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("response_map", out JsonElement element))
+            if (!this._rawData.TryGetValue("response_map", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, string>?>(
@@ -1441,7 +1439,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
                 return;
             }
 
-            this._properties["response_map"] = JsonSerializer.SerializeToElement(
+            this._rawData["response_map"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1463,25 +1461,25 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest
     public AuthProviderUpdateRequestOauth2TokenRequest() { }
 
     public AuthProviderUpdateRequestOauth2TokenRequest(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AuthProviderUpdateRequestOauth2TokenRequest(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderUpdateRequestOauth2TokenRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static AuthProviderUpdateRequestOauth2TokenRequest FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -1592,7 +1590,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("auth_header_value_format", out JsonElement element))
+            if (!this._rawData.TryGetValue("auth_header_value_format", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -1604,7 +1602,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
                 return;
             }
 
-            this._properties["auth_header_value_format"] = JsonSerializer.SerializeToElement(
+            this._rawData["auth_header_value_format"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1615,7 +1613,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("auth_method", out JsonElement element))
+            if (!this._rawData.TryGetValue("auth_method", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -1627,7 +1625,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
                 return;
             }
 
-            this._properties["auth_method"] = JsonSerializer.SerializeToElement(
+            this._rawData["auth_method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1638,7 +1636,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("endpoint", out JsonElement element))
+            if (!this._rawData.TryGetValue("endpoint", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -1650,7 +1648,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
                 return;
             }
 
-            this._properties["endpoint"] = JsonSerializer.SerializeToElement(
+            this._rawData["endpoint"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1661,7 +1659,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("method", out JsonElement element))
+            if (!this._rawData.TryGetValue("method", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
@@ -1673,7 +1671,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
                 return;
             }
 
-            this._properties["method"] = JsonSerializer.SerializeToElement(
+            this._rawData["method"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1684,7 +1682,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("params", out JsonElement element))
+            if (!this._rawData.TryGetValue("params", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, string>?>(
@@ -1699,7 +1697,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
                 return;
             }
 
-            this._properties["params"] = JsonSerializer.SerializeToElement(
+            this._rawData["params"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1713,7 +1711,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("request_content_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("request_content_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<
@@ -1728,7 +1726,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
                 return;
             }
 
-            this._properties["request_content_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["request_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1742,7 +1740,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("response_content_type", out JsonElement element))
+            if (!this._rawData.TryGetValue("response_content_type", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<ApiEnum<
@@ -1757,7 +1755,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
                 return;
             }
 
-            this._properties["response_content_type"] = JsonSerializer.SerializeToElement(
+            this._rawData["response_content_type"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1768,7 +1766,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("response_map", out JsonElement element))
+            if (!this._rawData.TryGetValue("response_map", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<Dictionary<string, string>?>(
@@ -1783,7 +1781,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
                 return;
             }
 
-            this._properties["response_map"] = JsonSerializer.SerializeToElement(
+            this._rawData["response_map"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1794,7 +1792,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
     {
         get
         {
-            if (!this._properties.TryGetValue("triggers", out JsonElement element))
+            if (!this._rawData.TryGetValue("triggers", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2UserInfoRequestTriggers?>(
@@ -1809,7 +1807,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
                 return;
             }
 
-            this._properties["triggers"] = JsonSerializer.SerializeToElement(
+            this._rawData["triggers"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1832,25 +1830,25 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest
     public AuthProviderUpdateRequestOauth2UserInfoRequest() { }
 
     public AuthProviderUpdateRequestOauth2UserInfoRequest(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AuthProviderUpdateRequestOauth2UserInfoRequest(FrozenDictionary<string, JsonElement> properties)
+    AuthProviderUpdateRequestOauth2UserInfoRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static AuthProviderUpdateRequestOauth2UserInfoRequest FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
@@ -1961,7 +1959,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTrigger
     {
         get
         {
-            if (!this._properties.TryGetValue("on_token_grant", out JsonElement element))
+            if (!this._rawData.TryGetValue("on_token_grant", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -1973,7 +1971,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTrigger
                 return;
             }
 
-            this._properties["on_token_grant"] = JsonSerializer.SerializeToElement(
+            this._rawData["on_token_grant"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -1984,7 +1982,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTrigger
     {
         get
         {
-            if (!this._properties.TryGetValue("on_token_refresh", out JsonElement element))
+            if (!this._rawData.TryGetValue("on_token_refresh", out JsonElement element))
                 return null;
 
             return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
@@ -1996,7 +1994,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTrigger
                 return;
             }
 
-            this._properties["on_token_refresh"] = JsonSerializer.SerializeToElement(
+            this._rawData["on_token_refresh"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
@@ -2012,26 +2010,26 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTrigger
     public AuthProviderUpdateRequestOauth2UserInfoRequestTriggers() { }
 
     public AuthProviderUpdateRequestOauth2UserInfoRequestTriggers(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AuthProviderUpdateRequestOauth2UserInfoRequestTriggers(
-        FrozenDictionary<string, JsonElement> properties
+        FrozenDictionary<string, JsonElement> rawData
     )
     {
-        this._properties = [.. properties];
+        this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
     public static AuthProviderUpdateRequestOauth2UserInfoRequestTriggers FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(properties));
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
