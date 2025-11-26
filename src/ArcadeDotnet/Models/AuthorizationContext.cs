@@ -7,8 +7,8 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models;
 
-[JsonConverter(typeof(ModelConverter<AuthorizationContext>))]
-public sealed record class AuthorizationContext : ModelBase, IFromRaw<AuthorizationContext>
+[JsonConverter(typeof(ModelConverter<AuthorizationContext, AuthorizationContextFromRaw>))]
+public sealed record class AuthorizationContext : ModelBase
 {
     public string? Token
     {
@@ -86,4 +86,11 @@ public sealed record class AuthorizationContext : ModelBase, IFromRaw<Authorizat
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AuthorizationContextFromRaw : IFromRaw<AuthorizationContext>
+{
+    public AuthorizationContext FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthorizationContext.FromRawUnchecked(rawData);
 }

@@ -9,8 +9,8 @@ using System = System;
 
 namespace ArcadeDotnet.Models.Tools;
 
-[JsonConverter(typeof(ModelConverter<ExecuteToolResponse>))]
-public sealed record class ExecuteToolResponse : ModelBase, IFromRaw<ExecuteToolResponse>
+[JsonConverter(typeof(ModelConverter<ExecuteToolResponse, ExecuteToolResponseFromRaw>))]
+public sealed record class ExecuteToolResponse : ModelBase
 {
     public string? ID
     {
@@ -260,8 +260,14 @@ public sealed record class ExecuteToolResponse : ModelBase, IFromRaw<ExecuteTool
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Output>))]
-public sealed record class Output : ModelBase, IFromRaw<Output>
+class ExecuteToolResponseFromRaw : IFromRaw<ExecuteToolResponse>
+{
+    public ExecuteToolResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ExecuteToolResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Output, OutputFromRaw>))]
+public sealed record class Output : ModelBase
 {
     public AuthorizationResponse? Authorization
     {
@@ -393,8 +399,19 @@ public sealed record class Output : ModelBase, IFromRaw<Output>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::ArcadeDotnet.Models.Tools.Error>))]
-public sealed record class Error : ModelBase, IFromRaw<global::ArcadeDotnet.Models.Tools.Error>
+class OutputFromRaw : IFromRaw<Output>
+{
+    public Output FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Output.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        global::ArcadeDotnet.Models.Tools.Error,
+        global::ArcadeDotnet.Models.Tools.ErrorFromRaw
+    >)
+)]
+public sealed record class Error : ModelBase
 {
     public required bool CanRetry
     {
@@ -646,6 +663,13 @@ public sealed record class Error : ModelBase, IFromRaw<global::ArcadeDotnet.Mode
     }
 }
 
+class ErrorFromRaw : IFromRaw<global::ArcadeDotnet.Models.Tools.Error>
+{
+    public global::ArcadeDotnet.Models.Tools.Error FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::ArcadeDotnet.Models.Tools.Error.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(KindConverter))]
 public enum Kind
 {
@@ -734,8 +758,8 @@ sealed class KindConverter : JsonConverter<Kind>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Log>))]
-public sealed record class Log : ModelBase, IFromRaw<Log>
+[JsonConverter(typeof(ModelConverter<Log, LogFromRaw>))]
+public sealed record class Log : ModelBase
 {
     public required string Level
     {
@@ -836,4 +860,10 @@ public sealed record class Log : ModelBase, IFromRaw<Log>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class LogFromRaw : IFromRaw<Log>
+{
+    public Log FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Log.FromRawUnchecked(rawData);
 }

@@ -7,8 +7,8 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models;
 
-[JsonConverter(typeof(ModelConverter<Error>))]
-public sealed record class Error : ModelBase, IFromRaw<Error>
+[JsonConverter(typeof(ModelConverter<Error, ErrorFromRaw>))]
+public sealed record class Error : ModelBase
 {
     public string? Message
     {
@@ -81,4 +81,10 @@ public sealed record class Error : ModelBase, IFromRaw<Error>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ErrorFromRaw : IFromRaw<Error>
+{
+    public Error FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Error.FromRawUnchecked(rawData);
 }

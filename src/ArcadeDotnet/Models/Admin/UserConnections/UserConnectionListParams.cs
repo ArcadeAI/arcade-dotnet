@@ -166,8 +166,8 @@ public sealed record class UserConnectionListParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Provider>))]
-public sealed record class Provider : ModelBase, IFromRaw<Provider>
+[JsonConverter(typeof(ModelConverter<Provider, ProviderFromRaw>))]
+public sealed record class Provider : ModelBase
 {
     /// <summary>
     /// Provider ID
@@ -221,8 +221,14 @@ public sealed record class Provider : ModelBase, IFromRaw<Provider>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<User>))]
-public sealed record class User : ModelBase, IFromRaw<User>
+class ProviderFromRaw : IFromRaw<Provider>
+{
+    public Provider FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Provider.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<User, UserFromRaw>))]
+public sealed record class User : ModelBase
 {
     /// <summary>
     /// User ID
@@ -274,4 +280,10 @@ public sealed record class User : ModelBase, IFromRaw<User>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class UserFromRaw : IFromRaw<User>
+{
+    public User FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        User.FromRawUnchecked(rawData);
 }

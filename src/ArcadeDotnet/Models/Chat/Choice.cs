@@ -7,8 +7,8 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Chat;
 
-[JsonConverter(typeof(ModelConverter<Choice>))]
-public sealed record class Choice : ModelBase, IFromRaw<Choice>
+[JsonConverter(typeof(ModelConverter<Choice, ChoiceFromRaw>))]
+public sealed record class Choice : ModelBase
 {
     public string? FinishReason
     {
@@ -189,4 +189,10 @@ public sealed record class Choice : ModelBase, IFromRaw<Choice>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ChoiceFromRaw : IFromRaw<Choice>
+{
+    public Choice FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Choice.FromRawUnchecked(rawData);
 }

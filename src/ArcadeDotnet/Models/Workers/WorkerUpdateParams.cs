@@ -157,8 +157,8 @@ public sealed record class WorkerUpdateParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<HTTPModel>))]
-public sealed record class HTTPModel : ModelBase, IFromRaw<HTTPModel>
+[JsonConverter(typeof(ModelConverter<HTTPModel, HTTPModelFromRaw>))]
+public sealed record class HTTPModel : ModelBase
 {
     public long? Retry
     {
@@ -281,8 +281,14 @@ public sealed record class HTTPModel : ModelBase, IFromRaw<HTTPModel>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<McpModel>))]
-public sealed record class McpModel : ModelBase, IFromRaw<McpModel>
+class HTTPModelFromRaw : IFromRaw<HTTPModel>
+{
+    public HTTPModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        HTTPModel.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<McpModel, McpModelFromRaw>))]
+public sealed record class McpModel : ModelBase
 {
     public Dictionary<string, string>? Headers
     {
@@ -462,8 +468,14 @@ public sealed record class McpModel : ModelBase, IFromRaw<McpModel>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<McpModelOauth2>))]
-public sealed record class McpModelOauth2 : ModelBase, IFromRaw<McpModelOauth2>
+class McpModelFromRaw : IFromRaw<McpModel>
+{
+    public McpModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        McpModel.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<McpModelOauth2, McpModelOauth2FromRaw>))]
+public sealed record class McpModelOauth2 : ModelBase
 {
     public string? AuthorizationURL
     {
@@ -560,4 +572,10 @@ public sealed record class McpModelOauth2 : ModelBase, IFromRaw<McpModelOauth2>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class McpModelOauth2FromRaw : IFromRaw<McpModelOauth2>
+{
+    public McpModelOauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        McpModelOauth2.FromRawUnchecked(rawData);
 }

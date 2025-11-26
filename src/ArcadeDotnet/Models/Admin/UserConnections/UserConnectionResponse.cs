@@ -7,8 +7,8 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Admin.UserConnections;
 
-[JsonConverter(typeof(ModelConverter<UserConnectionResponse>))]
-public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConnectionResponse>
+[JsonConverter(typeof(ModelConverter<UserConnectionResponse, UserConnectionResponseFromRaw>))]
+public sealed record class UserConnectionResponse : ModelBase
 {
     public string? ID
     {
@@ -251,4 +251,11 @@ public sealed record class UserConnectionResponse : ModelBase, IFromRaw<UserConn
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class UserConnectionResponseFromRaw : IFromRaw<UserConnectionResponse>
+{
+    public UserConnectionResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => UserConnectionResponse.FromRawUnchecked(rawData);
 }

@@ -7,8 +7,8 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Workers;
 
-[JsonConverter(typeof(ModelConverter<UpdateWorkerRequest>))]
-public sealed record class UpdateWorkerRequest : ModelBase, IFromRaw<UpdateWorkerRequest>
+[JsonConverter(typeof(ModelConverter<UpdateWorkerRequest, UpdateWorkerRequestFromRaw>))]
+public sealed record class UpdateWorkerRequest : ModelBase
 {
     public bool? Enabled
     {
@@ -115,8 +115,14 @@ public sealed record class UpdateWorkerRequest : ModelBase, IFromRaw<UpdateWorke
     }
 }
 
-[JsonConverter(typeof(ModelConverter<UpdateWorkerRequestHTTP>))]
-public sealed record class UpdateWorkerRequestHTTP : ModelBase, IFromRaw<UpdateWorkerRequestHTTP>
+class UpdateWorkerRequestFromRaw : IFromRaw<UpdateWorkerRequest>
+{
+    public UpdateWorkerRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        UpdateWorkerRequest.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<UpdateWorkerRequestHTTP, UpdateWorkerRequestHTTPFromRaw>))]
+public sealed record class UpdateWorkerRequestHTTP : ModelBase
 {
     public long? Retry
     {
@@ -241,8 +247,15 @@ public sealed record class UpdateWorkerRequestHTTP : ModelBase, IFromRaw<UpdateW
     }
 }
 
-[JsonConverter(typeof(ModelConverter<UpdateWorkerRequestMcp>))]
-public sealed record class UpdateWorkerRequestMcp : ModelBase, IFromRaw<UpdateWorkerRequestMcp>
+class UpdateWorkerRequestHTTPFromRaw : IFromRaw<UpdateWorkerRequestHTTP>
+{
+    public UpdateWorkerRequestHTTP FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => UpdateWorkerRequestHTTP.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<UpdateWorkerRequestMcp, UpdateWorkerRequestMcpFromRaw>))]
+public sealed record class UpdateWorkerRequestMcp : ModelBase
 {
     public Dictionary<string, string>? Headers
     {
@@ -424,10 +437,17 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase, IFromRaw<UpdateWo
     }
 }
 
-[JsonConverter(typeof(ModelConverter<UpdateWorkerRequestMcpOauth2>))]
-public sealed record class UpdateWorkerRequestMcpOauth2
-    : ModelBase,
-        IFromRaw<UpdateWorkerRequestMcpOauth2>
+class UpdateWorkerRequestMcpFromRaw : IFromRaw<UpdateWorkerRequestMcp>
+{
+    public UpdateWorkerRequestMcp FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => UpdateWorkerRequestMcp.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<UpdateWorkerRequestMcpOauth2, UpdateWorkerRequestMcpOauth2FromRaw>)
+)]
+public sealed record class UpdateWorkerRequestMcpOauth2 : ModelBase
 {
     public string? AuthorizationURL
     {
@@ -526,4 +546,11 @@ public sealed record class UpdateWorkerRequestMcpOauth2
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class UpdateWorkerRequestMcpOauth2FromRaw : IFromRaw<UpdateWorkerRequestMcpOauth2>
+{
+    public UpdateWorkerRequestMcpOauth2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => UpdateWorkerRequestMcpOauth2.FromRawUnchecked(rawData);
 }

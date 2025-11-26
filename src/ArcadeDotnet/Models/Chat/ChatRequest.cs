@@ -9,8 +9,8 @@ using System = System;
 
 namespace ArcadeDotnet.Models.Chat;
 
-[JsonConverter(typeof(ModelConverter<ChatRequest>))]
-public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
+[JsonConverter(typeof(ModelConverter<ChatRequest, ChatRequestFromRaw>))]
+public sealed record class ChatRequest : ModelBase
 {
     public double? FrequencyPenalty
     {
@@ -553,8 +553,14 @@ public sealed record class ChatRequest : ModelBase, IFromRaw<ChatRequest>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ResponseFormat>))]
-public sealed record class ResponseFormat : ModelBase, IFromRaw<ResponseFormat>
+class ChatRequestFromRaw : IFromRaw<ChatRequest>
+{
+    public ChatRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ChatRequest.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<ResponseFormat, ResponseFormatFromRaw>))]
+public sealed record class ResponseFormat : ModelBase
 {
     public ApiEnum<string, ResponseFormatType>? Type
     {
@@ -608,6 +614,12 @@ public sealed record class ResponseFormat : ModelBase, IFromRaw<ResponseFormat>
     }
 }
 
+class ResponseFormatFromRaw : IFromRaw<ResponseFormat>
+{
+    public ResponseFormat FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ResponseFormat.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(ResponseFormatTypeConverter))]
 public enum ResponseFormatType
 {
@@ -655,8 +667,8 @@ sealed class ResponseFormatTypeConverter : JsonConverter<ResponseFormatType>
 /// <summary>
 /// Options for streaming response. Only set this when you set stream: true.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<StreamOptions>))]
-public sealed record class StreamOptions : ModelBase, IFromRaw<StreamOptions>
+[JsonConverter(typeof(ModelConverter<StreamOptions, StreamOptionsFromRaw>))]
+public sealed record class StreamOptions : ModelBase
 {
     /// <summary>
     /// If set, an additional chunk will be streamed before the data: [DONE] message.
@@ -711,4 +723,10 @@ public sealed record class StreamOptions : ModelBase, IFromRaw<StreamOptions>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class StreamOptionsFromRaw : IFromRaw<StreamOptions>
+{
+    public StreamOptions FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        StreamOptions.FromRawUnchecked(rawData);
 }

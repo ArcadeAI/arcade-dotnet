@@ -7,8 +7,8 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Admin.Secrets;
 
-[JsonConverter(typeof(ModelConverter<SecretListResponse>))]
-public sealed record class SecretListResponse : ModelBase, IFromRaw<SecretListResponse>
+[JsonConverter(typeof(ModelConverter<SecretListResponse, SecretListResponseFromRaw>))]
+public sealed record class SecretListResponse : ModelBase
 {
     public List<SecretResponse>? Items
     {
@@ -161,4 +161,10 @@ public sealed record class SecretListResponse : ModelBase, IFromRaw<SecretListRe
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class SecretListResponseFromRaw : IFromRaw<SecretListResponse>
+{
+    public SecretListResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        SecretListResponse.FromRawUnchecked(rawData);
 }

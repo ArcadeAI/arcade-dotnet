@@ -7,8 +7,8 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Tools;
 
-[JsonConverter(typeof(ModelConverter<ToolListPageResponse>))]
-public sealed record class ToolListPageResponse : ModelBase, IFromRaw<ToolListPageResponse>
+[JsonConverter(typeof(ModelConverter<ToolListPageResponse, ToolListPageResponseFromRaw>))]
+public sealed record class ToolListPageResponse : ModelBase
 {
     public List<ToolDefinition>? Items
     {
@@ -161,4 +161,11 @@ public sealed record class ToolListPageResponse : ModelBase, IFromRaw<ToolListPa
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ToolListPageResponseFromRaw : IFromRaw<ToolListPageResponse>
+{
+    public ToolListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ToolListPageResponse.FromRawUnchecked(rawData);
 }

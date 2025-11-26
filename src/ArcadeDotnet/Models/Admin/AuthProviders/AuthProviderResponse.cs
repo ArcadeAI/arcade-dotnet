@@ -9,8 +9,8 @@ using System = System;
 
 namespace ArcadeDotnet.Models.Admin.AuthProviders;
 
-[JsonConverter(typeof(ModelConverter<AuthProviderResponse>))]
-public sealed record class AuthProviderResponse : ModelBase, IFromRaw<AuthProviderResponse>
+[JsonConverter(typeof(ModelConverter<AuthProviderResponse, AuthProviderResponseFromRaw>))]
+public sealed record class AuthProviderResponse : ModelBase
 {
     public string? ID
     {
@@ -258,8 +258,15 @@ public sealed record class AuthProviderResponse : ModelBase, IFromRaw<AuthProvid
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Binding>))]
-public sealed record class Binding : ModelBase, IFromRaw<Binding>
+class AuthProviderResponseFromRaw : IFromRaw<AuthProviderResponse>
+{
+    public AuthProviderResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthProviderResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Binding, BindingFromRaw>))]
+public sealed record class Binding : ModelBase
 {
     public string? ID
     {
@@ -337,6 +344,12 @@ public sealed record class Binding : ModelBase, IFromRaw<Binding>
     }
 }
 
+class BindingFromRaw : IFromRaw<Binding>
+{
+    public Binding FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Binding.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(TypeConverter))]
 public enum Type
 {
@@ -387,10 +400,10 @@ sealed class TypeConverter : JsonConverter<global::ArcadeDotnet.Models.Admin.Aut
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2>))]
-public sealed record class AuthProviderResponseOauth2
-    : ModelBase,
-        IFromRaw<AuthProviderResponseOauth2>
+[JsonConverter(
+    typeof(ModelConverter<AuthProviderResponseOauth2, AuthProviderResponseOauth2FromRaw>)
+)]
+public sealed record class AuthProviderResponseOauth2 : ModelBase
 {
     public AuthProviderResponseOauth2AuthorizeRequest? AuthorizeRequest
     {
@@ -680,10 +693,20 @@ public sealed record class AuthProviderResponseOauth2
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2AuthorizeRequest>))]
-public sealed record class AuthProviderResponseOauth2AuthorizeRequest
-    : ModelBase,
-        IFromRaw<AuthProviderResponseOauth2AuthorizeRequest>
+class AuthProviderResponseOauth2FromRaw : IFromRaw<AuthProviderResponseOauth2>
+{
+    public AuthProviderResponseOauth2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthProviderResponseOauth2.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        AuthProviderResponseOauth2AuthorizeRequest,
+        AuthProviderResponseOauth2AuthorizeRequestFromRaw
+    >)
+)]
+public sealed record class AuthProviderResponseOauth2AuthorizeRequest : ModelBase
 {
     public string? AuthHeaderValueFormat
     {
@@ -936,8 +959,16 @@ public sealed record class AuthProviderResponseOauth2AuthorizeRequest
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ClientSecret>))]
-public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
+class AuthProviderResponseOauth2AuthorizeRequestFromRaw
+    : IFromRaw<AuthProviderResponseOauth2AuthorizeRequest>
+{
+    public AuthProviderResponseOauth2AuthorizeRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthProviderResponseOauth2AuthorizeRequest.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<ClientSecret, ClientSecretFromRaw>))]
+public sealed record class ClientSecret : ModelBase
 {
     public ApiEnum<string, ClientSecretBinding>? Binding
     {
@@ -1087,6 +1118,12 @@ public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
     }
 }
 
+class ClientSecretFromRaw : IFromRaw<ClientSecret>
+{
+    public ClientSecret FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ClientSecret.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(ClientSecretBindingConverter))]
 public enum ClientSecretBinding
 {
@@ -1137,10 +1174,10 @@ sealed class ClientSecretBindingConverter : JsonConverter<ClientSecretBinding>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2Pkce>))]
-public sealed record class AuthProviderResponseOauth2Pkce
-    : ModelBase,
-        IFromRaw<AuthProviderResponseOauth2Pkce>
+[JsonConverter(
+    typeof(ModelConverter<AuthProviderResponseOauth2Pkce, AuthProviderResponseOauth2PkceFromRaw>)
+)]
+public sealed record class AuthProviderResponseOauth2Pkce : ModelBase
 {
     public string? CodeChallengeMethod
     {
@@ -1217,10 +1254,20 @@ public sealed record class AuthProviderResponseOauth2Pkce
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2RefreshRequest>))]
-public sealed record class AuthProviderResponseOauth2RefreshRequest
-    : ModelBase,
-        IFromRaw<AuthProviderResponseOauth2RefreshRequest>
+class AuthProviderResponseOauth2PkceFromRaw : IFromRaw<AuthProviderResponseOauth2Pkce>
+{
+    public AuthProviderResponseOauth2Pkce FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthProviderResponseOauth2Pkce.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        AuthProviderResponseOauth2RefreshRequest,
+        AuthProviderResponseOauth2RefreshRequestFromRaw
+    >)
+)]
+public sealed record class AuthProviderResponseOauth2RefreshRequest : ModelBase
 {
     public string? AuthHeaderValueFormat
     {
@@ -1473,10 +1520,21 @@ public sealed record class AuthProviderResponseOauth2RefreshRequest
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2TokenIntrospectionRequest>))]
-public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequest
-    : ModelBase,
-        IFromRaw<AuthProviderResponseOauth2TokenIntrospectionRequest>
+class AuthProviderResponseOauth2RefreshRequestFromRaw
+    : IFromRaw<AuthProviderResponseOauth2RefreshRequest>
+{
+    public AuthProviderResponseOauth2RefreshRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthProviderResponseOauth2RefreshRequest.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        AuthProviderResponseOauth2TokenIntrospectionRequest,
+        AuthProviderResponseOauth2TokenIntrospectionRequestFromRaw
+    >)
+)]
+public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequest : ModelBase
 {
     public string? AuthHeaderValueFormat
     {
@@ -1782,10 +1840,21 @@ public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequest
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2TokenIntrospectionRequestTriggers>))]
-public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequestTriggers
-    : ModelBase,
-        IFromRaw<AuthProviderResponseOauth2TokenIntrospectionRequestTriggers>
+class AuthProviderResponseOauth2TokenIntrospectionRequestFromRaw
+    : IFromRaw<AuthProviderResponseOauth2TokenIntrospectionRequest>
+{
+    public AuthProviderResponseOauth2TokenIntrospectionRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthProviderResponseOauth2TokenIntrospectionRequest.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        AuthProviderResponseOauth2TokenIntrospectionRequestTriggers,
+        AuthProviderResponseOauth2TokenIntrospectionRequestTriggersFromRaw
+    >)
+)]
+public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequestTriggers : ModelBase
 {
     public bool? OnTokenGrant
     {
@@ -1866,10 +1935,21 @@ public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequestTr
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2TokenRequest>))]
-public sealed record class AuthProviderResponseOauth2TokenRequest
-    : ModelBase,
-        IFromRaw<AuthProviderResponseOauth2TokenRequest>
+class AuthProviderResponseOauth2TokenIntrospectionRequestTriggersFromRaw
+    : IFromRaw<AuthProviderResponseOauth2TokenIntrospectionRequestTriggers>
+{
+    public AuthProviderResponseOauth2TokenIntrospectionRequestTriggers FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthProviderResponseOauth2TokenIntrospectionRequestTriggers.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        AuthProviderResponseOauth2TokenRequest,
+        AuthProviderResponseOauth2TokenRequestFromRaw
+    >)
+)]
+public sealed record class AuthProviderResponseOauth2TokenRequest : ModelBase
 {
     public string? AuthHeaderValueFormat
     {
@@ -2120,10 +2200,21 @@ public sealed record class AuthProviderResponseOauth2TokenRequest
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2UserInfoRequest>))]
-public sealed record class AuthProviderResponseOauth2UserInfoRequest
-    : ModelBase,
-        IFromRaw<AuthProviderResponseOauth2UserInfoRequest>
+class AuthProviderResponseOauth2TokenRequestFromRaw
+    : IFromRaw<AuthProviderResponseOauth2TokenRequest>
+{
+    public AuthProviderResponseOauth2TokenRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthProviderResponseOauth2TokenRequest.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        AuthProviderResponseOauth2UserInfoRequest,
+        AuthProviderResponseOauth2UserInfoRequestFromRaw
+    >)
+)]
+public sealed record class AuthProviderResponseOauth2UserInfoRequest : ModelBase
 {
     public string? AuthHeaderValueFormat
     {
@@ -2403,10 +2494,21 @@ public sealed record class AuthProviderResponseOauth2UserInfoRequest
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthProviderResponseOauth2UserInfoRequestTriggers>))]
-public sealed record class AuthProviderResponseOauth2UserInfoRequestTriggers
-    : ModelBase,
-        IFromRaw<AuthProviderResponseOauth2UserInfoRequestTriggers>
+class AuthProviderResponseOauth2UserInfoRequestFromRaw
+    : IFromRaw<AuthProviderResponseOauth2UserInfoRequest>
+{
+    public AuthProviderResponseOauth2UserInfoRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthProviderResponseOauth2UserInfoRequest.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        AuthProviderResponseOauth2UserInfoRequestTriggers,
+        AuthProviderResponseOauth2UserInfoRequestTriggersFromRaw
+    >)
+)]
+public sealed record class AuthProviderResponseOauth2UserInfoRequestTriggers : ModelBase
 {
     public bool? OnTokenGrant
     {
@@ -2483,4 +2585,12 @@ public sealed record class AuthProviderResponseOauth2UserInfoRequestTriggers
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AuthProviderResponseOauth2UserInfoRequestTriggersFromRaw
+    : IFromRaw<AuthProviderResponseOauth2UserInfoRequestTriggers>
+{
+    public AuthProviderResponseOauth2UserInfoRequestTriggers FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthProviderResponseOauth2UserInfoRequestTriggers.FromRawUnchecked(rawData);
 }

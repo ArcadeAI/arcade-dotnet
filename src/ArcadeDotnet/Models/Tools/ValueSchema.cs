@@ -9,8 +9,8 @@ using ArcadeDotnet.Exceptions;
 
 namespace ArcadeDotnet.Models.Tools;
 
-[JsonConverter(typeof(ModelConverter<ValueSchema>))]
-public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
+[JsonConverter(typeof(ModelConverter<ValueSchema, ValueSchemaFromRaw>))]
+public sealed record class ValueSchema : ModelBase
 {
     public required string ValType
     {
@@ -116,4 +116,10 @@ public sealed record class ValueSchema : ModelBase, IFromRaw<ValueSchema>
     {
         this.ValType = valType;
     }
+}
+
+class ValueSchemaFromRaw : IFromRaw<ValueSchema>
+{
+    public ValueSchema FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ValueSchema.FromRawUnchecked(rawData);
 }

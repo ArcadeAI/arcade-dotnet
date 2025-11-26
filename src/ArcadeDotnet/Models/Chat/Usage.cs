@@ -7,8 +7,8 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Chat;
 
-[JsonConverter(typeof(ModelConverter<Usage>))]
-public sealed record class Usage : ModelBase, IFromRaw<Usage>
+[JsonConverter(typeof(ModelConverter<Usage, UsageFromRaw>))]
+public sealed record class Usage : ModelBase
 {
     public long? CompletionTokens
     {
@@ -105,4 +105,10 @@ public sealed record class Usage : ModelBase, IFromRaw<Usage>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class UsageFromRaw : IFromRaw<Usage>
+{
+    public Usage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Usage.FromRawUnchecked(rawData);
 }

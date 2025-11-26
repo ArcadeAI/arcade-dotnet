@@ -7,10 +7,10 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Admin.UserConnections;
 
-[JsonConverter(typeof(ModelConverter<UserConnectionListPageResponse>))]
-public sealed record class UserConnectionListPageResponse
-    : ModelBase,
-        IFromRaw<UserConnectionListPageResponse>
+[JsonConverter(
+    typeof(ModelConverter<UserConnectionListPageResponse, UserConnectionListPageResponseFromRaw>)
+)]
+public sealed record class UserConnectionListPageResponse : ModelBase
 {
     public List<UserConnectionResponse>? Items
     {
@@ -163,4 +163,11 @@ public sealed record class UserConnectionListPageResponse
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class UserConnectionListPageResponseFromRaw : IFromRaw<UserConnectionListPageResponse>
+{
+    public UserConnectionListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => UserConnectionListPageResponse.FromRawUnchecked(rawData);
 }

@@ -9,8 +9,8 @@ using ArcadeDotnet.Exceptions;
 
 namespace ArcadeDotnet.Models.Auth;
 
-[JsonConverter(typeof(ModelConverter<AuthRequest>))]
-public sealed record class AuthRequest : ModelBase, IFromRaw<AuthRequest>
+[JsonConverter(typeof(ModelConverter<AuthRequest, AuthRequestFromRaw>))]
+public sealed record class AuthRequest : ModelBase
 {
     public required AuthRequestAuthRequirement AuthRequirement
     {
@@ -119,10 +119,16 @@ public sealed record class AuthRequest : ModelBase, IFromRaw<AuthRequest>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthRequestAuthRequirement>))]
-public sealed record class AuthRequestAuthRequirement
-    : ModelBase,
-        IFromRaw<AuthRequestAuthRequirement>
+class AuthRequestFromRaw : IFromRaw<AuthRequest>
+{
+    public AuthRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AuthRequest.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<AuthRequestAuthRequirement, AuthRequestAuthRequirementFromRaw>)
+)]
+public sealed record class AuthRequestAuthRequirement : ModelBase
 {
     /// <summary>
     /// one of ID or ProviderID must be set
@@ -256,10 +262,20 @@ public sealed record class AuthRequestAuthRequirement
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthRequestAuthRequirementOauth2>))]
-public sealed record class AuthRequestAuthRequirementOauth2
-    : ModelBase,
-        IFromRaw<AuthRequestAuthRequirementOauth2>
+class AuthRequestAuthRequirementFromRaw : IFromRaw<AuthRequestAuthRequirement>
+{
+    public AuthRequestAuthRequirement FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthRequestAuthRequirement.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        AuthRequestAuthRequirementOauth2,
+        AuthRequestAuthRequirementOauth2FromRaw
+    >)
+)]
+public sealed record class AuthRequestAuthRequirementOauth2 : ModelBase
 {
     public List<string>? Scopes
     {
@@ -310,4 +326,11 @@ public sealed record class AuthRequestAuthRequirementOauth2
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AuthRequestAuthRequirementOauth2FromRaw : IFromRaw<AuthRequestAuthRequirementOauth2>
+{
+    public AuthRequestAuthRequirementOauth2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthRequestAuthRequirementOauth2.FromRawUnchecked(rawData);
 }

@@ -253,8 +253,8 @@ public sealed record class AuthProviderCreateParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Oauth2>))]
-public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
+[JsonConverter(typeof(ModelConverter<Oauth2, Oauth2FromRaw>))]
+public sealed record class Oauth2 : ModelBase
 {
     public required string ClientID
     {
@@ -524,8 +524,14 @@ public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthorizeRequest>))]
-public sealed record class AuthorizeRequest : ModelBase, IFromRaw<AuthorizeRequest>
+class Oauth2FromRaw : IFromRaw<Oauth2>
+{
+    public Oauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Oauth2.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<AuthorizeRequest, AuthorizeRequestFromRaw>))]
+public sealed record class AuthorizeRequest : ModelBase
 {
     public required string Endpoint
     {
@@ -767,6 +773,12 @@ public sealed record class AuthorizeRequest : ModelBase, IFromRaw<AuthorizeReque
     }
 }
 
+class AuthorizeRequestFromRaw : IFromRaw<AuthorizeRequest>
+{
+    public AuthorizeRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AuthorizeRequest.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(RequestContentTypeConverter))]
 public enum RequestContentType
 {
@@ -858,8 +870,8 @@ sealed class ResponseContentTypeConverter : JsonConverter<ResponseContentType>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Pkce>))]
-public sealed record class Pkce : ModelBase, IFromRaw<Pkce>
+[JsonConverter(typeof(ModelConverter<Pkce, PkceFromRaw>))]
+public sealed record class Pkce : ModelBase
 {
     public string? CodeChallengeMethod
     {
@@ -934,8 +946,14 @@ public sealed record class Pkce : ModelBase, IFromRaw<Pkce>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<RefreshRequest>))]
-public sealed record class RefreshRequest : ModelBase, IFromRaw<RefreshRequest>
+class PkceFromRaw : IFromRaw<Pkce>
+{
+    public Pkce FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Pkce.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<RefreshRequest, RefreshRequestFromRaw>))]
+public sealed record class RefreshRequest : ModelBase
 {
     public required string Endpoint
     {
@@ -1175,6 +1193,12 @@ public sealed record class RefreshRequest : ModelBase, IFromRaw<RefreshRequest>
     }
 }
 
+class RefreshRequestFromRaw : IFromRaw<RefreshRequest>
+{
+    public RefreshRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        RefreshRequest.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(RefreshRequestRequestContentTypeConverter))]
 public enum RefreshRequestRequestContentType
 {
@@ -1313,10 +1337,8 @@ sealed class ScopeDelimiterConverter : JsonConverter<ScopeDelimiter>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TokenIntrospectionRequest>))]
-public sealed record class TokenIntrospectionRequest
-    : ModelBase,
-        IFromRaw<TokenIntrospectionRequest>
+[JsonConverter(typeof(ModelConverter<TokenIntrospectionRequest, TokenIntrospectionRequestFromRaw>))]
+public sealed record class TokenIntrospectionRequest : ModelBase
 {
     public required string Endpoint
     {
@@ -1577,8 +1599,15 @@ public sealed record class TokenIntrospectionRequest
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Triggers>))]
-public sealed record class Triggers : ModelBase, IFromRaw<Triggers>
+class TokenIntrospectionRequestFromRaw : IFromRaw<TokenIntrospectionRequest>
+{
+    public TokenIntrospectionRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TokenIntrospectionRequest.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Triggers, TriggersFromRaw>))]
+public sealed record class Triggers : ModelBase
 {
     public bool? OnTokenGrant
     {
@@ -1651,6 +1680,12 @@ public sealed record class Triggers : ModelBase, IFromRaw<Triggers>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class TriggersFromRaw : IFromRaw<Triggers>
+{
+    public Triggers FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Triggers.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(TokenIntrospectionRequestRequestContentTypeConverter))]
@@ -1747,8 +1782,8 @@ sealed class TokenIntrospectionRequestResponseContentTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TokenRequest>))]
-public sealed record class TokenRequest : ModelBase, IFromRaw<TokenRequest>
+[JsonConverter(typeof(ModelConverter<TokenRequest, TokenRequestFromRaw>))]
+public sealed record class TokenRequest : ModelBase
 {
     public required string Endpoint
     {
@@ -1988,6 +2023,12 @@ public sealed record class TokenRequest : ModelBase, IFromRaw<TokenRequest>
     }
 }
 
+class TokenRequestFromRaw : IFromRaw<TokenRequest>
+{
+    public TokenRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TokenRequest.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(TokenRequestRequestContentTypeConverter))]
 public enum TokenRequestRequestContentType
 {
@@ -2081,8 +2122,8 @@ sealed class TokenRequestResponseContentTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<UserInfoRequest>))]
-public sealed record class UserInfoRequest : ModelBase, IFromRaw<UserInfoRequest>
+[JsonConverter(typeof(ModelConverter<UserInfoRequest, UserInfoRequestFromRaw>))]
+public sealed record class UserInfoRequest : ModelBase
 {
     public required string Endpoint
     {
@@ -2344,8 +2385,14 @@ public sealed record class UserInfoRequest : ModelBase, IFromRaw<UserInfoRequest
     }
 }
 
-[JsonConverter(typeof(ModelConverter<UserInfoRequestTriggers>))]
-public sealed record class UserInfoRequestTriggers : ModelBase, IFromRaw<UserInfoRequestTriggers>
+class UserInfoRequestFromRaw : IFromRaw<UserInfoRequest>
+{
+    public UserInfoRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        UserInfoRequest.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<UserInfoRequestTriggers, UserInfoRequestTriggersFromRaw>))]
+public sealed record class UserInfoRequestTriggers : ModelBase
 {
     public bool? OnTokenGrant
     {
@@ -2420,6 +2467,13 @@ public sealed record class UserInfoRequestTriggers : ModelBase, IFromRaw<UserInf
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class UserInfoRequestTriggersFromRaw : IFromRaw<UserInfoRequestTriggers>
+{
+    public UserInfoRequestTriggers FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => UserInfoRequestTriggers.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(UserInfoRequestRequestContentTypeConverter))]

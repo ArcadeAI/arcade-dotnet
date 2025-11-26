@@ -7,10 +7,8 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Tools.Formatted;
 
-[JsonConverter(typeof(ModelConverter<FormattedListPageResponse>))]
-public sealed record class FormattedListPageResponse
-    : ModelBase,
-        IFromRaw<FormattedListPageResponse>
+[JsonConverter(typeof(ModelConverter<FormattedListPageResponse, FormattedListPageResponseFromRaw>))]
+public sealed record class FormattedListPageResponse : ModelBase
 {
     public List<JsonElement>? Items
     {
@@ -160,4 +158,11 @@ public sealed record class FormattedListPageResponse
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class FormattedListPageResponseFromRaw : IFromRaw<FormattedListPageResponse>
+{
+    public FormattedListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => FormattedListPageResponse.FromRawUnchecked(rawData);
 }

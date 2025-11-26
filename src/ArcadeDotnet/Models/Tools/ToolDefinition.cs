@@ -9,8 +9,8 @@ using System = System;
 
 namespace ArcadeDotnet.Models.Tools;
 
-[JsonConverter(typeof(ModelConverter<ToolDefinition>))]
-public sealed record class ToolDefinition : ModelBase, IFromRaw<ToolDefinition>
+[JsonConverter(typeof(ModelConverter<ToolDefinition, ToolDefinitionFromRaw>))]
+public sealed record class ToolDefinition : ModelBase
 {
     public required string FullyQualifiedName
     {
@@ -275,8 +275,14 @@ public sealed record class ToolDefinition : ModelBase, IFromRaw<ToolDefinition>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Input>))]
-public sealed record class Input : ModelBase, IFromRaw<Input>
+class ToolDefinitionFromRaw : IFromRaw<ToolDefinition>
+{
+    public ToolDefinition FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ToolDefinition.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Input, InputFromRaw>))]
+public sealed record class Input : ModelBase
 {
     public List<Parameter>? Parameters
     {
@@ -333,8 +339,14 @@ public sealed record class Input : ModelBase, IFromRaw<Input>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Parameter>))]
-public sealed record class Parameter : ModelBase, IFromRaw<Parameter>
+class InputFromRaw : IFromRaw<Input>
+{
+    public Input FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Input.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Parameter, ParameterFromRaw>))]
+public sealed record class Parameter : ModelBase
 {
     public required string Name
     {
@@ -488,8 +500,14 @@ public sealed record class Parameter : ModelBase, IFromRaw<Parameter>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Toolkit>))]
-public sealed record class Toolkit : ModelBase, IFromRaw<Toolkit>
+class ParameterFromRaw : IFromRaw<Parameter>
+{
+    public Parameter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Parameter.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Toolkit, ToolkitFromRaw>))]
+public sealed record class Toolkit : ModelBase
 {
     public required string Name
     {
@@ -597,8 +615,14 @@ public sealed record class Toolkit : ModelBase, IFromRaw<Toolkit>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ToolDefinitionOutput>))]
-public sealed record class ToolDefinitionOutput : ModelBase, IFromRaw<ToolDefinitionOutput>
+class ToolkitFromRaw : IFromRaw<Toolkit>
+{
+    public Toolkit FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Toolkit.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<ToolDefinitionOutput, ToolDefinitionOutputFromRaw>))]
+public sealed record class ToolDefinitionOutput : ModelBase
 {
     public List<string>? AvailableModes
     {
@@ -699,8 +723,15 @@ public sealed record class ToolDefinitionOutput : ModelBase, IFromRaw<ToolDefini
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Requirements>))]
-public sealed record class Requirements : ModelBase, IFromRaw<Requirements>
+class ToolDefinitionOutputFromRaw : IFromRaw<ToolDefinitionOutput>
+{
+    public ToolDefinitionOutput FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ToolDefinitionOutput.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Requirements, RequirementsFromRaw>))]
+public sealed record class Requirements : ModelBase
 {
     public Authorization? Authorization
     {
@@ -802,8 +833,14 @@ public sealed record class Requirements : ModelBase, IFromRaw<Requirements>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Authorization>))]
-public sealed record class Authorization : ModelBase, IFromRaw<Authorization>
+class RequirementsFromRaw : IFromRaw<Requirements>
+{
+    public Requirements FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Requirements.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Authorization, AuthorizationFromRaw>))]
+public sealed record class Authorization : ModelBase
 {
     public string? ID
     {
@@ -1004,8 +1041,14 @@ public sealed record class Authorization : ModelBase, IFromRaw<Authorization>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Oauth2>))]
-public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
+class AuthorizationFromRaw : IFromRaw<Authorization>
+{
+    public Authorization FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Authorization.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Oauth2, Oauth2FromRaw>))]
+public sealed record class Oauth2 : ModelBase
 {
     public List<string>? Scopes
     {
@@ -1054,6 +1097,12 @@ public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Oauth2FromRaw : IFromRaw<Oauth2>
+{
+    public Oauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Oauth2.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(global::ArcadeDotnet.Models.Tools.StatusConverter))]
@@ -1150,8 +1199,8 @@ sealed class TokenStatusConverter : JsonConverter<TokenStatus>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Secret>))]
-public sealed record class Secret : ModelBase, IFromRaw<Secret>
+[JsonConverter(typeof(ModelConverter<Secret, SecretFromRaw>))]
+public sealed record class Secret : ModelBase
 {
     public required string Key
     {
@@ -1257,4 +1306,10 @@ public sealed record class Secret : ModelBase, IFromRaw<Secret>
     {
         this.Key = key;
     }
+}
+
+class SecretFromRaw : IFromRaw<Secret>
+{
+    public Secret FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Secret.FromRawUnchecked(rawData);
 }

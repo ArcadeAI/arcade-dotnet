@@ -9,8 +9,8 @@ using System = System;
 
 namespace ArcadeDotnet.Models;
 
-[JsonConverter(typeof(ModelConverter<AuthorizationResponse>))]
-public sealed record class AuthorizationResponse : ModelBase, IFromRaw<AuthorizationResponse>
+[JsonConverter(typeof(ModelConverter<AuthorizationResponse, AuthorizationResponseFromRaw>))]
+public sealed record class AuthorizationResponse : ModelBase
 {
     public string? ID
     {
@@ -211,6 +211,13 @@ public sealed record class AuthorizationResponse : ModelBase, IFromRaw<Authoriza
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AuthorizationResponseFromRaw : IFromRaw<AuthorizationResponse>
+{
+    public AuthorizationResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthorizationResponse.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(StatusConverter))]

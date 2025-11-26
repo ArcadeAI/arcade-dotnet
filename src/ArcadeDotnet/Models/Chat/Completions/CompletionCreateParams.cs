@@ -583,10 +583,13 @@ public sealed record class CompletionCreateParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat>))]
-public sealed record class ResponseFormat
-    : ModelBase,
-        IFromRaw<global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat,
+        global::ArcadeDotnet.Models.Chat.Completions.ResponseFormatFromRaw
+    >)
+)]
+public sealed record class ResponseFormat : ModelBase
 {
     public ApiEnum<string, global::ArcadeDotnet.Models.Chat.Completions.Type>? Type
     {
@@ -642,6 +645,13 @@ public sealed record class ResponseFormat
     }
 }
 
+class ResponseFormatFromRaw : IFromRaw<global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat>
+{
+    public global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(global::ArcadeDotnet.Models.Chat.Completions.TypeConverter))]
 public enum Type
 {
@@ -689,10 +699,13 @@ sealed class TypeConverter : JsonConverter<global::ArcadeDotnet.Models.Chat.Comp
 /// <summary>
 /// Options for streaming response. Only set this when you set stream: true.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<global::ArcadeDotnet.Models.Chat.Completions.StreamOptions>))]
-public sealed record class StreamOptions
-    : ModelBase,
-        IFromRaw<global::ArcadeDotnet.Models.Chat.Completions.StreamOptions>
+[JsonConverter(
+    typeof(ModelConverter<
+        global::ArcadeDotnet.Models.Chat.Completions.StreamOptions,
+        global::ArcadeDotnet.Models.Chat.Completions.StreamOptionsFromRaw
+    >)
+)]
+public sealed record class StreamOptions : ModelBase
 {
     /// <summary>
     /// If set, an additional chunk will be streamed before the data: [DONE] message.
@@ -749,4 +762,11 @@ public sealed record class StreamOptions
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class StreamOptionsFromRaw : IFromRaw<global::ArcadeDotnet.Models.Chat.Completions.StreamOptions>
+{
+    public global::ArcadeDotnet.Models.Chat.Completions.StreamOptions FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::ArcadeDotnet.Models.Chat.Completions.StreamOptions.FromRawUnchecked(rawData);
 }

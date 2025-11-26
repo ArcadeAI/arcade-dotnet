@@ -9,8 +9,8 @@ using ArcadeDotnet.Exceptions;
 
 namespace ArcadeDotnet.Models.Auth;
 
-[JsonConverter(typeof(ModelConverter<ConfirmUserResponse>))]
-public sealed record class ConfirmUserResponse : ModelBase, IFromRaw<ConfirmUserResponse>
+[JsonConverter(typeof(ModelConverter<ConfirmUserResponse, ConfirmUserResponseFromRaw>))]
+public sealed record class ConfirmUserResponse : ModelBase
 {
     public required string AuthID
     {
@@ -94,4 +94,10 @@ public sealed record class ConfirmUserResponse : ModelBase, IFromRaw<ConfirmUser
     {
         this.AuthID = authID;
     }
+}
+
+class ConfirmUserResponseFromRaw : IFromRaw<ConfirmUserResponse>
+{
+    public ConfirmUserResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ConfirmUserResponse.FromRawUnchecked(rawData);
 }

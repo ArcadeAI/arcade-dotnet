@@ -9,8 +9,8 @@ using System = System;
 
 namespace ArcadeDotnet.Models.Tools;
 
-[JsonConverter(typeof(ModelConverter<ToolExecutionAttempt>))]
-public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecutionAttempt>
+[JsonConverter(typeof(ModelConverter<ToolExecutionAttempt, ToolExecutionAttemptFromRaw>))]
+public sealed record class ToolExecutionAttempt : ModelBase
 {
     public string? ID
     {
@@ -186,10 +186,17 @@ public sealed record class ToolExecutionAttempt : ModelBase, IFromRaw<ToolExecut
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ToolExecutionAttemptOutput>))]
-public sealed record class ToolExecutionAttemptOutput
-    : ModelBase,
-        IFromRaw<ToolExecutionAttemptOutput>
+class ToolExecutionAttemptFromRaw : IFromRaw<ToolExecutionAttempt>
+{
+    public ToolExecutionAttempt FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ToolExecutionAttempt.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<ToolExecutionAttemptOutput, ToolExecutionAttemptOutputFromRaw>)
+)]
+public sealed record class ToolExecutionAttemptOutput : ModelBase
 {
     public AuthorizationResponse? Authorization
     {
@@ -326,10 +333,17 @@ public sealed record class ToolExecutionAttemptOutput
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ToolExecutionAttemptOutputError>))]
-public sealed record class ToolExecutionAttemptOutputError
-    : ModelBase,
-        IFromRaw<ToolExecutionAttemptOutputError>
+class ToolExecutionAttemptOutputFromRaw : IFromRaw<ToolExecutionAttemptOutput>
+{
+    public ToolExecutionAttemptOutput FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ToolExecutionAttemptOutput.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<ToolExecutionAttemptOutputError, ToolExecutionAttemptOutputErrorFromRaw>)
+)]
+public sealed record class ToolExecutionAttemptOutputError : ModelBase
 {
     public required bool CanRetry
     {
@@ -581,6 +595,13 @@ public sealed record class ToolExecutionAttemptOutputError
     }
 }
 
+class ToolExecutionAttemptOutputErrorFromRaw : IFromRaw<ToolExecutionAttemptOutputError>
+{
+    public ToolExecutionAttemptOutputError FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ToolExecutionAttemptOutputError.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(ToolExecutionAttemptOutputErrorKindConverter))]
 public enum ToolExecutionAttemptOutputErrorKind
 {
@@ -702,8 +723,8 @@ sealed class ToolExecutionAttemptOutputErrorKindConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<LogModel>))]
-public sealed record class LogModel : ModelBase, IFromRaw<LogModel>
+[JsonConverter(typeof(ModelConverter<LogModel, LogModelFromRaw>))]
+public sealed record class LogModel : ModelBase
 {
     public required string Level
     {
@@ -804,4 +825,10 @@ public sealed record class LogModel : ModelBase, IFromRaw<LogModel>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class LogModelFromRaw : IFromRaw<LogModel>
+{
+    public LogModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        LogModel.FromRawUnchecked(rawData);
 }

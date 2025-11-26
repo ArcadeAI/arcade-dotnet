@@ -202,8 +202,8 @@ public sealed record class WorkerCreateParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<HTTP>))]
-public sealed record class HTTP : ModelBase, IFromRaw<HTTP>
+[JsonConverter(typeof(ModelConverter<HTTP, HTTPFromRaw>))]
+public sealed record class HTTP : ModelBase
 {
     public required long Retry
     {
@@ -326,8 +326,14 @@ public sealed record class HTTP : ModelBase, IFromRaw<HTTP>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Mcp>))]
-public sealed record class Mcp : ModelBase, IFromRaw<Mcp>
+class HTTPFromRaw : IFromRaw<HTTP>
+{
+    public HTTP FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        HTTP.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Mcp, McpFromRaw>))]
+public sealed record class Mcp : ModelBase
 {
     public required long Retry
     {
@@ -502,8 +508,14 @@ public sealed record class Mcp : ModelBase, IFromRaw<Mcp>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Oauth2>))]
-public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
+class McpFromRaw : IFromRaw<Mcp>
+{
+    public Mcp FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Mcp.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Oauth2, Oauth2FromRaw>))]
+public sealed record class Oauth2 : ModelBase
 {
     public string? AuthorizationURL
     {
@@ -624,4 +636,10 @@ public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Oauth2FromRaw : IFromRaw<Oauth2>
+{
+    public Oauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Oauth2.FromRawUnchecked(rawData);
 }

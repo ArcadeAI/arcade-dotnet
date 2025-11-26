@@ -9,8 +9,8 @@ using ArcadeDotnet.Exceptions;
 
 namespace ArcadeDotnet.Models.Tools;
 
-[JsonConverter(typeof(ModelConverter<AuthorizeToolRequest>))]
-public sealed record class AuthorizeToolRequest : ModelBase, IFromRaw<AuthorizeToolRequest>
+[JsonConverter(typeof(ModelConverter<AuthorizeToolRequest, AuthorizeToolRequestFromRaw>))]
+public sealed record class AuthorizeToolRequest : ModelBase
 {
     public required string ToolName
     {
@@ -151,4 +151,11 @@ public sealed record class AuthorizeToolRequest : ModelBase, IFromRaw<AuthorizeT
     {
         this.ToolName = toolName;
     }
+}
+
+class AuthorizeToolRequestFromRaw : IFromRaw<AuthorizeToolRequest>
+{
+    public AuthorizeToolRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthorizeToolRequest.FromRawUnchecked(rawData);
 }

@@ -7,8 +7,8 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Health;
 
-[JsonConverter(typeof(ModelConverter<HealthSchema>))]
-public sealed record class HealthSchema : ModelBase, IFromRaw<HealthSchema>
+[JsonConverter(typeof(ModelConverter<HealthSchema, HealthSchemaFromRaw>))]
+public sealed record class HealthSchema : ModelBase
 {
     public bool? Healthy
     {
@@ -57,4 +57,10 @@ public sealed record class HealthSchema : ModelBase, IFromRaw<HealthSchema>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class HealthSchemaFromRaw : IFromRaw<HealthSchema>
+{
+    public HealthSchema FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        HealthSchema.FromRawUnchecked(rawData);
 }

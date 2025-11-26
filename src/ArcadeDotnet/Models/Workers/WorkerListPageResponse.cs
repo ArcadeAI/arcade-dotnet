@@ -7,8 +7,8 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Workers;
 
-[JsonConverter(typeof(ModelConverter<WorkerListPageResponse>))]
-public sealed record class WorkerListPageResponse : ModelBase, IFromRaw<WorkerListPageResponse>
+[JsonConverter(typeof(ModelConverter<WorkerListPageResponse, WorkerListPageResponseFromRaw>))]
+public sealed record class WorkerListPageResponse : ModelBase
 {
     public List<WorkerResponse>? Items
     {
@@ -161,4 +161,11 @@ public sealed record class WorkerListPageResponse : ModelBase, IFromRaw<WorkerLi
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class WorkerListPageResponseFromRaw : IFromRaw<WorkerListPageResponse>
+{
+    public WorkerListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => WorkerListPageResponse.FromRawUnchecked(rawData);
 }

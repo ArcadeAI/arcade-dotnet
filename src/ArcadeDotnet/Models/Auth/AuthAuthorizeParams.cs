@@ -161,8 +161,8 @@ public sealed record class AuthAuthorizeParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthRequirement>))]
-public sealed record class AuthRequirement : ModelBase, IFromRaw<AuthRequirement>
+[JsonConverter(typeof(ModelConverter<AuthRequirement, AuthRequirementFromRaw>))]
+public sealed record class AuthRequirement : ModelBase
 {
     /// <summary>
     /// one of ID or ProviderID must be set
@@ -291,8 +291,14 @@ public sealed record class AuthRequirement : ModelBase, IFromRaw<AuthRequirement
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Oauth2>))]
-public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
+class AuthRequirementFromRaw : IFromRaw<AuthRequirement>
+{
+    public AuthRequirement FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AuthRequirement.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Oauth2, Oauth2FromRaw>))]
+public sealed record class Oauth2 : ModelBase
 {
     public List<string>? Scopes
     {
@@ -341,4 +347,10 @@ public sealed record class Oauth2 : ModelBase, IFromRaw<Oauth2>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class Oauth2FromRaw : IFromRaw<Oauth2>
+{
+    public Oauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Oauth2.FromRawUnchecked(rawData);
 }

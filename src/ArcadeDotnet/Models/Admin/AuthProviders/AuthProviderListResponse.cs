@@ -7,8 +7,8 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Admin.AuthProviders;
 
-[JsonConverter(typeof(ModelConverter<AuthProviderListResponse>))]
-public sealed record class AuthProviderListResponse : ModelBase, IFromRaw<AuthProviderListResponse>
+[JsonConverter(typeof(ModelConverter<AuthProviderListResponse, AuthProviderListResponseFromRaw>))]
+public sealed record class AuthProviderListResponse : ModelBase
 {
     public List<AuthProviderResponse>? Items
     {
@@ -161,4 +161,11 @@ public sealed record class AuthProviderListResponse : ModelBase, IFromRaw<AuthPr
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AuthProviderListResponseFromRaw : IFromRaw<AuthProviderListResponse>
+{
+    public AuthProviderListResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthProviderListResponse.FromRawUnchecked(rawData);
 }

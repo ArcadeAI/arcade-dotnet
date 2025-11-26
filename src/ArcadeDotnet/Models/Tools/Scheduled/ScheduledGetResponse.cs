@@ -7,8 +7,8 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Tools.Scheduled;
 
-[JsonConverter(typeof(ModelConverter<ScheduledGetResponse>))]
-public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledGetResponse>
+[JsonConverter(typeof(ModelConverter<ScheduledGetResponse, ScheduledGetResponseFromRaw>))]
+public sealed record class ScheduledGetResponse : ModelBase
 {
     public string? ID
     {
@@ -380,4 +380,11 @@ public sealed record class ScheduledGetResponse : ModelBase, IFromRaw<ScheduledG
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ScheduledGetResponseFromRaw : IFromRaw<ScheduledGetResponse>
+{
+    public ScheduledGetResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ScheduledGetResponse.FromRawUnchecked(rawData);
 }

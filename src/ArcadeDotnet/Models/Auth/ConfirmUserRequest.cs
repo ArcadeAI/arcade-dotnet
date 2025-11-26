@@ -9,8 +9,8 @@ using ArcadeDotnet.Exceptions;
 
 namespace ArcadeDotnet.Models.Auth;
 
-[JsonConverter(typeof(ModelConverter<ConfirmUserRequest>))]
-public sealed record class ConfirmUserRequest : ModelBase, IFromRaw<ConfirmUserRequest>
+[JsonConverter(typeof(ModelConverter<ConfirmUserRequest, ConfirmUserRequestFromRaw>))]
+public sealed record class ConfirmUserRequest : ModelBase
 {
     public required string FlowID
     {
@@ -89,4 +89,10 @@ public sealed record class ConfirmUserRequest : ModelBase, IFromRaw<ConfirmUserR
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ConfirmUserRequestFromRaw : IFromRaw<ConfirmUserRequest>
+{
+    public ConfirmUserRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ConfirmUserRequest.FromRawUnchecked(rawData);
 }

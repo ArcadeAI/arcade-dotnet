@@ -7,10 +7,8 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Tools.Scheduled;
 
-[JsonConverter(typeof(ModelConverter<ScheduledListPageResponse>))]
-public sealed record class ScheduledListPageResponse
-    : ModelBase,
-        IFromRaw<ScheduledListPageResponse>
+[JsonConverter(typeof(ModelConverter<ScheduledListPageResponse, ScheduledListPageResponseFromRaw>))]
+public sealed record class ScheduledListPageResponse : ModelBase
 {
     public List<ToolExecution>? Items
     {
@@ -163,4 +161,11 @@ public sealed record class ScheduledListPageResponse
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ScheduledListPageResponseFromRaw : IFromRaw<ScheduledListPageResponse>
+{
+    public ScheduledListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ScheduledListPageResponse.FromRawUnchecked(rawData);
 }

@@ -8,8 +8,8 @@ using ArcadeDotnet.Models.Tools;
 
 namespace ArcadeDotnet.Models.Workers;
 
-[JsonConverter(typeof(ModelConverter<WorkerToolsPageResponse>))]
-public sealed record class WorkerToolsPageResponse : ModelBase, IFromRaw<WorkerToolsPageResponse>
+[JsonConverter(typeof(ModelConverter<WorkerToolsPageResponse, WorkerToolsPageResponseFromRaw>))]
+public sealed record class WorkerToolsPageResponse : ModelBase
 {
     public List<ToolDefinition>? Items
     {
@@ -162,4 +162,11 @@ public sealed record class WorkerToolsPageResponse : ModelBase, IFromRaw<WorkerT
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class WorkerToolsPageResponseFromRaw : IFromRaw<WorkerToolsPageResponse>
+{
+    public WorkerToolsPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => WorkerToolsPageResponse.FromRawUnchecked(rawData);
 }

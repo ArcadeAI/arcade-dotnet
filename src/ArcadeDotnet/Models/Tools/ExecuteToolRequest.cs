@@ -9,8 +9,8 @@ using ArcadeDotnet.Exceptions;
 
 namespace ArcadeDotnet.Models.Tools;
 
-[JsonConverter(typeof(ModelConverter<ExecuteToolRequest>))]
-public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolRequest>
+[JsonConverter(typeof(ModelConverter<ExecuteToolRequest, ExecuteToolRequestFromRaw>))]
+public sealed record class ExecuteToolRequest : ModelBase
 {
     public required string ToolName
     {
@@ -207,4 +207,10 @@ public sealed record class ExecuteToolRequest : ModelBase, IFromRaw<ExecuteToolR
     {
         this.ToolName = toolName;
     }
+}
+
+class ExecuteToolRequestFromRaw : IFromRaw<ExecuteToolRequest>
+{
+    public ExecuteToolRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ExecuteToolRequest.FromRawUnchecked(rawData);
 }

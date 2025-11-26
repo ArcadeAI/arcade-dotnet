@@ -9,8 +9,8 @@ using System = System;
 
 namespace ArcadeDotnet.Models.Admin.Secrets;
 
-[JsonConverter(typeof(ModelConverter<SecretResponse>))]
-public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
+[JsonConverter(typeof(ModelConverter<SecretResponse, SecretResponseFromRaw>))]
+public sealed record class SecretResponse : ModelBase
 {
     public string? ID
     {
@@ -229,8 +229,14 @@ public sealed record class SecretResponse : ModelBase, IFromRaw<SecretResponse>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Binding>))]
-public sealed record class Binding : ModelBase, IFromRaw<Binding>
+class SecretResponseFromRaw : IFromRaw<SecretResponse>
+{
+    public SecretResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        SecretResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Binding, BindingFromRaw>))]
+public sealed record class Binding : ModelBase
 {
     public string? ID
     {
@@ -306,6 +312,12 @@ public sealed record class Binding : ModelBase, IFromRaw<Binding>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class BindingFromRaw : IFromRaw<Binding>
+{
+    public Binding FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Binding.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(TypeConverter))]

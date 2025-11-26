@@ -9,8 +9,8 @@ using System = System;
 
 namespace ArcadeDotnet.Models.Chat;
 
-[JsonConverter(typeof(ModelConverter<ChatMessage>))]
-public sealed record class ChatMessage : ModelBase, IFromRaw<ChatMessage>
+[JsonConverter(typeof(ModelConverter<ChatMessage, ChatMessageFromRaw>))]
+public sealed record class ChatMessage : ModelBase
 {
     /// <summary>
     /// The content of the message.
@@ -182,8 +182,14 @@ public sealed record class ChatMessage : ModelBase, IFromRaw<ChatMessage>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ToolCall>))]
-public sealed record class ToolCall : ModelBase, IFromRaw<ToolCall>
+class ChatMessageFromRaw : IFromRaw<ChatMessage>
+{
+    public ChatMessage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ChatMessage.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<ToolCall, ToolCallFromRaw>))]
+public sealed record class ToolCall : ModelBase
 {
     public string? ID
     {
@@ -285,8 +291,14 @@ public sealed record class ToolCall : ModelBase, IFromRaw<ToolCall>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Function>))]
-public sealed record class Function : ModelBase, IFromRaw<Function>
+class ToolCallFromRaw : IFromRaw<ToolCall>
+{
+    public ToolCall FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ToolCall.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Function, FunctionFromRaw>))]
+public sealed record class Function : ModelBase
 {
     public string? Arguments
     {
@@ -359,6 +371,12 @@ public sealed record class Function : ModelBase, IFromRaw<Function>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class FunctionFromRaw : IFromRaw<Function>
+{
+    public Function FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Function.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(TypeConverter))]

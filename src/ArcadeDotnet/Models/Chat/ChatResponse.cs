@@ -7,8 +7,8 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Chat;
 
-[JsonConverter(typeof(ModelConverter<ChatResponse>))]
-public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
+[JsonConverter(typeof(ModelConverter<ChatResponse, ChatResponseFromRaw>))]
+public sealed record class ChatResponse : ModelBase
 {
     public string? ID
     {
@@ -204,4 +204,10 @@ public sealed record class ChatResponse : ModelBase, IFromRaw<ChatResponse>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ChatResponseFromRaw : IFromRaw<ChatResponse>
+{
+    public ChatResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ChatResponse.FromRawUnchecked(rawData);
 }

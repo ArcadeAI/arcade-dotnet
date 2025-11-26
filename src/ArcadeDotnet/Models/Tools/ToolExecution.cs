@@ -7,8 +7,8 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Tools;
 
-[JsonConverter(typeof(ModelConverter<ToolExecution>))]
-public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
+[JsonConverter(typeof(ModelConverter<ToolExecution, ToolExecutionFromRaw>))]
+public sealed record class ToolExecution : ModelBase
 {
     public string? ID
     {
@@ -321,4 +321,10 @@ public sealed record class ToolExecution : ModelBase, IFromRaw<ToolExecution>
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class ToolExecutionFromRaw : IFromRaw<ToolExecution>
+{
+    public ToolExecution FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ToolExecution.FromRawUnchecked(rawData);
 }

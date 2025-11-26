@@ -9,8 +9,8 @@ using System = System;
 
 namespace ArcadeDotnet.Models.Workers;
 
-[JsonConverter(typeof(ModelConverter<WorkerResponse>))]
-public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
+[JsonConverter(typeof(ModelConverter<WorkerResponse, WorkerResponseFromRaw>))]
+public sealed record class WorkerResponse : ModelBase
 {
     public string? ID
     {
@@ -238,8 +238,14 @@ public sealed record class WorkerResponse : ModelBase, IFromRaw<WorkerResponse>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Binding>))]
-public sealed record class Binding : ModelBase, IFromRaw<Binding>
+class WorkerResponseFromRaw : IFromRaw<WorkerResponse>
+{
+    public WorkerResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        WorkerResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Binding, BindingFromRaw>))]
+public sealed record class Binding : ModelBase
 {
     public string? ID
     {
@@ -317,6 +323,12 @@ public sealed record class Binding : ModelBase, IFromRaw<Binding>
     }
 }
 
+class BindingFromRaw : IFromRaw<Binding>
+{
+    public Binding FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Binding.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(TypeConverter))]
 public enum Type
 {
@@ -367,8 +379,8 @@ sealed class TypeConverter : JsonConverter<global::ArcadeDotnet.Models.Workers.T
     }
 }
 
-[JsonConverter(typeof(ModelConverter<WorkerResponseHTTP>))]
-public sealed record class WorkerResponseHTTP : ModelBase, IFromRaw<WorkerResponseHTTP>
+[JsonConverter(typeof(ModelConverter<WorkerResponseHTTP, WorkerResponseHTTPFromRaw>))]
+public sealed record class WorkerResponseHTTP : ModelBase
 {
     public long? Retry
     {
@@ -493,8 +505,14 @@ public sealed record class WorkerResponseHTTP : ModelBase, IFromRaw<WorkerRespon
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Secret>))]
-public sealed record class Secret : ModelBase, IFromRaw<Secret>
+class WorkerResponseHTTPFromRaw : IFromRaw<WorkerResponseHTTP>
+{
+    public WorkerResponseHTTP FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        WorkerResponseHTTP.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Secret, SecretFromRaw>))]
+public sealed record class Secret : ModelBase
 {
     public ApiEnum<string, SecretBinding>? Binding
     {
@@ -644,6 +662,12 @@ public sealed record class Secret : ModelBase, IFromRaw<Secret>
     }
 }
 
+class SecretFromRaw : IFromRaw<Secret>
+{
+    public Secret FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Secret.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(SecretBindingConverter))]
 public enum SecretBinding
 {
@@ -694,8 +718,8 @@ sealed class SecretBindingConverter : JsonConverter<SecretBinding>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<WorkerResponseMcp>))]
-public sealed record class WorkerResponseMcp : ModelBase, IFromRaw<WorkerResponseMcp>
+[JsonConverter(typeof(ModelConverter<WorkerResponseMcp, WorkerResponseMcpFromRaw>))]
+public sealed record class WorkerResponseMcp : ModelBase
 {
     public Dictionary<string, string>? Headers
     {
@@ -883,8 +907,14 @@ public sealed record class WorkerResponseMcp : ModelBase, IFromRaw<WorkerRespons
     }
 }
 
-[JsonConverter(typeof(ModelConverter<WorkerResponseMcpOauth2>))]
-public sealed record class WorkerResponseMcpOauth2 : ModelBase, IFromRaw<WorkerResponseMcpOauth2>
+class WorkerResponseMcpFromRaw : IFromRaw<WorkerResponseMcp>
+{
+    public WorkerResponseMcp FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        WorkerResponseMcp.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<WorkerResponseMcpOauth2, WorkerResponseMcpOauth2FromRaw>))]
+public sealed record class WorkerResponseMcpOauth2 : ModelBase
 {
     public string? AuthorizationURL
     {
@@ -1009,8 +1039,15 @@ public sealed record class WorkerResponseMcpOauth2 : ModelBase, IFromRaw<WorkerR
     }
 }
 
-[JsonConverter(typeof(ModelConverter<ClientSecret>))]
-public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
+class WorkerResponseMcpOauth2FromRaw : IFromRaw<WorkerResponseMcpOauth2>
+{
+    public WorkerResponseMcpOauth2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => WorkerResponseMcpOauth2.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<ClientSecret, ClientSecretFromRaw>))]
+public sealed record class ClientSecret : ModelBase
 {
     public ApiEnum<string, ClientSecretBinding>? Binding
     {
@@ -1160,6 +1197,12 @@ public sealed record class ClientSecret : ModelBase, IFromRaw<ClientSecret>
     }
 }
 
+class ClientSecretFromRaw : IFromRaw<ClientSecret>
+{
+    public ClientSecret FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ClientSecret.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(ClientSecretBindingConverter))]
 public enum ClientSecretBinding
 {
@@ -1210,8 +1253,8 @@ sealed class ClientSecretBindingConverter : JsonConverter<ClientSecretBinding>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<SecretsItem>))]
-public sealed record class SecretsItem : ModelBase, IFromRaw<SecretsItem>
+[JsonConverter(typeof(ModelConverter<SecretsItem, SecretsItemFromRaw>))]
+public sealed record class SecretsItem : ModelBase
 {
     public ApiEnum<string, SecretsItemBinding>? Binding
     {
@@ -1361,6 +1404,12 @@ public sealed record class SecretsItem : ModelBase, IFromRaw<SecretsItem>
     }
 }
 
+class SecretsItemFromRaw : IFromRaw<SecretsItem>
+{
+    public SecretsItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        SecretsItem.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(SecretsItemBindingConverter))]
 public enum SecretsItemBinding
 {
@@ -1411,8 +1460,8 @@ sealed class SecretsItemBindingConverter : JsonConverter<SecretsItemBinding>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Requirements>))]
-public sealed record class Requirements : ModelBase, IFromRaw<Requirements>
+[JsonConverter(typeof(ModelConverter<Requirements, RequirementsFromRaw>))]
+public sealed record class Requirements : ModelBase
 {
     public Authorization? Authorization
     {
@@ -1487,8 +1536,14 @@ public sealed record class Requirements : ModelBase, IFromRaw<Requirements>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Authorization>))]
-public sealed record class Authorization : ModelBase, IFromRaw<Authorization>
+class RequirementsFromRaw : IFromRaw<Requirements>
+{
+    public Requirements FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Requirements.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<Authorization, AuthorizationFromRaw>))]
+public sealed record class Authorization : ModelBase
 {
     public bool? Met
     {
@@ -1566,8 +1621,14 @@ public sealed record class Authorization : ModelBase, IFromRaw<Authorization>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthorizationOauth2>))]
-public sealed record class AuthorizationOauth2 : ModelBase, IFromRaw<AuthorizationOauth2>
+class AuthorizationFromRaw : IFromRaw<Authorization>
+{
+    public Authorization FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Authorization.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<AuthorizationOauth2, AuthorizationOauth2FromRaw>))]
+public sealed record class AuthorizationOauth2 : ModelBase
 {
     public bool? Met
     {
@@ -1618,6 +1679,12 @@ public sealed record class AuthorizationOauth2 : ModelBase, IFromRaw<Authorizati
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AuthorizationOauth2FromRaw : IFromRaw<AuthorizationOauth2>
+{
+    public AuthorizationOauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AuthorizationOauth2.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(WorkerResponseTypeConverter))]
