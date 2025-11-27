@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -5,7 +6,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
 using ArcadeDotnet.Exceptions;
-using System = System;
 
 namespace ArcadeDotnet.Models.Tools;
 
@@ -19,7 +19,7 @@ public sealed record class ToolDefinition : ModelBase
             if (!this._rawData.TryGetValue("fully_qualified_name", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'fully_qualified_name' cannot be null",
-                    new System::ArgumentOutOfRangeException(
+                    new ArgumentOutOfRangeException(
                         "fully_qualified_name",
                         "Missing required argument"
                     )
@@ -28,7 +28,7 @@ public sealed record class ToolDefinition : ModelBase
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArcadeInvalidDataException(
                     "'fully_qualified_name' cannot be null",
-                    new System::ArgumentNullException("fully_qualified_name")
+                    new ArgumentNullException("fully_qualified_name")
                 );
         }
         init
@@ -47,13 +47,13 @@ public sealed record class ToolDefinition : ModelBase
             if (!this._rawData.TryGetValue("input", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'input' cannot be null",
-                    new System::ArgumentOutOfRangeException("input", "Missing required argument")
+                    new ArgumentOutOfRangeException("input", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<Input>(element, ModelBase.SerializerOptions)
                 ?? throw new ArcadeInvalidDataException(
                     "'input' cannot be null",
-                    new System::ArgumentNullException("input")
+                    new ArgumentNullException("input")
                 );
         }
         init
@@ -72,13 +72,13 @@ public sealed record class ToolDefinition : ModelBase
             if (!this._rawData.TryGetValue("name", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'name' cannot be null",
-                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
+                    new ArgumentOutOfRangeException("name", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArcadeInvalidDataException(
                     "'name' cannot be null",
-                    new System::ArgumentNullException("name")
+                    new ArgumentNullException("name")
                 );
         }
         init
@@ -97,16 +97,13 @@ public sealed record class ToolDefinition : ModelBase
             if (!this._rawData.TryGetValue("qualified_name", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'qualified_name' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "qualified_name",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("qualified_name", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArcadeInvalidDataException(
                     "'qualified_name' cannot be null",
-                    new System::ArgumentNullException("qualified_name")
+                    new ArgumentNullException("qualified_name")
                 );
         }
         init
@@ -125,13 +122,13 @@ public sealed record class ToolDefinition : ModelBase
             if (!this._rawData.TryGetValue("toolkit", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'toolkit' cannot be null",
-                    new System::ArgumentOutOfRangeException("toolkit", "Missing required argument")
+                    new ArgumentOutOfRangeException("toolkit", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<Toolkit>(element, ModelBase.SerializerOptions)
                 ?? throw new ArcadeInvalidDataException(
                     "'toolkit' cannot be null",
-                    new System::ArgumentNullException("toolkit")
+                    new ArgumentNullException("toolkit")
                 );
         }
         init
@@ -355,13 +352,13 @@ public sealed record class Parameter : ModelBase
             if (!this._rawData.TryGetValue("name", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'name' cannot be null",
-                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
+                    new ArgumentOutOfRangeException("name", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArcadeInvalidDataException(
                     "'name' cannot be null",
-                    new System::ArgumentNullException("name")
+                    new ArgumentNullException("name")
                 );
         }
         init
@@ -380,16 +377,13 @@ public sealed record class Parameter : ModelBase
             if (!this._rawData.TryGetValue("value_schema", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'value_schema' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "value_schema",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("value_schema", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<ValueSchema>(element, ModelBase.SerializerOptions)
                 ?? throw new ArcadeInvalidDataException(
                     "'value_schema' cannot be null",
-                    new System::ArgumentNullException("value_schema")
+                    new ArgumentNullException("value_schema")
                 );
         }
         init
@@ -516,13 +510,13 @@ public sealed record class Toolkit : ModelBase
             if (!this._rawData.TryGetValue("name", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'name' cannot be null",
-                    new System::ArgumentOutOfRangeException("name", "Missing required argument")
+                    new ArgumentOutOfRangeException("name", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArcadeInvalidDataException(
                     "'name' cannot be null",
-                    new System::ArgumentNullException("name")
+                    new ArgumentNullException("name")
                 );
         }
         init
@@ -1116,7 +1110,7 @@ sealed class StatusConverter : JsonConverter<global::ArcadeDotnet.Models.Tools.S
 {
     public override global::ArcadeDotnet.Models.Tools.Status Read(
         ref Utf8JsonReader reader,
-        System::Type typeToConvert,
+        Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -1162,7 +1156,7 @@ sealed class TokenStatusConverter : JsonConverter<TokenStatus>
 {
     public override TokenStatus Read(
         ref Utf8JsonReader reader,
-        System::Type typeToConvert,
+        Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -1209,13 +1203,13 @@ public sealed record class Secret : ModelBase
             if (!this._rawData.TryGetValue("key", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'key' cannot be null",
-                    new System::ArgumentOutOfRangeException("key", "Missing required argument")
+                    new ArgumentOutOfRangeException("key", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArcadeInvalidDataException(
                     "'key' cannot be null",
-                    new System::ArgumentNullException("key")
+                    new ArgumentNullException("key")
                 );
         }
         init

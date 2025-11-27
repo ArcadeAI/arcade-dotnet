@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -5,7 +6,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
 using ArcadeDotnet.Exceptions;
-using System = System;
 
 namespace ArcadeDotnet.Models.Tools;
 
@@ -352,10 +352,7 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
             if (!this._rawData.TryGetValue("can_retry", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'can_retry' cannot be null",
-                    new System::ArgumentOutOfRangeException(
-                        "can_retry",
-                        "Missing required argument"
-                    )
+                    new ArgumentOutOfRangeException("can_retry", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
@@ -376,7 +373,7 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
             if (!this._rawData.TryGetValue("kind", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'kind' cannot be null",
-                    new System::ArgumentOutOfRangeException("kind", "Missing required argument")
+                    new ArgumentOutOfRangeException("kind", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ToolExecutionAttemptOutputErrorKind>>(
@@ -400,13 +397,13 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
             if (!this._rawData.TryGetValue("message", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'message' cannot be null",
-                    new System::ArgumentOutOfRangeException("message", "Missing required argument")
+                    new ArgumentOutOfRangeException("message", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArcadeInvalidDataException(
                     "'message' cannot be null",
-                    new System::ArgumentNullException("message")
+                    new ArgumentNullException("message")
                 );
         }
         init
@@ -630,7 +627,7 @@ sealed class ToolExecutionAttemptOutputErrorKindConverter
 {
     public override ToolExecutionAttemptOutputErrorKind Read(
         ref Utf8JsonReader reader,
-        System::Type typeToConvert,
+        Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -733,13 +730,13 @@ public sealed record class LogModel : ModelBase
             if (!this._rawData.TryGetValue("level", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'level' cannot be null",
-                    new System::ArgumentOutOfRangeException("level", "Missing required argument")
+                    new ArgumentOutOfRangeException("level", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArcadeInvalidDataException(
                     "'level' cannot be null",
-                    new System::ArgumentNullException("level")
+                    new ArgumentNullException("level")
                 );
         }
         init
@@ -758,13 +755,13 @@ public sealed record class LogModel : ModelBase
             if (!this._rawData.TryGetValue("message", out JsonElement element))
                 throw new ArcadeInvalidDataException(
                     "'message' cannot be null",
-                    new System::ArgumentOutOfRangeException("message", "Missing required argument")
+                    new ArgumentOutOfRangeException("message", "Missing required argument")
                 );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
                 ?? throw new ArcadeInvalidDataException(
                     "'message' cannot be null",
-                    new System::ArgumentNullException("message")
+                    new ArgumentNullException("message")
                 );
         }
         init
