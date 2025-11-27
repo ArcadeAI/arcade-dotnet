@@ -171,7 +171,7 @@ public sealed record class UserConnectionResponse : ModelBase
         }
     }
 
-    public List<string>? Scopes
+    public IReadOnlyList<string>? Scopes
     {
         get
         {

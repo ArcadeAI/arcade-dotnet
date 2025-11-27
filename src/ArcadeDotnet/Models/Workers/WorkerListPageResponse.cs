@@ -10,7 +10,7 @@ namespace ArcadeDotnet.Models.Workers;
 [JsonConverter(typeof(ModelConverter<WorkerListPageResponse, WorkerListPageResponseFromRaw>))]
 public sealed record class WorkerListPageResponse : ModelBase
 {
-    public List<WorkerResponse>? Items
+    public IReadOnlyList<WorkerResponse>? Items
     {
         get
         {

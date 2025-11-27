@@ -20,7 +20,7 @@ public sealed record class ToolGetParams : ParamsBase
     /// <summary>
     /// Comma separated tool formats that will be included in the response.
     /// </summary>
-    public List<ApiEnum<string, IncludeFormatModel>>? IncludeFormat
+    public IReadOnlyList<ApiEnum<string, IncludeFormatModel>>? IncludeFormat
     {
         get
         {

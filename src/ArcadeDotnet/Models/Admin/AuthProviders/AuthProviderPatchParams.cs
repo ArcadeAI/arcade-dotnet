@@ -569,7 +569,7 @@ public sealed record class Oauth2ModelAuthorizeRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -647,7 +647,7 @@ public sealed record class Oauth2ModelAuthorizeRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {
@@ -987,7 +987,7 @@ public sealed record class Oauth2ModelRefreshRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -1065,7 +1065,7 @@ public sealed record class Oauth2ModelRefreshRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {
@@ -1366,7 +1366,7 @@ public sealed record class Oauth2ModelTokenRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -1444,7 +1444,7 @@ public sealed record class Oauth2ModelTokenRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {
@@ -1703,7 +1703,7 @@ public sealed record class Oauth2ModelUserInfoRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -1781,7 +1781,7 @@ public sealed record class Oauth2ModelUserInfoRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {

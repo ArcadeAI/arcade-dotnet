@@ -166,7 +166,7 @@ public sealed record class ToolDefinition : ModelBase
         }
     }
 
-    public Dictionary<string, JsonElement>? FormattedSchema
+    public IReadOnlyDictionary<string, JsonElement>? FormattedSchema
     {
         get
         {
@@ -284,7 +284,7 @@ class ToolDefinitionFromRaw : IFromRaw<ToolDefinition>
 [JsonConverter(typeof(ModelConverter<Input, InputFromRaw>))]
 public sealed record class Input : ModelBase
 {
-    public List<Parameter>? Parameters
+    public IReadOnlyList<Parameter>? Parameters
     {
         get
         {
@@ -624,7 +624,7 @@ class ToolkitFromRaw : IFromRaw<Toolkit>
 [JsonConverter(typeof(ModelConverter<ToolDefinitionOutput, ToolDefinitionOutputFromRaw>))]
 public sealed record class ToolDefinitionOutput : ModelBase
 {
-    public List<string>? AvailableModes
+    public IReadOnlyList<string>? AvailableModes
     {
         get
         {
@@ -779,7 +779,7 @@ public sealed record class Requirements : ModelBase
         }
     }
 
-    public List<Secret>? Secrets
+    public IReadOnlyList<Secret>? Secrets
     {
         get
         {
@@ -1050,7 +1050,7 @@ class AuthorizationFromRaw : IFromRaw<Authorization>
 [JsonConverter(typeof(ModelConverter<Oauth2, Oauth2FromRaw>))]
 public sealed record class Oauth2 : ModelBase
 {
-    public List<string>? Scopes
+    public IReadOnlyList<string>? Scopes
     {
         get
         {

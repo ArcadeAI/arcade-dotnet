@@ -50,7 +50,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     /// tokenizer), not a word string. incorrect: `"logit_bias":{"You": 6}`, correct:
     /// `"logit_bias":{"1639": 6}` refs: https://platform.openai.com/docs/api-reference/chat/create#chat/create-logit_bias
     /// </summary>
-    public Dictionary<string, long>? LogitBias
+    public IReadOnlyDictionary<string, long>? LogitBias
     {
         get
         {
@@ -127,7 +127,7 @@ public sealed record class CompletionCreateParams : ParamsBase
         }
     }
 
-    public List<ChatMessage>? Messages
+    public IReadOnlyList<ChatMessage>? Messages
     {
         get
         {
@@ -297,7 +297,7 @@ public sealed record class CompletionCreateParams : ParamsBase
         }
     }
 
-    public List<string>? Stop
+    public IReadOnlyList<string>? Stop
     {
         get
         {

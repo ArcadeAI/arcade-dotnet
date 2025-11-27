@@ -823,7 +823,7 @@ public sealed record class AuthProviderResponseOauth2AuthorizeRequest : ModelBas
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -895,7 +895,7 @@ public sealed record class AuthProviderResponseOauth2AuthorizeRequest : ModelBas
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {
@@ -1384,7 +1384,7 @@ public sealed record class AuthProviderResponseOauth2RefreshRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -1456,7 +1456,7 @@ public sealed record class AuthProviderResponseOauth2RefreshRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {
@@ -1674,7 +1674,7 @@ public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequest :
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -1746,7 +1746,7 @@ public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequest :
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {
@@ -2066,7 +2066,7 @@ public sealed record class AuthProviderResponseOauth2TokenRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -2138,7 +2138,7 @@ public sealed record class AuthProviderResponseOauth2TokenRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {
@@ -2331,7 +2331,7 @@ public sealed record class AuthProviderResponseOauth2UserInfoRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -2403,7 +2403,7 @@ public sealed record class AuthProviderResponseOauth2UserInfoRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {

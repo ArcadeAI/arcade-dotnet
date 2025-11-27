@@ -11,7 +11,7 @@ namespace ArcadeDotnet.Models.Workers;
 [JsonConverter(typeof(ModelConverter<WorkerToolsPageResponse, WorkerToolsPageResponseFromRaw>))]
 public sealed record class WorkerToolsPageResponse : ModelBase
 {
-    public List<ToolDefinition>? Items
+    public IReadOnlyList<ToolDefinition>? Items
     {
         get
         {

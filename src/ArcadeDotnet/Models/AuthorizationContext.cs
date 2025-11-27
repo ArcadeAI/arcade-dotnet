@@ -33,7 +33,7 @@ public sealed record class AuthorizationContext : ModelBase
         }
     }
 
-    public Dictionary<string, JsonElement>? UserInfo
+    public IReadOnlyDictionary<string, JsonElement>? UserInfo
     {
         get
         {

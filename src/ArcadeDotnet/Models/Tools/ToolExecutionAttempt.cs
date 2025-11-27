@@ -250,7 +250,7 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
         }
     }
 
-    public List<LogModel>? Logs
+    public IReadOnlyList<LogModel>? Logs
     {
         get
         {
@@ -464,7 +464,7 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
         }
     }
 
-    public Dictionary<string, JsonElement>? Extra
+    public IReadOnlyDictionary<string, JsonElement>? Extra
     {
         get
         {

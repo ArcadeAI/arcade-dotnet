@@ -10,7 +10,7 @@ namespace ArcadeDotnet.Models.Tools;
 [JsonConverter(typeof(ModelConverter<ToolListPageResponse, ToolListPageResponseFromRaw>))]
 public sealed record class ToolListPageResponse : ModelBase
 {
-    public List<ToolDefinition>? Items
+    public IReadOnlyList<ToolDefinition>? Items
     {
         get
         {

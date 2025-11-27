@@ -321,7 +321,7 @@ public sealed record class Output : ModelBase
         }
     }
 
-    public List<Log>? Logs
+    public IReadOnlyList<Log>? Logs
     {
         get
         {
@@ -532,7 +532,7 @@ public sealed record class Error : ModelBase
         }
     }
 
-    public Dictionary<string, JsonElement>? Extra
+    public IReadOnlyDictionary<string, JsonElement>? Extra
     {
         get
         {

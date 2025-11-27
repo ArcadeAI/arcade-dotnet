@@ -10,7 +10,7 @@ namespace ArcadeDotnet.Models.Tools.Formatted;
 [JsonConverter(typeof(ModelConverter<FormattedListPageResponse, FormattedListPageResponseFromRaw>))]
 public sealed record class FormattedListPageResponse : ModelBase
 {
-    public List<JsonElement>? Items
+    public IReadOnlyList<JsonElement>? Items
     {
         get
         {

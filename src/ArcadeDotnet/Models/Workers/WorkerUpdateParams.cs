@@ -290,7 +290,7 @@ class HTTPModelFromRaw : IFromRaw<HTTPModel>
 [JsonConverter(typeof(ModelConverter<McpModel, McpModelFromRaw>))]
 public sealed record class McpModel : ModelBase
 {
-    public Dictionary<string, string>? Headers
+    public IReadOnlyDictionary<string, string>? Headers
     {
         get
         {
@@ -365,7 +365,7 @@ public sealed record class McpModel : ModelBase
         }
     }
 
-    public Dictionary<string, string>? Secrets
+    public IReadOnlyDictionary<string, string>? Secrets
     {
         get
         {

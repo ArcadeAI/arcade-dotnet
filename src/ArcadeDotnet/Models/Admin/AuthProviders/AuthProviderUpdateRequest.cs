@@ -542,7 +542,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Mod
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -626,7 +626,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Mod
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {
@@ -985,7 +985,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : Model
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -1069,7 +1069,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : Model
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {
@@ -1383,7 +1383,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBa
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -1467,7 +1467,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBa
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {
@@ -1736,7 +1736,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -1820,7 +1820,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {

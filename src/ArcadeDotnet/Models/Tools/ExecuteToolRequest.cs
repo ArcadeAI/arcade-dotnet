@@ -67,7 +67,7 @@ public sealed record class ExecuteToolRequest : ModelBase
     /// <summary>
     /// JSON input to the tool, if any
     /// </summary>
-    public Dictionary<string, JsonElement>? Input
+    public IReadOnlyDictionary<string, JsonElement>? Input
     {
         get
         {

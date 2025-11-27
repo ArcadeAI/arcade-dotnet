@@ -300,7 +300,7 @@ class AuthRequirementFromRaw : IFromRaw<AuthRequirement>
 [JsonConverter(typeof(ModelConverter<Oauth2, Oauth2FromRaw>))]
 public sealed record class Oauth2 : ModelBase
 {
-    public List<string>? Scopes
+    public IReadOnlyList<string>? Scopes
     {
         get
         {

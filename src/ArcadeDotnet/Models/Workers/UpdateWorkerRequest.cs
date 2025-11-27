@@ -257,7 +257,7 @@ class UpdateWorkerRequestHTTPFromRaw : IFromRaw<UpdateWorkerRequestHTTP>
 [JsonConverter(typeof(ModelConverter<UpdateWorkerRequestMcp, UpdateWorkerRequestMcpFromRaw>))]
 public sealed record class UpdateWorkerRequestMcp : ModelBase
 {
-    public Dictionary<string, string>? Headers
+    public IReadOnlyDictionary<string, string>? Headers
     {
         get
         {
@@ -332,7 +332,7 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
         }
     }
 
-    public Dictionary<string, string>? Secrets
+    public IReadOnlyDictionary<string, string>? Secrets
     {
         get
         {

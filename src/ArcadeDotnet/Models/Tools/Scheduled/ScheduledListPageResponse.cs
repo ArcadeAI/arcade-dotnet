@@ -10,7 +10,7 @@ namespace ArcadeDotnet.Models.Tools.Scheduled;
 [JsonConverter(typeof(ModelConverter<ScheduledListPageResponse, ScheduledListPageResponseFromRaw>))]
 public sealed record class ScheduledListPageResponse : ModelBase
 {
-    public List<ToolExecution>? Items
+    public IReadOnlyList<ToolExecution>? Items
     {
         get
         {

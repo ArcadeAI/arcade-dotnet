@@ -627,7 +627,7 @@ public sealed record class AuthorizeRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -705,7 +705,7 @@ public sealed record class AuthorizeRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {
@@ -1049,7 +1049,7 @@ public sealed record class RefreshRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -1127,7 +1127,7 @@ public sealed record class RefreshRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {
@@ -1459,7 +1459,7 @@ public sealed record class TokenIntrospectionRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -1537,7 +1537,7 @@ public sealed record class TokenIntrospectionRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {
@@ -1879,7 +1879,7 @@ public sealed record class TokenRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -1957,7 +1957,7 @@ public sealed record class TokenRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {
@@ -2247,7 +2247,7 @@ public sealed record class UserInfoRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? Params
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
@@ -2325,7 +2325,7 @@ public sealed record class UserInfoRequest : ModelBase
         }
     }
 
-    public Dictionary<string, string>? ResponseMap
+    public IReadOnlyDictionary<string, string>? ResponseMap
     {
         get
         {

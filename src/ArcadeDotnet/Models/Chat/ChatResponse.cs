@@ -33,7 +33,7 @@ public sealed record class ChatResponse : ModelBase
         }
     }
 
-    public List<Choice>? Choices
+    public IReadOnlyList<Choice>? Choices
     {
         get
         {

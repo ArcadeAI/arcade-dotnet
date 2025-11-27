@@ -102,7 +102,7 @@ public sealed record class Choice : ModelBase
         }
     }
 
-    public List<AuthorizationResponse>? ToolAuthorizations
+    public IReadOnlyList<AuthorizationResponse>? ToolAuthorizations
     {
         get
         {
@@ -128,7 +128,7 @@ public sealed record class Choice : ModelBase
         }
     }
 
-    public List<ChatMessage>? ToolMessages
+    public IReadOnlyList<ChatMessage>? ToolMessages
     {
         get
         {

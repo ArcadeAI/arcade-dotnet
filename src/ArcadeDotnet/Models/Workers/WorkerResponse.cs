@@ -721,7 +721,7 @@ sealed class SecretBindingConverter : JsonConverter<SecretBinding>
 [JsonConverter(typeof(ModelConverter<WorkerResponseMcp, WorkerResponseMcpFromRaw>))]
 public sealed record class WorkerResponseMcp : ModelBase
 {
-    public Dictionary<string, string>? Headers
+    public IReadOnlyDictionary<string, string>? Headers
     {
         get
         {
@@ -796,7 +796,7 @@ public sealed record class WorkerResponseMcp : ModelBase
         }
     }
 
-    public Dictionary<string, SecretsItem>? Secrets
+    public IReadOnlyDictionary<string, SecretsItem>? Secrets
     {
         get
         {

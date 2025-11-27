@@ -76,7 +76,7 @@ public sealed record class ToolExecuteParams : ParamsBase
     /// <summary>
     /// JSON input to the tool, if any
     /// </summary>
-    public Dictionary<string, JsonElement>? Input
+    public IReadOnlyDictionary<string, JsonElement>? Input
     {
         get
         {

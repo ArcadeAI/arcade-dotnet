@@ -383,7 +383,7 @@ public sealed record class CreateWorkerRequestMcp : ModelBase
         }
     }
 
-    public Dictionary<string, string>? Headers
+    public IReadOnlyDictionary<string, string>? Headers
     {
         get
         {
@@ -435,7 +435,7 @@ public sealed record class CreateWorkerRequestMcp : ModelBase
         }
     }
 
-    public Dictionary<string, string>? Secrets
+    public IReadOnlyDictionary<string, string>? Secrets
     {
         get
         {

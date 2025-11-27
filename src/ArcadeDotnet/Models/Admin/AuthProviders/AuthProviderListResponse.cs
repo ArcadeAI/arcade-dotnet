@@ -10,7 +10,7 @@ namespace ArcadeDotnet.Models.Admin.AuthProviders;
 [JsonConverter(typeof(ModelConverter<AuthProviderListResponse, AuthProviderListResponseFromRaw>))]
 public sealed record class AuthProviderListResponse : ModelBase
 {
-    public List<AuthProviderResponse>? Items
+    public IReadOnlyList<AuthProviderResponse>? Items
     {
         get
         {

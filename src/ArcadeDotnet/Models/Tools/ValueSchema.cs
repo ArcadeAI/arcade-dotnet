@@ -37,7 +37,7 @@ public sealed record class ValueSchema : ModelBase
         }
     }
 
-    public List<string>? Enum
+    public IReadOnlyList<string>? Enum
     {
         get
         {

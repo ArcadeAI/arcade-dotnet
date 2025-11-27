@@ -10,7 +10,7 @@ namespace ArcadeDotnet.Models.Admin.Secrets;
 [JsonConverter(typeof(ModelConverter<SecretListResponse, SecretListResponseFromRaw>))]
 public sealed record class SecretListResponse : ModelBase
 {
-    public List<SecretResponse>? Items
+    public IReadOnlyList<SecretResponse>? Items
     {
         get
         {

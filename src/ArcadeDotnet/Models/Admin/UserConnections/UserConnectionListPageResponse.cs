@@ -12,7 +12,7 @@ namespace ArcadeDotnet.Models.Admin.UserConnections;
 )]
 public sealed record class UserConnectionListPageResponse : ModelBase
 {
-    public List<UserConnectionResponse>? Items
+    public IReadOnlyList<UserConnectionResponse>? Items
     {
         get
         {

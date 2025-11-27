@@ -84,7 +84,7 @@ public sealed record class AuthorizationResponse : ModelBase
         }
     }
 
-    public List<string>? Scopes
+    public IReadOnlyList<string>? Scopes
     {
         get
         {

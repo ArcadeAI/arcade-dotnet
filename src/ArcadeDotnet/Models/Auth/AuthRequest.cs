@@ -277,7 +277,7 @@ class AuthRequestAuthRequirementFromRaw : IFromRaw<AuthRequestAuthRequirement>
 )]
 public sealed record class AuthRequestAuthRequirementOauth2 : ModelBase
 {
-    public List<string>? Scopes
+    public IReadOnlyList<string>? Scopes
     {
         get
         {

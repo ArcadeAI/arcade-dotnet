@@ -123,7 +123,7 @@ public sealed record class ChatMessage : ModelBase
     /// <summary>
     /// tool calls if any
     /// </summary>
-    public List<ToolCall>? ToolCalls
+    public IReadOnlyList<ToolCall>? ToolCalls
     {
         get
         {

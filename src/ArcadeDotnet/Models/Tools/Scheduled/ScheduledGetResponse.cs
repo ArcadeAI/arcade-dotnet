@@ -33,7 +33,7 @@ public sealed record class ScheduledGetResponse : ModelBase
         }
     }
 
-    public List<ToolExecutionAttempt>? Attempts
+    public IReadOnlyList<ToolExecutionAttempt>? Attempts
     {
         get
         {
@@ -151,7 +151,7 @@ public sealed record class ScheduledGetResponse : ModelBase
         }
     }
 
-    public Dictionary<string, JsonElement>? Input
+    public IReadOnlyDictionary<string, JsonElement>? Input
     {
         get
         {
