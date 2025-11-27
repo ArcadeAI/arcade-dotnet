@@ -4,8 +4,10 @@ using ArcadeDotnet.Services.Chat;
 
 namespace ArcadeDotnet.Services;
 
+/// <inheritdoc />
 public sealed class ChatService : IChatService
 {
+    /// <inheritdoc/>
     public IChatService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new ChatService(this._client.WithOptions(modifier));

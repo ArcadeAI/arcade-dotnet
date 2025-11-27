@@ -13,6 +13,11 @@ namespace ArcadeDotnet.Services.Admin;
 /// </summary>
 public interface IUserConnectionService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     IUserConnectionService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
@@ -31,9 +36,7 @@ public interface IUserConnectionService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Delete a user/auth provider connection
-    /// </summary>
+    /// <inheritdoc cref="Delete(UserConnectionDeleteParams, CancellationToken)"/>
     Task Delete(
         string id,
         UserConnectionDeleteParams? parameters = null,

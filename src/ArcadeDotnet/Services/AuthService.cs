@@ -8,8 +8,10 @@ using ArcadeDotnet.Models.Auth;
 
 namespace ArcadeDotnet.Services;
 
+/// <inheritdoc />
 public sealed class AuthService : IAuthService
 {
+    /// <inheritdoc/>
     public IAuthService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new AuthService(this._client.WithOptions(modifier));
@@ -22,6 +24,7 @@ public sealed class AuthService : IAuthService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<AuthorizationResponse> Authorize(
         AuthAuthorizeParams parameters,
         CancellationToken cancellationToken = default
@@ -45,6 +48,7 @@ public sealed class AuthService : IAuthService
         return authorizationResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<ConfirmUserResponse> ConfirmUser(
         AuthConfirmUserParams parameters,
         CancellationToken cancellationToken = default
@@ -68,6 +72,7 @@ public sealed class AuthService : IAuthService
         return confirmUserResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<AuthorizationResponse> Status(
         AuthStatusParams parameters,
         CancellationToken cancellationToken = default

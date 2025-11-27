@@ -9,8 +9,10 @@ using ArcadeDotnet.Models.Tools.Formatted;
 
 namespace ArcadeDotnet.Services.Tools;
 
+/// <inheritdoc />
 public sealed class FormattedService : IFormattedService
 {
+    /// <inheritdoc/>
     public IFormattedService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new FormattedService(this._client.WithOptions(modifier));
@@ -23,6 +25,7 @@ public sealed class FormattedService : IFormattedService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<FormattedListPageResponse> List(
         FormattedListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -48,6 +51,7 @@ public sealed class FormattedService : IFormattedService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<JsonElement> Get(
         FormattedGetParams parameters,
         CancellationToken cancellationToken = default
@@ -69,6 +73,7 @@ public sealed class FormattedService : IFormattedService
         return await response.Deserialize<JsonElement>(cancellationToken).ConfigureAwait(false);
     }
 
+    /// <inheritdoc/>
     public async Task<JsonElement> Get(
         string name,
         FormattedGetParams? parameters = null,

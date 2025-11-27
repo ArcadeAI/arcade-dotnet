@@ -13,6 +13,11 @@ namespace ArcadeDotnet.Services.Admin;
 /// </summary>
 public interface IAuthProviderService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     IAuthProviderService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
@@ -39,9 +44,7 @@ public interface IAuthProviderService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Delete a specific auth provider
-    /// </summary>
+    /// <inheritdoc cref="Delete(AuthProviderDeleteParams, CancellationToken)"/>
     Task<AuthProviderResponse> Delete(
         string id,
         AuthProviderDeleteParams? parameters = null,
@@ -56,9 +59,7 @@ public interface IAuthProviderService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Get the details of a specific auth provider
-    /// </summary>
+    /// <inheritdoc cref="Get(AuthProviderGetParams, CancellationToken)"/>
     Task<AuthProviderResponse> Get(
         string id,
         AuthProviderGetParams? parameters = null,
@@ -73,9 +74,7 @@ public interface IAuthProviderService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Patch an existing auth provider
-    /// </summary>
+    /// <inheritdoc cref="Patch(AuthProviderPatchParams, CancellationToken)"/>
     Task<AuthProviderResponse> Patch(
         string id,
         AuthProviderPatchParams? parameters = null,

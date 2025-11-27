@@ -14,6 +14,11 @@ namespace ArcadeDotnet.Services.Tools;
 /// </summary>
 public interface IFormattedService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     IFormattedService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
@@ -33,9 +38,7 @@ public interface IFormattedService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Returns the formatted tool specification for a specific tool, given a provider
-    /// </summary>
+    /// <inheritdoc cref="Get(FormattedGetParams, CancellationToken)"/>
     Task<JsonElement> Get(
         string name,
         FormattedGetParams? parameters = null,

@@ -11,6 +11,11 @@ namespace ArcadeDotnet.Services;
 /// </summary>
 public interface IChatService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     IChatService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     ICompletionService Completions { get; }

@@ -11,6 +11,7 @@ using ArcadeDotnet.Services;
 
 namespace ArcadeDotnet;
 
+/// <inheritdoc/>
 public sealed class ArcadeClient : IArcadeClient
 {
     static readonly ThreadLocal<Random> _threadLocalRandom = new(() => new Random());
@@ -22,42 +23,49 @@ public sealed class ArcadeClient : IArcadeClient
 
     readonly ClientOptions _options;
 
+    /// <inheritdoc/>
     public HttpClient HttpClient
     {
         get { return this._options.HttpClient; }
         init { this._options.HttpClient = value; }
     }
 
+    /// <inheritdoc/>
     public Uri BaseUrl
     {
         get { return this._options.BaseUrl; }
         init { this._options.BaseUrl = value; }
     }
 
+    /// <inheritdoc/>
     public bool ResponseValidation
     {
         get { return this._options.ResponseValidation; }
         init { this._options.ResponseValidation = value; }
     }
 
+    /// <inheritdoc/>
     public int? MaxRetries
     {
         get { return this._options.MaxRetries; }
         init { this._options.MaxRetries = value; }
     }
 
+    /// <inheritdoc/>
     public TimeSpan? Timeout
     {
         get { return this._options.Timeout; }
         init { this._options.Timeout = value; }
     }
 
+    /// <inheritdoc/>
     public string APIKey
     {
         get { return this._options.APIKey; }
         init { this._options.APIKey = value; }
     }
 
+    /// <inheritdoc/>
     public IArcadeClient WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new ArcadeClient(modifier(this._options));
@@ -99,6 +107,7 @@ public sealed class ArcadeClient : IArcadeClient
         get { return _workers.Value; }
     }
 
+    /// <inheritdoc/>
     public async Task<HttpResponse> Execute<T>(
         HttpRequest<T> request,
         CancellationToken cancellationToken = default

@@ -8,8 +8,10 @@ using ArcadeDotnet.Models.Tools.Scheduled;
 
 namespace ArcadeDotnet.Services.Tools;
 
+/// <inheritdoc />
 public sealed class ScheduledService : IScheduledService
 {
+    /// <inheritdoc/>
     public IScheduledService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new ScheduledService(this._client.WithOptions(modifier));
@@ -22,6 +24,7 @@ public sealed class ScheduledService : IScheduledService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<ScheduledListPageResponse> List(
         ScheduledListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -47,6 +50,7 @@ public sealed class ScheduledService : IScheduledService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<ScheduledGetResponse> Get(
         ScheduledGetParams parameters,
         CancellationToken cancellationToken = default
@@ -75,6 +79,7 @@ public sealed class ScheduledService : IScheduledService
         return scheduled;
     }
 
+    /// <inheritdoc/>
     public async Task<ScheduledGetResponse> Get(
         string id,
         ScheduledGetParams? parameters = null,

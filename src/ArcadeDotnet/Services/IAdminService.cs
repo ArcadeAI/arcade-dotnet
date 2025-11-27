@@ -11,6 +11,11 @@ namespace ArcadeDotnet.Services;
 /// </summary>
 public interface IAdminService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     IAdminService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     IUserConnectionService UserConnections { get; }

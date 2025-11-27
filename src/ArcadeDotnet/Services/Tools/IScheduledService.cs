@@ -13,6 +13,11 @@ namespace ArcadeDotnet.Services.Tools;
 /// </summary>
 public interface IScheduledService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     IScheduledService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
@@ -31,9 +36,7 @@ public interface IScheduledService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Returns the details for a specific scheduled tool execution
-    /// </summary>
+    /// <inheritdoc cref="Get(ScheduledGetParams, CancellationToken)"/>
     Task<ScheduledGetResponse> Get(
         string id,
         ScheduledGetParams? parameters = null,

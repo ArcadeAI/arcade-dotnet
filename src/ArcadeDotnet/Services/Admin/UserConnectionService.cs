@@ -8,8 +8,10 @@ using ArcadeDotnet.Models.Admin.UserConnections;
 
 namespace ArcadeDotnet.Services.Admin;
 
+/// <inheritdoc />
 public sealed class UserConnectionService : IUserConnectionService
 {
+    /// <inheritdoc/>
     public IUserConnectionService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new UserConnectionService(this._client.WithOptions(modifier));
@@ -22,6 +24,7 @@ public sealed class UserConnectionService : IUserConnectionService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<UserConnectionListPageResponse> List(
         UserConnectionListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -47,6 +50,7 @@ public sealed class UserConnectionService : IUserConnectionService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task Delete(
         UserConnectionDeleteParams parameters,
         CancellationToken cancellationToken = default
@@ -67,6 +71,7 @@ public sealed class UserConnectionService : IUserConnectionService
             .ConfigureAwait(false);
     }
 
+    /// <inheritdoc/>
     public async Task Delete(
         string id,
         UserConnectionDeleteParams? parameters = null,

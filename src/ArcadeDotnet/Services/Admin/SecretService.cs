@@ -8,8 +8,10 @@ using ArcadeDotnet.Models.Admin.Secrets;
 
 namespace ArcadeDotnet.Services.Admin;
 
+/// <inheritdoc />
 public sealed class SecretService : ISecretService
 {
+    /// <inheritdoc/>
     public ISecretService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new SecretService(this._client.WithOptions(modifier));
@@ -22,6 +24,7 @@ public sealed class SecretService : ISecretService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<SecretListResponse> List(
         SecretListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -47,6 +50,7 @@ public sealed class SecretService : ISecretService
         return secrets;
     }
 
+    /// <inheritdoc/>
     public async Task Delete(
         SecretDeleteParams parameters,
         CancellationToken cancellationToken = default
@@ -67,6 +71,7 @@ public sealed class SecretService : ISecretService
             .ConfigureAwait(false);
     }
 
+    /// <inheritdoc/>
     public async Task Delete(
         string secretID,
         SecretDeleteParams? parameters = null,

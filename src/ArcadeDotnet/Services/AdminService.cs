@@ -4,8 +4,10 @@ using ArcadeDotnet.Services.Admin;
 
 namespace ArcadeDotnet.Services;
 
+/// <inheritdoc />
 public sealed class AdminService : IAdminService
 {
+    /// <inheritdoc/>
     public IAdminService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new AdminService(this._client.WithOptions(modifier));

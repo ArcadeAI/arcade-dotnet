@@ -13,6 +13,11 @@ namespace ArcadeDotnet.Services;
 /// </summary>
 public interface IWorkerService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     IWorkerService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
@@ -31,9 +36,7 @@ public interface IWorkerService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Update a worker
-    /// </summary>
+    /// <inheritdoc cref="Update(WorkerUpdateParams, CancellationToken)"/>
     Task<WorkerResponse> Update(
         string id,
         WorkerUpdateParams? parameters = null,
@@ -53,9 +56,7 @@ public interface IWorkerService
     /// </summary>
     Task Delete(WorkerDeleteParams parameters, CancellationToken cancellationToken = default);
 
-    /// <summary>
-    /// Delete a worker
-    /// </summary>
+    /// <inheritdoc cref="Delete(WorkerDeleteParams, CancellationToken)"/>
     Task Delete(
         string id,
         WorkerDeleteParams? parameters = null,
@@ -70,9 +71,7 @@ public interface IWorkerService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Get a worker by ID
-    /// </summary>
+    /// <inheritdoc cref="Get(WorkerGetParams, CancellationToken)"/>
     Task<WorkerResponse> Get(
         string id,
         WorkerGetParams? parameters = null,
@@ -87,9 +86,7 @@ public interface IWorkerService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Get the health of a worker
-    /// </summary>
+    /// <inheritdoc cref="Health(WorkerHealthParams, CancellationToken)"/>
     Task<WorkerHealthResponse> Health(
         string id,
         WorkerHealthParams? parameters = null,
@@ -104,9 +101,7 @@ public interface IWorkerService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Returns a page of tools
-    /// </summary>
+    /// <inheritdoc cref="Tools(WorkerToolsParams, CancellationToken)"/>
     Task<WorkerToolsPageResponse> Tools(
         string id,
         WorkerToolsParams? parameters = null,

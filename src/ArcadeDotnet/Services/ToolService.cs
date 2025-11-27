@@ -10,8 +10,10 @@ using ArcadeDotnet.Services.Tools;
 
 namespace ArcadeDotnet.Services;
 
+/// <inheritdoc />
 public sealed class ToolService : IToolService
 {
+    /// <inheritdoc/>
     public IToolService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new ToolService(this._client.WithOptions(modifier));
@@ -38,6 +40,7 @@ public sealed class ToolService : IToolService
         get { return _formatted.Value; }
     }
 
+    /// <inheritdoc/>
     public async Task<ToolListPageResponse> List(
         ToolListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -63,6 +66,7 @@ public sealed class ToolService : IToolService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<AuthorizationResponse> Authorize(
         ToolAuthorizeParams parameters,
         CancellationToken cancellationToken = default
@@ -86,6 +90,7 @@ public sealed class ToolService : IToolService
         return authorizationResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<ExecuteToolResponse> Execute(
         ToolExecuteParams parameters,
         CancellationToken cancellationToken = default
@@ -109,6 +114,7 @@ public sealed class ToolService : IToolService
         return executeToolResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<ToolDefinition> Get(
         ToolGetParams parameters,
         CancellationToken cancellationToken = default
@@ -133,6 +139,7 @@ public sealed class ToolService : IToolService
         return toolDefinition;
     }
 
+    /// <inheritdoc/>
     public async Task<ToolDefinition> Get(
         string name,
         ToolGetParams? parameters = null,

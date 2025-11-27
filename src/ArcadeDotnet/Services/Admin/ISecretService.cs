@@ -13,6 +13,11 @@ namespace ArcadeDotnet.Services.Admin;
 /// </summary>
 public interface ISecretService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     ISecretService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
@@ -28,9 +33,7 @@ public interface ISecretService
     /// </summary>
     Task Delete(SecretDeleteParams parameters, CancellationToken cancellationToken = default);
 
-    /// <summary>
-    /// Delete a secret by its ID
-    /// </summary>
+    /// <inheritdoc cref="Delete(SecretDeleteParams, CancellationToken)"/>
     Task Delete(
         string secretID,
         SecretDeleteParams? parameters = null,

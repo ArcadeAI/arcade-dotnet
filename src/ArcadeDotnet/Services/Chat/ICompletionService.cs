@@ -14,6 +14,11 @@ namespace ArcadeDotnet.Services.Chat;
 /// </summary>
 public interface ICompletionService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     ICompletionService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>

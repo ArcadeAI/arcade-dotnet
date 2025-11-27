@@ -15,6 +15,11 @@ namespace ArcadeDotnet.Services;
 /// </summary>
 public interface IToolService
 {
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
     IToolService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     IScheduledService Scheduled { get; }
@@ -54,9 +59,7 @@ public interface IToolService
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Returns the arcade tool specification for a specific tool
-    /// </summary>
+    /// <inheritdoc cref="Get(ToolGetParams, CancellationToken)"/>
     Task<ToolDefinition> Get(
         string name,
         ToolGetParams? parameters = null,

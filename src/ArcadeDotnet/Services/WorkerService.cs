@@ -8,8 +8,10 @@ using ArcadeDotnet.Models.Workers;
 
 namespace ArcadeDotnet.Services;
 
+/// <inheritdoc />
 public sealed class WorkerService : IWorkerService
 {
+    /// <inheritdoc/>
     public IWorkerService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new WorkerService(this._client.WithOptions(modifier));
@@ -22,6 +24,7 @@ public sealed class WorkerService : IWorkerService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<WorkerResponse> Create(
         WorkerCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -45,6 +48,7 @@ public sealed class WorkerService : IWorkerService
         return workerResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<WorkerResponse> Update(
         WorkerUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -73,6 +77,7 @@ public sealed class WorkerService : IWorkerService
         return workerResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<WorkerResponse> Update(
         string id,
         WorkerUpdateParams? parameters = null,
@@ -84,6 +89,7 @@ public sealed class WorkerService : IWorkerService
         return await this.Update(parameters with { ID = id }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<WorkerListPageResponse> List(
         WorkerListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -109,6 +115,7 @@ public sealed class WorkerService : IWorkerService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task Delete(
         WorkerDeleteParams parameters,
         CancellationToken cancellationToken = default
@@ -129,6 +136,7 @@ public sealed class WorkerService : IWorkerService
             .ConfigureAwait(false);
     }
 
+    /// <inheritdoc/>
     public async Task Delete(
         string id,
         WorkerDeleteParams? parameters = null,
@@ -140,6 +148,7 @@ public sealed class WorkerService : IWorkerService
         await this.Delete(parameters with { ID = id }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<WorkerResponse> Get(
         WorkerGetParams parameters,
         CancellationToken cancellationToken = default
@@ -168,6 +177,7 @@ public sealed class WorkerService : IWorkerService
         return workerResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<WorkerResponse> Get(
         string id,
         WorkerGetParams? parameters = null,
@@ -179,6 +189,7 @@ public sealed class WorkerService : IWorkerService
         return await this.Get(parameters with { ID = id }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<WorkerHealthResponse> Health(
         WorkerHealthParams parameters,
         CancellationToken cancellationToken = default
@@ -207,6 +218,7 @@ public sealed class WorkerService : IWorkerService
         return workerHealthResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<WorkerHealthResponse> Health(
         string id,
         WorkerHealthParams? parameters = null,
@@ -218,6 +230,7 @@ public sealed class WorkerService : IWorkerService
         return await this.Health(parameters with { ID = id }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<WorkerToolsPageResponse> Tools(
         WorkerToolsParams parameters,
         CancellationToken cancellationToken = default
@@ -246,6 +259,7 @@ public sealed class WorkerService : IWorkerService
         return page;
     }
 
+    /// <inheritdoc/>
     public async Task<WorkerToolsPageResponse> Tools(
         string id,
         WorkerToolsParams? parameters = null,

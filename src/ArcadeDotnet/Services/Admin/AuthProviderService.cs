@@ -8,8 +8,10 @@ using ArcadeDotnet.Models.Admin.AuthProviders;
 
 namespace ArcadeDotnet.Services.Admin;
 
+/// <inheritdoc />
 public sealed class AuthProviderService : IAuthProviderService
 {
+    /// <inheritdoc/>
     public IAuthProviderService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new AuthProviderService(this._client.WithOptions(modifier));
@@ -22,6 +24,7 @@ public sealed class AuthProviderService : IAuthProviderService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<AuthProviderResponse> Create(
         AuthProviderCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -45,6 +48,7 @@ public sealed class AuthProviderService : IAuthProviderService
         return authProviderResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<AuthProviderListResponse> List(
         AuthProviderListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -70,6 +74,7 @@ public sealed class AuthProviderService : IAuthProviderService
         return authProviders;
     }
 
+    /// <inheritdoc/>
     public async Task<AuthProviderResponse> Delete(
         AuthProviderDeleteParams parameters,
         CancellationToken cancellationToken = default
@@ -98,6 +103,7 @@ public sealed class AuthProviderService : IAuthProviderService
         return authProviderResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<AuthProviderResponse> Delete(
         string id,
         AuthProviderDeleteParams? parameters = null,
@@ -109,6 +115,7 @@ public sealed class AuthProviderService : IAuthProviderService
         return await this.Delete(parameters with { ID = id }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<AuthProviderResponse> Get(
         AuthProviderGetParams parameters,
         CancellationToken cancellationToken = default
@@ -137,6 +144,7 @@ public sealed class AuthProviderService : IAuthProviderService
         return authProviderResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<AuthProviderResponse> Get(
         string id,
         AuthProviderGetParams? parameters = null,
@@ -148,6 +156,7 @@ public sealed class AuthProviderService : IAuthProviderService
         return await this.Get(parameters with { ID = id }, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public async Task<AuthProviderResponse> Patch(
         AuthProviderPatchParams parameters,
         CancellationToken cancellationToken = default
@@ -176,6 +185,7 @@ public sealed class AuthProviderService : IAuthProviderService
         return authProviderResponse;
     }
 
+    /// <inheritdoc/>
     public async Task<AuthProviderResponse> Patch(
         string id,
         AuthProviderPatchParams? parameters = null,

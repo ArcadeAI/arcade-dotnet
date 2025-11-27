@@ -8,8 +8,10 @@ using ArcadeDotnet.Models.Chat.Completions;
 
 namespace ArcadeDotnet.Services.Chat;
 
+/// <inheritdoc />
 public sealed class CompletionService : ICompletionService
 {
+    /// <inheritdoc/>
     public ICompletionService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new CompletionService(this._client.WithOptions(modifier));
@@ -22,6 +24,7 @@ public sealed class CompletionService : ICompletionService
         _client = client;
     }
 
+    /// <inheritdoc/>
     public async Task<ChatResponse> Create(
         CompletionCreateParams? parameters = null,
         CancellationToken cancellationToken = default
