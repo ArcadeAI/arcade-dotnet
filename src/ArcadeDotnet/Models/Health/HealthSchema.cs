@@ -12,13 +12,7 @@ public sealed record class HealthSchema : ModelBase
 {
     public bool? Healthy
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("healthy", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "healthy"); }
         init
         {
             if (value == null)
@@ -26,10 +20,7 @@ public sealed record class HealthSchema : ModelBase
                 return;
             }
 
-            this._rawData["healthy"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "healthy", value);
         }
     }
 

@@ -24,13 +24,7 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public double? FrequencyPenalty
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("frequency_penalty", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<double>(this.RawBodyData, "frequency_penalty"); }
         init
         {
             if (value == null)
@@ -38,10 +32,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["frequency_penalty"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "frequency_penalty", value);
         }
     }
 
@@ -54,12 +45,9 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("logit_bias", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Dictionary<string, long>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<Dictionary<string, long>>(
+                this.RawBodyData,
+                "logit_bias"
             );
         }
         init
@@ -69,10 +57,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["logit_bias"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "logit_bias", value);
         }
     }
 
@@ -83,13 +68,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     /// </summary>
     public bool? Logprobs
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("logprobs", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "logprobs"); }
         init
         {
             if (value == null)
@@ -97,22 +76,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["logprobs"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "logprobs", value);
         }
     }
 
     public long? MaxTokens
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("max_tokens", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "max_tokens"); }
         init
         {
             if (value == null)
@@ -120,25 +90,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["max_tokens"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "max_tokens", value);
         }
     }
 
     public IReadOnlyList<ChatMessage>? Messages
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("messages", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<ChatMessage>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<List<ChatMessage>>(this.RawBodyData, "messages"); }
         init
         {
             if (value == null)
@@ -146,22 +104,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["messages"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "messages", value);
         }
     }
 
     public string? Model
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("model", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "model"); }
         init
         {
             if (value == null)
@@ -169,22 +118,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["model"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "model", value);
         }
     }
 
     public long? N
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("n", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "n"); }
         init
         {
             if (value == null)
@@ -192,10 +132,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["n"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "n", value);
         }
     }
 
@@ -204,13 +141,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     /// </summary>
     public bool? ParallelToolCalls
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("parallel_tool_calls", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "parallel_tool_calls"); }
         init
         {
             if (value == null)
@@ -218,22 +149,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["parallel_tool_calls"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "parallel_tool_calls", value);
         }
     }
 
     public double? PresencePenalty
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("presence_penalty", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<double>(this.RawBodyData, "presence_penalty"); }
         init
         {
             if (value == null)
@@ -241,10 +163,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["presence_penalty"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "presence_penalty", value);
         }
     }
 
@@ -252,12 +171,9 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("response_format", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat>(
+                this.RawBodyData,
+                "response_format"
             );
         }
         init
@@ -267,22 +183,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["response_format"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "response_format", value);
         }
     }
 
     public long? Seed
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("seed", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "seed"); }
         init
         {
             if (value == null)
@@ -290,22 +197,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["seed"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "seed", value);
         }
     }
 
     public IReadOnlyList<string>? Stop
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("stop", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<string>?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<List<string>>(this.RawBodyData, "stop"); }
         init
         {
             if (value == null)
@@ -313,22 +211,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["stop"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "stop", value);
         }
     }
 
     public bool? Stream
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("stream", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "stream"); }
         init
         {
             if (value == null)
@@ -336,10 +225,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["stream"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "stream", value);
         }
     }
 
@@ -350,12 +236,9 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            if (!this._rawBodyData.TryGetValue("stream_options", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<global::ArcadeDotnet.Models.Chat.Completions.StreamOptions?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<global::ArcadeDotnet.Models.Chat.Completions.StreamOptions>(
+                this.RawBodyData,
+                "stream_options"
             );
         }
         init
@@ -365,22 +248,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["stream_options"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "stream_options", value);
         }
     }
 
     public double? Temperature
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("temperature", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<double>(this.RawBodyData, "temperature"); }
         init
         {
             if (value == null)
@@ -388,10 +262,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["temperature"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "temperature", value);
         }
     }
 
@@ -400,13 +271,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     /// </summary>
     public JsonElement? ToolChoice
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("tool_choice", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<JsonElement?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<JsonElement>(this.RawBodyData, "tool_choice"); }
         init
         {
             if (value == null)
@@ -414,22 +279,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["tool_choice"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "tool_choice", value);
         }
     }
 
     public JsonElement? Tools
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("tools", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<JsonElement?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<JsonElement>(this.RawBodyData, "tools"); }
         init
         {
             if (value == null)
@@ -437,10 +293,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["tools"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "tools", value);
         }
     }
 
@@ -451,13 +304,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     /// </summary>
     public long? TopLogprobs
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("top_logprobs", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "top_logprobs"); }
         init
         {
             if (value == null)
@@ -465,22 +312,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["top_logprobs"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "top_logprobs", value);
         }
     }
 
     public double? TopP
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("top_p", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<double?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<double>(this.RawBodyData, "top_p"); }
         init
         {
             if (value == null)
@@ -488,22 +326,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["top_p"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "top_p", value);
         }
     }
 
     public string? User
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("user", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "user"); }
         init
         {
             if (value == null)
@@ -511,10 +340,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["user"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "user", value);
         }
     }
 
@@ -595,13 +421,9 @@ public sealed record class ResponseFormat : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("type", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ApiEnum<
-                string,
-                global::ArcadeDotnet.Models.Chat.Completions.Type
-            >?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<
+                ApiEnum<string, global::ArcadeDotnet.Models.Chat.Completions.Type>
+            >(this.RawData, "type");
         }
         init
         {
@@ -610,10 +432,7 @@ public sealed record class ResponseFormat : ModelBase
                 return;
             }
 
-            this._rawData["type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "type", value);
         }
     }
 
@@ -715,13 +534,7 @@ public sealed record class StreamOptions : ModelBase
     /// </summary>
     public bool? IncludeUsage
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("include_usage", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "include_usage"); }
         init
         {
             if (value == null)
@@ -729,10 +542,7 @@ public sealed record class StreamOptions : ModelBase
                 return;
             }
 
-            this._rawData["include_usage"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "include_usage", value);
         }
     }
 

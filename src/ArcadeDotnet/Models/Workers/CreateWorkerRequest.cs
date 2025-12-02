@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
-using ArcadeDotnet.Exceptions;
 
 namespace ArcadeDotnet.Models.Workers;
 
@@ -14,38 +12,13 @@ public sealed record class CreateWorkerRequest : ModelBase
 {
     public required string ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'id' cannot be null",
-                    new ArgumentOutOfRangeException("id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArcadeInvalidDataException(
-                    "'id' cannot be null",
-                    new ArgumentNullException("id")
-                );
-        }
-        init
-        {
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
+        init { ModelBase.Set(this._rawData, "id", value); }
     }
 
     public bool? Enabled
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("enabled", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "enabled"); }
         init
         {
             if (value == null)
@@ -53,25 +26,13 @@ public sealed record class CreateWorkerRequest : ModelBase
                 return;
             }
 
-            this._rawData["enabled"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "enabled", value);
         }
     }
 
     public CreateWorkerRequestHTTP? HTTP
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("http", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<CreateWorkerRequestHTTP?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<CreateWorkerRequestHTTP>(this.RawData, "http"); }
         init
         {
             if (value == null)
@@ -79,25 +40,13 @@ public sealed record class CreateWorkerRequest : ModelBase
                 return;
             }
 
-            this._rawData["http"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "http", value);
         }
     }
 
     public CreateWorkerRequestMcp? Mcp
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("mcp", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<CreateWorkerRequestMcp?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<CreateWorkerRequestMcp>(this.RawData, "mcp"); }
         init
         {
             if (value == null)
@@ -105,22 +54,13 @@ public sealed record class CreateWorkerRequest : ModelBase
                 return;
             }
 
-            this._rawData["mcp"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "mcp", value);
         }
     }
 
     public string? Type
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("type", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "type"); }
         init
         {
             if (value == null)
@@ -128,10 +68,7 @@ public sealed record class CreateWorkerRequest : ModelBase
                 return;
             }
 
-            this._rawData["type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "type", value);
         }
     }
 
@@ -185,94 +122,26 @@ public sealed record class CreateWorkerRequestHTTP : ModelBase
 {
     public required long Retry
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("retry", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'retry' cannot be null",
-                    new ArgumentOutOfRangeException("retry", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["retry"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "retry"); }
+        init { ModelBase.Set(this._rawData, "retry", value); }
     }
 
     public required string Secret
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("secret", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'secret' cannot be null",
-                    new ArgumentOutOfRangeException("secret", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArcadeInvalidDataException(
-                    "'secret' cannot be null",
-                    new ArgumentNullException("secret")
-                );
-        }
-        init
-        {
-            this._rawData["secret"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "secret"); }
+        init { ModelBase.Set(this._rawData, "secret", value); }
     }
 
     public required long Timeout
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("timeout", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'timeout' cannot be null",
-                    new ArgumentOutOfRangeException("timeout", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["timeout"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "timeout"); }
+        init { ModelBase.Set(this._rawData, "timeout", value); }
     }
 
     public required string Uri
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("uri", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'uri' cannot be null",
-                    new ArgumentOutOfRangeException("uri", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArcadeInvalidDataException(
-                    "'uri' cannot be null",
-                    new ArgumentNullException("uri")
-                );
-        }
-        init
-        {
-            this._rawData["uri"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "uri"); }
+        init { ModelBase.Set(this._rawData, "uri", value); }
     }
 
     public override void Validate()
@@ -318,82 +187,27 @@ public sealed record class CreateWorkerRequestMcp : ModelBase
 {
     public required long Retry
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("retry", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'retry' cannot be null",
-                    new ArgumentOutOfRangeException("retry", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["retry"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "retry"); }
+        init { ModelBase.Set(this._rawData, "retry", value); }
     }
 
     public required long Timeout
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("timeout", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'timeout' cannot be null",
-                    new ArgumentOutOfRangeException("timeout", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<long>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["timeout"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "timeout"); }
+        init { ModelBase.Set(this._rawData, "timeout", value); }
     }
 
     public required string Uri
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("uri", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'uri' cannot be null",
-                    new ArgumentOutOfRangeException("uri", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArcadeInvalidDataException(
-                    "'uri' cannot be null",
-                    new ArgumentNullException("uri")
-                );
-        }
-        init
-        {
-            this._rawData["uri"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "uri"); }
+        init { ModelBase.Set(this._rawData, "uri", value); }
     }
 
     public IReadOnlyDictionary<string, string>? Headers
     {
         get
         {
-            if (!this._rawData.TryGetValue("headers", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Dictionary<string, string>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableClass<Dictionary<string, string>>(this.RawData, "headers");
         }
         init
         {
@@ -402,10 +216,7 @@ public sealed record class CreateWorkerRequestMcp : ModelBase
                 return;
             }
 
-            this._rawData["headers"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "headers", value);
         }
     }
 
@@ -413,13 +224,7 @@ public sealed record class CreateWorkerRequestMcp : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("oauth2", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<CreateWorkerRequestMcpOauth2?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableClass<CreateWorkerRequestMcpOauth2>(this.RawData, "oauth2");
         }
         init
         {
@@ -428,10 +233,7 @@ public sealed record class CreateWorkerRequestMcp : ModelBase
                 return;
             }
 
-            this._rawData["oauth2"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "oauth2", value);
         }
     }
 
@@ -439,13 +241,7 @@ public sealed record class CreateWorkerRequestMcp : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("secrets", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Dictionary<string, string>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableClass<Dictionary<string, string>>(this.RawData, "secrets");
         }
         init
         {
@@ -454,10 +250,7 @@ public sealed record class CreateWorkerRequestMcp : ModelBase
                 return;
             }
 
-            this._rawData["secrets"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "secrets", value);
         }
     }
 
@@ -508,13 +301,7 @@ public sealed record class CreateWorkerRequestMcpOauth2 : ModelBase
 {
     public string? AuthorizationURL
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("authorization_url", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "authorization_url"); }
         init
         {
             if (value == null)
@@ -522,22 +309,13 @@ public sealed record class CreateWorkerRequestMcpOauth2 : ModelBase
                 return;
             }
 
-            this._rawData["authorization_url"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "authorization_url", value);
         }
     }
 
     public string? ClientID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("client_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "client_id"); }
         init
         {
             if (value == null)
@@ -545,22 +323,13 @@ public sealed record class CreateWorkerRequestMcpOauth2 : ModelBase
                 return;
             }
 
-            this._rawData["client_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "client_id", value);
         }
     }
 
     public string? ClientSecret
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("client_secret", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "client_secret"); }
         init
         {
             if (value == null)
@@ -568,22 +337,13 @@ public sealed record class CreateWorkerRequestMcpOauth2 : ModelBase
                 return;
             }
 
-            this._rawData["client_secret"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "client_secret", value);
         }
     }
 
     public string? ExternalID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("external_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_id"); }
         init
         {
             if (value == null)
@@ -591,10 +351,7 @@ public sealed record class CreateWorkerRequestMcpOauth2 : ModelBase
                 return;
             }
 
-            this._rawData["external_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "external_id", value);
         }
     }
 

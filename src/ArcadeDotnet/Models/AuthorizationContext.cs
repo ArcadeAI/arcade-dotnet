@@ -12,13 +12,7 @@ public sealed record class AuthorizationContext : ModelBase
 {
     public string? Token
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("token", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "token"); }
         init
         {
             if (value == null)
@@ -26,10 +20,7 @@ public sealed record class AuthorizationContext : ModelBase
                 return;
             }
 
-            this._rawData["token"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "token", value);
         }
     }
 
@@ -37,12 +28,9 @@ public sealed record class AuthorizationContext : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("user_info", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<Dictionary<string, JsonElement>>(
+                this.RawData,
+                "user_info"
             );
         }
         init
@@ -52,10 +40,7 @@ public sealed record class AuthorizationContext : ModelBase
                 return;
             }
 
-            this._rawData["user_info"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "user_info", value);
         }
     }
 

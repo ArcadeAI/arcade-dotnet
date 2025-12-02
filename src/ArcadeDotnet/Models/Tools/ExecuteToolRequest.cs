@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
-using ArcadeDotnet.Exceptions;
 
 namespace ArcadeDotnet.Models.Tools;
 
@@ -14,27 +12,8 @@ public sealed record class ExecuteToolRequest : ModelBase
 {
     public required string ToolName
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("tool_name", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'tool_name' cannot be null",
-                    new ArgumentOutOfRangeException("tool_name", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArcadeInvalidDataException(
-                    "'tool_name' cannot be null",
-                    new ArgumentNullException("tool_name")
-                );
-        }
-        init
-        {
-            this._rawData["tool_name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "tool_name"); }
+        init { ModelBase.Set(this._rawData, "tool_name", value); }
     }
 
     /// <summary>
@@ -43,13 +22,7 @@ public sealed record class ExecuteToolRequest : ModelBase
     /// </summary>
     public bool? IncludeErrorStacktrace
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("include_error_stacktrace", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "include_error_stacktrace"); }
         init
         {
             if (value == null)
@@ -57,10 +30,7 @@ public sealed record class ExecuteToolRequest : ModelBase
                 return;
             }
 
-            this._rawData["include_error_stacktrace"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "include_error_stacktrace", value);
         }
     }
 
@@ -71,12 +41,9 @@ public sealed record class ExecuteToolRequest : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("input", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<Dictionary<string, JsonElement>>(
+                this.RawData,
+                "input"
             );
         }
         init
@@ -86,10 +53,7 @@ public sealed record class ExecuteToolRequest : ModelBase
                 return;
             }
 
-            this._rawData["input"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "input", value);
         }
     }
 
@@ -99,13 +63,7 @@ public sealed record class ExecuteToolRequest : ModelBase
     /// </summary>
     public string? RunAt
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("run_at", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "run_at"); }
         init
         {
             if (value == null)
@@ -113,10 +71,7 @@ public sealed record class ExecuteToolRequest : ModelBase
                 return;
             }
 
-            this._rawData["run_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "run_at", value);
         }
     }
 
@@ -125,13 +80,7 @@ public sealed record class ExecuteToolRequest : ModelBase
     /// </summary>
     public string? ToolVersion
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("tool_version", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "tool_version"); }
         init
         {
             if (value == null)
@@ -139,22 +88,13 @@ public sealed record class ExecuteToolRequest : ModelBase
                 return;
             }
 
-            this._rawData["tool_version"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "tool_version", value);
         }
     }
 
     public string? UserID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("user_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "user_id"); }
         init
         {
             if (value == null)
@@ -162,10 +102,7 @@ public sealed record class ExecuteToolRequest : ModelBase
                 return;
             }
 
-            this._rawData["user_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "user_id", value);
         }
     }
 

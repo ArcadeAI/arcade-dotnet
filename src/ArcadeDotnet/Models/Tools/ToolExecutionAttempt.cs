@@ -14,13 +14,7 @@ public sealed record class ToolExecutionAttempt : ModelBase
 {
     public string? ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -28,22 +22,13 @@ public sealed record class ToolExecutionAttempt : ModelBase
                 return;
             }
 
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "id", value);
         }
     }
 
     public string? FinishedAt
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("finished_at", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "finished_at"); }
         init
         {
             if (value == null)
@@ -51,10 +36,7 @@ public sealed record class ToolExecutionAttempt : ModelBase
                 return;
             }
 
-            this._rawData["finished_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "finished_at", value);
         }
     }
 
@@ -62,13 +44,7 @@ public sealed record class ToolExecutionAttempt : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("output", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ToolExecutionAttemptOutput?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableClass<ToolExecutionAttemptOutput>(this.RawData, "output");
         }
         init
         {
@@ -77,22 +53,13 @@ public sealed record class ToolExecutionAttempt : ModelBase
                 return;
             }
 
-            this._rawData["output"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "output", value);
         }
     }
 
     public string? StartedAt
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("started_at", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "started_at"); }
         init
         {
             if (value == null)
@@ -100,22 +67,13 @@ public sealed record class ToolExecutionAttempt : ModelBase
                 return;
             }
 
-            this._rawData["started_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "started_at", value);
         }
     }
 
     public bool? Success
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("success", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "success"); }
         init
         {
             if (value == null)
@@ -123,22 +81,13 @@ public sealed record class ToolExecutionAttempt : ModelBase
                 return;
             }
 
-            this._rawData["success"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "success", value);
         }
     }
 
     public string? SystemErrorMessage
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("system_error_message", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "system_error_message"); }
         init
         {
             if (value == null)
@@ -146,10 +95,7 @@ public sealed record class ToolExecutionAttempt : ModelBase
                 return;
             }
 
-            this._rawData["system_error_message"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "system_error_message", value);
         }
     }
 
@@ -202,13 +148,7 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("authorization", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<AuthorizationResponse?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableClass<AuthorizationResponse>(this.RawData, "authorization");
         }
         init
         {
@@ -217,10 +157,7 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
                 return;
             }
 
-            this._rawData["authorization"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "authorization", value);
         }
     }
 
@@ -228,12 +165,9 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("error", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ToolExecutionAttemptOutputError?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<ToolExecutionAttemptOutputError>(
+                this.RawData,
+                "error"
             );
         }
         init
@@ -243,25 +177,13 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
                 return;
             }
 
-            this._rawData["error"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "error", value);
         }
     }
 
     public IReadOnlyList<LogModel>? Logs
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("logs", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<LogModel>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<List<LogModel>>(this.RawData, "logs"); }
         init
         {
             if (value == null)
@@ -269,22 +191,13 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
                 return;
             }
 
-            this._rawData["logs"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "logs", value);
         }
     }
 
     public JsonElement? Value
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("value", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<JsonElement?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<JsonElement>(this.RawData, "value"); }
         init
         {
             if (value == null)
@@ -292,10 +205,7 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
                 return;
             }
 
-            this._rawData["value"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "value", value);
         }
     }
 
@@ -347,86 +257,33 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
 {
     public required bool CanRetry
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("can_retry", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'can_retry' cannot be null",
-                    new ArgumentOutOfRangeException("can_retry", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
-        }
-        init
-        {
-            this._rawData["can_retry"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "can_retry"); }
+        init { ModelBase.Set(this._rawData, "can_retry", value); }
     }
 
     public required ApiEnum<string, ToolExecutionAttemptOutputErrorKind> Kind
     {
         get
         {
-            if (!this._rawData.TryGetValue("kind", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'kind' cannot be null",
-                    new ArgumentOutOfRangeException("kind", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<ApiEnum<string, ToolExecutionAttemptOutputErrorKind>>(
-                    element,
-                    ModelBase.SerializerOptions
-                )
-                ?? throw new ArcadeInvalidDataException(
-                    "'kind' cannot be null",
-                    new ArgumentNullException("kind")
-                );
-        }
-        init
-        {
-            this._rawData["kind"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNotNullClass<ApiEnum<string, ToolExecutionAttemptOutputErrorKind>>(
+                this.RawData,
+                "kind"
             );
         }
+        init { ModelBase.Set(this._rawData, "kind", value); }
     }
 
     public required string Message
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("message", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'message' cannot be null",
-                    new ArgumentOutOfRangeException("message", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArcadeInvalidDataException(
-                    "'message' cannot be null",
-                    new ArgumentNullException("message")
-                );
-        }
-        init
-        {
-            this._rawData["message"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "message"); }
+        init { ModelBase.Set(this._rawData, "message", value); }
     }
 
     public string? AdditionalPromptContent
     {
         get
         {
-            if (!this._rawData.TryGetValue("additional_prompt_content", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<string>(this.RawData, "additional_prompt_content");
         }
         init
         {
@@ -435,22 +292,13 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
                 return;
             }
 
-            this._rawData["additional_prompt_content"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "additional_prompt_content", value);
         }
     }
 
     public string? DeveloperMessage
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("developer_message", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "developer_message"); }
         init
         {
             if (value == null)
@@ -458,10 +306,7 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
                 return;
             }
 
-            this._rawData["developer_message"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "developer_message", value);
         }
     }
 
@@ -469,12 +314,9 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("extra", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<Dictionary<string, JsonElement>>(
+                this.RawData,
+                "extra"
             );
         }
         init
@@ -484,22 +326,13 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
                 return;
             }
 
-            this._rawData["extra"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "extra", value);
         }
     }
 
     public long? RetryAfterMs
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("retry_after_ms", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "retry_after_ms"); }
         init
         {
             if (value == null)
@@ -507,22 +340,13 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
                 return;
             }
 
-            this._rawData["retry_after_ms"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "retry_after_ms", value);
         }
     }
 
     public string? Stacktrace
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("stacktrace", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "stacktrace"); }
         init
         {
             if (value == null)
@@ -530,22 +354,13 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
                 return;
             }
 
-            this._rawData["stacktrace"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "stacktrace", value);
         }
     }
 
     public long? StatusCode
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("status_code", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "status_code"); }
         init
         {
             if (value == null)
@@ -553,10 +368,7 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
                 return;
             }
 
-            this._rawData["status_code"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "status_code", value);
         }
     }
 
@@ -729,63 +541,19 @@ public sealed record class LogModel : ModelBase
 {
     public required string Level
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("level", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'level' cannot be null",
-                    new ArgumentOutOfRangeException("level", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArcadeInvalidDataException(
-                    "'level' cannot be null",
-                    new ArgumentNullException("level")
-                );
-        }
-        init
-        {
-            this._rawData["level"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "level"); }
+        init { ModelBase.Set(this._rawData, "level", value); }
     }
 
     public required string Message
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("message", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'message' cannot be null",
-                    new ArgumentOutOfRangeException("message", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArcadeInvalidDataException(
-                    "'message' cannot be null",
-                    new ArgumentNullException("message")
-                );
-        }
-        init
-        {
-            this._rawData["message"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "message"); }
+        init { ModelBase.Set(this._rawData, "message", value); }
     }
 
     public string? Subtype
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("subtype", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "subtype"); }
         init
         {
             if (value == null)
@@ -793,10 +561,7 @@ public sealed record class LogModel : ModelBase
                 return;
             }
 
-            this._rawData["subtype"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "subtype", value);
         }
     }
 

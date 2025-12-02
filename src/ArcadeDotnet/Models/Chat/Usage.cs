@@ -12,13 +12,7 @@ public sealed record class Usage : ModelBase
 {
     public long? CompletionTokens
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("completion_tokens", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "completion_tokens"); }
         init
         {
             if (value == null)
@@ -26,22 +20,13 @@ public sealed record class Usage : ModelBase
                 return;
             }
 
-            this._rawData["completion_tokens"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "completion_tokens", value);
         }
     }
 
     public long? PromptTokens
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("prompt_tokens", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "prompt_tokens"); }
         init
         {
             if (value == null)
@@ -49,22 +34,13 @@ public sealed record class Usage : ModelBase
                 return;
             }
 
-            this._rawData["prompt_tokens"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "prompt_tokens", value);
         }
     }
 
     public long? TotalTokens
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("total_tokens", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "total_tokens"); }
         init
         {
             if (value == null)
@@ -72,10 +48,7 @@ public sealed record class Usage : ModelBase
                 return;
             }
 
-            this._rawData["total_tokens"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "total_tokens", value);
         }
     }
 

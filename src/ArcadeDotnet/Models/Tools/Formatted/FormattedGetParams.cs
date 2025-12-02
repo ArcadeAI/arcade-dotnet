@@ -20,13 +20,7 @@ public sealed record class FormattedGetParams : ParamsBase
     /// </summary>
     public string? Format
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("format", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "format"); }
         init
         {
             if (value == null)
@@ -34,10 +28,7 @@ public sealed record class FormattedGetParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["format"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "format", value);
         }
     }
 
@@ -46,13 +37,7 @@ public sealed record class FormattedGetParams : ParamsBase
     /// </summary>
     public string? UserID
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("user_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "user_id"); }
         init
         {
             if (value == null)
@@ -60,10 +45,7 @@ public sealed record class FormattedGetParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["user_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "user_id", value);
         }
     }
 

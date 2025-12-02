@@ -22,12 +22,9 @@ public sealed record class ToolListParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("include_format", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<ApiEnum<string, IncludeFormat>>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<List<ApiEnum<string, IncludeFormat>>>(
+                this.RawQueryData,
+                "include_format"
             );
         }
         init
@@ -37,10 +34,7 @@ public sealed record class ToolListParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["include_format"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "include_format", value);
         }
     }
 
@@ -49,13 +43,7 @@ public sealed record class ToolListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("limit", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "limit"); }
         init
         {
             if (value == null)
@@ -63,10 +51,7 @@ public sealed record class ToolListParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["limit"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "limit", value);
         }
     }
 
@@ -75,13 +60,7 @@ public sealed record class ToolListParams : ParamsBase
     /// </summary>
     public long? Offset
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("offset", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "offset"); }
         init
         {
             if (value == null)
@@ -89,10 +68,7 @@ public sealed record class ToolListParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["offset"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "offset", value);
         }
     }
 
@@ -101,13 +77,7 @@ public sealed record class ToolListParams : ParamsBase
     /// </summary>
     public string? Toolkit
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("toolkit", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "toolkit"); }
         init
         {
             if (value == null)
@@ -115,10 +85,7 @@ public sealed record class ToolListParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["toolkit"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "toolkit", value);
         }
     }
 
@@ -127,13 +94,7 @@ public sealed record class ToolListParams : ParamsBase
     /// </summary>
     public string? UserID
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("user_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "user_id"); }
         init
         {
             if (value == null)
@@ -141,10 +102,7 @@ public sealed record class ToolListParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["user_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "user_id", value);
         }
     }
 

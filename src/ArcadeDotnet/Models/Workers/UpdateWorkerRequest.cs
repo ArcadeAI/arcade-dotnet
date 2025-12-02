@@ -12,13 +12,7 @@ public sealed record class UpdateWorkerRequest : ModelBase
 {
     public bool? Enabled
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("enabled", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<bool?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "enabled"); }
         init
         {
             if (value == null)
@@ -26,25 +20,13 @@ public sealed record class UpdateWorkerRequest : ModelBase
                 return;
             }
 
-            this._rawData["enabled"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "enabled", value);
         }
     }
 
     public UpdateWorkerRequestHTTP? HTTP
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("http", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<UpdateWorkerRequestHTTP?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<UpdateWorkerRequestHTTP>(this.RawData, "http"); }
         init
         {
             if (value == null)
@@ -52,25 +34,13 @@ public sealed record class UpdateWorkerRequest : ModelBase
                 return;
             }
 
-            this._rawData["http"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "http", value);
         }
     }
 
     public UpdateWorkerRequestMcp? Mcp
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("mcp", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<UpdateWorkerRequestMcp?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<UpdateWorkerRequestMcp>(this.RawData, "mcp"); }
         init
         {
             if (value == null)
@@ -78,10 +48,7 @@ public sealed record class UpdateWorkerRequest : ModelBase
                 return;
             }
 
-            this._rawData["mcp"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "mcp", value);
         }
     }
 
@@ -126,13 +93,7 @@ public sealed record class UpdateWorkerRequestHTTP : ModelBase
 {
     public long? Retry
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("retry", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "retry"); }
         init
         {
             if (value == null)
@@ -140,22 +101,13 @@ public sealed record class UpdateWorkerRequestHTTP : ModelBase
                 return;
             }
 
-            this._rawData["retry"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "retry", value);
         }
     }
 
     public string? Secret
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("secret", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "secret"); }
         init
         {
             if (value == null)
@@ -163,22 +115,13 @@ public sealed record class UpdateWorkerRequestHTTP : ModelBase
                 return;
             }
 
-            this._rawData["secret"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "secret", value);
         }
     }
 
     public long? Timeout
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("timeout", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "timeout"); }
         init
         {
             if (value == null)
@@ -186,22 +129,13 @@ public sealed record class UpdateWorkerRequestHTTP : ModelBase
                 return;
             }
 
-            this._rawData["timeout"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "timeout", value);
         }
     }
 
     public string? Uri
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("uri", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "uri"); }
         init
         {
             if (value == null)
@@ -209,10 +143,7 @@ public sealed record class UpdateWorkerRequestHTTP : ModelBase
                 return;
             }
 
-            this._rawData["uri"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "uri", value);
         }
     }
 
@@ -261,13 +192,7 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("headers", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Dictionary<string, string>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableClass<Dictionary<string, string>>(this.RawData, "headers");
         }
         init
         {
@@ -276,10 +201,7 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
                 return;
             }
 
-            this._rawData["headers"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "headers", value);
         }
     }
 
@@ -287,13 +209,7 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("oauth2", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<UpdateWorkerRequestMcpOauth2?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableClass<UpdateWorkerRequestMcpOauth2>(this.RawData, "oauth2");
         }
         init
         {
@@ -302,22 +218,13 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
                 return;
             }
 
-            this._rawData["oauth2"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "oauth2", value);
         }
     }
 
     public long? Retry
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("retry", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "retry"); }
         init
         {
             if (value == null)
@@ -325,10 +232,7 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
                 return;
             }
 
-            this._rawData["retry"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "retry", value);
         }
     }
 
@@ -336,13 +240,7 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("secrets", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Dictionary<string, string>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableClass<Dictionary<string, string>>(this.RawData, "secrets");
         }
         init
         {
@@ -351,22 +249,13 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
                 return;
             }
 
-            this._rawData["secrets"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "secrets", value);
         }
     }
 
     public long? Timeout
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("timeout", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "timeout"); }
         init
         {
             if (value == null)
@@ -374,22 +263,13 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
                 return;
             }
 
-            this._rawData["timeout"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "timeout", value);
         }
     }
 
     public string? Uri
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("uri", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "uri"); }
         init
         {
             if (value == null)
@@ -397,10 +277,7 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
                 return;
             }
 
-            this._rawData["uri"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "uri", value);
         }
     }
 
@@ -451,13 +328,7 @@ public sealed record class UpdateWorkerRequestMcpOauth2 : ModelBase
 {
     public string? AuthorizationURL
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("authorization_url", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "authorization_url"); }
         init
         {
             if (value == null)
@@ -465,22 +336,13 @@ public sealed record class UpdateWorkerRequestMcpOauth2 : ModelBase
                 return;
             }
 
-            this._rawData["authorization_url"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "authorization_url", value);
         }
     }
 
     public string? ClientID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("client_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "client_id"); }
         init
         {
             if (value == null)
@@ -488,22 +350,13 @@ public sealed record class UpdateWorkerRequestMcpOauth2 : ModelBase
                 return;
             }
 
-            this._rawData["client_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "client_id", value);
         }
     }
 
     public string? ClientSecret
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("client_secret", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "client_secret"); }
         init
         {
             if (value == null)
@@ -511,10 +364,7 @@ public sealed record class UpdateWorkerRequestMcpOauth2 : ModelBase
                 return;
             }
 
-            this._rawData["client_secret"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "client_secret", value);
         }
     }
 

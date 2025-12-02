@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
-using ArcadeDotnet.Exceptions;
 
 namespace ArcadeDotnet.Models.Tools;
 
@@ -14,27 +12,8 @@ public sealed record class AuthorizeToolRequest : ModelBase
 {
     public required string ToolName
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("tool_name", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'tool_name' cannot be null",
-                    new ArgumentOutOfRangeException("tool_name", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArcadeInvalidDataException(
-                    "'tool_name' cannot be null",
-                    new ArgumentNullException("tool_name")
-                );
-        }
-        init
-        {
-            this._rawData["tool_name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "tool_name"); }
+        init { ModelBase.Set(this._rawData, "tool_name", value); }
     }
 
     /// <summary>
@@ -42,13 +21,7 @@ public sealed record class AuthorizeToolRequest : ModelBase
     /// </summary>
     public string? NextUri
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("next_uri", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "next_uri"); }
         init
         {
             if (value == null)
@@ -56,10 +29,7 @@ public sealed record class AuthorizeToolRequest : ModelBase
                 return;
             }
 
-            this._rawData["next_uri"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "next_uri", value);
         }
     }
 
@@ -68,13 +38,7 @@ public sealed record class AuthorizeToolRequest : ModelBase
     /// </summary>
     public string? ToolVersion
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("tool_version", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "tool_version"); }
         init
         {
             if (value == null)
@@ -82,10 +46,7 @@ public sealed record class AuthorizeToolRequest : ModelBase
                 return;
             }
 
-            this._rawData["tool_version"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "tool_version", value);
         }
     }
 
@@ -94,13 +55,7 @@ public sealed record class AuthorizeToolRequest : ModelBase
     /// </summary>
     public string? UserID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("user_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "user_id"); }
         init
         {
             if (value == null)
@@ -108,10 +63,7 @@ public sealed record class AuthorizeToolRequest : ModelBase
                 return;
             }
 
-            this._rawData["user_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "user_id", value);
         }
     }
 

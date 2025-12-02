@@ -24,12 +24,9 @@ public sealed record class ToolGetParams : ParamsBase
     {
         get
         {
-            if (!this._rawQueryData.TryGetValue("include_format", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<ApiEnum<string, IncludeFormatModel>>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<List<ApiEnum<string, IncludeFormatModel>>>(
+                this.RawQueryData,
+                "include_format"
             );
         }
         init
@@ -39,10 +36,7 @@ public sealed record class ToolGetParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["include_format"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "include_format", value);
         }
     }
 
@@ -51,13 +45,7 @@ public sealed record class ToolGetParams : ParamsBase
     /// </summary>
     public string? UserID
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("user_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "user_id"); }
         init
         {
             if (value == null)
@@ -65,10 +53,7 @@ public sealed record class ToolGetParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["user_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "user_id", value);
         }
     }
 

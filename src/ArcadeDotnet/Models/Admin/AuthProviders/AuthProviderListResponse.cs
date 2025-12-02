@@ -14,13 +14,7 @@ public sealed record class AuthProviderListResponse : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("items", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<AuthProviderResponse>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableClass<List<AuthProviderResponse>>(this.RawData, "items");
         }
         init
         {
@@ -29,22 +23,13 @@ public sealed record class AuthProviderListResponse : ModelBase
                 return;
             }
 
-            this._rawData["items"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "items", value);
         }
     }
 
     public long? Limit
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("limit", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "limit"); }
         init
         {
             if (value == null)
@@ -52,22 +37,13 @@ public sealed record class AuthProviderListResponse : ModelBase
                 return;
             }
 
-            this._rawData["limit"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "limit", value);
         }
     }
 
     public long? Offset
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("offset", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "offset"); }
         init
         {
             if (value == null)
@@ -75,22 +51,13 @@ public sealed record class AuthProviderListResponse : ModelBase
                 return;
             }
 
-            this._rawData["offset"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "offset", value);
         }
     }
 
     public long? PageCount
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("page_count", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "page_count"); }
         init
         {
             if (value == null)
@@ -98,22 +65,13 @@ public sealed record class AuthProviderListResponse : ModelBase
                 return;
             }
 
-            this._rawData["page_count"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "page_count", value);
         }
     }
 
     public long? TotalCount
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("total_count", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "total_count"); }
         init
         {
             if (value == null)
@@ -121,10 +79,7 @@ public sealed record class AuthProviderListResponse : ModelBase
                 return;
             }
 
-            this._rawData["total_count"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "total_count", value);
         }
     }
 

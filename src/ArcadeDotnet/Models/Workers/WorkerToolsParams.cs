@@ -20,13 +20,7 @@ public sealed record class WorkerToolsParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("limit", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "limit"); }
         init
         {
             if (value == null)
@@ -34,10 +28,7 @@ public sealed record class WorkerToolsParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["limit"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "limit", value);
         }
     }
 
@@ -46,13 +37,7 @@ public sealed record class WorkerToolsParams : ParamsBase
     /// </summary>
     public long? Offset
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("offset", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "offset"); }
         init
         {
             if (value == null)
@@ -60,10 +45,7 @@ public sealed record class WorkerToolsParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["offset"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "offset", value);
         }
     }
 

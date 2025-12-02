@@ -14,13 +14,7 @@ public sealed record class SecretResponse : ModelBase
 {
     public string? ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -28,22 +22,13 @@ public sealed record class SecretResponse : ModelBase
                 return;
             }
 
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "id", value);
         }
     }
 
     public Binding? Binding
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("binding", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Binding?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<Binding>(this.RawData, "binding"); }
         init
         {
             if (value == null)
@@ -51,22 +36,13 @@ public sealed record class SecretResponse : ModelBase
                 return;
             }
 
-            this._rawData["binding"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "binding", value);
         }
     }
 
     public string? CreatedAt
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("created_at", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "created_at"); }
         init
         {
             if (value == null)
@@ -74,22 +50,13 @@ public sealed record class SecretResponse : ModelBase
                 return;
             }
 
-            this._rawData["created_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "created_at", value);
         }
     }
 
     public string? Description
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("description", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
         init
         {
             if (value == null)
@@ -97,22 +64,13 @@ public sealed record class SecretResponse : ModelBase
                 return;
             }
 
-            this._rawData["description"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "description", value);
         }
     }
 
     public string? Hint
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("hint", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "hint"); }
         init
         {
             if (value == null)
@@ -120,22 +78,13 @@ public sealed record class SecretResponse : ModelBase
                 return;
             }
 
-            this._rawData["hint"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "hint", value);
         }
     }
 
     public string? Key
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("key", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "key"); }
         init
         {
             if (value == null)
@@ -143,22 +92,13 @@ public sealed record class SecretResponse : ModelBase
                 return;
             }
 
-            this._rawData["key"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "key", value);
         }
     }
 
     public string? LastAccessedAt
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("last_accessed_at", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "last_accessed_at"); }
         init
         {
             if (value == null)
@@ -166,22 +106,13 @@ public sealed record class SecretResponse : ModelBase
                 return;
             }
 
-            this._rawData["last_accessed_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "last_accessed_at", value);
         }
     }
 
     public string? UpdatedAt
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("updated_at", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "updated_at"); }
         init
         {
             if (value == null)
@@ -189,10 +120,7 @@ public sealed record class SecretResponse : ModelBase
                 return;
             }
 
-            this._rawData["updated_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "updated_at", value);
         }
     }
 
@@ -240,13 +168,7 @@ public sealed record class Binding : ModelBase
 {
     public string? ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -254,10 +176,7 @@ public sealed record class Binding : ModelBase
                 return;
             }
 
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "id", value);
         }
     }
 
@@ -265,13 +184,9 @@ public sealed record class Binding : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("type", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ApiEnum<
-                string,
-                global::ArcadeDotnet.Models.Admin.Secrets.Type
-            >?>(element, ModelBase.SerializerOptions);
+            return ModelBase.GetNullableClass<
+                ApiEnum<string, global::ArcadeDotnet.Models.Admin.Secrets.Type>
+            >(this.RawData, "type");
         }
         init
         {
@@ -280,10 +195,7 @@ public sealed record class Binding : ModelBase
                 return;
             }
 
-            this._rawData["type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "type", value);
         }
     }
 

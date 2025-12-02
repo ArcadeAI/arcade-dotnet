@@ -5,7 +5,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
 using ArcadeDotnet.Core;
-using ArcadeDotnet.Exceptions;
 
 namespace ArcadeDotnet.Models.Auth;
 
@@ -21,27 +20,8 @@ public sealed record class AuthStatusParams : ParamsBase
     /// </summary>
     public required string ID
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("id", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'id' cannot be null",
-                    new ArgumentOutOfRangeException("id", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArcadeInvalidDataException(
-                    "'id' cannot be null",
-                    new ArgumentNullException("id")
-                );
-        }
-        init
-        {
-            this._rawQueryData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawQueryData, "id"); }
+        init { ModelBase.Set(this._rawQueryData, "id", value); }
     }
 
     /// <summary>
@@ -49,13 +29,7 @@ public sealed record class AuthStatusParams : ParamsBase
     /// </summary>
     public long? Wait
     {
-        get
-        {
-            if (!this._rawQueryData.TryGetValue("wait", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "wait"); }
         init
         {
             if (value == null)
@@ -63,10 +37,7 @@ public sealed record class AuthStatusParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData["wait"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawQueryData, "wait", value);
         }
     }
 

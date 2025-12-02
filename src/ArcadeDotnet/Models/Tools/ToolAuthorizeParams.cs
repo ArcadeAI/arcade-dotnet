@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using ArcadeDotnet.Core;
-using ArcadeDotnet.Exceptions;
 
 namespace ArcadeDotnet.Models.Tools;
 
@@ -23,27 +22,8 @@ public sealed record class ToolAuthorizeParams : ParamsBase
 
     public required string ToolName
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("tool_name", out JsonElement element))
-                throw new ArcadeInvalidDataException(
-                    "'tool_name' cannot be null",
-                    new ArgumentOutOfRangeException("tool_name", "Missing required argument")
-                );
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArcadeInvalidDataException(
-                    "'tool_name' cannot be null",
-                    new ArgumentNullException("tool_name")
-                );
-        }
-        init
-        {
-            this._rawBodyData["tool_name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "tool_name"); }
+        init { ModelBase.Set(this._rawBodyData, "tool_name", value); }
     }
 
     /// <summary>
@@ -51,13 +31,7 @@ public sealed record class ToolAuthorizeParams : ParamsBase
     /// </summary>
     public string? NextUri
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("next_uri", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "next_uri"); }
         init
         {
             if (value == null)
@@ -65,10 +39,7 @@ public sealed record class ToolAuthorizeParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["next_uri"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "next_uri", value);
         }
     }
 
@@ -77,13 +48,7 @@ public sealed record class ToolAuthorizeParams : ParamsBase
     /// </summary>
     public string? ToolVersion
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("tool_version", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "tool_version"); }
         init
         {
             if (value == null)
@@ -91,10 +56,7 @@ public sealed record class ToolAuthorizeParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["tool_version"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "tool_version", value);
         }
     }
 
@@ -103,13 +65,7 @@ public sealed record class ToolAuthorizeParams : ParamsBase
     /// </summary>
     public string? UserID
     {
-        get
-        {
-            if (!this._rawBodyData.TryGetValue("user_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "user_id"); }
         init
         {
             if (value == null)
@@ -117,10 +73,7 @@ public sealed record class ToolAuthorizeParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData["user_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawBodyData, "user_id", value);
         }
     }
 

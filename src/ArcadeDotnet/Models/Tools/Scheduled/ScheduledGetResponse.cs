@@ -12,13 +12,7 @@ public sealed record class ScheduledGetResponse : ModelBase
 {
     public string? ID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -26,10 +20,7 @@ public sealed record class ScheduledGetResponse : ModelBase
                 return;
             }
 
-            this._rawData["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "id", value);
         }
     }
 
@@ -37,13 +28,7 @@ public sealed record class ScheduledGetResponse : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("attempts", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<ToolExecutionAttempt>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
+            return ModelBase.GetNullableClass<List<ToolExecutionAttempt>>(this.RawData, "attempts");
         }
         init
         {
@@ -52,22 +37,13 @@ public sealed record class ScheduledGetResponse : ModelBase
                 return;
             }
 
-            this._rawData["attempts"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "attempts", value);
         }
     }
 
     public string? CreatedAt
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("created_at", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "created_at"); }
         init
         {
             if (value == null)
@@ -75,22 +51,13 @@ public sealed record class ScheduledGetResponse : ModelBase
                 return;
             }
 
-            this._rawData["created_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "created_at", value);
         }
     }
 
     public string? ExecutionStatus
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("execution_status", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "execution_status"); }
         init
         {
             if (value == null)
@@ -98,22 +65,13 @@ public sealed record class ScheduledGetResponse : ModelBase
                 return;
             }
 
-            this._rawData["execution_status"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "execution_status", value);
         }
     }
 
     public string? ExecutionType
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("execution_type", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "execution_type"); }
         init
         {
             if (value == null)
@@ -121,22 +79,13 @@ public sealed record class ScheduledGetResponse : ModelBase
                 return;
             }
 
-            this._rawData["execution_type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "execution_type", value);
         }
     }
 
     public string? FinishedAt
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("finished_at", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "finished_at"); }
         init
         {
             if (value == null)
@@ -144,10 +93,7 @@ public sealed record class ScheduledGetResponse : ModelBase
                 return;
             }
 
-            this._rawData["finished_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "finished_at", value);
         }
     }
 
@@ -155,12 +101,9 @@ public sealed record class ScheduledGetResponse : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("input", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<Dictionary<string, JsonElement>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<Dictionary<string, JsonElement>>(
+                this.RawData,
+                "input"
             );
         }
         init
@@ -170,22 +113,13 @@ public sealed record class ScheduledGetResponse : ModelBase
                 return;
             }
 
-            this._rawData["input"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "input", value);
         }
     }
 
     public string? RunAt
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("run_at", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "run_at"); }
         init
         {
             if (value == null)
@@ -193,22 +127,13 @@ public sealed record class ScheduledGetResponse : ModelBase
                 return;
             }
 
-            this._rawData["run_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "run_at", value);
         }
     }
 
     public string? StartedAt
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("started_at", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "started_at"); }
         init
         {
             if (value == null)
@@ -216,22 +141,13 @@ public sealed record class ScheduledGetResponse : ModelBase
                 return;
             }
 
-            this._rawData["started_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "started_at", value);
         }
     }
 
     public string? ToolName
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("tool_name", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "tool_name"); }
         init
         {
             if (value == null)
@@ -239,22 +155,13 @@ public sealed record class ScheduledGetResponse : ModelBase
                 return;
             }
 
-            this._rawData["tool_name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "tool_name", value);
         }
     }
 
     public string? ToolkitName
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("toolkit_name", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "toolkit_name"); }
         init
         {
             if (value == null)
@@ -262,22 +169,13 @@ public sealed record class ScheduledGetResponse : ModelBase
                 return;
             }
 
-            this._rawData["toolkit_name"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "toolkit_name", value);
         }
     }
 
     public string? ToolkitVersion
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("toolkit_version", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "toolkit_version"); }
         init
         {
             if (value == null)
@@ -285,22 +183,13 @@ public sealed record class ScheduledGetResponse : ModelBase
                 return;
             }
 
-            this._rawData["toolkit_version"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "toolkit_version", value);
         }
     }
 
     public string? UpdatedAt
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("updated_at", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "updated_at"); }
         init
         {
             if (value == null)
@@ -308,22 +197,13 @@ public sealed record class ScheduledGetResponse : ModelBase
                 return;
             }
 
-            this._rawData["updated_at"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "updated_at", value);
         }
     }
 
     public string? UserID
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("user_id", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "user_id"); }
         init
         {
             if (value == null)
@@ -331,10 +211,7 @@ public sealed record class ScheduledGetResponse : ModelBase
                 return;
             }
 
-            this._rawData["user_id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "user_id", value);
         }
     }
 

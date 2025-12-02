@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json;
+using ArcadeDotnet.Exceptions;
 using ArcadeDotnet.Models;
 using ArcadeDotnet.Models.Admin.Secrets;
 using AuthProviders = ArcadeDotnet.Models.Admin.AuthProviders;
@@ -178,6 +179,109 @@ public abstract record class ModelBase
     {
         WriteIndented = true,
     };
+
+    internal static void Set<T>(IDictionary<string, JsonElement> dictionary, string key, T value)
+    {
+        dictionary[key] = JsonSerializer.SerializeToElement(value, SerializerOptions);
+    }
+
+    internal static T GetNotNullClass<T>(
+        IReadOnlyDictionary<string, JsonElement> dictionary,
+        string key
+    )
+        where T : class
+    {
+        if (!dictionary.TryGetValue(key, out JsonElement element))
+        {
+            throw new ArcadeInvalidDataException($"'{key}' cannot be absent");
+        }
+
+        try
+        {
+            return JsonSerializer.Deserialize<T>(element, SerializerOptions)
+                ?? throw new ArcadeInvalidDataException($"'{key}' cannot be null");
+        }
+        catch (JsonException e)
+        {
+            throw new ArcadeInvalidDataException(
+                $"'{key}' must be of type {typeof(T).FullName}",
+                e
+            );
+        }
+    }
+
+    internal static T GetNotNullStruct<T>(
+        IReadOnlyDictionary<string, JsonElement> dictionary,
+        string key
+    )
+        where T : struct
+    {
+        if (!dictionary.TryGetValue(key, out JsonElement element))
+        {
+            throw new ArcadeInvalidDataException($"'{key}' cannot be absent");
+        }
+
+        try
+        {
+            return JsonSerializer.Deserialize<T?>(element, SerializerOptions)
+                ?? throw new ArcadeInvalidDataException($"'{key}' cannot be null");
+        }
+        catch (JsonException e)
+        {
+            throw new ArcadeInvalidDataException(
+                $"'{key}' must be of type {typeof(T).FullName}",
+                e
+            );
+        }
+    }
+
+    internal static T? GetNullableClass<T>(
+        IReadOnlyDictionary<string, JsonElement> dictionary,
+        string key
+    )
+        where T : class
+    {
+        if (!dictionary.TryGetValue(key, out JsonElement element))
+        {
+            return null;
+        }
+
+        try
+        {
+            return JsonSerializer.Deserialize<T?>(element, SerializerOptions);
+        }
+        catch (JsonException e)
+        {
+            throw new ArcadeInvalidDataException(
+                $"'{key}' must be of type {typeof(T).FullName}",
+                e
+            );
+        }
+    }
+
+    internal static T? GetNullableStruct<T>(
+        IReadOnlyDictionary<string, JsonElement> dictionary,
+        string key
+    )
+        where T : struct
+    {
+        if (!dictionary.TryGetValue(key, out JsonElement element))
+        {
+            return null;
+        }
+
+        try
+        {
+            return JsonSerializer.Deserialize<T?>(element, SerializerOptions);
+        }
+        catch (JsonException e)
+        {
+            throw new ArcadeInvalidDataException(
+                $"'{key}' must be of type {typeof(T).FullName}",
+                e
+            );
+        }
+    }
 
     public sealed override string? ToString()
     {

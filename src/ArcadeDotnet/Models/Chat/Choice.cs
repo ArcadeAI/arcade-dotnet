@@ -12,13 +12,7 @@ public sealed record class Choice : ModelBase
 {
     public string? FinishReason
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("finish_reason", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<string?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "finish_reason"); }
         init
         {
             if (value == null)
@@ -26,22 +20,13 @@ public sealed record class Choice : ModelBase
                 return;
             }
 
-            this._rawData["finish_reason"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "finish_reason", value);
         }
     }
 
     public long? Index
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("index", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<long?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<long>(this.RawData, "index"); }
         init
         {
             if (value == null)
@@ -49,22 +34,13 @@ public sealed record class Choice : ModelBase
                 return;
             }
 
-            this._rawData["index"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "index", value);
         }
     }
 
     public JsonElement? Logprobs
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("logprobs", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<JsonElement?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableStruct<JsonElement>(this.RawData, "logprobs"); }
         init
         {
             if (value == null)
@@ -72,22 +48,13 @@ public sealed record class Choice : ModelBase
                 return;
             }
 
-            this._rawData["logprobs"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "logprobs", value);
         }
     }
 
     public ChatMessage? Message
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("message", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<ChatMessage?>(element, ModelBase.SerializerOptions);
-        }
+        get { return ModelBase.GetNullableClass<ChatMessage>(this.RawData, "message"); }
         init
         {
             if (value == null)
@@ -95,10 +62,7 @@ public sealed record class Choice : ModelBase
                 return;
             }
 
-            this._rawData["message"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "message", value);
         }
     }
 
@@ -106,12 +70,9 @@ public sealed record class Choice : ModelBase
     {
         get
         {
-            if (!this._rawData.TryGetValue("tool_authorizations", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<AuthorizationResponse>?>(
-                element,
-                ModelBase.SerializerOptions
+            return ModelBase.GetNullableClass<List<AuthorizationResponse>>(
+                this.RawData,
+                "tool_authorizations"
             );
         }
         init
@@ -121,25 +82,13 @@ public sealed record class Choice : ModelBase
                 return;
             }
 
-            this._rawData["tool_authorizations"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "tool_authorizations", value);
         }
     }
 
     public IReadOnlyList<ChatMessage>? ToolMessages
     {
-        get
-        {
-            if (!this._rawData.TryGetValue("tool_messages", out JsonElement element))
-                return null;
-
-            return JsonSerializer.Deserialize<List<ChatMessage>?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
+        get { return ModelBase.GetNullableClass<List<ChatMessage>>(this.RawData, "tool_messages"); }
         init
         {
             if (value == null)
@@ -147,10 +96,7 @@ public sealed record class Choice : ModelBase
                 return;
             }
 
-            this._rawData["tool_messages"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
+            ModelBase.Set(this._rawData, "tool_messages", value);
         }
     }
 
