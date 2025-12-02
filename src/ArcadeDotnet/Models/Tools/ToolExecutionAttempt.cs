@@ -377,9 +377,13 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, ToolExecutionAttemptOutputErrorKind>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new ArcadeInvalidDataException(
+                    "'kind' cannot be null",
+                    new ArgumentNullException("kind")
+                );
         }
         init
         {

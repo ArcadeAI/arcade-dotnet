@@ -445,9 +445,13 @@ public sealed record class Error : ModelBase
                 );
 
             return JsonSerializer.Deserialize<ApiEnum<string, Kind>>(
-                element,
-                ModelBase.SerializerOptions
-            );
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new ArcadeInvalidDataException(
+                    "'kind' cannot be null",
+                    new ArgumentNullException("kind")
+                );
         }
         init
         {
