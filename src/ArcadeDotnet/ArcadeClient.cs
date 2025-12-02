@@ -65,6 +65,8 @@ public sealed class ArcadeClient : IArcadeClient
         init { this._options.APIKey = value; }
     }
 
+    internal static HttpMethod PatchMethod = new("PATCH");
+
     /// <inheritdoc/>
     public IArcadeClient WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {

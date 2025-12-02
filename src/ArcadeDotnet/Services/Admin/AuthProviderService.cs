@@ -169,7 +169,7 @@ public sealed class AuthProviderService : IAuthProviderService
 
         HttpRequest<AuthProviderPatchParams> request = new()
         {
-            Method = HttpMethod.Patch,
+            Method = ArcadeClient.PatchMethod,
             Params = parameters,
         };
         using var response = await this

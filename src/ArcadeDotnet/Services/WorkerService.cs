@@ -61,7 +61,7 @@ public sealed class WorkerService : IWorkerService
 
         HttpRequest<WorkerUpdateParams> request = new()
         {
-            Method = HttpMethod.Patch,
+            Method = ArcadeClient.PatchMethod,
             Params = parameters,
         };
         using var response = await this
