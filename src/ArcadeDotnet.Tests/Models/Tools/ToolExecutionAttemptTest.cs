@@ -226,7 +226,9 @@ public class ToolExecutionAttemptOutputTest : TestBase
         {
             Assert.Equal(expectedLogs[i], model.Logs[i]);
         }
-        Assert.True(JsonElement.DeepEquals(expectedValue, model.Value));
+        Assert.True(
+            model.Value.HasValue && JsonElement.DeepEquals(expectedValue, model.Value.Value)
+        );
     }
 }
 

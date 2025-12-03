@@ -38,7 +38,10 @@ public class UserConnectionResponseTest : TestBase
         Assert.Equal(expectedProviderDescription, model.ProviderDescription);
         Assert.Equal(expectedProviderID, model.ProviderID);
         Assert.Equal(expectedProviderType, model.ProviderType);
-        Assert.True(JsonElement.DeepEquals(expectedProviderUserInfo, model.ProviderUserInfo));
+        Assert.True(
+            model.ProviderUserInfo.HasValue
+                && JsonElement.DeepEquals(expectedProviderUserInfo, model.ProviderUserInfo.Value)
+        );
         Assert.Equal(expectedScopes.Count, model.Scopes.Count);
         for (int i = 0; i < expectedScopes.Count; i++)
         {

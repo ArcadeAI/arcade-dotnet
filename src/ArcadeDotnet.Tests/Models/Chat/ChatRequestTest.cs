@@ -120,8 +120,13 @@ public class ChatRequestTest : TestBase
         Assert.Equal(expectedStream, model.Stream);
         Assert.Equal(expectedStreamOptions, model.StreamOptions);
         Assert.Equal(expectedTemperature, model.Temperature);
-        Assert.True(JsonElement.DeepEquals(expectedToolChoice, model.ToolChoice));
-        Assert.True(JsonElement.DeepEquals(expectedTools, model.Tools));
+        Assert.True(
+            model.ToolChoice.HasValue
+                && JsonElement.DeepEquals(expectedToolChoice, model.ToolChoice.Value)
+        );
+        Assert.True(
+            model.Tools.HasValue && JsonElement.DeepEquals(expectedTools, model.Tools.Value)
+        );
         Assert.Equal(expectedTopLogprobs, model.TopLogprobs);
         Assert.Equal(expectedTopP, model.TopP);
         Assert.Equal(expectedUser, model.User);

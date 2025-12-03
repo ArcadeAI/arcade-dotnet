@@ -133,7 +133,10 @@ public class ChoiceTest : TestBase
 
         Assert.Equal(expectedFinishReason, model.FinishReason);
         Assert.Equal(expectedIndex, model.Index);
-        Assert.True(JsonElement.DeepEquals(expectedLogprobs, model.Logprobs));
+        Assert.True(
+            model.Logprobs.HasValue
+                && JsonElement.DeepEquals(expectedLogprobs, model.Logprobs.Value)
+        );
         Assert.Equal(expectedMessage, model.Message);
         Assert.Equal(expectedToolAuthorizations.Count, model.ToolAuthorizations.Count);
         for (int i = 0; i < expectedToolAuthorizations.Count; i++)
