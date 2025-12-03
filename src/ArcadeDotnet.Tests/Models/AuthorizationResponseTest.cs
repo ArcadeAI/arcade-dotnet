@@ -55,4 +55,186 @@ public class AuthorizationResponseTest : TestBase
         Assert.Equal(expectedURL, model.URL);
         Assert.Equal(expectedUserID, model.UserID);
     }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new AuthorizationResponse
+        {
+            ID = "id",
+            Context = new()
+            {
+                Token = "token",
+                UserInfo = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+            },
+            ProviderID = "provider_id",
+            Scopes = ["string"],
+            Status = Status.NotStarted,
+            URL = "url",
+            UserID = "user_id",
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AuthorizationResponse>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new AuthorizationResponse
+        {
+            ID = "id",
+            Context = new()
+            {
+                Token = "token",
+                UserInfo = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+            },
+            ProviderID = "provider_id",
+            Scopes = ["string"],
+            Status = Status.NotStarted,
+            URL = "url",
+            UserID = "user_id",
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AuthorizationResponse>(json);
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        AuthorizationContext expectedContext = new()
+        {
+            Token = "token",
+            UserInfo = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+        };
+        string expectedProviderID = "provider_id";
+        List<string> expectedScopes = ["string"];
+        ApiEnum<string, Status> expectedStatus = Status.NotStarted;
+        string expectedURL = "url";
+        string expectedUserID = "user_id";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedContext, deserialized.Context);
+        Assert.Equal(expectedProviderID, deserialized.ProviderID);
+        Assert.Equal(expectedScopes.Count, deserialized.Scopes.Count);
+        for (int i = 0; i < expectedScopes.Count; i++)
+        {
+            Assert.Equal(expectedScopes[i], deserialized.Scopes[i]);
+        }
+        Assert.Equal(expectedStatus, deserialized.Status);
+        Assert.Equal(expectedURL, deserialized.URL);
+        Assert.Equal(expectedUserID, deserialized.UserID);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new AuthorizationResponse
+        {
+            ID = "id",
+            Context = new()
+            {
+                Token = "token",
+                UserInfo = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+            },
+            ProviderID = "provider_id",
+            Scopes = ["string"],
+            Status = Status.NotStarted,
+            URL = "url",
+            UserID = "user_id",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new AuthorizationResponse { };
+
+        Assert.Null(model.ID);
+        Assert.False(model.RawData.ContainsKey("id"));
+        Assert.Null(model.Context);
+        Assert.False(model.RawData.ContainsKey("context"));
+        Assert.Null(model.ProviderID);
+        Assert.False(model.RawData.ContainsKey("provider_id"));
+        Assert.Null(model.Scopes);
+        Assert.False(model.RawData.ContainsKey("scopes"));
+        Assert.Null(model.Status);
+        Assert.False(model.RawData.ContainsKey("status"));
+        Assert.Null(model.URL);
+        Assert.False(model.RawData.ContainsKey("url"));
+        Assert.Null(model.UserID);
+        Assert.False(model.RawData.ContainsKey("user_id"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new AuthorizationResponse { };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new AuthorizationResponse
+        {
+            // Null should be interpreted as omitted for these properties
+            ID = null,
+            Context = null,
+            ProviderID = null,
+            Scopes = null,
+            Status = null,
+            URL = null,
+            UserID = null,
+        };
+
+        Assert.Null(model.ID);
+        Assert.False(model.RawData.ContainsKey("id"));
+        Assert.Null(model.Context);
+        Assert.False(model.RawData.ContainsKey("context"));
+        Assert.Null(model.ProviderID);
+        Assert.False(model.RawData.ContainsKey("provider_id"));
+        Assert.Null(model.Scopes);
+        Assert.False(model.RawData.ContainsKey("scopes"));
+        Assert.Null(model.Status);
+        Assert.False(model.RawData.ContainsKey("status"));
+        Assert.Null(model.URL);
+        Assert.False(model.RawData.ContainsKey("url"));
+        Assert.Null(model.UserID);
+        Assert.False(model.RawData.ContainsKey("user_id"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new AuthorizationResponse
+        {
+            // Null should be interpreted as omitted for these properties
+            ID = null,
+            Context = null,
+            ProviderID = null,
+            Scopes = null,
+            Status = null,
+            URL = null,
+            UserID = null,
+        };
+
+        model.Validate();
+    }
 }

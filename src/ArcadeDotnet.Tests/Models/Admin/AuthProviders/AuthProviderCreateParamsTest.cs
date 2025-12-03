@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json;
 using ArcadeDotnet.Core;
 using ArcadeDotnet.Models.Admin.AuthProviders;
 
@@ -153,6 +154,401 @@ public class Oauth2Test : TestBase
         Assert.Equal(expectedTokenRequest, model.TokenRequest);
         Assert.Equal(expectedUserInfoRequest, model.UserInfoRequest);
     }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Oauth2
+        {
+            ClientID = "client_id",
+            AuthorizeRequest = new()
+            {
+                Endpoint = "endpoint",
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType = RequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType = ResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            ClientSecret = "client_secret",
+            Pkce = new() { CodeChallengeMethod = "code_challenge_method", Enabled = true },
+            RefreshRequest = new()
+            {
+                Endpoint = "endpoint",
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType = RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            ScopeDelimiter = ScopeDelimiter.Undefined,
+            TokenIntrospectionRequest = new()
+            {
+                Endpoint = "endpoint",
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            TokenRequest = new()
+            {
+                Endpoint = "endpoint",
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType = TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType = TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            UserInfoRequest = new()
+            {
+                Endpoint = "endpoint",
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Oauth2>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Oauth2
+        {
+            ClientID = "client_id",
+            AuthorizeRequest = new()
+            {
+                Endpoint = "endpoint",
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType = RequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType = ResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            ClientSecret = "client_secret",
+            Pkce = new() { CodeChallengeMethod = "code_challenge_method", Enabled = true },
+            RefreshRequest = new()
+            {
+                Endpoint = "endpoint",
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType = RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            ScopeDelimiter = ScopeDelimiter.Undefined,
+            TokenIntrospectionRequest = new()
+            {
+                Endpoint = "endpoint",
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            TokenRequest = new()
+            {
+                Endpoint = "endpoint",
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType = TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType = TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            UserInfoRequest = new()
+            {
+                Endpoint = "endpoint",
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Oauth2>(json);
+        Assert.NotNull(deserialized);
+
+        string expectedClientID = "client_id";
+        AuthorizeRequest expectedAuthorizeRequest = new()
+        {
+            Endpoint = "endpoint",
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = RequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = ResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+        string expectedClientSecret = "client_secret";
+        Pkce expectedPkce = new() { CodeChallengeMethod = "code_challenge_method", Enabled = true };
+        RefreshRequest expectedRefreshRequest = new()
+        {
+            Endpoint = "endpoint",
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+        ApiEnum<string, ScopeDelimiter> expectedScopeDelimiter = ScopeDelimiter.Undefined;
+        TokenIntrospectionRequest expectedTokenIntrospectionRequest = new()
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType =
+                TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType =
+                TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+        TokenRequest expectedTokenRequest = new()
+        {
+            Endpoint = "endpoint",
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+        UserInfoRequest expectedUserInfoRequest = new()
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        Assert.Equal(expectedClientID, deserialized.ClientID);
+        Assert.Equal(expectedAuthorizeRequest, deserialized.AuthorizeRequest);
+        Assert.Equal(expectedClientSecret, deserialized.ClientSecret);
+        Assert.Equal(expectedPkce, deserialized.Pkce);
+        Assert.Equal(expectedRefreshRequest, deserialized.RefreshRequest);
+        Assert.Equal(expectedScopeDelimiter, deserialized.ScopeDelimiter);
+        Assert.Equal(expectedTokenIntrospectionRequest, deserialized.TokenIntrospectionRequest);
+        Assert.Equal(expectedTokenRequest, deserialized.TokenRequest);
+        Assert.Equal(expectedUserInfoRequest, deserialized.UserInfoRequest);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Oauth2
+        {
+            ClientID = "client_id",
+            AuthorizeRequest = new()
+            {
+                Endpoint = "endpoint",
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType = RequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType = ResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            ClientSecret = "client_secret",
+            Pkce = new() { CodeChallengeMethod = "code_challenge_method", Enabled = true },
+            RefreshRequest = new()
+            {
+                Endpoint = "endpoint",
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType = RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            ScopeDelimiter = ScopeDelimiter.Undefined,
+            TokenIntrospectionRequest = new()
+            {
+                Endpoint = "endpoint",
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            TokenRequest = new()
+            {
+                Endpoint = "endpoint",
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType = TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType = TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            UserInfoRequest = new()
+            {
+                Endpoint = "endpoint",
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Oauth2 { ClientID = "client_id" };
+
+        Assert.Null(model.AuthorizeRequest);
+        Assert.False(model.RawData.ContainsKey("authorize_request"));
+        Assert.Null(model.ClientSecret);
+        Assert.False(model.RawData.ContainsKey("client_secret"));
+        Assert.Null(model.Pkce);
+        Assert.False(model.RawData.ContainsKey("pkce"));
+        Assert.Null(model.RefreshRequest);
+        Assert.False(model.RawData.ContainsKey("refresh_request"));
+        Assert.Null(model.ScopeDelimiter);
+        Assert.False(model.RawData.ContainsKey("scope_delimiter"));
+        Assert.Null(model.TokenIntrospectionRequest);
+        Assert.False(model.RawData.ContainsKey("token_introspection_request"));
+        Assert.Null(model.TokenRequest);
+        Assert.False(model.RawData.ContainsKey("token_request"));
+        Assert.Null(model.UserInfoRequest);
+        Assert.False(model.RawData.ContainsKey("user_info_request"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Oauth2 { ClientID = "client_id" };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new Oauth2
+        {
+            ClientID = "client_id",
+
+            // Null should be interpreted as omitted for these properties
+            AuthorizeRequest = null,
+            ClientSecret = null,
+            Pkce = null,
+            RefreshRequest = null,
+            ScopeDelimiter = null,
+            TokenIntrospectionRequest = null,
+            TokenRequest = null,
+            UserInfoRequest = null,
+        };
+
+        Assert.Null(model.AuthorizeRequest);
+        Assert.False(model.RawData.ContainsKey("authorize_request"));
+        Assert.Null(model.ClientSecret);
+        Assert.False(model.RawData.ContainsKey("client_secret"));
+        Assert.Null(model.Pkce);
+        Assert.False(model.RawData.ContainsKey("pkce"));
+        Assert.Null(model.RefreshRequest);
+        Assert.False(model.RawData.ContainsKey("refresh_request"));
+        Assert.Null(model.ScopeDelimiter);
+        Assert.False(model.RawData.ContainsKey("scope_delimiter"));
+        Assert.Null(model.TokenIntrospectionRequest);
+        Assert.False(model.RawData.ContainsKey("token_introspection_request"));
+        Assert.Null(model.TokenRequest);
+        Assert.False(model.RawData.ContainsKey("token_request"));
+        Assert.Null(model.UserInfoRequest);
+        Assert.False(model.RawData.ContainsKey("user_info_request"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Oauth2
+        {
+            ClientID = "client_id",
+
+            // Null should be interpreted as omitted for these properties
+            AuthorizeRequest = null,
+            ClientSecret = null,
+            Pkce = null,
+            RefreshRequest = null,
+            ScopeDelimiter = null,
+            TokenIntrospectionRequest = null,
+            TokenRequest = null,
+            UserInfoRequest = null,
+        };
+
+        model.Validate();
+    }
 }
 
 public class AuthorizeRequestTest : TestBase
@@ -204,6 +600,179 @@ public class AuthorizeRequestTest : TestBase
             Assert.Equal(value, model.ResponseMap[item.Key]);
         }
     }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new AuthorizeRequest
+        {
+            Endpoint = "endpoint",
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = RequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = ResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AuthorizeRequest>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new AuthorizeRequest
+        {
+            Endpoint = "endpoint",
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = RequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = ResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AuthorizeRequest>(json);
+        Assert.NotNull(deserialized);
+
+        string expectedEndpoint = "endpoint";
+        string expectedAuthHeaderValueFormat = "auth_header_value_format";
+        string expectedAuthMethod = "auth_method";
+        string expectedMethod = "method";
+        Dictionary<string, string> expectedParams = new() { { "foo", "string" } };
+        ApiEnum<string, RequestContentType> expectedRequestContentType =
+            RequestContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<string, ResponseContentType> expectedResponseContentType =
+            ResponseContentType.ApplicationXWwwFormUrlencoded;
+        Dictionary<string, string> expectedResponseMap = new() { { "foo", "string" } };
+
+        Assert.Equal(expectedEndpoint, deserialized.Endpoint);
+        Assert.Equal(expectedAuthHeaderValueFormat, deserialized.AuthHeaderValueFormat);
+        Assert.Equal(expectedAuthMethod, deserialized.AuthMethod);
+        Assert.Equal(expectedMethod, deserialized.Method);
+        Assert.Equal(expectedParams.Count, deserialized.Params.Count);
+        foreach (var item in expectedParams)
+        {
+            Assert.True(deserialized.Params.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Params[item.Key]);
+        }
+        Assert.Equal(expectedRequestContentType, deserialized.RequestContentType);
+        Assert.Equal(expectedResponseContentType, deserialized.ResponseContentType);
+        Assert.Equal(expectedResponseMap.Count, deserialized.ResponseMap.Count);
+        foreach (var item in expectedResponseMap)
+        {
+            Assert.True(deserialized.ResponseMap.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.ResponseMap[item.Key]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new AuthorizeRequest
+        {
+            Endpoint = "endpoint",
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = RequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = ResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new AuthorizeRequest { Endpoint = "endpoint" };
+
+        Assert.Null(model.AuthHeaderValueFormat);
+        Assert.False(model.RawData.ContainsKey("auth_header_value_format"));
+        Assert.Null(model.AuthMethod);
+        Assert.False(model.RawData.ContainsKey("auth_method"));
+        Assert.Null(model.Method);
+        Assert.False(model.RawData.ContainsKey("method"));
+        Assert.Null(model.Params);
+        Assert.False(model.RawData.ContainsKey("params"));
+        Assert.Null(model.RequestContentType);
+        Assert.False(model.RawData.ContainsKey("request_content_type"));
+        Assert.Null(model.ResponseContentType);
+        Assert.False(model.RawData.ContainsKey("response_content_type"));
+        Assert.Null(model.ResponseMap);
+        Assert.False(model.RawData.ContainsKey("response_map"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new AuthorizeRequest { Endpoint = "endpoint" };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new AuthorizeRequest
+        {
+            Endpoint = "endpoint",
+
+            // Null should be interpreted as omitted for these properties
+            AuthHeaderValueFormat = null,
+            AuthMethod = null,
+            Method = null,
+            Params = null,
+            RequestContentType = null,
+            ResponseContentType = null,
+            ResponseMap = null,
+        };
+
+        Assert.Null(model.AuthHeaderValueFormat);
+        Assert.False(model.RawData.ContainsKey("auth_header_value_format"));
+        Assert.Null(model.AuthMethod);
+        Assert.False(model.RawData.ContainsKey("auth_method"));
+        Assert.Null(model.Method);
+        Assert.False(model.RawData.ContainsKey("method"));
+        Assert.Null(model.Params);
+        Assert.False(model.RawData.ContainsKey("params"));
+        Assert.Null(model.RequestContentType);
+        Assert.False(model.RawData.ContainsKey("request_content_type"));
+        Assert.Null(model.ResponseContentType);
+        Assert.False(model.RawData.ContainsKey("response_content_type"));
+        Assert.Null(model.ResponseMap);
+        Assert.False(model.RawData.ContainsKey("response_map"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new AuthorizeRequest
+        {
+            Endpoint = "endpoint",
+
+            // Null should be interpreted as omitted for these properties
+            AuthHeaderValueFormat = null,
+            AuthMethod = null,
+            Method = null,
+            Params = null,
+            RequestContentType = null,
+            ResponseContentType = null,
+            ResponseMap = null,
+        };
+
+        model.Validate();
+    }
 }
 
 public class PkceTest : TestBase
@@ -218,6 +787,89 @@ public class PkceTest : TestBase
 
         Assert.Equal(expectedCodeChallengeMethod, model.CodeChallengeMethod);
         Assert.Equal(expectedEnabled, model.Enabled);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Pkce { CodeChallengeMethod = "code_challenge_method", Enabled = true };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Pkce>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Pkce { CodeChallengeMethod = "code_challenge_method", Enabled = true };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Pkce>(json);
+        Assert.NotNull(deserialized);
+
+        string expectedCodeChallengeMethod = "code_challenge_method";
+        bool expectedEnabled = true;
+
+        Assert.Equal(expectedCodeChallengeMethod, deserialized.CodeChallengeMethod);
+        Assert.Equal(expectedEnabled, deserialized.Enabled);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Pkce { CodeChallengeMethod = "code_challenge_method", Enabled = true };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Pkce { };
+
+        Assert.Null(model.CodeChallengeMethod);
+        Assert.False(model.RawData.ContainsKey("code_challenge_method"));
+        Assert.Null(model.Enabled);
+        Assert.False(model.RawData.ContainsKey("enabled"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Pkce { };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new Pkce
+        {
+            // Null should be interpreted as omitted for these properties
+            CodeChallengeMethod = null,
+            Enabled = null,
+        };
+
+        Assert.Null(model.CodeChallengeMethod);
+        Assert.False(model.RawData.ContainsKey("code_challenge_method"));
+        Assert.Null(model.Enabled);
+        Assert.False(model.RawData.ContainsKey("enabled"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Pkce
+        {
+            // Null should be interpreted as omitted for these properties
+            CodeChallengeMethod = null,
+            Enabled = null,
+        };
+
+        model.Validate();
     }
 }
 
@@ -269,6 +921,179 @@ public class RefreshRequestTest : TestBase
 
             Assert.Equal(value, model.ResponseMap[item.Key]);
         }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new RefreshRequest
+        {
+            Endpoint = "endpoint",
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<RefreshRequest>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new RefreshRequest
+        {
+            Endpoint = "endpoint",
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<RefreshRequest>(json);
+        Assert.NotNull(deserialized);
+
+        string expectedEndpoint = "endpoint";
+        string expectedAuthHeaderValueFormat = "auth_header_value_format";
+        string expectedAuthMethod = "auth_method";
+        string expectedMethod = "method";
+        Dictionary<string, string> expectedParams = new() { { "foo", "string" } };
+        ApiEnum<string, RefreshRequestRequestContentType> expectedRequestContentType =
+            RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<string, RefreshRequestResponseContentType> expectedResponseContentType =
+            RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded;
+        Dictionary<string, string> expectedResponseMap = new() { { "foo", "string" } };
+
+        Assert.Equal(expectedEndpoint, deserialized.Endpoint);
+        Assert.Equal(expectedAuthHeaderValueFormat, deserialized.AuthHeaderValueFormat);
+        Assert.Equal(expectedAuthMethod, deserialized.AuthMethod);
+        Assert.Equal(expectedMethod, deserialized.Method);
+        Assert.Equal(expectedParams.Count, deserialized.Params.Count);
+        foreach (var item in expectedParams)
+        {
+            Assert.True(deserialized.Params.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Params[item.Key]);
+        }
+        Assert.Equal(expectedRequestContentType, deserialized.RequestContentType);
+        Assert.Equal(expectedResponseContentType, deserialized.ResponseContentType);
+        Assert.Equal(expectedResponseMap.Count, deserialized.ResponseMap.Count);
+        foreach (var item in expectedResponseMap)
+        {
+            Assert.True(deserialized.ResponseMap.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.ResponseMap[item.Key]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new RefreshRequest
+        {
+            Endpoint = "endpoint",
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new RefreshRequest { Endpoint = "endpoint" };
+
+        Assert.Null(model.AuthHeaderValueFormat);
+        Assert.False(model.RawData.ContainsKey("auth_header_value_format"));
+        Assert.Null(model.AuthMethod);
+        Assert.False(model.RawData.ContainsKey("auth_method"));
+        Assert.Null(model.Method);
+        Assert.False(model.RawData.ContainsKey("method"));
+        Assert.Null(model.Params);
+        Assert.False(model.RawData.ContainsKey("params"));
+        Assert.Null(model.RequestContentType);
+        Assert.False(model.RawData.ContainsKey("request_content_type"));
+        Assert.Null(model.ResponseContentType);
+        Assert.False(model.RawData.ContainsKey("response_content_type"));
+        Assert.Null(model.ResponseMap);
+        Assert.False(model.RawData.ContainsKey("response_map"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new RefreshRequest { Endpoint = "endpoint" };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new RefreshRequest
+        {
+            Endpoint = "endpoint",
+
+            // Null should be interpreted as omitted for these properties
+            AuthHeaderValueFormat = null,
+            AuthMethod = null,
+            Method = null,
+            Params = null,
+            RequestContentType = null,
+            ResponseContentType = null,
+            ResponseMap = null,
+        };
+
+        Assert.Null(model.AuthHeaderValueFormat);
+        Assert.False(model.RawData.ContainsKey("auth_header_value_format"));
+        Assert.Null(model.AuthMethod);
+        Assert.False(model.RawData.ContainsKey("auth_method"));
+        Assert.Null(model.Method);
+        Assert.False(model.RawData.ContainsKey("method"));
+        Assert.Null(model.Params);
+        Assert.False(model.RawData.ContainsKey("params"));
+        Assert.Null(model.RequestContentType);
+        Assert.False(model.RawData.ContainsKey("request_content_type"));
+        Assert.Null(model.ResponseContentType);
+        Assert.False(model.RawData.ContainsKey("response_content_type"));
+        Assert.Null(model.ResponseMap);
+        Assert.False(model.RawData.ContainsKey("response_map"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new RefreshRequest
+        {
+            Endpoint = "endpoint",
+
+            // Null should be interpreted as omitted for these properties
+            AuthHeaderValueFormat = null,
+            AuthMethod = null,
+            Method = null,
+            Params = null,
+            RequestContentType = null,
+            ResponseContentType = null,
+            ResponseMap = null,
+        };
+
+        model.Validate();
     }
 }
 
@@ -326,6 +1151,200 @@ public class TokenIntrospectionRequestTest : TestBase
             Assert.Equal(value, model.ResponseMap[item.Key]);
         }
     }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new TokenIntrospectionRequest
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType =
+                TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType =
+                TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TokenIntrospectionRequest>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new TokenIntrospectionRequest
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType =
+                TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType =
+                TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TokenIntrospectionRequest>(json);
+        Assert.NotNull(deserialized);
+
+        string expectedEndpoint = "endpoint";
+        Triggers expectedTriggers = new() { OnTokenGrant = true, OnTokenRefresh = true };
+        string expectedAuthHeaderValueFormat = "auth_header_value_format";
+        string expectedAuthMethod = "auth_method";
+        string expectedMethod = "method";
+        Dictionary<string, string> expectedParams = new() { { "foo", "string" } };
+        ApiEnum<string, TokenIntrospectionRequestRequestContentType> expectedRequestContentType =
+            TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<string, TokenIntrospectionRequestResponseContentType> expectedResponseContentType =
+            TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded;
+        Dictionary<string, string> expectedResponseMap = new() { { "foo", "string" } };
+
+        Assert.Equal(expectedEndpoint, deserialized.Endpoint);
+        Assert.Equal(expectedTriggers, deserialized.Triggers);
+        Assert.Equal(expectedAuthHeaderValueFormat, deserialized.AuthHeaderValueFormat);
+        Assert.Equal(expectedAuthMethod, deserialized.AuthMethod);
+        Assert.Equal(expectedMethod, deserialized.Method);
+        Assert.Equal(expectedParams.Count, deserialized.Params.Count);
+        foreach (var item in expectedParams)
+        {
+            Assert.True(deserialized.Params.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Params[item.Key]);
+        }
+        Assert.Equal(expectedRequestContentType, deserialized.RequestContentType);
+        Assert.Equal(expectedResponseContentType, deserialized.ResponseContentType);
+        Assert.Equal(expectedResponseMap.Count, deserialized.ResponseMap.Count);
+        foreach (var item in expectedResponseMap)
+        {
+            Assert.True(deserialized.ResponseMap.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.ResponseMap[item.Key]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new TokenIntrospectionRequest
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType =
+                TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType =
+                TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new TokenIntrospectionRequest
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+        };
+
+        Assert.Null(model.AuthHeaderValueFormat);
+        Assert.False(model.RawData.ContainsKey("auth_header_value_format"));
+        Assert.Null(model.AuthMethod);
+        Assert.False(model.RawData.ContainsKey("auth_method"));
+        Assert.Null(model.Method);
+        Assert.False(model.RawData.ContainsKey("method"));
+        Assert.Null(model.Params);
+        Assert.False(model.RawData.ContainsKey("params"));
+        Assert.Null(model.RequestContentType);
+        Assert.False(model.RawData.ContainsKey("request_content_type"));
+        Assert.Null(model.ResponseContentType);
+        Assert.False(model.RawData.ContainsKey("response_content_type"));
+        Assert.Null(model.ResponseMap);
+        Assert.False(model.RawData.ContainsKey("response_map"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new TokenIntrospectionRequest
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new TokenIntrospectionRequest
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+
+            // Null should be interpreted as omitted for these properties
+            AuthHeaderValueFormat = null,
+            AuthMethod = null,
+            Method = null,
+            Params = null,
+            RequestContentType = null,
+            ResponseContentType = null,
+            ResponseMap = null,
+        };
+
+        Assert.Null(model.AuthHeaderValueFormat);
+        Assert.False(model.RawData.ContainsKey("auth_header_value_format"));
+        Assert.Null(model.AuthMethod);
+        Assert.False(model.RawData.ContainsKey("auth_method"));
+        Assert.Null(model.Method);
+        Assert.False(model.RawData.ContainsKey("method"));
+        Assert.Null(model.Params);
+        Assert.False(model.RawData.ContainsKey("params"));
+        Assert.Null(model.RequestContentType);
+        Assert.False(model.RawData.ContainsKey("request_content_type"));
+        Assert.Null(model.ResponseContentType);
+        Assert.False(model.RawData.ContainsKey("response_content_type"));
+        Assert.Null(model.ResponseMap);
+        Assert.False(model.RawData.ContainsKey("response_map"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new TokenIntrospectionRequest
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+
+            // Null should be interpreted as omitted for these properties
+            AuthHeaderValueFormat = null,
+            AuthMethod = null,
+            Method = null,
+            Params = null,
+            RequestContentType = null,
+            ResponseContentType = null,
+            ResponseMap = null,
+        };
+
+        model.Validate();
+    }
 }
 
 public class TriggersTest : TestBase
@@ -340,6 +1359,89 @@ public class TriggersTest : TestBase
 
         Assert.Equal(expectedOnTokenGrant, model.OnTokenGrant);
         Assert.Equal(expectedOnTokenRefresh, model.OnTokenRefresh);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Triggers { OnTokenGrant = true, OnTokenRefresh = true };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Triggers>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Triggers { OnTokenGrant = true, OnTokenRefresh = true };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Triggers>(json);
+        Assert.NotNull(deserialized);
+
+        bool expectedOnTokenGrant = true;
+        bool expectedOnTokenRefresh = true;
+
+        Assert.Equal(expectedOnTokenGrant, deserialized.OnTokenGrant);
+        Assert.Equal(expectedOnTokenRefresh, deserialized.OnTokenRefresh);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Triggers { OnTokenGrant = true, OnTokenRefresh = true };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Triggers { };
+
+        Assert.Null(model.OnTokenGrant);
+        Assert.False(model.RawData.ContainsKey("on_token_grant"));
+        Assert.Null(model.OnTokenRefresh);
+        Assert.False(model.RawData.ContainsKey("on_token_refresh"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Triggers { };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new Triggers
+        {
+            // Null should be interpreted as omitted for these properties
+            OnTokenGrant = null,
+            OnTokenRefresh = null,
+        };
+
+        Assert.Null(model.OnTokenGrant);
+        Assert.False(model.RawData.ContainsKey("on_token_grant"));
+        Assert.Null(model.OnTokenRefresh);
+        Assert.False(model.RawData.ContainsKey("on_token_refresh"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Triggers
+        {
+            // Null should be interpreted as omitted for these properties
+            OnTokenGrant = null,
+            OnTokenRefresh = null,
+        };
+
+        model.Validate();
     }
 }
 
@@ -391,6 +1493,179 @@ public class TokenRequestTest : TestBase
 
             Assert.Equal(value, model.ResponseMap[item.Key]);
         }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new TokenRequest
+        {
+            Endpoint = "endpoint",
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TokenRequest>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new TokenRequest
+        {
+            Endpoint = "endpoint",
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TokenRequest>(json);
+        Assert.NotNull(deserialized);
+
+        string expectedEndpoint = "endpoint";
+        string expectedAuthHeaderValueFormat = "auth_header_value_format";
+        string expectedAuthMethod = "auth_method";
+        string expectedMethod = "method";
+        Dictionary<string, string> expectedParams = new() { { "foo", "string" } };
+        ApiEnum<string, TokenRequestRequestContentType> expectedRequestContentType =
+            TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<string, TokenRequestResponseContentType> expectedResponseContentType =
+            TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded;
+        Dictionary<string, string> expectedResponseMap = new() { { "foo", "string" } };
+
+        Assert.Equal(expectedEndpoint, deserialized.Endpoint);
+        Assert.Equal(expectedAuthHeaderValueFormat, deserialized.AuthHeaderValueFormat);
+        Assert.Equal(expectedAuthMethod, deserialized.AuthMethod);
+        Assert.Equal(expectedMethod, deserialized.Method);
+        Assert.Equal(expectedParams.Count, deserialized.Params.Count);
+        foreach (var item in expectedParams)
+        {
+            Assert.True(deserialized.Params.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Params[item.Key]);
+        }
+        Assert.Equal(expectedRequestContentType, deserialized.RequestContentType);
+        Assert.Equal(expectedResponseContentType, deserialized.ResponseContentType);
+        Assert.Equal(expectedResponseMap.Count, deserialized.ResponseMap.Count);
+        foreach (var item in expectedResponseMap)
+        {
+            Assert.True(deserialized.ResponseMap.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.ResponseMap[item.Key]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new TokenRequest
+        {
+            Endpoint = "endpoint",
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new TokenRequest { Endpoint = "endpoint" };
+
+        Assert.Null(model.AuthHeaderValueFormat);
+        Assert.False(model.RawData.ContainsKey("auth_header_value_format"));
+        Assert.Null(model.AuthMethod);
+        Assert.False(model.RawData.ContainsKey("auth_method"));
+        Assert.Null(model.Method);
+        Assert.False(model.RawData.ContainsKey("method"));
+        Assert.Null(model.Params);
+        Assert.False(model.RawData.ContainsKey("params"));
+        Assert.Null(model.RequestContentType);
+        Assert.False(model.RawData.ContainsKey("request_content_type"));
+        Assert.Null(model.ResponseContentType);
+        Assert.False(model.RawData.ContainsKey("response_content_type"));
+        Assert.Null(model.ResponseMap);
+        Assert.False(model.RawData.ContainsKey("response_map"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new TokenRequest { Endpoint = "endpoint" };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new TokenRequest
+        {
+            Endpoint = "endpoint",
+
+            // Null should be interpreted as omitted for these properties
+            AuthHeaderValueFormat = null,
+            AuthMethod = null,
+            Method = null,
+            Params = null,
+            RequestContentType = null,
+            ResponseContentType = null,
+            ResponseMap = null,
+        };
+
+        Assert.Null(model.AuthHeaderValueFormat);
+        Assert.False(model.RawData.ContainsKey("auth_header_value_format"));
+        Assert.Null(model.AuthMethod);
+        Assert.False(model.RawData.ContainsKey("auth_method"));
+        Assert.Null(model.Method);
+        Assert.False(model.RawData.ContainsKey("method"));
+        Assert.Null(model.Params);
+        Assert.False(model.RawData.ContainsKey("params"));
+        Assert.Null(model.RequestContentType);
+        Assert.False(model.RawData.ContainsKey("request_content_type"));
+        Assert.Null(model.ResponseContentType);
+        Assert.False(model.RawData.ContainsKey("response_content_type"));
+        Assert.Null(model.ResponseMap);
+        Assert.False(model.RawData.ContainsKey("response_map"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new TokenRequest
+        {
+            Endpoint = "endpoint",
+
+            // Null should be interpreted as omitted for these properties
+            AuthHeaderValueFormat = null,
+            AuthMethod = null,
+            Method = null,
+            Params = null,
+            RequestContentType = null,
+            ResponseContentType = null,
+            ResponseMap = null,
+        };
+
+        model.Validate();
     }
 }
 
@@ -450,6 +1725,198 @@ public class UserInfoRequestTest : TestBase
             Assert.Equal(value, model.ResponseMap[item.Key]);
         }
     }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new UserInfoRequest
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UserInfoRequest>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new UserInfoRequest
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UserInfoRequest>(json);
+        Assert.NotNull(deserialized);
+
+        string expectedEndpoint = "endpoint";
+        UserInfoRequestTriggers expectedTriggers = new()
+        {
+            OnTokenGrant = true,
+            OnTokenRefresh = true,
+        };
+        string expectedAuthHeaderValueFormat = "auth_header_value_format";
+        string expectedAuthMethod = "auth_method";
+        string expectedMethod = "method";
+        Dictionary<string, string> expectedParams = new() { { "foo", "string" } };
+        ApiEnum<string, UserInfoRequestRequestContentType> expectedRequestContentType =
+            UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<string, UserInfoRequestResponseContentType> expectedResponseContentType =
+            UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded;
+        Dictionary<string, string> expectedResponseMap = new() { { "foo", "string" } };
+
+        Assert.Equal(expectedEndpoint, deserialized.Endpoint);
+        Assert.Equal(expectedTriggers, deserialized.Triggers);
+        Assert.Equal(expectedAuthHeaderValueFormat, deserialized.AuthHeaderValueFormat);
+        Assert.Equal(expectedAuthMethod, deserialized.AuthMethod);
+        Assert.Equal(expectedMethod, deserialized.Method);
+        Assert.Equal(expectedParams.Count, deserialized.Params.Count);
+        foreach (var item in expectedParams)
+        {
+            Assert.True(deserialized.Params.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Params[item.Key]);
+        }
+        Assert.Equal(expectedRequestContentType, deserialized.RequestContentType);
+        Assert.Equal(expectedResponseContentType, deserialized.ResponseContentType);
+        Assert.Equal(expectedResponseMap.Count, deserialized.ResponseMap.Count);
+        foreach (var item in expectedResponseMap)
+        {
+            Assert.True(deserialized.ResponseMap.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.ResponseMap[item.Key]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new UserInfoRequest
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new UserInfoRequest
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+        };
+
+        Assert.Null(model.AuthHeaderValueFormat);
+        Assert.False(model.RawData.ContainsKey("auth_header_value_format"));
+        Assert.Null(model.AuthMethod);
+        Assert.False(model.RawData.ContainsKey("auth_method"));
+        Assert.Null(model.Method);
+        Assert.False(model.RawData.ContainsKey("method"));
+        Assert.Null(model.Params);
+        Assert.False(model.RawData.ContainsKey("params"));
+        Assert.Null(model.RequestContentType);
+        Assert.False(model.RawData.ContainsKey("request_content_type"));
+        Assert.Null(model.ResponseContentType);
+        Assert.False(model.RawData.ContainsKey("response_content_type"));
+        Assert.Null(model.ResponseMap);
+        Assert.False(model.RawData.ContainsKey("response_map"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new UserInfoRequest
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new UserInfoRequest
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+
+            // Null should be interpreted as omitted for these properties
+            AuthHeaderValueFormat = null,
+            AuthMethod = null,
+            Method = null,
+            Params = null,
+            RequestContentType = null,
+            ResponseContentType = null,
+            ResponseMap = null,
+        };
+
+        Assert.Null(model.AuthHeaderValueFormat);
+        Assert.False(model.RawData.ContainsKey("auth_header_value_format"));
+        Assert.Null(model.AuthMethod);
+        Assert.False(model.RawData.ContainsKey("auth_method"));
+        Assert.Null(model.Method);
+        Assert.False(model.RawData.ContainsKey("method"));
+        Assert.Null(model.Params);
+        Assert.False(model.RawData.ContainsKey("params"));
+        Assert.Null(model.RequestContentType);
+        Assert.False(model.RawData.ContainsKey("request_content_type"));
+        Assert.Null(model.ResponseContentType);
+        Assert.False(model.RawData.ContainsKey("response_content_type"));
+        Assert.Null(model.ResponseMap);
+        Assert.False(model.RawData.ContainsKey("response_map"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new UserInfoRequest
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+
+            // Null should be interpreted as omitted for these properties
+            AuthHeaderValueFormat = null,
+            AuthMethod = null,
+            Method = null,
+            Params = null,
+            RequestContentType = null,
+            ResponseContentType = null,
+            ResponseMap = null,
+        };
+
+        model.Validate();
+    }
 }
 
 public class UserInfoRequestTriggersTest : TestBase
@@ -464,5 +1931,88 @@ public class UserInfoRequestTriggersTest : TestBase
 
         Assert.Equal(expectedOnTokenGrant, model.OnTokenGrant);
         Assert.Equal(expectedOnTokenRefresh, model.OnTokenRefresh);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new UserInfoRequestTriggers { OnTokenGrant = true, OnTokenRefresh = true };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UserInfoRequestTriggers>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new UserInfoRequestTriggers { OnTokenGrant = true, OnTokenRefresh = true };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UserInfoRequestTriggers>(json);
+        Assert.NotNull(deserialized);
+
+        bool expectedOnTokenGrant = true;
+        bool expectedOnTokenRefresh = true;
+
+        Assert.Equal(expectedOnTokenGrant, deserialized.OnTokenGrant);
+        Assert.Equal(expectedOnTokenRefresh, deserialized.OnTokenRefresh);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new UserInfoRequestTriggers { OnTokenGrant = true, OnTokenRefresh = true };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new UserInfoRequestTriggers { };
+
+        Assert.Null(model.OnTokenGrant);
+        Assert.False(model.RawData.ContainsKey("on_token_grant"));
+        Assert.Null(model.OnTokenRefresh);
+        Assert.False(model.RawData.ContainsKey("on_token_refresh"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new UserInfoRequestTriggers { };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new UserInfoRequestTriggers
+        {
+            // Null should be interpreted as omitted for these properties
+            OnTokenGrant = null,
+            OnTokenRefresh = null,
+        };
+
+        Assert.Null(model.OnTokenGrant);
+        Assert.False(model.RawData.ContainsKey("on_token_grant"));
+        Assert.Null(model.OnTokenRefresh);
+        Assert.False(model.RawData.ContainsKey("on_token_refresh"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new UserInfoRequestTriggers
+        {
+            // Null should be interpreted as omitted for these properties
+            OnTokenGrant = null,
+            OnTokenRefresh = null,
+        };
+
+        model.Validate();
     }
 }
