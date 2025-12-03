@@ -15,6 +15,8 @@ The REST API documentation can be found on [docs.arcade.dev](https://docs.arcade
 
 ## Installation
 
+Install the package from [NuGet](https://www.nuget.org/packages/ArcadeDotnet):
+
 ```bash
 dotnet add package ArcadeDotnet
 ```
