@@ -16,6 +16,23 @@ namespace ArcadeDotnet.Models.Tools;
 public sealed record class ToolListParams : ParamsBase
 {
     /// <summary>
+    /// Include all versions of each tool
+    /// </summary>
+    public bool? IncludeAllVersions
+    {
+        get { return ModelBase.GetNullableStruct<bool>(this.RawQueryData, "include_all_versions"); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            ModelBase.Set(this._rawQueryData, "include_all_versions", value);
+        }
+    }
+
+    /// <summary>
     /// Comma separated tool formats that will be included in the response.
     /// </summary>
     public IReadOnlyList<ApiEnum<string, IncludeFormat>>? IncludeFormat

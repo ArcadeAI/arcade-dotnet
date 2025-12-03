@@ -32,6 +32,23 @@ public sealed record class FormattedListParams : ParamsBase
     }
 
     /// <summary>
+    /// Include all versions of each tool
+    /// </summary>
+    public bool? IncludeAllVersions
+    {
+        get { return ModelBase.GetNullableStruct<bool>(this.RawQueryData, "include_all_versions"); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            ModelBase.Set(this._rawQueryData, "include_all_versions", value);
+        }
+    }
+
+    /// <summary>
     /// Number of items to return (default: 25, max: 100)
     /// </summary>
     public long? Limit
