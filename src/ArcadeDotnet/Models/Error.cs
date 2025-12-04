@@ -47,6 +47,9 @@ public sealed record class Error : ModelBase
 
     public Error() { }
 
+    public Error(Error error)
+        : base(error) { }
+
     public Error(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

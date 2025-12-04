@@ -115,6 +115,9 @@ public sealed record class AuthProviderUpdateRequest : ModelBase
 
     public AuthProviderUpdateRequest() { }
 
+    public AuthProviderUpdateRequest(AuthProviderUpdateRequest authProviderUpdateRequest)
+        : base(authProviderUpdateRequest) { }
+
     public AuthProviderUpdateRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -312,6 +315,11 @@ public sealed record class AuthProviderUpdateRequestOauth2 : ModelBase
 
     public AuthProviderUpdateRequestOauth2() { }
 
+    public AuthProviderUpdateRequestOauth2(
+        AuthProviderUpdateRequestOauth2 authProviderUpdateRequestOauth2
+    )
+        : base(authProviderUpdateRequestOauth2) { }
+
     public AuthProviderUpdateRequestOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -503,6 +511,11 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Mod
     public AuthProviderUpdateRequestOauth2AuthorizeRequest() { }
 
     public AuthProviderUpdateRequestOauth2AuthorizeRequest(
+        AuthProviderUpdateRequestOauth2AuthorizeRequest authProviderUpdateRequestOauth2AuthorizeRequest
+    )
+        : base(authProviderUpdateRequestOauth2AuthorizeRequest) { }
+
+    public AuthProviderUpdateRequestOauth2AuthorizeRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -677,6 +690,11 @@ public sealed record class AuthProviderUpdateRequestOauth2Pkce : ModelBase
     }
 
     public AuthProviderUpdateRequestOauth2Pkce() { }
+
+    public AuthProviderUpdateRequestOauth2Pkce(
+        AuthProviderUpdateRequestOauth2Pkce authProviderUpdateRequestOauth2Pkce
+    )
+        : base(authProviderUpdateRequestOauth2Pkce) { }
 
     public AuthProviderUpdateRequestOauth2Pkce(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -867,6 +885,11 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : Model
     }
 
     public AuthProviderUpdateRequestOauth2RefreshRequest() { }
+
+    public AuthProviderUpdateRequestOauth2RefreshRequest(
+        AuthProviderUpdateRequestOauth2RefreshRequest authProviderUpdateRequestOauth2RefreshRequest
+    )
+        : base(authProviderUpdateRequestOauth2RefreshRequest) { }
 
     public AuthProviderUpdateRequestOauth2RefreshRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1205,6 +1228,11 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBa
     public AuthProviderUpdateRequestOauth2TokenRequest() { }
 
     public AuthProviderUpdateRequestOauth2TokenRequest(
+        AuthProviderUpdateRequestOauth2TokenRequest authProviderUpdateRequestOauth2TokenRequest
+    )
+        : base(authProviderUpdateRequestOauth2TokenRequest) { }
+
+    public AuthProviderUpdateRequestOauth2TokenRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1517,6 +1545,11 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
     public AuthProviderUpdateRequestOauth2UserInfoRequest() { }
 
     public AuthProviderUpdateRequestOauth2UserInfoRequest(
+        AuthProviderUpdateRequestOauth2UserInfoRequest authProviderUpdateRequestOauth2UserInfoRequest
+    )
+        : base(authProviderUpdateRequestOauth2UserInfoRequest) { }
+
+    public AuthProviderUpdateRequestOauth2UserInfoRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1691,6 +1724,11 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTrigger
     }
 
     public AuthProviderUpdateRequestOauth2UserInfoRequestTriggers() { }
+
+    public AuthProviderUpdateRequestOauth2UserInfoRequestTriggers(
+        AuthProviderUpdateRequestOauth2UserInfoRequestTriggers authProviderUpdateRequestOauth2UserInfoRequestTriggers
+    )
+        : base(authProviderUpdateRequestOauth2UserInfoRequestTriggers) { }
 
     public AuthProviderUpdateRequestOauth2UserInfoRequestTriggers(
         IReadOnlyDictionary<string, JsonElement> rawData

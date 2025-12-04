@@ -120,6 +120,9 @@ public sealed record class ToolDefinition : ModelBase
 
     public ToolDefinition() { }
 
+    public ToolDefinition(ToolDefinition toolDefinition)
+        : base(toolDefinition) { }
+
     public ToolDefinition(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -174,6 +177,9 @@ public sealed record class Input : ModelBase
     }
 
     public Input() { }
+
+    public Input(Input input)
+        : base(input) { }
 
     public Input(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -271,6 +277,9 @@ public sealed record class Parameter : ModelBase
 
     public Parameter() { }
 
+    public Parameter(Parameter parameter)
+        : base(parameter) { }
+
     public Parameter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -344,6 +353,9 @@ public sealed record class Toolkit : ModelBase
     }
 
     public Toolkit() { }
+
+    public Toolkit(Toolkit toolkit)
+        : base(toolkit) { }
 
     public Toolkit(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -434,6 +446,9 @@ public sealed record class ToolDefinitionOutput : ModelBase
 
     public ToolDefinitionOutput() { }
 
+    public ToolDefinitionOutput(ToolDefinitionOutput toolDefinitionOutput)
+        : base(toolDefinitionOutput) { }
+
     public ToolDefinitionOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -521,6 +536,9 @@ public sealed record class Requirements : ModelBase
     }
 
     public Requirements() { }
+
+    public Requirements(Requirements requirements)
+        : base(requirements) { }
 
     public Requirements(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -675,6 +693,9 @@ public sealed record class Authorization : ModelBase
 
     public Authorization() { }
 
+    public Authorization(Authorization authorization)
+        : base(authorization) { }
+
     public Authorization(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -726,6 +747,9 @@ public sealed record class Oauth2 : ModelBase
     }
 
     public Oauth2() { }
+
+    public Oauth2(Oauth2 oauth2)
+        : base(oauth2) { }
 
     public Oauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -894,6 +918,9 @@ public sealed record class Secret : ModelBase
     }
 
     public Secret() { }
+
+    public Secret(Secret secret)
+        : base(secret) { }
 
     public Secret(IReadOnlyDictionary<string, JsonElement> rawData)
     {

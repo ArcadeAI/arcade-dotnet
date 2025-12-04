@@ -121,6 +121,12 @@ public sealed record class ToolExecuteParams : ParamsBase
 
     public ToolExecuteParams() { }
 
+    public ToolExecuteParams(ToolExecuteParams toolExecuteParams)
+        : base(toolExecuteParams)
+    {
+        this._rawBodyData = [.. toolExecuteParams._rawBodyData];
+    }
+
     public ToolExecuteParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

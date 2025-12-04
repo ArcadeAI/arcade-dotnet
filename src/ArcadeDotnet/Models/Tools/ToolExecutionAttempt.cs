@@ -112,6 +112,9 @@ public sealed record class ToolExecutionAttempt : ModelBase
 
     public ToolExecutionAttempt() { }
 
+    public ToolExecutionAttempt(ToolExecutionAttempt toolExecutionAttempt)
+        : base(toolExecutionAttempt) { }
+
     public ToolExecutionAttempt(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -231,6 +234,9 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
     }
 
     public ToolExecutionAttemptOutput() { }
+
+    public ToolExecutionAttemptOutput(ToolExecutionAttemptOutput toolExecutionAttemptOutput)
+        : base(toolExecutionAttemptOutput) { }
 
     public ToolExecutionAttemptOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -399,6 +405,11 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
     }
 
     public ToolExecutionAttemptOutputError() { }
+
+    public ToolExecutionAttemptOutputError(
+        ToolExecutionAttemptOutputError toolExecutionAttemptOutputError
+    )
+        : base(toolExecutionAttemptOutputError) { }
 
     public ToolExecutionAttemptOutputError(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -591,6 +602,11 @@ public sealed record class ToolExecutionAttemptOutputLog : ModelBase
     }
 
     public ToolExecutionAttemptOutputLog() { }
+
+    public ToolExecutionAttemptOutputLog(
+        ToolExecutionAttemptOutputLog toolExecutionAttemptOutputLog
+    )
+        : base(toolExecutionAttemptOutputLog) { }
 
     public ToolExecutionAttemptOutputLog(IReadOnlyDictionary<string, JsonElement> rawData)
     {

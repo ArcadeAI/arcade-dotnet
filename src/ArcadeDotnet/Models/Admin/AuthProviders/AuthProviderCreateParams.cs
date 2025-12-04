@@ -117,6 +117,12 @@ public sealed record class AuthProviderCreateParams : ParamsBase
 
     public AuthProviderCreateParams() { }
 
+    public AuthProviderCreateParams(AuthProviderCreateParams authProviderCreateParams)
+        : base(authProviderCreateParams)
+    {
+        this._rawBodyData = [.. authProviderCreateParams._rawBodyData];
+    }
+
     public AuthProviderCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -336,6 +342,9 @@ public sealed record class Oauth2 : ModelBase
 
     public Oauth2() { }
 
+    public Oauth2(Oauth2 oauth2)
+        : base(oauth2) { }
+
     public Oauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -513,6 +522,9 @@ public sealed record class AuthorizeRequest : ModelBase
 
     public AuthorizeRequest() { }
 
+    public AuthorizeRequest(AuthorizeRequest authorizeRequest)
+        : base(authorizeRequest) { }
+
     public AuthorizeRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -679,6 +691,9 @@ public sealed record class Pkce : ModelBase
     }
 
     public Pkce() { }
+
+    public Pkce(Pkce pkce)
+        : base(pkce) { }
 
     public Pkce(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -849,6 +864,9 @@ public sealed record class RefreshRequest : ModelBase
     }
 
     public RefreshRequest() { }
+
+    public RefreshRequest(RefreshRequest refreshRequest)
+        : base(refreshRequest) { }
 
     public RefreshRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1170,6 +1188,9 @@ public sealed record class TokenIntrospectionRequest : ModelBase
 
     public TokenIntrospectionRequest() { }
 
+    public TokenIntrospectionRequest(TokenIntrospectionRequest tokenIntrospectionRequest)
+        : base(tokenIntrospectionRequest) { }
+
     public TokenIntrospectionRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -1239,6 +1260,9 @@ public sealed record class Triggers : ModelBase
     }
 
     public Triggers() { }
+
+    public Triggers(Triggers triggers)
+        : base(triggers) { }
 
     public Triggers(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1503,6 +1527,9 @@ public sealed record class TokenRequest : ModelBase
     }
 
     public TokenRequest() { }
+
+    public TokenRequest(TokenRequest tokenRequest)
+        : base(tokenRequest) { }
 
     public TokenRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1781,6 +1808,9 @@ public sealed record class UserInfoRequest : ModelBase
 
     public UserInfoRequest() { }
 
+    public UserInfoRequest(UserInfoRequest userInfoRequest)
+        : base(userInfoRequest) { }
+
     public UserInfoRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -1847,6 +1877,9 @@ public sealed record class UserInfoRequestTriggers : ModelBase
     }
 
     public UserInfoRequestTriggers() { }
+
+    public UserInfoRequestTriggers(UserInfoRequestTriggers userInfoRequestTriggers)
+        : base(userInfoRequestTriggers) { }
 
     public UserInfoRequestTriggers(IReadOnlyDictionary<string, JsonElement> rawData)
     {

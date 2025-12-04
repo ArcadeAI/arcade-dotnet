@@ -77,6 +77,9 @@ public sealed record class WorkerHealthResponse : ModelBase
 
     public WorkerHealthResponse() { }
 
+    public WorkerHealthResponse(WorkerHealthResponse workerHealthResponse)
+        : base(workerHealthResponse) { }
+
     public WorkerHealthResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

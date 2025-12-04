@@ -119,6 +119,9 @@ public sealed record class ExecuteToolRequest : ModelBase
 
     public ExecuteToolRequest() { }
 
+    public ExecuteToolRequest(ExecuteToolRequest executeToolRequest)
+        : base(executeToolRequest) { }
+
     public ExecuteToolRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

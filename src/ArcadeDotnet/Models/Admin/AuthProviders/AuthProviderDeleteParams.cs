@@ -17,6 +17,9 @@ public sealed record class AuthProviderDeleteParams : ParamsBase
 
     public AuthProviderDeleteParams() { }
 
+    public AuthProviderDeleteParams(AuthProviderDeleteParams authProviderDeleteParams)
+        : base(authProviderDeleteParams) { }
+
     public AuthProviderDeleteParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

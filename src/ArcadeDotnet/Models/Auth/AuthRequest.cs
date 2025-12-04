@@ -55,6 +55,9 @@ public sealed record class AuthRequest : ModelBase
 
     public AuthRequest() { }
 
+    public AuthRequest(AuthRequest authRequest)
+        : base(authRequest) { }
+
     public AuthRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -166,6 +169,9 @@ public sealed record class AuthRequestAuthRequirement : ModelBase
 
     public AuthRequestAuthRequirement() { }
 
+    public AuthRequestAuthRequirement(AuthRequestAuthRequirement authRequestAuthRequirement)
+        : base(authRequestAuthRequirement) { }
+
     public AuthRequestAuthRequirement(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -225,6 +231,11 @@ public sealed record class AuthRequestAuthRequirementOauth2 : ModelBase
     }
 
     public AuthRequestAuthRequirementOauth2() { }
+
+    public AuthRequestAuthRequirementOauth2(
+        AuthRequestAuthRequirementOauth2 authRequestAuthRequirementOauth2
+    )
+        : base(authRequestAuthRequirementOauth2) { }
 
     public AuthRequestAuthRequirementOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {

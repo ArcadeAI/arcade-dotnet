@@ -125,6 +125,9 @@ public sealed record class ToolListParams : ParamsBase
 
     public ToolListParams() { }
 
+    public ToolListParams(ToolListParams toolListParams)
+        : base(toolListParams) { }
+
     public ToolListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

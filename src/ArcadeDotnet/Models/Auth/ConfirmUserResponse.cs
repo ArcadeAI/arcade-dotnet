@@ -39,6 +39,9 @@ public sealed record class ConfirmUserResponse : ModelBase
 
     public ConfirmUserResponse() { }
 
+    public ConfirmUserResponse(ConfirmUserResponse confirmUserResponse)
+        : base(confirmUserResponse) { }
+
     public ConfirmUserResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

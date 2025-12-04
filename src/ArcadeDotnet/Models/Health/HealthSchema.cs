@@ -32,6 +32,9 @@ public sealed record class HealthSchema : ModelBase
 
     public HealthSchema() { }
 
+    public HealthSchema(HealthSchema healthSchema)
+        : base(healthSchema) { }
+
     public HealthSchema(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

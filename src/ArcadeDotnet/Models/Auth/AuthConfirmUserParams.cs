@@ -34,6 +34,12 @@ public sealed record class AuthConfirmUserParams : ParamsBase
 
     public AuthConfirmUserParams() { }
 
+    public AuthConfirmUserParams(AuthConfirmUserParams authConfirmUserParams)
+        : base(authConfirmUserParams)
+    {
+        this._rawBodyData = [.. authConfirmUserParams._rawBodyData];
+    }
+
     public AuthConfirmUserParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

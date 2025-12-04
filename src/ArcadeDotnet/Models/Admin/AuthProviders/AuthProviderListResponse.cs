@@ -98,6 +98,9 @@ public sealed record class AuthProviderListResponse : ModelBase
 
     public AuthProviderListResponse() { }
 
+    public AuthProviderListResponse(AuthProviderListResponse authProviderListResponse)
+        : base(authProviderListResponse) { }
+
     public AuthProviderListResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

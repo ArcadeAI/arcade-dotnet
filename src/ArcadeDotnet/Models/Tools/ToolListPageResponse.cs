@@ -95,6 +95,9 @@ public sealed record class ToolListPageResponse : ModelBase
 
     public ToolListPageResponse() { }
 
+    public ToolListPageResponse(ToolListPageResponse toolListPageResponse)
+        : base(toolListPageResponse) { }
+
     public ToolListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

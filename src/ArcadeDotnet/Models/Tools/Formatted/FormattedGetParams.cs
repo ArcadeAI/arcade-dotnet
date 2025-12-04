@@ -51,6 +51,9 @@ public sealed record class FormattedGetParams : ParamsBase
 
     public FormattedGetParams() { }
 
+    public FormattedGetParams(FormattedGetParams formattedGetParams)
+        : base(formattedGetParams) { }
+
     public FormattedGetParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

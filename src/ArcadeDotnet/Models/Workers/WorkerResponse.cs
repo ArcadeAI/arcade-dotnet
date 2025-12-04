@@ -145,6 +145,9 @@ public sealed record class WorkerResponse : ModelBase
 
     public WorkerResponse() { }
 
+    public WorkerResponse(WorkerResponse workerResponse)
+        : base(workerResponse) { }
+
     public WorkerResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -216,6 +219,9 @@ public sealed record class Binding : ModelBase
     }
 
     public Binding() { }
+
+    public Binding(Binding binding)
+        : base(binding) { }
 
     public Binding(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -364,6 +370,9 @@ public sealed record class WorkerResponseHTTP : ModelBase
 
     public WorkerResponseHTTP() { }
 
+    public WorkerResponseHTTP(WorkerResponseHTTP workerResponseHTTP)
+        : base(workerResponseHTTP) { }
+
     public WorkerResponseHTTP(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -483,6 +492,9 @@ public sealed record class Secret : ModelBase
     }
 
     public Secret() { }
+
+    public Secret(Secret secret)
+        : base(secret) { }
 
     public Secret(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -676,6 +688,9 @@ public sealed record class WorkerResponseMcp : ModelBase
 
     public WorkerResponseMcp() { }
 
+    public WorkerResponseMcp(WorkerResponseMcp workerResponseMcp)
+        : base(workerResponseMcp) { }
+
     public WorkerResponseMcp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -774,6 +789,9 @@ public sealed record class WorkerResponseMcpOauth2 : ModelBase
     }
 
     public WorkerResponseMcpOauth2() { }
+
+    public WorkerResponseMcpOauth2(WorkerResponseMcpOauth2 workerResponseMcpOauth2)
+        : base(workerResponseMcpOauth2) { }
 
     public WorkerResponseMcpOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -895,6 +913,9 @@ public sealed record class ClientSecret : ModelBase
     }
 
     public ClientSecret() { }
+
+    public ClientSecret(ClientSecret clientSecret)
+        : base(clientSecret) { }
 
     public ClientSecret(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1064,6 +1085,9 @@ public sealed record class SecretsItem : ModelBase
 
     public SecretsItem() { }
 
+    public SecretsItem(SecretsItem secretsItem)
+        : base(secretsItem) { }
+
     public SecretsItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -1181,6 +1205,9 @@ public sealed record class Requirements : ModelBase
 
     public Requirements() { }
 
+    public Requirements(Requirements requirements)
+        : base(requirements) { }
+
     public Requirements(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -1248,6 +1275,9 @@ public sealed record class Authorization : ModelBase
 
     public Authorization() { }
 
+    public Authorization(Authorization authorization)
+        : base(authorization) { }
+
     public Authorization(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -1299,6 +1329,9 @@ public sealed record class AuthorizationOauth2 : ModelBase
     }
 
     public AuthorizationOauth2() { }
+
+    public AuthorizationOauth2(AuthorizationOauth2 authorizationOauth2)
+        : base(authorizationOauth2) { }
 
     public AuthorizationOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {

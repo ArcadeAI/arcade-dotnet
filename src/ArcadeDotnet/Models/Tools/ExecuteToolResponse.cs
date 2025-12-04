@@ -159,6 +159,9 @@ public sealed record class ExecuteToolResponse : ModelBase
 
     public ExecuteToolResponse() { }
 
+    public ExecuteToolResponse(ExecuteToolResponse executeToolResponse)
+        : base(executeToolResponse) { }
+
     public ExecuteToolResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -269,6 +272,9 @@ public sealed record class Output : ModelBase
     }
 
     public Output() { }
+
+    public Output(Output output)
+        : base(output) { }
 
     public Output(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -432,6 +438,9 @@ public sealed record class Error : ModelBase
 
     public Error() { }
 
+    public Error(global::ArcadeDotnet.Models.Tools.Error error)
+        : base(error) { }
+
     public Error(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -588,6 +597,9 @@ public sealed record class Log : ModelBase
     }
 
     public Log() { }
+
+    public Log(Log log)
+        : base(log) { }
 
     public Log(IReadOnlyDictionary<string, JsonElement> rawData)
     {

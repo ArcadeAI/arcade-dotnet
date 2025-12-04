@@ -197,6 +197,9 @@ public sealed record class ToolExecution : ModelBase
 
     public ToolExecution() { }
 
+    public ToolExecution(ToolExecution toolExecution)
+        : base(toolExecution) { }
+
     public ToolExecution(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

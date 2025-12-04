@@ -85,6 +85,12 @@ public sealed record class WorkerCreateParams : ParamsBase
 
     public WorkerCreateParams() { }
 
+    public WorkerCreateParams(WorkerCreateParams workerCreateParams)
+        : base(workerCreateParams)
+    {
+        this._rawBodyData = [.. workerCreateParams._rawBodyData];
+    }
+
     public WorkerCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -184,6 +190,9 @@ public sealed record class HTTP : ModelBase
     }
 
     public HTTP() { }
+
+    public HTTP(HTTP http)
+        : base(http) { }
 
     public HTTP(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -294,6 +303,9 @@ public sealed record class Mcp : ModelBase
 
     public Mcp() { }
 
+    public Mcp(Mcp mcp)
+        : base(mcp) { }
+
     public Mcp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -390,6 +402,9 @@ public sealed record class Oauth2 : ModelBase
     }
 
     public Oauth2() { }
+
+    public Oauth2(Oauth2 oauth2)
+        : base(oauth2) { }
 
     public Oauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {

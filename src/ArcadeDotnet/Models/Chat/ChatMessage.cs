@@ -96,6 +96,9 @@ public sealed record class ChatMessage : ModelBase
 
     public ChatMessage() { }
 
+    public ChatMessage(ChatMessage chatMessage)
+        : base(chatMessage) { }
+
     public ChatMessage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -183,6 +186,9 @@ public sealed record class ToolCall : ModelBase
 
     public ToolCall() { }
 
+    public ToolCall(ToolCall toolCall)
+        : base(toolCall) { }
+
     public ToolCall(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -249,6 +255,9 @@ public sealed record class Function : ModelBase
     }
 
     public Function() { }
+
+    public Function(Function function)
+        : base(function) { }
 
     public Function(IReadOnlyDictionary<string, JsonElement> rawData)
     {

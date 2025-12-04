@@ -152,6 +152,9 @@ public sealed record class UserConnectionResponse : ModelBase
 
     public UserConnectionResponse() { }
 
+    public UserConnectionResponse(UserConnectionResponse userConnectionResponse)
+        : base(userConnectionResponse) { }
+
     public UserConnectionResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

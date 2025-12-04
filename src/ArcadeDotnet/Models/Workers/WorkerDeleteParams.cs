@@ -17,6 +17,9 @@ public sealed record class WorkerDeleteParams : ParamsBase
 
     public WorkerDeleteParams() { }
 
+    public WorkerDeleteParams(WorkerDeleteParams workerDeleteParams)
+        : base(workerDeleteParams) { }
+
     public WorkerDeleteParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

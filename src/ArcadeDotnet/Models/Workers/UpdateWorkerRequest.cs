@@ -62,6 +62,9 @@ public sealed record class UpdateWorkerRequest : ModelBase
 
     public UpdateWorkerRequest() { }
 
+    public UpdateWorkerRequest(UpdateWorkerRequest updateWorkerRequest)
+        : base(updateWorkerRequest) { }
+
     public UpdateWorkerRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -160,6 +163,9 @@ public sealed record class UpdateWorkerRequestHTTP : ModelBase
     }
 
     public UpdateWorkerRequestHTTP() { }
+
+    public UpdateWorkerRequestHTTP(UpdateWorkerRequestHTTP updateWorkerRequestHTTP)
+        : base(updateWorkerRequestHTTP) { }
 
     public UpdateWorkerRequestHTTP(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -300,6 +306,9 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
 
     public UpdateWorkerRequestMcp() { }
 
+    public UpdateWorkerRequestMcp(UpdateWorkerRequestMcp updateWorkerRequestMcp)
+        : base(updateWorkerRequestMcp) { }
+
     public UpdateWorkerRequestMcp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -386,6 +395,9 @@ public sealed record class UpdateWorkerRequestMcpOauth2 : ModelBase
     }
 
     public UpdateWorkerRequestMcpOauth2() { }
+
+    public UpdateWorkerRequestMcpOauth2(UpdateWorkerRequestMcpOauth2 updateWorkerRequestMcpOauth2)
+        : base(updateWorkerRequestMcpOauth2) { }
 
     public UpdateWorkerRequestMcpOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {

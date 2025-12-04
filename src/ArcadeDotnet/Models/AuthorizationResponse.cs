@@ -124,6 +124,9 @@ public sealed record class AuthorizationResponse : ModelBase
 
     public AuthorizationResponse() { }
 
+    public AuthorizationResponse(AuthorizationResponse authorizationResponse)
+        : base(authorizationResponse) { }
+
     public AuthorizationResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

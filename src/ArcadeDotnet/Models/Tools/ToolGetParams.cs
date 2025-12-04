@@ -59,6 +59,9 @@ public sealed record class ToolGetParams : ParamsBase
 
     public ToolGetParams() { }
 
+    public ToolGetParams(ToolGetParams toolGetParams)
+        : base(toolGetParams) { }
+
     public ToolGetParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

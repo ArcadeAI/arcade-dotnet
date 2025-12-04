@@ -55,6 +55,12 @@ public sealed record class AuthAuthorizeParams : ParamsBase
 
     public AuthAuthorizeParams() { }
 
+    public AuthAuthorizeParams(AuthAuthorizeParams authAuthorizeParams)
+        : base(authAuthorizeParams)
+    {
+        this._rawBodyData = [.. authAuthorizeParams._rawBodyData];
+    }
+
     public AuthAuthorizeParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -193,6 +199,9 @@ public sealed record class AuthRequirement : ModelBase
 
     public AuthRequirement() { }
 
+    public AuthRequirement(AuthRequirement authRequirement)
+        : base(authRequirement) { }
+
     public AuthRequirement(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -244,6 +253,9 @@ public sealed record class Oauth2 : ModelBase
     }
 
     public Oauth2() { }
+
+    public Oauth2(Oauth2 oauth2)
+        : base(oauth2) { }
 
     public Oauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {

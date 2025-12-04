@@ -78,6 +78,9 @@ public sealed record class UserConnectionListParams : ParamsBase
 
     public UserConnectionListParams() { }
 
+    public UserConnectionListParams(UserConnectionListParams userConnectionListParams)
+        : base(userConnectionListParams) { }
+
     public UserConnectionListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
@@ -159,6 +162,9 @@ public sealed record class Provider : ModelBase
 
     public Provider() { }
 
+    public Provider(Provider provider)
+        : base(provider) { }
+
     public Provider(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -213,6 +219,9 @@ public sealed record class User : ModelBase
     }
 
     public User() { }
+
+    public User(User user)
+        : base(user) { }
 
     public User(IReadOnlyDictionary<string, JsonElement> rawData)
     {

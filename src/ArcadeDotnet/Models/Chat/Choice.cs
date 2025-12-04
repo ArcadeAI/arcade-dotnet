@@ -119,6 +119,9 @@ public sealed record class Choice : ModelBase
 
     public Choice() { }
 
+    public Choice(Choice choice)
+        : base(choice) { }
+
     public Choice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

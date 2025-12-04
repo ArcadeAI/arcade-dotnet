@@ -239,6 +239,9 @@ public sealed record class ScheduledGetResponse : ModelBase
 
     public ScheduledGetResponse() { }
 
+    public ScheduledGetResponse(ScheduledGetResponse scheduledGetResponse)
+        : base(scheduledGetResponse) { }
+
     public ScheduledGetResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

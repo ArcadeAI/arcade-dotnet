@@ -95,6 +95,9 @@ public sealed record class SecretListResponse : ModelBase
 
     public SecretListResponse() { }
 
+    public SecretListResponse(SecretListResponse secretListResponse)
+        : base(secretListResponse) { }
+
     public SecretListResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

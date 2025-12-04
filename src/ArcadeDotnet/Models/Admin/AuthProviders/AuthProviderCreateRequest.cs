@@ -125,6 +125,9 @@ public sealed record class AuthProviderCreateRequest : ModelBase
 
     public AuthProviderCreateRequest() { }
 
+    public AuthProviderCreateRequest(AuthProviderCreateRequest authProviderCreateRequest)
+        : base(authProviderCreateRequest) { }
+
     public AuthProviderCreateRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -342,6 +345,11 @@ public sealed record class AuthProviderCreateRequestOauth2 : ModelBase
 
     public AuthProviderCreateRequestOauth2() { }
 
+    public AuthProviderCreateRequestOauth2(
+        AuthProviderCreateRequestOauth2 authProviderCreateRequestOauth2
+    )
+        : base(authProviderCreateRequestOauth2) { }
+
     public AuthProviderCreateRequestOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -532,6 +540,11 @@ public sealed record class AuthProviderCreateRequestOauth2AuthorizeRequest : Mod
     public AuthProviderCreateRequestOauth2AuthorizeRequest() { }
 
     public AuthProviderCreateRequestOauth2AuthorizeRequest(
+        AuthProviderCreateRequestOauth2AuthorizeRequest authProviderCreateRequestOauth2AuthorizeRequest
+    )
+        : base(authProviderCreateRequestOauth2AuthorizeRequest) { }
+
+    public AuthProviderCreateRequestOauth2AuthorizeRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -714,6 +727,11 @@ public sealed record class AuthProviderCreateRequestOauth2Pkce : ModelBase
 
     public AuthProviderCreateRequestOauth2Pkce() { }
 
+    public AuthProviderCreateRequestOauth2Pkce(
+        AuthProviderCreateRequestOauth2Pkce authProviderCreateRequestOauth2Pkce
+    )
+        : base(authProviderCreateRequestOauth2Pkce) { }
+
     public AuthProviderCreateRequestOauth2Pkce(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -895,6 +913,11 @@ public sealed record class AuthProviderCreateRequestOauth2RefreshRequest : Model
     }
 
     public AuthProviderCreateRequestOauth2RefreshRequest() { }
+
+    public AuthProviderCreateRequestOauth2RefreshRequest(
+        AuthProviderCreateRequestOauth2RefreshRequest authProviderCreateRequestOauth2RefreshRequest
+    )
+        : base(authProviderCreateRequestOauth2RefreshRequest) { }
 
     public AuthProviderCreateRequestOauth2RefreshRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1251,6 +1274,11 @@ public sealed record class AuthProviderCreateRequestOauth2TokenIntrospectionRequ
     public AuthProviderCreateRequestOauth2TokenIntrospectionRequest() { }
 
     public AuthProviderCreateRequestOauth2TokenIntrospectionRequest(
+        AuthProviderCreateRequestOauth2TokenIntrospectionRequest authProviderCreateRequestOauth2TokenIntrospectionRequest
+    )
+        : base(authProviderCreateRequestOauth2TokenIntrospectionRequest) { }
+
+    public AuthProviderCreateRequestOauth2TokenIntrospectionRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1330,6 +1358,11 @@ public sealed record class AuthProviderCreateRequestOauth2TokenIntrospectionRequ
     }
 
     public AuthProviderCreateRequestOauth2TokenIntrospectionRequestTriggers() { }
+
+    public AuthProviderCreateRequestOauth2TokenIntrospectionRequestTriggers(
+        AuthProviderCreateRequestOauth2TokenIntrospectionRequestTriggers authProviderCreateRequestOauth2TokenIntrospectionRequestTriggers
+    )
+        : base(authProviderCreateRequestOauth2TokenIntrospectionRequestTriggers) { }
 
     public AuthProviderCreateRequestOauth2TokenIntrospectionRequestTriggers(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1619,6 +1652,11 @@ public sealed record class AuthProviderCreateRequestOauth2TokenRequest : ModelBa
     }
 
     public AuthProviderCreateRequestOauth2TokenRequest() { }
+
+    public AuthProviderCreateRequestOauth2TokenRequest(
+        AuthProviderCreateRequestOauth2TokenRequest authProviderCreateRequestOauth2TokenRequest
+    )
+        : base(authProviderCreateRequestOauth2TokenRequest) { }
 
     public AuthProviderCreateRequestOauth2TokenRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1924,6 +1962,11 @@ public sealed record class AuthProviderCreateRequestOauth2UserInfoRequest : Mode
     public AuthProviderCreateRequestOauth2UserInfoRequest() { }
 
     public AuthProviderCreateRequestOauth2UserInfoRequest(
+        AuthProviderCreateRequestOauth2UserInfoRequest authProviderCreateRequestOauth2UserInfoRequest
+    )
+        : base(authProviderCreateRequestOauth2UserInfoRequest) { }
+
+    public AuthProviderCreateRequestOauth2UserInfoRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2000,6 +2043,11 @@ public sealed record class AuthProviderCreateRequestOauth2UserInfoRequestTrigger
     }
 
     public AuthProviderCreateRequestOauth2UserInfoRequestTriggers() { }
+
+    public AuthProviderCreateRequestOauth2UserInfoRequestTriggers(
+        AuthProviderCreateRequestOauth2UserInfoRequestTriggers authProviderCreateRequestOauth2UserInfoRequestTriggers
+    )
+        : base(authProviderCreateRequestOauth2UserInfoRequestTriggers) { }
 
     public AuthProviderCreateRequestOauth2UserInfoRequestTriggers(
         IReadOnlyDictionary<string, JsonElement> rawData

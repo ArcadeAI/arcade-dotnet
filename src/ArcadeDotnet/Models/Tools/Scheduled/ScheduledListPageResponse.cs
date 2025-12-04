@@ -95,6 +95,9 @@ public sealed record class ScheduledListPageResponse : ModelBase
 
     public ScheduledListPageResponse() { }
 
+    public ScheduledListPageResponse(ScheduledListPageResponse scheduledListPageResponse)
+        : base(scheduledListPageResponse) { }
+
     public ScheduledListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

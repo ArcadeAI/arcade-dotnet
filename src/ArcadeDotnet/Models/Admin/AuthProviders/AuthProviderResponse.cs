@@ -157,6 +157,9 @@ public sealed record class AuthProviderResponse : ModelBase
 
     public AuthProviderResponse() { }
 
+    public AuthProviderResponse(AuthProviderResponse authProviderResponse)
+        : base(authProviderResponse) { }
+
     public AuthProviderResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -231,6 +234,9 @@ public sealed record class Binding : ModelBase
     }
 
     public Binding() { }
+
+    public Binding(Binding binding)
+        : base(binding) { }
 
     public Binding(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -507,6 +513,9 @@ public sealed record class AuthProviderResponseOauth2 : ModelBase
 
     public AuthProviderResponseOauth2() { }
 
+    public AuthProviderResponseOauth2(AuthProviderResponseOauth2 authProviderResponseOauth2)
+        : base(authProviderResponseOauth2) { }
+
     public AuthProviderResponseOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -697,6 +706,11 @@ public sealed record class AuthProviderResponseOauth2AuthorizeRequest : ModelBas
     public AuthProviderResponseOauth2AuthorizeRequest() { }
 
     public AuthProviderResponseOauth2AuthorizeRequest(
+        AuthProviderResponseOauth2AuthorizeRequest authProviderResponseOauth2AuthorizeRequest
+    )
+        : base(authProviderResponseOauth2AuthorizeRequest) { }
+
+    public AuthProviderResponseOauth2AuthorizeRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -820,6 +834,9 @@ public sealed record class ClientSecret : ModelBase
 
     public ClientSecret() { }
 
+    public ClientSecret(ClientSecret clientSecret)
+        : base(clientSecret) { }
+
     public ClientSecret(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -938,6 +955,11 @@ public sealed record class AuthProviderResponseOauth2Pkce : ModelBase
     }
 
     public AuthProviderResponseOauth2Pkce() { }
+
+    public AuthProviderResponseOauth2Pkce(
+        AuthProviderResponseOauth2Pkce authProviderResponseOauth2Pkce
+    )
+        : base(authProviderResponseOauth2Pkce) { }
 
     public AuthProviderResponseOauth2Pkce(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1127,6 +1149,11 @@ public sealed record class AuthProviderResponseOauth2RefreshRequest : ModelBase
     }
 
     public AuthProviderResponseOauth2RefreshRequest() { }
+
+    public AuthProviderResponseOauth2RefreshRequest(
+        AuthProviderResponseOauth2RefreshRequest authProviderResponseOauth2RefreshRequest
+    )
+        : base(authProviderResponseOauth2RefreshRequest) { }
 
     public AuthProviderResponseOauth2RefreshRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1357,6 +1384,11 @@ public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequest :
     public AuthProviderResponseOauth2TokenIntrospectionRequest() { }
 
     public AuthProviderResponseOauth2TokenIntrospectionRequest(
+        AuthProviderResponseOauth2TokenIntrospectionRequest authProviderResponseOauth2TokenIntrospectionRequest
+    )
+        : base(authProviderResponseOauth2TokenIntrospectionRequest) { }
+
+    public AuthProviderResponseOauth2TokenIntrospectionRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1435,6 +1467,11 @@ public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequestTr
     }
 
     public AuthProviderResponseOauth2TokenIntrospectionRequestTriggers() { }
+
+    public AuthProviderResponseOauth2TokenIntrospectionRequestTriggers(
+        AuthProviderResponseOauth2TokenIntrospectionRequestTriggers authProviderResponseOauth2TokenIntrospectionRequestTriggers
+    )
+        : base(authProviderResponseOauth2TokenIntrospectionRequestTriggers) { }
 
     public AuthProviderResponseOauth2TokenIntrospectionRequestTriggers(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1629,6 +1666,11 @@ public sealed record class AuthProviderResponseOauth2TokenRequest : ModelBase
     }
 
     public AuthProviderResponseOauth2TokenRequest() { }
+
+    public AuthProviderResponseOauth2TokenRequest(
+        AuthProviderResponseOauth2TokenRequest authProviderResponseOauth2TokenRequest
+    )
+        : base(authProviderResponseOauth2TokenRequest) { }
 
     public AuthProviderResponseOauth2TokenRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1842,6 +1884,11 @@ public sealed record class AuthProviderResponseOauth2UserInfoRequest : ModelBase
     public AuthProviderResponseOauth2UserInfoRequest() { }
 
     public AuthProviderResponseOauth2UserInfoRequest(
+        AuthProviderResponseOauth2UserInfoRequest authProviderResponseOauth2UserInfoRequest
+    )
+        : base(authProviderResponseOauth2UserInfoRequest) { }
+
+    public AuthProviderResponseOauth2UserInfoRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1918,6 +1965,11 @@ public sealed record class AuthProviderResponseOauth2UserInfoRequestTriggers : M
     }
 
     public AuthProviderResponseOauth2UserInfoRequestTriggers() { }
+
+    public AuthProviderResponseOauth2UserInfoRequestTriggers(
+        AuthProviderResponseOauth2UserInfoRequestTriggers authProviderResponseOauth2UserInfoRequestTriggers
+    )
+        : base(authProviderResponseOauth2UserInfoRequestTriggers) { }
 
     public AuthProviderResponseOauth2UserInfoRequestTriggers(
         IReadOnlyDictionary<string, JsonElement> rawData

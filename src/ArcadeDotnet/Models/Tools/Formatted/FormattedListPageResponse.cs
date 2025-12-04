@@ -92,6 +92,9 @@ public sealed record class FormattedListPageResponse : ModelBase
 
     public FormattedListPageResponse() { }
 
+    public FormattedListPageResponse(FormattedListPageResponse formattedListPageResponse)
+        : base(formattedListPageResponse) { }
+
     public FormattedListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

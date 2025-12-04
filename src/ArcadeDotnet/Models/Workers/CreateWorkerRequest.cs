@@ -84,6 +84,9 @@ public sealed record class CreateWorkerRequest : ModelBase
 
     public CreateWorkerRequest() { }
 
+    public CreateWorkerRequest(CreateWorkerRequest createWorkerRequest)
+        : base(createWorkerRequest) { }
+
     public CreateWorkerRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -157,6 +160,9 @@ public sealed record class CreateWorkerRequestHTTP : ModelBase
     }
 
     public CreateWorkerRequestHTTP() { }
+
+    public CreateWorkerRequestHTTP(CreateWorkerRequestHTTP createWorkerRequestHTTP)
+        : base(createWorkerRequestHTTP) { }
 
     public CreateWorkerRequestHTTP(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -273,6 +279,9 @@ public sealed record class CreateWorkerRequestMcp : ModelBase
 
     public CreateWorkerRequestMcp() { }
 
+    public CreateWorkerRequestMcp(CreateWorkerRequestMcp createWorkerRequestMcp)
+        : base(createWorkerRequestMcp) { }
+
     public CreateWorkerRequestMcp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -374,6 +383,9 @@ public sealed record class CreateWorkerRequestMcpOauth2 : ModelBase
     }
 
     public CreateWorkerRequestMcpOauth2() { }
+
+    public CreateWorkerRequestMcpOauth2(CreateWorkerRequestMcpOauth2 createWorkerRequestMcpOauth2)
+        : base(createWorkerRequestMcpOauth2) { }
 
     public CreateWorkerRequestMcpOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {

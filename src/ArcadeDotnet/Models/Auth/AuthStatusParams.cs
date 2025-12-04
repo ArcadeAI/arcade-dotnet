@@ -43,6 +43,9 @@ public sealed record class AuthStatusParams : ParamsBase
 
     public AuthStatusParams() { }
 
+    public AuthStatusParams(AuthStatusParams authStatusParams)
+        : base(authStatusParams) { }
+
     public AuthStatusParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

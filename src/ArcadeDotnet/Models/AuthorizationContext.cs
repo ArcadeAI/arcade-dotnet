@@ -53,6 +53,9 @@ public sealed record class AuthorizationContext : ModelBase
 
     public AuthorizationContext() { }
 
+    public AuthorizationContext(AuthorizationContext authorizationContext)
+        : base(authorizationContext) { }
+
     public AuthorizationContext(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

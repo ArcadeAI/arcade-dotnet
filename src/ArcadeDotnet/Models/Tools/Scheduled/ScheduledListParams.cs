@@ -49,6 +49,9 @@ public sealed record class ScheduledListParams : ParamsBase
 
     public ScheduledListParams() { }
 
+    public ScheduledListParams(ScheduledListParams scheduledListParams)
+        : base(scheduledListParams) { }
+
     public ScheduledListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

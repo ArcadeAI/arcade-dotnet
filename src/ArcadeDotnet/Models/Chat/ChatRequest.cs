@@ -349,6 +349,9 @@ public sealed record class ChatRequest : ModelBase
 
     public ChatRequest() { }
 
+    public ChatRequest(ChatRequest chatRequest)
+        : base(chatRequest) { }
+
     public ChatRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -406,6 +409,9 @@ public sealed record class ResponseFormat : ModelBase
     }
 
     public ResponseFormat() { }
+
+    public ResponseFormat(ResponseFormat responseFormat)
+        : base(responseFormat) { }
 
     public ResponseFormat(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -511,6 +517,9 @@ public sealed record class StreamOptions : ModelBase
     }
 
     public StreamOptions() { }
+
+    public StreamOptions(StreamOptions streamOptions)
+        : base(streamOptions) { }
 
     public StreamOptions(IReadOnlyDictionary<string, JsonElement> rawData)
     {

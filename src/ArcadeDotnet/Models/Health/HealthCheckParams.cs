@@ -15,6 +15,9 @@ public sealed record class HealthCheckParams : ParamsBase
 {
     public HealthCheckParams() { }
 
+    public HealthCheckParams(HealthCheckParams healthCheckParams)
+        : base(healthCheckParams) { }
+
     public HealthCheckParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

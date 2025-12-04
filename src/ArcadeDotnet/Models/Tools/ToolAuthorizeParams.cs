@@ -79,6 +79,12 @@ public sealed record class ToolAuthorizeParams : ParamsBase
 
     public ToolAuthorizeParams() { }
 
+    public ToolAuthorizeParams(ToolAuthorizeParams toolAuthorizeParams)
+        : base(toolAuthorizeParams)
+    {
+        this._rawBodyData = [.. toolAuthorizeParams._rawBodyData];
+    }
+
     public ToolAuthorizeParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

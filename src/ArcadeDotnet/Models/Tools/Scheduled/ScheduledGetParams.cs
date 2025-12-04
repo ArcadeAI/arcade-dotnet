@@ -17,6 +17,9 @@ public sealed record class ScheduledGetParams : ParamsBase
 
     public ScheduledGetParams() { }
 
+    public ScheduledGetParams(ScheduledGetParams scheduledGetParams)
+        : base(scheduledGetParams) { }
+
     public ScheduledGetParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

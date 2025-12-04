@@ -116,6 +116,12 @@ public sealed record class AuthProviderPatchParams : ParamsBase
 
     public AuthProviderPatchParams() { }
 
+    public AuthProviderPatchParams(AuthProviderPatchParams authProviderPatchParams)
+        : base(authProviderPatchParams)
+    {
+        this._rawBodyData = [.. authProviderPatchParams._rawBodyData];
+    }
+
     public AuthProviderPatchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -348,6 +354,11 @@ public sealed record class AuthProviderPatchParamsOauth2 : ModelBase
 
     public AuthProviderPatchParamsOauth2() { }
 
+    public AuthProviderPatchParamsOauth2(
+        AuthProviderPatchParamsOauth2 authProviderPatchParamsOauth2
+    )
+        : base(authProviderPatchParamsOauth2) { }
+
     public AuthProviderPatchParamsOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -539,6 +550,11 @@ public sealed record class AuthProviderPatchParamsOauth2AuthorizeRequest : Model
     public AuthProviderPatchParamsOauth2AuthorizeRequest() { }
 
     public AuthProviderPatchParamsOauth2AuthorizeRequest(
+        AuthProviderPatchParamsOauth2AuthorizeRequest authProviderPatchParamsOauth2AuthorizeRequest
+    )
+        : base(authProviderPatchParamsOauth2AuthorizeRequest) { }
+
+    public AuthProviderPatchParamsOauth2AuthorizeRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -713,6 +729,11 @@ public sealed record class AuthProviderPatchParamsOauth2Pkce : ModelBase
     }
 
     public AuthProviderPatchParamsOauth2Pkce() { }
+
+    public AuthProviderPatchParamsOauth2Pkce(
+        AuthProviderPatchParamsOauth2Pkce authProviderPatchParamsOauth2Pkce
+    )
+        : base(authProviderPatchParamsOauth2Pkce) { }
 
     public AuthProviderPatchParamsOauth2Pkce(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -903,6 +924,11 @@ public sealed record class AuthProviderPatchParamsOauth2RefreshRequest : ModelBa
     }
 
     public AuthProviderPatchParamsOauth2RefreshRequest() { }
+
+    public AuthProviderPatchParamsOauth2RefreshRequest(
+        AuthProviderPatchParamsOauth2RefreshRequest authProviderPatchParamsOauth2RefreshRequest
+    )
+        : base(authProviderPatchParamsOauth2RefreshRequest) { }
 
     public AuthProviderPatchParamsOauth2RefreshRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1241,6 +1267,11 @@ public sealed record class AuthProviderPatchParamsOauth2TokenRequest : ModelBase
     public AuthProviderPatchParamsOauth2TokenRequest() { }
 
     public AuthProviderPatchParamsOauth2TokenRequest(
+        AuthProviderPatchParamsOauth2TokenRequest authProviderPatchParamsOauth2TokenRequest
+    )
+        : base(authProviderPatchParamsOauth2TokenRequest) { }
+
+    public AuthProviderPatchParamsOauth2TokenRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1553,6 +1584,11 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequest : ModelB
     public AuthProviderPatchParamsOauth2UserInfoRequest() { }
 
     public AuthProviderPatchParamsOauth2UserInfoRequest(
+        AuthProviderPatchParamsOauth2UserInfoRequest authProviderPatchParamsOauth2UserInfoRequest
+    )
+        : base(authProviderPatchParamsOauth2UserInfoRequest) { }
+
+    public AuthProviderPatchParamsOauth2UserInfoRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1727,6 +1763,11 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequestTriggers 
     }
 
     public AuthProviderPatchParamsOauth2UserInfoRequestTriggers() { }
+
+    public AuthProviderPatchParamsOauth2UserInfoRequestTriggers(
+        AuthProviderPatchParamsOauth2UserInfoRequestTriggers authProviderPatchParamsOauth2UserInfoRequestTriggers
+    )
+        : base(authProviderPatchParamsOauth2UserInfoRequestTriggers) { }
 
     public AuthProviderPatchParamsOauth2UserInfoRequestTriggers(
         IReadOnlyDictionary<string, JsonElement> rawData

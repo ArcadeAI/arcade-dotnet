@@ -78,6 +78,9 @@ public sealed record class AuthorizeToolRequest : ModelBase
 
     public AuthorizeToolRequest() { }
 
+    public AuthorizeToolRequest(AuthorizeToolRequest authorizeToolRequest)
+        : base(authorizeToolRequest) { }
+
     public AuthorizeToolRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

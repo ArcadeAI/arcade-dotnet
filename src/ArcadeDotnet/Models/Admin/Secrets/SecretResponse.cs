@@ -139,6 +139,9 @@ public sealed record class SecretResponse : ModelBase
 
     public SecretResponse() { }
 
+    public SecretResponse(SecretResponse secretResponse)
+        : base(secretResponse) { }
+
     public SecretResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -210,6 +213,9 @@ public sealed record class Binding : ModelBase
     }
 
     public Binding() { }
+
+    public Binding(Binding binding)
+        : base(binding) { }
 
     public Binding(IReadOnlyDictionary<string, JsonElement> rawData)
     {

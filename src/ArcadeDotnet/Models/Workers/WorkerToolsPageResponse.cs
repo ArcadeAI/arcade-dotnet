@@ -96,6 +96,9 @@ public sealed record class WorkerToolsPageResponse : ModelBase
 
     public WorkerToolsPageResponse() { }
 
+    public WorkerToolsPageResponse(WorkerToolsPageResponse workerToolsPageResponse)
+        : base(workerToolsPageResponse) { }
+
     public WorkerToolsPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

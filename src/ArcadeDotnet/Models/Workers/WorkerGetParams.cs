@@ -17,6 +17,9 @@ public sealed record class WorkerGetParams : ParamsBase
 
     public WorkerGetParams() { }
 
+    public WorkerGetParams(WorkerGetParams workerGetParams)
+        : base(workerGetParams) { }
+
     public WorkerGetParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

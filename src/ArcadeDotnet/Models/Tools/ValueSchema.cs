@@ -54,6 +54,9 @@ public sealed record class ValueSchema : ModelBase
 
     public ValueSchema() { }
 
+    public ValueSchema(ValueSchema valueSchema)
+        : base(valueSchema) { }
+
     public ValueSchema(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

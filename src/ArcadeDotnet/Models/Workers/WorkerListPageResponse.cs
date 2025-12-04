@@ -95,6 +95,9 @@ public sealed record class WorkerListPageResponse : ModelBase
 
     public WorkerListPageResponse() { }
 
+    public WorkerListPageResponse(WorkerListPageResponse workerListPageResponse)
+        : base(workerListPageResponse) { }
+
     public WorkerListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

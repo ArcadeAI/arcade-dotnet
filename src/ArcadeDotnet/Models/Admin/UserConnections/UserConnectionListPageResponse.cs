@@ -100,6 +100,11 @@ public sealed record class UserConnectionListPageResponse : ModelBase
 
     public UserConnectionListPageResponse() { }
 
+    public UserConnectionListPageResponse(
+        UserConnectionListPageResponse userConnectionListPageResponse
+    )
+        : base(userConnectionListPageResponse) { }
+
     public UserConnectionListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

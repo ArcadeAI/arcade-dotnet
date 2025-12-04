@@ -17,6 +17,9 @@ public sealed record class WorkerHealthParams : ParamsBase
 
     public WorkerHealthParams() { }
 
+    public WorkerHealthParams(WorkerHealthParams workerHealthParams)
+        : base(workerHealthParams) { }
+
     public WorkerHealthParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

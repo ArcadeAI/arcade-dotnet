@@ -125,6 +125,9 @@ public sealed record class ChatResponse : ModelBase
 
     public ChatResponse() { }
 
+    public ChatResponse(ChatResponse chatResponse)
+        : base(chatResponse) { }
+
     public ChatResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

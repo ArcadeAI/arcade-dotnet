@@ -17,6 +17,9 @@ public sealed record class SecretDeleteParams : ParamsBase
 
     public SecretDeleteParams() { }
 
+    public SecretDeleteParams(SecretDeleteParams secretDeleteParams)
+        : base(secretDeleteParams) { }
+
     public SecretDeleteParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

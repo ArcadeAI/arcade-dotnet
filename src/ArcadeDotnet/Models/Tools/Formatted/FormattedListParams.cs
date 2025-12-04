@@ -118,6 +118,9 @@ public sealed record class FormattedListParams : ParamsBase
 
     public FormattedListParams() { }
 
+    public FormattedListParams(FormattedListParams formattedListParams)
+        : base(formattedListParams) { }
+
     public FormattedListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

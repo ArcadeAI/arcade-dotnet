@@ -346,6 +346,12 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public CompletionCreateParams() { }
 
+    public CompletionCreateParams(CompletionCreateParams completionCreateParams)
+        : base(completionCreateParams)
+    {
+        this._rawBodyData = [.. completionCreateParams._rawBodyData];
+    }
+
     public CompletionCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -444,6 +450,11 @@ public sealed record class ResponseFormat : ModelBase
     }
 
     public ResponseFormat() { }
+
+    public ResponseFormat(
+        global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat responseFormat
+    )
+        : base(responseFormat) { }
 
     public ResponseFormat(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -557,6 +568,9 @@ public sealed record class StreamOptions : ModelBase
     }
 
     public StreamOptions() { }
+
+    public StreamOptions(global::ArcadeDotnet.Models.Chat.Completions.StreamOptions streamOptions)
+        : base(streamOptions) { }
 
     public StreamOptions(IReadOnlyDictionary<string, JsonElement> rawData)
     {

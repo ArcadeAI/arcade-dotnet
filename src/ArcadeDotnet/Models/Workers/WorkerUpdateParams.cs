@@ -67,6 +67,12 @@ public sealed record class WorkerUpdateParams : ParamsBase
 
     public WorkerUpdateParams() { }
 
+    public WorkerUpdateParams(WorkerUpdateParams workerUpdateParams)
+        : base(workerUpdateParams)
+    {
+        this._rawBodyData = [.. workerUpdateParams._rawBodyData];
+    }
+
     public WorkerUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -200,6 +206,9 @@ public sealed record class WorkerUpdateParamsHTTP : ModelBase
     }
 
     public WorkerUpdateParamsHTTP() { }
+
+    public WorkerUpdateParamsHTTP(WorkerUpdateParamsHTTP workerUpdateParamsHTTP)
+        : base(workerUpdateParamsHTTP) { }
 
     public WorkerUpdateParamsHTTP(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -340,6 +349,9 @@ public sealed record class WorkerUpdateParamsMcp : ModelBase
 
     public WorkerUpdateParamsMcp() { }
 
+    public WorkerUpdateParamsMcp(WorkerUpdateParamsMcp workerUpdateParamsMcp)
+        : base(workerUpdateParamsMcp) { }
+
     public WorkerUpdateParamsMcp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -426,6 +438,9 @@ public sealed record class WorkerUpdateParamsMcpOauth2 : ModelBase
     }
 
     public WorkerUpdateParamsMcpOauth2() { }
+
+    public WorkerUpdateParamsMcpOauth2(WorkerUpdateParamsMcpOauth2 workerUpdateParamsMcpOauth2)
+        : base(workerUpdateParamsMcpOauth2) { }
 
     public WorkerUpdateParamsMcpOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {

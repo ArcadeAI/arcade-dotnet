@@ -51,6 +51,9 @@ public sealed record class WorkerToolsParams : ParamsBase
 
     public WorkerToolsParams() { }
 
+    public WorkerToolsParams(WorkerToolsParams workerToolsParams)
+        : base(workerToolsParams) { }
+
     public WorkerToolsParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
