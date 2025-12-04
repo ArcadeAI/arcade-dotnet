@@ -45,6 +45,7 @@ public sealed record class AuthRequest : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.AuthRequirement.Validate();
@@ -67,6 +68,7 @@ public sealed record class AuthRequest : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthRequestFromRaw.FromRawUnchecked"/>
     public static AuthRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -75,6 +77,7 @@ public sealed record class AuthRequest : ModelBase
 
 class AuthRequestFromRaw : IFromRaw<AuthRequest>
 {
+    /// <inheritdoc/>
     public AuthRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         AuthRequest.FromRawUnchecked(rawData);
 }
@@ -152,6 +155,7 @@ public sealed record class AuthRequestAuthRequirement : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -175,6 +179,7 @@ public sealed record class AuthRequestAuthRequirement : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthRequestAuthRequirementFromRaw.FromRawUnchecked"/>
     public static AuthRequestAuthRequirement FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -185,6 +190,7 @@ public sealed record class AuthRequestAuthRequirement : ModelBase
 
 class AuthRequestAuthRequirementFromRaw : IFromRaw<AuthRequestAuthRequirement>
 {
+    /// <inheritdoc/>
     public AuthRequestAuthRequirement FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthRequestAuthRequirement.FromRawUnchecked(rawData);
@@ -212,6 +218,7 @@ public sealed record class AuthRequestAuthRequirementOauth2 : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Scopes;
@@ -232,6 +239,7 @@ public sealed record class AuthRequestAuthRequirementOauth2 : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthRequestAuthRequirementOauth2FromRaw.FromRawUnchecked"/>
     public static AuthRequestAuthRequirementOauth2 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -242,6 +250,7 @@ public sealed record class AuthRequestAuthRequirementOauth2 : ModelBase
 
 class AuthRequestAuthRequirementOauth2FromRaw : IFromRaw<AuthRequestAuthRequirementOauth2>
 {
+    /// <inheritdoc/>
     public AuthRequestAuthRequirementOauth2 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthRequestAuthRequirementOauth2.FromRawUnchecked(rawData);

@@ -52,6 +52,7 @@ public sealed record class Usage : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.CompletionTokens;
@@ -74,6 +75,7 @@ public sealed record class Usage : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="UsageFromRaw.FromRawUnchecked"/>
     public static Usage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -82,6 +84,7 @@ public sealed record class Usage : ModelBase
 
 class UsageFromRaw : IFromRaw<Usage>
 {
+    /// <inheritdoc/>
     public Usage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Usage.FromRawUnchecked(rawData);
 }

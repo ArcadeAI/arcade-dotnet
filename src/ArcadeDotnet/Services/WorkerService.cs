@@ -8,7 +8,7 @@ using ArcadeDotnet.Models.Workers;
 
 namespace ArcadeDotnet.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class WorkerService : IWorkerService
 {
     /// <inheritdoc/>

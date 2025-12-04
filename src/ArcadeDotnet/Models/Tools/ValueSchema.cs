@@ -44,6 +44,7 @@ public sealed record class ValueSchema : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ValType;
@@ -66,6 +67,7 @@ public sealed record class ValueSchema : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ValueSchemaFromRaw.FromRawUnchecked"/>
     public static ValueSchema FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -81,6 +83,7 @@ public sealed record class ValueSchema : ModelBase
 
 class ValueSchemaFromRaw : IFromRaw<ValueSchema>
 {
+    /// <inheritdoc/>
     public ValueSchema FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ValueSchema.FromRawUnchecked(rawData);
 }

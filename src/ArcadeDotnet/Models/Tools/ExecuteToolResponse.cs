@@ -143,6 +143,7 @@ public sealed record class ExecuteToolResponse : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -171,6 +172,7 @@ public sealed record class ExecuteToolResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ExecuteToolResponseFromRaw.FromRawUnchecked"/>
     public static ExecuteToolResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -181,6 +183,7 @@ public sealed record class ExecuteToolResponse : ModelBase
 
 class ExecuteToolResponseFromRaw : IFromRaw<ExecuteToolResponse>
 {
+    /// <inheritdoc/>
     public ExecuteToolResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ExecuteToolResponse.FromRawUnchecked(rawData);
 }
@@ -253,6 +256,7 @@ public sealed record class Output : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Authorization?.Validate();
@@ -279,6 +283,7 @@ public sealed record class Output : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="OutputFromRaw.FromRawUnchecked"/>
     public static Output FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -287,6 +292,7 @@ public sealed record class Output : ModelBase
 
 class OutputFromRaw : IFromRaw<Output>
 {
+    /// <inheritdoc/>
     public Output FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Output.FromRawUnchecked(rawData);
 }
@@ -410,6 +416,7 @@ public sealed record class Error : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.CanRetry;
@@ -438,6 +445,7 @@ public sealed record class Error : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::ArcadeDotnet.Models.Tools.ErrorFromRaw.FromRawUnchecked"/>
     public static global::ArcadeDotnet.Models.Tools.Error FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -448,6 +456,7 @@ public sealed record class Error : ModelBase
 
 class ErrorFromRaw : IFromRaw<global::ArcadeDotnet.Models.Tools.Error>
 {
+    /// <inheritdoc/>
     public global::ArcadeDotnet.Models.Tools.Error FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::ArcadeDotnet.Models.Tools.Error.FromRawUnchecked(rawData);
@@ -570,6 +579,7 @@ public sealed record class Log : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Level;
@@ -592,6 +602,7 @@ public sealed record class Log : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="LogFromRaw.FromRawUnchecked"/>
     public static Log FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -600,6 +611,7 @@ public sealed record class Log : ModelBase
 
 class LogFromRaw : IFromRaw<Log>
 {
+    /// <inheritdoc/>
     public Log FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Log.FromRawUnchecked(rawData);
 }

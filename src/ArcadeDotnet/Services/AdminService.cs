@@ -4,7 +4,7 @@ using ArcadeDotnet.Services.Admin;
 
 namespace ArcadeDotnet.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class AdminService : IAdminService
 {
     /// <inheritdoc/>

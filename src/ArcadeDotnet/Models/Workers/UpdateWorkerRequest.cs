@@ -52,6 +52,7 @@ public sealed record class UpdateWorkerRequest : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Enabled;
@@ -74,6 +75,7 @@ public sealed record class UpdateWorkerRequest : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="UpdateWorkerRequestFromRaw.FromRawUnchecked"/>
     public static UpdateWorkerRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -84,6 +86,7 @@ public sealed record class UpdateWorkerRequest : ModelBase
 
 class UpdateWorkerRequestFromRaw : IFromRaw<UpdateWorkerRequest>
 {
+    /// <inheritdoc/>
     public UpdateWorkerRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         UpdateWorkerRequest.FromRawUnchecked(rawData);
 }
@@ -147,6 +150,7 @@ public sealed record class UpdateWorkerRequestHTTP : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Retry;
@@ -170,6 +174,7 @@ public sealed record class UpdateWorkerRequestHTTP : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="UpdateWorkerRequestHTTPFromRaw.FromRawUnchecked"/>
     public static UpdateWorkerRequestHTTP FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -180,6 +185,7 @@ public sealed record class UpdateWorkerRequestHTTP : ModelBase
 
 class UpdateWorkerRequestHTTPFromRaw : IFromRaw<UpdateWorkerRequestHTTP>
 {
+    /// <inheritdoc/>
     public UpdateWorkerRequestHTTP FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => UpdateWorkerRequestHTTP.FromRawUnchecked(rawData);
@@ -281,6 +287,7 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Headers;
@@ -306,6 +313,7 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="UpdateWorkerRequestMcpFromRaw.FromRawUnchecked"/>
     public static UpdateWorkerRequestMcp FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -316,6 +324,7 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
 
 class UpdateWorkerRequestMcpFromRaw : IFromRaw<UpdateWorkerRequestMcp>
 {
+    /// <inheritdoc/>
     public UpdateWorkerRequestMcp FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => UpdateWorkerRequestMcp.FromRawUnchecked(rawData);
@@ -368,6 +377,7 @@ public sealed record class UpdateWorkerRequestMcpOauth2 : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AuthorizationURL;
@@ -390,6 +400,7 @@ public sealed record class UpdateWorkerRequestMcpOauth2 : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="UpdateWorkerRequestMcpOauth2FromRaw.FromRawUnchecked"/>
     public static UpdateWorkerRequestMcpOauth2 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -400,6 +411,7 @@ public sealed record class UpdateWorkerRequestMcpOauth2 : ModelBase
 
 class UpdateWorkerRequestMcpOauth2FromRaw : IFromRaw<UpdateWorkerRequestMcpOauth2>
 {
+    /// <inheritdoc/>
     public UpdateWorkerRequestMcpOauth2 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => UpdateWorkerRequestMcpOauth2.FromRawUnchecked(rawData);

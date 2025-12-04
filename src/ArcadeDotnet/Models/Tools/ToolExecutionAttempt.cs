@@ -99,6 +99,7 @@ public sealed record class ToolExecutionAttempt : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -124,6 +125,7 @@ public sealed record class ToolExecutionAttempt : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ToolExecutionAttemptFromRaw.FromRawUnchecked"/>
     public static ToolExecutionAttempt FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -134,6 +136,7 @@ public sealed record class ToolExecutionAttempt : ModelBase
 
 class ToolExecutionAttemptFromRaw : IFromRaw<ToolExecutionAttempt>
 {
+    /// <inheritdoc/>
     public ToolExecutionAttempt FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => ToolExecutionAttempt.FromRawUnchecked(rawData);
@@ -215,6 +218,7 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Authorization?.Validate();
@@ -241,6 +245,7 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ToolExecutionAttemptOutputFromRaw.FromRawUnchecked"/>
     public static ToolExecutionAttemptOutput FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -251,6 +256,7 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
 
 class ToolExecutionAttemptOutputFromRaw : IFromRaw<ToolExecutionAttemptOutput>
 {
+    /// <inheritdoc/>
     public ToolExecutionAttemptOutput FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => ToolExecutionAttemptOutput.FromRawUnchecked(rawData);
@@ -378,6 +384,7 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.CanRetry;
@@ -406,6 +413,7 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ToolExecutionAttemptOutputErrorFromRaw.FromRawUnchecked"/>
     public static ToolExecutionAttemptOutputError FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -416,6 +424,7 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
 
 class ToolExecutionAttemptOutputErrorFromRaw : IFromRaw<ToolExecutionAttemptOutputError>
 {
+    /// <inheritdoc/>
     public ToolExecutionAttemptOutputError FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => ToolExecutionAttemptOutputError.FromRawUnchecked(rawData);
@@ -573,6 +582,7 @@ public sealed record class ToolExecutionAttemptOutputLog : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Level;
@@ -595,6 +605,7 @@ public sealed record class ToolExecutionAttemptOutputLog : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ToolExecutionAttemptOutputLogFromRaw.FromRawUnchecked"/>
     public static ToolExecutionAttemptOutputLog FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -605,6 +616,7 @@ public sealed record class ToolExecutionAttemptOutputLog : ModelBase
 
 class ToolExecutionAttemptOutputLogFromRaw : IFromRaw<ToolExecutionAttemptOutputLog>
 {
+    /// <inheritdoc/>
     public ToolExecutionAttemptOutputLog FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => ToolExecutionAttemptOutputLog.FromRawUnchecked(rawData);

@@ -67,6 +67,7 @@ public sealed record class AuthorizeToolRequest : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ToolName;
@@ -90,6 +91,7 @@ public sealed record class AuthorizeToolRequest : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthorizeToolRequestFromRaw.FromRawUnchecked"/>
     public static AuthorizeToolRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -107,6 +109,7 @@ public sealed record class AuthorizeToolRequest : ModelBase
 
 class AuthorizeToolRequestFromRaw : IFromRaw<AuthorizeToolRequest>
 {
+    /// <inheritdoc/>
     public AuthorizeToolRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthorizeToolRequest.FromRawUnchecked(rawData);

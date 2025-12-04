@@ -136,6 +136,7 @@ public sealed record class UserConnectionResponse : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -164,6 +165,7 @@ public sealed record class UserConnectionResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="UserConnectionResponseFromRaw.FromRawUnchecked"/>
     public static UserConnectionResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -174,6 +176,7 @@ public sealed record class UserConnectionResponse : ModelBase
 
 class UserConnectionResponseFromRaw : IFromRaw<UserConnectionResponse>
 {
+    /// <inheritdoc/>
     public UserConnectionResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => UserConnectionResponse.FromRawUnchecked(rawData);

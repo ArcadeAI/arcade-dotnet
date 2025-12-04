@@ -81,6 +81,7 @@ public sealed record class ChatMessage : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Content;
@@ -108,6 +109,7 @@ public sealed record class ChatMessage : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ChatMessageFromRaw.FromRawUnchecked"/>
     public static ChatMessage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -116,6 +118,7 @@ public sealed record class ChatMessage : ModelBase
 
 class ChatMessageFromRaw : IFromRaw<ChatMessage>
 {
+    /// <inheritdoc/>
     public ChatMessage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ChatMessage.FromRawUnchecked(rawData);
 }
@@ -170,6 +173,7 @@ public sealed record class ToolCall : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -192,6 +196,7 @@ public sealed record class ToolCall : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ToolCallFromRaw.FromRawUnchecked"/>
     public static ToolCall FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -200,6 +205,7 @@ public sealed record class ToolCall : ModelBase
 
 class ToolCallFromRaw : IFromRaw<ToolCall>
 {
+    /// <inheritdoc/>
     public ToolCall FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ToolCall.FromRawUnchecked(rawData);
 }
@@ -235,6 +241,7 @@ public sealed record class Function : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Arguments;
@@ -256,6 +263,7 @@ public sealed record class Function : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="FunctionFromRaw.FromRawUnchecked"/>
     public static Function FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -264,6 +272,7 @@ public sealed record class Function : ModelBase
 
 class FunctionFromRaw : IFromRaw<Function>
 {
+    /// <inheritdoc/>
     public Function FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Function.FromRawUnchecked(rawData);
 }

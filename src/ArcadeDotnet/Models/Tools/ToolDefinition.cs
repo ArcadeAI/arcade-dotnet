@@ -104,6 +104,7 @@ public sealed record class ToolDefinition : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.FullyQualifiedName;
@@ -132,6 +133,7 @@ public sealed record class ToolDefinition : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ToolDefinitionFromRaw.FromRawUnchecked"/>
     public static ToolDefinition FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -140,6 +142,7 @@ public sealed record class ToolDefinition : ModelBase
 
 class ToolDefinitionFromRaw : IFromRaw<ToolDefinition>
 {
+    /// <inheritdoc/>
     public ToolDefinition FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ToolDefinition.FromRawUnchecked(rawData);
 }
@@ -161,6 +164,7 @@ public sealed record class Input : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Parameters ?? [])
@@ -184,6 +188,7 @@ public sealed record class Input : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="InputFromRaw.FromRawUnchecked"/>
     public static Input FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -192,6 +197,7 @@ public sealed record class Input : ModelBase
 
 class InputFromRaw : IFromRaw<Input>
 {
+    /// <inheritdoc/>
     public Input FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Input.FromRawUnchecked(rawData);
 }
@@ -253,6 +259,7 @@ public sealed record class Parameter : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Name;
@@ -277,6 +284,7 @@ public sealed record class Parameter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ParameterFromRaw.FromRawUnchecked"/>
     public static Parameter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -285,6 +293,7 @@ public sealed record class Parameter : ModelBase
 
 class ParameterFromRaw : IFromRaw<Parameter>
 {
+    /// <inheritdoc/>
     public Parameter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Parameter.FromRawUnchecked(rawData);
 }
@@ -326,6 +335,7 @@ public sealed record class Toolkit : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Name;
@@ -348,6 +358,7 @@ public sealed record class Toolkit : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ToolkitFromRaw.FromRawUnchecked"/>
     public static Toolkit FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -363,6 +374,7 @@ public sealed record class Toolkit : ModelBase
 
 class ToolkitFromRaw : IFromRaw<Toolkit>
 {
+    /// <inheritdoc/>
     public Toolkit FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Toolkit.FromRawUnchecked(rawData);
 }
@@ -412,6 +424,7 @@ public sealed record class ToolDefinitionOutput : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AvailableModes;
@@ -434,6 +447,7 @@ public sealed record class ToolDefinitionOutput : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ToolDefinitionOutputFromRaw.FromRawUnchecked"/>
     public static ToolDefinitionOutput FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -444,6 +458,7 @@ public sealed record class ToolDefinitionOutput : ModelBase
 
 class ToolDefinitionOutputFromRaw : IFromRaw<ToolDefinitionOutput>
 {
+    /// <inheritdoc/>
     public ToolDefinitionOutput FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => ToolDefinitionOutput.FromRawUnchecked(rawData);
@@ -494,6 +509,7 @@ public sealed record class Requirements : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Authorization?.Validate();
@@ -519,6 +535,7 @@ public sealed record class Requirements : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="RequirementsFromRaw.FromRawUnchecked"/>
     public static Requirements FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -527,6 +544,7 @@ public sealed record class Requirements : ModelBase
 
 class RequirementsFromRaw : IFromRaw<Requirements>
 {
+    /// <inheritdoc/>
     public Requirements FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Requirements.FromRawUnchecked(rawData);
 }
@@ -643,6 +661,7 @@ public sealed record class Authorization : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -669,6 +688,7 @@ public sealed record class Authorization : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthorizationFromRaw.FromRawUnchecked"/>
     public static Authorization FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -677,6 +697,7 @@ public sealed record class Authorization : ModelBase
 
 class AuthorizationFromRaw : IFromRaw<Authorization>
 {
+    /// <inheritdoc/>
     public Authorization FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Authorization.FromRawUnchecked(rawData);
 }
@@ -698,6 +719,7 @@ public sealed record class Oauth2 : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Scopes;
@@ -718,6 +740,7 @@ public sealed record class Oauth2 : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="Oauth2FromRaw.FromRawUnchecked"/>
     public static Oauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -726,6 +749,7 @@ public sealed record class Oauth2 : ModelBase
 
 class Oauth2FromRaw : IFromRaw<Oauth2>
 {
+    /// <inheritdoc/>
     public Oauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Oauth2.FromRawUnchecked(rawData);
 }
@@ -861,6 +885,7 @@ public sealed record class Secret : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Key;
@@ -883,6 +908,7 @@ public sealed record class Secret : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SecretFromRaw.FromRawUnchecked"/>
     public static Secret FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -898,6 +924,7 @@ public sealed record class Secret : ModelBase
 
 class SecretFromRaw : IFromRaw<Secret>
 {
+    /// <inheritdoc/>
     public Secret FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Secret.FromRawUnchecked(rawData);
 }

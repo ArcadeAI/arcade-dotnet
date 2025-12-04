@@ -110,6 +110,7 @@ public sealed record class WorkerCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static WorkerCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -173,6 +174,7 @@ public sealed record class HTTP : ModelBase
         init { ModelBase.Set(this._rawData, "uri", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Retry;
@@ -196,6 +198,7 @@ public sealed record class HTTP : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="HTTPFromRaw.FromRawUnchecked"/>
     public static HTTP FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -204,6 +207,7 @@ public sealed record class HTTP : ModelBase
 
 class HTTPFromRaw : IFromRaw<HTTP>
 {
+    /// <inheritdoc/>
     public HTTP FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         HTTP.FromRawUnchecked(rawData);
 }
@@ -277,6 +281,7 @@ public sealed record class Mcp : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Retry;
@@ -302,6 +307,7 @@ public sealed record class Mcp : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="McpFromRaw.FromRawUnchecked"/>
     public static Mcp FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -310,6 +316,7 @@ public sealed record class Mcp : ModelBase
 
 class McpFromRaw : IFromRaw<Mcp>
 {
+    /// <inheritdoc/>
     public Mcp FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Mcp.FromRawUnchecked(rawData);
 }
@@ -373,6 +380,7 @@ public sealed record class Oauth2 : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AuthorizationURL;
@@ -396,6 +404,7 @@ public sealed record class Oauth2 : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="Oauth2FromRaw.FromRawUnchecked"/>
     public static Oauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -404,6 +413,7 @@ public sealed record class Oauth2 : ModelBase
 
 class Oauth2FromRaw : IFromRaw<Oauth2>
 {
+    /// <inheritdoc/>
     public Oauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Oauth2.FromRawUnchecked(rawData);
 }

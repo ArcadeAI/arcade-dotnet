@@ -83,6 +83,7 @@ public sealed record class AuthProviderListResponse : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Items ?? [])
@@ -110,6 +111,7 @@ public sealed record class AuthProviderListResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderListResponseFromRaw.FromRawUnchecked"/>
     public static AuthProviderListResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -120,6 +122,7 @@ public sealed record class AuthProviderListResponse : ModelBase
 
 class AuthProviderListResponseFromRaw : IFromRaw<AuthProviderListResponse>
 {
+    /// <inheritdoc/>
     public AuthProviderListResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderListResponse.FromRawUnchecked(rawData);

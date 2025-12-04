@@ -215,6 +215,7 @@ public sealed record class ScheduledGetResponse : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -251,6 +252,7 @@ public sealed record class ScheduledGetResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ScheduledGetResponseFromRaw.FromRawUnchecked"/>
     public static ScheduledGetResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -261,6 +263,7 @@ public sealed record class ScheduledGetResponse : ModelBase
 
 class ScheduledGetResponseFromRaw : IFromRaw<ScheduledGetResponse>
 {
+    /// <inheritdoc/>
     public ScheduledGetResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => ScheduledGetResponse.FromRawUnchecked(rawData);

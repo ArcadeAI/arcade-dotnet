@@ -8,7 +8,7 @@ using ArcadeDotnet.Models.Admin.Secrets;
 
 namespace ArcadeDotnet.Services.Admin;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class SecretService : ISecretService
 {
     /// <inheritdoc/>

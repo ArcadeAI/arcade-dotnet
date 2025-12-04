@@ -106,6 +106,7 @@ public sealed record class ExecuteToolRequest : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ToolName;
@@ -131,6 +132,7 @@ public sealed record class ExecuteToolRequest : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ExecuteToolRequestFromRaw.FromRawUnchecked"/>
     public static ExecuteToolRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -148,6 +150,7 @@ public sealed record class ExecuteToolRequest : ModelBase
 
 class ExecuteToolRequestFromRaw : IFromRaw<ExecuteToolRequest>
 {
+    /// <inheritdoc/>
     public ExecuteToolRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ExecuteToolRequest.FromRawUnchecked(rawData);
 }

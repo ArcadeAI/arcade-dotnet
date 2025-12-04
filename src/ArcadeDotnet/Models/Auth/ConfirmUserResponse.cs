@@ -30,6 +30,7 @@ public sealed record class ConfirmUserResponse : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AuthID;
@@ -51,6 +52,7 @@ public sealed record class ConfirmUserResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ConfirmUserResponseFromRaw.FromRawUnchecked"/>
     public static ConfirmUserResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -68,6 +70,7 @@ public sealed record class ConfirmUserResponse : ModelBase
 
 class ConfirmUserResponseFromRaw : IFromRaw<ConfirmUserResponse>
 {
+    /// <inheritdoc/>
     public ConfirmUserResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ConfirmUserResponse.FromRawUnchecked(rawData);
 }

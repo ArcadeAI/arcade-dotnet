@@ -8,7 +8,7 @@ using ArcadeDotnet.Models.Chat.Completions;
 
 namespace ArcadeDotnet.Services.Chat;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class CompletionService : ICompletionService
 {
     /// <inheritdoc/>

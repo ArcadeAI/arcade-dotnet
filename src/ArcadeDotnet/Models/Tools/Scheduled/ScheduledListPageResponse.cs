@@ -80,6 +80,7 @@ public sealed record class ScheduledListPageResponse : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Items ?? [])
@@ -107,6 +108,7 @@ public sealed record class ScheduledListPageResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ScheduledListPageResponseFromRaw.FromRawUnchecked"/>
     public static ScheduledListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -117,6 +119,7 @@ public sealed record class ScheduledListPageResponse : ModelBase
 
 class ScheduledListPageResponseFromRaw : IFromRaw<ScheduledListPageResponse>
 {
+    /// <inheritdoc/>
     public ScheduledListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => ScheduledListPageResponse.FromRawUnchecked(rawData);

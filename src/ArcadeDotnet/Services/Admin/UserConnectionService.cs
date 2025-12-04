@@ -8,7 +8,7 @@ using ArcadeDotnet.Models.Admin.UserConnections;
 
 namespace ArcadeDotnet.Services.Admin;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class UserConnectionService : IUserConnectionService
 {
     /// <inheritdoc/>

@@ -371,6 +371,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static CompletionCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -436,6 +437,7 @@ public sealed record class ResponseFormat : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Type?.Validate();
@@ -456,6 +458,7 @@ public sealed record class ResponseFormat : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::ArcadeDotnet.Models.Chat.Completions.ResponseFormatFromRaw.FromRawUnchecked"/>
     public static global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -466,6 +469,7 @@ public sealed record class ResponseFormat : ModelBase
 
 class ResponseFormatFromRaw : IFromRaw<global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat>
 {
+    /// <inheritdoc/>
     public global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat.FromRawUnchecked(rawData);
@@ -546,6 +550,7 @@ public sealed record class StreamOptions : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.IncludeUsage;
@@ -566,6 +571,7 @@ public sealed record class StreamOptions : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::ArcadeDotnet.Models.Chat.Completions.StreamOptionsFromRaw.FromRawUnchecked"/>
     public static global::ArcadeDotnet.Models.Chat.Completions.StreamOptions FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -576,6 +582,7 @@ public sealed record class StreamOptions : ModelBase
 
 class StreamOptionsFromRaw : IFromRaw<global::ArcadeDotnet.Models.Chat.Completions.StreamOptions>
 {
+    /// <inheritdoc/>
     public global::ArcadeDotnet.Models.Chat.Completions.StreamOptions FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::ArcadeDotnet.Models.Chat.Completions.StreamOptions.FromRawUnchecked(rawData);

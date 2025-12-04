@@ -141,6 +141,7 @@ public sealed record class AuthProviderResponse : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -169,6 +170,7 @@ public sealed record class AuthProviderResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderResponseFromRaw.FromRawUnchecked"/>
     public static AuthProviderResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -179,6 +181,7 @@ public sealed record class AuthProviderResponse : ModelBase
 
 class AuthProviderResponseFromRaw : IFromRaw<AuthProviderResponse>
 {
+    /// <inheritdoc/>
     public AuthProviderResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderResponse.FromRawUnchecked(rawData);
@@ -220,6 +223,7 @@ public sealed record class Binding : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -241,6 +245,7 @@ public sealed record class Binding : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BindingFromRaw.FromRawUnchecked"/>
     public static Binding FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -249,6 +254,7 @@ public sealed record class Binding : ModelBase
 
 class BindingFromRaw : IFromRaw<Binding>
 {
+    /// <inheritdoc/>
     public Binding FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Binding.FromRawUnchecked(rawData);
 }
@@ -484,6 +490,7 @@ public sealed record class AuthProviderResponseOauth2 : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.AuthorizeRequest?.Validate();
@@ -513,6 +520,7 @@ public sealed record class AuthProviderResponseOauth2 : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderResponseOauth2FromRaw.FromRawUnchecked"/>
     public static AuthProviderResponseOauth2 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -523,6 +531,7 @@ public sealed record class AuthProviderResponseOauth2 : ModelBase
 
 class AuthProviderResponseOauth2FromRaw : IFromRaw<AuthProviderResponseOauth2>
 {
+    /// <inheritdoc/>
     public AuthProviderResponseOauth2 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderResponseOauth2.FromRawUnchecked(rawData);
@@ -671,6 +680,7 @@ public sealed record class AuthProviderResponseOauth2AuthorizeRequest : ModelBas
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AuthHeaderValueFormat;
@@ -701,6 +711,7 @@ public sealed record class AuthProviderResponseOauth2AuthorizeRequest : ModelBas
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderResponseOauth2AuthorizeRequestFromRaw.FromRawUnchecked"/>
     public static AuthProviderResponseOauth2AuthorizeRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -712,6 +723,7 @@ public sealed record class AuthProviderResponseOauth2AuthorizeRequest : ModelBas
 class AuthProviderResponseOauth2AuthorizeRequestFromRaw
     : IFromRaw<AuthProviderResponseOauth2AuthorizeRequest>
 {
+    /// <inheritdoc/>
     public AuthProviderResponseOauth2AuthorizeRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderResponseOauth2AuthorizeRequest.FromRawUnchecked(rawData);
@@ -796,6 +808,7 @@ public sealed record class ClientSecret : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Binding?.Validate();
@@ -820,6 +833,7 @@ public sealed record class ClientSecret : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ClientSecretFromRaw.FromRawUnchecked"/>
     public static ClientSecret FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -828,6 +842,7 @@ public sealed record class ClientSecret : ModelBase
 
 class ClientSecretFromRaw : IFromRaw<ClientSecret>
 {
+    /// <inheritdoc/>
     public ClientSecret FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ClientSecret.FromRawUnchecked(rawData);
 }
@@ -915,6 +930,7 @@ public sealed record class AuthProviderResponseOauth2Pkce : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.CodeChallengeMethod;
@@ -936,6 +952,7 @@ public sealed record class AuthProviderResponseOauth2Pkce : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderResponseOauth2PkceFromRaw.FromRawUnchecked"/>
     public static AuthProviderResponseOauth2Pkce FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -946,6 +963,7 @@ public sealed record class AuthProviderResponseOauth2Pkce : ModelBase
 
 class AuthProviderResponseOauth2PkceFromRaw : IFromRaw<AuthProviderResponseOauth2Pkce>
 {
+    /// <inheritdoc/>
     public AuthProviderResponseOauth2Pkce FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderResponseOauth2Pkce.FromRawUnchecked(rawData);
@@ -1094,6 +1112,7 @@ public sealed record class AuthProviderResponseOauth2RefreshRequest : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AuthHeaderValueFormat;
@@ -1124,6 +1143,7 @@ public sealed record class AuthProviderResponseOauth2RefreshRequest : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderResponseOauth2RefreshRequestFromRaw.FromRawUnchecked"/>
     public static AuthProviderResponseOauth2RefreshRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1135,6 +1155,7 @@ public sealed record class AuthProviderResponseOauth2RefreshRequest : ModelBase
 class AuthProviderResponseOauth2RefreshRequestFromRaw
     : IFromRaw<AuthProviderResponseOauth2RefreshRequest>
 {
+    /// <inheritdoc/>
     public AuthProviderResponseOauth2RefreshRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderResponseOauth2RefreshRequest.FromRawUnchecked(rawData);
@@ -1317,6 +1338,7 @@ public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequest :
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AuthHeaderValueFormat;
@@ -1351,6 +1373,7 @@ public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequest :
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderResponseOauth2TokenIntrospectionRequestFromRaw.FromRawUnchecked"/>
     public static AuthProviderResponseOauth2TokenIntrospectionRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1362,6 +1385,7 @@ public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequest :
 class AuthProviderResponseOauth2TokenIntrospectionRequestFromRaw
     : IFromRaw<AuthProviderResponseOauth2TokenIntrospectionRequest>
 {
+    /// <inheritdoc/>
     public AuthProviderResponseOauth2TokenIntrospectionRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderResponseOauth2TokenIntrospectionRequest.FromRawUnchecked(rawData);
@@ -1403,6 +1427,7 @@ public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequestTr
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.OnTokenGrant;
@@ -1428,6 +1453,7 @@ public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequestTr
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderResponseOauth2TokenIntrospectionRequestTriggersFromRaw.FromRawUnchecked"/>
     public static AuthProviderResponseOauth2TokenIntrospectionRequestTriggers FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1439,6 +1465,7 @@ public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequestTr
 class AuthProviderResponseOauth2TokenIntrospectionRequestTriggersFromRaw
     : IFromRaw<AuthProviderResponseOauth2TokenIntrospectionRequestTriggers>
 {
+    /// <inheritdoc/>
     public AuthProviderResponseOauth2TokenIntrospectionRequestTriggers FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderResponseOauth2TokenIntrospectionRequestTriggers.FromRawUnchecked(rawData);
@@ -1587,6 +1614,7 @@ public sealed record class AuthProviderResponseOauth2TokenRequest : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AuthHeaderValueFormat;
@@ -1615,6 +1643,7 @@ public sealed record class AuthProviderResponseOauth2TokenRequest : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderResponseOauth2TokenRequestFromRaw.FromRawUnchecked"/>
     public static AuthProviderResponseOauth2TokenRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1626,6 +1655,7 @@ public sealed record class AuthProviderResponseOauth2TokenRequest : ModelBase
 class AuthProviderResponseOauth2TokenRequestFromRaw
     : IFromRaw<AuthProviderResponseOauth2TokenRequest>
 {
+    /// <inheritdoc/>
     public AuthProviderResponseOauth2TokenRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderResponseOauth2TokenRequest.FromRawUnchecked(rawData);
@@ -1794,6 +1824,7 @@ public sealed record class AuthProviderResponseOauth2UserInfoRequest : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AuthHeaderValueFormat;
@@ -1825,6 +1856,7 @@ public sealed record class AuthProviderResponseOauth2UserInfoRequest : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderResponseOauth2UserInfoRequestFromRaw.FromRawUnchecked"/>
     public static AuthProviderResponseOauth2UserInfoRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1836,6 +1868,7 @@ public sealed record class AuthProviderResponseOauth2UserInfoRequest : ModelBase
 class AuthProviderResponseOauth2UserInfoRequestFromRaw
     : IFromRaw<AuthProviderResponseOauth2UserInfoRequest>
 {
+    /// <inheritdoc/>
     public AuthProviderResponseOauth2UserInfoRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderResponseOauth2UserInfoRequest.FromRawUnchecked(rawData);
@@ -1877,6 +1910,7 @@ public sealed record class AuthProviderResponseOauth2UserInfoRequestTriggers : M
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.OnTokenGrant;
@@ -1900,6 +1934,7 @@ public sealed record class AuthProviderResponseOauth2UserInfoRequestTriggers : M
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderResponseOauth2UserInfoRequestTriggersFromRaw.FromRawUnchecked"/>
     public static AuthProviderResponseOauth2UserInfoRequestTriggers FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1911,6 +1946,7 @@ public sealed record class AuthProviderResponseOauth2UserInfoRequestTriggers : M
 class AuthProviderResponseOauth2UserInfoRequestTriggersFromRaw
     : IFromRaw<AuthProviderResponseOauth2UserInfoRequestTriggers>
 {
+    /// <inheritdoc/>
     public AuthProviderResponseOauth2UserInfoRequestTriggers FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderResponseOauth2UserInfoRequestTriggers.FromRawUnchecked(rawData);

@@ -142,6 +142,7 @@ public sealed record class AuthProviderCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static AuthProviderCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -319,6 +320,7 @@ public sealed record class Oauth2 : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ClientID;
@@ -347,6 +349,7 @@ public sealed record class Oauth2 : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="Oauth2FromRaw.FromRawUnchecked"/>
     public static Oauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -362,6 +365,7 @@ public sealed record class Oauth2 : ModelBase
 
 class Oauth2FromRaw : IFromRaw<Oauth2>
 {
+    /// <inheritdoc/>
     public Oauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Oauth2.FromRawUnchecked(rawData);
 }
@@ -494,6 +498,7 @@ public sealed record class AuthorizeRequest : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Endpoint;
@@ -521,6 +526,7 @@ public sealed record class AuthorizeRequest : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthorizeRequestFromRaw.FromRawUnchecked"/>
     public static AuthorizeRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -538,6 +544,7 @@ public sealed record class AuthorizeRequest : ModelBase
 
 class AuthorizeRequestFromRaw : IFromRaw<AuthorizeRequest>
 {
+    /// <inheritdoc/>
     public AuthorizeRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         AuthorizeRequest.FromRawUnchecked(rawData);
 }
@@ -664,6 +671,7 @@ public sealed record class Pkce : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.CodeChallengeMethod;
@@ -685,6 +693,7 @@ public sealed record class Pkce : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PkceFromRaw.FromRawUnchecked"/>
     public static Pkce FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -693,6 +702,7 @@ public sealed record class Pkce : ModelBase
 
 class PkceFromRaw : IFromRaw<Pkce>
 {
+    /// <inheritdoc/>
     public Pkce FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Pkce.FromRawUnchecked(rawData);
 }
@@ -825,6 +835,7 @@ public sealed record class RefreshRequest : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Endpoint;
@@ -852,6 +863,7 @@ public sealed record class RefreshRequest : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="RefreshRequestFromRaw.FromRawUnchecked"/>
     public static RefreshRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -867,6 +879,7 @@ public sealed record class RefreshRequest : ModelBase
 
 class RefreshRequestFromRaw : IFromRaw<RefreshRequest>
 {
+    /// <inheritdoc/>
     public RefreshRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         RefreshRequest.FromRawUnchecked(rawData);
 }
@@ -1141,6 +1154,7 @@ public sealed record class TokenIntrospectionRequest : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Endpoint;
@@ -1169,6 +1183,7 @@ public sealed record class TokenIntrospectionRequest : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TokenIntrospectionRequestFromRaw.FromRawUnchecked"/>
     public static TokenIntrospectionRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1179,6 +1194,7 @@ public sealed record class TokenIntrospectionRequest : ModelBase
 
 class TokenIntrospectionRequestFromRaw : IFromRaw<TokenIntrospectionRequest>
 {
+    /// <inheritdoc/>
     public TokenIntrospectionRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => TokenIntrospectionRequest.FromRawUnchecked(rawData);
@@ -1215,6 +1231,7 @@ public sealed record class Triggers : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.OnTokenGrant;
@@ -1236,6 +1253,7 @@ public sealed record class Triggers : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TriggersFromRaw.FromRawUnchecked"/>
     public static Triggers FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -1244,6 +1262,7 @@ public sealed record class Triggers : ModelBase
 
 class TriggersFromRaw : IFromRaw<Triggers>
 {
+    /// <inheritdoc/>
     public Triggers FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Triggers.FromRawUnchecked(rawData);
 }
@@ -1470,6 +1489,7 @@ public sealed record class TokenRequest : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Endpoint;
@@ -1497,6 +1517,7 @@ public sealed record class TokenRequest : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TokenRequestFromRaw.FromRawUnchecked"/>
     public static TokenRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -1512,6 +1533,7 @@ public sealed record class TokenRequest : ModelBase
 
 class TokenRequestFromRaw : IFromRaw<TokenRequest>
 {
+    /// <inheritdoc/>
     public TokenRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         TokenRequest.FromRawUnchecked(rawData);
 }
@@ -1743,6 +1765,7 @@ public sealed record class UserInfoRequest : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Endpoint;
@@ -1771,6 +1794,7 @@ public sealed record class UserInfoRequest : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="UserInfoRequestFromRaw.FromRawUnchecked"/>
     public static UserInfoRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -1779,6 +1803,7 @@ public sealed record class UserInfoRequest : ModelBase
 
 class UserInfoRequestFromRaw : IFromRaw<UserInfoRequest>
 {
+    /// <inheritdoc/>
     public UserInfoRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         UserInfoRequest.FromRawUnchecked(rawData);
 }
@@ -1814,6 +1839,7 @@ public sealed record class UserInfoRequestTriggers : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.OnTokenGrant;
@@ -1835,6 +1861,7 @@ public sealed record class UserInfoRequestTriggers : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="UserInfoRequestTriggersFromRaw.FromRawUnchecked"/>
     public static UserInfoRequestTriggers FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1845,6 +1872,7 @@ public sealed record class UserInfoRequestTriggers : ModelBase
 
 class UserInfoRequestTriggersFromRaw : IFromRaw<UserInfoRequestTriggers>
 {
+    /// <inheritdoc/>
     public UserInfoRequestTriggers FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => UserInfoRequestTriggers.FromRawUnchecked(rawData);

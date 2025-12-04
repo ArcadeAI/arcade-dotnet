@@ -44,6 +44,7 @@ public sealed record class AuthorizationContext : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Token;
@@ -65,6 +66,7 @@ public sealed record class AuthorizationContext : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthorizationContextFromRaw.FromRawUnchecked"/>
     public static AuthorizationContext FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -75,6 +77,7 @@ public sealed record class AuthorizationContext : ModelBase
 
 class AuthorizationContextFromRaw : IFromRaw<AuthorizationContext>
 {
+    /// <inheritdoc/>
     public AuthorizationContext FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthorizationContext.FromRawUnchecked(rawData);

@@ -80,6 +80,7 @@ public sealed record class SecretListResponse : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Items ?? [])
@@ -107,6 +108,7 @@ public sealed record class SecretListResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SecretListResponseFromRaw.FromRawUnchecked"/>
     public static SecretListResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -117,6 +119,7 @@ public sealed record class SecretListResponse : ModelBase
 
 class SecretListResponseFromRaw : IFromRaw<SecretListResponse>
 {
+    /// <inheritdoc/>
     public SecretListResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         SecretListResponse.FromRawUnchecked(rawData);
 }

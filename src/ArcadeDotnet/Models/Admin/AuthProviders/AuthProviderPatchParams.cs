@@ -141,6 +141,7 @@ public sealed record class AuthProviderPatchParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static AuthProviderPatchParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -332,6 +333,7 @@ public sealed record class AuthProviderPatchParamsOauth2 : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.AuthorizeRequest?.Validate();
@@ -359,6 +361,7 @@ public sealed record class AuthProviderPatchParamsOauth2 : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderPatchParamsOauth2FromRaw.FromRawUnchecked"/>
     public static AuthProviderPatchParamsOauth2 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -369,6 +372,7 @@ public sealed record class AuthProviderPatchParamsOauth2 : ModelBase
 
 class AuthProviderPatchParamsOauth2FromRaw : IFromRaw<AuthProviderPatchParamsOauth2>
 {
+    /// <inheritdoc/>
     public AuthProviderPatchParamsOauth2 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderPatchParamsOauth2.FromRawUnchecked(rawData);
@@ -519,6 +523,7 @@ public sealed record class AuthProviderPatchParamsOauth2AuthorizeRequest : Model
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AuthHeaderValueFormat;
@@ -548,6 +553,7 @@ public sealed record class AuthProviderPatchParamsOauth2AuthorizeRequest : Model
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderPatchParamsOauth2AuthorizeRequestFromRaw.FromRawUnchecked"/>
     public static AuthProviderPatchParamsOauth2AuthorizeRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -559,6 +565,7 @@ public sealed record class AuthProviderPatchParamsOauth2AuthorizeRequest : Model
 class AuthProviderPatchParamsOauth2AuthorizeRequestFromRaw
     : IFromRaw<AuthProviderPatchParamsOauth2AuthorizeRequest>
 {
+    /// <inheritdoc/>
     public AuthProviderPatchParamsOauth2AuthorizeRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderPatchParamsOauth2AuthorizeRequest.FromRawUnchecked(rawData);
@@ -698,6 +705,7 @@ public sealed record class AuthProviderPatchParamsOauth2Pkce : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.CodeChallengeMethod;
@@ -719,6 +727,7 @@ public sealed record class AuthProviderPatchParamsOauth2Pkce : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderPatchParamsOauth2PkceFromRaw.FromRawUnchecked"/>
     public static AuthProviderPatchParamsOauth2Pkce FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -729,6 +738,7 @@ public sealed record class AuthProviderPatchParamsOauth2Pkce : ModelBase
 
 class AuthProviderPatchParamsOauth2PkceFromRaw : IFromRaw<AuthProviderPatchParamsOauth2Pkce>
 {
+    /// <inheritdoc/>
     public AuthProviderPatchParamsOauth2Pkce FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderPatchParamsOauth2Pkce.FromRawUnchecked(rawData);
@@ -879,6 +889,7 @@ public sealed record class AuthProviderPatchParamsOauth2RefreshRequest : ModelBa
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AuthHeaderValueFormat;
@@ -908,6 +919,7 @@ public sealed record class AuthProviderPatchParamsOauth2RefreshRequest : ModelBa
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderPatchParamsOauth2RefreshRequestFromRaw.FromRawUnchecked"/>
     public static AuthProviderPatchParamsOauth2RefreshRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -919,6 +931,7 @@ public sealed record class AuthProviderPatchParamsOauth2RefreshRequest : ModelBa
 class AuthProviderPatchParamsOauth2RefreshRequestFromRaw
     : IFromRaw<AuthProviderPatchParamsOauth2RefreshRequest>
 {
+    /// <inheritdoc/>
     public AuthProviderPatchParamsOauth2RefreshRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderPatchParamsOauth2RefreshRequest.FromRawUnchecked(rawData);
@@ -1212,6 +1225,7 @@ public sealed record class AuthProviderPatchParamsOauth2TokenRequest : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AuthHeaderValueFormat;
@@ -1241,6 +1255,7 @@ public sealed record class AuthProviderPatchParamsOauth2TokenRequest : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderPatchParamsOauth2TokenRequestFromRaw.FromRawUnchecked"/>
     public static AuthProviderPatchParamsOauth2TokenRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1252,6 +1267,7 @@ public sealed record class AuthProviderPatchParamsOauth2TokenRequest : ModelBase
 class AuthProviderPatchParamsOauth2TokenRequestFromRaw
     : IFromRaw<AuthProviderPatchParamsOauth2TokenRequest>
 {
+    /// <inheritdoc/>
     public AuthProviderPatchParamsOauth2TokenRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderPatchParamsOauth2TokenRequest.FromRawUnchecked(rawData);
@@ -1520,6 +1536,7 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequest : ModelB
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AuthHeaderValueFormat;
@@ -1550,6 +1567,7 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequest : ModelB
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderPatchParamsOauth2UserInfoRequestFromRaw.FromRawUnchecked"/>
     public static AuthProviderPatchParamsOauth2UserInfoRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1561,6 +1579,7 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequest : ModelB
 class AuthProviderPatchParamsOauth2UserInfoRequestFromRaw
     : IFromRaw<AuthProviderPatchParamsOauth2UserInfoRequest>
 {
+    /// <inheritdoc/>
     public AuthProviderPatchParamsOauth2UserInfoRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderPatchParamsOauth2UserInfoRequest.FromRawUnchecked(rawData);
@@ -1700,6 +1719,7 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequestTriggers 
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.OnTokenGrant;
@@ -1725,6 +1745,7 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequestTriggers 
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AuthProviderPatchParamsOauth2UserInfoRequestTriggersFromRaw.FromRawUnchecked"/>
     public static AuthProviderPatchParamsOauth2UserInfoRequestTriggers FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1736,6 +1757,7 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequestTriggers 
 class AuthProviderPatchParamsOauth2UserInfoRequestTriggersFromRaw
     : IFromRaw<AuthProviderPatchParamsOauth2UserInfoRequestTriggers>
 {
+    /// <inheritdoc/>
     public AuthProviderPatchParamsOauth2UserInfoRequestTriggers FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AuthProviderPatchParamsOauth2UserInfoRequestTriggers.FromRawUnchecked(rawData);

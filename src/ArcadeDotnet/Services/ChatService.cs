@@ -4,7 +4,7 @@ using ArcadeDotnet.Services.Chat;
 
 namespace ArcadeDotnet.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class ChatService : IChatService
 {
     /// <inheritdoc/>

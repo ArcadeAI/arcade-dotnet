@@ -319,6 +319,7 @@ public sealed record class ChatRequest : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.FrequencyPenalty;
@@ -361,6 +362,7 @@ public sealed record class ChatRequest : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ChatRequestFromRaw.FromRawUnchecked"/>
     public static ChatRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -369,6 +371,7 @@ public sealed record class ChatRequest : ModelBase
 
 class ChatRequestFromRaw : IFromRaw<ChatRequest>
 {
+    /// <inheritdoc/>
     public ChatRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ChatRequest.FromRawUnchecked(rawData);
 }
@@ -396,6 +399,7 @@ public sealed record class ResponseFormat : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Type?.Validate();
@@ -416,6 +420,7 @@ public sealed record class ResponseFormat : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ResponseFormatFromRaw.FromRawUnchecked"/>
     public static ResponseFormat FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -424,6 +429,7 @@ public sealed record class ResponseFormat : ModelBase
 
 class ResponseFormatFromRaw : IFromRaw<ResponseFormat>
 {
+    /// <inheritdoc/>
     public ResponseFormat FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ResponseFormat.FromRawUnchecked(rawData);
 }
@@ -498,6 +504,7 @@ public sealed record class StreamOptions : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.IncludeUsage;
@@ -518,6 +525,7 @@ public sealed record class StreamOptions : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="StreamOptionsFromRaw.FromRawUnchecked"/>
     public static StreamOptions FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -526,6 +534,7 @@ public sealed record class StreamOptions : ModelBase
 
 class StreamOptionsFromRaw : IFromRaw<StreamOptions>
 {
+    /// <inheritdoc/>
     public StreamOptions FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         StreamOptions.FromRawUnchecked(rawData);
 }

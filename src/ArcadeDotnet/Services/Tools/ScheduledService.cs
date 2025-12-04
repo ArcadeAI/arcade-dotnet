@@ -8,7 +8,7 @@ using ArcadeDotnet.Models.Tools.Scheduled;
 
 namespace ArcadeDotnet.Services.Tools;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class ScheduledService : IScheduledService
 {
     /// <inheritdoc/>

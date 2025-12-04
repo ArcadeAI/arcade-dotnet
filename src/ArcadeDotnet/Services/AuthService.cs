@@ -8,7 +8,7 @@ using ArcadeDotnet.Models.Auth;
 
 namespace ArcadeDotnet.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class AuthService : IAuthService
 {
     /// <inheritdoc/>

@@ -7,7 +7,7 @@ using ArcadeDotnet.Models.Health;
 
 namespace ArcadeDotnet.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class HealthService : IHealthService
 {
     /// <inheritdoc/>

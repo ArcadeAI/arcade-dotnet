@@ -108,6 +108,7 @@ public sealed record class ChatResponse : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -137,6 +138,7 @@ public sealed record class ChatResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ChatResponseFromRaw.FromRawUnchecked"/>
     public static ChatResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -145,6 +147,7 @@ public sealed record class ChatResponse : ModelBase
 
 class ChatResponseFromRaw : IFromRaw<ChatResponse>
 {
+    /// <inheritdoc/>
     public ChatResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ChatResponse.FromRawUnchecked(rawData);
 }

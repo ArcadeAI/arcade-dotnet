@@ -80,6 +80,7 @@ public sealed record class FormattedListPageResponse : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Items;
@@ -104,6 +105,7 @@ public sealed record class FormattedListPageResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="FormattedListPageResponseFromRaw.FromRawUnchecked"/>
     public static FormattedListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -114,6 +116,7 @@ public sealed record class FormattedListPageResponse : ModelBase
 
 class FormattedListPageResponseFromRaw : IFromRaw<FormattedListPageResponse>
 {
+    /// <inheritdoc/>
     public FormattedListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => FormattedListPageResponse.FromRawUnchecked(rawData);

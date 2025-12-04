@@ -99,6 +99,7 @@ public sealed record class UserConnectionListParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static UserConnectionListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
@@ -150,6 +151,7 @@ public sealed record class Provider : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -170,6 +172,7 @@ public sealed record class Provider : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ProviderFromRaw.FromRawUnchecked"/>
     public static Provider FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -178,6 +181,7 @@ public sealed record class Provider : ModelBase
 
 class ProviderFromRaw : IFromRaw<Provider>
 {
+    /// <inheritdoc/>
     public Provider FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Provider.FromRawUnchecked(rawData);
 }
@@ -202,6 +206,7 @@ public sealed record class User : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -222,6 +227,7 @@ public sealed record class User : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="UserFromRaw.FromRawUnchecked"/>
     public static User FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -230,6 +236,7 @@ public sealed record class User : ModelBase
 
 class UserFromRaw : IFromRaw<User>
 {
+    /// <inheritdoc/>
     public User FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         User.FromRawUnchecked(rawData);
 }

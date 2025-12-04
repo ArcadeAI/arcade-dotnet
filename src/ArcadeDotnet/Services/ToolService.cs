@@ -10,7 +10,7 @@ using ArcadeDotnet.Services.Tools;
 
 namespace ArcadeDotnet.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class ToolService : IToolService
 {
     /// <inheritdoc/>

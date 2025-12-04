@@ -9,7 +9,7 @@ using ArcadeDotnet.Models.Tools.Formatted;
 
 namespace ArcadeDotnet.Services.Tools;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class FormattedService : IFormattedService
 {
     /// <inheritdoc/>

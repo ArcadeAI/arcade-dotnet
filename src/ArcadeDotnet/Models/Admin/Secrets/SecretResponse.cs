@@ -124,6 +124,7 @@ public sealed record class SecretResponse : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -151,6 +152,7 @@ public sealed record class SecretResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SecretResponseFromRaw.FromRawUnchecked"/>
     public static SecretResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -159,6 +161,7 @@ public sealed record class SecretResponse : ModelBase
 
 class SecretResponseFromRaw : IFromRaw<SecretResponse>
 {
+    /// <inheritdoc/>
     public SecretResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         SecretResponse.FromRawUnchecked(rawData);
 }
@@ -199,6 +202,7 @@ public sealed record class Binding : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -220,6 +224,7 @@ public sealed record class Binding : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BindingFromRaw.FromRawUnchecked"/>
     public static Binding FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -228,6 +233,7 @@ public sealed record class Binding : ModelBase
 
 class BindingFromRaw : IFromRaw<Binding>
 {
+    /// <inheritdoc/>
     public Binding FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Binding.FromRawUnchecked(rawData);
 }

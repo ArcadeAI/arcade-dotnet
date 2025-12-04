@@ -80,6 +80,7 @@ public sealed record class WorkerListPageResponse : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Items ?? [])
@@ -107,6 +108,7 @@ public sealed record class WorkerListPageResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="WorkerListPageResponseFromRaw.FromRawUnchecked"/>
     public static WorkerListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -117,6 +119,7 @@ public sealed record class WorkerListPageResponse : ModelBase
 
 class WorkerListPageResponseFromRaw : IFromRaw<WorkerListPageResponse>
 {
+    /// <inheritdoc/>
     public WorkerListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => WorkerListPageResponse.FromRawUnchecked(rawData);

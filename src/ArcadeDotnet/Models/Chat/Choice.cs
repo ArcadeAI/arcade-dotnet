@@ -100,6 +100,7 @@ public sealed record class Choice : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.FinishReason;
@@ -131,6 +132,7 @@ public sealed record class Choice : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ChoiceFromRaw.FromRawUnchecked"/>
     public static Choice FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -139,6 +141,7 @@ public sealed record class Choice : ModelBase
 
 class ChoiceFromRaw : IFromRaw<Choice>
 {
+    /// <inheritdoc/>
     public Choice FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Choice.FromRawUnchecked(rawData);
 }
