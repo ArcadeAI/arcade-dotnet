@@ -5,12 +5,12 @@ using ArcadeDotnet.Models.Admin.AuthProviders;
 
 namespace ArcadeDotnet.Tests.Models.Admin.AuthProviders;
 
-public class Oauth2ModelTest : TestBase
+public class AuthProviderPatchParamsOauth2Test : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Oauth2Model
+        var model = new AuthProviderPatchParamsOauth2
         {
             AuthorizeRequest = new()
             {
@@ -20,9 +20,9 @@ public class Oauth2ModelTest : TestBase
                 Method = "method",
                 Params = new Dictionary<string, string>() { { "foo", "string" } },
                 RequestContentType =
-                    Oauth2ModelAuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
                 ResponseContentType =
-                    Oauth2ModelAuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
             ClientID = "client_id",
@@ -36,12 +36,12 @@ public class Oauth2ModelTest : TestBase
                 Method = "method",
                 Params = new Dictionary<string, string>() { { "foo", "string" } },
                 RequestContentType =
-                    Oauth2ModelRefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
                 ResponseContentType =
-                    Oauth2ModelRefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
-            ScopeDelimiter = Oauth2ModelScopeDelimiter.Undefined,
+            ScopeDelimiter = AuthProviderPatchParamsOauth2ScopeDelimiter.Undefined,
             TokenRequest = new()
             {
                 AuthHeaderValueFormat = "auth_header_value_format",
@@ -50,9 +50,9 @@ public class Oauth2ModelTest : TestBase
                 Method = "method",
                 Params = new Dictionary<string, string>() { { "foo", "string" } },
                 RequestContentType =
-                    Oauth2ModelTokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
                 ResponseContentType =
-                    Oauth2ModelTokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
             UserInfoRequest = new()
@@ -63,15 +63,15 @@ public class Oauth2ModelTest : TestBase
                 Method = "method",
                 Params = new Dictionary<string, string>() { { "foo", "string" } },
                 RequestContentType =
-                    Oauth2ModelUserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
                 ResponseContentType =
-                    Oauth2ModelUserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
                 Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
             },
         };
 
-        Oauth2ModelAuthorizeRequest expectedAuthorizeRequest = new()
+        AuthProviderPatchParamsOauth2AuthorizeRequest expectedAuthorizeRequest = new()
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -79,19 +79,19 @@ public class Oauth2ModelTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelAuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelAuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
         string expectedClientID = "client_id";
         string expectedClientSecret = "client_secret";
-        Oauth2ModelPkce expectedPkce = new()
+        AuthProviderPatchParamsOauth2Pkce expectedPkce = new()
         {
             CodeChallengeMethod = "code_challenge_method",
             Enabled = true,
         };
-        Oauth2ModelRefreshRequest expectedRefreshRequest = new()
+        AuthProviderPatchParamsOauth2RefreshRequest expectedRefreshRequest = new()
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -99,14 +99,14 @@ public class Oauth2ModelTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelRefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelRefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
-        ApiEnum<string, Oauth2ModelScopeDelimiter> expectedScopeDelimiter =
-            Oauth2ModelScopeDelimiter.Undefined;
-        Oauth2ModelTokenRequest expectedTokenRequest = new()
+        ApiEnum<string, AuthProviderPatchParamsOauth2ScopeDelimiter> expectedScopeDelimiter =
+            AuthProviderPatchParamsOauth2ScopeDelimiter.Undefined;
+        AuthProviderPatchParamsOauth2TokenRequest expectedTokenRequest = new()
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -114,12 +114,12 @@ public class Oauth2ModelTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelTokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelTokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
-        Oauth2ModelUserInfoRequest expectedUserInfoRequest = new()
+        AuthProviderPatchParamsOauth2UserInfoRequest expectedUserInfoRequest = new()
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -127,9 +127,9 @@ public class Oauth2ModelTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelUserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelUserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
         };
@@ -147,7 +147,7 @@ public class Oauth2ModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Oauth2Model
+        var model = new AuthProviderPatchParamsOauth2
         {
             AuthorizeRequest = new()
             {
@@ -157,9 +157,9 @@ public class Oauth2ModelTest : TestBase
                 Method = "method",
                 Params = new Dictionary<string, string>() { { "foo", "string" } },
                 RequestContentType =
-                    Oauth2ModelAuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
                 ResponseContentType =
-                    Oauth2ModelAuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
             ClientID = "client_id",
@@ -173,12 +173,12 @@ public class Oauth2ModelTest : TestBase
                 Method = "method",
                 Params = new Dictionary<string, string>() { { "foo", "string" } },
                 RequestContentType =
-                    Oauth2ModelRefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
                 ResponseContentType =
-                    Oauth2ModelRefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
-            ScopeDelimiter = Oauth2ModelScopeDelimiter.Undefined,
+            ScopeDelimiter = AuthProviderPatchParamsOauth2ScopeDelimiter.Undefined,
             TokenRequest = new()
             {
                 AuthHeaderValueFormat = "auth_header_value_format",
@@ -187,9 +187,9 @@ public class Oauth2ModelTest : TestBase
                 Method = "method",
                 Params = new Dictionary<string, string>() { { "foo", "string" } },
                 RequestContentType =
-                    Oauth2ModelTokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
                 ResponseContentType =
-                    Oauth2ModelTokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
             UserInfoRequest = new()
@@ -200,16 +200,16 @@ public class Oauth2ModelTest : TestBase
                 Method = "method",
                 Params = new Dictionary<string, string>() { { "foo", "string" } },
                 RequestContentType =
-                    Oauth2ModelUserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
                 ResponseContentType =
-                    Oauth2ModelUserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
                 Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
             },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2Model>(json);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -217,7 +217,7 @@ public class Oauth2ModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Oauth2Model
+        var model = new AuthProviderPatchParamsOauth2
         {
             AuthorizeRequest = new()
             {
@@ -227,9 +227,9 @@ public class Oauth2ModelTest : TestBase
                 Method = "method",
                 Params = new Dictionary<string, string>() { { "foo", "string" } },
                 RequestContentType =
-                    Oauth2ModelAuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
                 ResponseContentType =
-                    Oauth2ModelAuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
             ClientID = "client_id",
@@ -243,12 +243,12 @@ public class Oauth2ModelTest : TestBase
                 Method = "method",
                 Params = new Dictionary<string, string>() { { "foo", "string" } },
                 RequestContentType =
-                    Oauth2ModelRefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
                 ResponseContentType =
-                    Oauth2ModelRefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
-            ScopeDelimiter = Oauth2ModelScopeDelimiter.Undefined,
+            ScopeDelimiter = AuthProviderPatchParamsOauth2ScopeDelimiter.Undefined,
             TokenRequest = new()
             {
                 AuthHeaderValueFormat = "auth_header_value_format",
@@ -257,9 +257,9 @@ public class Oauth2ModelTest : TestBase
                 Method = "method",
                 Params = new Dictionary<string, string>() { { "foo", "string" } },
                 RequestContentType =
-                    Oauth2ModelTokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
                 ResponseContentType =
-                    Oauth2ModelTokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
             UserInfoRequest = new()
@@ -270,19 +270,19 @@ public class Oauth2ModelTest : TestBase
                 Method = "method",
                 Params = new Dictionary<string, string>() { { "foo", "string" } },
                 RequestContentType =
-                    Oauth2ModelUserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
                 ResponseContentType =
-                    Oauth2ModelUserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
                 Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
             },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2Model>(json);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2>(json);
         Assert.NotNull(deserialized);
 
-        Oauth2ModelAuthorizeRequest expectedAuthorizeRequest = new()
+        AuthProviderPatchParamsOauth2AuthorizeRequest expectedAuthorizeRequest = new()
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -290,19 +290,19 @@ public class Oauth2ModelTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelAuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelAuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
         string expectedClientID = "client_id";
         string expectedClientSecret = "client_secret";
-        Oauth2ModelPkce expectedPkce = new()
+        AuthProviderPatchParamsOauth2Pkce expectedPkce = new()
         {
             CodeChallengeMethod = "code_challenge_method",
             Enabled = true,
         };
-        Oauth2ModelRefreshRequest expectedRefreshRequest = new()
+        AuthProviderPatchParamsOauth2RefreshRequest expectedRefreshRequest = new()
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -310,14 +310,14 @@ public class Oauth2ModelTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelRefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelRefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
-        ApiEnum<string, Oauth2ModelScopeDelimiter> expectedScopeDelimiter =
-            Oauth2ModelScopeDelimiter.Undefined;
-        Oauth2ModelTokenRequest expectedTokenRequest = new()
+        ApiEnum<string, AuthProviderPatchParamsOauth2ScopeDelimiter> expectedScopeDelimiter =
+            AuthProviderPatchParamsOauth2ScopeDelimiter.Undefined;
+        AuthProviderPatchParamsOauth2TokenRequest expectedTokenRequest = new()
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -325,12 +325,12 @@ public class Oauth2ModelTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelTokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelTokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
-        Oauth2ModelUserInfoRequest expectedUserInfoRequest = new()
+        AuthProviderPatchParamsOauth2UserInfoRequest expectedUserInfoRequest = new()
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -338,9 +338,9 @@ public class Oauth2ModelTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelUserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelUserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
         };
@@ -358,7 +358,7 @@ public class Oauth2ModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Oauth2Model
+        var model = new AuthProviderPatchParamsOauth2
         {
             AuthorizeRequest = new()
             {
@@ -368,9 +368,9 @@ public class Oauth2ModelTest : TestBase
                 Method = "method",
                 Params = new Dictionary<string, string>() { { "foo", "string" } },
                 RequestContentType =
-                    Oauth2ModelAuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
                 ResponseContentType =
-                    Oauth2ModelAuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
             ClientID = "client_id",
@@ -384,12 +384,12 @@ public class Oauth2ModelTest : TestBase
                 Method = "method",
                 Params = new Dictionary<string, string>() { { "foo", "string" } },
                 RequestContentType =
-                    Oauth2ModelRefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
                 ResponseContentType =
-                    Oauth2ModelRefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
-            ScopeDelimiter = Oauth2ModelScopeDelimiter.Undefined,
+            ScopeDelimiter = AuthProviderPatchParamsOauth2ScopeDelimiter.Undefined,
             TokenRequest = new()
             {
                 AuthHeaderValueFormat = "auth_header_value_format",
@@ -398,9 +398,9 @@ public class Oauth2ModelTest : TestBase
                 Method = "method",
                 Params = new Dictionary<string, string>() { { "foo", "string" } },
                 RequestContentType =
-                    Oauth2ModelTokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
                 ResponseContentType =
-                    Oauth2ModelTokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
             UserInfoRequest = new()
@@ -411,9 +411,9 @@ public class Oauth2ModelTest : TestBase
                 Method = "method",
                 Params = new Dictionary<string, string>() { { "foo", "string" } },
                 RequestContentType =
-                    Oauth2ModelUserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
                 ResponseContentType =
-                    Oauth2ModelUserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
                 Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
             },
@@ -425,7 +425,7 @@ public class Oauth2ModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Oauth2Model { };
+        var model = new AuthProviderPatchParamsOauth2 { };
 
         Assert.Null(model.AuthorizeRequest);
         Assert.False(model.RawData.ContainsKey("authorize_request"));
@@ -448,7 +448,7 @@ public class Oauth2ModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Oauth2Model { };
+        var model = new AuthProviderPatchParamsOauth2 { };
 
         model.Validate();
     }
@@ -456,7 +456,7 @@ public class Oauth2ModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Oauth2Model
+        var model = new AuthProviderPatchParamsOauth2
         {
             // Null should be interpreted as omitted for these properties
             AuthorizeRequest = null,
@@ -490,7 +490,7 @@ public class Oauth2ModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Oauth2Model
+        var model = new AuthProviderPatchParamsOauth2
         {
             // Null should be interpreted as omitted for these properties
             AuthorizeRequest = null,
@@ -507,12 +507,12 @@ public class Oauth2ModelTest : TestBase
     }
 }
 
-public class Oauth2ModelAuthorizeRequestTest : TestBase
+public class AuthProviderPatchParamsOauth2AuthorizeRequestTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Oauth2ModelAuthorizeRequest
+        var model = new AuthProviderPatchParamsOauth2AuthorizeRequest
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -520,9 +520,9 @@ public class Oauth2ModelAuthorizeRequestTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelAuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelAuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
@@ -531,13 +531,16 @@ public class Oauth2ModelAuthorizeRequestTest : TestBase
         string expectedEndpoint = "endpoint";
         string expectedMethod = "method";
         Dictionary<string, string> expectedParams = new() { { "foo", "string" } };
-        ApiEnum<string, Oauth2ModelAuthorizeRequestRequestContentType> expectedRequestContentType =
-            Oauth2ModelAuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded;
         ApiEnum<
             string,
-            Oauth2ModelAuthorizeRequestResponseContentType
+            AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType
+        > expectedRequestContentType =
+            AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<
+            string,
+            AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType
         > expectedResponseContentType =
-            Oauth2ModelAuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded;
+            AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded;
         Dictionary<string, string> expectedResponseMap = new() { { "foo", "string" } };
 
         Assert.Equal(expectedAuthHeaderValueFormat, model.AuthHeaderValueFormat);
@@ -565,7 +568,7 @@ public class Oauth2ModelAuthorizeRequestTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Oauth2ModelAuthorizeRequest
+        var model = new AuthProviderPatchParamsOauth2AuthorizeRequest
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -573,14 +576,15 @@ public class Oauth2ModelAuthorizeRequestTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelAuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelAuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2ModelAuthorizeRequest>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2AuthorizeRequest>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -588,7 +592,7 @@ public class Oauth2ModelAuthorizeRequestTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Oauth2ModelAuthorizeRequest
+        var model = new AuthProviderPatchParamsOauth2AuthorizeRequest
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -596,14 +600,15 @@ public class Oauth2ModelAuthorizeRequestTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelAuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelAuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2ModelAuthorizeRequest>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2AuthorizeRequest>(json);
         Assert.NotNull(deserialized);
 
         string expectedAuthHeaderValueFormat = "auth_header_value_format";
@@ -611,13 +616,16 @@ public class Oauth2ModelAuthorizeRequestTest : TestBase
         string expectedEndpoint = "endpoint";
         string expectedMethod = "method";
         Dictionary<string, string> expectedParams = new() { { "foo", "string" } };
-        ApiEnum<string, Oauth2ModelAuthorizeRequestRequestContentType> expectedRequestContentType =
-            Oauth2ModelAuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded;
         ApiEnum<
             string,
-            Oauth2ModelAuthorizeRequestResponseContentType
+            AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType
+        > expectedRequestContentType =
+            AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<
+            string,
+            AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType
         > expectedResponseContentType =
-            Oauth2ModelAuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded;
+            AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded;
         Dictionary<string, string> expectedResponseMap = new() { { "foo", "string" } };
 
         Assert.Equal(expectedAuthHeaderValueFormat, deserialized.AuthHeaderValueFormat);
@@ -645,7 +653,7 @@ public class Oauth2ModelAuthorizeRequestTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Oauth2ModelAuthorizeRequest
+        var model = new AuthProviderPatchParamsOauth2AuthorizeRequest
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -653,9 +661,9 @@ public class Oauth2ModelAuthorizeRequestTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelAuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelAuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
@@ -665,7 +673,7 @@ public class Oauth2ModelAuthorizeRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Oauth2ModelAuthorizeRequest { };
+        var model = new AuthProviderPatchParamsOauth2AuthorizeRequest { };
 
         Assert.Null(model.AuthHeaderValueFormat);
         Assert.False(model.RawData.ContainsKey("auth_header_value_format"));
@@ -688,7 +696,7 @@ public class Oauth2ModelAuthorizeRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Oauth2ModelAuthorizeRequest { };
+        var model = new AuthProviderPatchParamsOauth2AuthorizeRequest { };
 
         model.Validate();
     }
@@ -696,7 +704,7 @@ public class Oauth2ModelAuthorizeRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Oauth2ModelAuthorizeRequest
+        var model = new AuthProviderPatchParamsOauth2AuthorizeRequest
         {
             // Null should be interpreted as omitted for these properties
             AuthHeaderValueFormat = null,
@@ -730,7 +738,7 @@ public class Oauth2ModelAuthorizeRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Oauth2ModelAuthorizeRequest
+        var model = new AuthProviderPatchParamsOauth2AuthorizeRequest
         {
             // Null should be interpreted as omitted for these properties
             AuthHeaderValueFormat = null,
@@ -747,12 +755,12 @@ public class Oauth2ModelAuthorizeRequestTest : TestBase
     }
 }
 
-public class Oauth2ModelPkceTest : TestBase
+public class AuthProviderPatchParamsOauth2PkceTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Oauth2ModelPkce
+        var model = new AuthProviderPatchParamsOauth2Pkce
         {
             CodeChallengeMethod = "code_challenge_method",
             Enabled = true,
@@ -768,14 +776,14 @@ public class Oauth2ModelPkceTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Oauth2ModelPkce
+        var model = new AuthProviderPatchParamsOauth2Pkce
         {
             CodeChallengeMethod = "code_challenge_method",
             Enabled = true,
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2ModelPkce>(json);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2Pkce>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -783,14 +791,14 @@ public class Oauth2ModelPkceTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Oauth2ModelPkce
+        var model = new AuthProviderPatchParamsOauth2Pkce
         {
             CodeChallengeMethod = "code_challenge_method",
             Enabled = true,
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2ModelPkce>(json);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2Pkce>(json);
         Assert.NotNull(deserialized);
 
         string expectedCodeChallengeMethod = "code_challenge_method";
@@ -803,7 +811,7 @@ public class Oauth2ModelPkceTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Oauth2ModelPkce
+        var model = new AuthProviderPatchParamsOauth2Pkce
         {
             CodeChallengeMethod = "code_challenge_method",
             Enabled = true,
@@ -815,7 +823,7 @@ public class Oauth2ModelPkceTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Oauth2ModelPkce { };
+        var model = new AuthProviderPatchParamsOauth2Pkce { };
 
         Assert.Null(model.CodeChallengeMethod);
         Assert.False(model.RawData.ContainsKey("code_challenge_method"));
@@ -826,7 +834,7 @@ public class Oauth2ModelPkceTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Oauth2ModelPkce { };
+        var model = new AuthProviderPatchParamsOauth2Pkce { };
 
         model.Validate();
     }
@@ -834,7 +842,7 @@ public class Oauth2ModelPkceTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Oauth2ModelPkce
+        var model = new AuthProviderPatchParamsOauth2Pkce
         {
             // Null should be interpreted as omitted for these properties
             CodeChallengeMethod = null,
@@ -850,7 +858,7 @@ public class Oauth2ModelPkceTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Oauth2ModelPkce
+        var model = new AuthProviderPatchParamsOauth2Pkce
         {
             // Null should be interpreted as omitted for these properties
             CodeChallengeMethod = null,
@@ -861,12 +869,12 @@ public class Oauth2ModelPkceTest : TestBase
     }
 }
 
-public class Oauth2ModelRefreshRequestTest : TestBase
+public class AuthProviderPatchParamsOauth2RefreshRequestTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Oauth2ModelRefreshRequest
+        var model = new AuthProviderPatchParamsOauth2RefreshRequest
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -874,9 +882,9 @@ public class Oauth2ModelRefreshRequestTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelRefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelRefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
@@ -885,10 +893,16 @@ public class Oauth2ModelRefreshRequestTest : TestBase
         string expectedEndpoint = "endpoint";
         string expectedMethod = "method";
         Dictionary<string, string> expectedParams = new() { { "foo", "string" } };
-        ApiEnum<string, Oauth2ModelRefreshRequestRequestContentType> expectedRequestContentType =
-            Oauth2ModelRefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded;
-        ApiEnum<string, Oauth2ModelRefreshRequestResponseContentType> expectedResponseContentType =
-            Oauth2ModelRefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<
+            string,
+            AuthProviderPatchParamsOauth2RefreshRequestRequestContentType
+        > expectedRequestContentType =
+            AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<
+            string,
+            AuthProviderPatchParamsOauth2RefreshRequestResponseContentType
+        > expectedResponseContentType =
+            AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded;
         Dictionary<string, string> expectedResponseMap = new() { { "foo", "string" } };
 
         Assert.Equal(expectedAuthHeaderValueFormat, model.AuthHeaderValueFormat);
@@ -916,7 +930,7 @@ public class Oauth2ModelRefreshRequestTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Oauth2ModelRefreshRequest
+        var model = new AuthProviderPatchParamsOauth2RefreshRequest
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -924,14 +938,16 @@ public class Oauth2ModelRefreshRequestTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelRefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelRefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2ModelRefreshRequest>(json);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2RefreshRequest>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -939,7 +955,7 @@ public class Oauth2ModelRefreshRequestTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Oauth2ModelRefreshRequest
+        var model = new AuthProviderPatchParamsOauth2RefreshRequest
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -947,14 +963,16 @@ public class Oauth2ModelRefreshRequestTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelRefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelRefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2ModelRefreshRequest>(json);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2RefreshRequest>(
+            json
+        );
         Assert.NotNull(deserialized);
 
         string expectedAuthHeaderValueFormat = "auth_header_value_format";
@@ -962,10 +980,16 @@ public class Oauth2ModelRefreshRequestTest : TestBase
         string expectedEndpoint = "endpoint";
         string expectedMethod = "method";
         Dictionary<string, string> expectedParams = new() { { "foo", "string" } };
-        ApiEnum<string, Oauth2ModelRefreshRequestRequestContentType> expectedRequestContentType =
-            Oauth2ModelRefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded;
-        ApiEnum<string, Oauth2ModelRefreshRequestResponseContentType> expectedResponseContentType =
-            Oauth2ModelRefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<
+            string,
+            AuthProviderPatchParamsOauth2RefreshRequestRequestContentType
+        > expectedRequestContentType =
+            AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<
+            string,
+            AuthProviderPatchParamsOauth2RefreshRequestResponseContentType
+        > expectedResponseContentType =
+            AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded;
         Dictionary<string, string> expectedResponseMap = new() { { "foo", "string" } };
 
         Assert.Equal(expectedAuthHeaderValueFormat, deserialized.AuthHeaderValueFormat);
@@ -993,7 +1017,7 @@ public class Oauth2ModelRefreshRequestTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Oauth2ModelRefreshRequest
+        var model = new AuthProviderPatchParamsOauth2RefreshRequest
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -1001,9 +1025,9 @@ public class Oauth2ModelRefreshRequestTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelRefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelRefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
@@ -1013,7 +1037,7 @@ public class Oauth2ModelRefreshRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Oauth2ModelRefreshRequest { };
+        var model = new AuthProviderPatchParamsOauth2RefreshRequest { };
 
         Assert.Null(model.AuthHeaderValueFormat);
         Assert.False(model.RawData.ContainsKey("auth_header_value_format"));
@@ -1036,7 +1060,7 @@ public class Oauth2ModelRefreshRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Oauth2ModelRefreshRequest { };
+        var model = new AuthProviderPatchParamsOauth2RefreshRequest { };
 
         model.Validate();
     }
@@ -1044,7 +1068,7 @@ public class Oauth2ModelRefreshRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Oauth2ModelRefreshRequest
+        var model = new AuthProviderPatchParamsOauth2RefreshRequest
         {
             // Null should be interpreted as omitted for these properties
             AuthHeaderValueFormat = null,
@@ -1078,7 +1102,7 @@ public class Oauth2ModelRefreshRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Oauth2ModelRefreshRequest
+        var model = new AuthProviderPatchParamsOauth2RefreshRequest
         {
             // Null should be interpreted as omitted for these properties
             AuthHeaderValueFormat = null,
@@ -1095,12 +1119,12 @@ public class Oauth2ModelRefreshRequestTest : TestBase
     }
 }
 
-public class Oauth2ModelTokenRequestTest : TestBase
+public class AuthProviderPatchParamsOauth2TokenRequestTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Oauth2ModelTokenRequest
+        var model = new AuthProviderPatchParamsOauth2TokenRequest
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -1108,9 +1132,9 @@ public class Oauth2ModelTokenRequestTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelTokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelTokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
@@ -1119,10 +1143,16 @@ public class Oauth2ModelTokenRequestTest : TestBase
         string expectedEndpoint = "endpoint";
         string expectedMethod = "method";
         Dictionary<string, string> expectedParams = new() { { "foo", "string" } };
-        ApiEnum<string, Oauth2ModelTokenRequestRequestContentType> expectedRequestContentType =
-            Oauth2ModelTokenRequestRequestContentType.ApplicationXWwwFormUrlencoded;
-        ApiEnum<string, Oauth2ModelTokenRequestResponseContentType> expectedResponseContentType =
-            Oauth2ModelTokenRequestResponseContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<
+            string,
+            AuthProviderPatchParamsOauth2TokenRequestRequestContentType
+        > expectedRequestContentType =
+            AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<
+            string,
+            AuthProviderPatchParamsOauth2TokenRequestResponseContentType
+        > expectedResponseContentType =
+            AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded;
         Dictionary<string, string> expectedResponseMap = new() { { "foo", "string" } };
 
         Assert.Equal(expectedAuthHeaderValueFormat, model.AuthHeaderValueFormat);
@@ -1150,7 +1180,7 @@ public class Oauth2ModelTokenRequestTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Oauth2ModelTokenRequest
+        var model = new AuthProviderPatchParamsOauth2TokenRequest
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -1158,14 +1188,16 @@ public class Oauth2ModelTokenRequestTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelTokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelTokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2ModelTokenRequest>(json);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2TokenRequest>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1173,7 +1205,7 @@ public class Oauth2ModelTokenRequestTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Oauth2ModelTokenRequest
+        var model = new AuthProviderPatchParamsOauth2TokenRequest
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -1181,14 +1213,16 @@ public class Oauth2ModelTokenRequestTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelTokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelTokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2ModelTokenRequest>(json);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2TokenRequest>(
+            json
+        );
         Assert.NotNull(deserialized);
 
         string expectedAuthHeaderValueFormat = "auth_header_value_format";
@@ -1196,10 +1230,16 @@ public class Oauth2ModelTokenRequestTest : TestBase
         string expectedEndpoint = "endpoint";
         string expectedMethod = "method";
         Dictionary<string, string> expectedParams = new() { { "foo", "string" } };
-        ApiEnum<string, Oauth2ModelTokenRequestRequestContentType> expectedRequestContentType =
-            Oauth2ModelTokenRequestRequestContentType.ApplicationXWwwFormUrlencoded;
-        ApiEnum<string, Oauth2ModelTokenRequestResponseContentType> expectedResponseContentType =
-            Oauth2ModelTokenRequestResponseContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<
+            string,
+            AuthProviderPatchParamsOauth2TokenRequestRequestContentType
+        > expectedRequestContentType =
+            AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<
+            string,
+            AuthProviderPatchParamsOauth2TokenRequestResponseContentType
+        > expectedResponseContentType =
+            AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded;
         Dictionary<string, string> expectedResponseMap = new() { { "foo", "string" } };
 
         Assert.Equal(expectedAuthHeaderValueFormat, deserialized.AuthHeaderValueFormat);
@@ -1227,7 +1267,7 @@ public class Oauth2ModelTokenRequestTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Oauth2ModelTokenRequest
+        var model = new AuthProviderPatchParamsOauth2TokenRequest
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -1235,9 +1275,9 @@ public class Oauth2ModelTokenRequestTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelTokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelTokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
@@ -1247,7 +1287,7 @@ public class Oauth2ModelTokenRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Oauth2ModelTokenRequest { };
+        var model = new AuthProviderPatchParamsOauth2TokenRequest { };
 
         Assert.Null(model.AuthHeaderValueFormat);
         Assert.False(model.RawData.ContainsKey("auth_header_value_format"));
@@ -1270,7 +1310,7 @@ public class Oauth2ModelTokenRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Oauth2ModelTokenRequest { };
+        var model = new AuthProviderPatchParamsOauth2TokenRequest { };
 
         model.Validate();
     }
@@ -1278,7 +1318,7 @@ public class Oauth2ModelTokenRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Oauth2ModelTokenRequest
+        var model = new AuthProviderPatchParamsOauth2TokenRequest
         {
             // Null should be interpreted as omitted for these properties
             AuthHeaderValueFormat = null,
@@ -1312,7 +1352,7 @@ public class Oauth2ModelTokenRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Oauth2ModelTokenRequest
+        var model = new AuthProviderPatchParamsOauth2TokenRequest
         {
             // Null should be interpreted as omitted for these properties
             AuthHeaderValueFormat = null,
@@ -1329,12 +1369,12 @@ public class Oauth2ModelTokenRequestTest : TestBase
     }
 }
 
-public class Oauth2ModelUserInfoRequestTest : TestBase
+public class AuthProviderPatchParamsOauth2UserInfoRequestTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Oauth2ModelUserInfoRequest
+        var model = new AuthProviderPatchParamsOauth2UserInfoRequest
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -1342,9 +1382,9 @@ public class Oauth2ModelUserInfoRequestTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelUserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelUserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
         };
@@ -1354,12 +1394,18 @@ public class Oauth2ModelUserInfoRequestTest : TestBase
         string expectedEndpoint = "endpoint";
         string expectedMethod = "method";
         Dictionary<string, string> expectedParams = new() { { "foo", "string" } };
-        ApiEnum<string, Oauth2ModelUserInfoRequestRequestContentType> expectedRequestContentType =
-            Oauth2ModelUserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded;
-        ApiEnum<string, Oauth2ModelUserInfoRequestResponseContentType> expectedResponseContentType =
-            Oauth2ModelUserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<
+            string,
+            AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType
+        > expectedRequestContentType =
+            AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<
+            string,
+            AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType
+        > expectedResponseContentType =
+            AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded;
         Dictionary<string, string> expectedResponseMap = new() { { "foo", "string" } };
-        Oauth2ModelUserInfoRequestTriggers expectedTriggers = new()
+        AuthProviderPatchParamsOauth2UserInfoRequestTriggers expectedTriggers = new()
         {
             OnTokenGrant = true,
             OnTokenRefresh = true,
@@ -1391,7 +1437,7 @@ public class Oauth2ModelUserInfoRequestTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Oauth2ModelUserInfoRequest
+        var model = new AuthProviderPatchParamsOauth2UserInfoRequest
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -1399,15 +1445,17 @@ public class Oauth2ModelUserInfoRequestTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelUserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelUserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2ModelUserInfoRequest>(json);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2UserInfoRequest>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1415,7 +1463,7 @@ public class Oauth2ModelUserInfoRequestTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Oauth2ModelUserInfoRequest
+        var model = new AuthProviderPatchParamsOauth2UserInfoRequest
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -1423,15 +1471,17 @@ public class Oauth2ModelUserInfoRequestTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelUserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelUserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2ModelUserInfoRequest>(json);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2UserInfoRequest>(
+            json
+        );
         Assert.NotNull(deserialized);
 
         string expectedAuthHeaderValueFormat = "auth_header_value_format";
@@ -1439,12 +1489,18 @@ public class Oauth2ModelUserInfoRequestTest : TestBase
         string expectedEndpoint = "endpoint";
         string expectedMethod = "method";
         Dictionary<string, string> expectedParams = new() { { "foo", "string" } };
-        ApiEnum<string, Oauth2ModelUserInfoRequestRequestContentType> expectedRequestContentType =
-            Oauth2ModelUserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded;
-        ApiEnum<string, Oauth2ModelUserInfoRequestResponseContentType> expectedResponseContentType =
-            Oauth2ModelUserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<
+            string,
+            AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType
+        > expectedRequestContentType =
+            AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<
+            string,
+            AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType
+        > expectedResponseContentType =
+            AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded;
         Dictionary<string, string> expectedResponseMap = new() { { "foo", "string" } };
-        Oauth2ModelUserInfoRequestTriggers expectedTriggers = new()
+        AuthProviderPatchParamsOauth2UserInfoRequestTriggers expectedTriggers = new()
         {
             OnTokenGrant = true,
             OnTokenRefresh = true,
@@ -1476,7 +1532,7 @@ public class Oauth2ModelUserInfoRequestTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Oauth2ModelUserInfoRequest
+        var model = new AuthProviderPatchParamsOauth2UserInfoRequest
         {
             AuthHeaderValueFormat = "auth_header_value_format",
             AuthMethod = "auth_method",
@@ -1484,9 +1540,9 @@ public class Oauth2ModelUserInfoRequestTest : TestBase
             Method = "method",
             Params = new Dictionary<string, string>() { { "foo", "string" } },
             RequestContentType =
-                Oauth2ModelUserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
             ResponseContentType =
-                Oauth2ModelUserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
         };
@@ -1497,7 +1553,7 @@ public class Oauth2ModelUserInfoRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Oauth2ModelUserInfoRequest { };
+        var model = new AuthProviderPatchParamsOauth2UserInfoRequest { };
 
         Assert.Null(model.AuthHeaderValueFormat);
         Assert.False(model.RawData.ContainsKey("auth_header_value_format"));
@@ -1522,7 +1578,7 @@ public class Oauth2ModelUserInfoRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Oauth2ModelUserInfoRequest { };
+        var model = new AuthProviderPatchParamsOauth2UserInfoRequest { };
 
         model.Validate();
     }
@@ -1530,7 +1586,7 @@ public class Oauth2ModelUserInfoRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Oauth2ModelUserInfoRequest
+        var model = new AuthProviderPatchParamsOauth2UserInfoRequest
         {
             // Null should be interpreted as omitted for these properties
             AuthHeaderValueFormat = null,
@@ -1567,7 +1623,7 @@ public class Oauth2ModelUserInfoRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Oauth2ModelUserInfoRequest
+        var model = new AuthProviderPatchParamsOauth2UserInfoRequest
         {
             // Null should be interpreted as omitted for these properties
             AuthHeaderValueFormat = null,
@@ -1585,12 +1641,12 @@ public class Oauth2ModelUserInfoRequestTest : TestBase
     }
 }
 
-public class Oauth2ModelUserInfoRequestTriggersTest : TestBase
+public class AuthProviderPatchParamsOauth2UserInfoRequestTriggersTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Oauth2ModelUserInfoRequestTriggers
+        var model = new AuthProviderPatchParamsOauth2UserInfoRequestTriggers
         {
             OnTokenGrant = true,
             OnTokenRefresh = true,
@@ -1606,14 +1662,15 @@ public class Oauth2ModelUserInfoRequestTriggersTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Oauth2ModelUserInfoRequestTriggers
+        var model = new AuthProviderPatchParamsOauth2UserInfoRequestTriggers
         {
             OnTokenGrant = true,
             OnTokenRefresh = true,
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2ModelUserInfoRequestTriggers>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2UserInfoRequestTriggers>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -1621,14 +1678,15 @@ public class Oauth2ModelUserInfoRequestTriggersTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Oauth2ModelUserInfoRequestTriggers
+        var model = new AuthProviderPatchParamsOauth2UserInfoRequestTriggers
         {
             OnTokenGrant = true,
             OnTokenRefresh = true,
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2ModelUserInfoRequestTriggers>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2UserInfoRequestTriggers>(json);
         Assert.NotNull(deserialized);
 
         bool expectedOnTokenGrant = true;
@@ -1641,7 +1699,7 @@ public class Oauth2ModelUserInfoRequestTriggersTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Oauth2ModelUserInfoRequestTriggers
+        var model = new AuthProviderPatchParamsOauth2UserInfoRequestTriggers
         {
             OnTokenGrant = true,
             OnTokenRefresh = true,
@@ -1653,7 +1711,7 @@ public class Oauth2ModelUserInfoRequestTriggersTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Oauth2ModelUserInfoRequestTriggers { };
+        var model = new AuthProviderPatchParamsOauth2UserInfoRequestTriggers { };
 
         Assert.Null(model.OnTokenGrant);
         Assert.False(model.RawData.ContainsKey("on_token_grant"));
@@ -1664,7 +1722,7 @@ public class Oauth2ModelUserInfoRequestTriggersTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Oauth2ModelUserInfoRequestTriggers { };
+        var model = new AuthProviderPatchParamsOauth2UserInfoRequestTriggers { };
 
         model.Validate();
     }
@@ -1672,7 +1730,7 @@ public class Oauth2ModelUserInfoRequestTriggersTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Oauth2ModelUserInfoRequestTriggers
+        var model = new AuthProviderPatchParamsOauth2UserInfoRequestTriggers
         {
             // Null should be interpreted as omitted for these properties
             OnTokenGrant = null,
@@ -1688,7 +1746,7 @@ public class Oauth2ModelUserInfoRequestTriggersTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Oauth2ModelUserInfoRequestTriggers
+        var model = new AuthProviderPatchParamsOauth2UserInfoRequestTriggers
         {
             // Null should be interpreted as omitted for these properties
             OnTokenGrant = null,

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using ArcadeDotnet.Core;
-using ArcadeDotnet.Models;
-using Tools = ArcadeDotnet.Models.Tools;
+using ArcadeDotnet.Models.Tools;
+using Models = ArcadeDotnet.Models;
 
 namespace ArcadeDotnet.Tests.Models.Tools;
 
@@ -11,7 +11,7 @@ public class ToolExecutionAttemptTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tools::ToolExecutionAttempt
+        var model = new ToolExecutionAttempt
         {
             ID = "id",
             FinishedAt = "finished_at",
@@ -30,14 +30,14 @@ public class ToolExecutionAttemptTest : TestBase
                     },
                     ProviderID = "provider_id",
                     Scopes = ["string"],
-                    Status = Status.NotStarted,
+                    Status = Models::Status.NotStarted,
                     URL = "url",
                     UserID = "user_id",
                 },
                 Error = new()
                 {
                     CanRetry = true,
-                    Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+                    Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
                     Message = "message",
                     AdditionalPromptContent = "additional_prompt_content",
                     DeveloperMessage = "developer_message",
@@ -67,7 +67,7 @@ public class ToolExecutionAttemptTest : TestBase
 
         string expectedID = "id";
         string expectedFinishedAt = "finished_at";
-        Tools::ToolExecutionAttemptOutput expectedOutput = new()
+        ToolExecutionAttemptOutput expectedOutput = new()
         {
             Authorization = new()
             {
@@ -82,14 +82,14 @@ public class ToolExecutionAttemptTest : TestBase
                 },
                 ProviderID = "provider_id",
                 Scopes = ["string"],
-                Status = Status.NotStarted,
+                Status = Models::Status.NotStarted,
                 URL = "url",
                 UserID = "user_id",
             },
             Error = new()
             {
                 CanRetry = true,
-                Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+                Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
                 Message = "message",
                 AdditionalPromptContent = "additional_prompt_content",
                 DeveloperMessage = "developer_message",
@@ -127,7 +127,7 @@ public class ToolExecutionAttemptTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tools::ToolExecutionAttempt
+        var model = new ToolExecutionAttempt
         {
             ID = "id",
             FinishedAt = "finished_at",
@@ -146,14 +146,14 @@ public class ToolExecutionAttemptTest : TestBase
                     },
                     ProviderID = "provider_id",
                     Scopes = ["string"],
-                    Status = Status.NotStarted,
+                    Status = Models::Status.NotStarted,
                     URL = "url",
                     UserID = "user_id",
                 },
                 Error = new()
                 {
                     CanRetry = true,
-                    Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+                    Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
                     Message = "message",
                     AdditionalPromptContent = "additional_prompt_content",
                     DeveloperMessage = "developer_message",
@@ -182,7 +182,7 @@ public class ToolExecutionAttemptTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tools::ToolExecutionAttempt>(json);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttempt>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -190,7 +190,7 @@ public class ToolExecutionAttemptTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tools::ToolExecutionAttempt
+        var model = new ToolExecutionAttempt
         {
             ID = "id",
             FinishedAt = "finished_at",
@@ -209,14 +209,14 @@ public class ToolExecutionAttemptTest : TestBase
                     },
                     ProviderID = "provider_id",
                     Scopes = ["string"],
-                    Status = Status.NotStarted,
+                    Status = Models::Status.NotStarted,
                     URL = "url",
                     UserID = "user_id",
                 },
                 Error = new()
                 {
                     CanRetry = true,
-                    Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+                    Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
                     Message = "message",
                     AdditionalPromptContent = "additional_prompt_content",
                     DeveloperMessage = "developer_message",
@@ -245,12 +245,12 @@ public class ToolExecutionAttemptTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tools::ToolExecutionAttempt>(json);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttempt>(json);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
         string expectedFinishedAt = "finished_at";
-        Tools::ToolExecutionAttemptOutput expectedOutput = new()
+        ToolExecutionAttemptOutput expectedOutput = new()
         {
             Authorization = new()
             {
@@ -265,14 +265,14 @@ public class ToolExecutionAttemptTest : TestBase
                 },
                 ProviderID = "provider_id",
                 Scopes = ["string"],
-                Status = Status.NotStarted,
+                Status = Models::Status.NotStarted,
                 URL = "url",
                 UserID = "user_id",
             },
             Error = new()
             {
                 CanRetry = true,
-                Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+                Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
                 Message = "message",
                 AdditionalPromptContent = "additional_prompt_content",
                 DeveloperMessage = "developer_message",
@@ -310,7 +310,7 @@ public class ToolExecutionAttemptTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tools::ToolExecutionAttempt
+        var model = new ToolExecutionAttempt
         {
             ID = "id",
             FinishedAt = "finished_at",
@@ -329,14 +329,14 @@ public class ToolExecutionAttemptTest : TestBase
                     },
                     ProviderID = "provider_id",
                     Scopes = ["string"],
-                    Status = Status.NotStarted,
+                    Status = Models::Status.NotStarted,
                     URL = "url",
                     UserID = "user_id",
                 },
                 Error = new()
                 {
                     CanRetry = true,
-                    Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+                    Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
                     Message = "message",
                     AdditionalPromptContent = "additional_prompt_content",
                     DeveloperMessage = "developer_message",
@@ -370,7 +370,7 @@ public class ToolExecutionAttemptTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Tools::ToolExecutionAttempt { };
+        var model = new ToolExecutionAttempt { };
 
         Assert.Null(model.ID);
         Assert.False(model.RawData.ContainsKey("id"));
@@ -389,7 +389,7 @@ public class ToolExecutionAttemptTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Tools::ToolExecutionAttempt { };
+        var model = new ToolExecutionAttempt { };
 
         model.Validate();
     }
@@ -397,7 +397,7 @@ public class ToolExecutionAttemptTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Tools::ToolExecutionAttempt
+        var model = new ToolExecutionAttempt
         {
             // Null should be interpreted as omitted for these properties
             ID = null,
@@ -425,7 +425,7 @@ public class ToolExecutionAttemptTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Tools::ToolExecutionAttempt
+        var model = new ToolExecutionAttempt
         {
             // Null should be interpreted as omitted for these properties
             ID = null,
@@ -445,7 +445,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tools::ToolExecutionAttemptOutput
+        var model = new ToolExecutionAttemptOutput
         {
             Authorization = new()
             {
@@ -460,14 +460,14 @@ public class ToolExecutionAttemptOutputTest : TestBase
                 },
                 ProviderID = "provider_id",
                 Scopes = ["string"],
-                Status = Status.NotStarted,
+                Status = Models::Status.NotStarted,
                 URL = "url",
                 UserID = "user_id",
             },
             Error = new()
             {
                 CanRetry = true,
-                Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+                Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
                 Message = "message",
                 AdditionalPromptContent = "additional_prompt_content",
                 DeveloperMessage = "developer_message",
@@ -491,7 +491,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
             Value = JsonSerializer.Deserialize<JsonElement>("{}"),
         };
 
-        AuthorizationResponse expectedAuthorization = new()
+        Models::AuthorizationResponse expectedAuthorization = new()
         {
             ID = "id",
             Context = new()
@@ -504,14 +504,14 @@ public class ToolExecutionAttemptOutputTest : TestBase
             },
             ProviderID = "provider_id",
             Scopes = ["string"],
-            Status = Status.NotStarted,
+            Status = Models::Status.NotStarted,
             URL = "url",
             UserID = "user_id",
         };
-        Tools::ToolExecutionAttemptOutputError expectedError = new()
+        ToolExecutionAttemptOutputError expectedError = new()
         {
             CanRetry = true,
-            Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+            Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
             Message = "message",
             AdditionalPromptContent = "additional_prompt_content",
             DeveloperMessage = "developer_message",
@@ -523,7 +523,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
             Stacktrace = "stacktrace",
             StatusCode = 0,
         };
-        List<Tools::LogModel> expectedLogs =
+        List<ToolExecutionAttemptOutputLog> expectedLogs =
         [
             new()
             {
@@ -549,7 +549,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tools::ToolExecutionAttemptOutput
+        var model = new ToolExecutionAttemptOutput
         {
             Authorization = new()
             {
@@ -564,14 +564,14 @@ public class ToolExecutionAttemptOutputTest : TestBase
                 },
                 ProviderID = "provider_id",
                 Scopes = ["string"],
-                Status = Status.NotStarted,
+                Status = Models::Status.NotStarted,
                 URL = "url",
                 UserID = "user_id",
             },
             Error = new()
             {
                 CanRetry = true,
-                Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+                Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
                 Message = "message",
                 AdditionalPromptContent = "additional_prompt_content",
                 DeveloperMessage = "developer_message",
@@ -596,7 +596,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tools::ToolExecutionAttemptOutput>(json);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutput>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -604,7 +604,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tools::ToolExecutionAttemptOutput
+        var model = new ToolExecutionAttemptOutput
         {
             Authorization = new()
             {
@@ -619,14 +619,14 @@ public class ToolExecutionAttemptOutputTest : TestBase
                 },
                 ProviderID = "provider_id",
                 Scopes = ["string"],
-                Status = Status.NotStarted,
+                Status = Models::Status.NotStarted,
                 URL = "url",
                 UserID = "user_id",
             },
             Error = new()
             {
                 CanRetry = true,
-                Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+                Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
                 Message = "message",
                 AdditionalPromptContent = "additional_prompt_content",
                 DeveloperMessage = "developer_message",
@@ -651,10 +651,10 @@ public class ToolExecutionAttemptOutputTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tools::ToolExecutionAttemptOutput>(json);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutput>(json);
         Assert.NotNull(deserialized);
 
-        AuthorizationResponse expectedAuthorization = new()
+        Models::AuthorizationResponse expectedAuthorization = new()
         {
             ID = "id",
             Context = new()
@@ -667,14 +667,14 @@ public class ToolExecutionAttemptOutputTest : TestBase
             },
             ProviderID = "provider_id",
             Scopes = ["string"],
-            Status = Status.NotStarted,
+            Status = Models::Status.NotStarted,
             URL = "url",
             UserID = "user_id",
         };
-        Tools::ToolExecutionAttemptOutputError expectedError = new()
+        ToolExecutionAttemptOutputError expectedError = new()
         {
             CanRetry = true,
-            Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+            Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
             Message = "message",
             AdditionalPromptContent = "additional_prompt_content",
             DeveloperMessage = "developer_message",
@@ -686,7 +686,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
             Stacktrace = "stacktrace",
             StatusCode = 0,
         };
-        List<Tools::LogModel> expectedLogs =
+        List<ToolExecutionAttemptOutputLog> expectedLogs =
         [
             new()
             {
@@ -713,7 +713,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tools::ToolExecutionAttemptOutput
+        var model = new ToolExecutionAttemptOutput
         {
             Authorization = new()
             {
@@ -728,14 +728,14 @@ public class ToolExecutionAttemptOutputTest : TestBase
                 },
                 ProviderID = "provider_id",
                 Scopes = ["string"],
-                Status = Status.NotStarted,
+                Status = Models::Status.NotStarted,
                 URL = "url",
                 UserID = "user_id",
             },
             Error = new()
             {
                 CanRetry = true,
-                Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+                Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
                 Message = "message",
                 AdditionalPromptContent = "additional_prompt_content",
                 DeveloperMessage = "developer_message",
@@ -765,7 +765,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Tools::ToolExecutionAttemptOutput { };
+        var model = new ToolExecutionAttemptOutput { };
 
         Assert.Null(model.Authorization);
         Assert.False(model.RawData.ContainsKey("authorization"));
@@ -780,7 +780,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Tools::ToolExecutionAttemptOutput { };
+        var model = new ToolExecutionAttemptOutput { };
 
         model.Validate();
     }
@@ -788,7 +788,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Tools::ToolExecutionAttemptOutput
+        var model = new ToolExecutionAttemptOutput
         {
             // Null should be interpreted as omitted for these properties
             Authorization = null,
@@ -810,7 +810,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Tools::ToolExecutionAttemptOutput
+        var model = new ToolExecutionAttemptOutput
         {
             // Null should be interpreted as omitted for these properties
             Authorization = null,
@@ -828,10 +828,10 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tools::ToolExecutionAttemptOutputError
+        var model = new ToolExecutionAttemptOutputError
         {
             CanRetry = true,
-            Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+            Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
             Message = "message",
             AdditionalPromptContent = "additional_prompt_content",
             DeveloperMessage = "developer_message",
@@ -845,8 +845,8 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
         };
 
         bool expectedCanRetry = true;
-        ApiEnum<string, Tools::ToolExecutionAttemptOutputErrorKind> expectedKind =
-            Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed;
+        ApiEnum<string, ToolExecutionAttemptOutputErrorKind> expectedKind =
+            ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed;
         string expectedMessage = "message";
         string expectedAdditionalPromptContent = "additional_prompt_content";
         string expectedDeveloperMessage = "developer_message";
@@ -878,10 +878,10 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tools::ToolExecutionAttemptOutputError
+        var model = new ToolExecutionAttemptOutputError
         {
             CanRetry = true,
-            Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+            Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
             Message = "message",
             AdditionalPromptContent = "additional_prompt_content",
             DeveloperMessage = "developer_message",
@@ -895,7 +895,7 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tools::ToolExecutionAttemptOutputError>(json);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutputError>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -903,10 +903,10 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tools::ToolExecutionAttemptOutputError
+        var model = new ToolExecutionAttemptOutputError
         {
             CanRetry = true,
-            Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+            Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
             Message = "message",
             AdditionalPromptContent = "additional_prompt_content",
             DeveloperMessage = "developer_message",
@@ -920,12 +920,12 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tools::ToolExecutionAttemptOutputError>(json);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutputError>(json);
         Assert.NotNull(deserialized);
 
         bool expectedCanRetry = true;
-        ApiEnum<string, Tools::ToolExecutionAttemptOutputErrorKind> expectedKind =
-            Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed;
+        ApiEnum<string, ToolExecutionAttemptOutputErrorKind> expectedKind =
+            ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed;
         string expectedMessage = "message";
         string expectedAdditionalPromptContent = "additional_prompt_content";
         string expectedDeveloperMessage = "developer_message";
@@ -957,10 +957,10 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tools::ToolExecutionAttemptOutputError
+        var model = new ToolExecutionAttemptOutputError
         {
             CanRetry = true,
-            Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+            Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
             Message = "message",
             AdditionalPromptContent = "additional_prompt_content",
             DeveloperMessage = "developer_message",
@@ -979,10 +979,10 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Tools::ToolExecutionAttemptOutputError
+        var model = new ToolExecutionAttemptOutputError
         {
             CanRetry = true,
-            Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+            Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
             Message = "message",
         };
 
@@ -1003,10 +1003,10 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Tools::ToolExecutionAttemptOutputError
+        var model = new ToolExecutionAttemptOutputError
         {
             CanRetry = true,
-            Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+            Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
             Message = "message",
         };
 
@@ -1016,10 +1016,10 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Tools::ToolExecutionAttemptOutputError
+        var model = new ToolExecutionAttemptOutputError
         {
             CanRetry = true,
-            Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+            Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
             Message = "message",
 
             // Null should be interpreted as omitted for these properties
@@ -1048,10 +1048,10 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Tools::ToolExecutionAttemptOutputError
+        var model = new ToolExecutionAttemptOutputError
         {
             CanRetry = true,
-            Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+            Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
             Message = "message",
 
             // Null should be interpreted as omitted for these properties
@@ -1067,12 +1067,12 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
     }
 }
 
-public class LogModelTest : TestBase
+public class ToolExecutionAttemptOutputLogTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tools::LogModel
+        var model = new ToolExecutionAttemptOutputLog
         {
             Level = "level",
             Message = "message",
@@ -1091,7 +1091,7 @@ public class LogModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tools::LogModel
+        var model = new ToolExecutionAttemptOutputLog
         {
             Level = "level",
             Message = "message",
@@ -1099,7 +1099,7 @@ public class LogModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tools::LogModel>(json);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutputLog>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -1107,7 +1107,7 @@ public class LogModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tools::LogModel
+        var model = new ToolExecutionAttemptOutputLog
         {
             Level = "level",
             Message = "message",
@@ -1115,7 +1115,7 @@ public class LogModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tools::LogModel>(json);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutputLog>(json);
         Assert.NotNull(deserialized);
 
         string expectedLevel = "level";
@@ -1130,7 +1130,7 @@ public class LogModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tools::LogModel
+        var model = new ToolExecutionAttemptOutputLog
         {
             Level = "level",
             Message = "message",
@@ -1143,7 +1143,7 @@ public class LogModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Tools::LogModel { Level = "level", Message = "message" };
+        var model = new ToolExecutionAttemptOutputLog { Level = "level", Message = "message" };
 
         Assert.Null(model.Subtype);
         Assert.False(model.RawData.ContainsKey("subtype"));
@@ -1152,7 +1152,7 @@ public class LogModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Tools::LogModel { Level = "level", Message = "message" };
+        var model = new ToolExecutionAttemptOutputLog { Level = "level", Message = "message" };
 
         model.Validate();
     }
@@ -1160,7 +1160,7 @@ public class LogModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Tools::LogModel
+        var model = new ToolExecutionAttemptOutputLog
         {
             Level = "level",
             Message = "message",
@@ -1176,7 +1176,7 @@ public class LogModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Tools::LogModel
+        var model = new ToolExecutionAttemptOutputLog
         {
             Level = "level",
             Message = "message",

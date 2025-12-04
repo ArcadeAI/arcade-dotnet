@@ -4,12 +4,12 @@ using ArcadeDotnet.Models.Workers;
 
 namespace ArcadeDotnet.Tests.Models.Workers;
 
-public class HTTPModelTest : TestBase
+public class WorkerUpdateParamsHTTPTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new HTTPModel
+        var model = new WorkerUpdateParamsHTTP
         {
             Retry = 0,
             Secret = "secret",
@@ -31,7 +31,7 @@ public class HTTPModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new HTTPModel
+        var model = new WorkerUpdateParamsHTTP
         {
             Retry = 0,
             Secret = "secret",
@@ -40,7 +40,7 @@ public class HTTPModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<HTTPModel>(json);
+        var deserialized = JsonSerializer.Deserialize<WorkerUpdateParamsHTTP>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -48,7 +48,7 @@ public class HTTPModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new HTTPModel
+        var model = new WorkerUpdateParamsHTTP
         {
             Retry = 0,
             Secret = "secret",
@@ -57,7 +57,7 @@ public class HTTPModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<HTTPModel>(json);
+        var deserialized = JsonSerializer.Deserialize<WorkerUpdateParamsHTTP>(json);
         Assert.NotNull(deserialized);
 
         long expectedRetry = 0;
@@ -74,7 +74,7 @@ public class HTTPModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new HTTPModel
+        var model = new WorkerUpdateParamsHTTP
         {
             Retry = 0,
             Secret = "secret",
@@ -88,7 +88,7 @@ public class HTTPModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new HTTPModel { };
+        var model = new WorkerUpdateParamsHTTP { };
 
         Assert.Null(model.Retry);
         Assert.False(model.RawData.ContainsKey("retry"));
@@ -103,7 +103,7 @@ public class HTTPModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new HTTPModel { };
+        var model = new WorkerUpdateParamsHTTP { };
 
         model.Validate();
     }
@@ -111,7 +111,7 @@ public class HTTPModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new HTTPModel
+        var model = new WorkerUpdateParamsHTTP
         {
             // Null should be interpreted as omitted for these properties
             Retry = null,
@@ -133,7 +133,7 @@ public class HTTPModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new HTTPModel
+        var model = new WorkerUpdateParamsHTTP
         {
             // Null should be interpreted as omitted for these properties
             Retry = null,
@@ -146,12 +146,12 @@ public class HTTPModelTest : TestBase
     }
 }
 
-public class McpModelTest : TestBase
+public class WorkerUpdateParamsMcpTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new McpModel
+        var model = new WorkerUpdateParamsMcp
         {
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
@@ -167,7 +167,7 @@ public class McpModelTest : TestBase
         };
 
         Dictionary<string, string> expectedHeaders = new() { { "foo", "string" } };
-        McpModelOauth2 expectedOauth2 = new()
+        WorkerUpdateParamsMcpOauth2 expectedOauth2 = new()
         {
             AuthorizationURL = "authorization_url",
             ClientID = "client_id",
@@ -201,7 +201,7 @@ public class McpModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new McpModel
+        var model = new WorkerUpdateParamsMcp
         {
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
@@ -217,7 +217,7 @@ public class McpModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<McpModel>(json);
+        var deserialized = JsonSerializer.Deserialize<WorkerUpdateParamsMcp>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -225,7 +225,7 @@ public class McpModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new McpModel
+        var model = new WorkerUpdateParamsMcp
         {
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
@@ -241,11 +241,11 @@ public class McpModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<McpModel>(json);
+        var deserialized = JsonSerializer.Deserialize<WorkerUpdateParamsMcp>(json);
         Assert.NotNull(deserialized);
 
         Dictionary<string, string> expectedHeaders = new() { { "foo", "string" } };
-        McpModelOauth2 expectedOauth2 = new()
+        WorkerUpdateParamsMcpOauth2 expectedOauth2 = new()
         {
             AuthorizationURL = "authorization_url",
             ClientID = "client_id",
@@ -279,7 +279,7 @@ public class McpModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new McpModel
+        var model = new WorkerUpdateParamsMcp
         {
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
@@ -300,7 +300,7 @@ public class McpModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new McpModel { };
+        var model = new WorkerUpdateParamsMcp { };
 
         Assert.Null(model.Headers);
         Assert.False(model.RawData.ContainsKey("headers"));
@@ -319,7 +319,7 @@ public class McpModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new McpModel { };
+        var model = new WorkerUpdateParamsMcp { };
 
         model.Validate();
     }
@@ -327,7 +327,7 @@ public class McpModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new McpModel
+        var model = new WorkerUpdateParamsMcp
         {
             // Null should be interpreted as omitted for these properties
             Headers = null,
@@ -355,7 +355,7 @@ public class McpModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new McpModel
+        var model = new WorkerUpdateParamsMcp
         {
             // Null should be interpreted as omitted for these properties
             Headers = null,
@@ -370,12 +370,12 @@ public class McpModelTest : TestBase
     }
 }
 
-public class McpModelOauth2Test : TestBase
+public class WorkerUpdateParamsMcpOauth2Test : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new McpModelOauth2
+        var model = new WorkerUpdateParamsMcpOauth2
         {
             AuthorizationURL = "authorization_url",
             ClientID = "client_id",
@@ -394,7 +394,7 @@ public class McpModelOauth2Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new McpModelOauth2
+        var model = new WorkerUpdateParamsMcpOauth2
         {
             AuthorizationURL = "authorization_url",
             ClientID = "client_id",
@@ -402,7 +402,7 @@ public class McpModelOauth2Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<McpModelOauth2>(json);
+        var deserialized = JsonSerializer.Deserialize<WorkerUpdateParamsMcpOauth2>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -410,7 +410,7 @@ public class McpModelOauth2Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new McpModelOauth2
+        var model = new WorkerUpdateParamsMcpOauth2
         {
             AuthorizationURL = "authorization_url",
             ClientID = "client_id",
@@ -418,7 +418,7 @@ public class McpModelOauth2Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<McpModelOauth2>(json);
+        var deserialized = JsonSerializer.Deserialize<WorkerUpdateParamsMcpOauth2>(json);
         Assert.NotNull(deserialized);
 
         string expectedAuthorizationURL = "authorization_url";
@@ -433,7 +433,7 @@ public class McpModelOauth2Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new McpModelOauth2
+        var model = new WorkerUpdateParamsMcpOauth2
         {
             AuthorizationURL = "authorization_url",
             ClientID = "client_id",
@@ -446,7 +446,7 @@ public class McpModelOauth2Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new McpModelOauth2 { };
+        var model = new WorkerUpdateParamsMcpOauth2 { };
 
         Assert.Null(model.AuthorizationURL);
         Assert.False(model.RawData.ContainsKey("authorization_url"));
@@ -459,7 +459,7 @@ public class McpModelOauth2Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new McpModelOauth2 { };
+        var model = new WorkerUpdateParamsMcpOauth2 { };
 
         model.Validate();
     }
@@ -467,7 +467,7 @@ public class McpModelOauth2Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new McpModelOauth2
+        var model = new WorkerUpdateParamsMcpOauth2
         {
             // Null should be interpreted as omitted for these properties
             AuthorizationURL = null,
@@ -486,7 +486,7 @@ public class McpModelOauth2Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new McpModelOauth2
+        var model = new WorkerUpdateParamsMcpOauth2
         {
             // Null should be interpreted as omitted for these properties
             AuthorizationURL = null,

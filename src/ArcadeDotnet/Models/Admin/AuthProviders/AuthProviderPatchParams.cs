@@ -24,7 +24,7 @@ public sealed record class AuthProviderPatchParams : ParamsBase
 
     public string? ID { get; init; }
 
-    public string? ID1
+    public string? IDValue
     {
         get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "id"); }
         init
@@ -52,9 +52,15 @@ public sealed record class AuthProviderPatchParams : ParamsBase
         }
     }
 
-    public Oauth2Model? Oauth2
+    public AuthProviderPatchParamsOauth2? Oauth2
     {
-        get { return ModelBase.GetNullableClass<Oauth2Model>(this.RawBodyData, "oauth2"); }
+        get
+        {
+            return ModelBase.GetNullableClass<AuthProviderPatchParamsOauth2>(
+                this.RawBodyData,
+                "oauth2"
+            );
+        }
         init
         {
             if (value == null)
@@ -174,14 +180,16 @@ public sealed record class AuthProviderPatchParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Oauth2Model, Oauth2ModelFromRaw>))]
-public sealed record class Oauth2Model : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<AuthProviderPatchParamsOauth2, AuthProviderPatchParamsOauth2FromRaw>)
+)]
+public sealed record class AuthProviderPatchParamsOauth2 : ModelBase
 {
-    public Oauth2ModelAuthorizeRequest? AuthorizeRequest
+    public AuthProviderPatchParamsOauth2AuthorizeRequest? AuthorizeRequest
     {
         get
         {
-            return ModelBase.GetNullableClass<Oauth2ModelAuthorizeRequest>(
+            return ModelBase.GetNullableClass<AuthProviderPatchParamsOauth2AuthorizeRequest>(
                 this.RawData,
                 "authorize_request"
             );
@@ -225,9 +233,15 @@ public sealed record class Oauth2Model : ModelBase
         }
     }
 
-    public Oauth2ModelPkce? Pkce
+    public AuthProviderPatchParamsOauth2Pkce? Pkce
     {
-        get { return ModelBase.GetNullableClass<Oauth2ModelPkce>(this.RawData, "pkce"); }
+        get
+        {
+            return ModelBase.GetNullableClass<AuthProviderPatchParamsOauth2Pkce>(
+                this.RawData,
+                "pkce"
+            );
+        }
         init
         {
             if (value == null)
@@ -239,11 +253,11 @@ public sealed record class Oauth2Model : ModelBase
         }
     }
 
-    public Oauth2ModelRefreshRequest? RefreshRequest
+    public AuthProviderPatchParamsOauth2RefreshRequest? RefreshRequest
     {
         get
         {
-            return ModelBase.GetNullableClass<Oauth2ModelRefreshRequest>(
+            return ModelBase.GetNullableClass<AuthProviderPatchParamsOauth2RefreshRequest>(
                 this.RawData,
                 "refresh_request"
             );
@@ -259,14 +273,13 @@ public sealed record class Oauth2Model : ModelBase
         }
     }
 
-    public ApiEnum<string, Oauth2ModelScopeDelimiter>? ScopeDelimiter
+    public ApiEnum<string, AuthProviderPatchParamsOauth2ScopeDelimiter>? ScopeDelimiter
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, Oauth2ModelScopeDelimiter>>(
-                this.RawData,
-                "scope_delimiter"
-            );
+            return ModelBase.GetNullableClass<
+                ApiEnum<string, AuthProviderPatchParamsOauth2ScopeDelimiter>
+            >(this.RawData, "scope_delimiter");
         }
         init
         {
@@ -279,11 +292,11 @@ public sealed record class Oauth2Model : ModelBase
         }
     }
 
-    public Oauth2ModelTokenRequest? TokenRequest
+    public AuthProviderPatchParamsOauth2TokenRequest? TokenRequest
     {
         get
         {
-            return ModelBase.GetNullableClass<Oauth2ModelTokenRequest>(
+            return ModelBase.GetNullableClass<AuthProviderPatchParamsOauth2TokenRequest>(
                 this.RawData,
                 "token_request"
             );
@@ -299,11 +312,11 @@ public sealed record class Oauth2Model : ModelBase
         }
     }
 
-    public Oauth2ModelUserInfoRequest? UserInfoRequest
+    public AuthProviderPatchParamsOauth2UserInfoRequest? UserInfoRequest
     {
         get
         {
-            return ModelBase.GetNullableClass<Oauth2ModelUserInfoRequest>(
+            return ModelBase.GetNullableClass<AuthProviderPatchParamsOauth2UserInfoRequest>(
                 this.RawData,
                 "user_info_request"
             );
@@ -331,37 +344,43 @@ public sealed record class Oauth2Model : ModelBase
         this.UserInfoRequest?.Validate();
     }
 
-    public Oauth2Model() { }
+    public AuthProviderPatchParamsOauth2() { }
 
-    public Oauth2Model(IReadOnlyDictionary<string, JsonElement> rawData)
+    public AuthProviderPatchParamsOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Oauth2Model(FrozenDictionary<string, JsonElement> rawData)
+    AuthProviderPatchParamsOauth2(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Oauth2Model FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static AuthProviderPatchParamsOauth2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Oauth2ModelFromRaw : IFromRaw<Oauth2Model>
+class AuthProviderPatchParamsOauth2FromRaw : IFromRaw<AuthProviderPatchParamsOauth2>
 {
-    public Oauth2Model FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Oauth2Model.FromRawUnchecked(rawData);
+    public AuthProviderPatchParamsOauth2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthProviderPatchParamsOauth2.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
-    typeof(ModelConverter<Oauth2ModelAuthorizeRequest, Oauth2ModelAuthorizeRequestFromRaw>)
+    typeof(ModelConverter<
+        AuthProviderPatchParamsOauth2AuthorizeRequest,
+        AuthProviderPatchParamsOauth2AuthorizeRequestFromRaw
+    >)
 )]
-public sealed record class Oauth2ModelAuthorizeRequest : ModelBase
+public sealed record class AuthProviderPatchParamsOauth2AuthorizeRequest : ModelBase
 {
     public string? AuthHeaderValueFormat
     {
@@ -436,12 +455,15 @@ public sealed record class Oauth2ModelAuthorizeRequest : ModelBase
         }
     }
 
-    public ApiEnum<string, Oauth2ModelAuthorizeRequestRequestContentType>? RequestContentType
+    public ApiEnum<
+        string,
+        AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType
+    >? RequestContentType
     {
         get
         {
             return ModelBase.GetNullableClass<
-                ApiEnum<string, Oauth2ModelAuthorizeRequestRequestContentType>
+                ApiEnum<string, AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType>
             >(this.RawData, "request_content_type");
         }
         init
@@ -455,12 +477,15 @@ public sealed record class Oauth2ModelAuthorizeRequest : ModelBase
         }
     }
 
-    public ApiEnum<string, Oauth2ModelAuthorizeRequestResponseContentType>? ResponseContentType
+    public ApiEnum<
+        string,
+        AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType
+    >? ResponseContentType
     {
         get
         {
             return ModelBase.GetNullableClass<
-                ApiEnum<string, Oauth2ModelAuthorizeRequestResponseContentType>
+                ApiEnum<string, AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType>
             >(this.RawData, "response_content_type");
         }
         init
@@ -506,22 +531,24 @@ public sealed record class Oauth2ModelAuthorizeRequest : ModelBase
         _ = this.ResponseMap;
     }
 
-    public Oauth2ModelAuthorizeRequest() { }
+    public AuthProviderPatchParamsOauth2AuthorizeRequest() { }
 
-    public Oauth2ModelAuthorizeRequest(IReadOnlyDictionary<string, JsonElement> rawData)
+    public AuthProviderPatchParamsOauth2AuthorizeRequest(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Oauth2ModelAuthorizeRequest(FrozenDictionary<string, JsonElement> rawData)
+    AuthProviderPatchParamsOauth2AuthorizeRequest(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Oauth2ModelAuthorizeRequest FromRawUnchecked(
+    public static AuthProviderPatchParamsOauth2AuthorizeRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -529,24 +556,25 @@ public sealed record class Oauth2ModelAuthorizeRequest : ModelBase
     }
 }
 
-class Oauth2ModelAuthorizeRequestFromRaw : IFromRaw<Oauth2ModelAuthorizeRequest>
+class AuthProviderPatchParamsOauth2AuthorizeRequestFromRaw
+    : IFromRaw<AuthProviderPatchParamsOauth2AuthorizeRequest>
 {
-    public Oauth2ModelAuthorizeRequest FromRawUnchecked(
+    public AuthProviderPatchParamsOauth2AuthorizeRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => Oauth2ModelAuthorizeRequest.FromRawUnchecked(rawData);
+    ) => AuthProviderPatchParamsOauth2AuthorizeRequest.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(Oauth2ModelAuthorizeRequestRequestContentTypeConverter))]
-public enum Oauth2ModelAuthorizeRequestRequestContentType
+[JsonConverter(typeof(AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentTypeConverter))]
+public enum AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class Oauth2ModelAuthorizeRequestRequestContentTypeConverter
-    : JsonConverter<Oauth2ModelAuthorizeRequestRequestContentType>
+sealed class AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentTypeConverter
+    : JsonConverter<AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType>
 {
-    public override Oauth2ModelAuthorizeRequestRequestContentType Read(
+    public override AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -555,15 +583,16 @@ sealed class Oauth2ModelAuthorizeRequestRequestContentTypeConverter
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                Oauth2ModelAuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
-            "application/json" => Oauth2ModelAuthorizeRequestRequestContentType.ApplicationJson,
-            _ => (Oauth2ModelAuthorizeRequestRequestContentType)(-1),
+                AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationJson,
+            _ => (AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Oauth2ModelAuthorizeRequestRequestContentType value,
+        AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType value,
         JsonSerializerOptions options
     )
     {
@@ -571,56 +600,9 @@ sealed class Oauth2ModelAuthorizeRequestRequestContentTypeConverter
             writer,
             value switch
             {
-                Oauth2ModelAuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
+                AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                Oauth2ModelAuthorizeRequestRequestContentType.ApplicationJson => "application/json",
-                _ => throw new ArcadeInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
-}
-
-[JsonConverter(typeof(Oauth2ModelAuthorizeRequestResponseContentTypeConverter))]
-public enum Oauth2ModelAuthorizeRequestResponseContentType
-{
-    ApplicationXWwwFormUrlencoded,
-    ApplicationJson,
-}
-
-sealed class Oauth2ModelAuthorizeRequestResponseContentTypeConverter
-    : JsonConverter<Oauth2ModelAuthorizeRequestResponseContentType>
-{
-    public override Oauth2ModelAuthorizeRequestResponseContentType Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "application/x-www-form-urlencoded" =>
-                Oauth2ModelAuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
-            "application/json" => Oauth2ModelAuthorizeRequestResponseContentType.ApplicationJson,
-            _ => (Oauth2ModelAuthorizeRequestResponseContentType)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        Oauth2ModelAuthorizeRequestResponseContentType value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                Oauth2ModelAuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
-                    "application/x-www-form-urlencoded",
-                Oauth2ModelAuthorizeRequestResponseContentType.ApplicationJson =>
+                AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationJson =>
                     "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
@@ -631,8 +613,62 @@ sealed class Oauth2ModelAuthorizeRequestResponseContentTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Oauth2ModelPkce, Oauth2ModelPkceFromRaw>))]
-public sealed record class Oauth2ModelPkce : ModelBase
+[JsonConverter(typeof(AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentTypeConverter))]
+public enum AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType
+{
+    ApplicationXWwwFormUrlencoded,
+    ApplicationJson,
+}
+
+sealed class AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentTypeConverter
+    : JsonConverter<AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType>
+{
+    public override AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "application/x-www-form-urlencoded" =>
+                AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationJson,
+            _ => (AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
+                    "application/x-www-form-urlencoded",
+                AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationJson =>
+                    "application/json",
+                _ => throw new ArcadeInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        AuthProviderPatchParamsOauth2Pkce,
+        AuthProviderPatchParamsOauth2PkceFromRaw
+    >)
+)]
+public sealed record class AuthProviderPatchParamsOauth2Pkce : ModelBase
 {
     public string? CodeChallengeMethod
     {
@@ -668,35 +704,43 @@ public sealed record class Oauth2ModelPkce : ModelBase
         _ = this.Enabled;
     }
 
-    public Oauth2ModelPkce() { }
+    public AuthProviderPatchParamsOauth2Pkce() { }
 
-    public Oauth2ModelPkce(IReadOnlyDictionary<string, JsonElement> rawData)
+    public AuthProviderPatchParamsOauth2Pkce(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Oauth2ModelPkce(FrozenDictionary<string, JsonElement> rawData)
+    AuthProviderPatchParamsOauth2Pkce(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Oauth2ModelPkce FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static AuthProviderPatchParamsOauth2Pkce FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Oauth2ModelPkceFromRaw : IFromRaw<Oauth2ModelPkce>
+class AuthProviderPatchParamsOauth2PkceFromRaw : IFromRaw<AuthProviderPatchParamsOauth2Pkce>
 {
-    public Oauth2ModelPkce FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Oauth2ModelPkce.FromRawUnchecked(rawData);
+    public AuthProviderPatchParamsOauth2Pkce FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthProviderPatchParamsOauth2Pkce.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Oauth2ModelRefreshRequest, Oauth2ModelRefreshRequestFromRaw>))]
-public sealed record class Oauth2ModelRefreshRequest : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        AuthProviderPatchParamsOauth2RefreshRequest,
+        AuthProviderPatchParamsOauth2RefreshRequestFromRaw
+    >)
+)]
+public sealed record class AuthProviderPatchParamsOauth2RefreshRequest : ModelBase
 {
     public string? AuthHeaderValueFormat
     {
@@ -771,12 +815,15 @@ public sealed record class Oauth2ModelRefreshRequest : ModelBase
         }
     }
 
-    public ApiEnum<string, Oauth2ModelRefreshRequestRequestContentType>? RequestContentType
+    public ApiEnum<
+        string,
+        AuthProviderPatchParamsOauth2RefreshRequestRequestContentType
+    >? RequestContentType
     {
         get
         {
             return ModelBase.GetNullableClass<
-                ApiEnum<string, Oauth2ModelRefreshRequestRequestContentType>
+                ApiEnum<string, AuthProviderPatchParamsOauth2RefreshRequestRequestContentType>
             >(this.RawData, "request_content_type");
         }
         init
@@ -790,12 +837,15 @@ public sealed record class Oauth2ModelRefreshRequest : ModelBase
         }
     }
 
-    public ApiEnum<string, Oauth2ModelRefreshRequestResponseContentType>? ResponseContentType
+    public ApiEnum<
+        string,
+        AuthProviderPatchParamsOauth2RefreshRequestResponseContentType
+    >? ResponseContentType
     {
         get
         {
             return ModelBase.GetNullableClass<
-                ApiEnum<string, Oauth2ModelRefreshRequestResponseContentType>
+                ApiEnum<string, AuthProviderPatchParamsOauth2RefreshRequestResponseContentType>
             >(this.RawData, "response_content_type");
         }
         init
@@ -841,22 +891,24 @@ public sealed record class Oauth2ModelRefreshRequest : ModelBase
         _ = this.ResponseMap;
     }
 
-    public Oauth2ModelRefreshRequest() { }
+    public AuthProviderPatchParamsOauth2RefreshRequest() { }
 
-    public Oauth2ModelRefreshRequest(IReadOnlyDictionary<string, JsonElement> rawData)
+    public AuthProviderPatchParamsOauth2RefreshRequest(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Oauth2ModelRefreshRequest(FrozenDictionary<string, JsonElement> rawData)
+    AuthProviderPatchParamsOauth2RefreshRequest(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Oauth2ModelRefreshRequest FromRawUnchecked(
+    public static AuthProviderPatchParamsOauth2RefreshRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -864,24 +916,25 @@ public sealed record class Oauth2ModelRefreshRequest : ModelBase
     }
 }
 
-class Oauth2ModelRefreshRequestFromRaw : IFromRaw<Oauth2ModelRefreshRequest>
+class AuthProviderPatchParamsOauth2RefreshRequestFromRaw
+    : IFromRaw<AuthProviderPatchParamsOauth2RefreshRequest>
 {
-    public Oauth2ModelRefreshRequest FromRawUnchecked(
+    public AuthProviderPatchParamsOauth2RefreshRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => Oauth2ModelRefreshRequest.FromRawUnchecked(rawData);
+    ) => AuthProviderPatchParamsOauth2RefreshRequest.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(Oauth2ModelRefreshRequestRequestContentTypeConverter))]
-public enum Oauth2ModelRefreshRequestRequestContentType
+[JsonConverter(typeof(AuthProviderPatchParamsOauth2RefreshRequestRequestContentTypeConverter))]
+public enum AuthProviderPatchParamsOauth2RefreshRequestRequestContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class Oauth2ModelRefreshRequestRequestContentTypeConverter
-    : JsonConverter<Oauth2ModelRefreshRequestRequestContentType>
+sealed class AuthProviderPatchParamsOauth2RefreshRequestRequestContentTypeConverter
+    : JsonConverter<AuthProviderPatchParamsOauth2RefreshRequestRequestContentType>
 {
-    public override Oauth2ModelRefreshRequestRequestContentType Read(
+    public override AuthProviderPatchParamsOauth2RefreshRequestRequestContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -890,15 +943,16 @@ sealed class Oauth2ModelRefreshRequestRequestContentTypeConverter
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                Oauth2ModelRefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
-            "application/json" => Oauth2ModelRefreshRequestRequestContentType.ApplicationJson,
-            _ => (Oauth2ModelRefreshRequestRequestContentType)(-1),
+                AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationJson,
+            _ => (AuthProviderPatchParamsOauth2RefreshRequestRequestContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Oauth2ModelRefreshRequestRequestContentType value,
+        AuthProviderPatchParamsOauth2RefreshRequestRequestContentType value,
         JsonSerializerOptions options
     )
     {
@@ -906,9 +960,10 @@ sealed class Oauth2ModelRefreshRequestRequestContentTypeConverter
             writer,
             value switch
             {
-                Oauth2ModelRefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
+                AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                Oauth2ModelRefreshRequestRequestContentType.ApplicationJson => "application/json",
+                AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationJson =>
+                    "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -918,17 +973,17 @@ sealed class Oauth2ModelRefreshRequestRequestContentTypeConverter
     }
 }
 
-[JsonConverter(typeof(Oauth2ModelRefreshRequestResponseContentTypeConverter))]
-public enum Oauth2ModelRefreshRequestResponseContentType
+[JsonConverter(typeof(AuthProviderPatchParamsOauth2RefreshRequestResponseContentTypeConverter))]
+public enum AuthProviderPatchParamsOauth2RefreshRequestResponseContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class Oauth2ModelRefreshRequestResponseContentTypeConverter
-    : JsonConverter<Oauth2ModelRefreshRequestResponseContentType>
+sealed class AuthProviderPatchParamsOauth2RefreshRequestResponseContentTypeConverter
+    : JsonConverter<AuthProviderPatchParamsOauth2RefreshRequestResponseContentType>
 {
-    public override Oauth2ModelRefreshRequestResponseContentType Read(
+    public override AuthProviderPatchParamsOauth2RefreshRequestResponseContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -937,15 +992,16 @@ sealed class Oauth2ModelRefreshRequestResponseContentTypeConverter
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                Oauth2ModelRefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
-            "application/json" => Oauth2ModelRefreshRequestResponseContentType.ApplicationJson,
-            _ => (Oauth2ModelRefreshRequestResponseContentType)(-1),
+                AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationJson,
+            _ => (AuthProviderPatchParamsOauth2RefreshRequestResponseContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Oauth2ModelRefreshRequestResponseContentType value,
+        AuthProviderPatchParamsOauth2RefreshRequestResponseContentType value,
         JsonSerializerOptions options
     )
     {
@@ -953,9 +1009,10 @@ sealed class Oauth2ModelRefreshRequestResponseContentTypeConverter
             writer,
             value switch
             {
-                Oauth2ModelRefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
+                AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                Oauth2ModelRefreshRequestResponseContentType.ApplicationJson => "application/json",
+                AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationJson =>
+                    "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -965,16 +1022,17 @@ sealed class Oauth2ModelRefreshRequestResponseContentTypeConverter
     }
 }
 
-[JsonConverter(typeof(Oauth2ModelScopeDelimiterConverter))]
-public enum Oauth2ModelScopeDelimiter
+[JsonConverter(typeof(AuthProviderPatchParamsOauth2ScopeDelimiterConverter))]
+public enum AuthProviderPatchParamsOauth2ScopeDelimiter
 {
     Undefined,
     V1,
 }
 
-sealed class Oauth2ModelScopeDelimiterConverter : JsonConverter<Oauth2ModelScopeDelimiter>
+sealed class AuthProviderPatchParamsOauth2ScopeDelimiterConverter
+    : JsonConverter<AuthProviderPatchParamsOauth2ScopeDelimiter>
 {
-    public override Oauth2ModelScopeDelimiter Read(
+    public override AuthProviderPatchParamsOauth2ScopeDelimiter Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -982,15 +1040,15 @@ sealed class Oauth2ModelScopeDelimiterConverter : JsonConverter<Oauth2ModelScope
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "," => Oauth2ModelScopeDelimiter.Undefined,
-            " " => Oauth2ModelScopeDelimiter.V1,
-            _ => (Oauth2ModelScopeDelimiter)(-1),
+            "," => AuthProviderPatchParamsOauth2ScopeDelimiter.Undefined,
+            " " => AuthProviderPatchParamsOauth2ScopeDelimiter.V1,
+            _ => (AuthProviderPatchParamsOauth2ScopeDelimiter)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Oauth2ModelScopeDelimiter value,
+        AuthProviderPatchParamsOauth2ScopeDelimiter value,
         JsonSerializerOptions options
     )
     {
@@ -998,278 +1056,8 @@ sealed class Oauth2ModelScopeDelimiterConverter : JsonConverter<Oauth2ModelScope
             writer,
             value switch
             {
-                Oauth2ModelScopeDelimiter.Undefined => ",",
-                Oauth2ModelScopeDelimiter.V1 => " ",
-                _ => throw new ArcadeInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
-}
-
-[JsonConverter(typeof(ModelConverter<Oauth2ModelTokenRequest, Oauth2ModelTokenRequestFromRaw>))]
-public sealed record class Oauth2ModelTokenRequest : ModelBase
-{
-    public string? AuthHeaderValueFormat
-    {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "auth_header_value_format"); }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            ModelBase.Set(this._rawData, "auth_header_value_format", value);
-        }
-    }
-
-    public string? AuthMethod
-    {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "auth_method"); }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            ModelBase.Set(this._rawData, "auth_method", value);
-        }
-    }
-
-    public string? Endpoint
-    {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "endpoint"); }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            ModelBase.Set(this._rawData, "endpoint", value);
-        }
-    }
-
-    public string? Method
-    {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "method"); }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            ModelBase.Set(this._rawData, "method", value);
-        }
-    }
-
-    public IReadOnlyDictionary<string, string>? Params
-    {
-        get
-        {
-            return ModelBase.GetNullableClass<Dictionary<string, string>>(this.RawData, "params");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            ModelBase.Set(this._rawData, "params", value);
-        }
-    }
-
-    public ApiEnum<string, Oauth2ModelTokenRequestRequestContentType>? RequestContentType
-    {
-        get
-        {
-            return ModelBase.GetNullableClass<
-                ApiEnum<string, Oauth2ModelTokenRequestRequestContentType>
-            >(this.RawData, "request_content_type");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            ModelBase.Set(this._rawData, "request_content_type", value);
-        }
-    }
-
-    public ApiEnum<string, Oauth2ModelTokenRequestResponseContentType>? ResponseContentType
-    {
-        get
-        {
-            return ModelBase.GetNullableClass<
-                ApiEnum<string, Oauth2ModelTokenRequestResponseContentType>
-            >(this.RawData, "response_content_type");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            ModelBase.Set(this._rawData, "response_content_type", value);
-        }
-    }
-
-    public IReadOnlyDictionary<string, string>? ResponseMap
-    {
-        get
-        {
-            return ModelBase.GetNullableClass<Dictionary<string, string>>(
-                this.RawData,
-                "response_map"
-            );
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            ModelBase.Set(this._rawData, "response_map", value);
-        }
-    }
-
-    public override void Validate()
-    {
-        _ = this.AuthHeaderValueFormat;
-        _ = this.AuthMethod;
-        _ = this.Endpoint;
-        _ = this.Method;
-        _ = this.Params;
-        this.RequestContentType?.Validate();
-        this.ResponseContentType?.Validate();
-        _ = this.ResponseMap;
-    }
-
-    public Oauth2ModelTokenRequest() { }
-
-    public Oauth2ModelTokenRequest(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = [.. rawData];
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    Oauth2ModelTokenRequest(FrozenDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = [.. rawData];
-    }
-#pragma warning restore CS8618
-
-    public static Oauth2ModelTokenRequest FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
-    {
-        return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-}
-
-class Oauth2ModelTokenRequestFromRaw : IFromRaw<Oauth2ModelTokenRequest>
-{
-    public Oauth2ModelTokenRequest FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => Oauth2ModelTokenRequest.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(Oauth2ModelTokenRequestRequestContentTypeConverter))]
-public enum Oauth2ModelTokenRequestRequestContentType
-{
-    ApplicationXWwwFormUrlencoded,
-    ApplicationJson,
-}
-
-sealed class Oauth2ModelTokenRequestRequestContentTypeConverter
-    : JsonConverter<Oauth2ModelTokenRequestRequestContentType>
-{
-    public override Oauth2ModelTokenRequestRequestContentType Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "application/x-www-form-urlencoded" =>
-                Oauth2ModelTokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
-            "application/json" => Oauth2ModelTokenRequestRequestContentType.ApplicationJson,
-            _ => (Oauth2ModelTokenRequestRequestContentType)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        Oauth2ModelTokenRequestRequestContentType value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                Oauth2ModelTokenRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
-                    "application/x-www-form-urlencoded",
-                Oauth2ModelTokenRequestRequestContentType.ApplicationJson => "application/json",
-                _ => throw new ArcadeInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
-}
-
-[JsonConverter(typeof(Oauth2ModelTokenRequestResponseContentTypeConverter))]
-public enum Oauth2ModelTokenRequestResponseContentType
-{
-    ApplicationXWwwFormUrlencoded,
-    ApplicationJson,
-}
-
-sealed class Oauth2ModelTokenRequestResponseContentTypeConverter
-    : JsonConverter<Oauth2ModelTokenRequestResponseContentType>
-{
-    public override Oauth2ModelTokenRequestResponseContentType Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "application/x-www-form-urlencoded" =>
-                Oauth2ModelTokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
-            "application/json" => Oauth2ModelTokenRequestResponseContentType.ApplicationJson,
-            _ => (Oauth2ModelTokenRequestResponseContentType)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        Oauth2ModelTokenRequestResponseContentType value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                Oauth2ModelTokenRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
-                    "application/x-www-form-urlencoded",
-                Oauth2ModelTokenRequestResponseContentType.ApplicationJson => "application/json",
+                AuthProviderPatchParamsOauth2ScopeDelimiter.Undefined => ",",
+                AuthProviderPatchParamsOauth2ScopeDelimiter.V1 => " ",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1280,9 +1068,12 @@ sealed class Oauth2ModelTokenRequestResponseContentTypeConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<Oauth2ModelUserInfoRequest, Oauth2ModelUserInfoRequestFromRaw>)
+    typeof(ModelConverter<
+        AuthProviderPatchParamsOauth2TokenRequest,
+        AuthProviderPatchParamsOauth2TokenRequestFromRaw
+    >)
 )]
-public sealed record class Oauth2ModelUserInfoRequest : ModelBase
+public sealed record class AuthProviderPatchParamsOauth2TokenRequest : ModelBase
 {
     public string? AuthHeaderValueFormat
     {
@@ -1357,12 +1148,15 @@ public sealed record class Oauth2ModelUserInfoRequest : ModelBase
         }
     }
 
-    public ApiEnum<string, Oauth2ModelUserInfoRequestRequestContentType>? RequestContentType
+    public ApiEnum<
+        string,
+        AuthProviderPatchParamsOauth2TokenRequestRequestContentType
+    >? RequestContentType
     {
         get
         {
             return ModelBase.GetNullableClass<
-                ApiEnum<string, Oauth2ModelUserInfoRequestRequestContentType>
+                ApiEnum<string, AuthProviderPatchParamsOauth2TokenRequestRequestContentType>
             >(this.RawData, "request_content_type");
         }
         init
@@ -1376,12 +1170,15 @@ public sealed record class Oauth2ModelUserInfoRequest : ModelBase
         }
     }
 
-    public ApiEnum<string, Oauth2ModelUserInfoRequestResponseContentType>? ResponseContentType
+    public ApiEnum<
+        string,
+        AuthProviderPatchParamsOauth2TokenRequestResponseContentType
+    >? ResponseContentType
     {
         get
         {
             return ModelBase.GetNullableClass<
-                ApiEnum<string, Oauth2ModelUserInfoRequestResponseContentType>
+                ApiEnum<string, AuthProviderPatchParamsOauth2TokenRequestResponseContentType>
             >(this.RawData, "response_content_type");
         }
         init
@@ -1415,11 +1212,299 @@ public sealed record class Oauth2ModelUserInfoRequest : ModelBase
         }
     }
 
-    public Oauth2ModelUserInfoRequestTriggers? Triggers
+    public override void Validate()
+    {
+        _ = this.AuthHeaderValueFormat;
+        _ = this.AuthMethod;
+        _ = this.Endpoint;
+        _ = this.Method;
+        _ = this.Params;
+        this.RequestContentType?.Validate();
+        this.ResponseContentType?.Validate();
+        _ = this.ResponseMap;
+    }
+
+    public AuthProviderPatchParamsOauth2TokenRequest() { }
+
+    public AuthProviderPatchParamsOauth2TokenRequest(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = [.. rawData];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AuthProviderPatchParamsOauth2TokenRequest(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = [.. rawData];
+    }
+#pragma warning restore CS8618
+
+    public static AuthProviderPatchParamsOauth2TokenRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class AuthProviderPatchParamsOauth2TokenRequestFromRaw
+    : IFromRaw<AuthProviderPatchParamsOauth2TokenRequest>
+{
+    public AuthProviderPatchParamsOauth2TokenRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthProviderPatchParamsOauth2TokenRequest.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(AuthProviderPatchParamsOauth2TokenRequestRequestContentTypeConverter))]
+public enum AuthProviderPatchParamsOauth2TokenRequestRequestContentType
+{
+    ApplicationXWwwFormUrlencoded,
+    ApplicationJson,
+}
+
+sealed class AuthProviderPatchParamsOauth2TokenRequestRequestContentTypeConverter
+    : JsonConverter<AuthProviderPatchParamsOauth2TokenRequestRequestContentType>
+{
+    public override AuthProviderPatchParamsOauth2TokenRequestRequestContentType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "application/x-www-form-urlencoded" =>
+                AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationJson,
+            _ => (AuthProviderPatchParamsOauth2TokenRequestRequestContentType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        AuthProviderPatchParamsOauth2TokenRequestRequestContentType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
+                    "application/x-www-form-urlencoded",
+                AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationJson =>
+                    "application/json",
+                _ => throw new ArcadeInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(AuthProviderPatchParamsOauth2TokenRequestResponseContentTypeConverter))]
+public enum AuthProviderPatchParamsOauth2TokenRequestResponseContentType
+{
+    ApplicationXWwwFormUrlencoded,
+    ApplicationJson,
+}
+
+sealed class AuthProviderPatchParamsOauth2TokenRequestResponseContentTypeConverter
+    : JsonConverter<AuthProviderPatchParamsOauth2TokenRequestResponseContentType>
+{
+    public override AuthProviderPatchParamsOauth2TokenRequestResponseContentType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "application/x-www-form-urlencoded" =>
+                AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationJson,
+            _ => (AuthProviderPatchParamsOauth2TokenRequestResponseContentType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        AuthProviderPatchParamsOauth2TokenRequestResponseContentType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
+                    "application/x-www-form-urlencoded",
+                AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationJson =>
+                    "application/json",
+                _ => throw new ArcadeInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(
+    typeof(ModelConverter<
+        AuthProviderPatchParamsOauth2UserInfoRequest,
+        AuthProviderPatchParamsOauth2UserInfoRequestFromRaw
+    >)
+)]
+public sealed record class AuthProviderPatchParamsOauth2UserInfoRequest : ModelBase
+{
+    public string? AuthHeaderValueFormat
+    {
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "auth_header_value_format"); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            ModelBase.Set(this._rawData, "auth_header_value_format", value);
+        }
+    }
+
+    public string? AuthMethod
+    {
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "auth_method"); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            ModelBase.Set(this._rawData, "auth_method", value);
+        }
+    }
+
+    public string? Endpoint
+    {
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "endpoint"); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            ModelBase.Set(this._rawData, "endpoint", value);
+        }
+    }
+
+    public string? Method
+    {
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "method"); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            ModelBase.Set(this._rawData, "method", value);
+        }
+    }
+
+    public IReadOnlyDictionary<string, string>? Params
     {
         get
         {
-            return ModelBase.GetNullableClass<Oauth2ModelUserInfoRequestTriggers>(
+            return ModelBase.GetNullableClass<Dictionary<string, string>>(this.RawData, "params");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            ModelBase.Set(this._rawData, "params", value);
+        }
+    }
+
+    public ApiEnum<
+        string,
+        AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType
+    >? RequestContentType
+    {
+        get
+        {
+            return ModelBase.GetNullableClass<
+                ApiEnum<string, AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType>
+            >(this.RawData, "request_content_type");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            ModelBase.Set(this._rawData, "request_content_type", value);
+        }
+    }
+
+    public ApiEnum<
+        string,
+        AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType
+    >? ResponseContentType
+    {
+        get
+        {
+            return ModelBase.GetNullableClass<
+                ApiEnum<string, AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType>
+            >(this.RawData, "response_content_type");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            ModelBase.Set(this._rawData, "response_content_type", value);
+        }
+    }
+
+    public IReadOnlyDictionary<string, string>? ResponseMap
+    {
+        get
+        {
+            return ModelBase.GetNullableClass<Dictionary<string, string>>(
+                this.RawData,
+                "response_map"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            ModelBase.Set(this._rawData, "response_map", value);
+        }
+    }
+
+    public AuthProviderPatchParamsOauth2UserInfoRequestTriggers? Triggers
+    {
+        get
+        {
+            return ModelBase.GetNullableClass<AuthProviderPatchParamsOauth2UserInfoRequestTriggers>(
                 this.RawData,
                 "triggers"
             );
@@ -1448,22 +1533,24 @@ public sealed record class Oauth2ModelUserInfoRequest : ModelBase
         this.Triggers?.Validate();
     }
 
-    public Oauth2ModelUserInfoRequest() { }
+    public AuthProviderPatchParamsOauth2UserInfoRequest() { }
 
-    public Oauth2ModelUserInfoRequest(IReadOnlyDictionary<string, JsonElement> rawData)
+    public AuthProviderPatchParamsOauth2UserInfoRequest(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Oauth2ModelUserInfoRequest(FrozenDictionary<string, JsonElement> rawData)
+    AuthProviderPatchParamsOauth2UserInfoRequest(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Oauth2ModelUserInfoRequest FromRawUnchecked(
+    public static AuthProviderPatchParamsOauth2UserInfoRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1471,24 +1558,25 @@ public sealed record class Oauth2ModelUserInfoRequest : ModelBase
     }
 }
 
-class Oauth2ModelUserInfoRequestFromRaw : IFromRaw<Oauth2ModelUserInfoRequest>
+class AuthProviderPatchParamsOauth2UserInfoRequestFromRaw
+    : IFromRaw<AuthProviderPatchParamsOauth2UserInfoRequest>
 {
-    public Oauth2ModelUserInfoRequest FromRawUnchecked(
+    public AuthProviderPatchParamsOauth2UserInfoRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => Oauth2ModelUserInfoRequest.FromRawUnchecked(rawData);
+    ) => AuthProviderPatchParamsOauth2UserInfoRequest.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(Oauth2ModelUserInfoRequestRequestContentTypeConverter))]
-public enum Oauth2ModelUserInfoRequestRequestContentType
+[JsonConverter(typeof(AuthProviderPatchParamsOauth2UserInfoRequestRequestContentTypeConverter))]
+public enum AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class Oauth2ModelUserInfoRequestRequestContentTypeConverter
-    : JsonConverter<Oauth2ModelUserInfoRequestRequestContentType>
+sealed class AuthProviderPatchParamsOauth2UserInfoRequestRequestContentTypeConverter
+    : JsonConverter<AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType>
 {
-    public override Oauth2ModelUserInfoRequestRequestContentType Read(
+    public override AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1497,15 +1585,16 @@ sealed class Oauth2ModelUserInfoRequestRequestContentTypeConverter
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                Oauth2ModelUserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
-            "application/json" => Oauth2ModelUserInfoRequestRequestContentType.ApplicationJson,
-            _ => (Oauth2ModelUserInfoRequestRequestContentType)(-1),
+                AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationJson,
+            _ => (AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Oauth2ModelUserInfoRequestRequestContentType value,
+        AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType value,
         JsonSerializerOptions options
     )
     {
@@ -1513,9 +1602,10 @@ sealed class Oauth2ModelUserInfoRequestRequestContentTypeConverter
             writer,
             value switch
             {
-                Oauth2ModelUserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
+                AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                Oauth2ModelUserInfoRequestRequestContentType.ApplicationJson => "application/json",
+                AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationJson =>
+                    "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1525,17 +1615,17 @@ sealed class Oauth2ModelUserInfoRequestRequestContentTypeConverter
     }
 }
 
-[JsonConverter(typeof(Oauth2ModelUserInfoRequestResponseContentTypeConverter))]
-public enum Oauth2ModelUserInfoRequestResponseContentType
+[JsonConverter(typeof(AuthProviderPatchParamsOauth2UserInfoRequestResponseContentTypeConverter))]
+public enum AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType
 {
     ApplicationXWwwFormUrlencoded,
     ApplicationJson,
 }
 
-sealed class Oauth2ModelUserInfoRequestResponseContentTypeConverter
-    : JsonConverter<Oauth2ModelUserInfoRequestResponseContentType>
+sealed class AuthProviderPatchParamsOauth2UserInfoRequestResponseContentTypeConverter
+    : JsonConverter<AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType>
 {
-    public override Oauth2ModelUserInfoRequestResponseContentType Read(
+    public override AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1544,15 +1634,16 @@ sealed class Oauth2ModelUserInfoRequestResponseContentTypeConverter
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "application/x-www-form-urlencoded" =>
-                Oauth2ModelUserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
-            "application/json" => Oauth2ModelUserInfoRequestResponseContentType.ApplicationJson,
-            _ => (Oauth2ModelUserInfoRequestResponseContentType)(-1),
+                AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationJson,
+            _ => (AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Oauth2ModelUserInfoRequestResponseContentType value,
+        AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType value,
         JsonSerializerOptions options
     )
     {
@@ -1560,9 +1651,10 @@ sealed class Oauth2ModelUserInfoRequestResponseContentTypeConverter
             writer,
             value switch
             {
-                Oauth2ModelUserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
+                AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
                     "application/x-www-form-urlencoded",
-                Oauth2ModelUserInfoRequestResponseContentType.ApplicationJson => "application/json",
+                AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationJson =>
+                    "application/json",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1574,11 +1666,11 @@ sealed class Oauth2ModelUserInfoRequestResponseContentTypeConverter
 
 [JsonConverter(
     typeof(ModelConverter<
-        Oauth2ModelUserInfoRequestTriggers,
-        Oauth2ModelUserInfoRequestTriggersFromRaw
+        AuthProviderPatchParamsOauth2UserInfoRequestTriggers,
+        AuthProviderPatchParamsOauth2UserInfoRequestTriggersFromRaw
     >)
 )]
-public sealed record class Oauth2ModelUserInfoRequestTriggers : ModelBase
+public sealed record class AuthProviderPatchParamsOauth2UserInfoRequestTriggers : ModelBase
 {
     public bool? OnTokenGrant
     {
@@ -1614,22 +1706,26 @@ public sealed record class Oauth2ModelUserInfoRequestTriggers : ModelBase
         _ = this.OnTokenRefresh;
     }
 
-    public Oauth2ModelUserInfoRequestTriggers() { }
+    public AuthProviderPatchParamsOauth2UserInfoRequestTriggers() { }
 
-    public Oauth2ModelUserInfoRequestTriggers(IReadOnlyDictionary<string, JsonElement> rawData)
+    public AuthProviderPatchParamsOauth2UserInfoRequestTriggers(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Oauth2ModelUserInfoRequestTriggers(FrozenDictionary<string, JsonElement> rawData)
+    AuthProviderPatchParamsOauth2UserInfoRequestTriggers(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Oauth2ModelUserInfoRequestTriggers FromRawUnchecked(
+    public static AuthProviderPatchParamsOauth2UserInfoRequestTriggers FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1637,9 +1733,10 @@ public sealed record class Oauth2ModelUserInfoRequestTriggers : ModelBase
     }
 }
 
-class Oauth2ModelUserInfoRequestTriggersFromRaw : IFromRaw<Oauth2ModelUserInfoRequestTriggers>
+class AuthProviderPatchParamsOauth2UserInfoRequestTriggersFromRaw
+    : IFromRaw<AuthProviderPatchParamsOauth2UserInfoRequestTriggers>
 {
-    public Oauth2ModelUserInfoRequestTriggers FromRawUnchecked(
+    public AuthProviderPatchParamsOauth2UserInfoRequestTriggers FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => Oauth2ModelUserInfoRequestTriggers.FromRawUnchecked(rawData);
+    ) => AuthProviderPatchParamsOauth2UserInfoRequestTriggers.FromRawUnchecked(rawData);
 }

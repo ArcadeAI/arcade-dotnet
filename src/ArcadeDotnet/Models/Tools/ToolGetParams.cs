@@ -20,11 +20,11 @@ public sealed record class ToolGetParams : ParamsBase
     /// <summary>
     /// Comma separated tool formats that will be included in the response.
     /// </summary>
-    public IReadOnlyList<ApiEnum<string, IncludeFormatModel>>? IncludeFormat
+    public IReadOnlyList<ApiEnum<string, ToolGetParamsIncludeFormat>>? IncludeFormat
     {
         get
         {
-            return ModelBase.GetNullableClass<List<ApiEnum<string, IncludeFormatModel>>>(
+            return ModelBase.GetNullableClass<List<ApiEnum<string, ToolGetParamsIncludeFormat>>>(
                 this.RawQueryData,
                 "include_format"
             );
@@ -111,17 +111,17 @@ public sealed record class ToolGetParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(IncludeFormatModelConverter))]
-public enum IncludeFormatModel
+[JsonConverter(typeof(ToolGetParamsIncludeFormatConverter))]
+public enum ToolGetParamsIncludeFormat
 {
     Arcade,
     OpenAI,
     Anthropic,
 }
 
-sealed class IncludeFormatModelConverter : JsonConverter<IncludeFormatModel>
+sealed class ToolGetParamsIncludeFormatConverter : JsonConverter<ToolGetParamsIncludeFormat>
 {
-    public override IncludeFormatModel Read(
+    public override ToolGetParamsIncludeFormat Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -129,16 +129,16 @@ sealed class IncludeFormatModelConverter : JsonConverter<IncludeFormatModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "arcade" => IncludeFormatModel.Arcade,
-            "openai" => IncludeFormatModel.OpenAI,
-            "anthropic" => IncludeFormatModel.Anthropic,
-            _ => (IncludeFormatModel)(-1),
+            "arcade" => ToolGetParamsIncludeFormat.Arcade,
+            "openai" => ToolGetParamsIncludeFormat.OpenAI,
+            "anthropic" => ToolGetParamsIncludeFormat.Anthropic,
+            _ => (ToolGetParamsIncludeFormat)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        IncludeFormatModel value,
+        ToolGetParamsIncludeFormat value,
         JsonSerializerOptions options
     )
     {
@@ -146,9 +146,9 @@ sealed class IncludeFormatModelConverter : JsonConverter<IncludeFormatModel>
             writer,
             value switch
             {
-                IncludeFormatModel.Arcade => "arcade",
-                IncludeFormatModel.OpenAI => "openai",
-                IncludeFormatModel.Anthropic => "anthropic",
+                ToolGetParamsIncludeFormat.Arcade => "arcade",
+                ToolGetParamsIncludeFormat.OpenAI => "openai",
+                ToolGetParamsIncludeFormat.Anthropic => "anthropic",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

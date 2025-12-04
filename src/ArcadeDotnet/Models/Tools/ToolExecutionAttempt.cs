@@ -181,9 +181,15 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
         }
     }
 
-    public IReadOnlyList<LogModel>? Logs
+    public IReadOnlyList<ToolExecutionAttemptOutputLog>? Logs
     {
-        get { return ModelBase.GetNullableClass<List<LogModel>>(this.RawData, "logs"); }
+        get
+        {
+            return ModelBase.GetNullableClass<List<ToolExecutionAttemptOutputLog>>(
+                this.RawData,
+                "logs"
+            );
+        }
         init
         {
             if (value == null)
@@ -536,8 +542,10 @@ sealed class ToolExecutionAttemptOutputErrorKindConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<LogModel, LogModelFromRaw>))]
-public sealed record class LogModel : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<ToolExecutionAttemptOutputLog, ToolExecutionAttemptOutputLogFromRaw>)
+)]
+public sealed record class ToolExecutionAttemptOutputLog : ModelBase
 {
     public required string Level
     {
@@ -572,29 +580,32 @@ public sealed record class LogModel : ModelBase
         _ = this.Subtype;
     }
 
-    public LogModel() { }
+    public ToolExecutionAttemptOutputLog() { }
 
-    public LogModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ToolExecutionAttemptOutputLog(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    LogModel(FrozenDictionary<string, JsonElement> rawData)
+    ToolExecutionAttemptOutputLog(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static LogModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static ToolExecutionAttemptOutputLog FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class LogModelFromRaw : IFromRaw<LogModel>
+class ToolExecutionAttemptOutputLogFromRaw : IFromRaw<ToolExecutionAttemptOutputLog>
 {
-    public LogModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        LogModel.FromRawUnchecked(rawData);
+    public ToolExecutionAttemptOutputLog FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ToolExecutionAttemptOutputLog.FromRawUnchecked(rawData);
 }

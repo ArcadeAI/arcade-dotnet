@@ -37,9 +37,9 @@ public sealed record class WorkerUpdateParams : ParamsBase
         }
     }
 
-    public HTTPModel? HTTP
+    public WorkerUpdateParamsHTTP? HTTP
     {
-        get { return ModelBase.GetNullableClass<HTTPModel>(this.RawBodyData, "http"); }
+        get { return ModelBase.GetNullableClass<WorkerUpdateParamsHTTP>(this.RawBodyData, "http"); }
         init
         {
             if (value == null)
@@ -51,9 +51,9 @@ public sealed record class WorkerUpdateParams : ParamsBase
         }
     }
 
-    public McpModel? Mcp
+    public WorkerUpdateParamsMcp? Mcp
     {
-        get { return ModelBase.GetNullableClass<McpModel>(this.RawBodyData, "mcp"); }
+        get { return ModelBase.GetNullableClass<WorkerUpdateParamsMcp>(this.RawBodyData, "mcp"); }
         init
         {
             if (value == null)
@@ -130,8 +130,8 @@ public sealed record class WorkerUpdateParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<HTTPModel, HTTPModelFromRaw>))]
-public sealed record class HTTPModel : ModelBase
+[JsonConverter(typeof(ModelConverter<WorkerUpdateParamsHTTP, WorkerUpdateParamsHTTPFromRaw>))]
+public sealed record class WorkerUpdateParamsHTTP : ModelBase
 {
     public long? Retry
     {
@@ -197,35 +197,38 @@ public sealed record class HTTPModel : ModelBase
         _ = this.Uri;
     }
 
-    public HTTPModel() { }
+    public WorkerUpdateParamsHTTP() { }
 
-    public HTTPModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public WorkerUpdateParamsHTTP(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    HTTPModel(FrozenDictionary<string, JsonElement> rawData)
+    WorkerUpdateParamsHTTP(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static HTTPModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static WorkerUpdateParamsHTTP FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class HTTPModelFromRaw : IFromRaw<HTTPModel>
+class WorkerUpdateParamsHTTPFromRaw : IFromRaw<WorkerUpdateParamsHTTP>
 {
-    public HTTPModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        HTTPModel.FromRawUnchecked(rawData);
+    public WorkerUpdateParamsHTTP FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => WorkerUpdateParamsHTTP.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<McpModel, McpModelFromRaw>))]
-public sealed record class McpModel : ModelBase
+[JsonConverter(typeof(ModelConverter<WorkerUpdateParamsMcp, WorkerUpdateParamsMcpFromRaw>))]
+public sealed record class WorkerUpdateParamsMcp : ModelBase
 {
     public IReadOnlyDictionary<string, string>? Headers
     {
@@ -244,9 +247,12 @@ public sealed record class McpModel : ModelBase
         }
     }
 
-    public McpModelOauth2? Oauth2
+    public WorkerUpdateParamsMcpOauth2? Oauth2
     {
-        get { return ModelBase.GetNullableClass<McpModelOauth2>(this.RawData, "oauth2"); }
+        get
+        {
+            return ModelBase.GetNullableClass<WorkerUpdateParamsMcpOauth2>(this.RawData, "oauth2");
+        }
         init
         {
             if (value == null)
@@ -327,35 +333,40 @@ public sealed record class McpModel : ModelBase
         _ = this.Uri;
     }
 
-    public McpModel() { }
+    public WorkerUpdateParamsMcp() { }
 
-    public McpModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public WorkerUpdateParamsMcp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    McpModel(FrozenDictionary<string, JsonElement> rawData)
+    WorkerUpdateParamsMcp(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static McpModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static WorkerUpdateParamsMcp FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class McpModelFromRaw : IFromRaw<McpModel>
+class WorkerUpdateParamsMcpFromRaw : IFromRaw<WorkerUpdateParamsMcp>
 {
-    public McpModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        McpModel.FromRawUnchecked(rawData);
+    public WorkerUpdateParamsMcp FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => WorkerUpdateParamsMcp.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<McpModelOauth2, McpModelOauth2FromRaw>))]
-public sealed record class McpModelOauth2 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<WorkerUpdateParamsMcpOauth2, WorkerUpdateParamsMcpOauth2FromRaw>)
+)]
+public sealed record class WorkerUpdateParamsMcpOauth2 : ModelBase
 {
     public string? AuthorizationURL
     {
@@ -406,29 +417,32 @@ public sealed record class McpModelOauth2 : ModelBase
         _ = this.ClientSecret;
     }
 
-    public McpModelOauth2() { }
+    public WorkerUpdateParamsMcpOauth2() { }
 
-    public McpModelOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
+    public WorkerUpdateParamsMcpOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    McpModelOauth2(FrozenDictionary<string, JsonElement> rawData)
+    WorkerUpdateParamsMcpOauth2(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static McpModelOauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static WorkerUpdateParamsMcpOauth2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class McpModelOauth2FromRaw : IFromRaw<McpModelOauth2>
+class WorkerUpdateParamsMcpOauth2FromRaw : IFromRaw<WorkerUpdateParamsMcpOauth2>
 {
-    public McpModelOauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        McpModelOauth2.FromRawUnchecked(rawData);
+    public WorkerUpdateParamsMcpOauth2 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => WorkerUpdateParamsMcpOauth2.FromRawUnchecked(rawData);
 }
