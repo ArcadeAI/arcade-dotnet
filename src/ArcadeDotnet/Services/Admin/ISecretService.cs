@@ -21,6 +21,21 @@ public interface ISecretService
     ISecretService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
+    /// Create or update a secret
+    /// </summary>
+    Task<SecretResponse> Create(
+        SecretCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Create(SecretCreateParams, CancellationToken)"/>
+    Task<SecretResponse> Create(
+        string secretKey,
+        SecretCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// List all secrets that are visible to the caller
     /// </summary>
     Task<SecretListResponse> List(

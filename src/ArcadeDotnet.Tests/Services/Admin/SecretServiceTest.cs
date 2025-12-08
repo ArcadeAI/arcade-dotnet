@@ -5,6 +5,16 @@ namespace ArcadeDotnet.Tests.Services.Admin;
 public class SecretServiceTest : TestBase
 {
     [Fact]
+    public async Task Create_Works()
+    {
+        var secretResponse = await this.client.Admin.Secrets.Create(
+            "secret_key",
+            new() { Value = "value" }
+        );
+        secretResponse.Validate();
+    }
+
+    [Fact]
     public async Task List_Works()
     {
         var secrets = await this.client.Admin.Secrets.List();

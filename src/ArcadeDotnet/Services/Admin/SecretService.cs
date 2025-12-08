@@ -25,6 +25,45 @@ public sealed class SecretService : ISecretService
     }
 
     /// <inheritdoc/>
+    public async Task<SecretResponse> Create(
+        SecretCreateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.SecretKey == null)
+        {
+            throw new ArcadeInvalidDataException("'parameters.SecretKey' cannot be null");
+        }
+
+        HttpRequest<SecretCreateParams> request = new()
+        {
+            Method = HttpMethod.Post,
+            Params = parameters,
+        };
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var secretResponse = await response
+            .Deserialize<SecretResponse>(cancellationToken)
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            secretResponse.Validate();
+        }
+        return secretResponse;
+    }
+
+    /// <inheritdoc/>
+    public async Task<SecretResponse> Create(
+        string secretKey,
+        SecretCreateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await this.Create(parameters with { SecretKey = secretKey }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
     public async Task<SecretListResponse> List(
         SecretListParams? parameters = null,
         CancellationToken cancellationToken = default
