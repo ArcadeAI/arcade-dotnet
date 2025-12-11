@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using ArcadeDotnet.Core;
+using ArcadeDotnet.Exceptions;
 using ArcadeDotnet.Models.Admin.AuthProviders;
 
 namespace ArcadeDotnet.Tests.Models.Admin.AuthProviders;
@@ -1465,6 +1466,142 @@ public class AuthProviderCreateRequestOauth2AuthorizeRequestTest : TestBase
     }
 }
 
+public class AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentType.ApplicationJson)]
+    public void Validation_Works(
+        AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentType> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentType.ApplicationJson)]
+    public void SerializationRoundtrip_Works(
+        AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentType> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentType.ApplicationJson)]
+    public void Validation_Works(
+        AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentType> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentType.ApplicationJson)]
+    public void SerializationRoundtrip_Works(
+        AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentType> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class AuthProviderCreateRequestOauth2PkceTest : TestBase
 {
     [Fact]
@@ -1822,6 +1959,200 @@ public class AuthProviderCreateRequestOauth2RefreshRequestTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class AuthProviderCreateRequestOauth2RefreshRequestRequestContentTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(AuthProviderCreateRequestOauth2RefreshRequestRequestContentType.ApplicationJson)]
+    public void Validation_Works(
+        AuthProviderCreateRequestOauth2RefreshRequestRequestContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestRequestContentType> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestRequestContentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(AuthProviderCreateRequestOauth2RefreshRequestRequestContentType.ApplicationJson)]
+    public void SerializationRoundtrip_Works(
+        AuthProviderCreateRequestOauth2RefreshRequestRequestContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestRequestContentType> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestRequestContentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestRequestContentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestRequestContentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class AuthProviderCreateRequestOauth2RefreshRequestResponseContentTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(AuthProviderCreateRequestOauth2RefreshRequestResponseContentType.ApplicationJson)]
+    public void Validation_Works(
+        AuthProviderCreateRequestOauth2RefreshRequestResponseContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestResponseContentType> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestResponseContentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(AuthProviderCreateRequestOauth2RefreshRequestResponseContentType.ApplicationJson)]
+    public void SerializationRoundtrip_Works(
+        AuthProviderCreateRequestOauth2RefreshRequestResponseContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestResponseContentType> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestResponseContentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestResponseContentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestResponseContentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class AuthProviderCreateRequestOauth2ScopeDelimiterTest : TestBase
+{
+    [Theory]
+    [InlineData(AuthProviderCreateRequestOauth2ScopeDelimiter.Undefined)]
+    [InlineData(AuthProviderCreateRequestOauth2ScopeDelimiter.V1)]
+    public void Validation_Works(AuthProviderCreateRequestOauth2ScopeDelimiter rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2ScopeDelimiter> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2ScopeDelimiter>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(AuthProviderCreateRequestOauth2ScopeDelimiter.Undefined)]
+    [InlineData(AuthProviderCreateRequestOauth2ScopeDelimiter.V1)]
+    public void SerializationRoundtrip_Works(AuthProviderCreateRequestOauth2ScopeDelimiter rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2ScopeDelimiter> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2ScopeDelimiter>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2ScopeDelimiter>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2ScopeDelimiter>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }
 
@@ -2221,6 +2552,184 @@ public class AuthProviderCreateRequestOauth2TokenIntrospectionRequestTriggersTes
     }
 }
 
+public class AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestContentTypeTest
+    : TestBase
+{
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(
+        AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationJson
+    )]
+    public void Validation_Works(
+        AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestContentType
+        > value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestContentType
+            >
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(
+        AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationJson
+    )]
+    public void SerializationRoundtrip_Works(
+        AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestContentType
+        > value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestContentType
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestContentType
+            >
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestContentType
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseContentTypeTest
+    : TestBase
+{
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(
+        AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationJson
+    )]
+    public void Validation_Works(
+        AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseContentType
+        > value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseContentType
+            >
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(
+        AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationJson
+    )]
+    public void SerializationRoundtrip_Works(
+        AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseContentType
+        > value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseContentType
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseContentType
+            >
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseContentType
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class AuthProviderCreateRequestOauth2TokenRequestTest : TestBase
 {
     [Fact]
@@ -2466,6 +2975,142 @@ public class AuthProviderCreateRequestOauth2TokenRequestTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class AuthProviderCreateRequestOauth2TokenRequestRequestContentTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(AuthProviderCreateRequestOauth2TokenRequestRequestContentType.ApplicationJson)]
+    public void Validation_Works(
+        AuthProviderCreateRequestOauth2TokenRequestRequestContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestRequestContentType> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestRequestContentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(AuthProviderCreateRequestOauth2TokenRequestRequestContentType.ApplicationJson)]
+    public void SerializationRoundtrip_Works(
+        AuthProviderCreateRequestOauth2TokenRequestRequestContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestRequestContentType> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestRequestContentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestRequestContentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestRequestContentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class AuthProviderCreateRequestOauth2TokenRequestResponseContentTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(AuthProviderCreateRequestOauth2TokenRequestResponseContentType.ApplicationJson)]
+    public void Validation_Works(
+        AuthProviderCreateRequestOauth2TokenRequestResponseContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestResponseContentType> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestResponseContentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(AuthProviderCreateRequestOauth2TokenRequestResponseContentType.ApplicationJson)]
+    public void SerializationRoundtrip_Works(
+        AuthProviderCreateRequestOauth2TokenRequestResponseContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestResponseContentType> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestResponseContentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestResponseContentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestResponseContentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }
 
@@ -2858,5 +3503,141 @@ public class AuthProviderCreateRequestOauth2UserInfoRequestTriggersTest : TestBa
         };
 
         model.Validate();
+    }
+}
+
+public class AuthProviderCreateRequestOauth2UserInfoRequestRequestContentTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(AuthProviderCreateRequestOauth2UserInfoRequestRequestContentType.ApplicationJson)]
+    public void Validation_Works(
+        AuthProviderCreateRequestOauth2UserInfoRequestRequestContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestRequestContentType> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestRequestContentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(AuthProviderCreateRequestOauth2UserInfoRequestRequestContentType.ApplicationJson)]
+    public void SerializationRoundtrip_Works(
+        AuthProviderCreateRequestOauth2UserInfoRequestRequestContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestRequestContentType> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestRequestContentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestRequestContentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestRequestContentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class AuthProviderCreateRequestOauth2UserInfoRequestResponseContentTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(AuthProviderCreateRequestOauth2UserInfoRequestResponseContentType.ApplicationJson)]
+    public void Validation_Works(
+        AuthProviderCreateRequestOauth2UserInfoRequestResponseContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestResponseContentType> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestResponseContentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        AuthProviderCreateRequestOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(AuthProviderCreateRequestOauth2UserInfoRequestResponseContentType.ApplicationJson)]
+    public void SerializationRoundtrip_Works(
+        AuthProviderCreateRequestOauth2UserInfoRequestResponseContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestResponseContentType> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestResponseContentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestResponseContentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestResponseContentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

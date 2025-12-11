@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using ArcadeDotnet.Core;
+using ArcadeDotnet.Exceptions;
 using ArcadeDotnet.Models.Tools;
 using Models = ArcadeDotnet.Models;
 
@@ -1064,6 +1065,96 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class ToolExecutionAttemptOutputErrorKindTest : TestBase
+{
+    [Theory]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolDefinitionBadDefinition)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolDefinitionBadInputSchema)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolDefinitionBadOutputSchema)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolRequirementsNotMet)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolRuntimeBadInputValue)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolRuntimeBadOutputValue)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolRuntimeRetry)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolRuntimeContextRequired)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolRuntimeFatal)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeBadRequest)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeAuthError)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeNotFound)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeValidationError)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeRateLimit)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeServerError)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeUnmapped)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.Unknown)]
+    public void Validation_Works(ToolExecutionAttemptOutputErrorKind rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, ToolExecutionAttemptOutputErrorKind> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, ToolExecutionAttemptOutputErrorKind>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolDefinitionBadDefinition)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolDefinitionBadInputSchema)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolDefinitionBadOutputSchema)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolRequirementsNotMet)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolRuntimeBadInputValue)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolRuntimeBadOutputValue)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolRuntimeRetry)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolRuntimeContextRequired)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.ToolRuntimeFatal)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeBadRequest)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeAuthError)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeNotFound)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeValidationError)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeRateLimit)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeServerError)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeUnmapped)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.Unknown)]
+    public void SerializationRoundtrip_Works(ToolExecutionAttemptOutputErrorKind rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, ToolExecutionAttemptOutputErrorKind> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, ToolExecutionAttemptOutputErrorKind>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, ToolExecutionAttemptOutputErrorKind>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, ToolExecutionAttemptOutputErrorKind>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }
 

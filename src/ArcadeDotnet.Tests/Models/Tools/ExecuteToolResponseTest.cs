@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using ArcadeDotnet.Core;
+using ArcadeDotnet.Exceptions;
 using ArcadeDotnet.Models.Tools;
 using Models = ArcadeDotnet.Models;
 
@@ -1104,6 +1105,94 @@ public class ErrorTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class KindTest : TestBase
+{
+    [Theory]
+    [InlineData(Kind.ToolkitLoadFailed)]
+    [InlineData(Kind.ToolDefinitionBadDefinition)]
+    [InlineData(Kind.ToolDefinitionBadInputSchema)]
+    [InlineData(Kind.ToolDefinitionBadOutputSchema)]
+    [InlineData(Kind.ToolRequirementsNotMet)]
+    [InlineData(Kind.ToolRuntimeBadInputValue)]
+    [InlineData(Kind.ToolRuntimeBadOutputValue)]
+    [InlineData(Kind.ToolRuntimeRetry)]
+    [InlineData(Kind.ToolRuntimeContextRequired)]
+    [InlineData(Kind.ToolRuntimeFatal)]
+    [InlineData(Kind.UpstreamRuntimeBadRequest)]
+    [InlineData(Kind.UpstreamRuntimeAuthError)]
+    [InlineData(Kind.UpstreamRuntimeNotFound)]
+    [InlineData(Kind.UpstreamRuntimeValidationError)]
+    [InlineData(Kind.UpstreamRuntimeRateLimit)]
+    [InlineData(Kind.UpstreamRuntimeServerError)]
+    [InlineData(Kind.UpstreamRuntimeUnmapped)]
+    [InlineData(Kind.Unknown)]
+    public void Validation_Works(Kind rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Kind> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Kind>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Kind.ToolkitLoadFailed)]
+    [InlineData(Kind.ToolDefinitionBadDefinition)]
+    [InlineData(Kind.ToolDefinitionBadInputSchema)]
+    [InlineData(Kind.ToolDefinitionBadOutputSchema)]
+    [InlineData(Kind.ToolRequirementsNotMet)]
+    [InlineData(Kind.ToolRuntimeBadInputValue)]
+    [InlineData(Kind.ToolRuntimeBadOutputValue)]
+    [InlineData(Kind.ToolRuntimeRetry)]
+    [InlineData(Kind.ToolRuntimeContextRequired)]
+    [InlineData(Kind.ToolRuntimeFatal)]
+    [InlineData(Kind.UpstreamRuntimeBadRequest)]
+    [InlineData(Kind.UpstreamRuntimeAuthError)]
+    [InlineData(Kind.UpstreamRuntimeNotFound)]
+    [InlineData(Kind.UpstreamRuntimeValidationError)]
+    [InlineData(Kind.UpstreamRuntimeRateLimit)]
+    [InlineData(Kind.UpstreamRuntimeServerError)]
+    [InlineData(Kind.UpstreamRuntimeUnmapped)]
+    [InlineData(Kind.Unknown)]
+    public void SerializationRoundtrip_Works(Kind rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Kind> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Kind>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Kind>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Kind>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }
 
