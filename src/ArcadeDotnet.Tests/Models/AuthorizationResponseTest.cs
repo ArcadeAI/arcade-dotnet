@@ -47,6 +47,7 @@ public class AuthorizationResponseTest : TestBase
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedContext, model.Context);
         Assert.Equal(expectedProviderID, model.ProviderID);
+        Assert.NotNull(model.Scopes);
         Assert.Equal(expectedScopes.Count, model.Scopes.Count);
         for (int i = 0; i < expectedScopes.Count; i++)
         {
@@ -127,6 +128,7 @@ public class AuthorizationResponseTest : TestBase
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedContext, deserialized.Context);
         Assert.Equal(expectedProviderID, deserialized.ProviderID);
+        Assert.NotNull(deserialized.Scopes);
         Assert.Equal(expectedScopes.Count, deserialized.Scopes.Count);
         for (int i = 0; i < expectedScopes.Count; i++)
         {

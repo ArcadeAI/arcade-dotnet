@@ -345,6 +345,7 @@ public class AuthRequestAuthRequirementOauth2Test : TestBase
 
         List<string> expectedScopes = ["string"];
 
+        Assert.NotNull(model.Scopes);
         Assert.Equal(expectedScopes.Count, model.Scopes.Count);
         for (int i = 0; i < expectedScopes.Count; i++)
         {
@@ -374,6 +375,7 @@ public class AuthRequestAuthRequirementOauth2Test : TestBase
 
         List<string> expectedScopes = ["string"];
 
+        Assert.NotNull(deserialized.Scopes);
         Assert.Equal(expectedScopes.Count, deserialized.Scopes.Count);
         for (int i = 0; i < expectedScopes.Count; i++)
         {

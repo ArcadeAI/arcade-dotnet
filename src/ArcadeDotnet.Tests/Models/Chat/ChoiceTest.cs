@@ -133,16 +133,16 @@ public class ChoiceTest : TestBase
 
         Assert.Equal(expectedFinishReason, model.FinishReason);
         Assert.Equal(expectedIndex, model.Index);
-        Assert.True(
-            model.Logprobs.HasValue
-                && JsonElement.DeepEquals(expectedLogprobs, model.Logprobs.Value)
-        );
+        Assert.NotNull(model.Logprobs);
+        Assert.True(JsonElement.DeepEquals(expectedLogprobs, model.Logprobs.Value));
         Assert.Equal(expectedMessage, model.Message);
+        Assert.NotNull(model.ToolAuthorizations);
         Assert.Equal(expectedToolAuthorizations.Count, model.ToolAuthorizations.Count);
         for (int i = 0; i < expectedToolAuthorizations.Count; i++)
         {
             Assert.Equal(expectedToolAuthorizations[i], model.ToolAuthorizations[i]);
         }
+        Assert.NotNull(model.ToolMessages);
         Assert.Equal(expectedToolMessages.Count, model.ToolMessages.Count);
         for (int i = 0; i < expectedToolMessages.Count; i++)
         {
@@ -351,16 +351,16 @@ public class ChoiceTest : TestBase
 
         Assert.Equal(expectedFinishReason, deserialized.FinishReason);
         Assert.Equal(expectedIndex, deserialized.Index);
-        Assert.True(
-            deserialized.Logprobs.HasValue
-                && JsonElement.DeepEquals(expectedLogprobs, deserialized.Logprobs.Value)
-        );
+        Assert.NotNull(deserialized.Logprobs);
+        Assert.True(JsonElement.DeepEquals(expectedLogprobs, deserialized.Logprobs.Value));
         Assert.Equal(expectedMessage, deserialized.Message);
+        Assert.NotNull(deserialized.ToolAuthorizations);
         Assert.Equal(expectedToolAuthorizations.Count, deserialized.ToolAuthorizations.Count);
         for (int i = 0; i < expectedToolAuthorizations.Count; i++)
         {
             Assert.Equal(expectedToolAuthorizations[i], deserialized.ToolAuthorizations[i]);
         }
+        Assert.NotNull(deserialized.ToolMessages);
         Assert.Equal(expectedToolMessages.Count, deserialized.ToolMessages.Count);
         for (int i = 0; i < expectedToolMessages.Count; i++)
         {

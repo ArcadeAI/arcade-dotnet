@@ -160,6 +160,7 @@ public class WorkerListPageResponseTest : TestBase
         long expectedPageCount = 0;
         long expectedTotalCount = 0;
 
+        Assert.NotNull(model.Items);
         Assert.Equal(expectedItems.Count, model.Items.Count);
         for (int i = 0; i < expectedItems.Count; i++)
         {
@@ -415,6 +416,7 @@ public class WorkerListPageResponseTest : TestBase
         long expectedPageCount = 0;
         long expectedTotalCount = 0;
 
+        Assert.NotNull(deserialized.Items);
         Assert.Equal(expectedItems.Count, deserialized.Items.Count);
         for (int i = 0; i < expectedItems.Count; i++)
         {

@@ -102,6 +102,7 @@ public class ChatRequestTest : TestBase
         }
         Assert.Equal(expectedLogprobs, model.Logprobs);
         Assert.Equal(expectedMaxTokens, model.MaxTokens);
+        Assert.NotNull(model.Messages);
         Assert.Equal(expectedMessages.Count, model.Messages.Count);
         for (int i = 0; i < expectedMessages.Count; i++)
         {
@@ -113,6 +114,7 @@ public class ChatRequestTest : TestBase
         Assert.Equal(expectedPresencePenalty, model.PresencePenalty);
         Assert.Equal(expectedResponseFormat, model.ResponseFormat);
         Assert.Equal(expectedSeed, model.Seed);
+        Assert.NotNull(model.Stop);
         Assert.Equal(expectedStop.Count, model.Stop.Count);
         for (int i = 0; i < expectedStop.Count; i++)
         {
@@ -121,13 +123,10 @@ public class ChatRequestTest : TestBase
         Assert.Equal(expectedStream, model.Stream);
         Assert.Equal(expectedStreamOptions, model.StreamOptions);
         Assert.Equal(expectedTemperature, model.Temperature);
-        Assert.True(
-            model.ToolChoice.HasValue
-                && JsonElement.DeepEquals(expectedToolChoice, model.ToolChoice.Value)
-        );
-        Assert.True(
-            model.Tools.HasValue && JsonElement.DeepEquals(expectedTools, model.Tools.Value)
-        );
+        Assert.NotNull(model.ToolChoice);
+        Assert.True(JsonElement.DeepEquals(expectedToolChoice, model.ToolChoice.Value));
+        Assert.NotNull(model.Tools);
+        Assert.True(JsonElement.DeepEquals(expectedTools, model.Tools.Value));
         Assert.Equal(expectedTopLogprobs, model.TopLogprobs);
         Assert.Equal(expectedTopP, model.TopP);
         Assert.Equal(expectedUser, model.User);
@@ -282,6 +281,7 @@ public class ChatRequestTest : TestBase
         }
         Assert.Equal(expectedLogprobs, deserialized.Logprobs);
         Assert.Equal(expectedMaxTokens, deserialized.MaxTokens);
+        Assert.NotNull(deserialized.Messages);
         Assert.Equal(expectedMessages.Count, deserialized.Messages.Count);
         for (int i = 0; i < expectedMessages.Count; i++)
         {
@@ -293,6 +293,7 @@ public class ChatRequestTest : TestBase
         Assert.Equal(expectedPresencePenalty, deserialized.PresencePenalty);
         Assert.Equal(expectedResponseFormat, deserialized.ResponseFormat);
         Assert.Equal(expectedSeed, deserialized.Seed);
+        Assert.NotNull(deserialized.Stop);
         Assert.Equal(expectedStop.Count, deserialized.Stop.Count);
         for (int i = 0; i < expectedStop.Count; i++)
         {
@@ -301,14 +302,10 @@ public class ChatRequestTest : TestBase
         Assert.Equal(expectedStream, deserialized.Stream);
         Assert.Equal(expectedStreamOptions, deserialized.StreamOptions);
         Assert.Equal(expectedTemperature, deserialized.Temperature);
-        Assert.True(
-            deserialized.ToolChoice.HasValue
-                && JsonElement.DeepEquals(expectedToolChoice, deserialized.ToolChoice.Value)
-        );
-        Assert.True(
-            deserialized.Tools.HasValue
-                && JsonElement.DeepEquals(expectedTools, deserialized.Tools.Value)
-        );
+        Assert.NotNull(deserialized.ToolChoice);
+        Assert.True(JsonElement.DeepEquals(expectedToolChoice, deserialized.ToolChoice.Value));
+        Assert.NotNull(deserialized.Tools);
+        Assert.True(JsonElement.DeepEquals(expectedTools, deserialized.Tools.Value));
         Assert.Equal(expectedTopLogprobs, deserialized.TopLogprobs);
         Assert.Equal(expectedTopP, deserialized.TopP);
         Assert.Equal(expectedUser, deserialized.User);

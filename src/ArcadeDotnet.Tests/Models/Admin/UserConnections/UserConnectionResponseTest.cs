@@ -38,10 +38,9 @@ public class UserConnectionResponseTest : TestBase
         Assert.Equal(expectedProviderDescription, model.ProviderDescription);
         Assert.Equal(expectedProviderID, model.ProviderID);
         Assert.Equal(expectedProviderType, model.ProviderType);
-        Assert.True(
-            model.ProviderUserInfo.HasValue
-                && JsonElement.DeepEquals(expectedProviderUserInfo, model.ProviderUserInfo.Value)
-        );
+        Assert.NotNull(model.ProviderUserInfo);
+        Assert.True(JsonElement.DeepEquals(expectedProviderUserInfo, model.ProviderUserInfo.Value));
+        Assert.NotNull(model.Scopes);
         Assert.Equal(expectedScopes.Count, model.Scopes.Count);
         for (int i = 0; i < expectedScopes.Count; i++)
         {
@@ -108,13 +107,11 @@ public class UserConnectionResponseTest : TestBase
         Assert.Equal(expectedProviderDescription, deserialized.ProviderDescription);
         Assert.Equal(expectedProviderID, deserialized.ProviderID);
         Assert.Equal(expectedProviderType, deserialized.ProviderType);
+        Assert.NotNull(deserialized.ProviderUserInfo);
         Assert.True(
-            deserialized.ProviderUserInfo.HasValue
-                && JsonElement.DeepEquals(
-                    expectedProviderUserInfo,
-                    deserialized.ProviderUserInfo.Value
-                )
+            JsonElement.DeepEquals(expectedProviderUserInfo, deserialized.ProviderUserInfo.Value)
         );
+        Assert.NotNull(deserialized.Scopes);
         Assert.Equal(expectedScopes.Count, deserialized.Scopes.Count);
         for (int i = 0; i < expectedScopes.Count; i++)
         {

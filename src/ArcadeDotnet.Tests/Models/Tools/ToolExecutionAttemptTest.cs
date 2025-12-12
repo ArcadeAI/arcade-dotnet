@@ -537,14 +537,14 @@ public class ToolExecutionAttemptOutputTest : TestBase
 
         Assert.Equal(expectedAuthorization, model.Authorization);
         Assert.Equal(expectedError, model.Error);
+        Assert.NotNull(model.Logs);
         Assert.Equal(expectedLogs.Count, model.Logs.Count);
         for (int i = 0; i < expectedLogs.Count; i++)
         {
             Assert.Equal(expectedLogs[i], model.Logs[i]);
         }
-        Assert.True(
-            model.Value.HasValue && JsonElement.DeepEquals(expectedValue, model.Value.Value)
-        );
+        Assert.NotNull(model.Value);
+        Assert.True(JsonElement.DeepEquals(expectedValue, model.Value.Value));
     }
 
     [Fact]
@@ -700,15 +700,14 @@ public class ToolExecutionAttemptOutputTest : TestBase
 
         Assert.Equal(expectedAuthorization, deserialized.Authorization);
         Assert.Equal(expectedError, deserialized.Error);
+        Assert.NotNull(deserialized.Logs);
         Assert.Equal(expectedLogs.Count, deserialized.Logs.Count);
         for (int i = 0; i < expectedLogs.Count; i++)
         {
             Assert.Equal(expectedLogs[i], deserialized.Logs[i]);
         }
-        Assert.True(
-            deserialized.Value.HasValue
-                && JsonElement.DeepEquals(expectedValue, deserialized.Value.Value)
-        );
+        Assert.NotNull(deserialized.Value);
+        Assert.True(JsonElement.DeepEquals(expectedValue, deserialized.Value.Value));
     }
 
     [Fact]

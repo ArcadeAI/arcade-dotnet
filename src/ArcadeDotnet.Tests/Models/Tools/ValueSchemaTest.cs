@@ -21,6 +21,7 @@ public class ValueSchemaTest : TestBase
         string expectedInnerValType = "inner_val_type";
 
         Assert.Equal(expectedValType, model.ValType);
+        Assert.NotNull(model.Enum);
         Assert.Equal(expectedEnum.Count, model.Enum.Count);
         for (int i = 0; i < expectedEnum.Count; i++)
         {
@@ -64,6 +65,7 @@ public class ValueSchemaTest : TestBase
         string expectedInnerValType = "inner_val_type";
 
         Assert.Equal(expectedValType, deserialized.ValType);
+        Assert.NotNull(deserialized.Enum);
         Assert.Equal(expectedEnum.Count, deserialized.Enum.Count);
         for (int i = 0; i < expectedEnum.Count; i++)
         {

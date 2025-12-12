@@ -708,6 +708,7 @@ public class InputTest : TestBase
             },
         ];
 
+        Assert.NotNull(model.Parameters);
         Assert.Equal(expectedParameters.Count, model.Parameters.Count);
         for (int i = 0; i < expectedParameters.Count; i++)
         {
@@ -788,6 +789,7 @@ public class InputTest : TestBase
             },
         ];
 
+        Assert.NotNull(deserialized.Parameters);
         Assert.Equal(expectedParameters.Count, deserialized.Parameters.Count);
         for (int i = 0; i < expectedParameters.Count; i++)
         {
@@ -1224,6 +1226,7 @@ public class ToolDefinitionOutputTest : TestBase
             InnerValType = "inner_val_type",
         };
 
+        Assert.NotNull(model.AvailableModes);
         Assert.Equal(expectedAvailableModes.Count, model.AvailableModes.Count);
         for (int i = 0; i < expectedAvailableModes.Count; i++)
         {
@@ -1282,6 +1285,7 @@ public class ToolDefinitionOutputTest : TestBase
             InnerValType = "inner_val_type",
         };
 
+        Assert.NotNull(deserialized.AvailableModes);
         Assert.Equal(expectedAvailableModes.Count, deserialized.AvailableModes.Count);
         for (int i = 0; i < expectedAvailableModes.Count; i++)
         {
@@ -1416,6 +1420,7 @@ public class RequirementsTest : TestBase
 
         Assert.Equal(expectedAuthorization, model.Authorization);
         Assert.Equal(expectedMet, model.Met);
+        Assert.NotNull(model.Secrets);
         Assert.Equal(expectedSecrets.Count, model.Secrets.Count);
         for (int i = 0; i < expectedSecrets.Count; i++)
         {
@@ -1510,6 +1515,7 @@ public class RequirementsTest : TestBase
 
         Assert.Equal(expectedAuthorization, deserialized.Authorization);
         Assert.Equal(expectedMet, deserialized.Met);
+        Assert.NotNull(deserialized.Secrets);
         Assert.Equal(expectedSecrets.Count, deserialized.Secrets.Count);
         for (int i = 0; i < expectedSecrets.Count; i++)
         {
@@ -1795,6 +1801,7 @@ public class Oauth2Test : TestBase
 
         List<string> expectedScopes = ["string"];
 
+        Assert.NotNull(model.Scopes);
         Assert.Equal(expectedScopes.Count, model.Scopes.Count);
         for (int i = 0; i < expectedScopes.Count; i++)
         {
@@ -1824,6 +1831,7 @@ public class Oauth2Test : TestBase
 
         List<string> expectedScopes = ["string"];
 
+        Assert.NotNull(deserialized.Scopes);
         Assert.Equal(expectedScopes.Count, deserialized.Scopes.Count);
         for (int i = 0; i < expectedScopes.Count; i++)
         {

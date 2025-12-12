@@ -166,6 +166,7 @@ public class ChatResponseTest : TestBase
         };
 
         Assert.Equal(expectedID, model.ID);
+        Assert.NotNull(model.Choices);
         Assert.Equal(expectedChoices.Count, model.Choices.Count);
         for (int i = 0; i < expectedChoices.Count; i++)
         {
@@ -429,6 +430,7 @@ public class ChatResponseTest : TestBase
         };
 
         Assert.Equal(expectedID, deserialized.ID);
+        Assert.NotNull(deserialized.Choices);
         Assert.Equal(expectedChoices.Count, deserialized.Choices.Count);
         for (int i = 0; i < expectedChoices.Count; i++)
         {

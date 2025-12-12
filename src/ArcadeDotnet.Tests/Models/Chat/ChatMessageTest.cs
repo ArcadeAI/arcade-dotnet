@@ -46,6 +46,7 @@ public class ChatMessageTest : TestBase
         Assert.Equal(expectedRole, model.Role);
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedToolCallID, model.ToolCallID);
+        Assert.NotNull(model.ToolCalls);
         Assert.Equal(expectedToolCalls.Count, model.ToolCalls.Count);
         for (int i = 0; i < expectedToolCalls.Count; i++)
         {
@@ -121,6 +122,7 @@ public class ChatMessageTest : TestBase
         Assert.Equal(expectedRole, deserialized.Role);
         Assert.Equal(expectedName, deserialized.Name);
         Assert.Equal(expectedToolCallID, deserialized.ToolCallID);
+        Assert.NotNull(deserialized.ToolCalls);
         Assert.Equal(expectedToolCalls.Count, deserialized.ToolCalls.Count);
         for (int i = 0; i < expectedToolCalls.Count; i++)
         {

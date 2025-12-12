@@ -161,6 +161,7 @@ public class ScheduledGetResponseTest : TestBase
         string expectedUserID = "user_id";
 
         Assert.Equal(expectedID, model.ID);
+        Assert.NotNull(model.Attempts);
         Assert.Equal(expectedAttempts.Count, model.Attempts.Count);
         for (int i = 0; i < expectedAttempts.Count; i++)
         {
@@ -428,6 +429,7 @@ public class ScheduledGetResponseTest : TestBase
         string expectedUserID = "user_id";
 
         Assert.Equal(expectedID, deserialized.ID);
+        Assert.NotNull(deserialized.Attempts);
         Assert.Equal(expectedAttempts.Count, deserialized.Attempts.Count);
         for (int i = 0; i < expectedAttempts.Count; i++)
         {
