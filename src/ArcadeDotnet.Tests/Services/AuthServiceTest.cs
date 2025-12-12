@@ -18,7 +18,8 @@ public class AuthServiceTest : TestBase
                     ProviderType = "provider_type",
                 },
                 UserID = "user_id",
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         authorizationResponse.Validate();
     }
@@ -27,7 +28,8 @@ public class AuthServiceTest : TestBase
     public async Task ConfirmUser_Works()
     {
         var confirmUserResponse = await this.client.Auth.ConfirmUser(
-            new() { FlowID = "flow_id", UserID = "user_id" }
+            new() { FlowID = "flow_id", UserID = "user_id" },
+            TestContext.Current.CancellationToken
         );
         confirmUserResponse.Validate();
     }
@@ -35,7 +37,10 @@ public class AuthServiceTest : TestBase
     [Fact]
     public async Task Status_Works()
     {
-        var authorizationResponse = await this.client.Auth.Status(new() { ID = "id" });
+        var authorizationResponse = await this.client.Auth.Status(
+            new() { ID = "id" },
+            TestContext.Current.CancellationToken
+        );
         authorizationResponse.Validate();
     }
 }

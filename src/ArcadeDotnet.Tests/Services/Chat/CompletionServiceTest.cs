@@ -7,7 +7,10 @@ public class CompletionServiceTest : TestBase
     [Fact]
     public async Task Create_Works()
     {
-        var chatResponse = await this.client.Chat.Completions.Create();
+        var chatResponse = await this.client.Chat.Completions.Create(
+            new(),
+            TestContext.Current.CancellationToken
+        );
         chatResponse.Validate();
     }
 }
