@@ -301,6 +301,8 @@ public sealed class ArcadeClient : IArcadeClient
         return e is IOException || e is ArcadeIOException;
     }
 
+    public void Dispose() => this.HttpClient.Dispose();
+
     public ArcadeClient()
     {
         _options = new();
