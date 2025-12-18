@@ -22,8 +22,8 @@ public sealed record class ToolExecuteParams : ParamsBase
 
     public required string ToolName
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "tool_name"); }
-        init { ModelBase.Set(this._rawBodyData, "tool_name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "tool_name"); }
+        init { JsonModel.Set(this._rawBodyData, "tool_name", value); }
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ public sealed record class ToolExecuteParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "include_error_stacktrace");
+            return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "include_error_stacktrace");
         }
         init
         {
@@ -43,7 +43,7 @@ public sealed record class ToolExecuteParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "include_error_stacktrace", value);
+            JsonModel.Set(this._rawBodyData, "include_error_stacktrace", value);
         }
     }
 
@@ -54,7 +54,7 @@ public sealed record class ToolExecuteParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, JsonElement>>(
+            return JsonModel.GetNullableClass<Dictionary<string, JsonElement>>(
                 this.RawBodyData,
                 "input"
             );
@@ -66,7 +66,7 @@ public sealed record class ToolExecuteParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "input", value);
+            JsonModel.Set(this._rawBodyData, "input", value);
         }
     }
 
@@ -76,7 +76,7 @@ public sealed record class ToolExecuteParams : ParamsBase
     /// </summary>
     public string? RunAt
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "run_at"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "run_at"); }
         init
         {
             if (value == null)
@@ -84,7 +84,7 @@ public sealed record class ToolExecuteParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "run_at", value);
+            JsonModel.Set(this._rawBodyData, "run_at", value);
         }
     }
 
@@ -93,7 +93,7 @@ public sealed record class ToolExecuteParams : ParamsBase
     /// </summary>
     public string? ToolVersion
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "tool_version"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "tool_version"); }
         init
         {
             if (value == null)
@@ -101,13 +101,13 @@ public sealed record class ToolExecuteParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "tool_version", value);
+            JsonModel.Set(this._rawBodyData, "tool_version", value);
         }
     }
 
     public string? UserID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "user_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "user_id"); }
         init
         {
             if (value == null)
@@ -115,7 +115,7 @@ public sealed record class ToolExecuteParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "user_id", value);
+            JsonModel.Set(this._rawBodyData, "user_id", value);
         }
     }
 
@@ -152,7 +152,7 @@ public sealed record class ToolExecuteParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static ToolExecuteParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -174,9 +174,13 @@ public sealed record class ToolExecuteParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

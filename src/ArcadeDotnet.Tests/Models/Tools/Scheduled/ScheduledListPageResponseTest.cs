@@ -135,8 +135,8 @@ public class ScheduledListPageResponseTest : TestBase
             TotalCount = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ScheduledListPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ScheduledListPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<ToolExecution> expectedItems =

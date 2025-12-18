@@ -24,7 +24,7 @@ public sealed record class ToolGetParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<ApiEnum<string, ToolGetParamsIncludeFormat>>>(
+            return JsonModel.GetNullableClass<List<ApiEnum<string, ToolGetParamsIncludeFormat>>>(
                 this.RawQueryData,
                 "include_format"
             );
@@ -36,7 +36,7 @@ public sealed record class ToolGetParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "include_format", value);
+            JsonModel.Set(this._rawQueryData, "include_format", value);
         }
     }
 
@@ -45,7 +45,7 @@ public sealed record class ToolGetParams : ParamsBase
     /// </summary>
     public string? UserID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "user_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "user_id"); }
         init
         {
             if (value == null)
@@ -53,7 +53,7 @@ public sealed record class ToolGetParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "user_id", value);
+            JsonModel.Set(this._rawQueryData, "user_id", value);
         }
     }
 
@@ -83,7 +83,7 @@ public sealed record class ToolGetParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static ToolGetParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

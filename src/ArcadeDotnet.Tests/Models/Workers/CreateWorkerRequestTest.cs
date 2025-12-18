@@ -141,8 +141,8 @@ public class CreateWorkerRequestTest : TestBase
             Type = "type",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CreateWorkerRequest>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CreateWorkerRequest>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -330,8 +330,8 @@ public class CreateWorkerRequestHTTPTest : TestBase
             Uri = "uri",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CreateWorkerRequestHTTP>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CreateWorkerRequestHTTP>(element);
         Assert.NotNull(deserialized);
 
         long expectedRetry = 0;
@@ -458,8 +458,8 @@ public class CreateWorkerRequestMcpTest : TestBase
             Secrets = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CreateWorkerRequestMcp>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CreateWorkerRequestMcp>(element);
         Assert.NotNull(deserialized);
 
         long expectedRetry = 0;
@@ -642,8 +642,8 @@ public class CreateWorkerRequestMcpOauth2Test : TestBase
             ExternalID = "external_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CreateWorkerRequestMcpOauth2>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CreateWorkerRequestMcpOauth2>(element);
         Assert.NotNull(deserialized);
 
         string expectedAuthorizationURL = "authorization_url";

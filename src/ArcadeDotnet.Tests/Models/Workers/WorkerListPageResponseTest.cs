@@ -338,8 +338,8 @@ public class WorkerListPageResponseTest : TestBase
             TotalCount = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<WorkerListPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<WorkerListPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<WorkerResponse> expectedItems =

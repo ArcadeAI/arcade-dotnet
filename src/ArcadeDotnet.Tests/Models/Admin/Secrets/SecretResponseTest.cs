@@ -77,8 +77,8 @@ public class SecretResponseTest : TestBase
             UpdatedAt = "updated_at",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SecretResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SecretResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -233,8 +233,8 @@ public class BindingTest : TestBase
     {
         var model = new Binding { ID = "id", Type = Type.Static };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Binding>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Binding>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

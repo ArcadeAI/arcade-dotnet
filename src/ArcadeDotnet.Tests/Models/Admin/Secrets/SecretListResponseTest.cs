@@ -118,8 +118,8 @@ public class SecretListResponseTest : TestBase
             TotalCount = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SecretListResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SecretListResponse>(element);
         Assert.NotNull(deserialized);
 
         List<SecretResponse> expectedItems =

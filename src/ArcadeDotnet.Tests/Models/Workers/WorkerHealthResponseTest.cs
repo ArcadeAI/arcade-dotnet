@@ -55,8 +55,8 @@ public class WorkerHealthResponseTest : TestBase
             Message = "message",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<WorkerHealthResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<WorkerHealthResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

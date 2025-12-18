@@ -7,19 +7,19 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Auth;
 
-[JsonConverter(typeof(ModelConverter<ConfirmUserRequest, ConfirmUserRequestFromRaw>))]
-public sealed record class ConfirmUserRequest : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ConfirmUserRequest, ConfirmUserRequestFromRaw>))]
+public sealed record class ConfirmUserRequest : JsonModel
 {
     public required string FlowID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "flow_id"); }
-        init { ModelBase.Set(this._rawData, "flow_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "flow_id"); }
+        init { JsonModel.Set(this._rawData, "flow_id", value); }
     }
 
     public required string UserID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "user_id"); }
-        init { ModelBase.Set(this._rawData, "user_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "user_id"); }
+        init { JsonModel.Set(this._rawData, "user_id", value); }
     }
 
     /// <inheritdoc/>
@@ -56,7 +56,7 @@ public sealed record class ConfirmUserRequest : ModelBase
     }
 }
 
-class ConfirmUserRequestFromRaw : IFromRaw<ConfirmUserRequest>
+class ConfirmUserRequestFromRaw : IFromRawJson<ConfirmUserRequest>
 {
     /// <inheritdoc/>
     public ConfirmUserRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

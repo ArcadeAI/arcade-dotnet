@@ -64,8 +64,8 @@ public class AuthorizationContextTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthorizationContext>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AuthorizationContext>(element);
         Assert.NotNull(deserialized);
 
         string expectedToken = "token";

@@ -95,8 +95,8 @@ public class ToolExecutionTest : TestBase
             UserID = "user_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolExecution>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ToolExecution>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

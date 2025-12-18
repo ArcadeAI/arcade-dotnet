@@ -7,12 +7,12 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Chat;
 
-[JsonConverter(typeof(ModelConverter<Usage, UsageFromRaw>))]
-public sealed record class Usage : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Usage, UsageFromRaw>))]
+public sealed record class Usage : JsonModel
 {
     public long? CompletionTokens
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "completion_tokens"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "completion_tokens"); }
         init
         {
             if (value == null)
@@ -20,13 +20,13 @@ public sealed record class Usage : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "completion_tokens", value);
+            JsonModel.Set(this._rawData, "completion_tokens", value);
         }
     }
 
     public long? PromptTokens
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "prompt_tokens"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "prompt_tokens"); }
         init
         {
             if (value == null)
@@ -34,13 +34,13 @@ public sealed record class Usage : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "prompt_tokens", value);
+            JsonModel.Set(this._rawData, "prompt_tokens", value);
         }
     }
 
     public long? TotalTokens
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "total_tokens"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "total_tokens"); }
         init
         {
             if (value == null)
@@ -48,7 +48,7 @@ public sealed record class Usage : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "total_tokens", value);
+            JsonModel.Set(this._rawData, "total_tokens", value);
         }
     }
 
@@ -85,7 +85,7 @@ public sealed record class Usage : ModelBase
     }
 }
 
-class UsageFromRaw : IFromRaw<Usage>
+class UsageFromRaw : IFromRawJson<Usage>
 {
     /// <inheritdoc/>
     public Usage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

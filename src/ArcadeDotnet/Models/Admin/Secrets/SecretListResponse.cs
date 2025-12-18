@@ -7,12 +7,12 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Admin.Secrets;
 
-[JsonConverter(typeof(ModelConverter<SecretListResponse, SecretListResponseFromRaw>))]
-public sealed record class SecretListResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<SecretListResponse, SecretListResponseFromRaw>))]
+public sealed record class SecretListResponse : JsonModel
 {
     public IReadOnlyList<SecretResponse>? Items
     {
-        get { return ModelBase.GetNullableClass<List<SecretResponse>>(this.RawData, "items"); }
+        get { return JsonModel.GetNullableClass<List<SecretResponse>>(this.RawData, "items"); }
         init
         {
             if (value == null)
@@ -20,13 +20,13 @@ public sealed record class SecretListResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "items", value);
+            JsonModel.Set(this._rawData, "items", value);
         }
     }
 
     public long? Limit
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "limit"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "limit"); }
         init
         {
             if (value == null)
@@ -34,13 +34,13 @@ public sealed record class SecretListResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "limit", value);
+            JsonModel.Set(this._rawData, "limit", value);
         }
     }
 
     public long? Offset
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "offset"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "offset"); }
         init
         {
             if (value == null)
@@ -48,13 +48,13 @@ public sealed record class SecretListResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "offset", value);
+            JsonModel.Set(this._rawData, "offset", value);
         }
     }
 
     public long? PageCount
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "page_count"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "page_count"); }
         init
         {
             if (value == null)
@@ -62,13 +62,13 @@ public sealed record class SecretListResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "page_count", value);
+            JsonModel.Set(this._rawData, "page_count", value);
         }
     }
 
     public long? TotalCount
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "total_count"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "total_count"); }
         init
         {
             if (value == null)
@@ -76,7 +76,7 @@ public sealed record class SecretListResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "total_count", value);
+            JsonModel.Set(this._rawData, "total_count", value);
         }
     }
 
@@ -120,7 +120,7 @@ public sealed record class SecretListResponse : ModelBase
     }
 }
 
-class SecretListResponseFromRaw : IFromRaw<SecretListResponse>
+class SecretListResponseFromRaw : IFromRawJson<SecretListResponse>
 {
     /// <inheritdoc/>
     public SecretListResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

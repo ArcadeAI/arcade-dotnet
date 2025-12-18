@@ -260,8 +260,8 @@ public class ExecuteToolResponseTest : TestBase
             Success = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ExecuteToolResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ExecuteToolResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -693,8 +693,8 @@ public class OutputTest : TestBase
             Value = JsonSerializer.Deserialize<JsonElement>("{}"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Output>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Output>(element);
         Assert.NotNull(deserialized);
 
         Models::AuthorizationResponse expectedAuthorization = new()
@@ -960,8 +960,8 @@ public class ErrorTest : TestBase
             StatusCode = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Error>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Error>(element);
         Assert.NotNull(deserialized);
 
         bool expectedCanRetry = true;
@@ -1242,8 +1242,8 @@ public class LogTest : TestBase
             Subtype = "subtype",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Log>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Log>(element);
         Assert.NotNull(deserialized);
 
         string expectedLevel = "level";

@@ -7,13 +7,13 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Tools;
 
-[JsonConverter(typeof(ModelConverter<AuthorizeToolRequest, AuthorizeToolRequestFromRaw>))]
-public sealed record class AuthorizeToolRequest : ModelBase
+[JsonConverter(typeof(JsonModelConverter<AuthorizeToolRequest, AuthorizeToolRequestFromRaw>))]
+public sealed record class AuthorizeToolRequest : JsonModel
 {
     public required string ToolName
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "tool_name"); }
-        init { ModelBase.Set(this._rawData, "tool_name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "tool_name"); }
+        init { JsonModel.Set(this._rawData, "tool_name", value); }
     }
 
     /// <summary>
@@ -21,7 +21,7 @@ public sealed record class AuthorizeToolRequest : ModelBase
     /// </summary>
     public string? NextUri
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "next_uri"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "next_uri"); }
         init
         {
             if (value == null)
@@ -29,7 +29,7 @@ public sealed record class AuthorizeToolRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "next_uri", value);
+            JsonModel.Set(this._rawData, "next_uri", value);
         }
     }
 
@@ -38,7 +38,7 @@ public sealed record class AuthorizeToolRequest : ModelBase
     /// </summary>
     public string? ToolVersion
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "tool_version"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "tool_version"); }
         init
         {
             if (value == null)
@@ -46,7 +46,7 @@ public sealed record class AuthorizeToolRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "tool_version", value);
+            JsonModel.Set(this._rawData, "tool_version", value);
         }
     }
 
@@ -55,7 +55,7 @@ public sealed record class AuthorizeToolRequest : ModelBase
     /// </summary>
     public string? UserID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "user_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "user_id"); }
         init
         {
             if (value == null)
@@ -63,7 +63,7 @@ public sealed record class AuthorizeToolRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "user_id", value);
+            JsonModel.Set(this._rawData, "user_id", value);
         }
     }
 
@@ -110,7 +110,7 @@ public sealed record class AuthorizeToolRequest : ModelBase
     }
 }
 
-class AuthorizeToolRequestFromRaw : IFromRaw<AuthorizeToolRequest>
+class AuthorizeToolRequestFromRaw : IFromRawJson<AuthorizeToolRequest>
 {
     /// <inheritdoc/>
     public AuthorizeToolRequest FromRawUnchecked(

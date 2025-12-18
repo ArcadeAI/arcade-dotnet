@@ -355,8 +355,8 @@ public class WorkerToolsPageResponseTest : TestBase
             TotalCount = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<WorkerToolsPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<WorkerToolsPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<ToolDefinition> expectedItems =

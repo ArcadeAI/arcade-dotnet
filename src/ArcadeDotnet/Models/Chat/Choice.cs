@@ -7,12 +7,12 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Chat;
 
-[JsonConverter(typeof(ModelConverter<Choice, ChoiceFromRaw>))]
-public sealed record class Choice : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Choice, ChoiceFromRaw>))]
+public sealed record class Choice : JsonModel
 {
     public string? FinishReason
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "finish_reason"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "finish_reason"); }
         init
         {
             if (value == null)
@@ -20,13 +20,13 @@ public sealed record class Choice : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "finish_reason", value);
+            JsonModel.Set(this._rawData, "finish_reason", value);
         }
     }
 
     public long? Index
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "index"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "index"); }
         init
         {
             if (value == null)
@@ -34,13 +34,13 @@ public sealed record class Choice : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "index", value);
+            JsonModel.Set(this._rawData, "index", value);
         }
     }
 
     public JsonElement? Logprobs
     {
-        get { return ModelBase.GetNullableStruct<JsonElement>(this.RawData, "logprobs"); }
+        get { return JsonModel.GetNullableStruct<JsonElement>(this.RawData, "logprobs"); }
         init
         {
             if (value == null)
@@ -48,13 +48,13 @@ public sealed record class Choice : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "logprobs", value);
+            JsonModel.Set(this._rawData, "logprobs", value);
         }
     }
 
     public ChatMessage? Message
     {
-        get { return ModelBase.GetNullableClass<ChatMessage>(this.RawData, "message"); }
+        get { return JsonModel.GetNullableClass<ChatMessage>(this.RawData, "message"); }
         init
         {
             if (value == null)
@@ -62,7 +62,7 @@ public sealed record class Choice : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "message", value);
+            JsonModel.Set(this._rawData, "message", value);
         }
     }
 
@@ -70,7 +70,7 @@ public sealed record class Choice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<AuthorizationResponse>>(
+            return JsonModel.GetNullableClass<List<AuthorizationResponse>>(
                 this.RawData,
                 "tool_authorizations"
             );
@@ -82,13 +82,13 @@ public sealed record class Choice : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "tool_authorizations", value);
+            JsonModel.Set(this._rawData, "tool_authorizations", value);
         }
     }
 
     public IReadOnlyList<ChatMessage>? ToolMessages
     {
-        get { return ModelBase.GetNullableClass<List<ChatMessage>>(this.RawData, "tool_messages"); }
+        get { return JsonModel.GetNullableClass<List<ChatMessage>>(this.RawData, "tool_messages"); }
         init
         {
             if (value == null)
@@ -96,7 +96,7 @@ public sealed record class Choice : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "tool_messages", value);
+            JsonModel.Set(this._rawData, "tool_messages", value);
         }
     }
 
@@ -142,7 +142,7 @@ public sealed record class Choice : ModelBase
     }
 }
 
-class ChoiceFromRaw : IFromRaw<Choice>
+class ChoiceFromRaw : IFromRawJson<Choice>
 {
     /// <inheritdoc/>
     public Choice FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

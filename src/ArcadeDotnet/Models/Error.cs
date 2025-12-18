@@ -7,12 +7,12 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models;
 
-[JsonConverter(typeof(ModelConverter<Error, ErrorFromRaw>))]
-public sealed record class Error : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Error, ErrorFromRaw>))]
+public sealed record class Error : JsonModel
 {
     public string? Message
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "message"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "message"); }
         init
         {
             if (value == null)
@@ -20,13 +20,13 @@ public sealed record class Error : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "message", value);
+            JsonModel.Set(this._rawData, "message", value);
         }
     }
 
     public string? Name
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "name"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "name"); }
         init
         {
             if (value == null)
@@ -34,7 +34,7 @@ public sealed record class Error : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "name", value);
+            JsonModel.Set(this._rawData, "name", value);
         }
     }
 
@@ -70,7 +70,7 @@ public sealed record class Error : ModelBase
     }
 }
 
-class ErrorFromRaw : IFromRaw<Error>
+class ErrorFromRaw : IFromRawJson<Error>
 {
     /// <inheritdoc/>
     public Error FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

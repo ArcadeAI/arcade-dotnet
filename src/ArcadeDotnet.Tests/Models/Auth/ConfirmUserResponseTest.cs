@@ -33,8 +33,8 @@ public class ConfirmUserResponseTest : TestBase
     {
         var model = new ConfirmUserResponse { AuthID = "auth_id", NextUri = "next_uri" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ConfirmUserResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ConfirmUserResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedAuthID = "auth_id";

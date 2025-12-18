@@ -7,12 +7,12 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Admin.UserConnections;
 
-[JsonConverter(typeof(ModelConverter<UserConnectionResponse, UserConnectionResponseFromRaw>))]
-public sealed record class UserConnectionResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<UserConnectionResponse, UserConnectionResponseFromRaw>))]
+public sealed record class UserConnectionResponse : JsonModel
 {
     public string? ID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -20,13 +20,13 @@ public sealed record class UserConnectionResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "id", value);
+            JsonModel.Set(this._rawData, "id", value);
         }
     }
 
     public string? ConnectionID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "connection_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "connection_id"); }
         init
         {
             if (value == null)
@@ -34,13 +34,13 @@ public sealed record class UserConnectionResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "connection_id", value);
+            JsonModel.Set(this._rawData, "connection_id", value);
         }
     }
 
     public string? ConnectionStatus
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "connection_status"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "connection_status"); }
         init
         {
             if (value == null)
@@ -48,13 +48,13 @@ public sealed record class UserConnectionResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "connection_status", value);
+            JsonModel.Set(this._rawData, "connection_status", value);
         }
     }
 
     public string? ProviderDescription
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "provider_description"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "provider_description"); }
         init
         {
             if (value == null)
@@ -62,13 +62,13 @@ public sealed record class UserConnectionResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "provider_description", value);
+            JsonModel.Set(this._rawData, "provider_description", value);
         }
     }
 
     public string? ProviderID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "provider_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "provider_id"); }
         init
         {
             if (value == null)
@@ -76,13 +76,13 @@ public sealed record class UserConnectionResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "provider_id", value);
+            JsonModel.Set(this._rawData, "provider_id", value);
         }
     }
 
     public string? ProviderType
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "provider_type"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "provider_type"); }
         init
         {
             if (value == null)
@@ -90,13 +90,13 @@ public sealed record class UserConnectionResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "provider_type", value);
+            JsonModel.Set(this._rawData, "provider_type", value);
         }
     }
 
     public JsonElement? ProviderUserInfo
     {
-        get { return ModelBase.GetNullableStruct<JsonElement>(this.RawData, "provider_user_info"); }
+        get { return JsonModel.GetNullableStruct<JsonElement>(this.RawData, "provider_user_info"); }
         init
         {
             if (value == null)
@@ -104,13 +104,13 @@ public sealed record class UserConnectionResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "provider_user_info", value);
+            JsonModel.Set(this._rawData, "provider_user_info", value);
         }
     }
 
     public IReadOnlyList<string>? Scopes
     {
-        get { return ModelBase.GetNullableClass<List<string>>(this.RawData, "scopes"); }
+        get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "scopes"); }
         init
         {
             if (value == null)
@@ -118,13 +118,13 @@ public sealed record class UserConnectionResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "scopes", value);
+            JsonModel.Set(this._rawData, "scopes", value);
         }
     }
 
     public string? UserID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "user_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "user_id"); }
         init
         {
             if (value == null)
@@ -132,7 +132,7 @@ public sealed record class UserConnectionResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "user_id", value);
+            JsonModel.Set(this._rawData, "user_id", value);
         }
     }
 
@@ -177,7 +177,7 @@ public sealed record class UserConnectionResponse : ModelBase
     }
 }
 
-class UserConnectionResponseFromRaw : IFromRaw<UserConnectionResponse>
+class UserConnectionResponseFromRaw : IFromRawJson<UserConnectionResponse>
 {
     /// <inheritdoc/>
     public UserConnectionResponse FromRawUnchecked(

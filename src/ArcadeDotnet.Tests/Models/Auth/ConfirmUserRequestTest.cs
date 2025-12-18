@@ -33,8 +33,8 @@ public class ConfirmUserRequestTest : TestBase
     {
         var model = new ConfirmUserRequest { FlowID = "flow_id", UserID = "user_id" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ConfirmUserRequest>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ConfirmUserRequest>(element);
         Assert.NotNull(deserialized);
 
         string expectedFlowID = "flow_id";

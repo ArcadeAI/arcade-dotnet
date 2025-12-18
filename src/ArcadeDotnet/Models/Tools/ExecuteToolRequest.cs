@@ -7,13 +7,13 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Tools;
 
-[JsonConverter(typeof(ModelConverter<ExecuteToolRequest, ExecuteToolRequestFromRaw>))]
-public sealed record class ExecuteToolRequest : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ExecuteToolRequest, ExecuteToolRequestFromRaw>))]
+public sealed record class ExecuteToolRequest : JsonModel
 {
     public required string ToolName
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "tool_name"); }
-        init { ModelBase.Set(this._rawData, "tool_name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "tool_name"); }
+        init { JsonModel.Set(this._rawData, "tool_name", value); }
     }
 
     /// <summary>
@@ -22,7 +22,7 @@ public sealed record class ExecuteToolRequest : ModelBase
     /// </summary>
     public bool? IncludeErrorStacktrace
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "include_error_stacktrace"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "include_error_stacktrace"); }
         init
         {
             if (value == null)
@@ -30,7 +30,7 @@ public sealed record class ExecuteToolRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "include_error_stacktrace", value);
+            JsonModel.Set(this._rawData, "include_error_stacktrace", value);
         }
     }
 
@@ -41,7 +41,7 @@ public sealed record class ExecuteToolRequest : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, JsonElement>>(
+            return JsonModel.GetNullableClass<Dictionary<string, JsonElement>>(
                 this.RawData,
                 "input"
             );
@@ -53,7 +53,7 @@ public sealed record class ExecuteToolRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "input", value);
+            JsonModel.Set(this._rawData, "input", value);
         }
     }
 
@@ -63,7 +63,7 @@ public sealed record class ExecuteToolRequest : ModelBase
     /// </summary>
     public string? RunAt
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "run_at"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "run_at"); }
         init
         {
             if (value == null)
@@ -71,7 +71,7 @@ public sealed record class ExecuteToolRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "run_at", value);
+            JsonModel.Set(this._rawData, "run_at", value);
         }
     }
 
@@ -80,7 +80,7 @@ public sealed record class ExecuteToolRequest : ModelBase
     /// </summary>
     public string? ToolVersion
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "tool_version"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "tool_version"); }
         init
         {
             if (value == null)
@@ -88,13 +88,13 @@ public sealed record class ExecuteToolRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "tool_version", value);
+            JsonModel.Set(this._rawData, "tool_version", value);
         }
     }
 
     public string? UserID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "user_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "user_id"); }
         init
         {
             if (value == null)
@@ -102,7 +102,7 @@ public sealed record class ExecuteToolRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "user_id", value);
+            JsonModel.Set(this._rawData, "user_id", value);
         }
     }
 
@@ -151,7 +151,7 @@ public sealed record class ExecuteToolRequest : ModelBase
     }
 }
 
-class ExecuteToolRequestFromRaw : IFromRaw<ExecuteToolRequest>
+class ExecuteToolRequestFromRaw : IFromRawJson<ExecuteToolRequest>
 {
     /// <inheritdoc/>
     public ExecuteToolRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

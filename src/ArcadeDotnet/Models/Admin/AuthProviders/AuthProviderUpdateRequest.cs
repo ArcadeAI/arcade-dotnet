@@ -9,12 +9,14 @@ using System = System;
 
 namespace ArcadeDotnet.Models.Admin.AuthProviders;
 
-[JsonConverter(typeof(ModelConverter<AuthProviderUpdateRequest, AuthProviderUpdateRequestFromRaw>))]
-public sealed record class AuthProviderUpdateRequest : ModelBase
+[JsonConverter(
+    typeof(JsonModelConverter<AuthProviderUpdateRequest, AuthProviderUpdateRequestFromRaw>)
+)]
+public sealed record class AuthProviderUpdateRequest : JsonModel
 {
     public string? ID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -22,13 +24,13 @@ public sealed record class AuthProviderUpdateRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "id", value);
+            JsonModel.Set(this._rawData, "id", value);
         }
     }
 
     public string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
         init
         {
             if (value == null)
@@ -36,7 +38,7 @@ public sealed record class AuthProviderUpdateRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "description", value);
+            JsonModel.Set(this._rawData, "description", value);
         }
     }
 
@@ -44,7 +46,7 @@ public sealed record class AuthProviderUpdateRequest : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<AuthProviderUpdateRequestOauth2>(
+            return JsonModel.GetNullableClass<AuthProviderUpdateRequestOauth2>(
                 this.RawData,
                 "oauth2"
             );
@@ -56,13 +58,13 @@ public sealed record class AuthProviderUpdateRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "oauth2", value);
+            JsonModel.Set(this._rawData, "oauth2", value);
         }
     }
 
     public string? ProviderID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "provider_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "provider_id"); }
         init
         {
             if (value == null)
@@ -70,13 +72,13 @@ public sealed record class AuthProviderUpdateRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "provider_id", value);
+            JsonModel.Set(this._rawData, "provider_id", value);
         }
     }
 
     public string? Status
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "status"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "status"); }
         init
         {
             if (value == null)
@@ -84,13 +86,13 @@ public sealed record class AuthProviderUpdateRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "status", value);
+            JsonModel.Set(this._rawData, "status", value);
         }
     }
 
     public string? Type
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "type"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "type"); }
         init
         {
             if (value == null)
@@ -98,7 +100,7 @@ public sealed record class AuthProviderUpdateRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "type", value);
+            JsonModel.Set(this._rawData, "type", value);
         }
     }
 
@@ -140,7 +142,7 @@ public sealed record class AuthProviderUpdateRequest : ModelBase
     }
 }
 
-class AuthProviderUpdateRequestFromRaw : IFromRaw<AuthProviderUpdateRequest>
+class AuthProviderUpdateRequestFromRaw : IFromRawJson<AuthProviderUpdateRequest>
 {
     /// <inheritdoc/>
     public AuthProviderUpdateRequest FromRawUnchecked(
@@ -149,15 +151,18 @@ class AuthProviderUpdateRequestFromRaw : IFromRaw<AuthProviderUpdateRequest>
 }
 
 [JsonConverter(
-    typeof(ModelConverter<AuthProviderUpdateRequestOauth2, AuthProviderUpdateRequestOauth2FromRaw>)
+    typeof(JsonModelConverter<
+        AuthProviderUpdateRequestOauth2,
+        AuthProviderUpdateRequestOauth2FromRaw
+    >)
 )]
-public sealed record class AuthProviderUpdateRequestOauth2 : ModelBase
+public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
 {
     public AuthProviderUpdateRequestOauth2AuthorizeRequest? AuthorizeRequest
     {
         get
         {
-            return ModelBase.GetNullableClass<AuthProviderUpdateRequestOauth2AuthorizeRequest>(
+            return JsonModel.GetNullableClass<AuthProviderUpdateRequestOauth2AuthorizeRequest>(
                 this.RawData,
                 "authorize_request"
             );
@@ -169,13 +174,13 @@ public sealed record class AuthProviderUpdateRequestOauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "authorize_request", value);
+            JsonModel.Set(this._rawData, "authorize_request", value);
         }
     }
 
     public string? ClientID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "client_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "client_id"); }
         init
         {
             if (value == null)
@@ -183,13 +188,13 @@ public sealed record class AuthProviderUpdateRequestOauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "client_id", value);
+            JsonModel.Set(this._rawData, "client_id", value);
         }
     }
 
     public string? ClientSecret
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "client_secret"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "client_secret"); }
         init
         {
             if (value == null)
@@ -197,7 +202,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "client_secret", value);
+            JsonModel.Set(this._rawData, "client_secret", value);
         }
     }
 
@@ -205,7 +210,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<AuthProviderUpdateRequestOauth2Pkce>(
+            return JsonModel.GetNullableClass<AuthProviderUpdateRequestOauth2Pkce>(
                 this.RawData,
                 "pkce"
             );
@@ -217,7 +222,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "pkce", value);
+            JsonModel.Set(this._rawData, "pkce", value);
         }
     }
 
@@ -225,7 +230,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<AuthProviderUpdateRequestOauth2RefreshRequest>(
+            return JsonModel.GetNullableClass<AuthProviderUpdateRequestOauth2RefreshRequest>(
                 this.RawData,
                 "refresh_request"
             );
@@ -237,7 +242,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "refresh_request", value);
+            JsonModel.Set(this._rawData, "refresh_request", value);
         }
     }
 
@@ -245,7 +250,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2ScopeDelimiter>
             >(this.RawData, "scope_delimiter");
         }
@@ -256,7 +261,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "scope_delimiter", value);
+            JsonModel.Set(this._rawData, "scope_delimiter", value);
         }
     }
 
@@ -264,7 +269,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<AuthProviderUpdateRequestOauth2TokenRequest>(
+            return JsonModel.GetNullableClass<AuthProviderUpdateRequestOauth2TokenRequest>(
                 this.RawData,
                 "token_request"
             );
@@ -276,7 +281,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "token_request", value);
+            JsonModel.Set(this._rawData, "token_request", value);
         }
     }
 
@@ -284,7 +289,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<AuthProviderUpdateRequestOauth2UserInfoRequest>(
+            return JsonModel.GetNullableClass<AuthProviderUpdateRequestOauth2UserInfoRequest>(
                 this.RawData,
                 "user_info_request"
             );
@@ -296,7 +301,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "user_info_request", value);
+            JsonModel.Set(this._rawData, "user_info_request", value);
         }
     }
 
@@ -342,7 +347,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : ModelBase
     }
 }
 
-class AuthProviderUpdateRequestOauth2FromRaw : IFromRaw<AuthProviderUpdateRequestOauth2>
+class AuthProviderUpdateRequestOauth2FromRaw : IFromRawJson<AuthProviderUpdateRequestOauth2>
 {
     /// <inheritdoc/>
     public AuthProviderUpdateRequestOauth2 FromRawUnchecked(
@@ -351,16 +356,16 @@ class AuthProviderUpdateRequestOauth2FromRaw : IFromRaw<AuthProviderUpdateReques
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         AuthProviderUpdateRequestOauth2AuthorizeRequest,
         AuthProviderUpdateRequestOauth2AuthorizeRequestFromRaw
     >)
 )]
-public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : ModelBase
+public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : JsonModel
 {
     public string? AuthHeaderValueFormat
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "auth_header_value_format"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "auth_header_value_format"); }
         init
         {
             if (value == null)
@@ -368,13 +373,13 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Mod
                 return;
             }
 
-            ModelBase.Set(this._rawData, "auth_header_value_format", value);
+            JsonModel.Set(this._rawData, "auth_header_value_format", value);
         }
     }
 
     public string? AuthMethod
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "auth_method"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "auth_method"); }
         init
         {
             if (value == null)
@@ -382,13 +387,13 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Mod
                 return;
             }
 
-            ModelBase.Set(this._rawData, "auth_method", value);
+            JsonModel.Set(this._rawData, "auth_method", value);
         }
     }
 
     public string? Endpoint
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "endpoint"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "endpoint"); }
         init
         {
             if (value == null)
@@ -396,13 +401,13 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Mod
                 return;
             }
 
-            ModelBase.Set(this._rawData, "endpoint", value);
+            JsonModel.Set(this._rawData, "endpoint", value);
         }
     }
 
     public string? Method
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "method"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "method"); }
         init
         {
             if (value == null)
@@ -410,7 +415,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Mod
                 return;
             }
 
-            ModelBase.Set(this._rawData, "method", value);
+            JsonModel.Set(this._rawData, "method", value);
         }
     }
 
@@ -418,7 +423,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Mod
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string>>(this.RawData, "params");
+            return JsonModel.GetNullableClass<Dictionary<string, string>>(this.RawData, "params");
         }
         init
         {
@@ -427,7 +432,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Mod
                 return;
             }
 
-            ModelBase.Set(this._rawData, "params", value);
+            JsonModel.Set(this._rawData, "params", value);
         }
     }
 
@@ -438,7 +443,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Mod
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType>
             >(this.RawData, "request_content_type");
         }
@@ -449,7 +454,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Mod
                 return;
             }
 
-            ModelBase.Set(this._rawData, "request_content_type", value);
+            JsonModel.Set(this._rawData, "request_content_type", value);
         }
     }
 
@@ -460,7 +465,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Mod
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType>
             >(this.RawData, "response_content_type");
         }
@@ -471,7 +476,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Mod
                 return;
             }
 
-            ModelBase.Set(this._rawData, "response_content_type", value);
+            JsonModel.Set(this._rawData, "response_content_type", value);
         }
     }
 
@@ -479,7 +484,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Mod
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string>>(
                 this.RawData,
                 "response_map"
             );
@@ -491,7 +496,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Mod
                 return;
             }
 
-            ModelBase.Set(this._rawData, "response_map", value);
+            JsonModel.Set(this._rawData, "response_map", value);
         }
     }
 
@@ -540,7 +545,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Mod
 }
 
 class AuthProviderUpdateRequestOauth2AuthorizeRequestFromRaw
-    : IFromRaw<AuthProviderUpdateRequestOauth2AuthorizeRequest>
+    : IFromRawJson<AuthProviderUpdateRequestOauth2AuthorizeRequest>
 {
     /// <inheritdoc/>
     public AuthProviderUpdateRequestOauth2AuthorizeRequest FromRawUnchecked(
@@ -647,16 +652,16 @@ sealed class AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentTypeC
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         AuthProviderUpdateRequestOauth2Pkce,
         AuthProviderUpdateRequestOauth2PkceFromRaw
     >)
 )]
-public sealed record class AuthProviderUpdateRequestOauth2Pkce : ModelBase
+public sealed record class AuthProviderUpdateRequestOauth2Pkce : JsonModel
 {
     public string? CodeChallengeMethod
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "code_challenge_method"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "code_challenge_method"); }
         init
         {
             if (value == null)
@@ -664,13 +669,13 @@ public sealed record class AuthProviderUpdateRequestOauth2Pkce : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "code_challenge_method", value);
+            JsonModel.Set(this._rawData, "code_challenge_method", value);
         }
     }
 
     public bool? Enabled
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "enabled"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "enabled"); }
         init
         {
             if (value == null)
@@ -678,7 +683,7 @@ public sealed record class AuthProviderUpdateRequestOauth2Pkce : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "enabled", value);
+            JsonModel.Set(this._rawData, "enabled", value);
         }
     }
 
@@ -718,7 +723,7 @@ public sealed record class AuthProviderUpdateRequestOauth2Pkce : ModelBase
     }
 }
 
-class AuthProviderUpdateRequestOauth2PkceFromRaw : IFromRaw<AuthProviderUpdateRequestOauth2Pkce>
+class AuthProviderUpdateRequestOauth2PkceFromRaw : IFromRawJson<AuthProviderUpdateRequestOauth2Pkce>
 {
     /// <inheritdoc/>
     public AuthProviderUpdateRequestOauth2Pkce FromRawUnchecked(
@@ -727,16 +732,16 @@ class AuthProviderUpdateRequestOauth2PkceFromRaw : IFromRaw<AuthProviderUpdateRe
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         AuthProviderUpdateRequestOauth2RefreshRequest,
         AuthProviderUpdateRequestOauth2RefreshRequestFromRaw
     >)
 )]
-public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : ModelBase
+public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : JsonModel
 {
     public string? AuthHeaderValueFormat
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "auth_header_value_format"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "auth_header_value_format"); }
         init
         {
             if (value == null)
@@ -744,13 +749,13 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : Model
                 return;
             }
 
-            ModelBase.Set(this._rawData, "auth_header_value_format", value);
+            JsonModel.Set(this._rawData, "auth_header_value_format", value);
         }
     }
 
     public string? AuthMethod
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "auth_method"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "auth_method"); }
         init
         {
             if (value == null)
@@ -758,13 +763,13 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : Model
                 return;
             }
 
-            ModelBase.Set(this._rawData, "auth_method", value);
+            JsonModel.Set(this._rawData, "auth_method", value);
         }
     }
 
     public string? Endpoint
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "endpoint"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "endpoint"); }
         init
         {
             if (value == null)
@@ -772,13 +777,13 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : Model
                 return;
             }
 
-            ModelBase.Set(this._rawData, "endpoint", value);
+            JsonModel.Set(this._rawData, "endpoint", value);
         }
     }
 
     public string? Method
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "method"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "method"); }
         init
         {
             if (value == null)
@@ -786,7 +791,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : Model
                 return;
             }
 
-            ModelBase.Set(this._rawData, "method", value);
+            JsonModel.Set(this._rawData, "method", value);
         }
     }
 
@@ -794,7 +799,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : Model
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string>>(this.RawData, "params");
+            return JsonModel.GetNullableClass<Dictionary<string, string>>(this.RawData, "params");
         }
         init
         {
@@ -803,7 +808,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : Model
                 return;
             }
 
-            ModelBase.Set(this._rawData, "params", value);
+            JsonModel.Set(this._rawData, "params", value);
         }
     }
 
@@ -814,7 +819,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : Model
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType>
             >(this.RawData, "request_content_type");
         }
@@ -825,7 +830,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : Model
                 return;
             }
 
-            ModelBase.Set(this._rawData, "request_content_type", value);
+            JsonModel.Set(this._rawData, "request_content_type", value);
         }
     }
 
@@ -836,7 +841,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : Model
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType>
             >(this.RawData, "response_content_type");
         }
@@ -847,7 +852,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : Model
                 return;
             }
 
-            ModelBase.Set(this._rawData, "response_content_type", value);
+            JsonModel.Set(this._rawData, "response_content_type", value);
         }
     }
 
@@ -855,7 +860,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : Model
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string>>(
                 this.RawData,
                 "response_map"
             );
@@ -867,7 +872,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : Model
                 return;
             }
 
-            ModelBase.Set(this._rawData, "response_map", value);
+            JsonModel.Set(this._rawData, "response_map", value);
         }
     }
 
@@ -916,7 +921,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : Model
 }
 
 class AuthProviderUpdateRequestOauth2RefreshRequestFromRaw
-    : IFromRaw<AuthProviderUpdateRequestOauth2RefreshRequest>
+    : IFromRawJson<AuthProviderUpdateRequestOauth2RefreshRequest>
 {
     /// <inheritdoc/>
     public AuthProviderUpdateRequestOauth2RefreshRequest FromRawUnchecked(
@@ -1068,16 +1073,16 @@ sealed class AuthProviderUpdateRequestOauth2ScopeDelimiterConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         AuthProviderUpdateRequestOauth2TokenRequest,
         AuthProviderUpdateRequestOauth2TokenRequestFromRaw
     >)
 )]
-public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBase
+public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : JsonModel
 {
     public string? AuthHeaderValueFormat
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "auth_header_value_format"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "auth_header_value_format"); }
         init
         {
             if (value == null)
@@ -1085,13 +1090,13 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBa
                 return;
             }
 
-            ModelBase.Set(this._rawData, "auth_header_value_format", value);
+            JsonModel.Set(this._rawData, "auth_header_value_format", value);
         }
     }
 
     public string? AuthMethod
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "auth_method"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "auth_method"); }
         init
         {
             if (value == null)
@@ -1099,13 +1104,13 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBa
                 return;
             }
 
-            ModelBase.Set(this._rawData, "auth_method", value);
+            JsonModel.Set(this._rawData, "auth_method", value);
         }
     }
 
     public string? Endpoint
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "endpoint"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "endpoint"); }
         init
         {
             if (value == null)
@@ -1113,13 +1118,13 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBa
                 return;
             }
 
-            ModelBase.Set(this._rawData, "endpoint", value);
+            JsonModel.Set(this._rawData, "endpoint", value);
         }
     }
 
     public string? Method
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "method"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "method"); }
         init
         {
             if (value == null)
@@ -1127,7 +1132,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBa
                 return;
             }
 
-            ModelBase.Set(this._rawData, "method", value);
+            JsonModel.Set(this._rawData, "method", value);
         }
     }
 
@@ -1135,7 +1140,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBa
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string>>(this.RawData, "params");
+            return JsonModel.GetNullableClass<Dictionary<string, string>>(this.RawData, "params");
         }
         init
         {
@@ -1144,7 +1149,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBa
                 return;
             }
 
-            ModelBase.Set(this._rawData, "params", value);
+            JsonModel.Set(this._rawData, "params", value);
         }
     }
 
@@ -1155,7 +1160,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBa
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2TokenRequestRequestContentType>
             >(this.RawData, "request_content_type");
         }
@@ -1166,7 +1171,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBa
                 return;
             }
 
-            ModelBase.Set(this._rawData, "request_content_type", value);
+            JsonModel.Set(this._rawData, "request_content_type", value);
         }
     }
 
@@ -1177,7 +1182,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBa
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2TokenRequestResponseContentType>
             >(this.RawData, "response_content_type");
         }
@@ -1188,7 +1193,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBa
                 return;
             }
 
-            ModelBase.Set(this._rawData, "response_content_type", value);
+            JsonModel.Set(this._rawData, "response_content_type", value);
         }
     }
 
@@ -1196,7 +1201,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBa
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string>>(
                 this.RawData,
                 "response_map"
             );
@@ -1208,7 +1213,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBa
                 return;
             }
 
-            ModelBase.Set(this._rawData, "response_map", value);
+            JsonModel.Set(this._rawData, "response_map", value);
         }
     }
 
@@ -1257,7 +1262,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : ModelBa
 }
 
 class AuthProviderUpdateRequestOauth2TokenRequestFromRaw
-    : IFromRaw<AuthProviderUpdateRequestOauth2TokenRequest>
+    : IFromRawJson<AuthProviderUpdateRequestOauth2TokenRequest>
 {
     /// <inheritdoc/>
     public AuthProviderUpdateRequestOauth2TokenRequest FromRawUnchecked(
@@ -1364,16 +1369,16 @@ sealed class AuthProviderUpdateRequestOauth2TokenRequestResponseContentTypeConve
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         AuthProviderUpdateRequestOauth2UserInfoRequest,
         AuthProviderUpdateRequestOauth2UserInfoRequestFromRaw
     >)
 )]
-public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : ModelBase
+public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : JsonModel
 {
     public string? AuthHeaderValueFormat
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "auth_header_value_format"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "auth_header_value_format"); }
         init
         {
             if (value == null)
@@ -1381,13 +1386,13 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
                 return;
             }
 
-            ModelBase.Set(this._rawData, "auth_header_value_format", value);
+            JsonModel.Set(this._rawData, "auth_header_value_format", value);
         }
     }
 
     public string? AuthMethod
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "auth_method"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "auth_method"); }
         init
         {
             if (value == null)
@@ -1395,13 +1400,13 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
                 return;
             }
 
-            ModelBase.Set(this._rawData, "auth_method", value);
+            JsonModel.Set(this._rawData, "auth_method", value);
         }
     }
 
     public string? Endpoint
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "endpoint"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "endpoint"); }
         init
         {
             if (value == null)
@@ -1409,13 +1414,13 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
                 return;
             }
 
-            ModelBase.Set(this._rawData, "endpoint", value);
+            JsonModel.Set(this._rawData, "endpoint", value);
         }
     }
 
     public string? Method
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "method"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "method"); }
         init
         {
             if (value == null)
@@ -1423,7 +1428,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
                 return;
             }
 
-            ModelBase.Set(this._rawData, "method", value);
+            JsonModel.Set(this._rawData, "method", value);
         }
     }
 
@@ -1431,7 +1436,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string>>(this.RawData, "params");
+            return JsonModel.GetNullableClass<Dictionary<string, string>>(this.RawData, "params");
         }
         init
         {
@@ -1440,7 +1445,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
                 return;
             }
 
-            ModelBase.Set(this._rawData, "params", value);
+            JsonModel.Set(this._rawData, "params", value);
         }
     }
 
@@ -1451,7 +1456,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType>
             >(this.RawData, "request_content_type");
         }
@@ -1462,7 +1467,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
                 return;
             }
 
-            ModelBase.Set(this._rawData, "request_content_type", value);
+            JsonModel.Set(this._rawData, "request_content_type", value);
         }
     }
 
@@ -1473,7 +1478,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType>
             >(this.RawData, "response_content_type");
         }
@@ -1484,7 +1489,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
                 return;
             }
 
-            ModelBase.Set(this._rawData, "response_content_type", value);
+            JsonModel.Set(this._rawData, "response_content_type", value);
         }
     }
 
@@ -1492,7 +1497,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string>>(
                 this.RawData,
                 "response_map"
             );
@@ -1504,7 +1509,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
                 return;
             }
 
-            ModelBase.Set(this._rawData, "response_map", value);
+            JsonModel.Set(this._rawData, "response_map", value);
         }
     }
 
@@ -1512,7 +1517,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
     {
         get
         {
-            return ModelBase.GetNullableClass<AuthProviderUpdateRequestOauth2UserInfoRequestTriggers>(
+            return JsonModel.GetNullableClass<AuthProviderUpdateRequestOauth2UserInfoRequestTriggers>(
                 this.RawData,
                 "triggers"
             );
@@ -1524,7 +1529,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
                 return;
             }
 
-            ModelBase.Set(this._rawData, "triggers", value);
+            JsonModel.Set(this._rawData, "triggers", value);
         }
     }
 
@@ -1574,7 +1579,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Mode
 }
 
 class AuthProviderUpdateRequestOauth2UserInfoRequestFromRaw
-    : IFromRaw<AuthProviderUpdateRequestOauth2UserInfoRequest>
+    : IFromRawJson<AuthProviderUpdateRequestOauth2UserInfoRequest>
 {
     /// <inheritdoc/>
     public AuthProviderUpdateRequestOauth2UserInfoRequest FromRawUnchecked(
@@ -1681,16 +1686,16 @@ sealed class AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentTypeCo
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         AuthProviderUpdateRequestOauth2UserInfoRequestTriggers,
         AuthProviderUpdateRequestOauth2UserInfoRequestTriggersFromRaw
     >)
 )]
-public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTriggers : ModelBase
+public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTriggers : JsonModel
 {
     public bool? OnTokenGrant
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "on_token_grant"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "on_token_grant"); }
         init
         {
             if (value == null)
@@ -1698,13 +1703,13 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTrigger
                 return;
             }
 
-            ModelBase.Set(this._rawData, "on_token_grant", value);
+            JsonModel.Set(this._rawData, "on_token_grant", value);
         }
     }
 
     public bool? OnTokenRefresh
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "on_token_refresh"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "on_token_refresh"); }
         init
         {
             if (value == null)
@@ -1712,7 +1717,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTrigger
                 return;
             }
 
-            ModelBase.Set(this._rawData, "on_token_refresh", value);
+            JsonModel.Set(this._rawData, "on_token_refresh", value);
         }
     }
 
@@ -1757,7 +1762,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTrigger
 }
 
 class AuthProviderUpdateRequestOauth2UserInfoRequestTriggersFromRaw
-    : IFromRaw<AuthProviderUpdateRequestOauth2UserInfoRequestTriggers>
+    : IFromRawJson<AuthProviderUpdateRequestOauth2UserInfoRequestTriggers>
 {
     /// <inheritdoc/>
     public AuthProviderUpdateRequestOauth2UserInfoRequestTriggers FromRawUnchecked(

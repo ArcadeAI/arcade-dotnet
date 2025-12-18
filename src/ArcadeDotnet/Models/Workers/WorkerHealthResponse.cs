@@ -7,12 +7,12 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Workers;
 
-[JsonConverter(typeof(ModelConverter<WorkerHealthResponse, WorkerHealthResponseFromRaw>))]
-public sealed record class WorkerHealthResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<WorkerHealthResponse, WorkerHealthResponseFromRaw>))]
+public sealed record class WorkerHealthResponse : JsonModel
 {
     public string? ID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -20,13 +20,13 @@ public sealed record class WorkerHealthResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "id", value);
+            JsonModel.Set(this._rawData, "id", value);
         }
     }
 
     public bool? Enabled
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "enabled"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "enabled"); }
         init
         {
             if (value == null)
@@ -34,13 +34,13 @@ public sealed record class WorkerHealthResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "enabled", value);
+            JsonModel.Set(this._rawData, "enabled", value);
         }
     }
 
     public bool? Healthy
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "healthy"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "healthy"); }
         init
         {
             if (value == null)
@@ -48,13 +48,13 @@ public sealed record class WorkerHealthResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "healthy", value);
+            JsonModel.Set(this._rawData, "healthy", value);
         }
     }
 
     public string? Message
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "message"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "message"); }
         init
         {
             if (value == null)
@@ -62,7 +62,7 @@ public sealed record class WorkerHealthResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "message", value);
+            JsonModel.Set(this._rawData, "message", value);
         }
     }
 
@@ -102,7 +102,7 @@ public sealed record class WorkerHealthResponse : ModelBase
     }
 }
 
-class WorkerHealthResponseFromRaw : IFromRaw<WorkerHealthResponse>
+class WorkerHealthResponseFromRaw : IFromRawJson<WorkerHealthResponse>
 {
     /// <inheritdoc/>
     public WorkerHealthResponse FromRawUnchecked(

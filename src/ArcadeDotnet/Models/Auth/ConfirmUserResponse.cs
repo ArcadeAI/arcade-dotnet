@@ -7,18 +7,18 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Auth;
 
-[JsonConverter(typeof(ModelConverter<ConfirmUserResponse, ConfirmUserResponseFromRaw>))]
-public sealed record class ConfirmUserResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ConfirmUserResponse, ConfirmUserResponseFromRaw>))]
+public sealed record class ConfirmUserResponse : JsonModel
 {
     public required string AuthID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "auth_id"); }
-        init { ModelBase.Set(this._rawData, "auth_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "auth_id"); }
+        init { JsonModel.Set(this._rawData, "auth_id", value); }
     }
 
     public string? NextUri
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "next_uri"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "next_uri"); }
         init
         {
             if (value == null)
@@ -26,7 +26,7 @@ public sealed record class ConfirmUserResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "next_uri", value);
+            JsonModel.Set(this._rawData, "next_uri", value);
         }
     }
 
@@ -71,7 +71,7 @@ public sealed record class ConfirmUserResponse : ModelBase
     }
 }
 
-class ConfirmUserResponseFromRaw : IFromRaw<ConfirmUserResponse>
+class ConfirmUserResponseFromRaw : IFromRawJson<ConfirmUserResponse>
 {
     /// <inheritdoc/>
     public ConfirmUserResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

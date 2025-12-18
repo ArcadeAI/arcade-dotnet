@@ -106,8 +106,8 @@ public class AuthorizationResponseTest : TestBase
             UserID = "user_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthorizationResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AuthorizationResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

@@ -308,8 +308,8 @@ public class Oauth2Test : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Oauth2>(element);
         Assert.NotNull(deserialized);
 
         string expectedClientID = "client_id";
@@ -638,8 +638,8 @@ public class AuthorizeRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthorizeRequest>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AuthorizeRequest>(element);
         Assert.NotNull(deserialized);
 
         string expectedEndpoint = "endpoint";
@@ -918,8 +918,8 @@ public class PkceTest : TestBase
     {
         var model = new Pkce { CodeChallengeMethod = "code_challenge_method", Enabled = true };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Pkce>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Pkce>(element);
         Assert.NotNull(deserialized);
 
         string expectedCodeChallengeMethod = "code_challenge_method";
@@ -1072,8 +1072,8 @@ public class RefreshRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<RefreshRequest>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<RefreshRequest>(element);
         Assert.NotNull(deserialized);
 
         string expectedEndpoint = "endpoint";
@@ -1471,8 +1471,8 @@ public class TokenIntrospectionRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TokenIntrospectionRequest>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TokenIntrospectionRequest>(element);
         Assert.NotNull(deserialized);
 
         string expectedEndpoint = "endpoint";
@@ -1654,8 +1654,8 @@ public class TriggersTest : TestBase
     {
         var model = new Triggers { OnTokenGrant = true, OnTokenRefresh = true };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Triggers>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Triggers>(element);
         Assert.NotNull(deserialized);
 
         bool expectedOnTokenGrant = true;
@@ -1924,8 +1924,8 @@ public class TokenRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TokenRequest>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TokenRequest>(element);
         Assert.NotNull(deserialized);
 
         string expectedEndpoint = "endpoint";
@@ -2265,8 +2265,8 @@ public class UserInfoRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UserInfoRequest>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UserInfoRequest>(element);
         Assert.NotNull(deserialized);
 
         string expectedEndpoint = "endpoint";
@@ -2450,8 +2450,8 @@ public class UserInfoRequestTriggersTest : TestBase
     {
         var model = new UserInfoRequestTriggers { OnTokenGrant = true, OnTokenRefresh = true };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UserInfoRequestTriggers>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UserInfoRequestTriggers>(element);
         Assert.NotNull(deserialized);
 
         bool expectedOnTokenGrant = true;

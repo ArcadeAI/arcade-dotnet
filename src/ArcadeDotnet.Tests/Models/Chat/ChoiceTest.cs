@@ -286,8 +286,8 @@ public class ChoiceTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Choice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Choice>(element);
         Assert.NotNull(deserialized);
 
         string expectedFinishReason = "finish_reason";

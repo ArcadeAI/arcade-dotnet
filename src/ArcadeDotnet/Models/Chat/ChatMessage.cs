@@ -9,16 +9,16 @@ using System = System;
 
 namespace ArcadeDotnet.Models.Chat;
 
-[JsonConverter(typeof(ModelConverter<ChatMessage, ChatMessageFromRaw>))]
-public sealed record class ChatMessage : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ChatMessage, ChatMessageFromRaw>))]
+public sealed record class ChatMessage : JsonModel
 {
     /// <summary>
     /// The content of the message.
     /// </summary>
     public required string Content
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "content"); }
-        init { ModelBase.Set(this._rawData, "content", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "content"); }
+        init { JsonModel.Set(this._rawData, "content", value); }
     }
 
     /// <summary>
@@ -26,8 +26,8 @@ public sealed record class ChatMessage : ModelBase
     /// </summary>
     public required string Role
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "role"); }
-        init { ModelBase.Set(this._rawData, "role", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "role"); }
+        init { JsonModel.Set(this._rawData, "role", value); }
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ public sealed record class ChatMessage : ModelBase
     /// </summary>
     public string? Name
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "name"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "name"); }
         init
         {
             if (value == null)
@@ -43,7 +43,7 @@ public sealed record class ChatMessage : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "name", value);
+            JsonModel.Set(this._rawData, "name", value);
         }
     }
 
@@ -52,7 +52,7 @@ public sealed record class ChatMessage : ModelBase
     /// </summary>
     public string? ToolCallID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "tool_call_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "tool_call_id"); }
         init
         {
             if (value == null)
@@ -60,7 +60,7 @@ public sealed record class ChatMessage : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "tool_call_id", value);
+            JsonModel.Set(this._rawData, "tool_call_id", value);
         }
     }
 
@@ -69,7 +69,7 @@ public sealed record class ChatMessage : ModelBase
     /// </summary>
     public IReadOnlyList<ToolCall>? ToolCalls
     {
-        get { return ModelBase.GetNullableClass<List<ToolCall>>(this.RawData, "tool_calls"); }
+        get { return JsonModel.GetNullableClass<List<ToolCall>>(this.RawData, "tool_calls"); }
         init
         {
             if (value == null)
@@ -77,7 +77,7 @@ public sealed record class ChatMessage : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "tool_calls", value);
+            JsonModel.Set(this._rawData, "tool_calls", value);
         }
     }
 
@@ -119,19 +119,19 @@ public sealed record class ChatMessage : ModelBase
     }
 }
 
-class ChatMessageFromRaw : IFromRaw<ChatMessage>
+class ChatMessageFromRaw : IFromRawJson<ChatMessage>
 {
     /// <inheritdoc/>
     public ChatMessage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ChatMessage.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<ToolCall, ToolCallFromRaw>))]
-public sealed record class ToolCall : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ToolCall, ToolCallFromRaw>))]
+public sealed record class ToolCall : JsonModel
 {
     public string? ID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -139,13 +139,13 @@ public sealed record class ToolCall : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "id", value);
+            JsonModel.Set(this._rawData, "id", value);
         }
     }
 
     public Function? Function
     {
-        get { return ModelBase.GetNullableClass<Function>(this.RawData, "function"); }
+        get { return JsonModel.GetNullableClass<Function>(this.RawData, "function"); }
         init
         {
             if (value == null)
@@ -153,7 +153,7 @@ public sealed record class ToolCall : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "function", value);
+            JsonModel.Set(this._rawData, "function", value);
         }
     }
 
@@ -161,7 +161,7 @@ public sealed record class ToolCall : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, global::ArcadeDotnet.Models.Chat.Type>
             >(this.RawData, "type");
         }
@@ -172,7 +172,7 @@ public sealed record class ToolCall : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "type", value);
+            JsonModel.Set(this._rawData, "type", value);
         }
     }
 
@@ -209,19 +209,19 @@ public sealed record class ToolCall : ModelBase
     }
 }
 
-class ToolCallFromRaw : IFromRaw<ToolCall>
+class ToolCallFromRaw : IFromRawJson<ToolCall>
 {
     /// <inheritdoc/>
     public ToolCall FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ToolCall.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Function, FunctionFromRaw>))]
-public sealed record class Function : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Function, FunctionFromRaw>))]
+public sealed record class Function : JsonModel
 {
     public string? Arguments
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "arguments"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "arguments"); }
         init
         {
             if (value == null)
@@ -229,13 +229,13 @@ public sealed record class Function : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "arguments", value);
+            JsonModel.Set(this._rawData, "arguments", value);
         }
     }
 
     public string? Name
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "name"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "name"); }
         init
         {
             if (value == null)
@@ -243,7 +243,7 @@ public sealed record class Function : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "name", value);
+            JsonModel.Set(this._rawData, "name", value);
         }
     }
 
@@ -279,7 +279,7 @@ public sealed record class Function : ModelBase
     }
 }
 
-class FunctionFromRaw : IFromRaw<Function>
+class FunctionFromRaw : IFromRawJson<Function>
 {
     /// <inheritdoc/>
     public Function FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

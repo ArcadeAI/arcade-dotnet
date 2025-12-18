@@ -279,8 +279,8 @@ public class AuthProviderPatchParamsOauth2Test : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2>(element);
         Assert.NotNull(deserialized);
 
         AuthProviderPatchParamsOauth2AuthorizeRequest expectedAuthorizeRequest = new()
@@ -607,9 +607,9 @@ public class AuthProviderPatchParamsOauth2AuthorizeRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2AuthorizeRequest>(json);
+            JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2AuthorizeRequest>(element);
         Assert.NotNull(deserialized);
 
         string expectedAuthHeaderValueFormat = "auth_header_value_format";
@@ -934,8 +934,8 @@ public class AuthProviderPatchParamsOauth2PkceTest : TestBase
             Enabled = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2Pkce>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2Pkce>(element);
         Assert.NotNull(deserialized);
 
         string expectedCodeChallengeMethod = "code_challenge_method";
@@ -1106,9 +1106,9 @@ public class AuthProviderPatchParamsOauth2RefreshRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2RefreshRequest>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -1550,9 +1550,9 @@ public class AuthProviderPatchParamsOauth2TokenRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2TokenRequest>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -1945,9 +1945,9 @@ public class AuthProviderPatchParamsOauth2UserInfoRequestTest : TestBase
             Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2UserInfoRequest>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -2287,9 +2287,11 @@ public class AuthProviderPatchParamsOauth2UserInfoRequestTriggersTest : TestBase
             OnTokenRefresh = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2UserInfoRequestTriggers>(json);
+            JsonSerializer.Deserialize<AuthProviderPatchParamsOauth2UserInfoRequestTriggers>(
+                element
+            );
         Assert.NotNull(deserialized);
 
         bool expectedOnTokenGrant = true;

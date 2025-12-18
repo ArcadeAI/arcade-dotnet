@@ -7,12 +7,12 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Tools;
 
-[JsonConverter(typeof(ModelConverter<ToolExecution, ToolExecutionFromRaw>))]
-public sealed record class ToolExecution : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ToolExecution, ToolExecutionFromRaw>))]
+public sealed record class ToolExecution : JsonModel
 {
     public string? ID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -20,13 +20,13 @@ public sealed record class ToolExecution : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "id", value);
+            JsonModel.Set(this._rawData, "id", value);
         }
     }
 
     public string? CreatedAt
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "created_at"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "created_at"); }
         init
         {
             if (value == null)
@@ -34,13 +34,13 @@ public sealed record class ToolExecution : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "created_at", value);
+            JsonModel.Set(this._rawData, "created_at", value);
         }
     }
 
     public string? ExecutionStatus
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "execution_status"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "execution_status"); }
         init
         {
             if (value == null)
@@ -48,13 +48,13 @@ public sealed record class ToolExecution : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "execution_status", value);
+            JsonModel.Set(this._rawData, "execution_status", value);
         }
     }
 
     public string? ExecutionType
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "execution_type"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "execution_type"); }
         init
         {
             if (value == null)
@@ -62,13 +62,13 @@ public sealed record class ToolExecution : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "execution_type", value);
+            JsonModel.Set(this._rawData, "execution_type", value);
         }
     }
 
     public string? FinishedAt
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "finished_at"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "finished_at"); }
         init
         {
             if (value == null)
@@ -76,13 +76,13 @@ public sealed record class ToolExecution : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "finished_at", value);
+            JsonModel.Set(this._rawData, "finished_at", value);
         }
     }
 
     public string? RunAt
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "run_at"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "run_at"); }
         init
         {
             if (value == null)
@@ -90,13 +90,13 @@ public sealed record class ToolExecution : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "run_at", value);
+            JsonModel.Set(this._rawData, "run_at", value);
         }
     }
 
     public string? StartedAt
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "started_at"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "started_at"); }
         init
         {
             if (value == null)
@@ -104,13 +104,13 @@ public sealed record class ToolExecution : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "started_at", value);
+            JsonModel.Set(this._rawData, "started_at", value);
         }
     }
 
     public string? ToolName
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "tool_name"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "tool_name"); }
         init
         {
             if (value == null)
@@ -118,13 +118,13 @@ public sealed record class ToolExecution : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "tool_name", value);
+            JsonModel.Set(this._rawData, "tool_name", value);
         }
     }
 
     public string? ToolkitName
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "toolkit_name"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "toolkit_name"); }
         init
         {
             if (value == null)
@@ -132,13 +132,13 @@ public sealed record class ToolExecution : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "toolkit_name", value);
+            JsonModel.Set(this._rawData, "toolkit_name", value);
         }
     }
 
     public string? ToolkitVersion
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "toolkit_version"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "toolkit_version"); }
         init
         {
             if (value == null)
@@ -146,13 +146,13 @@ public sealed record class ToolExecution : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "toolkit_version", value);
+            JsonModel.Set(this._rawData, "toolkit_version", value);
         }
     }
 
     public string? UpdatedAt
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "updated_at"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "updated_at"); }
         init
         {
             if (value == null)
@@ -160,13 +160,13 @@ public sealed record class ToolExecution : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "updated_at", value);
+            JsonModel.Set(this._rawData, "updated_at", value);
         }
     }
 
     public string? UserID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "user_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "user_id"); }
         init
         {
             if (value == null)
@@ -174,7 +174,7 @@ public sealed record class ToolExecution : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "user_id", value);
+            JsonModel.Set(this._rawData, "user_id", value);
         }
     }
 
@@ -220,7 +220,7 @@ public sealed record class ToolExecution : ModelBase
     }
 }
 
-class ToolExecutionFromRaw : IFromRaw<ToolExecution>
+class ToolExecutionFromRaw : IFromRawJson<ToolExecution>
 {
     /// <inheritdoc/>
     public ToolExecution FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

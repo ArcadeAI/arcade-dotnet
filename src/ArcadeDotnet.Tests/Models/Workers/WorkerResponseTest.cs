@@ -298,8 +298,8 @@ public class WorkerResponseTest : TestBase
             Type = WorkerResponseType.HTTP,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<WorkerResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<WorkerResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -564,8 +564,8 @@ public class BindingTest : TestBase
     {
         var model = new Binding { ID = "id", Type = Type.Static };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Binding>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Binding>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -772,8 +772,8 @@ public class WorkerResponseHTTPTest : TestBase
             Uri = "uri",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<WorkerResponseHTTP>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<WorkerResponseHTTP>(element);
         Assert.NotNull(deserialized);
 
         long expectedRetry = 0;
@@ -933,8 +933,8 @@ public class SecretTest : TestBase
             Value = "value",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Secret>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Secret>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, SecretBinding> expectedBinding = SecretBinding.Static;
@@ -1270,8 +1270,8 @@ public class WorkerResponseMcpTest : TestBase
             Uri = "uri",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<WorkerResponseMcp>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<WorkerResponseMcp>(element);
         Assert.NotNull(deserialized);
 
         Dictionary<string, string> expectedHeaders = new() { { "foo", "string" } };
@@ -1522,8 +1522,8 @@ public class WorkerResponseMcpOauth2Test : TestBase
             RedirectUri = "redirect_uri",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<WorkerResponseMcpOauth2>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<WorkerResponseMcpOauth2>(element);
         Assert.NotNull(deserialized);
 
         string expectedAuthorizationURL = "authorization_url";
@@ -1683,8 +1683,8 @@ public class ClientSecretTest : TestBase
             Value = "value",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ClientSecret>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ClientSecret>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, ClientSecretBinding> expectedBinding = ClientSecretBinding.Static;
@@ -1899,8 +1899,8 @@ public class SecretsItemTest : TestBase
             Value = "value",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SecretsItem>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SecretsItem>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, SecretsItemBinding> expectedBinding = SecretsItemBinding.Static;
@@ -2116,8 +2116,8 @@ public class RequirementsTest : TestBase
             Met = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Requirements>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Requirements>(element);
         Assert.NotNull(deserialized);
 
         Authorization expectedAuthorization = new()
@@ -2238,8 +2238,8 @@ public class AuthorizationTest : TestBase
             Oauth2 = new() { Met = true },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Authorization>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Authorization>(element);
         Assert.NotNull(deserialized);
 
         bool expectedMet = true;
@@ -2338,8 +2338,8 @@ public class AuthorizationOauth2Test : TestBase
     {
         var model = new AuthorizationOauth2 { Met = true };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthorizationOauth2>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AuthorizationOauth2>(element);
         Assert.NotNull(deserialized);
 
         bool expectedMet = true;

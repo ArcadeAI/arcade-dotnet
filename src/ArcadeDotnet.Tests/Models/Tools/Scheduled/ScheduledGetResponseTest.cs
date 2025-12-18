@@ -351,8 +351,8 @@ public class ScheduledGetResponseTest : TestBase
             UserID = "user_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ScheduledGetResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ScheduledGetResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

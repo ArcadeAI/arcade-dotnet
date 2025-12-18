@@ -9,12 +9,12 @@ using ArcadeDotnet.Exceptions;
 
 namespace ArcadeDotnet.Models.Tools;
 
-[JsonConverter(typeof(ModelConverter<ToolExecutionAttempt, ToolExecutionAttemptFromRaw>))]
-public sealed record class ToolExecutionAttempt : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ToolExecutionAttempt, ToolExecutionAttemptFromRaw>))]
+public sealed record class ToolExecutionAttempt : JsonModel
 {
     public string? ID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -22,13 +22,13 @@ public sealed record class ToolExecutionAttempt : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "id", value);
+            JsonModel.Set(this._rawData, "id", value);
         }
     }
 
     public string? FinishedAt
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "finished_at"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "finished_at"); }
         init
         {
             if (value == null)
@@ -36,7 +36,7 @@ public sealed record class ToolExecutionAttempt : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "finished_at", value);
+            JsonModel.Set(this._rawData, "finished_at", value);
         }
     }
 
@@ -44,7 +44,7 @@ public sealed record class ToolExecutionAttempt : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ToolExecutionAttemptOutput>(this.RawData, "output");
+            return JsonModel.GetNullableClass<ToolExecutionAttemptOutput>(this.RawData, "output");
         }
         init
         {
@@ -53,13 +53,13 @@ public sealed record class ToolExecutionAttempt : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "output", value);
+            JsonModel.Set(this._rawData, "output", value);
         }
     }
 
     public string? StartedAt
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "started_at"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "started_at"); }
         init
         {
             if (value == null)
@@ -67,13 +67,13 @@ public sealed record class ToolExecutionAttempt : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "started_at", value);
+            JsonModel.Set(this._rawData, "started_at", value);
         }
     }
 
     public bool? Success
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "success"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "success"); }
         init
         {
             if (value == null)
@@ -81,13 +81,13 @@ public sealed record class ToolExecutionAttempt : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "success", value);
+            JsonModel.Set(this._rawData, "success", value);
         }
     }
 
     public string? SystemErrorMessage
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "system_error_message"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "system_error_message"); }
         init
         {
             if (value == null)
@@ -95,7 +95,7 @@ public sealed record class ToolExecutionAttempt : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "system_error_message", value);
+            JsonModel.Set(this._rawData, "system_error_message", value);
         }
     }
 
@@ -137,7 +137,7 @@ public sealed record class ToolExecutionAttempt : ModelBase
     }
 }
 
-class ToolExecutionAttemptFromRaw : IFromRaw<ToolExecutionAttempt>
+class ToolExecutionAttemptFromRaw : IFromRawJson<ToolExecutionAttempt>
 {
     /// <inheritdoc/>
     public ToolExecutionAttempt FromRawUnchecked(
@@ -146,15 +146,15 @@ class ToolExecutionAttemptFromRaw : IFromRaw<ToolExecutionAttempt>
 }
 
 [JsonConverter(
-    typeof(ModelConverter<ToolExecutionAttemptOutput, ToolExecutionAttemptOutputFromRaw>)
+    typeof(JsonModelConverter<ToolExecutionAttemptOutput, ToolExecutionAttemptOutputFromRaw>)
 )]
-public sealed record class ToolExecutionAttemptOutput : ModelBase
+public sealed record class ToolExecutionAttemptOutput : JsonModel
 {
     public AuthorizationResponse? Authorization
     {
         get
         {
-            return ModelBase.GetNullableClass<AuthorizationResponse>(this.RawData, "authorization");
+            return JsonModel.GetNullableClass<AuthorizationResponse>(this.RawData, "authorization");
         }
         init
         {
@@ -163,7 +163,7 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "authorization", value);
+            JsonModel.Set(this._rawData, "authorization", value);
         }
     }
 
@@ -171,7 +171,7 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ToolExecutionAttemptOutputError>(
+            return JsonModel.GetNullableClass<ToolExecutionAttemptOutputError>(
                 this.RawData,
                 "error"
             );
@@ -183,7 +183,7 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "error", value);
+            JsonModel.Set(this._rawData, "error", value);
         }
     }
 
@@ -191,7 +191,7 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<ToolExecutionAttemptOutputLog>>(
+            return JsonModel.GetNullableClass<List<ToolExecutionAttemptOutputLog>>(
                 this.RawData,
                 "logs"
             );
@@ -203,13 +203,13 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "logs", value);
+            JsonModel.Set(this._rawData, "logs", value);
         }
     }
 
     public JsonElement? Value
     {
-        get { return ModelBase.GetNullableStruct<JsonElement>(this.RawData, "value"); }
+        get { return JsonModel.GetNullableStruct<JsonElement>(this.RawData, "value"); }
         init
         {
             if (value == null)
@@ -217,7 +217,7 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "value", value);
+            JsonModel.Set(this._rawData, "value", value);
         }
     }
 
@@ -260,7 +260,7 @@ public sealed record class ToolExecutionAttemptOutput : ModelBase
     }
 }
 
-class ToolExecutionAttemptOutputFromRaw : IFromRaw<ToolExecutionAttemptOutput>
+class ToolExecutionAttemptOutputFromRaw : IFromRawJson<ToolExecutionAttemptOutput>
 {
     /// <inheritdoc/>
     public ToolExecutionAttemptOutput FromRawUnchecked(
@@ -269,39 +269,42 @@ class ToolExecutionAttemptOutputFromRaw : IFromRaw<ToolExecutionAttemptOutput>
 }
 
 [JsonConverter(
-    typeof(ModelConverter<ToolExecutionAttemptOutputError, ToolExecutionAttemptOutputErrorFromRaw>)
+    typeof(JsonModelConverter<
+        ToolExecutionAttemptOutputError,
+        ToolExecutionAttemptOutputErrorFromRaw
+    >)
 )]
-public sealed record class ToolExecutionAttemptOutputError : ModelBase
+public sealed record class ToolExecutionAttemptOutputError : JsonModel
 {
     public required bool CanRetry
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "can_retry"); }
-        init { ModelBase.Set(this._rawData, "can_retry", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "can_retry"); }
+        init { JsonModel.Set(this._rawData, "can_retry", value); }
     }
 
     public required ApiEnum<string, ToolExecutionAttemptOutputErrorKind> Kind
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, ToolExecutionAttemptOutputErrorKind>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, ToolExecutionAttemptOutputErrorKind>>(
                 this.RawData,
                 "kind"
             );
         }
-        init { ModelBase.Set(this._rawData, "kind", value); }
+        init { JsonModel.Set(this._rawData, "kind", value); }
     }
 
     public required string Message
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "message"); }
-        init { ModelBase.Set(this._rawData, "message", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "message"); }
+        init { JsonModel.Set(this._rawData, "message", value); }
     }
 
     public string? AdditionalPromptContent
     {
         get
         {
-            return ModelBase.GetNullableClass<string>(this.RawData, "additional_prompt_content");
+            return JsonModel.GetNullableClass<string>(this.RawData, "additional_prompt_content");
         }
         init
         {
@@ -310,13 +313,13 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "additional_prompt_content", value);
+            JsonModel.Set(this._rawData, "additional_prompt_content", value);
         }
     }
 
     public string? DeveloperMessage
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "developer_message"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "developer_message"); }
         init
         {
             if (value == null)
@@ -324,7 +327,7 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "developer_message", value);
+            JsonModel.Set(this._rawData, "developer_message", value);
         }
     }
 
@@ -332,7 +335,7 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, JsonElement>>(
+            return JsonModel.GetNullableClass<Dictionary<string, JsonElement>>(
                 this.RawData,
                 "extra"
             );
@@ -344,13 +347,13 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "extra", value);
+            JsonModel.Set(this._rawData, "extra", value);
         }
     }
 
     public long? RetryAfterMs
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "retry_after_ms"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "retry_after_ms"); }
         init
         {
             if (value == null)
@@ -358,13 +361,13 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "retry_after_ms", value);
+            JsonModel.Set(this._rawData, "retry_after_ms", value);
         }
     }
 
     public string? Stacktrace
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "stacktrace"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "stacktrace"); }
         init
         {
             if (value == null)
@@ -372,13 +375,13 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "stacktrace", value);
+            JsonModel.Set(this._rawData, "stacktrace", value);
         }
     }
 
     public long? StatusCode
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "status_code"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "status_code"); }
         init
         {
             if (value == null)
@@ -386,7 +389,7 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "status_code", value);
+            JsonModel.Set(this._rawData, "status_code", value);
         }
     }
 
@@ -433,7 +436,7 @@ public sealed record class ToolExecutionAttemptOutputError : ModelBase
     }
 }
 
-class ToolExecutionAttemptOutputErrorFromRaw : IFromRaw<ToolExecutionAttemptOutputError>
+class ToolExecutionAttemptOutputErrorFromRaw : IFromRawJson<ToolExecutionAttemptOutputError>
 {
     /// <inheritdoc/>
     public ToolExecutionAttemptOutputError FromRawUnchecked(
@@ -563,25 +566,25 @@ sealed class ToolExecutionAttemptOutputErrorKindConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<ToolExecutionAttemptOutputLog, ToolExecutionAttemptOutputLogFromRaw>)
+    typeof(JsonModelConverter<ToolExecutionAttemptOutputLog, ToolExecutionAttemptOutputLogFromRaw>)
 )]
-public sealed record class ToolExecutionAttemptOutputLog : ModelBase
+public sealed record class ToolExecutionAttemptOutputLog : JsonModel
 {
     public required string Level
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "level"); }
-        init { ModelBase.Set(this._rawData, "level", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "level"); }
+        init { JsonModel.Set(this._rawData, "level", value); }
     }
 
     public required string Message
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "message"); }
-        init { ModelBase.Set(this._rawData, "message", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "message"); }
+        init { JsonModel.Set(this._rawData, "message", value); }
     }
 
     public string? Subtype
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "subtype"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "subtype"); }
         init
         {
             if (value == null)
@@ -589,7 +592,7 @@ public sealed record class ToolExecutionAttemptOutputLog : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "subtype", value);
+            JsonModel.Set(this._rawData, "subtype", value);
         }
     }
 
@@ -630,7 +633,7 @@ public sealed record class ToolExecutionAttemptOutputLog : ModelBase
     }
 }
 
-class ToolExecutionAttemptOutputLogFromRaw : IFromRaw<ToolExecutionAttemptOutputLog>
+class ToolExecutionAttemptOutputLogFromRaw : IFromRawJson<ToolExecutionAttemptOutputLog>
 {
     /// <inheritdoc/>
     public ToolExecutionAttemptOutputLog FromRawUnchecked(

@@ -19,7 +19,7 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public string? Format
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "format"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "format"); }
         init
         {
             if (value == null)
@@ -27,7 +27,7 @@ public sealed record class FormattedListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "format", value);
+            JsonModel.Set(this._rawQueryData, "format", value);
         }
     }
 
@@ -36,7 +36,7 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public bool? IncludeAllVersions
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawQueryData, "include_all_versions"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawQueryData, "include_all_versions"); }
         init
         {
             if (value == null)
@@ -44,7 +44,7 @@ public sealed record class FormattedListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "include_all_versions", value);
+            JsonModel.Set(this._rawQueryData, "include_all_versions", value);
         }
     }
 
@@ -53,7 +53,7 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "limit"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "limit"); }
         init
         {
             if (value == null)
@@ -61,7 +61,7 @@ public sealed record class FormattedListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "limit", value);
+            JsonModel.Set(this._rawQueryData, "limit", value);
         }
     }
 
@@ -70,7 +70,7 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public long? Offset
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "offset"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "offset"); }
         init
         {
             if (value == null)
@@ -78,7 +78,7 @@ public sealed record class FormattedListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "offset", value);
+            JsonModel.Set(this._rawQueryData, "offset", value);
         }
     }
 
@@ -87,7 +87,7 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public string? Toolkit
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "toolkit"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "toolkit"); }
         init
         {
             if (value == null)
@@ -95,7 +95,7 @@ public sealed record class FormattedListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "toolkit", value);
+            JsonModel.Set(this._rawQueryData, "toolkit", value);
         }
     }
 
@@ -104,7 +104,7 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public string? UserID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "user_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "user_id"); }
         init
         {
             if (value == null)
@@ -112,7 +112,7 @@ public sealed record class FormattedListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "user_id", value);
+            JsonModel.Set(this._rawQueryData, "user_id", value);
         }
     }
 
@@ -142,7 +142,7 @@ public sealed record class FormattedListParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static FormattedListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

@@ -9,12 +9,12 @@ using ArcadeDotnet.Exceptions;
 
 namespace ArcadeDotnet.Models;
 
-[JsonConverter(typeof(ModelConverter<AuthorizationResponse, AuthorizationResponseFromRaw>))]
-public sealed record class AuthorizationResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<AuthorizationResponse, AuthorizationResponseFromRaw>))]
+public sealed record class AuthorizationResponse : JsonModel
 {
     public string? ID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -22,13 +22,13 @@ public sealed record class AuthorizationResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "id", value);
+            JsonModel.Set(this._rawData, "id", value);
         }
     }
 
     public AuthorizationContext? Context
     {
-        get { return ModelBase.GetNullableClass<AuthorizationContext>(this.RawData, "context"); }
+        get { return JsonModel.GetNullableClass<AuthorizationContext>(this.RawData, "context"); }
         init
         {
             if (value == null)
@@ -36,13 +36,13 @@ public sealed record class AuthorizationResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "context", value);
+            JsonModel.Set(this._rawData, "context", value);
         }
     }
 
     public string? ProviderID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "provider_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "provider_id"); }
         init
         {
             if (value == null)
@@ -50,13 +50,13 @@ public sealed record class AuthorizationResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "provider_id", value);
+            JsonModel.Set(this._rawData, "provider_id", value);
         }
     }
 
     public IReadOnlyList<string>? Scopes
     {
-        get { return ModelBase.GetNullableClass<List<string>>(this.RawData, "scopes"); }
+        get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "scopes"); }
         init
         {
             if (value == null)
@@ -64,13 +64,13 @@ public sealed record class AuthorizationResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "scopes", value);
+            JsonModel.Set(this._rawData, "scopes", value);
         }
     }
 
     public ApiEnum<string, Status>? Status
     {
-        get { return ModelBase.GetNullableClass<ApiEnum<string, Status>>(this.RawData, "status"); }
+        get { return JsonModel.GetNullableClass<ApiEnum<string, Status>>(this.RawData, "status"); }
         init
         {
             if (value == null)
@@ -78,13 +78,13 @@ public sealed record class AuthorizationResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "status", value);
+            JsonModel.Set(this._rawData, "status", value);
         }
     }
 
     public string? URL
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "url"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "url"); }
         init
         {
             if (value == null)
@@ -92,13 +92,13 @@ public sealed record class AuthorizationResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "url", value);
+            JsonModel.Set(this._rawData, "url", value);
         }
     }
 
     public string? UserID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "user_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "user_id"); }
         init
         {
             if (value == null)
@@ -106,7 +106,7 @@ public sealed record class AuthorizationResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "user_id", value);
+            JsonModel.Set(this._rawData, "user_id", value);
         }
     }
 
@@ -149,7 +149,7 @@ public sealed record class AuthorizationResponse : ModelBase
     }
 }
 
-class AuthorizationResponseFromRaw : IFromRaw<AuthorizationResponse>
+class AuthorizationResponseFromRaw : IFromRawJson<AuthorizationResponse>
 {
     /// <inheritdoc/>
     public AuthorizationResponse FromRawUnchecked(

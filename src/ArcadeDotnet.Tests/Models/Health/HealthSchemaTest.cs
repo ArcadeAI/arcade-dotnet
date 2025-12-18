@@ -31,8 +31,8 @@ public class HealthSchemaTest : TestBase
     {
         var model = new HealthSchema { Healthy = true };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<HealthSchema>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<HealthSchema>(element);
         Assert.NotNull(deserialized);
 
         bool expectedHealthy = true;

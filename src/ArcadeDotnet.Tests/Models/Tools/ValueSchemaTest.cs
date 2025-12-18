@@ -56,8 +56,8 @@ public class ValueSchemaTest : TestBase
             InnerValType = "inner_val_type",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ValueSchema>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ValueSchema>(element);
         Assert.NotNull(deserialized);
 
         string expectedValType = "val_type";

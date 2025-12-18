@@ -20,7 +20,7 @@ public sealed record class FormattedGetParams : ParamsBase
     /// </summary>
     public string? Format
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "format"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "format"); }
         init
         {
             if (value == null)
@@ -28,7 +28,7 @@ public sealed record class FormattedGetParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "format", value);
+            JsonModel.Set(this._rawQueryData, "format", value);
         }
     }
 
@@ -37,7 +37,7 @@ public sealed record class FormattedGetParams : ParamsBase
     /// </summary>
     public string? UserID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "user_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "user_id"); }
         init
         {
             if (value == null)
@@ -45,7 +45,7 @@ public sealed record class FormattedGetParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "user_id", value);
+            JsonModel.Set(this._rawQueryData, "user_id", value);
         }
     }
 
@@ -75,7 +75,7 @@ public sealed record class FormattedGetParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static FormattedGetParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

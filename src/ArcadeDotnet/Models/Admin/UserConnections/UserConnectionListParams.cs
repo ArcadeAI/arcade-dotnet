@@ -19,7 +19,7 @@ public sealed record class UserConnectionListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "limit"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "limit"); }
         init
         {
             if (value == null)
@@ -27,7 +27,7 @@ public sealed record class UserConnectionListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "limit", value);
+            JsonModel.Set(this._rawQueryData, "limit", value);
         }
     }
 
@@ -36,7 +36,7 @@ public sealed record class UserConnectionListParams : ParamsBase
     /// </summary>
     public long? Offset
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "offset"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "offset"); }
         init
         {
             if (value == null)
@@ -44,13 +44,13 @@ public sealed record class UserConnectionListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "offset", value);
+            JsonModel.Set(this._rawQueryData, "offset", value);
         }
     }
 
     public Provider? Provider
     {
-        get { return ModelBase.GetNullableClass<Provider>(this.RawQueryData, "provider"); }
+        get { return JsonModel.GetNullableClass<Provider>(this.RawQueryData, "provider"); }
         init
         {
             if (value == null)
@@ -58,13 +58,13 @@ public sealed record class UserConnectionListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "provider", value);
+            JsonModel.Set(this._rawQueryData, "provider", value);
         }
     }
 
     public User? User
     {
-        get { return ModelBase.GetNullableClass<User>(this.RawQueryData, "user"); }
+        get { return JsonModel.GetNullableClass<User>(this.RawQueryData, "user"); }
         init
         {
             if (value == null)
@@ -72,7 +72,7 @@ public sealed record class UserConnectionListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "user", value);
+            JsonModel.Set(this._rawQueryData, "user", value);
         }
     }
 
@@ -102,7 +102,7 @@ public sealed record class UserConnectionListParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static UserConnectionListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
@@ -134,15 +134,15 @@ public sealed record class UserConnectionListParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Provider, ProviderFromRaw>))]
-public sealed record class Provider : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Provider, ProviderFromRaw>))]
+public sealed record class Provider : JsonModel
 {
     /// <summary>
     /// Provider ID
     /// </summary>
     public string? ID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -150,7 +150,7 @@ public sealed record class Provider : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "id", value);
+            JsonModel.Set(this._rawData, "id", value);
         }
     }
 
@@ -185,22 +185,22 @@ public sealed record class Provider : ModelBase
     }
 }
 
-class ProviderFromRaw : IFromRaw<Provider>
+class ProviderFromRaw : IFromRawJson<Provider>
 {
     /// <inheritdoc/>
     public Provider FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Provider.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<User, UserFromRaw>))]
-public sealed record class User : ModelBase
+[JsonConverter(typeof(JsonModelConverter<User, UserFromRaw>))]
+public sealed record class User : JsonModel
 {
     /// <summary>
     /// User ID
     /// </summary>
     public string? ID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -208,7 +208,7 @@ public sealed record class User : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "id", value);
+            JsonModel.Set(this._rawData, "id", value);
         }
     }
 
@@ -243,7 +243,7 @@ public sealed record class User : ModelBase
     }
 }
 
-class UserFromRaw : IFromRaw<User>
+class UserFromRaw : IFromRawJson<User>
 {
     /// <inheritdoc/>
     public User FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

@@ -20,7 +20,7 @@ public sealed record class ToolListParams : ParamsBase
     /// </summary>
     public bool? IncludeAllVersions
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawQueryData, "include_all_versions"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawQueryData, "include_all_versions"); }
         init
         {
             if (value == null)
@@ -28,7 +28,7 @@ public sealed record class ToolListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "include_all_versions", value);
+            JsonModel.Set(this._rawQueryData, "include_all_versions", value);
         }
     }
 
@@ -39,7 +39,7 @@ public sealed record class ToolListParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<ApiEnum<string, IncludeFormat>>>(
+            return JsonModel.GetNullableClass<List<ApiEnum<string, IncludeFormat>>>(
                 this.RawQueryData,
                 "include_format"
             );
@@ -51,7 +51,7 @@ public sealed record class ToolListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "include_format", value);
+            JsonModel.Set(this._rawQueryData, "include_format", value);
         }
     }
 
@@ -60,7 +60,7 @@ public sealed record class ToolListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "limit"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "limit"); }
         init
         {
             if (value == null)
@@ -68,7 +68,7 @@ public sealed record class ToolListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "limit", value);
+            JsonModel.Set(this._rawQueryData, "limit", value);
         }
     }
 
@@ -77,7 +77,7 @@ public sealed record class ToolListParams : ParamsBase
     /// </summary>
     public long? Offset
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "offset"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "offset"); }
         init
         {
             if (value == null)
@@ -85,7 +85,7 @@ public sealed record class ToolListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "offset", value);
+            JsonModel.Set(this._rawQueryData, "offset", value);
         }
     }
 
@@ -94,7 +94,7 @@ public sealed record class ToolListParams : ParamsBase
     /// </summary>
     public string? Toolkit
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "toolkit"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "toolkit"); }
         init
         {
             if (value == null)
@@ -102,7 +102,7 @@ public sealed record class ToolListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "toolkit", value);
+            JsonModel.Set(this._rawQueryData, "toolkit", value);
         }
     }
 
@@ -111,7 +111,7 @@ public sealed record class ToolListParams : ParamsBase
     /// </summary>
     public string? UserID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "user_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "user_id"); }
         init
         {
             if (value == null)
@@ -119,7 +119,7 @@ public sealed record class ToolListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "user_id", value);
+            JsonModel.Set(this._rawQueryData, "user_id", value);
         }
     }
 
@@ -149,7 +149,7 @@ public sealed record class ToolListParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static ToolListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

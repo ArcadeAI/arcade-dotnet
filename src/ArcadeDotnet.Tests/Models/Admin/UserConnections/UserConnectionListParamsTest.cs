@@ -31,8 +31,8 @@ public class ProviderTest : TestBase
     {
         var model = new Provider { ID = "id" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Provider>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Provider>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -119,8 +119,8 @@ public class UserTest : TestBase
     {
         var model = new User { ID = "id" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<User>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<User>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

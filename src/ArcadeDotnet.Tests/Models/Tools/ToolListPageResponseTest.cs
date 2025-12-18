@@ -354,8 +354,8 @@ public class ToolListPageResponseTest : TestBase
             TotalCount = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolListPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ToolListPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<ToolDefinition> expectedItems =

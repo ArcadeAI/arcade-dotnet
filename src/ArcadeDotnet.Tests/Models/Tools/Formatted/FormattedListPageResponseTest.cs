@@ -66,8 +66,8 @@ public class FormattedListPageResponseTest : TestBase
             TotalCount = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FormattedListPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<FormattedListPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<JsonElement> expectedItems = [JsonSerializer.Deserialize<JsonElement>("{}")];

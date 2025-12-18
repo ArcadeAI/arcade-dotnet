@@ -7,18 +7,18 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Tools;
 
-[JsonConverter(typeof(ModelConverter<ValueSchema, ValueSchemaFromRaw>))]
-public sealed record class ValueSchema : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ValueSchema, ValueSchemaFromRaw>))]
+public sealed record class ValueSchema : JsonModel
 {
     public required string ValType
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "val_type"); }
-        init { ModelBase.Set(this._rawData, "val_type", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "val_type"); }
+        init { JsonModel.Set(this._rawData, "val_type", value); }
     }
 
     public IReadOnlyList<string>? Enum
     {
-        get { return ModelBase.GetNullableClass<List<string>>(this.RawData, "enum"); }
+        get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "enum"); }
         init
         {
             if (value == null)
@@ -26,13 +26,13 @@ public sealed record class ValueSchema : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "enum", value);
+            JsonModel.Set(this._rawData, "enum", value);
         }
     }
 
     public string? InnerValType
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "inner_val_type"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "inner_val_type"); }
         init
         {
             if (value == null)
@@ -40,7 +40,7 @@ public sealed record class ValueSchema : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "inner_val_type", value);
+            JsonModel.Set(this._rawData, "inner_val_type", value);
         }
     }
 
@@ -84,7 +84,7 @@ public sealed record class ValueSchema : ModelBase
     }
 }
 
-class ValueSchemaFromRaw : IFromRaw<ValueSchema>
+class ValueSchemaFromRaw : IFromRawJson<ValueSchema>
 {
     /// <inheritdoc/>
     public ValueSchema FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

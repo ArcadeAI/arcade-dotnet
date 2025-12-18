@@ -24,13 +24,13 @@ public sealed record class SecretCreateParams : ParamsBase
 
     public required string Value
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "value"); }
-        init { ModelBase.Set(this._rawBodyData, "value", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "value"); }
+        init { JsonModel.Set(this._rawBodyData, "value", value); }
     }
 
     public string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "description"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "description"); }
         init
         {
             if (value == null)
@@ -38,7 +38,7 @@ public sealed record class SecretCreateParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "description", value);
+            JsonModel.Set(this._rawBodyData, "description", value);
         }
     }
 
@@ -75,7 +75,7 @@ public sealed record class SecretCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static SecretCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -100,9 +100,13 @@ public sealed record class SecretCreateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

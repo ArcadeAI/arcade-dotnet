@@ -9,12 +9,12 @@ using System = System;
 
 namespace ArcadeDotnet.Models.Chat;
 
-[JsonConverter(typeof(ModelConverter<ChatRequest, ChatRequestFromRaw>))]
-public sealed record class ChatRequest : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ChatRequest, ChatRequestFromRaw>))]
+public sealed record class ChatRequest : JsonModel
 {
     public double? FrequencyPenalty
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "frequency_penalty"); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "frequency_penalty"); }
         init
         {
             if (value == null)
@@ -22,7 +22,7 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "frequency_penalty", value);
+            JsonModel.Set(this._rawData, "frequency_penalty", value);
         }
     }
 
@@ -35,7 +35,7 @@ public sealed record class ChatRequest : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, long>>(this.RawData, "logit_bias");
+            return JsonModel.GetNullableClass<Dictionary<string, long>>(this.RawData, "logit_bias");
         }
         init
         {
@@ -44,7 +44,7 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "logit_bias", value);
+            JsonModel.Set(this._rawData, "logit_bias", value);
         }
     }
 
@@ -55,7 +55,7 @@ public sealed record class ChatRequest : ModelBase
     /// </summary>
     public bool? Logprobs
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "logprobs"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "logprobs"); }
         init
         {
             if (value == null)
@@ -63,13 +63,13 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "logprobs", value);
+            JsonModel.Set(this._rawData, "logprobs", value);
         }
     }
 
     public long? MaxTokens
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "max_tokens"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "max_tokens"); }
         init
         {
             if (value == null)
@@ -77,13 +77,13 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "max_tokens", value);
+            JsonModel.Set(this._rawData, "max_tokens", value);
         }
     }
 
     public IReadOnlyList<ChatMessage>? Messages
     {
-        get { return ModelBase.GetNullableClass<List<ChatMessage>>(this.RawData, "messages"); }
+        get { return JsonModel.GetNullableClass<List<ChatMessage>>(this.RawData, "messages"); }
         init
         {
             if (value == null)
@@ -91,13 +91,13 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "messages", value);
+            JsonModel.Set(this._rawData, "messages", value);
         }
     }
 
     public string? Model
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "model"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "model"); }
         init
         {
             if (value == null)
@@ -105,13 +105,13 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "model", value);
+            JsonModel.Set(this._rawData, "model", value);
         }
     }
 
     public long? N
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "n"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "n"); }
         init
         {
             if (value == null)
@@ -119,7 +119,7 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "n", value);
+            JsonModel.Set(this._rawData, "n", value);
         }
     }
 
@@ -128,7 +128,7 @@ public sealed record class ChatRequest : ModelBase
     /// </summary>
     public bool? ParallelToolCalls
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "parallel_tool_calls"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "parallel_tool_calls"); }
         init
         {
             if (value == null)
@@ -136,13 +136,13 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "parallel_tool_calls", value);
+            JsonModel.Set(this._rawData, "parallel_tool_calls", value);
         }
     }
 
     public double? PresencePenalty
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "presence_penalty"); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "presence_penalty"); }
         init
         {
             if (value == null)
@@ -150,13 +150,13 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "presence_penalty", value);
+            JsonModel.Set(this._rawData, "presence_penalty", value);
         }
     }
 
     public ResponseFormat? ResponseFormat
     {
-        get { return ModelBase.GetNullableClass<ResponseFormat>(this.RawData, "response_format"); }
+        get { return JsonModel.GetNullableClass<ResponseFormat>(this.RawData, "response_format"); }
         init
         {
             if (value == null)
@@ -164,13 +164,13 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "response_format", value);
+            JsonModel.Set(this._rawData, "response_format", value);
         }
     }
 
     public long? Seed
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "seed"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "seed"); }
         init
         {
             if (value == null)
@@ -178,13 +178,13 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "seed", value);
+            JsonModel.Set(this._rawData, "seed", value);
         }
     }
 
     public IReadOnlyList<string>? Stop
     {
-        get { return ModelBase.GetNullableClass<List<string>>(this.RawData, "stop"); }
+        get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "stop"); }
         init
         {
             if (value == null)
@@ -192,13 +192,13 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "stop", value);
+            JsonModel.Set(this._rawData, "stop", value);
         }
     }
 
     public bool? Stream
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "stream"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "stream"); }
         init
         {
             if (value == null)
@@ -206,7 +206,7 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "stream", value);
+            JsonModel.Set(this._rawData, "stream", value);
         }
     }
 
@@ -215,7 +215,7 @@ public sealed record class ChatRequest : ModelBase
     /// </summary>
     public StreamOptions? StreamOptions
     {
-        get { return ModelBase.GetNullableClass<StreamOptions>(this.RawData, "stream_options"); }
+        get { return JsonModel.GetNullableClass<StreamOptions>(this.RawData, "stream_options"); }
         init
         {
             if (value == null)
@@ -223,13 +223,13 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "stream_options", value);
+            JsonModel.Set(this._rawData, "stream_options", value);
         }
     }
 
     public double? Temperature
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "temperature"); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "temperature"); }
         init
         {
             if (value == null)
@@ -237,7 +237,7 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "temperature", value);
+            JsonModel.Set(this._rawData, "temperature", value);
         }
     }
 
@@ -246,7 +246,7 @@ public sealed record class ChatRequest : ModelBase
     /// </summary>
     public JsonElement? ToolChoice
     {
-        get { return ModelBase.GetNullableStruct<JsonElement>(this.RawData, "tool_choice"); }
+        get { return JsonModel.GetNullableStruct<JsonElement>(this.RawData, "tool_choice"); }
         init
         {
             if (value == null)
@@ -254,13 +254,13 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "tool_choice", value);
+            JsonModel.Set(this._rawData, "tool_choice", value);
         }
     }
 
     public JsonElement? Tools
     {
-        get { return ModelBase.GetNullableStruct<JsonElement>(this.RawData, "tools"); }
+        get { return JsonModel.GetNullableStruct<JsonElement>(this.RawData, "tools"); }
         init
         {
             if (value == null)
@@ -268,7 +268,7 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "tools", value);
+            JsonModel.Set(this._rawData, "tools", value);
         }
     }
 
@@ -279,7 +279,7 @@ public sealed record class ChatRequest : ModelBase
     /// </summary>
     public long? TopLogprobs
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "top_logprobs"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "top_logprobs"); }
         init
         {
             if (value == null)
@@ -287,13 +287,13 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "top_logprobs", value);
+            JsonModel.Set(this._rawData, "top_logprobs", value);
         }
     }
 
     public double? TopP
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "top_p"); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "top_p"); }
         init
         {
             if (value == null)
@@ -301,13 +301,13 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "top_p", value);
+            JsonModel.Set(this._rawData, "top_p", value);
         }
     }
 
     public string? User
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "user"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "user"); }
         init
         {
             if (value == null)
@@ -315,7 +315,7 @@ public sealed record class ChatRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "user", value);
+            JsonModel.Set(this._rawData, "user", value);
         }
     }
 
@@ -372,21 +372,21 @@ public sealed record class ChatRequest : ModelBase
     }
 }
 
-class ChatRequestFromRaw : IFromRaw<ChatRequest>
+class ChatRequestFromRaw : IFromRawJson<ChatRequest>
 {
     /// <inheritdoc/>
     public ChatRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ChatRequest.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<ResponseFormat, ResponseFormatFromRaw>))]
-public sealed record class ResponseFormat : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ResponseFormat, ResponseFormatFromRaw>))]
+public sealed record class ResponseFormat : JsonModel
 {
     public ApiEnum<string, ResponseFormatType>? Type
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, ResponseFormatType>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, ResponseFormatType>>(
                 this.RawData,
                 "type"
             );
@@ -398,7 +398,7 @@ public sealed record class ResponseFormat : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "type", value);
+            JsonModel.Set(this._rawData, "type", value);
         }
     }
 
@@ -433,7 +433,7 @@ public sealed record class ResponseFormat : ModelBase
     }
 }
 
-class ResponseFormatFromRaw : IFromRaw<ResponseFormat>
+class ResponseFormatFromRaw : IFromRawJson<ResponseFormat>
 {
     /// <inheritdoc/>
     public ResponseFormat FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -487,8 +487,8 @@ sealed class ResponseFormatTypeConverter : JsonConverter<ResponseFormatType>
 /// <summary>
 /// Options for streaming response. Only set this when you set stream: true.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<StreamOptions, StreamOptionsFromRaw>))]
-public sealed record class StreamOptions : ModelBase
+[JsonConverter(typeof(JsonModelConverter<StreamOptions, StreamOptionsFromRaw>))]
+public sealed record class StreamOptions : JsonModel
 {
     /// <summary>
     /// If set, an additional chunk will be streamed before the data: [DONE] message.
@@ -498,7 +498,7 @@ public sealed record class StreamOptions : ModelBase
     /// </summary>
     public bool? IncludeUsage
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "include_usage"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "include_usage"); }
         init
         {
             if (value == null)
@@ -506,7 +506,7 @@ public sealed record class StreamOptions : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "include_usage", value);
+            JsonModel.Set(this._rawData, "include_usage", value);
         }
     }
 
@@ -541,7 +541,7 @@ public sealed record class StreamOptions : ModelBase
     }
 }
 
-class StreamOptionsFromRaw : IFromRaw<StreamOptions>
+class StreamOptionsFromRaw : IFromRawJson<StreamOptions>
 {
     /// <inheritdoc/>
     public StreamOptions FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

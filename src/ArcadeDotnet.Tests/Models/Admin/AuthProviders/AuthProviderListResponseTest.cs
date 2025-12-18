@@ -442,8 +442,8 @@ public class AuthProviderListResponseTest : TestBase
             TotalCount = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthProviderListResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderListResponse>(element);
         Assert.NotNull(deserialized);
 
         List<AuthProviderResponse> expectedItems =

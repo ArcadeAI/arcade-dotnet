@@ -321,8 +321,8 @@ public class ToolDefinitionTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolDefinition>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ToolDefinition>(element);
         Assert.NotNull(deserialized);
 
         string expectedFullyQualifiedName = "fully_qualified_name";
@@ -768,8 +768,8 @@ public class InputTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Input>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Input>(element);
         Assert.NotNull(deserialized);
 
         List<Parameter> expectedParameters =
@@ -943,8 +943,8 @@ public class ParameterTest : TestBase
             Required = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Parameter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Parameter>(element);
         Assert.NotNull(deserialized);
 
         string expectedName = "name";
@@ -1121,8 +1121,8 @@ public class ToolkitTest : TestBase
             Version = "version",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Toolkit>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Toolkit>(element);
         Assert.NotNull(deserialized);
 
         string expectedName = "name";
@@ -1272,8 +1272,8 @@ public class ToolDefinitionOutputTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolDefinitionOutput>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ToolDefinitionOutput>(element);
         Assert.NotNull(deserialized);
 
         List<string> expectedAvailableModes = ["string"];
@@ -1488,8 +1488,8 @@ public class RequirementsTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Requirements>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Requirements>(element);
         Assert.NotNull(deserialized);
 
         Authorization expectedAuthorization = new()
@@ -1675,8 +1675,8 @@ public class AuthorizationTest : TestBase
             TokenStatus = TokenStatus.NotStarted,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Authorization>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Authorization>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -1825,8 +1825,8 @@ public class Oauth2Test : TestBase
     {
         var model = new Oauth2 { Scopes = ["string"] };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Oauth2>(element);
         Assert.NotNull(deserialized);
 
         List<string> expectedScopes = ["string"];
@@ -2053,8 +2053,8 @@ public class SecretTest : TestBase
             StatusReason = "status_reason",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Secret>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Secret>(element);
         Assert.NotNull(deserialized);
 
         string expectedKey = "key";

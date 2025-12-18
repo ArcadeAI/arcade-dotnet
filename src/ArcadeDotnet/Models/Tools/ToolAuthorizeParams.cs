@@ -22,8 +22,8 @@ public sealed record class ToolAuthorizeParams : ParamsBase
 
     public required string ToolName
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "tool_name"); }
-        init { ModelBase.Set(this._rawBodyData, "tool_name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "tool_name"); }
+        init { JsonModel.Set(this._rawBodyData, "tool_name", value); }
     }
 
     /// <summary>
@@ -31,7 +31,7 @@ public sealed record class ToolAuthorizeParams : ParamsBase
     /// </summary>
     public string? NextUri
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "next_uri"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "next_uri"); }
         init
         {
             if (value == null)
@@ -39,7 +39,7 @@ public sealed record class ToolAuthorizeParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "next_uri", value);
+            JsonModel.Set(this._rawBodyData, "next_uri", value);
         }
     }
 
@@ -48,7 +48,7 @@ public sealed record class ToolAuthorizeParams : ParamsBase
     /// </summary>
     public string? ToolVersion
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "tool_version"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "tool_version"); }
         init
         {
             if (value == null)
@@ -56,7 +56,7 @@ public sealed record class ToolAuthorizeParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "tool_version", value);
+            JsonModel.Set(this._rawBodyData, "tool_version", value);
         }
     }
 
@@ -65,7 +65,7 @@ public sealed record class ToolAuthorizeParams : ParamsBase
     /// </summary>
     public string? UserID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "user_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "user_id"); }
         init
         {
             if (value == null)
@@ -73,7 +73,7 @@ public sealed record class ToolAuthorizeParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "user_id", value);
+            JsonModel.Set(this._rawBodyData, "user_id", value);
         }
     }
 
@@ -110,7 +110,7 @@ public sealed record class ToolAuthorizeParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static ToolAuthorizeParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -132,9 +132,13 @@ public sealed record class ToolAuthorizeParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

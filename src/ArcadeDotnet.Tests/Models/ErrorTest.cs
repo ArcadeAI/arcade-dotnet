@@ -33,8 +33,8 @@ public class ErrorTest : TestBase
     {
         var model = new Error { Message = "message", Name = "name" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Error>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Error>(element);
         Assert.NotNull(deserialized);
 
         string expectedMessage = "message";

@@ -25,15 +25,15 @@ public sealed record class AuthAuthorizeParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<AuthRequirement>(this.RawBodyData, "auth_requirement");
+            return JsonModel.GetNotNullClass<AuthRequirement>(this.RawBodyData, "auth_requirement");
         }
-        init { ModelBase.Set(this._rawBodyData, "auth_requirement", value); }
+        init { JsonModel.Set(this._rawBodyData, "auth_requirement", value); }
     }
 
     public required string UserID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "user_id"); }
-        init { ModelBase.Set(this._rawBodyData, "user_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "user_id"); }
+        init { JsonModel.Set(this._rawBodyData, "user_id", value); }
     }
 
     /// <summary>
@@ -41,7 +41,7 @@ public sealed record class AuthAuthorizeParams : ParamsBase
     /// </summary>
     public string? NextUri
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "next_uri"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "next_uri"); }
         init
         {
             if (value == null)
@@ -49,7 +49,7 @@ public sealed record class AuthAuthorizeParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "next_uri", value);
+            JsonModel.Set(this._rawBodyData, "next_uri", value);
         }
     }
 
@@ -86,7 +86,7 @@ public sealed record class AuthAuthorizeParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static AuthAuthorizeParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -108,9 +108,13 @@ public sealed record class AuthAuthorizeParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
@@ -123,15 +127,15 @@ public sealed record class AuthAuthorizeParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AuthRequirement, AuthRequirementFromRaw>))]
-public sealed record class AuthRequirement : ModelBase
+[JsonConverter(typeof(JsonModelConverter<AuthRequirement, AuthRequirementFromRaw>))]
+public sealed record class AuthRequirement : JsonModel
 {
     /// <summary>
     /// one of ID or ProviderID must be set
     /// </summary>
     public string? ID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -139,13 +143,13 @@ public sealed record class AuthRequirement : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "id", value);
+            JsonModel.Set(this._rawData, "id", value);
         }
     }
 
     public Oauth2? Oauth2
     {
-        get { return ModelBase.GetNullableClass<Oauth2>(this.RawData, "oauth2"); }
+        get { return JsonModel.GetNullableClass<Oauth2>(this.RawData, "oauth2"); }
         init
         {
             if (value == null)
@@ -153,7 +157,7 @@ public sealed record class AuthRequirement : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "oauth2", value);
+            JsonModel.Set(this._rawData, "oauth2", value);
         }
     }
 
@@ -162,7 +166,7 @@ public sealed record class AuthRequirement : ModelBase
     /// </summary>
     public string? ProviderID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "provider_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "provider_id"); }
         init
         {
             if (value == null)
@@ -170,13 +174,13 @@ public sealed record class AuthRequirement : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "provider_id", value);
+            JsonModel.Set(this._rawData, "provider_id", value);
         }
     }
 
     public string? ProviderType
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "provider_type"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "provider_type"); }
         init
         {
             if (value == null)
@@ -184,7 +188,7 @@ public sealed record class AuthRequirement : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "provider_type", value);
+            JsonModel.Set(this._rawData, "provider_type", value);
         }
     }
 
@@ -222,19 +226,19 @@ public sealed record class AuthRequirement : ModelBase
     }
 }
 
-class AuthRequirementFromRaw : IFromRaw<AuthRequirement>
+class AuthRequirementFromRaw : IFromRawJson<AuthRequirement>
 {
     /// <inheritdoc/>
     public AuthRequirement FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         AuthRequirement.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Oauth2, Oauth2FromRaw>))]
-public sealed record class Oauth2 : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Oauth2, Oauth2FromRaw>))]
+public sealed record class Oauth2 : JsonModel
 {
     public IReadOnlyList<string>? Scopes
     {
-        get { return ModelBase.GetNullableClass<List<string>>(this.RawData, "scopes"); }
+        get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "scopes"); }
         init
         {
             if (value == null)
@@ -242,7 +246,7 @@ public sealed record class Oauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "scopes", value);
+            JsonModel.Set(this._rawData, "scopes", value);
         }
     }
 
@@ -277,7 +281,7 @@ public sealed record class Oauth2 : ModelBase
     }
 }
 
-class Oauth2FromRaw : IFromRaw<Oauth2>
+class Oauth2FromRaw : IFromRawJson<Oauth2>
 {
     /// <inheritdoc/>
     public Oauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

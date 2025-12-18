@@ -245,8 +245,8 @@ public class ToolExecutionAttemptTest : TestBase
             SystemErrorMessage = "system_error_message",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttempt>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttempt>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -651,8 +651,8 @@ public class ToolExecutionAttemptOutputTest : TestBase
             Value = JsonSerializer.Deserialize<JsonElement>("{}"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutput>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutput>(element);
         Assert.NotNull(deserialized);
 
         Models::AuthorizationResponse expectedAuthorization = new()
@@ -919,8 +919,8 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
             StatusCode = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutputError>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutputError>(element);
         Assert.NotNull(deserialized);
 
         bool expectedCanRetry = true;
@@ -1204,8 +1204,8 @@ public class ToolExecutionAttemptOutputLogTest : TestBase
             Subtype = "subtype",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutputLog>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutputLog>(element);
         Assert.NotNull(deserialized);
 
         string expectedLevel = "level";

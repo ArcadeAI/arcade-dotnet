@@ -84,8 +84,8 @@ public class ExecuteToolRequestTest : TestBase
             UserID = "user_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ExecuteToolRequest>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ExecuteToolRequest>(element);
         Assert.NotNull(deserialized);
 
         string expectedToolName = "tool_name";

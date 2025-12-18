@@ -56,8 +56,8 @@ public class HTTPTest : TestBase
             Uri = "uri",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<HTTP>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<HTTP>(element);
         Assert.NotNull(deserialized);
 
         long expectedRetry = 0;
@@ -184,8 +184,8 @@ public class McpTest : TestBase
             Secrets = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Mcp>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Mcp>(element);
         Assert.NotNull(deserialized);
 
         long expectedRetry = 0;
@@ -368,8 +368,8 @@ public class Oauth2Test : TestBase
             ExternalID = "external_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Oauth2>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Oauth2>(element);
         Assert.NotNull(deserialized);
 
         string expectedAuthorizationURL = "authorization_url";

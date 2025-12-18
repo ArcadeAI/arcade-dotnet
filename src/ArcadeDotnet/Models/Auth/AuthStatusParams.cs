@@ -20,8 +20,8 @@ public sealed record class AuthStatusParams : ParamsBase
     /// </summary>
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawQueryData, "id"); }
-        init { ModelBase.Set(this._rawQueryData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawQueryData, "id"); }
+        init { JsonModel.Set(this._rawQueryData, "id", value); }
     }
 
     /// <summary>
@@ -29,7 +29,7 @@ public sealed record class AuthStatusParams : ParamsBase
     /// </summary>
     public long? Wait
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "wait"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "wait"); }
         init
         {
             if (value == null)
@@ -37,7 +37,7 @@ public sealed record class AuthStatusParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "wait", value);
+            JsonModel.Set(this._rawQueryData, "wait", value);
         }
     }
 
@@ -67,7 +67,7 @@ public sealed record class AuthStatusParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static AuthStatusParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

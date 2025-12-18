@@ -87,8 +87,8 @@ public class UserConnectionResponseTest : TestBase
             UserID = "user_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UserConnectionResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UserConnectionResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

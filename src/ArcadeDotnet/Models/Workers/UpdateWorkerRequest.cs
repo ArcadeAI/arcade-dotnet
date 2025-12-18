@@ -7,12 +7,12 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Workers;
 
-[JsonConverter(typeof(ModelConverter<UpdateWorkerRequest, UpdateWorkerRequestFromRaw>))]
-public sealed record class UpdateWorkerRequest : ModelBase
+[JsonConverter(typeof(JsonModelConverter<UpdateWorkerRequest, UpdateWorkerRequestFromRaw>))]
+public sealed record class UpdateWorkerRequest : JsonModel
 {
     public bool? Enabled
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "enabled"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "enabled"); }
         init
         {
             if (value == null)
@@ -20,13 +20,13 @@ public sealed record class UpdateWorkerRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "enabled", value);
+            JsonModel.Set(this._rawData, "enabled", value);
         }
     }
 
     public UpdateWorkerRequestHTTP? HTTP
     {
-        get { return ModelBase.GetNullableClass<UpdateWorkerRequestHTTP>(this.RawData, "http"); }
+        get { return JsonModel.GetNullableClass<UpdateWorkerRequestHTTP>(this.RawData, "http"); }
         init
         {
             if (value == null)
@@ -34,13 +34,13 @@ public sealed record class UpdateWorkerRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "http", value);
+            JsonModel.Set(this._rawData, "http", value);
         }
     }
 
     public UpdateWorkerRequestMcp? Mcp
     {
-        get { return ModelBase.GetNullableClass<UpdateWorkerRequestMcp>(this.RawData, "mcp"); }
+        get { return JsonModel.GetNullableClass<UpdateWorkerRequestMcp>(this.RawData, "mcp"); }
         init
         {
             if (value == null)
@@ -48,7 +48,7 @@ public sealed record class UpdateWorkerRequest : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "mcp", value);
+            JsonModel.Set(this._rawData, "mcp", value);
         }
     }
 
@@ -87,19 +87,19 @@ public sealed record class UpdateWorkerRequest : ModelBase
     }
 }
 
-class UpdateWorkerRequestFromRaw : IFromRaw<UpdateWorkerRequest>
+class UpdateWorkerRequestFromRaw : IFromRawJson<UpdateWorkerRequest>
 {
     /// <inheritdoc/>
     public UpdateWorkerRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         UpdateWorkerRequest.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<UpdateWorkerRequestHTTP, UpdateWorkerRequestHTTPFromRaw>))]
-public sealed record class UpdateWorkerRequestHTTP : ModelBase
+[JsonConverter(typeof(JsonModelConverter<UpdateWorkerRequestHTTP, UpdateWorkerRequestHTTPFromRaw>))]
+public sealed record class UpdateWorkerRequestHTTP : JsonModel
 {
     public long? Retry
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "retry"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "retry"); }
         init
         {
             if (value == null)
@@ -107,13 +107,13 @@ public sealed record class UpdateWorkerRequestHTTP : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "retry", value);
+            JsonModel.Set(this._rawData, "retry", value);
         }
     }
 
     public string? Secret
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "secret"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "secret"); }
         init
         {
             if (value == null)
@@ -121,13 +121,13 @@ public sealed record class UpdateWorkerRequestHTTP : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "secret", value);
+            JsonModel.Set(this._rawData, "secret", value);
         }
     }
 
     public long? Timeout
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "timeout"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "timeout"); }
         init
         {
             if (value == null)
@@ -135,13 +135,13 @@ public sealed record class UpdateWorkerRequestHTTP : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "timeout", value);
+            JsonModel.Set(this._rawData, "timeout", value);
         }
     }
 
     public string? Uri
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "uri"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "uri"); }
         init
         {
             if (value == null)
@@ -149,7 +149,7 @@ public sealed record class UpdateWorkerRequestHTTP : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "uri", value);
+            JsonModel.Set(this._rawData, "uri", value);
         }
     }
 
@@ -189,7 +189,7 @@ public sealed record class UpdateWorkerRequestHTTP : ModelBase
     }
 }
 
-class UpdateWorkerRequestHTTPFromRaw : IFromRaw<UpdateWorkerRequestHTTP>
+class UpdateWorkerRequestHTTPFromRaw : IFromRawJson<UpdateWorkerRequestHTTP>
 {
     /// <inheritdoc/>
     public UpdateWorkerRequestHTTP FromRawUnchecked(
@@ -197,14 +197,14 @@ class UpdateWorkerRequestHTTPFromRaw : IFromRaw<UpdateWorkerRequestHTTP>
     ) => UpdateWorkerRequestHTTP.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<UpdateWorkerRequestMcp, UpdateWorkerRequestMcpFromRaw>))]
-public sealed record class UpdateWorkerRequestMcp : ModelBase
+[JsonConverter(typeof(JsonModelConverter<UpdateWorkerRequestMcp, UpdateWorkerRequestMcpFromRaw>))]
+public sealed record class UpdateWorkerRequestMcp : JsonModel
 {
     public IReadOnlyDictionary<string, string>? Headers
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string>>(this.RawData, "headers");
+            return JsonModel.GetNullableClass<Dictionary<string, string>>(this.RawData, "headers");
         }
         init
         {
@@ -213,7 +213,7 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "headers", value);
+            JsonModel.Set(this._rawData, "headers", value);
         }
     }
 
@@ -221,7 +221,7 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<UpdateWorkerRequestMcpOauth2>(this.RawData, "oauth2");
+            return JsonModel.GetNullableClass<UpdateWorkerRequestMcpOauth2>(this.RawData, "oauth2");
         }
         init
         {
@@ -230,13 +230,13 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "oauth2", value);
+            JsonModel.Set(this._rawData, "oauth2", value);
         }
     }
 
     public long? Retry
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "retry"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "retry"); }
         init
         {
             if (value == null)
@@ -244,7 +244,7 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "retry", value);
+            JsonModel.Set(this._rawData, "retry", value);
         }
     }
 
@@ -252,7 +252,7 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string>>(this.RawData, "secrets");
+            return JsonModel.GetNullableClass<Dictionary<string, string>>(this.RawData, "secrets");
         }
         init
         {
@@ -261,13 +261,13 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "secrets", value);
+            JsonModel.Set(this._rawData, "secrets", value);
         }
     }
 
     public long? Timeout
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "timeout"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "timeout"); }
         init
         {
             if (value == null)
@@ -275,13 +275,13 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "timeout", value);
+            JsonModel.Set(this._rawData, "timeout", value);
         }
     }
 
     public string? Uri
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "uri"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "uri"); }
         init
         {
             if (value == null)
@@ -289,7 +289,7 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "uri", value);
+            JsonModel.Set(this._rawData, "uri", value);
         }
     }
 
@@ -331,7 +331,7 @@ public sealed record class UpdateWorkerRequestMcp : ModelBase
     }
 }
 
-class UpdateWorkerRequestMcpFromRaw : IFromRaw<UpdateWorkerRequestMcp>
+class UpdateWorkerRequestMcpFromRaw : IFromRawJson<UpdateWorkerRequestMcp>
 {
     /// <inheritdoc/>
     public UpdateWorkerRequestMcp FromRawUnchecked(
@@ -340,13 +340,13 @@ class UpdateWorkerRequestMcpFromRaw : IFromRaw<UpdateWorkerRequestMcp>
 }
 
 [JsonConverter(
-    typeof(ModelConverter<UpdateWorkerRequestMcpOauth2, UpdateWorkerRequestMcpOauth2FromRaw>)
+    typeof(JsonModelConverter<UpdateWorkerRequestMcpOauth2, UpdateWorkerRequestMcpOauth2FromRaw>)
 )]
-public sealed record class UpdateWorkerRequestMcpOauth2 : ModelBase
+public sealed record class UpdateWorkerRequestMcpOauth2 : JsonModel
 {
     public string? AuthorizationURL
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "authorization_url"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "authorization_url"); }
         init
         {
             if (value == null)
@@ -354,13 +354,13 @@ public sealed record class UpdateWorkerRequestMcpOauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "authorization_url", value);
+            JsonModel.Set(this._rawData, "authorization_url", value);
         }
     }
 
     public string? ClientID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "client_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "client_id"); }
         init
         {
             if (value == null)
@@ -368,13 +368,13 @@ public sealed record class UpdateWorkerRequestMcpOauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "client_id", value);
+            JsonModel.Set(this._rawData, "client_id", value);
         }
     }
 
     public string? ClientSecret
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "client_secret"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "client_secret"); }
         init
         {
             if (value == null)
@@ -382,7 +382,7 @@ public sealed record class UpdateWorkerRequestMcpOauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "client_secret", value);
+            JsonModel.Set(this._rawData, "client_secret", value);
         }
     }
 
@@ -421,7 +421,7 @@ public sealed record class UpdateWorkerRequestMcpOauth2 : ModelBase
     }
 }
 
-class UpdateWorkerRequestMcpOauth2FromRaw : IFromRaw<UpdateWorkerRequestMcpOauth2>
+class UpdateWorkerRequestMcpOauth2FromRaw : IFromRawJson<UpdateWorkerRequestMcpOauth2>
 {
     /// <inheritdoc/>
     public UpdateWorkerRequestMcpOauth2 FromRawUnchecked(

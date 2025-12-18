@@ -33,8 +33,8 @@ public class ResponseFormatTest : TestBase
     {
         var model = new ResponseFormat { Type = Type.JsonObject };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ResponseFormat>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ResponseFormat>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, Type> expectedType = Type.JsonObject;
@@ -177,8 +177,8 @@ public class StreamOptionsTest : TestBase
     {
         var model = new StreamOptions { IncludeUsage = true };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<StreamOptions>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<StreamOptions>(element);
         Assert.NotNull(deserialized);
 
         bool expectedIncludeUsage = true;

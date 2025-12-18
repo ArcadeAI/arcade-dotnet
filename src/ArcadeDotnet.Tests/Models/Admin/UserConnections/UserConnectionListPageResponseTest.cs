@@ -122,8 +122,8 @@ public class UserConnectionListPageResponseTest : TestBase
             TotalCount = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UserConnectionListPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UserConnectionListPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<UserConnectionResponse> expectedItems =

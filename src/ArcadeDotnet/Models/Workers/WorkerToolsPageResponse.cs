@@ -8,12 +8,12 @@ using ArcadeDotnet.Models.Tools;
 
 namespace ArcadeDotnet.Models.Workers;
 
-[JsonConverter(typeof(ModelConverter<WorkerToolsPageResponse, WorkerToolsPageResponseFromRaw>))]
-public sealed record class WorkerToolsPageResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<WorkerToolsPageResponse, WorkerToolsPageResponseFromRaw>))]
+public sealed record class WorkerToolsPageResponse : JsonModel
 {
     public IReadOnlyList<ToolDefinition>? Items
     {
-        get { return ModelBase.GetNullableClass<List<ToolDefinition>>(this.RawData, "items"); }
+        get { return JsonModel.GetNullableClass<List<ToolDefinition>>(this.RawData, "items"); }
         init
         {
             if (value == null)
@@ -21,13 +21,13 @@ public sealed record class WorkerToolsPageResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "items", value);
+            JsonModel.Set(this._rawData, "items", value);
         }
     }
 
     public long? Limit
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "limit"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "limit"); }
         init
         {
             if (value == null)
@@ -35,13 +35,13 @@ public sealed record class WorkerToolsPageResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "limit", value);
+            JsonModel.Set(this._rawData, "limit", value);
         }
     }
 
     public long? Offset
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "offset"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "offset"); }
         init
         {
             if (value == null)
@@ -49,13 +49,13 @@ public sealed record class WorkerToolsPageResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "offset", value);
+            JsonModel.Set(this._rawData, "offset", value);
         }
     }
 
     public long? PageCount
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "page_count"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "page_count"); }
         init
         {
             if (value == null)
@@ -63,13 +63,13 @@ public sealed record class WorkerToolsPageResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "page_count", value);
+            JsonModel.Set(this._rawData, "page_count", value);
         }
     }
 
     public long? TotalCount
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "total_count"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "total_count"); }
         init
         {
             if (value == null)
@@ -77,7 +77,7 @@ public sealed record class WorkerToolsPageResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "total_count", value);
+            JsonModel.Set(this._rawData, "total_count", value);
         }
     }
 
@@ -121,7 +121,7 @@ public sealed record class WorkerToolsPageResponse : ModelBase
     }
 }
 
-class WorkerToolsPageResponseFromRaw : IFromRaw<WorkerToolsPageResponse>
+class WorkerToolsPageResponseFromRaw : IFromRawJson<WorkerToolsPageResponse>
 {
     /// <inheritdoc/>
     public WorkerToolsPageResponse FromRawUnchecked(

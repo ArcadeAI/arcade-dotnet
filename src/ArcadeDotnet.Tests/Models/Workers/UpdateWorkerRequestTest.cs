@@ -127,8 +127,8 @@ public class UpdateWorkerRequestTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequest>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequest>(element);
         Assert.NotNull(deserialized);
 
         bool expectedEnabled = true;
@@ -298,8 +298,8 @@ public class UpdateWorkerRequestHTTPTest : TestBase
             Uri = "uri",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestHTTP>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestHTTP>(element);
         Assert.NotNull(deserialized);
 
         long expectedRetry = 0;
@@ -482,8 +482,8 @@ public class UpdateWorkerRequestMcpTest : TestBase
             Uri = "uri",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestMcp>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestMcp>(element);
         Assert.NotNull(deserialized);
 
         Dictionary<string, string> expectedHeaders = new() { { "foo", "string" } };
@@ -659,8 +659,8 @@ public class UpdateWorkerRequestMcpOauth2Test : TestBase
             ClientSecret = "client_secret",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestMcpOauth2>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestMcpOauth2>(element);
         Assert.NotNull(deserialized);
 
         string expectedAuthorizationURL = "authorization_url";

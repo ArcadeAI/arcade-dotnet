@@ -100,8 +100,8 @@ public class ChatMessageTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ChatMessage>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ChatMessage>(element);
         Assert.NotNull(deserialized);
 
         string expectedContent = "content";
@@ -261,8 +261,8 @@ public class ToolCallTest : TestBase
             Type = Type.Function,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolCall>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ToolCall>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -372,8 +372,8 @@ public class FunctionTest : TestBase
     {
         var model = new Function { Arguments = "arguments", Name = "name" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Function>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Function>(element);
         Assert.NotNull(deserialized);
 
         string expectedArguments = "arguments";

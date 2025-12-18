@@ -75,8 +75,8 @@ public class AuthRequestTest : TestBase
             NextUri = "next_uri",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthRequest>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AuthRequest>(element);
         Assert.NotNull(deserialized);
 
         AuthRequestAuthRequirement expectedAuthRequirement = new()
@@ -246,8 +246,8 @@ public class AuthRequestAuthRequirementTest : TestBase
             ProviderType = "provider_type",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthRequestAuthRequirement>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AuthRequestAuthRequirement>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -369,8 +369,8 @@ public class AuthRequestAuthRequirementOauth2Test : TestBase
     {
         var model = new AuthRequestAuthRequirementOauth2 { Scopes = ["string"] };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthRequestAuthRequirementOauth2>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AuthRequestAuthRequirementOauth2>(element);
         Assert.NotNull(deserialized);
 
         List<string> expectedScopes = ["string"];

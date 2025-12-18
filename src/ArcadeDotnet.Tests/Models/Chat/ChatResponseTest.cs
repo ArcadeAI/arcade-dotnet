@@ -349,8 +349,8 @@ public class ChatResponseTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ChatResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ChatResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

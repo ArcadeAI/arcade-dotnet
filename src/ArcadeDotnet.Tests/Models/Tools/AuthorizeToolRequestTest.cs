@@ -55,8 +55,8 @@ public class AuthorizeToolRequestTest : TestBase
             UserID = "user_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthorizeToolRequest>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AuthorizeToolRequest>(element);
         Assert.NotNull(deserialized);
 
         string expectedToolName = "tool_name";

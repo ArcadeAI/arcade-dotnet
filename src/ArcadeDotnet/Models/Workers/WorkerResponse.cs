@@ -9,12 +9,12 @@ using System = System;
 
 namespace ArcadeDotnet.Models.Workers;
 
-[JsonConverter(typeof(ModelConverter<WorkerResponse, WorkerResponseFromRaw>))]
-public sealed record class WorkerResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<WorkerResponse, WorkerResponseFromRaw>))]
+public sealed record class WorkerResponse : JsonModel
 {
     public string? ID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -22,13 +22,13 @@ public sealed record class WorkerResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "id", value);
+            JsonModel.Set(this._rawData, "id", value);
         }
     }
 
     public Binding? Binding
     {
-        get { return ModelBase.GetNullableClass<Binding>(this.RawData, "binding"); }
+        get { return JsonModel.GetNullableClass<Binding>(this.RawData, "binding"); }
         init
         {
             if (value == null)
@@ -36,13 +36,13 @@ public sealed record class WorkerResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "binding", value);
+            JsonModel.Set(this._rawData, "binding", value);
         }
     }
 
     public bool? Enabled
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "enabled"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "enabled"); }
         init
         {
             if (value == null)
@@ -50,13 +50,13 @@ public sealed record class WorkerResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "enabled", value);
+            JsonModel.Set(this._rawData, "enabled", value);
         }
     }
 
     public WorkerResponseHTTP? HTTP
     {
-        get { return ModelBase.GetNullableClass<WorkerResponseHTTP>(this.RawData, "http"); }
+        get { return JsonModel.GetNullableClass<WorkerResponseHTTP>(this.RawData, "http"); }
         init
         {
             if (value == null)
@@ -64,13 +64,13 @@ public sealed record class WorkerResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "http", value);
+            JsonModel.Set(this._rawData, "http", value);
         }
     }
 
     public bool? Managed
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "managed"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "managed"); }
         init
         {
             if (value == null)
@@ -78,13 +78,13 @@ public sealed record class WorkerResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "managed", value);
+            JsonModel.Set(this._rawData, "managed", value);
         }
     }
 
     public WorkerResponseMcp? Mcp
     {
-        get { return ModelBase.GetNullableClass<WorkerResponseMcp>(this.RawData, "mcp"); }
+        get { return JsonModel.GetNullableClass<WorkerResponseMcp>(this.RawData, "mcp"); }
         init
         {
             if (value == null)
@@ -92,13 +92,13 @@ public sealed record class WorkerResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "mcp", value);
+            JsonModel.Set(this._rawData, "mcp", value);
         }
     }
 
     public Requirements? Requirements
     {
-        get { return ModelBase.GetNullableClass<Requirements>(this.RawData, "requirements"); }
+        get { return JsonModel.GetNullableClass<Requirements>(this.RawData, "requirements"); }
         init
         {
             if (value == null)
@@ -106,7 +106,7 @@ public sealed record class WorkerResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "requirements", value);
+            JsonModel.Set(this._rawData, "requirements", value);
         }
     }
 
@@ -114,7 +114,7 @@ public sealed record class WorkerResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, WorkerResponseType>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, WorkerResponseType>>(
                 this.RawData,
                 "type"
             );
@@ -126,7 +126,7 @@ public sealed record class WorkerResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "type", value);
+            JsonModel.Set(this._rawData, "type", value);
         }
     }
 
@@ -168,19 +168,19 @@ public sealed record class WorkerResponse : ModelBase
     }
 }
 
-class WorkerResponseFromRaw : IFromRaw<WorkerResponse>
+class WorkerResponseFromRaw : IFromRawJson<WorkerResponse>
 {
     /// <inheritdoc/>
     public WorkerResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         WorkerResponse.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Binding, BindingFromRaw>))]
-public sealed record class Binding : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Binding, BindingFromRaw>))]
+public sealed record class Binding : JsonModel
 {
     public string? ID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -188,7 +188,7 @@ public sealed record class Binding : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "id", value);
+            JsonModel.Set(this._rawData, "id", value);
         }
     }
 
@@ -196,7 +196,7 @@ public sealed record class Binding : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, global::ArcadeDotnet.Models.Workers.Type>
             >(this.RawData, "type");
         }
@@ -207,7 +207,7 @@ public sealed record class Binding : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "type", value);
+            JsonModel.Set(this._rawData, "type", value);
         }
     }
 
@@ -243,7 +243,7 @@ public sealed record class Binding : ModelBase
     }
 }
 
-class BindingFromRaw : IFromRaw<Binding>
+class BindingFromRaw : IFromRawJson<Binding>
 {
     /// <inheritdoc/>
     public Binding FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -300,12 +300,12 @@ sealed class TypeConverter : JsonConverter<global::ArcadeDotnet.Models.Workers.T
     }
 }
 
-[JsonConverter(typeof(ModelConverter<WorkerResponseHTTP, WorkerResponseHTTPFromRaw>))]
-public sealed record class WorkerResponseHTTP : ModelBase
+[JsonConverter(typeof(JsonModelConverter<WorkerResponseHTTP, WorkerResponseHTTPFromRaw>))]
+public sealed record class WorkerResponseHTTP : JsonModel
 {
     public long? Retry
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "retry"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "retry"); }
         init
         {
             if (value == null)
@@ -313,13 +313,13 @@ public sealed record class WorkerResponseHTTP : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "retry", value);
+            JsonModel.Set(this._rawData, "retry", value);
         }
     }
 
     public Secret? Secret
     {
-        get { return ModelBase.GetNullableClass<Secret>(this.RawData, "secret"); }
+        get { return JsonModel.GetNullableClass<Secret>(this.RawData, "secret"); }
         init
         {
             if (value == null)
@@ -327,13 +327,13 @@ public sealed record class WorkerResponseHTTP : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "secret", value);
+            JsonModel.Set(this._rawData, "secret", value);
         }
     }
 
     public long? Timeout
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "timeout"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "timeout"); }
         init
         {
             if (value == null)
@@ -341,13 +341,13 @@ public sealed record class WorkerResponseHTTP : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "timeout", value);
+            JsonModel.Set(this._rawData, "timeout", value);
         }
     }
 
     public string? Uri
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "uri"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "uri"); }
         init
         {
             if (value == null)
@@ -355,7 +355,7 @@ public sealed record class WorkerResponseHTTP : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "uri", value);
+            JsonModel.Set(this._rawData, "uri", value);
         }
     }
 
@@ -395,21 +395,21 @@ public sealed record class WorkerResponseHTTP : ModelBase
     }
 }
 
-class WorkerResponseHTTPFromRaw : IFromRaw<WorkerResponseHTTP>
+class WorkerResponseHTTPFromRaw : IFromRawJson<WorkerResponseHTTP>
 {
     /// <inheritdoc/>
     public WorkerResponseHTTP FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         WorkerResponseHTTP.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Secret, SecretFromRaw>))]
-public sealed record class Secret : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Secret, SecretFromRaw>))]
+public sealed record class Secret : JsonModel
 {
     public ApiEnum<string, SecretBinding>? Binding
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, SecretBinding>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, SecretBinding>>(
                 this.RawData,
                 "binding"
             );
@@ -421,13 +421,13 @@ public sealed record class Secret : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "binding", value);
+            JsonModel.Set(this._rawData, "binding", value);
         }
     }
 
     public bool? Editable
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "editable"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "editable"); }
         init
         {
             if (value == null)
@@ -435,13 +435,13 @@ public sealed record class Secret : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "editable", value);
+            JsonModel.Set(this._rawData, "editable", value);
         }
     }
 
     public bool? Exists
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "exists"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "exists"); }
         init
         {
             if (value == null)
@@ -449,13 +449,13 @@ public sealed record class Secret : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "exists", value);
+            JsonModel.Set(this._rawData, "exists", value);
         }
     }
 
     public string? Hint
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "hint"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "hint"); }
         init
         {
             if (value == null)
@@ -463,13 +463,13 @@ public sealed record class Secret : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "hint", value);
+            JsonModel.Set(this._rawData, "hint", value);
         }
     }
 
     public string? Value
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "value"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "value"); }
         init
         {
             if (value == null)
@@ -477,7 +477,7 @@ public sealed record class Secret : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "value", value);
+            JsonModel.Set(this._rawData, "value", value);
         }
     }
 
@@ -516,7 +516,7 @@ public sealed record class Secret : ModelBase
     }
 }
 
-class SecretFromRaw : IFromRaw<Secret>
+class SecretFromRaw : IFromRawJson<Secret>
 {
     /// <inheritdoc/>
     public Secret FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -573,14 +573,14 @@ sealed class SecretBindingConverter : JsonConverter<SecretBinding>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<WorkerResponseMcp, WorkerResponseMcpFromRaw>))]
-public sealed record class WorkerResponseMcp : ModelBase
+[JsonConverter(typeof(JsonModelConverter<WorkerResponseMcp, WorkerResponseMcpFromRaw>))]
+public sealed record class WorkerResponseMcp : JsonModel
 {
     public IReadOnlyDictionary<string, string>? Headers
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string>>(this.RawData, "headers");
+            return JsonModel.GetNullableClass<Dictionary<string, string>>(this.RawData, "headers");
         }
         init
         {
@@ -589,13 +589,13 @@ public sealed record class WorkerResponseMcp : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "headers", value);
+            JsonModel.Set(this._rawData, "headers", value);
         }
     }
 
     public WorkerResponseMcpOauth2? Oauth2
     {
-        get { return ModelBase.GetNullableClass<WorkerResponseMcpOauth2>(this.RawData, "oauth2"); }
+        get { return JsonModel.GetNullableClass<WorkerResponseMcpOauth2>(this.RawData, "oauth2"); }
         init
         {
             if (value == null)
@@ -603,13 +603,13 @@ public sealed record class WorkerResponseMcp : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "oauth2", value);
+            JsonModel.Set(this._rawData, "oauth2", value);
         }
     }
 
     public long? Retry
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "retry"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "retry"); }
         init
         {
             if (value == null)
@@ -617,7 +617,7 @@ public sealed record class WorkerResponseMcp : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "retry", value);
+            JsonModel.Set(this._rawData, "retry", value);
         }
     }
 
@@ -625,7 +625,7 @@ public sealed record class WorkerResponseMcp : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, SecretsItem>>(
+            return JsonModel.GetNullableClass<Dictionary<string, SecretsItem>>(
                 this.RawData,
                 "secrets"
             );
@@ -637,13 +637,13 @@ public sealed record class WorkerResponseMcp : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "secrets", value);
+            JsonModel.Set(this._rawData, "secrets", value);
         }
     }
 
     public long? Timeout
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "timeout"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "timeout"); }
         init
         {
             if (value == null)
@@ -651,13 +651,13 @@ public sealed record class WorkerResponseMcp : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "timeout", value);
+            JsonModel.Set(this._rawData, "timeout", value);
         }
     }
 
     public string? Uri
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "uri"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "uri"); }
         init
         {
             if (value == null)
@@ -665,7 +665,7 @@ public sealed record class WorkerResponseMcp : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "uri", value);
+            JsonModel.Set(this._rawData, "uri", value);
         }
     }
 
@@ -713,19 +713,19 @@ public sealed record class WorkerResponseMcp : ModelBase
     }
 }
 
-class WorkerResponseMcpFromRaw : IFromRaw<WorkerResponseMcp>
+class WorkerResponseMcpFromRaw : IFromRawJson<WorkerResponseMcp>
 {
     /// <inheritdoc/>
     public WorkerResponseMcp FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         WorkerResponseMcp.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<WorkerResponseMcpOauth2, WorkerResponseMcpOauth2FromRaw>))]
-public sealed record class WorkerResponseMcpOauth2 : ModelBase
+[JsonConverter(typeof(JsonModelConverter<WorkerResponseMcpOauth2, WorkerResponseMcpOauth2FromRaw>))]
+public sealed record class WorkerResponseMcpOauth2 : JsonModel
 {
     public string? AuthorizationURL
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "authorization_url"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "authorization_url"); }
         init
         {
             if (value == null)
@@ -733,13 +733,13 @@ public sealed record class WorkerResponseMcpOauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "authorization_url", value);
+            JsonModel.Set(this._rawData, "authorization_url", value);
         }
     }
 
     public string? ClientID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "client_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "client_id"); }
         init
         {
             if (value == null)
@@ -747,13 +747,13 @@ public sealed record class WorkerResponseMcpOauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "client_id", value);
+            JsonModel.Set(this._rawData, "client_id", value);
         }
     }
 
     public ClientSecret? ClientSecret
     {
-        get { return ModelBase.GetNullableClass<ClientSecret>(this.RawData, "client_secret"); }
+        get { return JsonModel.GetNullableClass<ClientSecret>(this.RawData, "client_secret"); }
         init
         {
             if (value == null)
@@ -761,13 +761,13 @@ public sealed record class WorkerResponseMcpOauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "client_secret", value);
+            JsonModel.Set(this._rawData, "client_secret", value);
         }
     }
 
     public string? RedirectUri
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "redirect_uri"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "redirect_uri"); }
         init
         {
             if (value == null)
@@ -775,7 +775,7 @@ public sealed record class WorkerResponseMcpOauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "redirect_uri", value);
+            JsonModel.Set(this._rawData, "redirect_uri", value);
         }
     }
 
@@ -815,7 +815,7 @@ public sealed record class WorkerResponseMcpOauth2 : ModelBase
     }
 }
 
-class WorkerResponseMcpOauth2FromRaw : IFromRaw<WorkerResponseMcpOauth2>
+class WorkerResponseMcpOauth2FromRaw : IFromRawJson<WorkerResponseMcpOauth2>
 {
     /// <inheritdoc/>
     public WorkerResponseMcpOauth2 FromRawUnchecked(
@@ -823,14 +823,14 @@ class WorkerResponseMcpOauth2FromRaw : IFromRaw<WorkerResponseMcpOauth2>
     ) => WorkerResponseMcpOauth2.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<ClientSecret, ClientSecretFromRaw>))]
-public sealed record class ClientSecret : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ClientSecret, ClientSecretFromRaw>))]
+public sealed record class ClientSecret : JsonModel
 {
     public ApiEnum<string, ClientSecretBinding>? Binding
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, ClientSecretBinding>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, ClientSecretBinding>>(
                 this.RawData,
                 "binding"
             );
@@ -842,13 +842,13 @@ public sealed record class ClientSecret : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "binding", value);
+            JsonModel.Set(this._rawData, "binding", value);
         }
     }
 
     public bool? Editable
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "editable"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "editable"); }
         init
         {
             if (value == null)
@@ -856,13 +856,13 @@ public sealed record class ClientSecret : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "editable", value);
+            JsonModel.Set(this._rawData, "editable", value);
         }
     }
 
     public bool? Exists
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "exists"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "exists"); }
         init
         {
             if (value == null)
@@ -870,13 +870,13 @@ public sealed record class ClientSecret : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "exists", value);
+            JsonModel.Set(this._rawData, "exists", value);
         }
     }
 
     public string? Hint
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "hint"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "hint"); }
         init
         {
             if (value == null)
@@ -884,13 +884,13 @@ public sealed record class ClientSecret : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "hint", value);
+            JsonModel.Set(this._rawData, "hint", value);
         }
     }
 
     public string? Value
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "value"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "value"); }
         init
         {
             if (value == null)
@@ -898,7 +898,7 @@ public sealed record class ClientSecret : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "value", value);
+            JsonModel.Set(this._rawData, "value", value);
         }
     }
 
@@ -937,7 +937,7 @@ public sealed record class ClientSecret : ModelBase
     }
 }
 
-class ClientSecretFromRaw : IFromRaw<ClientSecret>
+class ClientSecretFromRaw : IFromRawJson<ClientSecret>
 {
     /// <inheritdoc/>
     public ClientSecret FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -994,14 +994,14 @@ sealed class ClientSecretBindingConverter : JsonConverter<ClientSecretBinding>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<SecretsItem, SecretsItemFromRaw>))]
-public sealed record class SecretsItem : ModelBase
+[JsonConverter(typeof(JsonModelConverter<SecretsItem, SecretsItemFromRaw>))]
+public sealed record class SecretsItem : JsonModel
 {
     public ApiEnum<string, SecretsItemBinding>? Binding
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, SecretsItemBinding>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, SecretsItemBinding>>(
                 this.RawData,
                 "binding"
             );
@@ -1013,13 +1013,13 @@ public sealed record class SecretsItem : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "binding", value);
+            JsonModel.Set(this._rawData, "binding", value);
         }
     }
 
     public bool? Editable
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "editable"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "editable"); }
         init
         {
             if (value == null)
@@ -1027,13 +1027,13 @@ public sealed record class SecretsItem : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "editable", value);
+            JsonModel.Set(this._rawData, "editable", value);
         }
     }
 
     public bool? Exists
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "exists"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "exists"); }
         init
         {
             if (value == null)
@@ -1041,13 +1041,13 @@ public sealed record class SecretsItem : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "exists", value);
+            JsonModel.Set(this._rawData, "exists", value);
         }
     }
 
     public string? Hint
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "hint"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "hint"); }
         init
         {
             if (value == null)
@@ -1055,13 +1055,13 @@ public sealed record class SecretsItem : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "hint", value);
+            JsonModel.Set(this._rawData, "hint", value);
         }
     }
 
     public string? Value
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "value"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "value"); }
         init
         {
             if (value == null)
@@ -1069,7 +1069,7 @@ public sealed record class SecretsItem : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "value", value);
+            JsonModel.Set(this._rawData, "value", value);
         }
     }
 
@@ -1108,7 +1108,7 @@ public sealed record class SecretsItem : ModelBase
     }
 }
 
-class SecretsItemFromRaw : IFromRaw<SecretsItem>
+class SecretsItemFromRaw : IFromRawJson<SecretsItem>
 {
     /// <inheritdoc/>
     public SecretsItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -1165,12 +1165,12 @@ sealed class SecretsItemBindingConverter : JsonConverter<SecretsItemBinding>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Requirements, RequirementsFromRaw>))]
-public sealed record class Requirements : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Requirements, RequirementsFromRaw>))]
+public sealed record class Requirements : JsonModel
 {
     public Authorization? Authorization
     {
-        get { return ModelBase.GetNullableClass<Authorization>(this.RawData, "authorization"); }
+        get { return JsonModel.GetNullableClass<Authorization>(this.RawData, "authorization"); }
         init
         {
             if (value == null)
@@ -1178,13 +1178,13 @@ public sealed record class Requirements : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "authorization", value);
+            JsonModel.Set(this._rawData, "authorization", value);
         }
     }
 
     public bool? Met
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "met"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "met"); }
         init
         {
             if (value == null)
@@ -1192,7 +1192,7 @@ public sealed record class Requirements : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "met", value);
+            JsonModel.Set(this._rawData, "met", value);
         }
     }
 
@@ -1228,19 +1228,19 @@ public sealed record class Requirements : ModelBase
     }
 }
 
-class RequirementsFromRaw : IFromRaw<Requirements>
+class RequirementsFromRaw : IFromRawJson<Requirements>
 {
     /// <inheritdoc/>
     public Requirements FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Requirements.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Authorization, AuthorizationFromRaw>))]
-public sealed record class Authorization : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Authorization, AuthorizationFromRaw>))]
+public sealed record class Authorization : JsonModel
 {
     public bool? Met
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "met"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "met"); }
         init
         {
             if (value == null)
@@ -1248,13 +1248,13 @@ public sealed record class Authorization : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "met", value);
+            JsonModel.Set(this._rawData, "met", value);
         }
     }
 
     public AuthorizationOauth2? Oauth2
     {
-        get { return ModelBase.GetNullableClass<AuthorizationOauth2>(this.RawData, "oauth2"); }
+        get { return JsonModel.GetNullableClass<AuthorizationOauth2>(this.RawData, "oauth2"); }
         init
         {
             if (value == null)
@@ -1262,7 +1262,7 @@ public sealed record class Authorization : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "oauth2", value);
+            JsonModel.Set(this._rawData, "oauth2", value);
         }
     }
 
@@ -1298,19 +1298,19 @@ public sealed record class Authorization : ModelBase
     }
 }
 
-class AuthorizationFromRaw : IFromRaw<Authorization>
+class AuthorizationFromRaw : IFromRawJson<Authorization>
 {
     /// <inheritdoc/>
     public Authorization FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Authorization.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<AuthorizationOauth2, AuthorizationOauth2FromRaw>))]
-public sealed record class AuthorizationOauth2 : ModelBase
+[JsonConverter(typeof(JsonModelConverter<AuthorizationOauth2, AuthorizationOauth2FromRaw>))]
+public sealed record class AuthorizationOauth2 : JsonModel
 {
     public bool? Met
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "met"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "met"); }
         init
         {
             if (value == null)
@@ -1318,7 +1318,7 @@ public sealed record class AuthorizationOauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "met", value);
+            JsonModel.Set(this._rawData, "met", value);
         }
     }
 
@@ -1355,7 +1355,7 @@ public sealed record class AuthorizationOauth2 : ModelBase
     }
 }
 
-class AuthorizationOauth2FromRaw : IFromRaw<AuthorizationOauth2>
+class AuthorizationOauth2FromRaw : IFromRawJson<AuthorizationOauth2>
 {
     /// <inheritdoc/>
     public AuthorizationOauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

@@ -7,12 +7,12 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models;
 
-[JsonConverter(typeof(ModelConverter<AuthorizationContext, AuthorizationContextFromRaw>))]
-public sealed record class AuthorizationContext : ModelBase
+[JsonConverter(typeof(JsonModelConverter<AuthorizationContext, AuthorizationContextFromRaw>))]
+public sealed record class AuthorizationContext : JsonModel
 {
     public string? Token
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "token"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "token"); }
         init
         {
             if (value == null)
@@ -20,7 +20,7 @@ public sealed record class AuthorizationContext : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "token", value);
+            JsonModel.Set(this._rawData, "token", value);
         }
     }
 
@@ -28,7 +28,7 @@ public sealed record class AuthorizationContext : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, JsonElement>>(
+            return JsonModel.GetNullableClass<Dictionary<string, JsonElement>>(
                 this.RawData,
                 "user_info"
             );
@@ -40,7 +40,7 @@ public sealed record class AuthorizationContext : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "user_info", value);
+            JsonModel.Set(this._rawData, "user_info", value);
         }
     }
 
@@ -78,7 +78,7 @@ public sealed record class AuthorizationContext : ModelBase
     }
 }
 
-class AuthorizationContextFromRaw : IFromRaw<AuthorizationContext>
+class AuthorizationContextFromRaw : IFromRawJson<AuthorizationContext>
 {
     /// <inheritdoc/>
     public AuthorizationContext FromRawUnchecked(

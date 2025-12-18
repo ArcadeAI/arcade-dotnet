@@ -7,12 +7,12 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Health;
 
-[JsonConverter(typeof(ModelConverter<HealthSchema, HealthSchemaFromRaw>))]
-public sealed record class HealthSchema : ModelBase
+[JsonConverter(typeof(JsonModelConverter<HealthSchema, HealthSchemaFromRaw>))]
+public sealed record class HealthSchema : JsonModel
 {
     public bool? Healthy
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "healthy"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "healthy"); }
         init
         {
             if (value == null)
@@ -20,7 +20,7 @@ public sealed record class HealthSchema : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "healthy", value);
+            JsonModel.Set(this._rawData, "healthy", value);
         }
     }
 
@@ -55,7 +55,7 @@ public sealed record class HealthSchema : ModelBase
     }
 }
 
-class HealthSchemaFromRaw : IFromRaw<HealthSchema>
+class HealthSchemaFromRaw : IFromRawJson<HealthSchema>
 {
     /// <inheritdoc/>
     public HealthSchema FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

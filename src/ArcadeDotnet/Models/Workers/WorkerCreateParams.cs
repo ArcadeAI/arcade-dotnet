@@ -23,13 +23,13 @@ public sealed record class WorkerCreateParams : ParamsBase
 
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "id"); }
-        init { ModelBase.Set(this._rawBodyData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "id"); }
+        init { JsonModel.Set(this._rawBodyData, "id", value); }
     }
 
     public bool? Enabled
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "enabled"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "enabled"); }
         init
         {
             if (value == null)
@@ -37,13 +37,13 @@ public sealed record class WorkerCreateParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "enabled", value);
+            JsonModel.Set(this._rawBodyData, "enabled", value);
         }
     }
 
     public HTTP? HTTP
     {
-        get { return ModelBase.GetNullableClass<HTTP>(this.RawBodyData, "http"); }
+        get { return JsonModel.GetNullableClass<HTTP>(this.RawBodyData, "http"); }
         init
         {
             if (value == null)
@@ -51,13 +51,13 @@ public sealed record class WorkerCreateParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "http", value);
+            JsonModel.Set(this._rawBodyData, "http", value);
         }
     }
 
     public Mcp? Mcp
     {
-        get { return ModelBase.GetNullableClass<Mcp>(this.RawBodyData, "mcp"); }
+        get { return JsonModel.GetNullableClass<Mcp>(this.RawBodyData, "mcp"); }
         init
         {
             if (value == null)
@@ -65,13 +65,13 @@ public sealed record class WorkerCreateParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "mcp", value);
+            JsonModel.Set(this._rawBodyData, "mcp", value);
         }
     }
 
     public string? Type
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "type"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "type"); }
         init
         {
             if (value == null)
@@ -79,7 +79,7 @@ public sealed record class WorkerCreateParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "type", value);
+            JsonModel.Set(this._rawBodyData, "type", value);
         }
     }
 
@@ -116,7 +116,7 @@ public sealed record class WorkerCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static WorkerCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -138,9 +138,13 @@ public sealed record class WorkerCreateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
@@ -153,31 +157,31 @@ public sealed record class WorkerCreateParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<HTTP, HTTPFromRaw>))]
-public sealed record class HTTP : ModelBase
+[JsonConverter(typeof(JsonModelConverter<HTTP, HTTPFromRaw>))]
+public sealed record class HTTP : JsonModel
 {
     public required long Retry
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "retry"); }
-        init { ModelBase.Set(this._rawData, "retry", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "retry"); }
+        init { JsonModel.Set(this._rawData, "retry", value); }
     }
 
     public required string Secret
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "secret"); }
-        init { ModelBase.Set(this._rawData, "secret", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "secret"); }
+        init { JsonModel.Set(this._rawData, "secret", value); }
     }
 
     public required long Timeout
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "timeout"); }
-        init { ModelBase.Set(this._rawData, "timeout", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "timeout"); }
+        init { JsonModel.Set(this._rawData, "timeout", value); }
     }
 
     public required string Uri
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "uri"); }
-        init { ModelBase.Set(this._rawData, "uri", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "uri"); }
+        init { JsonModel.Set(this._rawData, "uri", value); }
     }
 
     /// <inheritdoc/>
@@ -214,39 +218,39 @@ public sealed record class HTTP : ModelBase
     }
 }
 
-class HTTPFromRaw : IFromRaw<HTTP>
+class HTTPFromRaw : IFromRawJson<HTTP>
 {
     /// <inheritdoc/>
     public HTTP FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         HTTP.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Mcp, McpFromRaw>))]
-public sealed record class Mcp : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Mcp, McpFromRaw>))]
+public sealed record class Mcp : JsonModel
 {
     public required long Retry
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "retry"); }
-        init { ModelBase.Set(this._rawData, "retry", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "retry"); }
+        init { JsonModel.Set(this._rawData, "retry", value); }
     }
 
     public required long Timeout
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "timeout"); }
-        init { ModelBase.Set(this._rawData, "timeout", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "timeout"); }
+        init { JsonModel.Set(this._rawData, "timeout", value); }
     }
 
     public required string Uri
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "uri"); }
-        init { ModelBase.Set(this._rawData, "uri", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "uri"); }
+        init { JsonModel.Set(this._rawData, "uri", value); }
     }
 
     public IReadOnlyDictionary<string, string>? Headers
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string>>(this.RawData, "headers");
+            return JsonModel.GetNullableClass<Dictionary<string, string>>(this.RawData, "headers");
         }
         init
         {
@@ -255,13 +259,13 @@ public sealed record class Mcp : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "headers", value);
+            JsonModel.Set(this._rawData, "headers", value);
         }
     }
 
     public Oauth2? Oauth2
     {
-        get { return ModelBase.GetNullableClass<Oauth2>(this.RawData, "oauth2"); }
+        get { return JsonModel.GetNullableClass<Oauth2>(this.RawData, "oauth2"); }
         init
         {
             if (value == null)
@@ -269,7 +273,7 @@ public sealed record class Mcp : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "oauth2", value);
+            JsonModel.Set(this._rawData, "oauth2", value);
         }
     }
 
@@ -277,7 +281,7 @@ public sealed record class Mcp : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string>>(this.RawData, "secrets");
+            return JsonModel.GetNullableClass<Dictionary<string, string>>(this.RawData, "secrets");
         }
         init
         {
@@ -286,7 +290,7 @@ public sealed record class Mcp : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "secrets", value);
+            JsonModel.Set(this._rawData, "secrets", value);
         }
     }
 
@@ -326,19 +330,19 @@ public sealed record class Mcp : ModelBase
     }
 }
 
-class McpFromRaw : IFromRaw<Mcp>
+class McpFromRaw : IFromRawJson<Mcp>
 {
     /// <inheritdoc/>
     public Mcp FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Mcp.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Oauth2, Oauth2FromRaw>))]
-public sealed record class Oauth2 : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Oauth2, Oauth2FromRaw>))]
+public sealed record class Oauth2 : JsonModel
 {
     public string? AuthorizationURL
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "authorization_url"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "authorization_url"); }
         init
         {
             if (value == null)
@@ -346,13 +350,13 @@ public sealed record class Oauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "authorization_url", value);
+            JsonModel.Set(this._rawData, "authorization_url", value);
         }
     }
 
     public string? ClientID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "client_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "client_id"); }
         init
         {
             if (value == null)
@@ -360,13 +364,13 @@ public sealed record class Oauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "client_id", value);
+            JsonModel.Set(this._rawData, "client_id", value);
         }
     }
 
     public string? ClientSecret
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "client_secret"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "client_secret"); }
         init
         {
             if (value == null)
@@ -374,13 +378,13 @@ public sealed record class Oauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "client_secret", value);
+            JsonModel.Set(this._rawData, "client_secret", value);
         }
     }
 
     public string? ExternalID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_id"); }
         init
         {
             if (value == null)
@@ -388,7 +392,7 @@ public sealed record class Oauth2 : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "external_id", value);
+            JsonModel.Set(this._rawData, "external_id", value);
         }
     }
 
@@ -426,7 +430,7 @@ public sealed record class Oauth2 : ModelBase
     }
 }
 
-class Oauth2FromRaw : IFromRaw<Oauth2>
+class Oauth2FromRaw : IFromRawJson<Oauth2>
 {
     /// <inheritdoc/>
     public Oauth2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

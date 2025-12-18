@@ -7,12 +7,12 @@ using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Chat;
 
-[JsonConverter(typeof(ModelConverter<ChatResponse, ChatResponseFromRaw>))]
-public sealed record class ChatResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ChatResponse, ChatResponseFromRaw>))]
+public sealed record class ChatResponse : JsonModel
 {
     public string? ID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
         init
         {
             if (value == null)
@@ -20,13 +20,13 @@ public sealed record class ChatResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "id", value);
+            JsonModel.Set(this._rawData, "id", value);
         }
     }
 
     public IReadOnlyList<Choice>? Choices
     {
-        get { return ModelBase.GetNullableClass<List<Choice>>(this.RawData, "choices"); }
+        get { return JsonModel.GetNullableClass<List<Choice>>(this.RawData, "choices"); }
         init
         {
             if (value == null)
@@ -34,13 +34,13 @@ public sealed record class ChatResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "choices", value);
+            JsonModel.Set(this._rawData, "choices", value);
         }
     }
 
     public long? Created
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "created"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "created"); }
         init
         {
             if (value == null)
@@ -48,13 +48,13 @@ public sealed record class ChatResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "created", value);
+            JsonModel.Set(this._rawData, "created", value);
         }
     }
 
     public string? Model
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "model"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "model"); }
         init
         {
             if (value == null)
@@ -62,13 +62,13 @@ public sealed record class ChatResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "model", value);
+            JsonModel.Set(this._rawData, "model", value);
         }
     }
 
     public string? Object
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "object"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "object"); }
         init
         {
             if (value == null)
@@ -76,13 +76,13 @@ public sealed record class ChatResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "object", value);
+            JsonModel.Set(this._rawData, "object", value);
         }
     }
 
     public string? SystemFingerprint
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "system_fingerprint"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "system_fingerprint"); }
         init
         {
             if (value == null)
@@ -90,13 +90,13 @@ public sealed record class ChatResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "system_fingerprint", value);
+            JsonModel.Set(this._rawData, "system_fingerprint", value);
         }
     }
 
     public Usage? Usage
     {
-        get { return ModelBase.GetNullableClass<Usage>(this.RawData, "usage"); }
+        get { return JsonModel.GetNullableClass<Usage>(this.RawData, "usage"); }
         init
         {
             if (value == null)
@@ -104,7 +104,7 @@ public sealed record class ChatResponse : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "usage", value);
+            JsonModel.Set(this._rawData, "usage", value);
         }
     }
 
@@ -148,7 +148,7 @@ public sealed record class ChatResponse : ModelBase
     }
 }
 
-class ChatResponseFromRaw : IFromRaw<ChatResponse>
+class ChatResponseFromRaw : IFromRawJson<ChatResponse>
 {
     /// <inheritdoc/>
     public ChatResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
