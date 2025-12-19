@@ -799,6 +799,8 @@ public class TypeTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 
@@ -1497,6 +1499,7 @@ public class AuthProviderResponseOauth2AuthorizeRequestTest : TestBase
         Assert.Equal(expectedEndpoint, model.Endpoint);
         Assert.Equal(expectedExpirationFormat, model.ExpirationFormat);
         Assert.Equal(expectedMethod, model.Method);
+        Assert.NotNull(model.Params);
         Assert.Equal(expectedParams.Count, model.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -1506,6 +1509,7 @@ public class AuthProviderResponseOauth2AuthorizeRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, model.RequestContentType);
         Assert.Equal(expectedResponseContentType, model.ResponseContentType);
+        Assert.NotNull(model.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, model.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -1576,6 +1580,7 @@ public class AuthProviderResponseOauth2AuthorizeRequestTest : TestBase
         Assert.Equal(expectedEndpoint, deserialized.Endpoint);
         Assert.Equal(expectedExpirationFormat, deserialized.ExpirationFormat);
         Assert.Equal(expectedMethod, deserialized.Method);
+        Assert.NotNull(deserialized.Params);
         Assert.Equal(expectedParams.Count, deserialized.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -1585,6 +1590,7 @@ public class AuthProviderResponseOauth2AuthorizeRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, deserialized.RequestContentType);
         Assert.Equal(expectedResponseContentType, deserialized.ResponseContentType);
+        Assert.NotNull(deserialized.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, deserialized.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -1881,6 +1887,8 @@ public class ClientSecretBindingTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 
@@ -2067,6 +2075,7 @@ public class AuthProviderResponseOauth2RefreshRequestTest : TestBase
         Assert.Equal(expectedEndpoint, model.Endpoint);
         Assert.Equal(expectedExpirationFormat, model.ExpirationFormat);
         Assert.Equal(expectedMethod, model.Method);
+        Assert.NotNull(model.Params);
         Assert.Equal(expectedParams.Count, model.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -2076,6 +2085,7 @@ public class AuthProviderResponseOauth2RefreshRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, model.RequestContentType);
         Assert.Equal(expectedResponseContentType, model.ResponseContentType);
+        Assert.NotNull(model.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, model.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -2146,6 +2156,7 @@ public class AuthProviderResponseOauth2RefreshRequestTest : TestBase
         Assert.Equal(expectedEndpoint, deserialized.Endpoint);
         Assert.Equal(expectedExpirationFormat, deserialized.ExpirationFormat);
         Assert.Equal(expectedMethod, deserialized.Method);
+        Assert.NotNull(deserialized.Params);
         Assert.Equal(expectedParams.Count, deserialized.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -2155,6 +2166,7 @@ public class AuthProviderResponseOauth2RefreshRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, deserialized.RequestContentType);
         Assert.Equal(expectedResponseContentType, deserialized.ResponseContentType);
+        Assert.NotNull(deserialized.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, deserialized.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -2316,6 +2328,7 @@ public class AuthProviderResponseOauth2TokenIntrospectionRequestTest : TestBase
         Assert.Equal(expectedEndpoint, model.Endpoint);
         Assert.Equal(expectedExpirationFormat, model.ExpirationFormat);
         Assert.Equal(expectedMethod, model.Method);
+        Assert.NotNull(model.Params);
         Assert.Equal(expectedParams.Count, model.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -2325,6 +2338,7 @@ public class AuthProviderResponseOauth2TokenIntrospectionRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, model.RequestContentType);
         Assert.Equal(expectedResponseContentType, model.ResponseContentType);
+        Assert.NotNull(model.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, model.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -2407,6 +2421,7 @@ public class AuthProviderResponseOauth2TokenIntrospectionRequestTest : TestBase
         Assert.Equal(expectedEndpoint, deserialized.Endpoint);
         Assert.Equal(expectedExpirationFormat, deserialized.ExpirationFormat);
         Assert.Equal(expectedMethod, deserialized.Method);
+        Assert.NotNull(deserialized.Params);
         Assert.Equal(expectedParams.Count, deserialized.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -2416,6 +2431,7 @@ public class AuthProviderResponseOauth2TokenIntrospectionRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, deserialized.RequestContentType);
         Assert.Equal(expectedResponseContentType, deserialized.ResponseContentType);
+        Assert.NotNull(deserialized.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, deserialized.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -2703,6 +2719,7 @@ public class AuthProviderResponseOauth2TokenRequestTest : TestBase
         Assert.Equal(expectedEndpoint, model.Endpoint);
         Assert.Equal(expectedExpirationFormat, model.ExpirationFormat);
         Assert.Equal(expectedMethod, model.Method);
+        Assert.NotNull(model.Params);
         Assert.Equal(expectedParams.Count, model.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -2712,6 +2729,7 @@ public class AuthProviderResponseOauth2TokenRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, model.RequestContentType);
         Assert.Equal(expectedResponseContentType, model.ResponseContentType);
+        Assert.NotNull(model.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, model.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -2780,6 +2798,7 @@ public class AuthProviderResponseOauth2TokenRequestTest : TestBase
         Assert.Equal(expectedEndpoint, deserialized.Endpoint);
         Assert.Equal(expectedExpirationFormat, deserialized.ExpirationFormat);
         Assert.Equal(expectedMethod, deserialized.Method);
+        Assert.NotNull(deserialized.Params);
         Assert.Equal(expectedParams.Count, deserialized.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -2789,6 +2808,7 @@ public class AuthProviderResponseOauth2TokenRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, deserialized.RequestContentType);
         Assert.Equal(expectedResponseContentType, deserialized.ResponseContentType);
+        Assert.NotNull(deserialized.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, deserialized.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -2947,6 +2967,7 @@ public class AuthProviderResponseOauth2UserInfoRequestTest : TestBase
         Assert.Equal(expectedEndpoint, model.Endpoint);
         Assert.Equal(expectedExpirationFormat, model.ExpirationFormat);
         Assert.Equal(expectedMethod, model.Method);
+        Assert.NotNull(model.Params);
         Assert.Equal(expectedParams.Count, model.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -2956,6 +2977,7 @@ public class AuthProviderResponseOauth2UserInfoRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, model.RequestContentType);
         Assert.Equal(expectedResponseContentType, model.ResponseContentType);
+        Assert.NotNull(model.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, model.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -3034,6 +3056,7 @@ public class AuthProviderResponseOauth2UserInfoRequestTest : TestBase
         Assert.Equal(expectedEndpoint, deserialized.Endpoint);
         Assert.Equal(expectedExpirationFormat, deserialized.ExpirationFormat);
         Assert.Equal(expectedMethod, deserialized.Method);
+        Assert.NotNull(deserialized.Params);
         Assert.Equal(expectedParams.Count, deserialized.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -3043,6 +3066,7 @@ public class AuthProviderResponseOauth2UserInfoRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, deserialized.RequestContentType);
         Assert.Equal(expectedResponseContentType, deserialized.ResponseContentType);
+        Assert.NotNull(deserialized.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, deserialized.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {

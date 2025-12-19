@@ -156,6 +156,7 @@ public class ToolDefinitionTest : TestBase
         Assert.Equal(expectedQualifiedName, model.QualifiedName);
         Assert.Equal(expectedToolkit, model.Toolkit);
         Assert.Equal(expectedDescription, model.Description);
+        Assert.NotNull(model.FormattedSchema);
         Assert.Equal(expectedFormattedSchema.Count, model.FormattedSchema.Count);
         foreach (var item in expectedFormattedSchema)
         {
@@ -399,6 +400,7 @@ public class ToolDefinitionTest : TestBase
         Assert.Equal(expectedQualifiedName, deserialized.QualifiedName);
         Assert.Equal(expectedToolkit, deserialized.Toolkit);
         Assert.Equal(expectedDescription, deserialized.Description);
+        Assert.NotNull(deserialized.FormattedSchema);
         Assert.Equal(expectedFormattedSchema.Count, deserialized.FormattedSchema.Count);
         foreach (var item in expectedFormattedSchema)
         {
@@ -1909,6 +1911,8 @@ public class StatusTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 
@@ -1967,6 +1971,8 @@ public class TokenStatusTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 

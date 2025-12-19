@@ -93,6 +93,7 @@ public class ChatRequestTest : TestBase
         string expectedUser = "user";
 
         Assert.Equal(expectedFrequencyPenalty, model.FrequencyPenalty);
+        Assert.NotNull(model.LogitBias);
         Assert.Equal(expectedLogitBias.Count, model.LogitBias.Count);
         foreach (var item in expectedLogitBias)
         {
@@ -272,6 +273,7 @@ public class ChatRequestTest : TestBase
         string expectedUser = "user";
 
         Assert.Equal(expectedFrequencyPenalty, deserialized.FrequencyPenalty);
+        Assert.NotNull(deserialized.LogitBias);
         Assert.Equal(expectedLogitBias.Count, deserialized.LogitBias.Count);
         foreach (var item in expectedLogitBias)
         {
@@ -623,6 +625,8 @@ public class ResponseFormatTypeTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 

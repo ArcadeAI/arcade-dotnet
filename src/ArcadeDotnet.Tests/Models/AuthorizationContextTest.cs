@@ -25,6 +25,7 @@ public class AuthorizationContextTest : TestBase
         };
 
         Assert.Equal(expectedToken, model.Token);
+        Assert.NotNull(model.UserInfo);
         Assert.Equal(expectedUserInfo.Count, model.UserInfo.Count);
         foreach (var item in expectedUserInfo)
         {
@@ -75,6 +76,7 @@ public class AuthorizationContextTest : TestBase
         };
 
         Assert.Equal(expectedToken, deserialized.Token);
+        Assert.NotNull(deserialized.UserInfo);
         Assert.Equal(expectedUserInfo.Count, deserialized.UserInfo.Count);
         foreach (var item in expectedUserInfo)
         {

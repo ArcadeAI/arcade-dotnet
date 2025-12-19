@@ -904,6 +904,7 @@ public class ErrorTest : TestBase
         Assert.Equal(expectedMessage, model.Message);
         Assert.Equal(expectedAdditionalPromptContent, model.AdditionalPromptContent);
         Assert.Equal(expectedDeveloperMessage, model.DeveloperMessage);
+        Assert.NotNull(model.Extra);
         Assert.Equal(expectedExtra.Count, model.Extra.Count);
         foreach (var item in expectedExtra)
         {
@@ -982,6 +983,7 @@ public class ErrorTest : TestBase
         Assert.Equal(expectedMessage, deserialized.Message);
         Assert.Equal(expectedAdditionalPromptContent, deserialized.AdditionalPromptContent);
         Assert.Equal(expectedDeveloperMessage, deserialized.DeveloperMessage);
+        Assert.NotNull(deserialized.Extra);
         Assert.Equal(expectedExtra.Count, deserialized.Extra.Count);
         foreach (var item in expectedExtra)
         {
@@ -1142,6 +1144,8 @@ public class KindTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 

@@ -123,6 +123,7 @@ public class McpTest : TestBase
         Assert.Equal(expectedRetry, model.Retry);
         Assert.Equal(expectedTimeout, model.Timeout);
         Assert.Equal(expectedUri, model.Uri);
+        Assert.NotNull(model.Headers);
         Assert.Equal(expectedHeaders.Count, model.Headers.Count);
         foreach (var item in expectedHeaders)
         {
@@ -131,6 +132,7 @@ public class McpTest : TestBase
             Assert.Equal(value, model.Headers[item.Key]);
         }
         Assert.Equal(expectedOauth2, model.Oauth2);
+        Assert.NotNull(model.Secrets);
         Assert.Equal(expectedSecrets.Count, model.Secrets.Count);
         foreach (var item in expectedSecrets)
         {
@@ -204,6 +206,7 @@ public class McpTest : TestBase
         Assert.Equal(expectedRetry, deserialized.Retry);
         Assert.Equal(expectedTimeout, deserialized.Timeout);
         Assert.Equal(expectedUri, deserialized.Uri);
+        Assert.NotNull(deserialized.Headers);
         Assert.Equal(expectedHeaders.Count, deserialized.Headers.Count);
         foreach (var item in expectedHeaders)
         {
@@ -212,6 +215,7 @@ public class McpTest : TestBase
             Assert.Equal(value, deserialized.Headers[item.Key]);
         }
         Assert.Equal(expectedOauth2, deserialized.Oauth2);
+        Assert.NotNull(deserialized.Secrets);
         Assert.Equal(expectedSecrets.Count, deserialized.Secrets.Count);
         foreach (var item in expectedSecrets)
         {

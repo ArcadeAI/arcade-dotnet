@@ -548,6 +548,7 @@ public class AuthProviderPatchParamsOauth2AuthorizeRequestTest : TestBase
         Assert.Equal(expectedAuthMethod, model.AuthMethod);
         Assert.Equal(expectedEndpoint, model.Endpoint);
         Assert.Equal(expectedMethod, model.Method);
+        Assert.NotNull(model.Params);
         Assert.Equal(expectedParams.Count, model.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -557,6 +558,7 @@ public class AuthProviderPatchParamsOauth2AuthorizeRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, model.RequestContentType);
         Assert.Equal(expectedResponseContentType, model.ResponseContentType);
+        Assert.NotNull(model.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, model.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -633,6 +635,7 @@ public class AuthProviderPatchParamsOauth2AuthorizeRequestTest : TestBase
         Assert.Equal(expectedAuthMethod, deserialized.AuthMethod);
         Assert.Equal(expectedEndpoint, deserialized.Endpoint);
         Assert.Equal(expectedMethod, deserialized.Method);
+        Assert.NotNull(deserialized.Params);
         Assert.Equal(expectedParams.Count, deserialized.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -642,6 +645,7 @@ public class AuthProviderPatchParamsOauth2AuthorizeRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, deserialized.RequestContentType);
         Assert.Equal(expectedResponseContentType, deserialized.ResponseContentType);
+        Assert.NotNull(deserialized.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, deserialized.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -782,6 +786,8 @@ public class AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentTypeTest
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 
@@ -850,6 +856,8 @@ public class AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentTypeTes
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 
@@ -1046,6 +1054,7 @@ public class AuthProviderPatchParamsOauth2RefreshRequestTest : TestBase
         Assert.Equal(expectedAuthMethod, model.AuthMethod);
         Assert.Equal(expectedEndpoint, model.Endpoint);
         Assert.Equal(expectedMethod, model.Method);
+        Assert.NotNull(model.Params);
         Assert.Equal(expectedParams.Count, model.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -1055,6 +1064,7 @@ public class AuthProviderPatchParamsOauth2RefreshRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, model.RequestContentType);
         Assert.Equal(expectedResponseContentType, model.ResponseContentType);
+        Assert.NotNull(model.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, model.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -1133,6 +1143,7 @@ public class AuthProviderPatchParamsOauth2RefreshRequestTest : TestBase
         Assert.Equal(expectedAuthMethod, deserialized.AuthMethod);
         Assert.Equal(expectedEndpoint, deserialized.Endpoint);
         Assert.Equal(expectedMethod, deserialized.Method);
+        Assert.NotNull(deserialized.Params);
         Assert.Equal(expectedParams.Count, deserialized.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -1142,6 +1153,7 @@ public class AuthProviderPatchParamsOauth2RefreshRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, deserialized.RequestContentType);
         Assert.Equal(expectedResponseContentType, deserialized.ResponseContentType);
+        Assert.NotNull(deserialized.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, deserialized.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -1282,6 +1294,8 @@ public class AuthProviderPatchParamsOauth2RefreshRequestRequestContentTypeTest :
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 
@@ -1350,6 +1364,8 @@ public class AuthProviderPatchParamsOauth2RefreshRequestResponseContentTypeTest 
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 
@@ -1413,6 +1429,8 @@ public class AuthProviderPatchParamsOauth2ScopeDelimiterTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 
@@ -1490,6 +1508,7 @@ public class AuthProviderPatchParamsOauth2TokenRequestTest : TestBase
         Assert.Equal(expectedAuthMethod, model.AuthMethod);
         Assert.Equal(expectedEndpoint, model.Endpoint);
         Assert.Equal(expectedMethod, model.Method);
+        Assert.NotNull(model.Params);
         Assert.Equal(expectedParams.Count, model.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -1499,6 +1518,7 @@ public class AuthProviderPatchParamsOauth2TokenRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, model.RequestContentType);
         Assert.Equal(expectedResponseContentType, model.ResponseContentType);
+        Assert.NotNull(model.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, model.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -1577,6 +1597,7 @@ public class AuthProviderPatchParamsOauth2TokenRequestTest : TestBase
         Assert.Equal(expectedAuthMethod, deserialized.AuthMethod);
         Assert.Equal(expectedEndpoint, deserialized.Endpoint);
         Assert.Equal(expectedMethod, deserialized.Method);
+        Assert.NotNull(deserialized.Params);
         Assert.Equal(expectedParams.Count, deserialized.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -1586,6 +1607,7 @@ public class AuthProviderPatchParamsOauth2TokenRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, deserialized.RequestContentType);
         Assert.Equal(expectedResponseContentType, deserialized.ResponseContentType);
+        Assert.NotNull(deserialized.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, deserialized.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -1726,6 +1748,8 @@ public class AuthProviderPatchParamsOauth2TokenRequestRequestContentTypeTest : T
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 
@@ -1794,6 +1818,8 @@ public class AuthProviderPatchParamsOauth2TokenRequestResponseContentTypeTest : 
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 
@@ -1882,6 +1908,7 @@ public class AuthProviderPatchParamsOauth2UserInfoRequestTest : TestBase
         Assert.Equal(expectedAuthMethod, model.AuthMethod);
         Assert.Equal(expectedEndpoint, model.Endpoint);
         Assert.Equal(expectedMethod, model.Method);
+        Assert.NotNull(model.Params);
         Assert.Equal(expectedParams.Count, model.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -1891,6 +1918,7 @@ public class AuthProviderPatchParamsOauth2UserInfoRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, model.RequestContentType);
         Assert.Equal(expectedResponseContentType, model.ResponseContentType);
+        Assert.NotNull(model.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, model.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -1977,6 +2005,7 @@ public class AuthProviderPatchParamsOauth2UserInfoRequestTest : TestBase
         Assert.Equal(expectedAuthMethod, deserialized.AuthMethod);
         Assert.Equal(expectedEndpoint, deserialized.Endpoint);
         Assert.Equal(expectedMethod, deserialized.Method);
+        Assert.NotNull(deserialized.Params);
         Assert.Equal(expectedParams.Count, deserialized.Params.Count);
         foreach (var item in expectedParams)
         {
@@ -1986,6 +2015,7 @@ public class AuthProviderPatchParamsOauth2UserInfoRequestTest : TestBase
         }
         Assert.Equal(expectedRequestContentType, deserialized.RequestContentType);
         Assert.Equal(expectedResponseContentType, deserialized.ResponseContentType);
+        Assert.NotNull(deserialized.ResponseMap);
         Assert.Equal(expectedResponseMap.Count, deserialized.ResponseMap.Count);
         foreach (var item in expectedResponseMap)
         {
@@ -2134,6 +2164,8 @@ public class AuthProviderPatchParamsOauth2UserInfoRequestRequestContentTypeTest 
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 
@@ -2202,6 +2234,8 @@ public class AuthProviderPatchParamsOauth2UserInfoRequestResponseContentTypeTest
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 

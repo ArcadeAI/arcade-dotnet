@@ -178,6 +178,7 @@ public class WorkerUpdateParamsMcpTest : TestBase
         long expectedTimeout = 1;
         string expectedUri = "uri";
 
+        Assert.NotNull(model.Headers);
         Assert.Equal(expectedHeaders.Count, model.Headers.Count);
         foreach (var item in expectedHeaders)
         {
@@ -187,6 +188,7 @@ public class WorkerUpdateParamsMcpTest : TestBase
         }
         Assert.Equal(expectedOauth2, model.Oauth2);
         Assert.Equal(expectedRetry, model.Retry);
+        Assert.NotNull(model.Secrets);
         Assert.Equal(expectedSecrets.Count, model.Secrets.Count);
         foreach (var item in expectedSecrets)
         {
@@ -256,6 +258,7 @@ public class WorkerUpdateParamsMcpTest : TestBase
         long expectedTimeout = 1;
         string expectedUri = "uri";
 
+        Assert.NotNull(deserialized.Headers);
         Assert.Equal(expectedHeaders.Count, deserialized.Headers.Count);
         foreach (var item in expectedHeaders)
         {
@@ -265,6 +268,7 @@ public class WorkerUpdateParamsMcpTest : TestBase
         }
         Assert.Equal(expectedOauth2, deserialized.Oauth2);
         Assert.Equal(expectedRetry, deserialized.Retry);
+        Assert.NotNull(deserialized.Secrets);
         Assert.Equal(expectedSecrets.Count, deserialized.Secrets.Count);
         foreach (var item in expectedSecrets)
         {

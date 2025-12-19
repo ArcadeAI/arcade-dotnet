@@ -34,6 +34,7 @@ public class ExecuteToolRequestTest : TestBase
 
         Assert.Equal(expectedToolName, model.ToolName);
         Assert.Equal(expectedIncludeErrorStacktrace, model.IncludeErrorStacktrace);
+        Assert.NotNull(model.Input);
         Assert.Equal(expectedInput.Count, model.Input.Count);
         foreach (var item in expectedInput)
         {
@@ -100,6 +101,7 @@ public class ExecuteToolRequestTest : TestBase
 
         Assert.Equal(expectedToolName, deserialized.ToolName);
         Assert.Equal(expectedIncludeErrorStacktrace, deserialized.IncludeErrorStacktrace);
+        Assert.NotNull(deserialized.Input);
         Assert.Equal(expectedInput.Count, deserialized.Input.Count);
         foreach (var item in expectedInput)
         {

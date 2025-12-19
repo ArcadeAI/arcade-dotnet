@@ -653,6 +653,8 @@ public class TypeTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 
@@ -1053,6 +1055,8 @@ public class SecretBindingTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 
@@ -1166,6 +1170,7 @@ public class WorkerResponseMcpTest : TestBase
         long expectedTimeout = 0;
         string expectedUri = "uri";
 
+        Assert.NotNull(model.Headers);
         Assert.Equal(expectedHeaders.Count, model.Headers.Count);
         foreach (var item in expectedHeaders)
         {
@@ -1175,6 +1180,7 @@ public class WorkerResponseMcpTest : TestBase
         }
         Assert.Equal(expectedOauth2, model.Oauth2);
         Assert.Equal(expectedRetry, model.Retry);
+        Assert.NotNull(model.Secrets);
         Assert.Equal(expectedSecrets.Count, model.Secrets.Count);
         foreach (var item in expectedSecrets)
         {
@@ -1307,6 +1313,7 @@ public class WorkerResponseMcpTest : TestBase
         long expectedTimeout = 0;
         string expectedUri = "uri";
 
+        Assert.NotNull(deserialized.Headers);
         Assert.Equal(expectedHeaders.Count, deserialized.Headers.Count);
         foreach (var item in expectedHeaders)
         {
@@ -1316,6 +1323,7 @@ public class WorkerResponseMcpTest : TestBase
         }
         Assert.Equal(expectedOauth2, deserialized.Oauth2);
         Assert.Equal(expectedRetry, deserialized.Retry);
+        Assert.NotNull(deserialized.Secrets);
         Assert.Equal(expectedSecrets.Count, deserialized.Secrets.Count);
         foreach (var item in expectedSecrets)
         {
@@ -1803,6 +1811,8 @@ public class ClientSecretBindingTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 
@@ -2019,6 +2029,8 @@ public class SecretsItemBindingTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 
@@ -2418,6 +2430,8 @@ public class WorkerResponseTypeTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
     }
 

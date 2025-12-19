@@ -171,6 +171,7 @@ public class ScheduledGetResponseTest : TestBase
         Assert.Equal(expectedExecutionStatus, model.ExecutionStatus);
         Assert.Equal(expectedExecutionType, model.ExecutionType);
         Assert.Equal(expectedFinishedAt, model.FinishedAt);
+        Assert.NotNull(model.Input);
         Assert.Equal(expectedInput.Count, model.Input.Count);
         foreach (var item in expectedInput)
         {
@@ -439,6 +440,7 @@ public class ScheduledGetResponseTest : TestBase
         Assert.Equal(expectedExecutionStatus, deserialized.ExecutionStatus);
         Assert.Equal(expectedExecutionType, deserialized.ExecutionType);
         Assert.Equal(expectedFinishedAt, deserialized.FinishedAt);
+        Assert.NotNull(deserialized.Input);
         Assert.Equal(expectedInput.Count, deserialized.Input.Count);
         foreach (var item in expectedInput)
         {
