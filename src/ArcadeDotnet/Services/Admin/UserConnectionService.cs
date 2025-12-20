@@ -25,7 +25,7 @@ public sealed class UserConnectionService : IUserConnectionService
     }
 
     /// <inheritdoc/>
-    public async Task<UserConnectionListPageResponse> List(
+    public async Task<UserConnectionListPage> List(
         UserConnectionListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -47,7 +47,7 @@ public sealed class UserConnectionService : IUserConnectionService
         {
             page.Validate();
         }
-        return page;
+        return new UserConnectionListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>

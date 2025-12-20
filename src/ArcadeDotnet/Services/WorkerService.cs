@@ -90,7 +90,7 @@ public sealed class WorkerService : IWorkerService
     }
 
     /// <inheritdoc/>
-    public async Task<WorkerListPageResponse> List(
+    public async Task<WorkerListPage> List(
         WorkerListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -112,7 +112,7 @@ public sealed class WorkerService : IWorkerService
         {
             page.Validate();
         }
-        return page;
+        return new WorkerListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>
@@ -231,7 +231,7 @@ public sealed class WorkerService : IWorkerService
     }
 
     /// <inheritdoc/>
-    public async Task<WorkerToolsPageResponse> Tools(
+    public async Task<WorkerToolsPage> Tools(
         WorkerToolsParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -256,11 +256,11 @@ public sealed class WorkerService : IWorkerService
         {
             page.Validate();
         }
-        return page;
+        return new WorkerToolsPage(this, parameters, page);
     }
 
     /// <inheritdoc/>
-    public async Task<WorkerToolsPageResponse> Tools(
+    public async Task<WorkerToolsPage> Tools(
         string id,
         WorkerToolsParams? parameters = null,
         CancellationToken cancellationToken = default

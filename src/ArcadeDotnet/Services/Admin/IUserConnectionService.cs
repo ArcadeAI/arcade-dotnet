@@ -23,7 +23,7 @@ public interface IUserConnectionService
     /// <summary>
     /// List all auth connections
     /// </summary>
-    Task<UserConnectionListPageResponse> List(
+    Task<UserConnectionListPage> List(
         UserConnectionListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

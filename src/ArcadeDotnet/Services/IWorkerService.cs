@@ -46,7 +46,7 @@ public interface IWorkerService
     /// <summary>
     /// List all workers with their definitions
     /// </summary>
-    Task<WorkerListPageResponse> List(
+    Task<WorkerListPage> List(
         WorkerListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
@@ -96,13 +96,13 @@ public interface IWorkerService
     /// <summary>
     /// Returns a page of tools
     /// </summary>
-    Task<WorkerToolsPageResponse> Tools(
+    Task<WorkerToolsPage> Tools(
         WorkerToolsParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Tools(WorkerToolsParams, CancellationToken)"/>
-    Task<WorkerToolsPageResponse> Tools(
+    Task<WorkerToolsPage> Tools(
         string id,
         WorkerToolsParams? parameters = null,
         CancellationToken cancellationToken = default

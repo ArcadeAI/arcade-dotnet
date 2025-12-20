@@ -23,7 +23,7 @@ public interface IScheduledService
     /// <summary>
     /// Returns a page of scheduled tool executions
     /// </summary>
-    Task<ScheduledListPageResponse> List(
+    Task<ScheduledListPage> List(
         ScheduledListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

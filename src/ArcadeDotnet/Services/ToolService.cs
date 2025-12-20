@@ -41,7 +41,7 @@ public sealed class ToolService : IToolService
     }
 
     /// <inheritdoc/>
-    public async Task<ToolListPageResponse> List(
+    public async Task<ToolListPage> List(
         ToolListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -63,7 +63,7 @@ public sealed class ToolService : IToolService
         {
             page.Validate();
         }
-        return page;
+        return new ToolListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>

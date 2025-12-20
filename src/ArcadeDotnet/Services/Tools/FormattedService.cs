@@ -26,7 +26,7 @@ public sealed class FormattedService : IFormattedService
     }
 
     /// <inheritdoc/>
-    public async Task<FormattedListPageResponse> List(
+    public async Task<FormattedListPage> List(
         FormattedListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -48,7 +48,7 @@ public sealed class FormattedService : IFormattedService
         {
             page.Validate();
         }
-        return page;
+        return new FormattedListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>

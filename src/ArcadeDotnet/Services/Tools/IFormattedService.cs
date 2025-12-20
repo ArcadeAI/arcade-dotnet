@@ -25,7 +25,7 @@ public interface IFormattedService
     /// Returns a page of tools from the engine configuration, optionally filtered
     /// by toolkit, formatted for a specific provider
     /// </summary>
-    Task<FormattedListPageResponse> List(
+    Task<FormattedListPage> List(
         FormattedListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

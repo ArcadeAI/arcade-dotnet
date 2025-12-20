@@ -25,7 +25,7 @@ public sealed class ScheduledService : IScheduledService
     }
 
     /// <inheritdoc/>
-    public async Task<ScheduledListPageResponse> List(
+    public async Task<ScheduledListPage> List(
         ScheduledListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -47,7 +47,7 @@ public sealed class ScheduledService : IScheduledService
         {
             page.Validate();
         }
-        return page;
+        return new ScheduledListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>

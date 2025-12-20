@@ -30,7 +30,7 @@ public interface IToolService
     /// Returns a page of tools from the engine configuration, optionally filtered
     /// by toolkit
     /// </summary>
-    Task<ToolListPageResponse> List(
+    Task<ToolListPage> List(
         ToolListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
