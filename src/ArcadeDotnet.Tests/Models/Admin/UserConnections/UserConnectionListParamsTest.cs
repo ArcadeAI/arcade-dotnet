@@ -3,6 +3,68 @@ using ArcadeDotnet.Models.Admin.UserConnections;
 
 namespace ArcadeDotnet.Tests.Models.Admin.UserConnections;
 
+public class UserConnectionListParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new UserConnectionListParams
+        {
+            Limit = 0,
+            Offset = 0,
+            Provider = new() { ID = "id" },
+            User = new() { ID = "id" },
+        };
+
+        long expectedLimit = 0;
+        long expectedOffset = 0;
+        Provider expectedProvider = new() { ID = "id" };
+        User expectedUser = new() { ID = "id" };
+
+        Assert.Equal(expectedLimit, parameters.Limit);
+        Assert.Equal(expectedOffset, parameters.Offset);
+        Assert.Equal(expectedProvider, parameters.Provider);
+        Assert.Equal(expectedUser, parameters.User);
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new UserConnectionListParams { };
+
+        Assert.Null(parameters.Limit);
+        Assert.False(parameters.RawQueryData.ContainsKey("limit"));
+        Assert.Null(parameters.Offset);
+        Assert.False(parameters.RawQueryData.ContainsKey("offset"));
+        Assert.Null(parameters.Provider);
+        Assert.False(parameters.RawQueryData.ContainsKey("provider"));
+        Assert.Null(parameters.User);
+        Assert.False(parameters.RawQueryData.ContainsKey("user"));
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
+    {
+        var parameters = new UserConnectionListParams
+        {
+            // Null should be interpreted as omitted for these properties
+            Limit = null,
+            Offset = null,
+            Provider = null,
+            User = null,
+        };
+
+        Assert.Null(parameters.Limit);
+        Assert.False(parameters.RawQueryData.ContainsKey("limit"));
+        Assert.Null(parameters.Offset);
+        Assert.False(parameters.RawQueryData.ContainsKey("offset"));
+        Assert.Null(parameters.Provider);
+        Assert.False(parameters.RawQueryData.ContainsKey("provider"));
+        Assert.Null(parameters.User);
+        Assert.False(parameters.RawQueryData.ContainsKey("user"));
+    }
+}
+
 public class ProviderTest : TestBase
 {
     [Fact]

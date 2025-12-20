@@ -6,6 +6,228 @@ using ArcadeDotnet.Models.Admin.AuthProviders;
 
 namespace ArcadeDotnet.Tests.Models.Admin.AuthProviders;
 
+public class AuthProviderCreateParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new AuthProviderCreateParams
+        {
+            ID = "id",
+            Description = "description",
+            ExternalID = "external_id",
+            Oauth2 = new()
+            {
+                ClientID = "client_id",
+                AuthorizeRequest = new()
+                {
+                    Endpoint = "endpoint",
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType = RequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType = ResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                },
+                ClientSecret = "client_secret",
+                Pkce = new() { CodeChallengeMethod = "code_challenge_method", Enabled = true },
+                RefreshRequest = new()
+                {
+                    Endpoint = "endpoint",
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                },
+                ScopeDelimiter = ScopeDelimiter.Undefined,
+                TokenIntrospectionRequest = new()
+                {
+                    Endpoint = "endpoint",
+                    Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                },
+                TokenRequest = new()
+                {
+                    Endpoint = "endpoint",
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                },
+                UserInfoRequest = new()
+                {
+                    Endpoint = "endpoint",
+                    Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                },
+            },
+            ProviderID = "provider_id",
+            Status = "status",
+            Type = "type",
+        };
+
+        string expectedID = "id";
+        string expectedDescription = "description";
+        string expectedExternalID = "external_id";
+        Oauth2 expectedOauth2 = new()
+        {
+            ClientID = "client_id",
+            AuthorizeRequest = new()
+            {
+                Endpoint = "endpoint",
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType = RequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType = ResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            ClientSecret = "client_secret",
+            Pkce = new() { CodeChallengeMethod = "code_challenge_method", Enabled = true },
+            RefreshRequest = new()
+            {
+                Endpoint = "endpoint",
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType = RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            ScopeDelimiter = ScopeDelimiter.Undefined,
+            TokenIntrospectionRequest = new()
+            {
+                Endpoint = "endpoint",
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            TokenRequest = new()
+            {
+                Endpoint = "endpoint",
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType = TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType = TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            UserInfoRequest = new()
+            {
+                Endpoint = "endpoint",
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+        };
+        string expectedProviderID = "provider_id";
+        string expectedStatus = "status";
+        string expectedType = "type";
+
+        Assert.Equal(expectedID, parameters.ID);
+        Assert.Equal(expectedDescription, parameters.Description);
+        Assert.Equal(expectedExternalID, parameters.ExternalID);
+        Assert.Equal(expectedOauth2, parameters.Oauth2);
+        Assert.Equal(expectedProviderID, parameters.ProviderID);
+        Assert.Equal(expectedStatus, parameters.Status);
+        Assert.Equal(expectedType, parameters.Type);
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new AuthProviderCreateParams { ID = "id" };
+
+        Assert.Null(parameters.Description);
+        Assert.False(parameters.RawBodyData.ContainsKey("description"));
+        Assert.Null(parameters.ExternalID);
+        Assert.False(parameters.RawBodyData.ContainsKey("external_id"));
+        Assert.Null(parameters.Oauth2);
+        Assert.False(parameters.RawBodyData.ContainsKey("oauth2"));
+        Assert.Null(parameters.ProviderID);
+        Assert.False(parameters.RawBodyData.ContainsKey("provider_id"));
+        Assert.Null(parameters.Status);
+        Assert.False(parameters.RawBodyData.ContainsKey("status"));
+        Assert.Null(parameters.Type);
+        Assert.False(parameters.RawBodyData.ContainsKey("type"));
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
+    {
+        var parameters = new AuthProviderCreateParams
+        {
+            ID = "id",
+
+            // Null should be interpreted as omitted for these properties
+            Description = null,
+            ExternalID = null,
+            Oauth2 = null,
+            ProviderID = null,
+            Status = null,
+            Type = null,
+        };
+
+        Assert.Null(parameters.Description);
+        Assert.False(parameters.RawBodyData.ContainsKey("description"));
+        Assert.Null(parameters.ExternalID);
+        Assert.False(parameters.RawBodyData.ContainsKey("external_id"));
+        Assert.Null(parameters.Oauth2);
+        Assert.False(parameters.RawBodyData.ContainsKey("oauth2"));
+        Assert.Null(parameters.ProviderID);
+        Assert.False(parameters.RawBodyData.ContainsKey("provider_id"));
+        Assert.Null(parameters.Status);
+        Assert.False(parameters.RawBodyData.ContainsKey("status"));
+        Assert.Null(parameters.Type);
+        Assert.False(parameters.RawBodyData.ContainsKey("type"));
+    }
+}
+
 public class Oauth2Test : TestBase
 {
     [Fact]

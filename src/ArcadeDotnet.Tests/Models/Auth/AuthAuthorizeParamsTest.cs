@@ -4,6 +4,81 @@ using ArcadeDotnet.Models.Auth;
 
 namespace ArcadeDotnet.Tests.Models.Auth;
 
+public class AuthAuthorizeParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new AuthAuthorizeParams
+        {
+            AuthRequirement = new()
+            {
+                ID = "id",
+                Oauth2 = new() { Scopes = ["string"] },
+                ProviderID = "provider_id",
+                ProviderType = "provider_type",
+            },
+            UserID = "user_id",
+            NextUri = "next_uri",
+        };
+
+        AuthRequirement expectedAuthRequirement = new()
+        {
+            ID = "id",
+            Oauth2 = new() { Scopes = ["string"] },
+            ProviderID = "provider_id",
+            ProviderType = "provider_type",
+        };
+        string expectedUserID = "user_id";
+        string expectedNextUri = "next_uri";
+
+        Assert.Equal(expectedAuthRequirement, parameters.AuthRequirement);
+        Assert.Equal(expectedUserID, parameters.UserID);
+        Assert.Equal(expectedNextUri, parameters.NextUri);
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new AuthAuthorizeParams
+        {
+            AuthRequirement = new()
+            {
+                ID = "id",
+                Oauth2 = new() { Scopes = ["string"] },
+                ProviderID = "provider_id",
+                ProviderType = "provider_type",
+            },
+            UserID = "user_id",
+        };
+
+        Assert.Null(parameters.NextUri);
+        Assert.False(parameters.RawBodyData.ContainsKey("next_uri"));
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
+    {
+        var parameters = new AuthAuthorizeParams
+        {
+            AuthRequirement = new()
+            {
+                ID = "id",
+                Oauth2 = new() { Scopes = ["string"] },
+                ProviderID = "provider_id",
+                ProviderType = "provider_type",
+            },
+            UserID = "user_id",
+
+            // Null should be interpreted as omitted for these properties
+            NextUri = null,
+        };
+
+        Assert.Null(parameters.NextUri);
+        Assert.False(parameters.RawBodyData.ContainsKey("next_uri"));
+    }
+}
+
 public class AuthRequirementTest : TestBase
 {
     [Fact]

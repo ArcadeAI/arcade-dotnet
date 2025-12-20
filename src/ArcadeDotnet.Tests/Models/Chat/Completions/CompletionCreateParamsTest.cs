@@ -1,9 +1,256 @@
+using System.Collections.Generic;
 using System.Text.Json;
 using ArcadeDotnet.Core;
 using ArcadeDotnet.Exceptions;
 using ArcadeDotnet.Models.Chat.Completions;
+using Chat = ArcadeDotnet.Models.Chat;
 
 namespace ArcadeDotnet.Tests.Models.Chat.Completions;
+
+public class CompletionCreateParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new CompletionCreateParams
+        {
+            FrequencyPenalty = 0,
+            LogitBias = new Dictionary<string, long>() { { "foo", 0 } },
+            Logprobs = true,
+            MaxTokens = 0,
+            Messages =
+            [
+                new()
+                {
+                    Content = "content",
+                    Role = "role",
+                    Name = "name",
+                    ToolCallID = "tool_call_id",
+                    ToolCalls =
+                    [
+                        new()
+                        {
+                            ID = "id",
+                            Function = new() { Arguments = "arguments", Name = "name" },
+                            Type = Chat::Type.Function,
+                        },
+                    ],
+                },
+            ],
+            Model = "model",
+            N = 0,
+            ParallelToolCalls = true,
+            PresencePenalty = 0,
+            ResponseFormat = new() { Type = Type.JsonObject },
+            Seed = 0,
+            Stop = ["string"],
+            Stream = true,
+            StreamOptions = new() { IncludeUsage = true },
+            Temperature = 0,
+            ToolChoice = JsonSerializer.Deserialize<JsonElement>("{}"),
+            Tools = JsonSerializer.Deserialize<JsonElement>("{}"),
+            TopLogprobs = 0,
+            TopP = 0,
+            User = "user",
+        };
+
+        double expectedFrequencyPenalty = 0;
+        Dictionary<string, long> expectedLogitBias = new() { { "foo", 0 } };
+        bool expectedLogprobs = true;
+        long expectedMaxTokens = 0;
+        List<Chat::ChatMessage> expectedMessages =
+        [
+            new()
+            {
+                Content = "content",
+                Role = "role",
+                Name = "name",
+                ToolCallID = "tool_call_id",
+                ToolCalls =
+                [
+                    new()
+                    {
+                        ID = "id",
+                        Function = new() { Arguments = "arguments", Name = "name" },
+                        Type = Chat::Type.Function,
+                    },
+                ],
+            },
+        ];
+        string expectedModel = "model";
+        long expectedN = 0;
+        bool expectedParallelToolCalls = true;
+        double expectedPresencePenalty = 0;
+        ResponseFormat expectedResponseFormat = new() { Type = Type.JsonObject };
+        long expectedSeed = 0;
+        List<string> expectedStop = ["string"];
+        bool expectedStream = true;
+        StreamOptions expectedStreamOptions = new() { IncludeUsage = true };
+        double expectedTemperature = 0;
+        JsonElement expectedToolChoice = JsonSerializer.Deserialize<JsonElement>("{}");
+        JsonElement expectedTools = JsonSerializer.Deserialize<JsonElement>("{}");
+        long expectedTopLogprobs = 0;
+        double expectedTopP = 0;
+        string expectedUser = "user";
+
+        Assert.Equal(expectedFrequencyPenalty, parameters.FrequencyPenalty);
+        Assert.NotNull(parameters.LogitBias);
+        Assert.Equal(expectedLogitBias.Count, parameters.LogitBias.Count);
+        foreach (var item in expectedLogitBias)
+        {
+            Assert.True(parameters.LogitBias.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, parameters.LogitBias[item.Key]);
+        }
+        Assert.Equal(expectedLogprobs, parameters.Logprobs);
+        Assert.Equal(expectedMaxTokens, parameters.MaxTokens);
+        Assert.NotNull(parameters.Messages);
+        Assert.Equal(expectedMessages.Count, parameters.Messages.Count);
+        for (int i = 0; i < expectedMessages.Count; i++)
+        {
+            Assert.Equal(expectedMessages[i], parameters.Messages[i]);
+        }
+        Assert.Equal(expectedModel, parameters.Model);
+        Assert.Equal(expectedN, parameters.N);
+        Assert.Equal(expectedParallelToolCalls, parameters.ParallelToolCalls);
+        Assert.Equal(expectedPresencePenalty, parameters.PresencePenalty);
+        Assert.Equal(expectedResponseFormat, parameters.ResponseFormat);
+        Assert.Equal(expectedSeed, parameters.Seed);
+        Assert.NotNull(parameters.Stop);
+        Assert.Equal(expectedStop.Count, parameters.Stop.Count);
+        for (int i = 0; i < expectedStop.Count; i++)
+        {
+            Assert.Equal(expectedStop[i], parameters.Stop[i]);
+        }
+        Assert.Equal(expectedStream, parameters.Stream);
+        Assert.Equal(expectedStreamOptions, parameters.StreamOptions);
+        Assert.Equal(expectedTemperature, parameters.Temperature);
+        Assert.NotNull(parameters.ToolChoice);
+        Assert.True(JsonElement.DeepEquals(expectedToolChoice, parameters.ToolChoice.Value));
+        Assert.NotNull(parameters.Tools);
+        Assert.True(JsonElement.DeepEquals(expectedTools, parameters.Tools.Value));
+        Assert.Equal(expectedTopLogprobs, parameters.TopLogprobs);
+        Assert.Equal(expectedTopP, parameters.TopP);
+        Assert.Equal(expectedUser, parameters.User);
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new CompletionCreateParams { };
+
+        Assert.Null(parameters.FrequencyPenalty);
+        Assert.False(parameters.RawBodyData.ContainsKey("frequency_penalty"));
+        Assert.Null(parameters.LogitBias);
+        Assert.False(parameters.RawBodyData.ContainsKey("logit_bias"));
+        Assert.Null(parameters.Logprobs);
+        Assert.False(parameters.RawBodyData.ContainsKey("logprobs"));
+        Assert.Null(parameters.MaxTokens);
+        Assert.False(parameters.RawBodyData.ContainsKey("max_tokens"));
+        Assert.Null(parameters.Messages);
+        Assert.False(parameters.RawBodyData.ContainsKey("messages"));
+        Assert.Null(parameters.Model);
+        Assert.False(parameters.RawBodyData.ContainsKey("model"));
+        Assert.Null(parameters.N);
+        Assert.False(parameters.RawBodyData.ContainsKey("n"));
+        Assert.Null(parameters.ParallelToolCalls);
+        Assert.False(parameters.RawBodyData.ContainsKey("parallel_tool_calls"));
+        Assert.Null(parameters.PresencePenalty);
+        Assert.False(parameters.RawBodyData.ContainsKey("presence_penalty"));
+        Assert.Null(parameters.ResponseFormat);
+        Assert.False(parameters.RawBodyData.ContainsKey("response_format"));
+        Assert.Null(parameters.Seed);
+        Assert.False(parameters.RawBodyData.ContainsKey("seed"));
+        Assert.Null(parameters.Stop);
+        Assert.False(parameters.RawBodyData.ContainsKey("stop"));
+        Assert.Null(parameters.Stream);
+        Assert.False(parameters.RawBodyData.ContainsKey("stream"));
+        Assert.Null(parameters.StreamOptions);
+        Assert.False(parameters.RawBodyData.ContainsKey("stream_options"));
+        Assert.Null(parameters.Temperature);
+        Assert.False(parameters.RawBodyData.ContainsKey("temperature"));
+        Assert.Null(parameters.ToolChoice);
+        Assert.False(parameters.RawBodyData.ContainsKey("tool_choice"));
+        Assert.Null(parameters.Tools);
+        Assert.False(parameters.RawBodyData.ContainsKey("tools"));
+        Assert.Null(parameters.TopLogprobs);
+        Assert.False(parameters.RawBodyData.ContainsKey("top_logprobs"));
+        Assert.Null(parameters.TopP);
+        Assert.False(parameters.RawBodyData.ContainsKey("top_p"));
+        Assert.Null(parameters.User);
+        Assert.False(parameters.RawBodyData.ContainsKey("user"));
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
+    {
+        var parameters = new CompletionCreateParams
+        {
+            // Null should be interpreted as omitted for these properties
+            FrequencyPenalty = null,
+            LogitBias = null,
+            Logprobs = null,
+            MaxTokens = null,
+            Messages = null,
+            Model = null,
+            N = null,
+            ParallelToolCalls = null,
+            PresencePenalty = null,
+            ResponseFormat = null,
+            Seed = null,
+            Stop = null,
+            Stream = null,
+            StreamOptions = null,
+            Temperature = null,
+            ToolChoice = null,
+            Tools = null,
+            TopLogprobs = null,
+            TopP = null,
+            User = null,
+        };
+
+        Assert.Null(parameters.FrequencyPenalty);
+        Assert.False(parameters.RawBodyData.ContainsKey("frequency_penalty"));
+        Assert.Null(parameters.LogitBias);
+        Assert.False(parameters.RawBodyData.ContainsKey("logit_bias"));
+        Assert.Null(parameters.Logprobs);
+        Assert.False(parameters.RawBodyData.ContainsKey("logprobs"));
+        Assert.Null(parameters.MaxTokens);
+        Assert.False(parameters.RawBodyData.ContainsKey("max_tokens"));
+        Assert.Null(parameters.Messages);
+        Assert.False(parameters.RawBodyData.ContainsKey("messages"));
+        Assert.Null(parameters.Model);
+        Assert.False(parameters.RawBodyData.ContainsKey("model"));
+        Assert.Null(parameters.N);
+        Assert.False(parameters.RawBodyData.ContainsKey("n"));
+        Assert.Null(parameters.ParallelToolCalls);
+        Assert.False(parameters.RawBodyData.ContainsKey("parallel_tool_calls"));
+        Assert.Null(parameters.PresencePenalty);
+        Assert.False(parameters.RawBodyData.ContainsKey("presence_penalty"));
+        Assert.Null(parameters.ResponseFormat);
+        Assert.False(parameters.RawBodyData.ContainsKey("response_format"));
+        Assert.Null(parameters.Seed);
+        Assert.False(parameters.RawBodyData.ContainsKey("seed"));
+        Assert.Null(parameters.Stop);
+        Assert.False(parameters.RawBodyData.ContainsKey("stop"));
+        Assert.Null(parameters.Stream);
+        Assert.False(parameters.RawBodyData.ContainsKey("stream"));
+        Assert.Null(parameters.StreamOptions);
+        Assert.False(parameters.RawBodyData.ContainsKey("stream_options"));
+        Assert.Null(parameters.Temperature);
+        Assert.False(parameters.RawBodyData.ContainsKey("temperature"));
+        Assert.Null(parameters.ToolChoice);
+        Assert.False(parameters.RawBodyData.ContainsKey("tool_choice"));
+        Assert.Null(parameters.Tools);
+        Assert.False(parameters.RawBodyData.ContainsKey("tools"));
+        Assert.Null(parameters.TopLogprobs);
+        Assert.False(parameters.RawBodyData.ContainsKey("top_logprobs"));
+        Assert.Null(parameters.TopP);
+        Assert.False(parameters.RawBodyData.ContainsKey("top_p"));
+        Assert.Null(parameters.User);
+        Assert.False(parameters.RawBodyData.ContainsKey("user"));
+    }
+}
 
 public class ResponseFormatTest : TestBase
 {

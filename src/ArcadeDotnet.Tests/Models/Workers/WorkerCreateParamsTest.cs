@@ -4,6 +4,113 @@ using ArcadeDotnet.Models.Workers;
 
 namespace ArcadeDotnet.Tests.Models.Workers;
 
+public class WorkerCreateParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new WorkerCreateParams
+        {
+            ID = "id",
+            Enabled = true,
+            HTTP = new()
+            {
+                Retry = 0,
+                Secret = "secret",
+                Timeout = 1,
+                Uri = "uri",
+            },
+            Mcp = new()
+            {
+                Retry = 0,
+                Timeout = 1,
+                Uri = "uri",
+                Headers = new Dictionary<string, string>() { { "foo", "string" } },
+                Oauth2 = new()
+                {
+                    AuthorizationURL = "authorization_url",
+                    ClientID = "client_id",
+                    ClientSecret = "client_secret",
+                    ExternalID = "external_id",
+                },
+                Secrets = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            Type = "type",
+        };
+
+        string expectedID = "id";
+        bool expectedEnabled = true;
+        HTTP expectedHTTP = new()
+        {
+            Retry = 0,
+            Secret = "secret",
+            Timeout = 1,
+            Uri = "uri",
+        };
+        Mcp expectedMcp = new()
+        {
+            Retry = 0,
+            Timeout = 1,
+            Uri = "uri",
+            Headers = new Dictionary<string, string>() { { "foo", "string" } },
+            Oauth2 = new()
+            {
+                AuthorizationURL = "authorization_url",
+                ClientID = "client_id",
+                ClientSecret = "client_secret",
+                ExternalID = "external_id",
+            },
+            Secrets = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+        string expectedType = "type";
+
+        Assert.Equal(expectedID, parameters.ID);
+        Assert.Equal(expectedEnabled, parameters.Enabled);
+        Assert.Equal(expectedHTTP, parameters.HTTP);
+        Assert.Equal(expectedMcp, parameters.Mcp);
+        Assert.Equal(expectedType, parameters.Type);
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new WorkerCreateParams { ID = "id" };
+
+        Assert.Null(parameters.Enabled);
+        Assert.False(parameters.RawBodyData.ContainsKey("enabled"));
+        Assert.Null(parameters.HTTP);
+        Assert.False(parameters.RawBodyData.ContainsKey("http"));
+        Assert.Null(parameters.Mcp);
+        Assert.False(parameters.RawBodyData.ContainsKey("mcp"));
+        Assert.Null(parameters.Type);
+        Assert.False(parameters.RawBodyData.ContainsKey("type"));
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
+    {
+        var parameters = new WorkerCreateParams
+        {
+            ID = "id",
+
+            // Null should be interpreted as omitted for these properties
+            Enabled = null,
+            HTTP = null,
+            Mcp = null,
+            Type = null,
+        };
+
+        Assert.Null(parameters.Enabled);
+        Assert.False(parameters.RawBodyData.ContainsKey("enabled"));
+        Assert.Null(parameters.HTTP);
+        Assert.False(parameters.RawBodyData.ContainsKey("http"));
+        Assert.Null(parameters.Mcp);
+        Assert.False(parameters.RawBodyData.ContainsKey("mcp"));
+        Assert.Null(parameters.Type);
+        Assert.False(parameters.RawBodyData.ContainsKey("type"));
+    }
+}
+
 public class HTTPTest : TestBase
 {
     [Fact]
