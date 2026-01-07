@@ -30,9 +30,9 @@ public sealed record class CreateWorkerRequest : JsonModel
         }
     }
 
-    public CreateWorkerRequestHTTP? HTTP
+    public CreateWorkerRequestHttp? Http
     {
-        get { return JsonModel.GetNullableClass<CreateWorkerRequestHTTP>(this.RawData, "http"); }
+        get { return JsonModel.GetNullableClass<CreateWorkerRequestHttp>(this.RawData, "http"); }
         init
         {
             if (value == null)
@@ -77,7 +77,7 @@ public sealed record class CreateWorkerRequest : JsonModel
     {
         _ = this.ID;
         _ = this.Enabled;
-        this.HTTP?.Validate();
+        this.Http?.Validate();
         this.Mcp?.Validate();
         _ = this.Type;
     }
@@ -123,8 +123,8 @@ class CreateWorkerRequestFromRaw : IFromRawJson<CreateWorkerRequest>
         CreateWorkerRequest.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<CreateWorkerRequestHTTP, CreateWorkerRequestHTTPFromRaw>))]
-public sealed record class CreateWorkerRequestHTTP : JsonModel
+[JsonConverter(typeof(JsonModelConverter<CreateWorkerRequestHttp, CreateWorkerRequestHttpFromRaw>))]
+public sealed record class CreateWorkerRequestHttp : JsonModel
 {
     public required long Retry
     {
@@ -159,26 +159,26 @@ public sealed record class CreateWorkerRequestHTTP : JsonModel
         _ = this.Uri;
     }
 
-    public CreateWorkerRequestHTTP() { }
+    public CreateWorkerRequestHttp() { }
 
-    public CreateWorkerRequestHTTP(CreateWorkerRequestHTTP createWorkerRequestHTTP)
-        : base(createWorkerRequestHTTP) { }
+    public CreateWorkerRequestHttp(CreateWorkerRequestHttp createWorkerRequestHttp)
+        : base(createWorkerRequestHttp) { }
 
-    public CreateWorkerRequestHTTP(IReadOnlyDictionary<string, JsonElement> rawData)
+    public CreateWorkerRequestHttp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CreateWorkerRequestHTTP(FrozenDictionary<string, JsonElement> rawData)
+    CreateWorkerRequestHttp(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="CreateWorkerRequestHTTPFromRaw.FromRawUnchecked"/>
-    public static CreateWorkerRequestHTTP FromRawUnchecked(
+    /// <inheritdoc cref="CreateWorkerRequestHttpFromRaw.FromRawUnchecked"/>
+    public static CreateWorkerRequestHttp FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -186,12 +186,12 @@ public sealed record class CreateWorkerRequestHTTP : JsonModel
     }
 }
 
-class CreateWorkerRequestHTTPFromRaw : IFromRawJson<CreateWorkerRequestHTTP>
+class CreateWorkerRequestHttpFromRaw : IFromRawJson<CreateWorkerRequestHttp>
 {
     /// <inheritdoc/>
-    public CreateWorkerRequestHTTP FromRawUnchecked(
+    public CreateWorkerRequestHttp FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CreateWorkerRequestHTTP.FromRawUnchecked(rawData);
+    ) => CreateWorkerRequestHttp.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<CreateWorkerRequestMcp, CreateWorkerRequestMcpFromRaw>))]
@@ -317,7 +317,7 @@ class CreateWorkerRequestMcpFromRaw : IFromRawJson<CreateWorkerRequestMcp>
 )]
 public sealed record class CreateWorkerRequestMcpOauth2 : JsonModel
 {
-    public string? AuthorizationURL
+    public string? AuthorizationUrl
     {
         get { return JsonModel.GetNullableClass<string>(this.RawData, "authorization_url"); }
         init
@@ -376,7 +376,7 @@ public sealed record class CreateWorkerRequestMcpOauth2 : JsonModel
     /// <inheritdoc/>
     public override void Validate()
     {
-        _ = this.AuthorizationURL;
+        _ = this.AuthorizationUrl;
         _ = this.ClientID;
         _ = this.ClientSecret;
         _ = this.ExternalID;

@@ -82,7 +82,7 @@ public sealed record class AuthorizationResponse : JsonModel
         }
     }
 
-    public string? URL
+    public string? Url
     {
         get { return JsonModel.GetNullableClass<string>(this.RawData, "url"); }
         init
@@ -118,7 +118,7 @@ public sealed record class AuthorizationResponse : JsonModel
         _ = this.ProviderID;
         _ = this.Scopes;
         this.Status?.Validate();
-        _ = this.URL;
+        _ = this.Url;
         _ = this.UserID;
     }
 

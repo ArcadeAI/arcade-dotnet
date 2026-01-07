@@ -20,7 +20,7 @@ public class WorkerDeleteParamsTest : TestBase
     {
         WorkerDeleteParams parameters = new() { ID = "id" };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/workers/id"), url);
     }

@@ -24,9 +24,9 @@ public sealed record class UpdateWorkerRequest : JsonModel
         }
     }
 
-    public UpdateWorkerRequestHTTP? HTTP
+    public UpdateWorkerRequestHttp? Http
     {
-        get { return JsonModel.GetNullableClass<UpdateWorkerRequestHTTP>(this.RawData, "http"); }
+        get { return JsonModel.GetNullableClass<UpdateWorkerRequestHttp>(this.RawData, "http"); }
         init
         {
             if (value == null)
@@ -56,7 +56,7 @@ public sealed record class UpdateWorkerRequest : JsonModel
     public override void Validate()
     {
         _ = this.Enabled;
-        this.HTTP?.Validate();
+        this.Http?.Validate();
         this.Mcp?.Validate();
     }
 
@@ -94,8 +94,8 @@ class UpdateWorkerRequestFromRaw : IFromRawJson<UpdateWorkerRequest>
         UpdateWorkerRequest.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<UpdateWorkerRequestHTTP, UpdateWorkerRequestHTTPFromRaw>))]
-public sealed record class UpdateWorkerRequestHTTP : JsonModel
+[JsonConverter(typeof(JsonModelConverter<UpdateWorkerRequestHttp, UpdateWorkerRequestHttpFromRaw>))]
+public sealed record class UpdateWorkerRequestHttp : JsonModel
 {
     public long? Retry
     {
@@ -162,26 +162,26 @@ public sealed record class UpdateWorkerRequestHTTP : JsonModel
         _ = this.Uri;
     }
 
-    public UpdateWorkerRequestHTTP() { }
+    public UpdateWorkerRequestHttp() { }
 
-    public UpdateWorkerRequestHTTP(UpdateWorkerRequestHTTP updateWorkerRequestHTTP)
-        : base(updateWorkerRequestHTTP) { }
+    public UpdateWorkerRequestHttp(UpdateWorkerRequestHttp updateWorkerRequestHttp)
+        : base(updateWorkerRequestHttp) { }
 
-    public UpdateWorkerRequestHTTP(IReadOnlyDictionary<string, JsonElement> rawData)
+    public UpdateWorkerRequestHttp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UpdateWorkerRequestHTTP(FrozenDictionary<string, JsonElement> rawData)
+    UpdateWorkerRequestHttp(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UpdateWorkerRequestHTTPFromRaw.FromRawUnchecked"/>
-    public static UpdateWorkerRequestHTTP FromRawUnchecked(
+    /// <inheritdoc cref="UpdateWorkerRequestHttpFromRaw.FromRawUnchecked"/>
+    public static UpdateWorkerRequestHttp FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -189,12 +189,12 @@ public sealed record class UpdateWorkerRequestHTTP : JsonModel
     }
 }
 
-class UpdateWorkerRequestHTTPFromRaw : IFromRawJson<UpdateWorkerRequestHTTP>
+class UpdateWorkerRequestHttpFromRaw : IFromRawJson<UpdateWorkerRequestHttp>
 {
     /// <inheritdoc/>
-    public UpdateWorkerRequestHTTP FromRawUnchecked(
+    public UpdateWorkerRequestHttp FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UpdateWorkerRequestHTTP.FromRawUnchecked(rawData);
+    ) => UpdateWorkerRequestHttp.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<UpdateWorkerRequestMcp, UpdateWorkerRequestMcpFromRaw>))]
@@ -344,7 +344,7 @@ class UpdateWorkerRequestMcpFromRaw : IFromRawJson<UpdateWorkerRequestMcp>
 )]
 public sealed record class UpdateWorkerRequestMcpOauth2 : JsonModel
 {
-    public string? AuthorizationURL
+    public string? AuthorizationUrl
     {
         get { return JsonModel.GetNullableClass<string>(this.RawData, "authorization_url"); }
         init
@@ -389,7 +389,7 @@ public sealed record class UpdateWorkerRequestMcpOauth2 : JsonModel
     /// <inheritdoc/>
     public override void Validate()
     {
-        _ = this.AuthorizationURL;
+        _ = this.AuthorizationUrl;
         _ = this.ClientID;
         _ = this.ClientSecret;
     }

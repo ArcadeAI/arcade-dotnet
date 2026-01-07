@@ -14,7 +14,7 @@ public class WorkerUpdateParamsTest : TestBase
         {
             ID = "id",
             Enabled = true,
-            HTTP = new()
+            Http = new()
             {
                 Retry = 0,
                 Secret = "secret",
@@ -26,7 +26,7 @@ public class WorkerUpdateParamsTest : TestBase
                 Headers = new Dictionary<string, string>() { { "foo", "string" } },
                 Oauth2 = new()
                 {
-                    AuthorizationURL = "authorization_url",
+                    AuthorizationUrl = "authorization_url",
                     ClientID = "client_id",
                     ClientSecret = "client_secret",
                 },
@@ -39,7 +39,7 @@ public class WorkerUpdateParamsTest : TestBase
 
         string expectedID = "id";
         bool expectedEnabled = true;
-        WorkerUpdateParamsHTTP expectedHTTP = new()
+        WorkerUpdateParamsHttp expectedHttp = new()
         {
             Retry = 0,
             Secret = "secret",
@@ -51,7 +51,7 @@ public class WorkerUpdateParamsTest : TestBase
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
-                AuthorizationURL = "authorization_url",
+                AuthorizationUrl = "authorization_url",
                 ClientID = "client_id",
                 ClientSecret = "client_secret",
             },
@@ -63,7 +63,7 @@ public class WorkerUpdateParamsTest : TestBase
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedEnabled, parameters.Enabled);
-        Assert.Equal(expectedHTTP, parameters.HTTP);
+        Assert.Equal(expectedHttp, parameters.Http);
         Assert.Equal(expectedMcp, parameters.Mcp);
     }
 
@@ -74,7 +74,7 @@ public class WorkerUpdateParamsTest : TestBase
 
         Assert.Null(parameters.Enabled);
         Assert.False(parameters.RawBodyData.ContainsKey("enabled"));
-        Assert.Null(parameters.HTTP);
+        Assert.Null(parameters.Http);
         Assert.False(parameters.RawBodyData.ContainsKey("http"));
         Assert.Null(parameters.Mcp);
         Assert.False(parameters.RawBodyData.ContainsKey("mcp"));
@@ -89,13 +89,13 @@ public class WorkerUpdateParamsTest : TestBase
 
             // Null should be interpreted as omitted for these properties
             Enabled = null,
-            HTTP = null,
+            Http = null,
             Mcp = null,
         };
 
         Assert.Null(parameters.Enabled);
         Assert.False(parameters.RawBodyData.ContainsKey("enabled"));
-        Assert.Null(parameters.HTTP);
+        Assert.Null(parameters.Http);
         Assert.False(parameters.RawBodyData.ContainsKey("http"));
         Assert.Null(parameters.Mcp);
         Assert.False(parameters.RawBodyData.ContainsKey("mcp"));
@@ -106,18 +106,18 @@ public class WorkerUpdateParamsTest : TestBase
     {
         WorkerUpdateParams parameters = new() { ID = "id" };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/workers/id"), url);
     }
 }
 
-public class WorkerUpdateParamsHTTPTest : TestBase
+public class WorkerUpdateParamsHttpTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new WorkerUpdateParamsHTTP
+        var model = new WorkerUpdateParamsHttp
         {
             Retry = 0,
             Secret = "secret",
@@ -139,7 +139,7 @@ public class WorkerUpdateParamsHTTPTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new WorkerUpdateParamsHTTP
+        var model = new WorkerUpdateParamsHttp
         {
             Retry = 0,
             Secret = "secret",
@@ -148,7 +148,7 @@ public class WorkerUpdateParamsHTTPTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<WorkerUpdateParamsHTTP>(json);
+        var deserialized = JsonSerializer.Deserialize<WorkerUpdateParamsHttp>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -156,7 +156,7 @@ public class WorkerUpdateParamsHTTPTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new WorkerUpdateParamsHTTP
+        var model = new WorkerUpdateParamsHttp
         {
             Retry = 0,
             Secret = "secret",
@@ -165,7 +165,7 @@ public class WorkerUpdateParamsHTTPTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<WorkerUpdateParamsHTTP>(element);
+        var deserialized = JsonSerializer.Deserialize<WorkerUpdateParamsHttp>(element);
         Assert.NotNull(deserialized);
 
         long expectedRetry = 0;
@@ -182,7 +182,7 @@ public class WorkerUpdateParamsHTTPTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new WorkerUpdateParamsHTTP
+        var model = new WorkerUpdateParamsHttp
         {
             Retry = 0,
             Secret = "secret",
@@ -196,7 +196,7 @@ public class WorkerUpdateParamsHTTPTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new WorkerUpdateParamsHTTP { };
+        var model = new WorkerUpdateParamsHttp { };
 
         Assert.Null(model.Retry);
         Assert.False(model.RawData.ContainsKey("retry"));
@@ -211,7 +211,7 @@ public class WorkerUpdateParamsHTTPTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new WorkerUpdateParamsHTTP { };
+        var model = new WorkerUpdateParamsHttp { };
 
         model.Validate();
     }
@@ -219,7 +219,7 @@ public class WorkerUpdateParamsHTTPTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new WorkerUpdateParamsHTTP
+        var model = new WorkerUpdateParamsHttp
         {
             // Null should be interpreted as omitted for these properties
             Retry = null,
@@ -241,7 +241,7 @@ public class WorkerUpdateParamsHTTPTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new WorkerUpdateParamsHTTP
+        var model = new WorkerUpdateParamsHttp
         {
             // Null should be interpreted as omitted for these properties
             Retry = null,
@@ -264,7 +264,7 @@ public class WorkerUpdateParamsMcpTest : TestBase
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
-                AuthorizationURL = "authorization_url",
+                AuthorizationUrl = "authorization_url",
                 ClientID = "client_id",
                 ClientSecret = "client_secret",
             },
@@ -277,7 +277,7 @@ public class WorkerUpdateParamsMcpTest : TestBase
         Dictionary<string, string> expectedHeaders = new() { { "foo", "string" } };
         WorkerUpdateParamsMcpOauth2 expectedOauth2 = new()
         {
-            AuthorizationURL = "authorization_url",
+            AuthorizationUrl = "authorization_url",
             ClientID = "client_id",
             ClientSecret = "client_secret",
         };
@@ -316,7 +316,7 @@ public class WorkerUpdateParamsMcpTest : TestBase
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
-                AuthorizationURL = "authorization_url",
+                AuthorizationUrl = "authorization_url",
                 ClientID = "client_id",
                 ClientSecret = "client_secret",
             },
@@ -340,7 +340,7 @@ public class WorkerUpdateParamsMcpTest : TestBase
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
-                AuthorizationURL = "authorization_url",
+                AuthorizationUrl = "authorization_url",
                 ClientID = "client_id",
                 ClientSecret = "client_secret",
             },
@@ -357,7 +357,7 @@ public class WorkerUpdateParamsMcpTest : TestBase
         Dictionary<string, string> expectedHeaders = new() { { "foo", "string" } };
         WorkerUpdateParamsMcpOauth2 expectedOauth2 = new()
         {
-            AuthorizationURL = "authorization_url",
+            AuthorizationUrl = "authorization_url",
             ClientID = "client_id",
             ClientSecret = "client_secret",
         };
@@ -396,7 +396,7 @@ public class WorkerUpdateParamsMcpTest : TestBase
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
-                AuthorizationURL = "authorization_url",
+                AuthorizationUrl = "authorization_url",
                 ClientID = "client_id",
                 ClientSecret = "client_secret",
             },
@@ -489,16 +489,16 @@ public class WorkerUpdateParamsMcpOauth2Test : TestBase
     {
         var model = new WorkerUpdateParamsMcpOauth2
         {
-            AuthorizationURL = "authorization_url",
+            AuthorizationUrl = "authorization_url",
             ClientID = "client_id",
             ClientSecret = "client_secret",
         };
 
-        string expectedAuthorizationURL = "authorization_url";
+        string expectedAuthorizationUrl = "authorization_url";
         string expectedClientID = "client_id";
         string expectedClientSecret = "client_secret";
 
-        Assert.Equal(expectedAuthorizationURL, model.AuthorizationURL);
+        Assert.Equal(expectedAuthorizationUrl, model.AuthorizationUrl);
         Assert.Equal(expectedClientID, model.ClientID);
         Assert.Equal(expectedClientSecret, model.ClientSecret);
     }
@@ -508,7 +508,7 @@ public class WorkerUpdateParamsMcpOauth2Test : TestBase
     {
         var model = new WorkerUpdateParamsMcpOauth2
         {
-            AuthorizationURL = "authorization_url",
+            AuthorizationUrl = "authorization_url",
             ClientID = "client_id",
             ClientSecret = "client_secret",
         };
@@ -524,7 +524,7 @@ public class WorkerUpdateParamsMcpOauth2Test : TestBase
     {
         var model = new WorkerUpdateParamsMcpOauth2
         {
-            AuthorizationURL = "authorization_url",
+            AuthorizationUrl = "authorization_url",
             ClientID = "client_id",
             ClientSecret = "client_secret",
         };
@@ -533,11 +533,11 @@ public class WorkerUpdateParamsMcpOauth2Test : TestBase
         var deserialized = JsonSerializer.Deserialize<WorkerUpdateParamsMcpOauth2>(element);
         Assert.NotNull(deserialized);
 
-        string expectedAuthorizationURL = "authorization_url";
+        string expectedAuthorizationUrl = "authorization_url";
         string expectedClientID = "client_id";
         string expectedClientSecret = "client_secret";
 
-        Assert.Equal(expectedAuthorizationURL, deserialized.AuthorizationURL);
+        Assert.Equal(expectedAuthorizationUrl, deserialized.AuthorizationUrl);
         Assert.Equal(expectedClientID, deserialized.ClientID);
         Assert.Equal(expectedClientSecret, deserialized.ClientSecret);
     }
@@ -547,7 +547,7 @@ public class WorkerUpdateParamsMcpOauth2Test : TestBase
     {
         var model = new WorkerUpdateParamsMcpOauth2
         {
-            AuthorizationURL = "authorization_url",
+            AuthorizationUrl = "authorization_url",
             ClientID = "client_id",
             ClientSecret = "client_secret",
         };
@@ -560,7 +560,7 @@ public class WorkerUpdateParamsMcpOauth2Test : TestBase
     {
         var model = new WorkerUpdateParamsMcpOauth2 { };
 
-        Assert.Null(model.AuthorizationURL);
+        Assert.Null(model.AuthorizationUrl);
         Assert.False(model.RawData.ContainsKey("authorization_url"));
         Assert.Null(model.ClientID);
         Assert.False(model.RawData.ContainsKey("client_id"));
@@ -582,12 +582,12 @@ public class WorkerUpdateParamsMcpOauth2Test : TestBase
         var model = new WorkerUpdateParamsMcpOauth2
         {
             // Null should be interpreted as omitted for these properties
-            AuthorizationURL = null,
+            AuthorizationUrl = null,
             ClientID = null,
             ClientSecret = null,
         };
 
-        Assert.Null(model.AuthorizationURL);
+        Assert.Null(model.AuthorizationUrl);
         Assert.False(model.RawData.ContainsKey("authorization_url"));
         Assert.Null(model.ClientID);
         Assert.False(model.RawData.ContainsKey("client_id"));
@@ -601,7 +601,7 @@ public class WorkerUpdateParamsMcpOauth2Test : TestBase
         var model = new WorkerUpdateParamsMcpOauth2
         {
             // Null should be interpreted as omitted for these properties
-            AuthorizationURL = null,
+            AuthorizationUrl = null,
             ClientID = null,
             ClientSecret = null,
         };

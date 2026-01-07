@@ -32,7 +32,7 @@ public class ToolExecutionAttemptTest : TestBase
                     ProviderID = "provider_id",
                     Scopes = ["string"],
                     Status = Models::Status.NotStarted,
-                    URL = "url",
+                    Url = "url",
                     UserID = "user_id",
                 },
                 Error = new()
@@ -84,7 +84,7 @@ public class ToolExecutionAttemptTest : TestBase
                 ProviderID = "provider_id",
                 Scopes = ["string"],
                 Status = Models::Status.NotStarted,
-                URL = "url",
+                Url = "url",
                 UserID = "user_id",
             },
             Error = new()
@@ -148,7 +148,7 @@ public class ToolExecutionAttemptTest : TestBase
                     ProviderID = "provider_id",
                     Scopes = ["string"],
                     Status = Models::Status.NotStarted,
-                    URL = "url",
+                    Url = "url",
                     UserID = "user_id",
                 },
                 Error = new()
@@ -211,7 +211,7 @@ public class ToolExecutionAttemptTest : TestBase
                     ProviderID = "provider_id",
                     Scopes = ["string"],
                     Status = Models::Status.NotStarted,
-                    URL = "url",
+                    Url = "url",
                     UserID = "user_id",
                 },
                 Error = new()
@@ -267,7 +267,7 @@ public class ToolExecutionAttemptTest : TestBase
                 ProviderID = "provider_id",
                 Scopes = ["string"],
                 Status = Models::Status.NotStarted,
-                URL = "url",
+                Url = "url",
                 UserID = "user_id",
             },
             Error = new()
@@ -331,7 +331,7 @@ public class ToolExecutionAttemptTest : TestBase
                     ProviderID = "provider_id",
                     Scopes = ["string"],
                     Status = Models::Status.NotStarted,
-                    URL = "url",
+                    Url = "url",
                     UserID = "user_id",
                 },
                 Error = new()
@@ -462,7 +462,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
                 ProviderID = "provider_id",
                 Scopes = ["string"],
                 Status = Models::Status.NotStarted,
-                URL = "url",
+                Url = "url",
                 UserID = "user_id",
             },
             Error = new()
@@ -506,7 +506,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
             ProviderID = "provider_id",
             Scopes = ["string"],
             Status = Models::Status.NotStarted,
-            URL = "url",
+            Url = "url",
             UserID = "user_id",
         };
         ToolExecutionAttemptOutputError expectedError = new()
@@ -566,7 +566,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
                 ProviderID = "provider_id",
                 Scopes = ["string"],
                 Status = Models::Status.NotStarted,
-                URL = "url",
+                Url = "url",
                 UserID = "user_id",
             },
             Error = new()
@@ -621,7 +621,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
                 ProviderID = "provider_id",
                 Scopes = ["string"],
                 Status = Models::Status.NotStarted,
-                URL = "url",
+                Url = "url",
                 UserID = "user_id",
             },
             Error = new()
@@ -669,7 +669,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
             ProviderID = "provider_id",
             Scopes = ["string"],
             Status = Models::Status.NotStarted,
-            URL = "url",
+            Url = "url",
             UserID = "user_id",
         };
         ToolExecutionAttemptOutputError expectedError = new()
@@ -729,7 +729,7 @@ public class ToolExecutionAttemptOutputTest : TestBase
                 ProviderID = "provider_id",
                 Scopes = ["string"],
                 Status = Models::Status.NotStarted,
-                URL = "url",
+                Url = "url",
                 UserID = "user_id",
             },
             Error = new()

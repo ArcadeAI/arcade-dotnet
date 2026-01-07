@@ -14,7 +14,7 @@ public class WorkerCreateParamsTest : TestBase
         {
             ID = "id",
             Enabled = true,
-            HTTP = new()
+            Http = new()
             {
                 Retry = 0,
                 Secret = "secret",
@@ -29,7 +29,7 @@ public class WorkerCreateParamsTest : TestBase
                 Headers = new Dictionary<string, string>() { { "foo", "string" } },
                 Oauth2 = new()
                 {
-                    AuthorizationURL = "authorization_url",
+                    AuthorizationUrl = "authorization_url",
                     ClientID = "client_id",
                     ClientSecret = "client_secret",
                     ExternalID = "external_id",
@@ -41,7 +41,7 @@ public class WorkerCreateParamsTest : TestBase
 
         string expectedID = "id";
         bool expectedEnabled = true;
-        HTTP expectedHTTP = new()
+        Http expectedHttp = new()
         {
             Retry = 0,
             Secret = "secret",
@@ -56,7 +56,7 @@ public class WorkerCreateParamsTest : TestBase
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
-                AuthorizationURL = "authorization_url",
+                AuthorizationUrl = "authorization_url",
                 ClientID = "client_id",
                 ClientSecret = "client_secret",
                 ExternalID = "external_id",
@@ -67,7 +67,7 @@ public class WorkerCreateParamsTest : TestBase
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedEnabled, parameters.Enabled);
-        Assert.Equal(expectedHTTP, parameters.HTTP);
+        Assert.Equal(expectedHttp, parameters.Http);
         Assert.Equal(expectedMcp, parameters.Mcp);
         Assert.Equal(expectedType, parameters.Type);
     }
@@ -79,7 +79,7 @@ public class WorkerCreateParamsTest : TestBase
 
         Assert.Null(parameters.Enabled);
         Assert.False(parameters.RawBodyData.ContainsKey("enabled"));
-        Assert.Null(parameters.HTTP);
+        Assert.Null(parameters.Http);
         Assert.False(parameters.RawBodyData.ContainsKey("http"));
         Assert.Null(parameters.Mcp);
         Assert.False(parameters.RawBodyData.ContainsKey("mcp"));
@@ -96,14 +96,14 @@ public class WorkerCreateParamsTest : TestBase
 
             // Null should be interpreted as omitted for these properties
             Enabled = null,
-            HTTP = null,
+            Http = null,
             Mcp = null,
             Type = null,
         };
 
         Assert.Null(parameters.Enabled);
         Assert.False(parameters.RawBodyData.ContainsKey("enabled"));
-        Assert.Null(parameters.HTTP);
+        Assert.Null(parameters.Http);
         Assert.False(parameters.RawBodyData.ContainsKey("http"));
         Assert.Null(parameters.Mcp);
         Assert.False(parameters.RawBodyData.ContainsKey("mcp"));
@@ -116,18 +116,18 @@ public class WorkerCreateParamsTest : TestBase
     {
         WorkerCreateParams parameters = new() { ID = "id" };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/workers"), url);
     }
 }
 
-public class HTTPTest : TestBase
+public class HttpTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new HTTP
+        var model = new Http
         {
             Retry = 0,
             Secret = "secret",
@@ -149,7 +149,7 @@ public class HTTPTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new HTTP
+        var model = new Http
         {
             Retry = 0,
             Secret = "secret",
@@ -158,7 +158,7 @@ public class HTTPTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<HTTP>(json);
+        var deserialized = JsonSerializer.Deserialize<Http>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -166,7 +166,7 @@ public class HTTPTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new HTTP
+        var model = new Http
         {
             Retry = 0,
             Secret = "secret",
@@ -175,7 +175,7 @@ public class HTTPTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<HTTP>(element);
+        var deserialized = JsonSerializer.Deserialize<Http>(element);
         Assert.NotNull(deserialized);
 
         long expectedRetry = 0;
@@ -192,7 +192,7 @@ public class HTTPTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new HTTP
+        var model = new Http
         {
             Retry = 0,
             Secret = "secret",
@@ -217,7 +217,7 @@ public class McpTest : TestBase
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
-                AuthorizationURL = "authorization_url",
+                AuthorizationUrl = "authorization_url",
                 ClientID = "client_id",
                 ClientSecret = "client_secret",
                 ExternalID = "external_id",
@@ -231,7 +231,7 @@ public class McpTest : TestBase
         Dictionary<string, string> expectedHeaders = new() { { "foo", "string" } };
         Oauth2 expectedOauth2 = new()
         {
-            AuthorizationURL = "authorization_url",
+            AuthorizationUrl = "authorization_url",
             ClientID = "client_id",
             ClientSecret = "client_secret",
             ExternalID = "external_id",
@@ -271,7 +271,7 @@ public class McpTest : TestBase
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
-                AuthorizationURL = "authorization_url",
+                AuthorizationUrl = "authorization_url",
                 ClientID = "client_id",
                 ClientSecret = "client_secret",
                 ExternalID = "external_id",
@@ -296,7 +296,7 @@ public class McpTest : TestBase
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
-                AuthorizationURL = "authorization_url",
+                AuthorizationUrl = "authorization_url",
                 ClientID = "client_id",
                 ClientSecret = "client_secret",
                 ExternalID = "external_id",
@@ -314,7 +314,7 @@ public class McpTest : TestBase
         Dictionary<string, string> expectedHeaders = new() { { "foo", "string" } };
         Oauth2 expectedOauth2 = new()
         {
-            AuthorizationURL = "authorization_url",
+            AuthorizationUrl = "authorization_url",
             ClientID = "client_id",
             ClientSecret = "client_secret",
             ExternalID = "external_id",
@@ -354,7 +354,7 @@ public class McpTest : TestBase
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
-                AuthorizationURL = "authorization_url",
+                AuthorizationUrl = "authorization_url",
                 ClientID = "client_id",
                 ClientSecret = "client_secret",
                 ExternalID = "external_id",
@@ -445,18 +445,18 @@ public class Oauth2Test : TestBase
     {
         var model = new Oauth2
         {
-            AuthorizationURL = "authorization_url",
+            AuthorizationUrl = "authorization_url",
             ClientID = "client_id",
             ClientSecret = "client_secret",
             ExternalID = "external_id",
         };
 
-        string expectedAuthorizationURL = "authorization_url";
+        string expectedAuthorizationUrl = "authorization_url";
         string expectedClientID = "client_id";
         string expectedClientSecret = "client_secret";
         string expectedExternalID = "external_id";
 
-        Assert.Equal(expectedAuthorizationURL, model.AuthorizationURL);
+        Assert.Equal(expectedAuthorizationUrl, model.AuthorizationUrl);
         Assert.Equal(expectedClientID, model.ClientID);
         Assert.Equal(expectedClientSecret, model.ClientSecret);
         Assert.Equal(expectedExternalID, model.ExternalID);
@@ -467,7 +467,7 @@ public class Oauth2Test : TestBase
     {
         var model = new Oauth2
         {
-            AuthorizationURL = "authorization_url",
+            AuthorizationUrl = "authorization_url",
             ClientID = "client_id",
             ClientSecret = "client_secret",
             ExternalID = "external_id",
@@ -484,7 +484,7 @@ public class Oauth2Test : TestBase
     {
         var model = new Oauth2
         {
-            AuthorizationURL = "authorization_url",
+            AuthorizationUrl = "authorization_url",
             ClientID = "client_id",
             ClientSecret = "client_secret",
             ExternalID = "external_id",
@@ -494,12 +494,12 @@ public class Oauth2Test : TestBase
         var deserialized = JsonSerializer.Deserialize<Oauth2>(element);
         Assert.NotNull(deserialized);
 
-        string expectedAuthorizationURL = "authorization_url";
+        string expectedAuthorizationUrl = "authorization_url";
         string expectedClientID = "client_id";
         string expectedClientSecret = "client_secret";
         string expectedExternalID = "external_id";
 
-        Assert.Equal(expectedAuthorizationURL, deserialized.AuthorizationURL);
+        Assert.Equal(expectedAuthorizationUrl, deserialized.AuthorizationUrl);
         Assert.Equal(expectedClientID, deserialized.ClientID);
         Assert.Equal(expectedClientSecret, deserialized.ClientSecret);
         Assert.Equal(expectedExternalID, deserialized.ExternalID);
@@ -510,7 +510,7 @@ public class Oauth2Test : TestBase
     {
         var model = new Oauth2
         {
-            AuthorizationURL = "authorization_url",
+            AuthorizationUrl = "authorization_url",
             ClientID = "client_id",
             ClientSecret = "client_secret",
             ExternalID = "external_id",
@@ -524,7 +524,7 @@ public class Oauth2Test : TestBase
     {
         var model = new Oauth2 { };
 
-        Assert.Null(model.AuthorizationURL);
+        Assert.Null(model.AuthorizationUrl);
         Assert.False(model.RawData.ContainsKey("authorization_url"));
         Assert.Null(model.ClientID);
         Assert.False(model.RawData.ContainsKey("client_id"));
@@ -548,13 +548,13 @@ public class Oauth2Test : TestBase
         var model = new Oauth2
         {
             // Null should be interpreted as omitted for these properties
-            AuthorizationURL = null,
+            AuthorizationUrl = null,
             ClientID = null,
             ClientSecret = null,
             ExternalID = null,
         };
 
-        Assert.Null(model.AuthorizationURL);
+        Assert.Null(model.AuthorizationUrl);
         Assert.False(model.RawData.ContainsKey("authorization_url"));
         Assert.Null(model.ClientID);
         Assert.False(model.RawData.ContainsKey("client_id"));
@@ -570,7 +570,7 @@ public class Oauth2Test : TestBase
         var model = new Oauth2
         {
             // Null should be interpreted as omitted for these properties
-            AuthorizationURL = null,
+            AuthorizationUrl = null,
             ClientID = null,
             ClientSecret = null,
             ExternalID = null,

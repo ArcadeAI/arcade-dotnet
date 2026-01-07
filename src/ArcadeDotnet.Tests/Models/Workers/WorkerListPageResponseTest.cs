@@ -18,7 +18,7 @@ public class WorkerListPageResponseTest : TestBase
                     ID = "id",
                     Binding = new() { ID = "id", Type = Type.Static },
                     Enabled = true,
-                    HTTP = new()
+                    Http = new()
                     {
                         Retry = 0,
                         Secret = new()
@@ -38,7 +38,7 @@ public class WorkerListPageResponseTest : TestBase
                         Headers = new Dictionary<string, string>() { { "foo", "string" } },
                         Oauth2 = new()
                         {
-                            AuthorizationURL = "authorization_url",
+                            AuthorizationUrl = "authorization_url",
                             ClientID = "client_id",
                             ClientSecret = new()
                             {
@@ -77,7 +77,7 @@ public class WorkerListPageResponseTest : TestBase
                         },
                         Met = true,
                     },
-                    Type = WorkerResponseType.HTTP,
+                    Type = WorkerResponseType.Http,
                 },
             ],
             Limit = 0,
@@ -93,7 +93,7 @@ public class WorkerListPageResponseTest : TestBase
                 ID = "id",
                 Binding = new() { ID = "id", Type = Type.Static },
                 Enabled = true,
-                HTTP = new()
+                Http = new()
                 {
                     Retry = 0,
                     Secret = new()
@@ -113,7 +113,7 @@ public class WorkerListPageResponseTest : TestBase
                     Headers = new Dictionary<string, string>() { { "foo", "string" } },
                     Oauth2 = new()
                     {
-                        AuthorizationURL = "authorization_url",
+                        AuthorizationUrl = "authorization_url",
                         ClientID = "client_id",
                         ClientSecret = new()
                         {
@@ -152,7 +152,7 @@ public class WorkerListPageResponseTest : TestBase
                     },
                     Met = true,
                 },
-                Type = WorkerResponseType.HTTP,
+                Type = WorkerResponseType.Http,
             },
         ];
         long expectedLimit = 0;
@@ -184,7 +184,7 @@ public class WorkerListPageResponseTest : TestBase
                     ID = "id",
                     Binding = new() { ID = "id", Type = Type.Static },
                     Enabled = true,
-                    HTTP = new()
+                    Http = new()
                     {
                         Retry = 0,
                         Secret = new()
@@ -204,7 +204,7 @@ public class WorkerListPageResponseTest : TestBase
                         Headers = new Dictionary<string, string>() { { "foo", "string" } },
                         Oauth2 = new()
                         {
-                            AuthorizationURL = "authorization_url",
+                            AuthorizationUrl = "authorization_url",
                             ClientID = "client_id",
                             ClientSecret = new()
                             {
@@ -243,7 +243,7 @@ public class WorkerListPageResponseTest : TestBase
                         },
                         Met = true,
                     },
-                    Type = WorkerResponseType.HTTP,
+                    Type = WorkerResponseType.Http,
                 },
             ],
             Limit = 0,
@@ -270,7 +270,7 @@ public class WorkerListPageResponseTest : TestBase
                     ID = "id",
                     Binding = new() { ID = "id", Type = Type.Static },
                     Enabled = true,
-                    HTTP = new()
+                    Http = new()
                     {
                         Retry = 0,
                         Secret = new()
@@ -290,7 +290,7 @@ public class WorkerListPageResponseTest : TestBase
                         Headers = new Dictionary<string, string>() { { "foo", "string" } },
                         Oauth2 = new()
                         {
-                            AuthorizationURL = "authorization_url",
+                            AuthorizationUrl = "authorization_url",
                             ClientID = "client_id",
                             ClientSecret = new()
                             {
@@ -329,7 +329,7 @@ public class WorkerListPageResponseTest : TestBase
                         },
                         Met = true,
                     },
-                    Type = WorkerResponseType.HTTP,
+                    Type = WorkerResponseType.Http,
                 },
             ],
             Limit = 0,
@@ -349,7 +349,7 @@ public class WorkerListPageResponseTest : TestBase
                 ID = "id",
                 Binding = new() { ID = "id", Type = Type.Static },
                 Enabled = true,
-                HTTP = new()
+                Http = new()
                 {
                     Retry = 0,
                     Secret = new()
@@ -369,7 +369,7 @@ public class WorkerListPageResponseTest : TestBase
                     Headers = new Dictionary<string, string>() { { "foo", "string" } },
                     Oauth2 = new()
                     {
-                        AuthorizationURL = "authorization_url",
+                        AuthorizationUrl = "authorization_url",
                         ClientID = "client_id",
                         ClientSecret = new()
                         {
@@ -408,7 +408,7 @@ public class WorkerListPageResponseTest : TestBase
                     },
                     Met = true,
                 },
-                Type = WorkerResponseType.HTTP,
+                Type = WorkerResponseType.Http,
             },
         ];
         long expectedLimit = 0;
@@ -440,7 +440,7 @@ public class WorkerListPageResponseTest : TestBase
                     ID = "id",
                     Binding = new() { ID = "id", Type = Type.Static },
                     Enabled = true,
-                    HTTP = new()
+                    Http = new()
                     {
                         Retry = 0,
                         Secret = new()
@@ -460,7 +460,7 @@ public class WorkerListPageResponseTest : TestBase
                         Headers = new Dictionary<string, string>() { { "foo", "string" } },
                         Oauth2 = new()
                         {
-                            AuthorizationURL = "authorization_url",
+                            AuthorizationUrl = "authorization_url",
                             ClientID = "client_id",
                             ClientSecret = new()
                             {
@@ -499,7 +499,7 @@ public class WorkerListPageResponseTest : TestBase
                         },
                         Met = true,
                     },
-                    Type = WorkerResponseType.HTTP,
+                    Type = WorkerResponseType.Http,
                 },
             ],
             Limit = 0,

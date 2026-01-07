@@ -69,7 +69,7 @@ Or manually:
 ```csharp
 using ArcadeDotnet;
 
-ArcadeClient client = new() { APIKey = "My API Key" };
+ArcadeClient client = new() { ApiKey = "My API Key" };
 ```
 
 Or using a combination of the two approaches.
@@ -78,7 +78,7 @@ See this table for the available options:
 
 | Property  | Environment variable | Required | Default value              |
 | --------- | -------------------- | -------- | -------------------------- |
-| `APIKey`  | `ARCADE_API_KEY`     | true     | -                          |
+| `ApiKey`  | `ARCADE_API_KEY`     | true     | -                          |
 | `BaseUrl` | `ARCADE_BASE_URL`    | true     | `"https://api.arcade.dev"` |
 
 ### Modifying configuration

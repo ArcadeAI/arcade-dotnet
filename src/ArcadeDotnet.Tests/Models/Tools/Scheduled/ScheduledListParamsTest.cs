@@ -49,7 +49,7 @@ public class ScheduledListParamsTest : TestBase
     {
         ScheduledListParams parameters = new() { Limit = 0, Offset = 0 };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/scheduled_tools?limit=0&offset=0"), url);
     }

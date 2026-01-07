@@ -76,7 +76,7 @@ public interface IArcadeClient : IDisposable
     /// <summary>
     /// API key used for authorization in header
     /// </summary>
-    string APIKey { get; init; }
+    string ApiKey { get; init; }
 
     /// <summary>
     /// Returns a view of this service with the given option modifications applied.

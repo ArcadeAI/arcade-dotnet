@@ -41,9 +41,9 @@ public sealed record class WorkerCreateParams : ParamsBase
         }
     }
 
-    public HTTP? HTTP
+    public Http? Http
     {
-        get { return JsonModel.GetNullableClass<HTTP>(this.RawBodyData, "http"); }
+        get { return JsonModel.GetNullableClass<Http>(this.RawBodyData, "http"); }
         init
         {
             if (value == null)
@@ -157,8 +157,8 @@ public sealed record class WorkerCreateParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(JsonModelConverter<HTTP, HTTPFromRaw>))]
-public sealed record class HTTP : JsonModel
+[JsonConverter(typeof(JsonModelConverter<Http, HttpFromRaw>))]
+public sealed record class Http : JsonModel
 {
     public required long Retry
     {
@@ -193,36 +193,36 @@ public sealed record class HTTP : JsonModel
         _ = this.Uri;
     }
 
-    public HTTP() { }
+    public Http() { }
 
-    public HTTP(HTTP http)
+    public Http(Http http)
         : base(http) { }
 
-    public HTTP(IReadOnlyDictionary<string, JsonElement> rawData)
+    public Http(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    HTTP(FrozenDictionary<string, JsonElement> rawData)
+    Http(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="HTTPFromRaw.FromRawUnchecked"/>
-    public static HTTP FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="HttpFromRaw.FromRawUnchecked"/>
+    public static Http FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class HTTPFromRaw : IFromRawJson<HTTP>
+class HttpFromRaw : IFromRawJson<Http>
 {
     /// <inheritdoc/>
-    public HTTP FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        HTTP.FromRawUnchecked(rawData);
+    public Http FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Http.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<Mcp, McpFromRaw>))]
@@ -340,7 +340,7 @@ class McpFromRaw : IFromRawJson<Mcp>
 [JsonConverter(typeof(JsonModelConverter<Oauth2, Oauth2FromRaw>))]
 public sealed record class Oauth2 : JsonModel
 {
-    public string? AuthorizationURL
+    public string? AuthorizationUrl
     {
         get { return JsonModel.GetNullableClass<string>(this.RawData, "authorization_url"); }
         init
@@ -399,7 +399,7 @@ public sealed record class Oauth2 : JsonModel
     /// <inheritdoc/>
     public override void Validate()
     {
-        _ = this.AuthorizationURL;
+        _ = this.AuthorizationUrl;
         _ = this.ClientID;
         _ = this.ClientSecret;
         _ = this.ExternalID;

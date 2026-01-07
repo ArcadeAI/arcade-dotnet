@@ -35,7 +35,7 @@ public class ExecuteToolResponseTest : TestBase
                     ProviderID = "provider_id",
                     Scopes = ["string"],
                     Status = Models::Status.NotStarted,
-                    URL = "url",
+                    Url = "url",
                     UserID = "user_id",
                 },
                 Error = new()
@@ -90,7 +90,7 @@ public class ExecuteToolResponseTest : TestBase
                 ProviderID = "provider_id",
                 Scopes = ["string"],
                 Status = Models::Status.NotStarted,
-                URL = "url",
+                Url = "url",
                 UserID = "user_id",
             },
             Error = new()
@@ -160,7 +160,7 @@ public class ExecuteToolResponseTest : TestBase
                     ProviderID = "provider_id",
                     Scopes = ["string"],
                     Status = Models::Status.NotStarted,
-                    URL = "url",
+                    Url = "url",
                     UserID = "user_id",
                 },
                 Error = new()
@@ -226,7 +226,7 @@ public class ExecuteToolResponseTest : TestBase
                     ProviderID = "provider_id",
                     Scopes = ["string"],
                     Status = Models::Status.NotStarted,
-                    URL = "url",
+                    Url = "url",
                     UserID = "user_id",
                 },
                 Error = new()
@@ -285,7 +285,7 @@ public class ExecuteToolResponseTest : TestBase
                 ProviderID = "provider_id",
                 Scopes = ["string"],
                 Status = Models::Status.NotStarted,
-                URL = "url",
+                Url = "url",
                 UserID = "user_id",
             },
             Error = new()
@@ -355,7 +355,7 @@ public class ExecuteToolResponseTest : TestBase
                     ProviderID = "provider_id",
                     Scopes = ["string"],
                     Status = Models::Status.NotStarted,
-                    URL = "url",
+                    Url = "url",
                     UserID = "user_id",
                 },
                 Error = new()
@@ -504,7 +504,7 @@ public class OutputTest : TestBase
                 ProviderID = "provider_id",
                 Scopes = ["string"],
                 Status = Models::Status.NotStarted,
-                URL = "url",
+                Url = "url",
                 UserID = "user_id",
             },
             Error = new()
@@ -548,7 +548,7 @@ public class OutputTest : TestBase
             ProviderID = "provider_id",
             Scopes = ["string"],
             Status = Models::Status.NotStarted,
-            URL = "url",
+            Url = "url",
             UserID = "user_id",
         };
         Error expectedError = new()
@@ -608,7 +608,7 @@ public class OutputTest : TestBase
                 ProviderID = "provider_id",
                 Scopes = ["string"],
                 Status = Models::Status.NotStarted,
-                URL = "url",
+                Url = "url",
                 UserID = "user_id",
             },
             Error = new()
@@ -663,7 +663,7 @@ public class OutputTest : TestBase
                 ProviderID = "provider_id",
                 Scopes = ["string"],
                 Status = Models::Status.NotStarted,
-                URL = "url",
+                Url = "url",
                 UserID = "user_id",
             },
             Error = new()
@@ -711,7 +711,7 @@ public class OutputTest : TestBase
             ProviderID = "provider_id",
             Scopes = ["string"],
             Status = Models::Status.NotStarted,
-            URL = "url",
+            Url = "url",
             UserID = "user_id",
         };
         Error expectedError = new()
@@ -771,7 +771,7 @@ public class OutputTest : TestBase
                 ProviderID = "provider_id",
                 Scopes = ["string"],
                 Status = Models::Status.NotStarted,
-                URL = "url",
+                Url = "url",
                 UserID = "user_id",
             },
             Error = new()

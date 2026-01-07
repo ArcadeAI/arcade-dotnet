@@ -25,7 +25,7 @@ public class AuthorizationResponseTest : TestBase
             ProviderID = "provider_id",
             Scopes = ["string"],
             Status = Status.NotStarted,
-            URL = "url",
+            Url = "url",
             UserID = "user_id",
         };
 
@@ -41,7 +41,7 @@ public class AuthorizationResponseTest : TestBase
         string expectedProviderID = "provider_id";
         List<string> expectedScopes = ["string"];
         ApiEnum<string, Status> expectedStatus = Status.NotStarted;
-        string expectedURL = "url";
+        string expectedUrl = "url";
         string expectedUserID = "user_id";
 
         Assert.Equal(expectedID, model.ID);
@@ -54,7 +54,7 @@ public class AuthorizationResponseTest : TestBase
             Assert.Equal(expectedScopes[i], model.Scopes[i]);
         }
         Assert.Equal(expectedStatus, model.Status);
-        Assert.Equal(expectedURL, model.URL);
+        Assert.Equal(expectedUrl, model.Url);
         Assert.Equal(expectedUserID, model.UserID);
     }
 
@@ -75,7 +75,7 @@ public class AuthorizationResponseTest : TestBase
             ProviderID = "provider_id",
             Scopes = ["string"],
             Status = Status.NotStarted,
-            URL = "url",
+            Url = "url",
             UserID = "user_id",
         };
 
@@ -102,7 +102,7 @@ public class AuthorizationResponseTest : TestBase
             ProviderID = "provider_id",
             Scopes = ["string"],
             Status = Status.NotStarted,
-            URL = "url",
+            Url = "url",
             UserID = "user_id",
         };
 
@@ -122,7 +122,7 @@ public class AuthorizationResponseTest : TestBase
         string expectedProviderID = "provider_id";
         List<string> expectedScopes = ["string"];
         ApiEnum<string, Status> expectedStatus = Status.NotStarted;
-        string expectedURL = "url";
+        string expectedUrl = "url";
         string expectedUserID = "user_id";
 
         Assert.Equal(expectedID, deserialized.ID);
@@ -135,7 +135,7 @@ public class AuthorizationResponseTest : TestBase
             Assert.Equal(expectedScopes[i], deserialized.Scopes[i]);
         }
         Assert.Equal(expectedStatus, deserialized.Status);
-        Assert.Equal(expectedURL, deserialized.URL);
+        Assert.Equal(expectedUrl, deserialized.Url);
         Assert.Equal(expectedUserID, deserialized.UserID);
     }
 
@@ -156,7 +156,7 @@ public class AuthorizationResponseTest : TestBase
             ProviderID = "provider_id",
             Scopes = ["string"],
             Status = Status.NotStarted,
-            URL = "url",
+            Url = "url",
             UserID = "user_id",
         };
 
@@ -178,7 +178,7 @@ public class AuthorizationResponseTest : TestBase
         Assert.False(model.RawData.ContainsKey("scopes"));
         Assert.Null(model.Status);
         Assert.False(model.RawData.ContainsKey("status"));
-        Assert.Null(model.URL);
+        Assert.Null(model.Url);
         Assert.False(model.RawData.ContainsKey("url"));
         Assert.Null(model.UserID);
         Assert.False(model.RawData.ContainsKey("user_id"));
@@ -203,7 +203,7 @@ public class AuthorizationResponseTest : TestBase
             ProviderID = null,
             Scopes = null,
             Status = null,
-            URL = null,
+            Url = null,
             UserID = null,
         };
 
@@ -217,7 +217,7 @@ public class AuthorizationResponseTest : TestBase
         Assert.False(model.RawData.ContainsKey("scopes"));
         Assert.Null(model.Status);
         Assert.False(model.RawData.ContainsKey("status"));
-        Assert.Null(model.URL);
+        Assert.Null(model.Url);
         Assert.False(model.RawData.ContainsKey("url"));
         Assert.Null(model.UserID);
         Assert.False(model.RawData.ContainsKey("user_id"));
@@ -234,7 +234,7 @@ public class AuthorizationResponseTest : TestBase
             ProviderID = null,
             Scopes = null,
             Status = null,
-            URL = null,
+            Url = null,
             UserID = null,
         };
 

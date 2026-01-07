@@ -36,7 +36,7 @@ public class ScheduledGetResponseTest : TestBase
                             ProviderID = "provider_id",
                             Scopes = ["string"],
                             Status = Status.NotStarted,
-                            URL = "url",
+                            Url = "url",
                             UserID = "user_id",
                         },
                         Error = new()
@@ -110,7 +110,7 @@ public class ScheduledGetResponseTest : TestBase
                         ProviderID = "provider_id",
                         Scopes = ["string"],
                         Status = Status.NotStarted,
-                        URL = "url",
+                        Url = "url",
                         UserID = "user_id",
                     },
                     Error = new()
@@ -216,7 +216,7 @@ public class ScheduledGetResponseTest : TestBase
                             ProviderID = "provider_id",
                             Scopes = ["string"],
                             Status = Status.NotStarted,
-                            URL = "url",
+                            Url = "url",
                             UserID = "user_id",
                         },
                         Error = new()
@@ -301,7 +301,7 @@ public class ScheduledGetResponseTest : TestBase
                             ProviderID = "provider_id",
                             Scopes = ["string"],
                             Status = Status.NotStarted,
-                            URL = "url",
+                            Url = "url",
                             UserID = "user_id",
                         },
                         Error = new()
@@ -379,7 +379,7 @@ public class ScheduledGetResponseTest : TestBase
                         ProviderID = "provider_id",
                         Scopes = ["string"],
                         Status = Status.NotStarted,
-                        URL = "url",
+                        Url = "url",
                         UserID = "user_id",
                     },
                     Error = new()
@@ -485,7 +485,7 @@ public class ScheduledGetResponseTest : TestBase
                             ProviderID = "provider_id",
                             Scopes = ["string"],
                             Status = Status.NotStarted,
-                            URL = "url",
+                            Url = "url",
                             UserID = "user_id",
                         },
                         Error = new()

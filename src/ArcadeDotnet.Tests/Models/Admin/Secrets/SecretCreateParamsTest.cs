@@ -54,7 +54,7 @@ public class SecretCreateParamsTest : TestBase
     {
         SecretCreateParams parameters = new() { SecretKey = "secret_key", Value = "value" };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/admin/secrets/secret_key"), url);
     }

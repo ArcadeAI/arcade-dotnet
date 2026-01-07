@@ -54,9 +54,9 @@ public sealed record class WorkerResponse : JsonModel
         }
     }
 
-    public WorkerResponseHTTP? HTTP
+    public WorkerResponseHttp? Http
     {
-        get { return JsonModel.GetNullableClass<WorkerResponseHTTP>(this.RawData, "http"); }
+        get { return JsonModel.GetNullableClass<WorkerResponseHttp>(this.RawData, "http"); }
         init
         {
             if (value == null)
@@ -136,7 +136,7 @@ public sealed record class WorkerResponse : JsonModel
         _ = this.ID;
         this.Binding?.Validate();
         _ = this.Enabled;
-        this.HTTP?.Validate();
+        this.Http?.Validate();
         _ = this.Managed;
         this.Mcp?.Validate();
         this.Requirements?.Validate();
@@ -300,8 +300,8 @@ sealed class TypeConverter : JsonConverter<global::ArcadeDotnet.Models.Workers.T
     }
 }
 
-[JsonConverter(typeof(JsonModelConverter<WorkerResponseHTTP, WorkerResponseHTTPFromRaw>))]
-public sealed record class WorkerResponseHTTP : JsonModel
+[JsonConverter(typeof(JsonModelConverter<WorkerResponseHttp, WorkerResponseHttpFromRaw>))]
+public sealed record class WorkerResponseHttp : JsonModel
 {
     public long? Retry
     {
@@ -368,26 +368,26 @@ public sealed record class WorkerResponseHTTP : JsonModel
         _ = this.Uri;
     }
 
-    public WorkerResponseHTTP() { }
+    public WorkerResponseHttp() { }
 
-    public WorkerResponseHTTP(WorkerResponseHTTP workerResponseHTTP)
-        : base(workerResponseHTTP) { }
+    public WorkerResponseHttp(WorkerResponseHttp workerResponseHttp)
+        : base(workerResponseHttp) { }
 
-    public WorkerResponseHTTP(IReadOnlyDictionary<string, JsonElement> rawData)
+    public WorkerResponseHttp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    WorkerResponseHTTP(FrozenDictionary<string, JsonElement> rawData)
+    WorkerResponseHttp(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="WorkerResponseHTTPFromRaw.FromRawUnchecked"/>
-    public static WorkerResponseHTTP FromRawUnchecked(
+    /// <inheritdoc cref="WorkerResponseHttpFromRaw.FromRawUnchecked"/>
+    public static WorkerResponseHttp FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -395,11 +395,11 @@ public sealed record class WorkerResponseHTTP : JsonModel
     }
 }
 
-class WorkerResponseHTTPFromRaw : IFromRawJson<WorkerResponseHTTP>
+class WorkerResponseHttpFromRaw : IFromRawJson<WorkerResponseHttp>
 {
     /// <inheritdoc/>
-    public WorkerResponseHTTP FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        WorkerResponseHTTP.FromRawUnchecked(rawData);
+    public WorkerResponseHttp FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        WorkerResponseHttp.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<Secret, SecretFromRaw>))]
@@ -723,7 +723,7 @@ class WorkerResponseMcpFromRaw : IFromRawJson<WorkerResponseMcp>
 [JsonConverter(typeof(JsonModelConverter<WorkerResponseMcpOauth2, WorkerResponseMcpOauth2FromRaw>))]
 public sealed record class WorkerResponseMcpOauth2 : JsonModel
 {
-    public string? AuthorizationURL
+    public string? AuthorizationUrl
     {
         get { return JsonModel.GetNullableClass<string>(this.RawData, "authorization_url"); }
         init
@@ -782,7 +782,7 @@ public sealed record class WorkerResponseMcpOauth2 : JsonModel
     /// <inheritdoc/>
     public override void Validate()
     {
-        _ = this.AuthorizationURL;
+        _ = this.AuthorizationUrl;
         _ = this.ClientID;
         this.ClientSecret?.Validate();
         _ = this.RedirectUri;
@@ -1365,7 +1365,7 @@ class AuthorizationOauth2FromRaw : IFromRawJson<AuthorizationOauth2>
 [JsonConverter(typeof(WorkerResponseTypeConverter))]
 public enum WorkerResponseType
 {
-    HTTP,
+    Http,
     Mcp,
     Unknown,
 }
@@ -1380,7 +1380,7 @@ sealed class WorkerResponseTypeConverter : JsonConverter<WorkerResponseType>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "http" => WorkerResponseType.HTTP,
+            "http" => WorkerResponseType.Http,
             "mcp" => WorkerResponseType.Mcp,
             "unknown" => WorkerResponseType.Unknown,
             _ => (WorkerResponseType)(-1),
@@ -1397,7 +1397,7 @@ sealed class WorkerResponseTypeConverter : JsonConverter<WorkerResponseType>
             writer,
             value switch
             {
-                WorkerResponseType.HTTP => "http",
+                WorkerResponseType.Http => "http",
                 WorkerResponseType.Mcp => "mcp",
                 WorkerResponseType.Unknown => "unknown",
                 _ => throw new ArcadeInvalidDataException(
