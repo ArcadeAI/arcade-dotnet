@@ -1,3 +1,4 @@
+using System;
 using System.Text.Json;
 using ArcadeDotnet.Models.Admin.UserConnections;
 
@@ -62,6 +63,27 @@ public class UserConnectionListParamsTest : TestBase
         Assert.False(parameters.RawQueryData.ContainsKey("provider"));
         Assert.Null(parameters.User);
         Assert.False(parameters.RawQueryData.ContainsKey("user"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        UserConnectionListParams parameters = new()
+        {
+            Limit = 0,
+            Offset = 0,
+            Provider = new() { ID = "id" },
+            User = new() { ID = "id" },
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.arcade.dev/v1/admin/user_connections?limit=0&offset=0&provider%5bid%5d=id&user%5bid%5d=id"
+            ),
+            url
+        );
     }
 }
 

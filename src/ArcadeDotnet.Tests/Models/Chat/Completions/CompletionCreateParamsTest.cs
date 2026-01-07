@@ -1,9 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using ArcadeDotnet.Core;
 using ArcadeDotnet.Exceptions;
-using ArcadeDotnet.Models.Chat.Completions;
 using Chat = ArcadeDotnet.Models.Chat;
+using Completions = ArcadeDotnet.Models.Chat.Completions;
 
 namespace ArcadeDotnet.Tests.Models.Chat.Completions;
 
@@ -12,7 +13,7 @@ public class CompletionCreateParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new CompletionCreateParams
+        var parameters = new Completions::CompletionCreateParams
         {
             FrequencyPenalty = 0,
             LogitBias = new Dictionary<string, long>() { { "foo", 0 } },
@@ -41,7 +42,7 @@ public class CompletionCreateParamsTest : TestBase
             N = 0,
             ParallelToolCalls = true,
             PresencePenalty = 0,
-            ResponseFormat = new() { Type = Type.JsonObject },
+            ResponseFormat = new() { Type = Completions::Type.JsonObject },
             Seed = 0,
             Stop = ["string"],
             Stream = true,
@@ -81,11 +82,14 @@ public class CompletionCreateParamsTest : TestBase
         long expectedN = 0;
         bool expectedParallelToolCalls = true;
         double expectedPresencePenalty = 0;
-        ResponseFormat expectedResponseFormat = new() { Type = Type.JsonObject };
+        Completions::ResponseFormat expectedResponseFormat = new()
+        {
+            Type = Completions::Type.JsonObject,
+        };
         long expectedSeed = 0;
         List<string> expectedStop = ["string"];
         bool expectedStream = true;
-        StreamOptions expectedStreamOptions = new() { IncludeUsage = true };
+        Completions::StreamOptions expectedStreamOptions = new() { IncludeUsage = true };
         double expectedTemperature = 0;
         JsonElement expectedToolChoice = JsonSerializer.Deserialize<JsonElement>("{}");
         JsonElement expectedTools = JsonSerializer.Deserialize<JsonElement>("{}");
@@ -137,7 +141,7 @@ public class CompletionCreateParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new CompletionCreateParams { };
+        var parameters = new Completions::CompletionCreateParams { };
 
         Assert.Null(parameters.FrequencyPenalty);
         Assert.False(parameters.RawBodyData.ContainsKey("frequency_penalty"));
@@ -184,7 +188,7 @@ public class CompletionCreateParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
     {
-        var parameters = new CompletionCreateParams
+        var parameters = new Completions::CompletionCreateParams
         {
             // Null should be interpreted as omitted for these properties
             FrequencyPenalty = null,
@@ -250,6 +254,16 @@ public class CompletionCreateParamsTest : TestBase
         Assert.Null(parameters.User);
         Assert.False(parameters.RawBodyData.ContainsKey("user"));
     }
+
+    [Fact]
+    public void Url_Works()
+    {
+        Completions::CompletionCreateParams parameters = new();
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.arcade.dev/v1/chat/completions"), url);
+    }
 }
 
 public class ResponseFormatTest : TestBase
@@ -257,9 +271,9 @@ public class ResponseFormatTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new ResponseFormat { Type = Type.JsonObject };
+        var model = new Completions::ResponseFormat { Type = Completions::Type.JsonObject };
 
-        ApiEnum<string, Type> expectedType = Type.JsonObject;
+        ApiEnum<string, Completions::Type> expectedType = Completions::Type.JsonObject;
 
         Assert.Equal(expectedType, model.Type);
     }
@@ -267,10 +281,10 @@ public class ResponseFormatTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new ResponseFormat { Type = Type.JsonObject };
+        var model = new Completions::ResponseFormat { Type = Completions::Type.JsonObject };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ResponseFormat>(json);
+        var deserialized = JsonSerializer.Deserialize<Completions::ResponseFormat>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -278,13 +292,13 @@ public class ResponseFormatTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new ResponseFormat { Type = Type.JsonObject };
+        var model = new Completions::ResponseFormat { Type = Completions::Type.JsonObject };
 
         string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ResponseFormat>(element);
+        var deserialized = JsonSerializer.Deserialize<Completions::ResponseFormat>(element);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Type> expectedType = Type.JsonObject;
+        ApiEnum<string, Completions::Type> expectedType = Completions::Type.JsonObject;
 
         Assert.Equal(expectedType, deserialized.Type);
     }
@@ -292,7 +306,7 @@ public class ResponseFormatTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new ResponseFormat { Type = Type.JsonObject };
+        var model = new Completions::ResponseFormat { Type = Completions::Type.JsonObject };
 
         model.Validate();
     }
@@ -300,7 +314,7 @@ public class ResponseFormatTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new ResponseFormat { };
+        var model = new Completions::ResponseFormat { };
 
         Assert.Null(model.Type);
         Assert.False(model.RawData.ContainsKey("type"));
@@ -309,7 +323,7 @@ public class ResponseFormatTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new ResponseFormat { };
+        var model = new Completions::ResponseFormat { };
 
         model.Validate();
     }
@@ -317,7 +331,7 @@ public class ResponseFormatTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new ResponseFormat
+        var model = new Completions::ResponseFormat
         {
             // Null should be interpreted as omitted for these properties
             Type = null,
@@ -330,7 +344,7 @@ public class ResponseFormatTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new ResponseFormat
+        var model = new Completions::ResponseFormat
         {
             // Null should be interpreted as omitted for these properties
             Type = null,
@@ -343,19 +357,19 @@ public class ResponseFormatTest : TestBase
 public class TypeTest : TestBase
 {
     [Theory]
-    [InlineData(Type.JsonObject)]
-    [InlineData(Type.Text)]
-    public void Validation_Works(Type rawValue)
+    [InlineData(Completions::Type.JsonObject)]
+    [InlineData(Completions::Type.Text)]
+    public void Validation_Works(Completions::Type rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Type> value = rawValue;
+        ApiEnum<string, Completions::Type> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Type>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Completions::Type>>(
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
@@ -365,15 +379,15 @@ public class TypeTest : TestBase
     }
 
     [Theory]
-    [InlineData(Type.JsonObject)]
-    [InlineData(Type.Text)]
-    public void SerializationRoundtrip_Works(Type rawValue)
+    [InlineData(Completions::Type.JsonObject)]
+    [InlineData(Completions::Type.Text)]
+    public void SerializationRoundtrip_Works(Completions::Type rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Type> value = rawValue;
+        ApiEnum<string, Completions::Type> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Type>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Completions::Type>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -384,12 +398,12 @@ public class TypeTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Type>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Completions::Type>>(
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Type>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Completions::Type>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -403,7 +417,7 @@ public class StreamOptionsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new StreamOptions { IncludeUsage = true };
+        var model = new Completions::StreamOptions { IncludeUsage = true };
 
         bool expectedIncludeUsage = true;
 
@@ -413,10 +427,10 @@ public class StreamOptionsTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new StreamOptions { IncludeUsage = true };
+        var model = new Completions::StreamOptions { IncludeUsage = true };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<StreamOptions>(json);
+        var deserialized = JsonSerializer.Deserialize<Completions::StreamOptions>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -424,10 +438,10 @@ public class StreamOptionsTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new StreamOptions { IncludeUsage = true };
+        var model = new Completions::StreamOptions { IncludeUsage = true };
 
         string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<StreamOptions>(element);
+        var deserialized = JsonSerializer.Deserialize<Completions::StreamOptions>(element);
         Assert.NotNull(deserialized);
 
         bool expectedIncludeUsage = true;
@@ -438,7 +452,7 @@ public class StreamOptionsTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new StreamOptions { IncludeUsage = true };
+        var model = new Completions::StreamOptions { IncludeUsage = true };
 
         model.Validate();
     }
@@ -446,7 +460,7 @@ public class StreamOptionsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new StreamOptions { };
+        var model = new Completions::StreamOptions { };
 
         Assert.Null(model.IncludeUsage);
         Assert.False(model.RawData.ContainsKey("include_usage"));
@@ -455,7 +469,7 @@ public class StreamOptionsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new StreamOptions { };
+        var model = new Completions::StreamOptions { };
 
         model.Validate();
     }
@@ -463,7 +477,7 @@ public class StreamOptionsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new StreamOptions
+        var model = new Completions::StreamOptions
         {
             // Null should be interpreted as omitted for these properties
             IncludeUsage = null,
@@ -476,7 +490,7 @@ public class StreamOptionsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new StreamOptions
+        var model = new Completions::StreamOptions
         {
             // Null should be interpreted as omitted for these properties
             IncludeUsage = null,

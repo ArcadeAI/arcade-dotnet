@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using ArcadeDotnet.Core;
@@ -86,6 +87,29 @@ public class ToolListParamsTest : TestBase
         Assert.False(parameters.RawQueryData.ContainsKey("toolkit"));
         Assert.Null(parameters.UserID);
         Assert.False(parameters.RawQueryData.ContainsKey("user_id"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        ToolListParams parameters = new()
+        {
+            IncludeAllVersions = true,
+            IncludeFormat = [IncludeFormat.Arcade],
+            Limit = 0,
+            Offset = 0,
+            Toolkit = "toolkit",
+            UserID = "user_id",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.arcade.dev/v1/tools?include_all_versions=true&include_format=arcade&limit=0&offset=0&toolkit=toolkit&user_id=user_id"
+            ),
+            url
+        );
     }
 }
 

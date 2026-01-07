@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using ArcadeDotnet.Core;
@@ -62,6 +63,24 @@ public class ToolGetParamsTest : TestBase
         Assert.False(parameters.RawQueryData.ContainsKey("include_format"));
         Assert.Null(parameters.UserID);
         Assert.False(parameters.RawQueryData.ContainsKey("user_id"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        ToolGetParams parameters = new()
+        {
+            Name = "name",
+            IncludeFormat = [ToolGetParamsIncludeFormat.Arcade],
+            UserID = "user_id",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri("https://api.arcade.dev/v1/tools/name?include_format=arcade&user_id=user_id"),
+            url
+        );
     }
 }
 

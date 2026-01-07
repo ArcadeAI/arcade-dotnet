@@ -1,3 +1,4 @@
+using System;
 using ArcadeDotnet.Models.Tools.Formatted;
 
 namespace ArcadeDotnet.Tests.Models.Tools.Formatted;
@@ -77,5 +78,28 @@ public class FormattedListParamsTest : TestBase
         Assert.False(parameters.RawQueryData.ContainsKey("toolkit"));
         Assert.Null(parameters.UserID);
         Assert.False(parameters.RawQueryData.ContainsKey("user_id"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        FormattedListParams parameters = new()
+        {
+            Format = "format",
+            IncludeAllVersions = true,
+            Limit = 0,
+            Offset = 0,
+            Toolkit = "toolkit",
+            UserID = "user_id",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.arcade.dev/v1/formatted_tools?format=format&include_all_versions=true&limit=0&offset=0&toolkit=toolkit&user_id=user_id"
+            ),
+            url
+        );
     }
 }

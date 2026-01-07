@@ -1,3 +1,4 @@
+using System;
 using ArcadeDotnet.Models.Auth;
 
 namespace ArcadeDotnet.Tests.Models.Auth;
@@ -38,5 +39,15 @@ public class AuthStatusParamsTest : TestBase
 
         Assert.Null(parameters.Wait);
         Assert.False(parameters.RawQueryData.ContainsKey("wait"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        AuthStatusParams parameters = new() { ID = "id", Wait = 0 };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.arcade.dev/v1/auth/status?id=id&wait=0"), url);
     }
 }

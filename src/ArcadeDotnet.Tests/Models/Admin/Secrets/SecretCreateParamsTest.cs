@@ -1,3 +1,4 @@
+using System;
 using ArcadeDotnet.Models.Admin.Secrets;
 
 namespace ArcadeDotnet.Tests.Models.Admin.Secrets;
@@ -46,5 +47,15 @@ public class SecretCreateParamsTest : TestBase
 
         Assert.Null(parameters.Description);
         Assert.False(parameters.RawBodyData.ContainsKey("description"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        SecretCreateParams parameters = new() { SecretKey = "secret_key", Value = "value" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.arcade.dev/v1/admin/secrets/secret_key"), url);
     }
 }

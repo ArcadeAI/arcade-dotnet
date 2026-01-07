@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using ArcadeDotnet.Models.Auth;
@@ -76,6 +77,26 @@ public class AuthAuthorizeParamsTest : TestBase
 
         Assert.Null(parameters.NextUri);
         Assert.False(parameters.RawBodyData.ContainsKey("next_uri"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        AuthAuthorizeParams parameters = new()
+        {
+            AuthRequirement = new()
+            {
+                ID = "id",
+                Oauth2 = new() { Scopes = ["string"] },
+                ProviderID = "provider_id",
+                ProviderType = "provider_type",
+            },
+            UserID = "user_id",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.arcade.dev/v1/auth/authorize"), url);
     }
 }
 

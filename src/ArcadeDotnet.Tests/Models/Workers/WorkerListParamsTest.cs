@@ -1,3 +1,4 @@
+using System;
 using ArcadeDotnet.Models.Workers;
 
 namespace ArcadeDotnet.Tests.Models.Workers;
@@ -41,5 +42,15 @@ public class WorkerListParamsTest : TestBase
         Assert.False(parameters.RawQueryData.ContainsKey("limit"));
         Assert.Null(parameters.Offset);
         Assert.False(parameters.RawQueryData.ContainsKey("offset"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        WorkerListParams parameters = new() { Limit = 0, Offset = 0 };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.arcade.dev/v1/workers?limit=0&offset=0"), url);
     }
 }

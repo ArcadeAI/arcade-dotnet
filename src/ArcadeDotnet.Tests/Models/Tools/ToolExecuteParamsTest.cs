@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using ArcadeDotnet.Models.Tools;
@@ -89,5 +90,15 @@ public class ToolExecuteParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("tool_version"));
         Assert.Null(parameters.UserID);
         Assert.False(parameters.RawBodyData.ContainsKey("user_id"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        ToolExecuteParams parameters = new() { ToolName = "tool_name" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.arcade.dev/v1/tools/execute"), url);
     }
 }

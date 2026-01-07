@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using ArcadeDotnet.Core;
@@ -225,6 +226,16 @@ public class AuthProviderCreateParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("status"));
         Assert.Null(parameters.Type);
         Assert.False(parameters.RawBodyData.ContainsKey("type"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        AuthProviderCreateParams parameters = new() { ID = "id" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.arcade.dev/v1/admin/auth_providers"), url);
     }
 }
 

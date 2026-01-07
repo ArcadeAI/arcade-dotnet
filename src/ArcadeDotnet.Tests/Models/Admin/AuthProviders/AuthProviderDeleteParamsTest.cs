@@ -1,3 +1,4 @@
+using System;
 using ArcadeDotnet.Models.Admin.AuthProviders;
 
 namespace ArcadeDotnet.Tests.Models.Admin.AuthProviders;
@@ -12,5 +13,15 @@ public class AuthProviderDeleteParamsTest : TestBase
         string expectedID = "id";
 
         Assert.Equal(expectedID, parameters.ID);
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        AuthProviderDeleteParams parameters = new() { ID = "id" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.arcade.dev/v1/admin/auth_providers/id"), url);
     }
 }

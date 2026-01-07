@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using ArcadeDotnet.Models.Workers;
@@ -108,6 +109,16 @@ public class WorkerCreateParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("mcp"));
         Assert.Null(parameters.Type);
         Assert.False(parameters.RawBodyData.ContainsKey("type"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        WorkerCreateParams parameters = new() { ID = "id" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.arcade.dev/v1/workers"), url);
     }
 }
 

@@ -1,3 +1,4 @@
+using System;
 using ArcadeDotnet.Models.Tools;
 
 namespace ArcadeDotnet.Tests.Models.Tools;
@@ -58,5 +59,15 @@ public class ToolAuthorizeParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("tool_version"));
         Assert.Null(parameters.UserID);
         Assert.False(parameters.RawBodyData.ContainsKey("user_id"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        ToolAuthorizeParams parameters = new() { ToolName = "tool_name" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.arcade.dev/v1/tools/authorize"), url);
     }
 }

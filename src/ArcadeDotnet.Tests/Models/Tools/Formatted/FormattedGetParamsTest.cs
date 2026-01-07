@@ -1,3 +1,4 @@
+using System;
 using ArcadeDotnet.Models.Tools.Formatted;
 
 namespace ArcadeDotnet.Tests.Models.Tools.Formatted;
@@ -50,5 +51,23 @@ public class FormattedGetParamsTest : TestBase
         Assert.False(parameters.RawQueryData.ContainsKey("format"));
         Assert.Null(parameters.UserID);
         Assert.False(parameters.RawQueryData.ContainsKey("user_id"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        FormattedGetParams parameters = new()
+        {
+            Name = "name",
+            Format = "format",
+            UserID = "user_id",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri("https://api.arcade.dev/v1/formatted_tools/name?format=format&user_id=user_id"),
+            url
+        );
     }
 }
