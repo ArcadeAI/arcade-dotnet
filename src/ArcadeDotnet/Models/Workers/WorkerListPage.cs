@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using ArcadeDotnet.Core;
@@ -63,4 +64,7 @@ public sealed class WorkerListPage(
     {
         response.Validate();
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this.Items, ModelBase.ToStringSerializerOptions);
 }

@@ -63,4 +63,7 @@ public sealed class FormattedListPage(
     {
         response.Validate();
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this.Items, ModelBase.ToStringSerializerOptions);
 }
