@@ -15,6 +15,12 @@ namespace ArcadeDotnet.Services;
 public interface IAuthService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IAuthServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -43,6 +49,47 @@ public interface IAuthService
     /// becomes completed or the timeout is reached.
     /// </summary>
     Task<AuthorizationResponse> Status(
+        AuthStatusParams parameters,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IAuthService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IAuthServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IAuthServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /v1/auth/authorize`, but is otherwise the
+    /// same as <see cref="IAuthService.Authorize(AuthAuthorizeParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<AuthorizationResponse>> Authorize(
+        AuthAuthorizeParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /v1/auth/confirm_user`, but is otherwise the
+    /// same as <see cref="IAuthService.ConfirmUser(AuthConfirmUserParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<ConfirmUserResponse>> ConfirmUser(
+        AuthConfirmUserParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /v1/auth/status`, but is otherwise the
+    /// same as <see cref="IAuthService.Status(AuthStatusParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<AuthorizationResponse>> Status(
         AuthStatusParams parameters,
         CancellationToken cancellationToken = default
     );

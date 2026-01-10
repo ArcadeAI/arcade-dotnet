@@ -12,6 +12,12 @@ namespace ArcadeDotnet.Services;
 public interface IAdminService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IAdminServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -23,4 +29,24 @@ public interface IAdminService
     IAuthProviderService AuthProviders { get; }
 
     ISecretService Secrets { get; }
+}
+
+/// <summary>
+/// A view of <see cref="IAdminService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IAdminServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IAdminServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    IUserConnectionServiceWithRawResponse UserConnections { get; }
+
+    IAuthProviderServiceWithRawResponse AuthProviders { get; }
+
+    ISecretServiceWithRawResponse Secrets { get; }
 }

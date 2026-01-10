@@ -8,7 +8,7 @@ using ArcadeDotnet.Services.Tools;
 namespace ArcadeDotnet.Models.Tools.Scheduled;
 
 public sealed class ScheduledListPage(
-    IScheduledService service,
+    IScheduledServiceWithRawResponse service,
     ScheduledListParams parameters,
     ScheduledListPageResponse response
 ) : IPage<ToolExecution>
@@ -52,9 +52,10 @@ public sealed class ScheduledListPage(
     public async Task<ScheduledListPage> Next(CancellationToken cancellationToken = default)
     {
         var currentOffset = parameters.Offset ?? 0;
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Offset = currentOffset + this.Items.Count }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

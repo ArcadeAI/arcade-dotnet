@@ -14,6 +14,125 @@ namespace ArcadeDotnet;
 /// <inheritdoc/>
 public sealed class ArcadeClient : IArcadeClient
 {
+    readonly ClientOptions _options;
+
+    /// <inheritdoc/>
+    public HttpClient HttpClient
+    {
+        get { return this._options.HttpClient; }
+        init { this._options.HttpClient = value; }
+    }
+
+    /// <inheritdoc/>
+    public string BaseUrl
+    {
+        get { return this._options.BaseUrl; }
+        init { this._options.BaseUrl = value; }
+    }
+
+    /// <inheritdoc/>
+    public bool ResponseValidation
+    {
+        get { return this._options.ResponseValidation; }
+        init { this._options.ResponseValidation = value; }
+    }
+
+    /// <inheritdoc/>
+    public int? MaxRetries
+    {
+        get { return this._options.MaxRetries; }
+        init { this._options.MaxRetries = value; }
+    }
+
+    /// <inheritdoc/>
+    public TimeSpan? Timeout
+    {
+        get { return this._options.Timeout; }
+        init { this._options.Timeout = value; }
+    }
+
+    /// <inheritdoc/>
+    public string ApiKey
+    {
+        get { return this._options.ApiKey; }
+        init { this._options.ApiKey = value; }
+    }
+
+    readonly Lazy<IArcadeClientWithRawResponse> _withRawResponse;
+
+    /// <inheritdoc/>
+    public IArcadeClientWithRawResponse WithRawResponse
+    {
+        get { return _withRawResponse.Value; }
+    }
+
+    /// <inheritdoc/>
+    public IArcadeClient WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new ArcadeClient(modifier(this._options));
+    }
+
+    readonly Lazy<IAdminService> _admin;
+    public IAdminService Admin
+    {
+        get { return _admin.Value; }
+    }
+
+    readonly Lazy<IAuthService> _auth;
+    public IAuthService Auth
+    {
+        get { return _auth.Value; }
+    }
+
+    readonly Lazy<IHealthService> _health;
+    public IHealthService Health
+    {
+        get { return _health.Value; }
+    }
+
+    readonly Lazy<IChatService> _chat;
+    public IChatService Chat
+    {
+        get { return _chat.Value; }
+    }
+
+    readonly Lazy<IToolService> _tools;
+    public IToolService Tools
+    {
+        get { return _tools.Value; }
+    }
+
+    readonly Lazy<IWorkerService> _workers;
+    public IWorkerService Workers
+    {
+        get { return _workers.Value; }
+    }
+
+    public void Dispose() => this.HttpClient.Dispose();
+
+    public ArcadeClient()
+    {
+        _options = new();
+
+        _withRawResponse = new(() => new ArcadeClientWithRawResponse(this._options));
+        _admin = new(() => new AdminService(this));
+        _auth = new(() => new AuthService(this));
+        _health = new(() => new HealthService(this));
+        _chat = new(() => new ChatService(this));
+        _tools = new(() => new ToolService(this));
+        _workers = new(() => new WorkerService(this));
+    }
+
+    public ArcadeClient(ClientOptions options)
+        : this()
+    {
+        _options = options;
+    }
+}
+
+/// <inheritdoc/>
+public sealed class ArcadeClientWithRawResponse : IArcadeClientWithRawResponse
+{
 #if NET
     static readonly Random Random = Random.Shared;
 #else
@@ -24,6 +143,8 @@ public sealed class ArcadeClient : IArcadeClient
         get { return _threadLocalRandom.Value!; }
     }
 #endif
+
+    internal static HttpMethod PatchMethod = new("PATCH");
 
     readonly ClientOptions _options;
 
@@ -69,46 +190,44 @@ public sealed class ArcadeClient : IArcadeClient
         init { this._options.ApiKey = value; }
     }
 
-    internal static HttpMethod PatchMethod = new("PATCH");
-
     /// <inheritdoc/>
-    public IArcadeClient WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    public IArcadeClientWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
-        return new ArcadeClient(modifier(this._options));
+        return new ArcadeClientWithRawResponse(modifier(this._options));
     }
 
-    readonly Lazy<IAdminService> _admin;
-    public IAdminService Admin
+    readonly Lazy<IAdminServiceWithRawResponse> _admin;
+    public IAdminServiceWithRawResponse Admin
     {
         get { return _admin.Value; }
     }
 
-    readonly Lazy<IAuthService> _auth;
-    public IAuthService Auth
+    readonly Lazy<IAuthServiceWithRawResponse> _auth;
+    public IAuthServiceWithRawResponse Auth
     {
         get { return _auth.Value; }
     }
 
-    readonly Lazy<IHealthService> _health;
-    public IHealthService Health
+    readonly Lazy<IHealthServiceWithRawResponse> _health;
+    public IHealthServiceWithRawResponse Health
     {
         get { return _health.Value; }
     }
 
-    readonly Lazy<IChatService> _chat;
-    public IChatService Chat
+    readonly Lazy<IChatServiceWithRawResponse> _chat;
+    public IChatServiceWithRawResponse Chat
     {
         get { return _chat.Value; }
     }
 
-    readonly Lazy<IToolService> _tools;
-    public IToolService Tools
+    readonly Lazy<IToolServiceWithRawResponse> _tools;
+    public IToolServiceWithRawResponse Tools
     {
         get { return _tools.Value; }
     }
 
-    readonly Lazy<IWorkerService> _workers;
-    public IWorkerService Workers
+    readonly Lazy<IWorkerServiceWithRawResponse> _workers;
+    public IWorkerServiceWithRawResponse Workers
     {
         get { return _workers.Value; }
     }
@@ -303,19 +422,19 @@ public sealed class ArcadeClient : IArcadeClient
 
     public void Dispose() => this.HttpClient.Dispose();
 
-    public ArcadeClient()
+    public ArcadeClientWithRawResponse()
     {
         _options = new();
 
-        _admin = new(() => new AdminService(this));
-        _auth = new(() => new AuthService(this));
-        _health = new(() => new HealthService(this));
-        _chat = new(() => new ChatService(this));
-        _tools = new(() => new ToolService(this));
-        _workers = new(() => new WorkerService(this));
+        _admin = new(() => new AdminServiceWithRawResponse(this));
+        _auth = new(() => new AuthServiceWithRawResponse(this));
+        _health = new(() => new HealthServiceWithRawResponse(this));
+        _chat = new(() => new ChatServiceWithRawResponse(this));
+        _tools = new(() => new ToolServiceWithRawResponse(this));
+        _workers = new(() => new WorkerServiceWithRawResponse(this));
     }
 
-    public ArcadeClient(ClientOptions options)
+    public ArcadeClientWithRawResponse(ClientOptions options)
         : this()
     {
         _options = options;

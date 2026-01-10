@@ -15,6 +15,12 @@ namespace ArcadeDotnet.Services.Chat;
 public interface ICompletionService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    ICompletionServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -25,6 +31,29 @@ public interface ICompletionService
     /// Interact with language models via OpenAI's chat completions API
     /// </summary>
     Task<ChatResponse> Create(
+        CompletionCreateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="ICompletionService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface ICompletionServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    ICompletionServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /v1/chat/completions`, but is otherwise the
+    /// same as <see cref="ICompletionService.Create(CompletionCreateParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<ChatResponse>> Create(
         CompletionCreateParams? parameters = null,
         CancellationToken cancellationToken = default
     );

@@ -14,6 +14,12 @@ namespace ArcadeDotnet.Services.Admin;
 public interface IUserConnectionService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IUserConnectionServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -38,6 +44,45 @@ public interface IUserConnectionService
 
     /// <inheritdoc cref="Delete(UserConnectionDeleteParams, CancellationToken)"/>
     Task Delete(
+        string id,
+        UserConnectionDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IUserConnectionService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IUserConnectionServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IUserConnectionServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /v1/admin/user_connections`, but is otherwise the
+    /// same as <see cref="IUserConnectionService.List(UserConnectionListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<UserConnectionListPage>> List(
+        UserConnectionListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `delete /v1/admin/user_connections/{id}`, but is otherwise the
+    /// same as <see cref="IUserConnectionService.Delete(UserConnectionDeleteParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse> Delete(
+        UserConnectionDeleteParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Delete(UserConnectionDeleteParams, CancellationToken)"/>
+    Task<HttpResponse> Delete(
         string id,
         UserConnectionDeleteParams? parameters = null,
         CancellationToken cancellationToken = default

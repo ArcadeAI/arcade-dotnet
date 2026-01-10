@@ -8,7 +8,7 @@ using ArcadeDotnet.Services;
 namespace ArcadeDotnet.Models.Workers;
 
 public sealed class WorkerListPage(
-    IWorkerService service,
+    IWorkerServiceWithRawResponse service,
     WorkerListParams parameters,
     WorkerListPageResponse response
 ) : IPage<WorkerResponse>
@@ -52,9 +52,10 @@ public sealed class WorkerListPage(
     public async Task<WorkerListPage> Next(CancellationToken cancellationToken = default)
     {
         var currentOffset = parameters.Offset ?? 0;
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Offset = currentOffset + this.Items.Count }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

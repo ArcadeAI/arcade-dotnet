@@ -9,7 +9,7 @@ using ArcadeDotnet.Services.Tools;
 namespace ArcadeDotnet.Models.Tools.Formatted;
 
 public sealed class FormattedListPage(
-    IFormattedService service,
+    IFormattedServiceWithRawResponse service,
     FormattedListParams parameters,
     FormattedListPageResponse response
 ) : IPage<JsonElement>
@@ -52,9 +52,10 @@ public sealed class FormattedListPage(
     public async Task<FormattedListPage> Next(CancellationToken cancellationToken = default)
     {
         var currentOffset = parameters.Offset ?? 0;
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Offset = currentOffset + this.Items.Count }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

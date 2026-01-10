@@ -14,6 +14,12 @@ namespace ArcadeDotnet.Services.Tools;
 public interface IScheduledService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IScheduledServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -38,6 +44,45 @@ public interface IScheduledService
 
     /// <inheritdoc cref="Get(ScheduledGetParams, CancellationToken)"/>
     Task<ScheduledGetResponse> Get(
+        string id,
+        ScheduledGetParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IScheduledService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IScheduledServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IScheduledServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /v1/scheduled_tools`, but is otherwise the
+    /// same as <see cref="IScheduledService.List(ScheduledListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<ScheduledListPage>> List(
+        ScheduledListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /v1/scheduled_tools/{id}`, but is otherwise the
+    /// same as <see cref="IScheduledService.Get(ScheduledGetParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<ScheduledGetResponse>> Get(
+        ScheduledGetParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Get(ScheduledGetParams, CancellationToken)"/>
+    Task<HttpResponse<ScheduledGetResponse>> Get(
         string id,
         ScheduledGetParams? parameters = null,
         CancellationToken cancellationToken = default

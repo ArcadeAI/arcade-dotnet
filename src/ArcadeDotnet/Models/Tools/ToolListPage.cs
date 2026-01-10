@@ -8,7 +8,7 @@ using ArcadeDotnet.Services;
 namespace ArcadeDotnet.Models.Tools;
 
 public sealed class ToolListPage(
-    IToolService service,
+    IToolServiceWithRawResponse service,
     ToolListParams parameters,
     ToolListPageResponse response
 ) : IPage<ToolDefinition>
@@ -52,9 +52,10 @@ public sealed class ToolListPage(
     public async Task<ToolListPage> Next(CancellationToken cancellationToken = default)
     {
         var currentOffset = parameters.Offset ?? 0;
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Offset = currentOffset + this.Items.Count }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

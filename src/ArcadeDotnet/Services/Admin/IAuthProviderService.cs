@@ -14,6 +14,12 @@ namespace ArcadeDotnet.Services.Admin;
 public interface IAuthProviderService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IAuthProviderServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -76,6 +82,86 @@ public interface IAuthProviderService
 
     /// <inheritdoc cref="Patch(AuthProviderPatchParams, CancellationToken)"/>
     Task<AuthProviderResponse> Patch(
+        string id,
+        AuthProviderPatchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IAuthProviderService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IAuthProviderServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IAuthProviderServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /v1/admin/auth_providers`, but is otherwise the
+    /// same as <see cref="IAuthProviderService.Create(AuthProviderCreateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<AuthProviderResponse>> Create(
+        AuthProviderCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /v1/admin/auth_providers`, but is otherwise the
+    /// same as <see cref="IAuthProviderService.List(AuthProviderListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<AuthProviderListResponse>> List(
+        AuthProviderListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `delete /v1/admin/auth_providers/{id}`, but is otherwise the
+    /// same as <see cref="IAuthProviderService.Delete(AuthProviderDeleteParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<AuthProviderResponse>> Delete(
+        AuthProviderDeleteParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Delete(AuthProviderDeleteParams, CancellationToken)"/>
+    Task<HttpResponse<AuthProviderResponse>> Delete(
+        string id,
+        AuthProviderDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /v1/admin/auth_providers/{id}`, but is otherwise the
+    /// same as <see cref="IAuthProviderService.Get(AuthProviderGetParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<AuthProviderResponse>> Get(
+        AuthProviderGetParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Get(AuthProviderGetParams, CancellationToken)"/>
+    Task<HttpResponse<AuthProviderResponse>> Get(
+        string id,
+        AuthProviderGetParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `patch /v1/admin/auth_providers/{id}`, but is otherwise the
+    /// same as <see cref="IAuthProviderService.Patch(AuthProviderPatchParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<AuthProviderResponse>> Patch(
+        AuthProviderPatchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Patch(AuthProviderPatchParams, CancellationToken)"/>
+    Task<HttpResponse<AuthProviderResponse>> Patch(
         string id,
         AuthProviderPatchParams? parameters = null,
         CancellationToken cancellationToken = default

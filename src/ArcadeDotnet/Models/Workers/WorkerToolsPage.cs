@@ -9,7 +9,7 @@ using ArcadeDotnet.Services;
 namespace ArcadeDotnet.Models.Workers;
 
 public sealed class WorkerToolsPage(
-    IWorkerService service,
+    IWorkerServiceWithRawResponse service,
     WorkerToolsParams parameters,
     WorkerToolsPageResponse response
 ) : IPage<ToolDefinition>
@@ -53,9 +53,10 @@ public sealed class WorkerToolsPage(
     public async Task<WorkerToolsPage> Next(CancellationToken cancellationToken = default)
     {
         var currentOffset = parameters.Offset ?? 0;
-        return await service
+        using var nextResponse = await service
             .Tools(parameters with { Offset = currentOffset + this.Items.Count }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

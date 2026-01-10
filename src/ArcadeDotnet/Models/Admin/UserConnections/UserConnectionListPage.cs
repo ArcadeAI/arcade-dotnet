@@ -8,7 +8,7 @@ using ArcadeDotnet.Services.Admin;
 namespace ArcadeDotnet.Models.Admin.UserConnections;
 
 public sealed class UserConnectionListPage(
-    IUserConnectionService service,
+    IUserConnectionServiceWithRawResponse service,
     UserConnectionListParams parameters,
     UserConnectionListPageResponse response
 ) : IPage<UserConnectionResponse>
@@ -52,9 +52,10 @@ public sealed class UserConnectionListPage(
     public async Task<UserConnectionListPage> Next(CancellationToken cancellationToken = default)
     {
         var currentOffset = parameters.Offset ?? 0;
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Offset = currentOffset + this.Items.Count }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

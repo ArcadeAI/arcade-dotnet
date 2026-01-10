@@ -11,21 +11,192 @@ namespace ArcadeDotnet.Services;
 /// <inheritdoc/>
 public sealed class WorkerService : IWorkerService
 {
+    readonly Lazy<IWorkerServiceWithRawResponse> _withRawResponse;
+
+    /// <inheritdoc/>
+    public IWorkerServiceWithRawResponse WithRawResponse
+    {
+        get { return _withRawResponse.Value; }
+    }
+
+    readonly IArcadeClient _client;
+
     /// <inheritdoc/>
     public IWorkerService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new WorkerService(this._client.WithOptions(modifier));
     }
 
-    readonly IArcadeClient _client;
-
     public WorkerService(IArcadeClient client)
+    {
+        _client = client;
+
+        _withRawResponse = new(() => new WorkerServiceWithRawResponse(client.WithRawResponse));
+    }
+
+    /// <inheritdoc/>
+    public async Task<WorkerResponse> Create(
+        WorkerCreateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Create(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task<WorkerResponse> Update(
+        WorkerUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Update(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<WorkerResponse> Update(
+        string id,
+        WorkerUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Update(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<WorkerListPage> List(
+        WorkerListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.List(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task Delete(
+        WorkerDeleteParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Delete(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task Delete(
+        string id,
+        WorkerDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        await this.Delete(parameters with { ID = id }, cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task<WorkerResponse> Get(
+        WorkerGetParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Get(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<WorkerResponse> Get(
+        string id,
+        WorkerGetParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Get(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<WorkerHealthResponse> Health(
+        WorkerHealthParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Health(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<WorkerHealthResponse> Health(
+        string id,
+        WorkerHealthParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Health(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<WorkerToolsPage> Tools(
+        WorkerToolsParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Tools(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<WorkerToolsPage> Tools(
+        string id,
+        WorkerToolsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Tools(parameters with { ID = id }, cancellationToken);
+    }
+}
+
+/// <inheritdoc/>
+public sealed class WorkerServiceWithRawResponse : IWorkerServiceWithRawResponse
+{
+    readonly IArcadeClientWithRawResponse _client;
+
+    /// <inheritdoc/>
+    public IWorkerServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new WorkerServiceWithRawResponse(this._client.WithOptions(modifier));
+    }
+
+    public WorkerServiceWithRawResponse(IArcadeClientWithRawResponse client)
     {
         _client = client;
     }
 
     /// <inheritdoc/>
-    public async Task<WorkerResponse> Create(
+    public async Task<HttpResponse<WorkerResponse>> Create(
         WorkerCreateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -35,21 +206,25 @@ public sealed class WorkerService : IWorkerService
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var workerResponse = await response
-            .Deserialize<WorkerResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            workerResponse.Validate();
-        }
-        return workerResponse;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var workerResponse = await response
+                    .Deserialize<WorkerResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    workerResponse.Validate();
+                }
+                return workerResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<WorkerResponse> Update(
+    public async Task<HttpResponse<WorkerResponse>> Update(
         WorkerUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -64,21 +239,25 @@ public sealed class WorkerService : IWorkerService
             Method = ArcadeClient.PatchMethod,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var workerResponse = await response
-            .Deserialize<WorkerResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            workerResponse.Validate();
-        }
-        return workerResponse;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var workerResponse = await response
+                    .Deserialize<WorkerResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    workerResponse.Validate();
+                }
+                return workerResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<WorkerResponse> Update(
+    public Task<HttpResponse<WorkerResponse>> Update(
         string id,
         WorkerUpdateParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -86,11 +265,11 @@ public sealed class WorkerService : IWorkerService
     {
         parameters ??= new();
 
-        return await this.Update(parameters with { ID = id }, cancellationToken);
+        return this.Update(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<WorkerListPage> List(
+    public async Task<HttpResponse<WorkerListPage>> List(
         WorkerListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -102,21 +281,25 @@ public sealed class WorkerService : IWorkerService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var page = await response
-            .Deserialize<WorkerListPageResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            page.Validate();
-        }
-        return new WorkerListPage(this, parameters, page);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var page = await response
+                    .Deserialize<WorkerListPageResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    page.Validate();
+                }
+                return new WorkerListPage(this, parameters, page);
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task Delete(
+    public Task<HttpResponse> Delete(
         WorkerDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -131,13 +314,11 @@ public sealed class WorkerService : IWorkerService
             Method = HttpMethod.Delete,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
+        return this._client.Execute(request, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task Delete(
+    public Task<HttpResponse> Delete(
         string id,
         WorkerDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -145,11 +326,11 @@ public sealed class WorkerService : IWorkerService
     {
         parameters ??= new();
 
-        await this.Delete(parameters with { ID = id }, cancellationToken);
+        return this.Delete(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<WorkerResponse> Get(
+    public async Task<HttpResponse<WorkerResponse>> Get(
         WorkerGetParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -164,21 +345,25 @@ public sealed class WorkerService : IWorkerService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var workerResponse = await response
-            .Deserialize<WorkerResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            workerResponse.Validate();
-        }
-        return workerResponse;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var workerResponse = await response
+                    .Deserialize<WorkerResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    workerResponse.Validate();
+                }
+                return workerResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<WorkerResponse> Get(
+    public Task<HttpResponse<WorkerResponse>> Get(
         string id,
         WorkerGetParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -186,11 +371,11 @@ public sealed class WorkerService : IWorkerService
     {
         parameters ??= new();
 
-        return await this.Get(parameters with { ID = id }, cancellationToken);
+        return this.Get(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<WorkerHealthResponse> Health(
+    public async Task<HttpResponse<WorkerHealthResponse>> Health(
         WorkerHealthParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -205,21 +390,25 @@ public sealed class WorkerService : IWorkerService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var workerHealthResponse = await response
-            .Deserialize<WorkerHealthResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            workerHealthResponse.Validate();
-        }
-        return workerHealthResponse;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var workerHealthResponse = await response
+                    .Deserialize<WorkerHealthResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    workerHealthResponse.Validate();
+                }
+                return workerHealthResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<WorkerHealthResponse> Health(
+    public Task<HttpResponse<WorkerHealthResponse>> Health(
         string id,
         WorkerHealthParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -227,11 +416,11 @@ public sealed class WorkerService : IWorkerService
     {
         parameters ??= new();
 
-        return await this.Health(parameters with { ID = id }, cancellationToken);
+        return this.Health(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<WorkerToolsPage> Tools(
+    public async Task<HttpResponse<WorkerToolsPage>> Tools(
         WorkerToolsParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -246,21 +435,25 @@ public sealed class WorkerService : IWorkerService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var page = await response
-            .Deserialize<WorkerToolsPageResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            page.Validate();
-        }
-        return new WorkerToolsPage(this, parameters, page);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var page = await response
+                    .Deserialize<WorkerToolsPageResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    page.Validate();
+                }
+                return new WorkerToolsPage(this, parameters, page);
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<WorkerToolsPage> Tools(
+    public Task<HttpResponse<WorkerToolsPage>> Tools(
         string id,
         WorkerToolsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -268,6 +461,6 @@ public sealed class WorkerService : IWorkerService
     {
         parameters ??= new();
 
-        return await this.Tools(parameters with { ID = id }, cancellationToken);
+        return this.Tools(parameters with { ID = id }, cancellationToken);
     }
 }

@@ -16,6 +16,12 @@ namespace ArcadeDotnet.Services;
 public interface IToolService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IToolServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -61,6 +67,67 @@ public interface IToolService
 
     /// <inheritdoc cref="Get(ToolGetParams, CancellationToken)"/>
     Task<ToolDefinition> Get(
+        string name,
+        ToolGetParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IToolService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IToolServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IToolServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    IScheduledServiceWithRawResponse Scheduled { get; }
+
+    IFormattedServiceWithRawResponse Formatted { get; }
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /v1/tools`, but is otherwise the
+    /// same as <see cref="IToolService.List(ToolListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<ToolListPage>> List(
+        ToolListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /v1/tools/authorize`, but is otherwise the
+    /// same as <see cref="IToolService.Authorize(ToolAuthorizeParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<AuthorizationResponse>> Authorize(
+        ToolAuthorizeParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /v1/tools/execute`, but is otherwise the
+    /// same as <see cref="IToolService.Execute(ToolExecuteParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<ExecuteToolResponse>> Execute(
+        ToolExecuteParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /v1/tools/{name}`, but is otherwise the
+    /// same as <see cref="IToolService.Get(ToolGetParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<ToolDefinition>> Get(
+        ToolGetParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Get(ToolGetParams, CancellationToken)"/>
+    Task<HttpResponse<ToolDefinition>> Get(
         string name,
         ToolGetParams? parameters = null,
         CancellationToken cancellationToken = default

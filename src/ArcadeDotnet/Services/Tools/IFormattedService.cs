@@ -15,6 +15,12 @@ namespace ArcadeDotnet.Services.Tools;
 public interface IFormattedService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IFormattedServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -40,6 +46,45 @@ public interface IFormattedService
 
     /// <inheritdoc cref="Get(FormattedGetParams, CancellationToken)"/>
     Task<JsonElement> Get(
+        string name,
+        FormattedGetParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IFormattedService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IFormattedServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IFormattedServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /v1/formatted_tools`, but is otherwise the
+    /// same as <see cref="IFormattedService.List(FormattedListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<FormattedListPage>> List(
+        FormattedListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /v1/formatted_tools/{name}`, but is otherwise the
+    /// same as <see cref="IFormattedService.Get(FormattedGetParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<JsonElement>> Get(
+        FormattedGetParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Get(FormattedGetParams, CancellationToken)"/>
+    Task<HttpResponse<JsonElement>> Get(
         string name,
         FormattedGetParams? parameters = null,
         CancellationToken cancellationToken = default

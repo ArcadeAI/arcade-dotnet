@@ -12,6 +12,12 @@ namespace ArcadeDotnet.Services;
 public interface IChatService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IChatServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -19,4 +25,20 @@ public interface IChatService
     IChatService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     ICompletionService Completions { get; }
+}
+
+/// <summary>
+/// A view of <see cref="IChatService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IChatServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IChatServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    ICompletionServiceWithRawResponse Completions { get; }
 }

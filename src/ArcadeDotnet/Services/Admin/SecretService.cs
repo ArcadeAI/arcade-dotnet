@@ -11,21 +11,107 @@ namespace ArcadeDotnet.Services.Admin;
 /// <inheritdoc/>
 public sealed class SecretService : ISecretService
 {
+    readonly Lazy<ISecretServiceWithRawResponse> _withRawResponse;
+
+    /// <inheritdoc/>
+    public ISecretServiceWithRawResponse WithRawResponse
+    {
+        get { return _withRawResponse.Value; }
+    }
+
+    readonly IArcadeClient _client;
+
     /// <inheritdoc/>
     public ISecretService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new SecretService(this._client.WithOptions(modifier));
     }
 
-    readonly IArcadeClient _client;
-
     public SecretService(IArcadeClient client)
+    {
+        _client = client;
+
+        _withRawResponse = new(() => new SecretServiceWithRawResponse(client.WithRawResponse));
+    }
+
+    /// <inheritdoc/>
+    public async Task<SecretResponse> Create(
+        SecretCreateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Create(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<SecretResponse> Create(
+        string secretKey,
+        SecretCreateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.Create(parameters with { SecretKey = secretKey }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<SecretListResponse> List(
+        SecretListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.List(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task Delete(
+        SecretDeleteParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Delete(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task Delete(
+        string secretID,
+        SecretDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        await this.Delete(parameters with { SecretID = secretID }, cancellationToken)
+            .ConfigureAwait(false);
+    }
+}
+
+/// <inheritdoc/>
+public sealed class SecretServiceWithRawResponse : ISecretServiceWithRawResponse
+{
+    readonly IArcadeClientWithRawResponse _client;
+
+    /// <inheritdoc/>
+    public ISecretServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new SecretServiceWithRawResponse(this._client.WithOptions(modifier));
+    }
+
+    public SecretServiceWithRawResponse(IArcadeClientWithRawResponse client)
     {
         _client = client;
     }
 
     /// <inheritdoc/>
-    public async Task<SecretResponse> Create(
+    public async Task<HttpResponse<SecretResponse>> Create(
         SecretCreateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -40,31 +126,35 @@ public sealed class SecretService : ISecretService
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var secretResponse = await response
-            .Deserialize<SecretResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            secretResponse.Validate();
-        }
-        return secretResponse;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var secretResponse = await response
+                    .Deserialize<SecretResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    secretResponse.Validate();
+                }
+                return secretResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<SecretResponse> Create(
+    public Task<HttpResponse<SecretResponse>> Create(
         string secretKey,
         SecretCreateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return await this.Create(parameters with { SecretKey = secretKey }, cancellationToken);
+        return this.Create(parameters with { SecretKey = secretKey }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<SecretListResponse> List(
+    public async Task<HttpResponse<SecretListResponse>> List(
         SecretListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -76,21 +166,25 @@ public sealed class SecretService : ISecretService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var secrets = await response
-            .Deserialize<SecretListResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            secrets.Validate();
-        }
-        return secrets;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var secrets = await response
+                    .Deserialize<SecretListResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    secrets.Validate();
+                }
+                return secrets;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task Delete(
+    public Task<HttpResponse> Delete(
         SecretDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -105,13 +199,11 @@ public sealed class SecretService : ISecretService
             Method = HttpMethod.Delete,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
+        return this._client.Execute(request, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task Delete(
+    public Task<HttpResponse> Delete(
         string secretID,
         SecretDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -119,6 +211,6 @@ public sealed class SecretService : ISecretService
     {
         parameters ??= new();
 
-        await this.Delete(parameters with { SecretID = secretID }, cancellationToken);
+        return this.Delete(parameters with { SecretID = secretID }, cancellationToken);
     }
 }

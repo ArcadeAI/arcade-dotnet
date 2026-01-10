@@ -14,6 +14,12 @@ namespace ArcadeDotnet.Services.Admin;
 public interface ISecretService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    ISecretServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -50,6 +56,61 @@ public interface ISecretService
 
     /// <inheritdoc cref="Delete(SecretDeleteParams, CancellationToken)"/>
     Task Delete(
+        string secretID,
+        SecretDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="ISecretService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface ISecretServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    ISecretServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /v1/admin/secrets/{secret_key}`, but is otherwise the
+    /// same as <see cref="ISecretService.Create(SecretCreateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<SecretResponse>> Create(
+        SecretCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Create(SecretCreateParams, CancellationToken)"/>
+    Task<HttpResponse<SecretResponse>> Create(
+        string secretKey,
+        SecretCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /v1/admin/secrets`, but is otherwise the
+    /// same as <see cref="ISecretService.List(SecretListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<SecretListResponse>> List(
+        SecretListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `delete /v1/admin/secrets/{secret_id}`, but is otherwise the
+    /// same as <see cref="ISecretService.Delete(SecretDeleteParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse> Delete(
+        SecretDeleteParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Delete(SecretDeleteParams, CancellationToken)"/>
+    Task<HttpResponse> Delete(
         string secretID,
         SecretDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
