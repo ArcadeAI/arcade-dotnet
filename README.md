@@ -111,6 +111,29 @@ To send a request to the Arcade API, build an instance of some `Params` class an
 
 For example, `client.Tools.Execute` should be called with an instance of `ToolExecuteParams`, and it will return an instance of `Task<ExecuteToolResponse>`.
 
+## Raw responses
+
+The SDK defines methods that deserialize responses into instances of C# classes. However, these methods don't provide access to the response headers, status code, or the raw response body.
+
+To access this data, prefix any HTTP method call on a client or service with `WithRawResponse`:
+
+```csharp
+var response = await client.WithRawResponse.Chat.Completions.Create();
+var statusCode = response.Message.StatusCode;
+var headers = response.Message.Headers;
+```
+
+For non-streaming responses, you can deserialize the response into an instance of a C# class if needed:
+
+```csharp
+using System;
+using ArcadeDotnet.Models.Chat;
+
+var response = await client.WithRawResponse.Chat.Completions.Create();
+ChatResponse deserialized = await response.Deserialize();
+Console.WriteLine(deserialized);
+```
+
 ## Error handling
 
 The SDK throws custom unchecked exception types:
