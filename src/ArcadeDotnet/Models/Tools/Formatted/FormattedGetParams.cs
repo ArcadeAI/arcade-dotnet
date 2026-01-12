@@ -52,7 +52,10 @@ public sealed record class FormattedGetParams : ParamsBase
     public FormattedGetParams() { }
 
     public FormattedGetParams(FormattedGetParams formattedGetParams)
-        : base(formattedGetParams) { }
+        : base(formattedGetParams)
+    {
+        this.Name = formattedGetParams.Name;
+    }
 
     public FormattedGetParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

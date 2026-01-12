@@ -18,7 +18,10 @@ public sealed record class UserConnectionDeleteParams : ParamsBase
     public UserConnectionDeleteParams() { }
 
     public UserConnectionDeleteParams(UserConnectionDeleteParams userConnectionDeleteParams)
-        : base(userConnectionDeleteParams) { }
+        : base(userConnectionDeleteParams)
+    {
+        this.ID = userConnectionDeleteParams.ID;
+    }
 
     public UserConnectionDeleteParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

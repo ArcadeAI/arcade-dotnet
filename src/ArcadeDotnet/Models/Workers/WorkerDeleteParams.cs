@@ -18,7 +18,10 @@ public sealed record class WorkerDeleteParams : ParamsBase
     public WorkerDeleteParams() { }
 
     public WorkerDeleteParams(WorkerDeleteParams workerDeleteParams)
-        : base(workerDeleteParams) { }
+        : base(workerDeleteParams)
+    {
+        this.ID = workerDeleteParams.ID;
+    }
 
     public WorkerDeleteParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

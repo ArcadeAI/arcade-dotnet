@@ -47,6 +47,8 @@ public sealed record class SecretCreateParams : ParamsBase
     public SecretCreateParams(SecretCreateParams secretCreateParams)
         : base(secretCreateParams)
     {
+        this.SecretKey = secretCreateParams.SecretKey;
+
         this._rawBodyData = [.. secretCreateParams._rawBodyData];
     }
 

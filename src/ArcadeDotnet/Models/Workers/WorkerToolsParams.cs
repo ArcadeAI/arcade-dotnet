@@ -52,7 +52,10 @@ public sealed record class WorkerToolsParams : ParamsBase
     public WorkerToolsParams() { }
 
     public WorkerToolsParams(WorkerToolsParams workerToolsParams)
-        : base(workerToolsParams) { }
+        : base(workerToolsParams)
+    {
+        this.ID = workerToolsParams.ID;
+    }
 
     public WorkerToolsParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

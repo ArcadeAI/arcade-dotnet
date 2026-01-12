@@ -18,7 +18,10 @@ public sealed record class AuthProviderGetParams : ParamsBase
     public AuthProviderGetParams() { }
 
     public AuthProviderGetParams(AuthProviderGetParams authProviderGetParams)
-        : base(authProviderGetParams) { }
+        : base(authProviderGetParams)
+    {
+        this.ID = authProviderGetParams.ID;
+    }
 
     public AuthProviderGetParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

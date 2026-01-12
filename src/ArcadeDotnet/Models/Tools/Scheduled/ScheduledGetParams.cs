@@ -18,7 +18,10 @@ public sealed record class ScheduledGetParams : ParamsBase
     public ScheduledGetParams() { }
 
     public ScheduledGetParams(ScheduledGetParams scheduledGetParams)
-        : base(scheduledGetParams) { }
+        : base(scheduledGetParams)
+    {
+        this.ID = scheduledGetParams.ID;
+    }
 
     public ScheduledGetParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

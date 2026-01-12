@@ -18,7 +18,10 @@ public sealed record class WorkerGetParams : ParamsBase
     public WorkerGetParams() { }
 
     public WorkerGetParams(WorkerGetParams workerGetParams)
-        : base(workerGetParams) { }
+        : base(workerGetParams)
+    {
+        this.ID = workerGetParams.ID;
+    }
 
     public WorkerGetParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

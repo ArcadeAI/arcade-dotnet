@@ -70,6 +70,8 @@ public sealed record class WorkerUpdateParams : ParamsBase
     public WorkerUpdateParams(WorkerUpdateParams workerUpdateParams)
         : base(workerUpdateParams)
     {
+        this.ID = workerUpdateParams.ID;
+
         this._rawBodyData = [.. workerUpdateParams._rawBodyData];
     }
 

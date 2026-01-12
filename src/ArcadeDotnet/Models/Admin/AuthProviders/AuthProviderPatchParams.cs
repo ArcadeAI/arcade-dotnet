@@ -119,6 +119,8 @@ public sealed record class AuthProviderPatchParams : ParamsBase
     public AuthProviderPatchParams(AuthProviderPatchParams authProviderPatchParams)
         : base(authProviderPatchParams)
     {
+        this.ID = authProviderPatchParams.ID;
+
         this._rawBodyData = [.. authProviderPatchParams._rawBodyData];
     }
 
