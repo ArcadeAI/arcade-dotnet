@@ -8,6 +8,9 @@ using ArcadeDotnet.Services;
 
 namespace ArcadeDotnet.Models.Workers;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="IWorkerService.List(WorkerListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class WorkerListPage(
     IWorkerServiceWithRawResponse service,
     WorkerListParams parameters,

@@ -9,6 +9,9 @@ using ArcadeDotnet.Services;
 
 namespace ArcadeDotnet.Models.Workers;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="IWorkerService.Tools(WorkerToolsParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class WorkerToolsPage(
     IWorkerServiceWithRawResponse service,
     WorkerToolsParams parameters,

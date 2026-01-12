@@ -8,6 +8,9 @@ using ArcadeDotnet.Services.Tools;
 
 namespace ArcadeDotnet.Models.Tools.Scheduled;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="IScheduledService.List(ScheduledListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class ScheduledListPage(
     IScheduledServiceWithRawResponse service,
     ScheduledListParams parameters,

@@ -8,6 +8,9 @@ using ArcadeDotnet.Services.Tools;
 
 namespace ArcadeDotnet.Models.Tools.Formatted;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="IFormattedService.List(FormattedListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class FormattedListPage(
     IFormattedServiceWithRawResponse service,
     FormattedListParams parameters,

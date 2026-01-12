@@ -8,6 +8,9 @@ using ArcadeDotnet.Services;
 
 namespace ArcadeDotnet.Models.Tools;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="IToolService.List(ToolListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class ToolListPage(
     IToolServiceWithRawResponse service,
     ToolListParams parameters,

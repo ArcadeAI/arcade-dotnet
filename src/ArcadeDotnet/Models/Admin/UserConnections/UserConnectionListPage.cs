@@ -8,6 +8,9 @@ using ArcadeDotnet.Services.Admin;
 
 namespace ArcadeDotnet.Models.Admin.UserConnections;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="IUserConnectionService.List(UserConnectionListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class UserConnectionListPage(
     IUserConnectionServiceWithRawResponse service,
     UserConnectionListParams parameters,
