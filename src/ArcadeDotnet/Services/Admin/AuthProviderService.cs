@@ -312,7 +312,7 @@ public sealed class AuthProviderServiceWithRawResponse : IAuthProviderServiceWit
 
         HttpRequest<AuthProviderPatchParams> request = new()
         {
-            Method = ArcadeClient.PatchMethod,
+            Method = ArcadeClientWithRawResponse.PatchMethod,
             Params = parameters,
         };
         var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);

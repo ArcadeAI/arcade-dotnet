@@ -230,7 +230,7 @@ public sealed class WorkerServiceWithRawResponse : IWorkerServiceWithRawResponse
 
         HttpRequest<WorkerUpdateParams> request = new()
         {
-            Method = ArcadeClient.PatchMethod,
+            Method = ArcadeClientWithRawResponse.PatchMethod,
             Params = parameters,
         };
         var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
