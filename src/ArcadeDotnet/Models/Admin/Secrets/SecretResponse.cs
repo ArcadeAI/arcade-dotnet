@@ -14,7 +14,7 @@ public sealed record class SecretResponse : JsonModel
 {
     public string? ID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        get { return this._rawData.GetNullableClass<string>("id"); }
         init
         {
             if (value == null)
@@ -22,13 +22,13 @@ public sealed record class SecretResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "id", value);
+            this._rawData.Set("id", value);
         }
     }
 
     public Binding? Binding
     {
-        get { return JsonModel.GetNullableClass<Binding>(this.RawData, "binding"); }
+        get { return this._rawData.GetNullableClass<Binding>("binding"); }
         init
         {
             if (value == null)
@@ -36,13 +36,13 @@ public sealed record class SecretResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "binding", value);
+            this._rawData.Set("binding", value);
         }
     }
 
     public string? CreatedAt
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "created_at"); }
+        get { return this._rawData.GetNullableClass<string>("created_at"); }
         init
         {
             if (value == null)
@@ -50,13 +50,13 @@ public sealed record class SecretResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "created_at", value);
+            this._rawData.Set("created_at", value);
         }
     }
 
     public string? Description
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        get { return this._rawData.GetNullableClass<string>("description"); }
         init
         {
             if (value == null)
@@ -64,13 +64,13 @@ public sealed record class SecretResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "description", value);
+            this._rawData.Set("description", value);
         }
     }
 
     public string? Hint
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "hint"); }
+        get { return this._rawData.GetNullableClass<string>("hint"); }
         init
         {
             if (value == null)
@@ -78,13 +78,13 @@ public sealed record class SecretResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "hint", value);
+            this._rawData.Set("hint", value);
         }
     }
 
     public string? Key
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "key"); }
+        get { return this._rawData.GetNullableClass<string>("key"); }
         init
         {
             if (value == null)
@@ -92,13 +92,13 @@ public sealed record class SecretResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "key", value);
+            this._rawData.Set("key", value);
         }
     }
 
     public string? LastAccessedAt
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "last_accessed_at"); }
+        get { return this._rawData.GetNullableClass<string>("last_accessed_at"); }
         init
         {
             if (value == null)
@@ -106,13 +106,13 @@ public sealed record class SecretResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "last_accessed_at", value);
+            this._rawData.Set("last_accessed_at", value);
         }
     }
 
     public string? UpdatedAt
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "updated_at"); }
+        get { return this._rawData.GetNullableClass<string>("updated_at"); }
         init
         {
             if (value == null)
@@ -120,7 +120,7 @@ public sealed record class SecretResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "updated_at", value);
+            this._rawData.Set("updated_at", value);
         }
     }
 
@@ -144,14 +144,14 @@ public sealed record class SecretResponse : JsonModel
 
     public SecretResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     SecretResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -174,7 +174,7 @@ public sealed record class Binding : JsonModel
 {
     public string? ID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        get { return this._rawData.GetNullableClass<string>("id"); }
         init
         {
             if (value == null)
@@ -182,7 +182,7 @@ public sealed record class Binding : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "id", value);
+            this._rawData.Set("id", value);
         }
     }
 
@@ -190,9 +190,9 @@ public sealed record class Binding : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<
+            return this._rawData.GetNullableClass<
                 ApiEnum<string, global::ArcadeDotnet.Models.Admin.Secrets.Type>
-            >(this.RawData, "type");
+            >("type");
         }
         init
         {
@@ -201,7 +201,7 @@ public sealed record class Binding : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "type", value);
+            this._rawData.Set("type", value);
         }
     }
 
@@ -219,14 +219,14 @@ public sealed record class Binding : JsonModel
 
     public Binding(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Binding(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

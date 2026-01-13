@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -14,7 +15,7 @@ public sealed record class AuthorizationResponse : JsonModel
 {
     public string? ID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        get { return this._rawData.GetNullableClass<string>("id"); }
         init
         {
             if (value == null)
@@ -22,13 +23,13 @@ public sealed record class AuthorizationResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "id", value);
+            this._rawData.Set("id", value);
         }
     }
 
     public AuthorizationContext? Context
     {
-        get { return JsonModel.GetNullableClass<AuthorizationContext>(this.RawData, "context"); }
+        get { return this._rawData.GetNullableClass<AuthorizationContext>("context"); }
         init
         {
             if (value == null)
@@ -36,13 +37,13 @@ public sealed record class AuthorizationResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "context", value);
+            this._rawData.Set("context", value);
         }
     }
 
     public string? ProviderID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "provider_id"); }
+        get { return this._rawData.GetNullableClass<string>("provider_id"); }
         init
         {
             if (value == null)
@@ -50,13 +51,13 @@ public sealed record class AuthorizationResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "provider_id", value);
+            this._rawData.Set("provider_id", value);
         }
     }
 
     public IReadOnlyList<string>? Scopes
     {
-        get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "scopes"); }
+        get { return this._rawData.GetNullableStruct<ImmutableArray<string>>("scopes"); }
         init
         {
             if (value == null)
@@ -64,13 +65,16 @@ public sealed record class AuthorizationResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "scopes", value);
+            this._rawData.Set<ImmutableArray<string>?>(
+                "scopes",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
     public ApiEnum<string, Status>? Status
     {
-        get { return JsonModel.GetNullableClass<ApiEnum<string, Status>>(this.RawData, "status"); }
+        get { return this._rawData.GetNullableClass<ApiEnum<string, Status>>("status"); }
         init
         {
             if (value == null)
@@ -78,13 +82,13 @@ public sealed record class AuthorizationResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "status", value);
+            this._rawData.Set("status", value);
         }
     }
 
     public string? Url
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "url"); }
+        get { return this._rawData.GetNullableClass<string>("url"); }
         init
         {
             if (value == null)
@@ -92,13 +96,13 @@ public sealed record class AuthorizationResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "url", value);
+            this._rawData.Set("url", value);
         }
     }
 
     public string? UserID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "user_id"); }
+        get { return this._rawData.GetNullableClass<string>("user_id"); }
         init
         {
             if (value == null)
@@ -106,7 +110,7 @@ public sealed record class AuthorizationResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "user_id", value);
+            this._rawData.Set("user_id", value);
         }
     }
 
@@ -129,14 +133,14 @@ public sealed record class AuthorizationResponse : JsonModel
 
     public AuthorizationResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AuthorizationResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

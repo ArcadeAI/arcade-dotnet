@@ -20,7 +20,7 @@ public sealed record class FormattedGetParams : ParamsBase
     /// </summary>
     public string? Format
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "format"); }
+        get { return this._rawQueryData.GetNullableClass<string>("format"); }
         init
         {
             if (value == null)
@@ -28,7 +28,7 @@ public sealed record class FormattedGetParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "format", value);
+            this._rawQueryData.Set("format", value);
         }
     }
 
@@ -37,7 +37,7 @@ public sealed record class FormattedGetParams : ParamsBase
     /// </summary>
     public string? UserID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "user_id"); }
+        get { return this._rawQueryData.GetNullableClass<string>("user_id"); }
         init
         {
             if (value == null)
@@ -45,7 +45,7 @@ public sealed record class FormattedGetParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "user_id", value);
+            this._rawQueryData.Set("user_id", value);
         }
     }
 
@@ -62,8 +62,8 @@ public sealed record class FormattedGetParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 
 #pragma warning disable CS8618
@@ -73,8 +73,8 @@ public sealed record class FormattedGetParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 #pragma warning restore CS8618
 

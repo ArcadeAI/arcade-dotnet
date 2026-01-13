@@ -12,8 +12,8 @@ public sealed record class ExecuteToolRequest : JsonModel
 {
     public required string ToolName
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "tool_name"); }
-        init { JsonModel.Set(this._rawData, "tool_name", value); }
+        get { return this._rawData.GetNotNullClass<string>("tool_name"); }
+        init { this._rawData.Set("tool_name", value); }
     }
 
     /// <summary>
@@ -22,7 +22,7 @@ public sealed record class ExecuteToolRequest : JsonModel
     /// </summary>
     public bool? IncludeErrorStacktrace
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "include_error_stacktrace"); }
+        get { return this._rawData.GetNullableStruct<bool>("include_error_stacktrace"); }
         init
         {
             if (value == null)
@@ -30,7 +30,7 @@ public sealed record class ExecuteToolRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "include_error_stacktrace", value);
+            this._rawData.Set("include_error_stacktrace", value);
         }
     }
 
@@ -41,10 +41,7 @@ public sealed record class ExecuteToolRequest : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<Dictionary<string, JsonElement>>(
-                this.RawData,
-                "input"
-            );
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>("input");
         }
         init
         {
@@ -53,7 +50,10 @@ public sealed record class ExecuteToolRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "input", value);
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "input",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
@@ -63,7 +63,7 @@ public sealed record class ExecuteToolRequest : JsonModel
     /// </summary>
     public string? RunAt
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "run_at"); }
+        get { return this._rawData.GetNullableClass<string>("run_at"); }
         init
         {
             if (value == null)
@@ -71,7 +71,7 @@ public sealed record class ExecuteToolRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "run_at", value);
+            this._rawData.Set("run_at", value);
         }
     }
 
@@ -80,7 +80,7 @@ public sealed record class ExecuteToolRequest : JsonModel
     /// </summary>
     public string? ToolVersion
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "tool_version"); }
+        get { return this._rawData.GetNullableClass<string>("tool_version"); }
         init
         {
             if (value == null)
@@ -88,13 +88,13 @@ public sealed record class ExecuteToolRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "tool_version", value);
+            this._rawData.Set("tool_version", value);
         }
     }
 
     public string? UserID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "user_id"); }
+        get { return this._rawData.GetNullableClass<string>("user_id"); }
         init
         {
             if (value == null)
@@ -102,7 +102,7 @@ public sealed record class ExecuteToolRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "user_id", value);
+            this._rawData.Set("user_id", value);
         }
     }
 
@@ -124,14 +124,14 @@ public sealed record class ExecuteToolRequest : JsonModel
 
     public ExecuteToolRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ExecuteToolRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

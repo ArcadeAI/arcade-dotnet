@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -14,18 +15,15 @@ public sealed record class AuthRequest : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<AuthRequestAuthRequirement>(
-                this.RawData,
-                "auth_requirement"
-            );
+            return this._rawData.GetNotNullClass<AuthRequestAuthRequirement>("auth_requirement");
         }
-        init { JsonModel.Set(this._rawData, "auth_requirement", value); }
+        init { this._rawData.Set("auth_requirement", value); }
     }
 
     public required string UserID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "user_id"); }
-        init { JsonModel.Set(this._rawData, "user_id", value); }
+        get { return this._rawData.GetNotNullClass<string>("user_id"); }
+        init { this._rawData.Set("user_id", value); }
     }
 
     /// <summary>
@@ -33,7 +31,7 @@ public sealed record class AuthRequest : JsonModel
     /// </summary>
     public string? NextUri
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "next_uri"); }
+        get { return this._rawData.GetNullableClass<string>("next_uri"); }
         init
         {
             if (value == null)
@@ -41,7 +39,7 @@ public sealed record class AuthRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "next_uri", value);
+            this._rawData.Set("next_uri", value);
         }
     }
 
@@ -60,14 +58,14 @@ public sealed record class AuthRequest : JsonModel
 
     public AuthRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AuthRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -95,7 +93,7 @@ public sealed record class AuthRequestAuthRequirement : JsonModel
     /// </summary>
     public string? ID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        get { return this._rawData.GetNullableClass<string>("id"); }
         init
         {
             if (value == null)
@@ -103,19 +101,13 @@ public sealed record class AuthRequestAuthRequirement : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "id", value);
+            this._rawData.Set("id", value);
         }
     }
 
     public AuthRequestAuthRequirementOauth2? Oauth2
     {
-        get
-        {
-            return JsonModel.GetNullableClass<AuthRequestAuthRequirementOauth2>(
-                this.RawData,
-                "oauth2"
-            );
-        }
+        get { return this._rawData.GetNullableClass<AuthRequestAuthRequirementOauth2>("oauth2"); }
         init
         {
             if (value == null)
@@ -123,7 +115,7 @@ public sealed record class AuthRequestAuthRequirement : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "oauth2", value);
+            this._rawData.Set("oauth2", value);
         }
     }
 
@@ -132,7 +124,7 @@ public sealed record class AuthRequestAuthRequirement : JsonModel
     /// </summary>
     public string? ProviderID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "provider_id"); }
+        get { return this._rawData.GetNullableClass<string>("provider_id"); }
         init
         {
             if (value == null)
@@ -140,13 +132,13 @@ public sealed record class AuthRequestAuthRequirement : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "provider_id", value);
+            this._rawData.Set("provider_id", value);
         }
     }
 
     public string? ProviderType
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "provider_type"); }
+        get { return this._rawData.GetNullableClass<string>("provider_type"); }
         init
         {
             if (value == null)
@@ -154,7 +146,7 @@ public sealed record class AuthRequestAuthRequirement : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "provider_type", value);
+            this._rawData.Set("provider_type", value);
         }
     }
 
@@ -174,14 +166,14 @@ public sealed record class AuthRequestAuthRequirement : JsonModel
 
     public AuthRequestAuthRequirement(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AuthRequestAuthRequirement(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -212,7 +204,7 @@ public sealed record class AuthRequestAuthRequirementOauth2 : JsonModel
 {
     public IReadOnlyList<string>? Scopes
     {
-        get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "scopes"); }
+        get { return this._rawData.GetNullableStruct<ImmutableArray<string>>("scopes"); }
         init
         {
             if (value == null)
@@ -220,7 +212,10 @@ public sealed record class AuthRequestAuthRequirementOauth2 : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "scopes", value);
+            this._rawData.Set<ImmutableArray<string>?>(
+                "scopes",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -239,14 +234,14 @@ public sealed record class AuthRequestAuthRequirementOauth2 : JsonModel
 
     public AuthRequestAuthRequirementOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AuthRequestAuthRequirementOauth2(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

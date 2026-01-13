@@ -12,13 +12,13 @@ public sealed record class CreateWorkerRequest : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     public bool? Enabled
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "enabled"); }
+        get { return this._rawData.GetNullableStruct<bool>("enabled"); }
         init
         {
             if (value == null)
@@ -26,13 +26,13 @@ public sealed record class CreateWorkerRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "enabled", value);
+            this._rawData.Set("enabled", value);
         }
     }
 
     public CreateWorkerRequestHttp? Http
     {
-        get { return JsonModel.GetNullableClass<CreateWorkerRequestHttp>(this.RawData, "http"); }
+        get { return this._rawData.GetNullableClass<CreateWorkerRequestHttp>("http"); }
         init
         {
             if (value == null)
@@ -40,13 +40,13 @@ public sealed record class CreateWorkerRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "http", value);
+            this._rawData.Set("http", value);
         }
     }
 
     public CreateWorkerRequestMcp? Mcp
     {
-        get { return JsonModel.GetNullableClass<CreateWorkerRequestMcp>(this.RawData, "mcp"); }
+        get { return this._rawData.GetNullableClass<CreateWorkerRequestMcp>("mcp"); }
         init
         {
             if (value == null)
@@ -54,13 +54,13 @@ public sealed record class CreateWorkerRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "mcp", value);
+            this._rawData.Set("mcp", value);
         }
     }
 
     public string? Type
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "type"); }
+        get { return this._rawData.GetNullableClass<string>("type"); }
         init
         {
             if (value == null)
@@ -68,7 +68,7 @@ public sealed record class CreateWorkerRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "type", value);
+            this._rawData.Set("type", value);
         }
     }
 
@@ -89,14 +89,14 @@ public sealed record class CreateWorkerRequest : JsonModel
 
     public CreateWorkerRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     CreateWorkerRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -128,26 +128,26 @@ public sealed record class CreateWorkerRequestHttp : JsonModel
 {
     public required long Retry
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "retry"); }
-        init { JsonModel.Set(this._rawData, "retry", value); }
+        get { return this._rawData.GetNotNullStruct<long>("retry"); }
+        init { this._rawData.Set("retry", value); }
     }
 
     public required string Secret
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "secret"); }
-        init { JsonModel.Set(this._rawData, "secret", value); }
+        get { return this._rawData.GetNotNullClass<string>("secret"); }
+        init { this._rawData.Set("secret", value); }
     }
 
     public required long Timeout
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "timeout"); }
-        init { JsonModel.Set(this._rawData, "timeout", value); }
+        get { return this._rawData.GetNotNullStruct<long>("timeout"); }
+        init { this._rawData.Set("timeout", value); }
     }
 
     public required string Uri
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "uri"); }
-        init { JsonModel.Set(this._rawData, "uri", value); }
+        get { return this._rawData.GetNotNullClass<string>("uri"); }
+        init { this._rawData.Set("uri", value); }
     }
 
     /// <inheritdoc/>
@@ -166,14 +166,14 @@ public sealed record class CreateWorkerRequestHttp : JsonModel
 
     public CreateWorkerRequestHttp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     CreateWorkerRequestHttp(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -199,28 +199,25 @@ public sealed record class CreateWorkerRequestMcp : JsonModel
 {
     public required long Retry
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "retry"); }
-        init { JsonModel.Set(this._rawData, "retry", value); }
+        get { return this._rawData.GetNotNullStruct<long>("retry"); }
+        init { this._rawData.Set("retry", value); }
     }
 
     public required long Timeout
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "timeout"); }
-        init { JsonModel.Set(this._rawData, "timeout", value); }
+        get { return this._rawData.GetNotNullStruct<long>("timeout"); }
+        init { this._rawData.Set("timeout", value); }
     }
 
     public required string Uri
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "uri"); }
-        init { JsonModel.Set(this._rawData, "uri", value); }
+        get { return this._rawData.GetNotNullClass<string>("uri"); }
+        init { this._rawData.Set("uri", value); }
     }
 
     public IReadOnlyDictionary<string, string>? Headers
     {
-        get
-        {
-            return JsonModel.GetNullableClass<Dictionary<string, string>>(this.RawData, "headers");
-        }
+        get { return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("headers"); }
         init
         {
             if (value == null)
@@ -228,16 +225,16 @@ public sealed record class CreateWorkerRequestMcp : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "headers", value);
+            this._rawData.Set<FrozenDictionary<string, string>?>(
+                "headers",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
     public CreateWorkerRequestMcpOauth2? Oauth2
     {
-        get
-        {
-            return JsonModel.GetNullableClass<CreateWorkerRequestMcpOauth2>(this.RawData, "oauth2");
-        }
+        get { return this._rawData.GetNullableClass<CreateWorkerRequestMcpOauth2>("oauth2"); }
         init
         {
             if (value == null)
@@ -245,16 +242,13 @@ public sealed record class CreateWorkerRequestMcp : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "oauth2", value);
+            this._rawData.Set("oauth2", value);
         }
     }
 
     public IReadOnlyDictionary<string, string>? Secrets
     {
-        get
-        {
-            return JsonModel.GetNullableClass<Dictionary<string, string>>(this.RawData, "secrets");
-        }
+        get { return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("secrets"); }
         init
         {
             if (value == null)
@@ -262,7 +256,10 @@ public sealed record class CreateWorkerRequestMcp : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "secrets", value);
+            this._rawData.Set<FrozenDictionary<string, string>?>(
+                "secrets",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
@@ -284,14 +281,14 @@ public sealed record class CreateWorkerRequestMcp : JsonModel
 
     public CreateWorkerRequestMcp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     CreateWorkerRequestMcp(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -319,7 +316,7 @@ public sealed record class CreateWorkerRequestMcpOauth2 : JsonModel
 {
     public string? AuthorizationUrl
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "authorization_url"); }
+        get { return this._rawData.GetNullableClass<string>("authorization_url"); }
         init
         {
             if (value == null)
@@ -327,13 +324,13 @@ public sealed record class CreateWorkerRequestMcpOauth2 : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "authorization_url", value);
+            this._rawData.Set("authorization_url", value);
         }
     }
 
     public string? ClientID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "client_id"); }
+        get { return this._rawData.GetNullableClass<string>("client_id"); }
         init
         {
             if (value == null)
@@ -341,13 +338,13 @@ public sealed record class CreateWorkerRequestMcpOauth2 : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "client_id", value);
+            this._rawData.Set("client_id", value);
         }
     }
 
     public string? ClientSecret
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "client_secret"); }
+        get { return this._rawData.GetNullableClass<string>("client_secret"); }
         init
         {
             if (value == null)
@@ -355,13 +352,13 @@ public sealed record class CreateWorkerRequestMcpOauth2 : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "client_secret", value);
+            this._rawData.Set("client_secret", value);
         }
     }
 
     public string? ExternalID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_id"); }
+        get { return this._rawData.GetNullableClass<string>("external_id"); }
         init
         {
             if (value == null)
@@ -369,7 +366,7 @@ public sealed record class CreateWorkerRequestMcpOauth2 : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "external_id", value);
+            this._rawData.Set("external_id", value);
         }
     }
 
@@ -389,14 +386,14 @@ public sealed record class CreateWorkerRequestMcpOauth2 : JsonModel
 
     public CreateWorkerRequestMcpOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     CreateWorkerRequestMcpOauth2(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

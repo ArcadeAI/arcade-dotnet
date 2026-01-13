@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -12,7 +13,7 @@ public sealed record class ChatResponse : JsonModel
 {
     public string? ID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        get { return this._rawData.GetNullableClass<string>("id"); }
         init
         {
             if (value == null)
@@ -20,13 +21,13 @@ public sealed record class ChatResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "id", value);
+            this._rawData.Set("id", value);
         }
     }
 
     public IReadOnlyList<Choice>? Choices
     {
-        get { return JsonModel.GetNullableClass<List<Choice>>(this.RawData, "choices"); }
+        get { return this._rawData.GetNullableStruct<ImmutableArray<Choice>>("choices"); }
         init
         {
             if (value == null)
@@ -34,13 +35,16 @@ public sealed record class ChatResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "choices", value);
+            this._rawData.Set<ImmutableArray<Choice>?>(
+                "choices",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
     public long? Created
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "created"); }
+        get { return this._rawData.GetNullableStruct<long>("created"); }
         init
         {
             if (value == null)
@@ -48,13 +52,13 @@ public sealed record class ChatResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "created", value);
+            this._rawData.Set("created", value);
         }
     }
 
     public string? Model
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "model"); }
+        get { return this._rawData.GetNullableClass<string>("model"); }
         init
         {
             if (value == null)
@@ -62,13 +66,13 @@ public sealed record class ChatResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "model", value);
+            this._rawData.Set("model", value);
         }
     }
 
     public string? Object
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "object"); }
+        get { return this._rawData.GetNullableClass<string>("object"); }
         init
         {
             if (value == null)
@@ -76,13 +80,13 @@ public sealed record class ChatResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "object", value);
+            this._rawData.Set("object", value);
         }
     }
 
     public string? SystemFingerprint
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "system_fingerprint"); }
+        get { return this._rawData.GetNullableClass<string>("system_fingerprint"); }
         init
         {
             if (value == null)
@@ -90,13 +94,13 @@ public sealed record class ChatResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "system_fingerprint", value);
+            this._rawData.Set("system_fingerprint", value);
         }
     }
 
     public Usage? Usage
     {
-        get { return JsonModel.GetNullableClass<Usage>(this.RawData, "usage"); }
+        get { return this._rawData.GetNullableClass<Usage>("usage"); }
         init
         {
             if (value == null)
@@ -104,7 +108,7 @@ public sealed record class ChatResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "usage", value);
+            this._rawData.Set("usage", value);
         }
     }
 
@@ -130,14 +134,14 @@ public sealed record class ChatResponse : JsonModel
 
     public ChatResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ChatResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

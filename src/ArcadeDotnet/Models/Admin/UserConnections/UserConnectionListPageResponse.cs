@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -19,7 +20,7 @@ public sealed record class UserConnectionListPageResponse : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<List<UserConnectionResponse>>(this.RawData, "items");
+            return this._rawData.GetNullableStruct<ImmutableArray<UserConnectionResponse>>("items");
         }
         init
         {
@@ -28,13 +29,16 @@ public sealed record class UserConnectionListPageResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "items", value);
+            this._rawData.Set<ImmutableArray<UserConnectionResponse>?>(
+                "items",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
     public long? Limit
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "limit"); }
+        get { return this._rawData.GetNullableStruct<long>("limit"); }
         init
         {
             if (value == null)
@@ -42,13 +46,13 @@ public sealed record class UserConnectionListPageResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "limit", value);
+            this._rawData.Set("limit", value);
         }
     }
 
     public long? Offset
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "offset"); }
+        get { return this._rawData.GetNullableStruct<long>("offset"); }
         init
         {
             if (value == null)
@@ -56,13 +60,13 @@ public sealed record class UserConnectionListPageResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "offset", value);
+            this._rawData.Set("offset", value);
         }
     }
 
     public long? PageCount
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "page_count"); }
+        get { return this._rawData.GetNullableStruct<long>("page_count"); }
         init
         {
             if (value == null)
@@ -70,13 +74,13 @@ public sealed record class UserConnectionListPageResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "page_count", value);
+            this._rawData.Set("page_count", value);
         }
     }
 
     public long? TotalCount
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "total_count"); }
+        get { return this._rawData.GetNullableStruct<long>("total_count"); }
         init
         {
             if (value == null)
@@ -84,7 +88,7 @@ public sealed record class UserConnectionListPageResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "total_count", value);
+            this._rawData.Set("total_count", value);
         }
     }
 
@@ -110,14 +114,14 @@ public sealed record class UserConnectionListPageResponse : JsonModel
 
     public UserConnectionListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     UserConnectionListPageResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

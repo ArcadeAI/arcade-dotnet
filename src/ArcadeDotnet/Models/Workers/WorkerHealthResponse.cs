@@ -12,7 +12,7 @@ public sealed record class WorkerHealthResponse : JsonModel
 {
     public string? ID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        get { return this._rawData.GetNullableClass<string>("id"); }
         init
         {
             if (value == null)
@@ -20,13 +20,13 @@ public sealed record class WorkerHealthResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "id", value);
+            this._rawData.Set("id", value);
         }
     }
 
     public bool? Enabled
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "enabled"); }
+        get { return this._rawData.GetNullableStruct<bool>("enabled"); }
         init
         {
             if (value == null)
@@ -34,13 +34,13 @@ public sealed record class WorkerHealthResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "enabled", value);
+            this._rawData.Set("enabled", value);
         }
     }
 
     public bool? Healthy
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "healthy"); }
+        get { return this._rawData.GetNullableStruct<bool>("healthy"); }
         init
         {
             if (value == null)
@@ -48,13 +48,13 @@ public sealed record class WorkerHealthResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "healthy", value);
+            this._rawData.Set("healthy", value);
         }
     }
 
     public string? Message
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "message"); }
+        get { return this._rawData.GetNullableClass<string>("message"); }
         init
         {
             if (value == null)
@@ -62,7 +62,7 @@ public sealed record class WorkerHealthResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "message", value);
+            this._rawData.Set("message", value);
         }
     }
 
@@ -82,14 +82,14 @@ public sealed record class WorkerHealthResponse : JsonModel
 
     public WorkerHealthResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     WorkerHealthResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

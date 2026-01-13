@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -12,7 +13,7 @@ public sealed record class ScheduledGetResponse : JsonModel
 {
     public string? ID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        get { return this._rawData.GetNullableClass<string>("id"); }
         init
         {
             if (value == null)
@@ -20,7 +21,7 @@ public sealed record class ScheduledGetResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "id", value);
+            this._rawData.Set("id", value);
         }
     }
 
@@ -28,82 +29,8 @@ public sealed record class ScheduledGetResponse : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<List<ToolExecutionAttempt>>(this.RawData, "attempts");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            JsonModel.Set(this._rawData, "attempts", value);
-        }
-    }
-
-    public string? CreatedAt
-    {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "created_at"); }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            JsonModel.Set(this._rawData, "created_at", value);
-        }
-    }
-
-    public string? ExecutionStatus
-    {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "execution_status"); }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            JsonModel.Set(this._rawData, "execution_status", value);
-        }
-    }
-
-    public string? ExecutionType
-    {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "execution_type"); }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            JsonModel.Set(this._rawData, "execution_type", value);
-        }
-    }
-
-    public string? FinishedAt
-    {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "finished_at"); }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            JsonModel.Set(this._rawData, "finished_at", value);
-        }
-    }
-
-    public IReadOnlyDictionary<string, JsonElement>? Input
-    {
-        get
-        {
-            return JsonModel.GetNullableClass<Dictionary<string, JsonElement>>(
-                this.RawData,
-                "input"
+            return this._rawData.GetNullableStruct<ImmutableArray<ToolExecutionAttempt>>(
+                "attempts"
             );
         }
         init
@@ -113,13 +40,92 @@ public sealed record class ScheduledGetResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "input", value);
+            this._rawData.Set<ImmutableArray<ToolExecutionAttempt>?>(
+                "attempts",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    public string? CreatedAt
+    {
+        get { return this._rawData.GetNullableClass<string>("created_at"); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("created_at", value);
+        }
+    }
+
+    public string? ExecutionStatus
+    {
+        get { return this._rawData.GetNullableClass<string>("execution_status"); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("execution_status", value);
+        }
+    }
+
+    public string? ExecutionType
+    {
+        get { return this._rawData.GetNullableClass<string>("execution_type"); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("execution_type", value);
+        }
+    }
+
+    public string? FinishedAt
+    {
+        get { return this._rawData.GetNullableClass<string>("finished_at"); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("finished_at", value);
+        }
+    }
+
+    public IReadOnlyDictionary<string, JsonElement>? Input
+    {
+        get
+        {
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>("input");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "input",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
     public string? RunAt
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "run_at"); }
+        get { return this._rawData.GetNullableClass<string>("run_at"); }
         init
         {
             if (value == null)
@@ -127,13 +133,13 @@ public sealed record class ScheduledGetResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "run_at", value);
+            this._rawData.Set("run_at", value);
         }
     }
 
     public string? StartedAt
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "started_at"); }
+        get { return this._rawData.GetNullableClass<string>("started_at"); }
         init
         {
             if (value == null)
@@ -141,13 +147,13 @@ public sealed record class ScheduledGetResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "started_at", value);
+            this._rawData.Set("started_at", value);
         }
     }
 
     public string? ToolName
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "tool_name"); }
+        get { return this._rawData.GetNullableClass<string>("tool_name"); }
         init
         {
             if (value == null)
@@ -155,13 +161,13 @@ public sealed record class ScheduledGetResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "tool_name", value);
+            this._rawData.Set("tool_name", value);
         }
     }
 
     public string? ToolkitName
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "toolkit_name"); }
+        get { return this._rawData.GetNullableClass<string>("toolkit_name"); }
         init
         {
             if (value == null)
@@ -169,13 +175,13 @@ public sealed record class ScheduledGetResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "toolkit_name", value);
+            this._rawData.Set("toolkit_name", value);
         }
     }
 
     public string? ToolkitVersion
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "toolkit_version"); }
+        get { return this._rawData.GetNullableClass<string>("toolkit_version"); }
         init
         {
             if (value == null)
@@ -183,13 +189,13 @@ public sealed record class ScheduledGetResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "toolkit_version", value);
+            this._rawData.Set("toolkit_version", value);
         }
     }
 
     public string? UpdatedAt
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "updated_at"); }
+        get { return this._rawData.GetNullableClass<string>("updated_at"); }
         init
         {
             if (value == null)
@@ -197,13 +203,13 @@ public sealed record class ScheduledGetResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "updated_at", value);
+            this._rawData.Set("updated_at", value);
         }
     }
 
     public string? UserID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "user_id"); }
+        get { return this._rawData.GetNullableClass<string>("user_id"); }
         init
         {
             if (value == null)
@@ -211,7 +217,7 @@ public sealed record class ScheduledGetResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "user_id", value);
+            this._rawData.Set("user_id", value);
         }
     }
 
@@ -244,14 +250,14 @@ public sealed record class ScheduledGetResponse : JsonModel
 
     public ScheduledGetResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ScheduledGetResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

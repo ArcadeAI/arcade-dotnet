@@ -19,7 +19,7 @@ public sealed record class UserConnectionListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "limit"); }
+        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
         init
         {
             if (value == null)
@@ -27,7 +27,7 @@ public sealed record class UserConnectionListParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "limit", value);
+            this._rawQueryData.Set("limit", value);
         }
     }
 
@@ -36,7 +36,7 @@ public sealed record class UserConnectionListParams : ParamsBase
     /// </summary>
     public long? Offset
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "offset"); }
+        get { return this._rawQueryData.GetNullableStruct<long>("offset"); }
         init
         {
             if (value == null)
@@ -44,13 +44,13 @@ public sealed record class UserConnectionListParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "offset", value);
+            this._rawQueryData.Set("offset", value);
         }
     }
 
     public Provider? Provider
     {
-        get { return JsonModel.GetNullableClass<Provider>(this.RawQueryData, "provider"); }
+        get { return this._rawQueryData.GetNullableClass<Provider>("provider"); }
         init
         {
             if (value == null)
@@ -58,13 +58,13 @@ public sealed record class UserConnectionListParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "provider", value);
+            this._rawQueryData.Set("provider", value);
         }
     }
 
     public User? User
     {
-        get { return JsonModel.GetNullableClass<User>(this.RawQueryData, "user"); }
+        get { return this._rawQueryData.GetNullableClass<User>("user"); }
         init
         {
             if (value == null)
@@ -72,7 +72,7 @@ public sealed record class UserConnectionListParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "user", value);
+            this._rawQueryData.Set("user", value);
         }
     }
 
@@ -86,8 +86,8 @@ public sealed record class UserConnectionListParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 
 #pragma warning disable CS8618
@@ -97,8 +97,8 @@ public sealed record class UserConnectionListParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 #pragma warning restore CS8618
 
@@ -142,7 +142,7 @@ public sealed record class Provider : JsonModel
     /// </summary>
     public string? ID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        get { return this._rawData.GetNullableClass<string>("id"); }
         init
         {
             if (value == null)
@@ -150,7 +150,7 @@ public sealed record class Provider : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "id", value);
+            this._rawData.Set("id", value);
         }
     }
 
@@ -167,14 +167,14 @@ public sealed record class Provider : JsonModel
 
     public Provider(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Provider(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -200,7 +200,7 @@ public sealed record class User : JsonModel
     /// </summary>
     public string? ID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        get { return this._rawData.GetNullableClass<string>("id"); }
         init
         {
             if (value == null)
@@ -208,7 +208,7 @@ public sealed record class User : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "id", value);
+            this._rawData.Set("id", value);
         }
     }
 
@@ -225,14 +225,14 @@ public sealed record class User : JsonModel
 
     public User(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     User(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

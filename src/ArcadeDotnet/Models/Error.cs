@@ -12,7 +12,7 @@ public sealed record class Error : JsonModel
 {
     public string? Message
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "message"); }
+        get { return this._rawData.GetNullableClass<string>("message"); }
         init
         {
             if (value == null)
@@ -20,13 +20,13 @@ public sealed record class Error : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "message", value);
+            this._rawData.Set("message", value);
         }
     }
 
     public string? Name
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "name"); }
+        get { return this._rawData.GetNullableClass<string>("name"); }
         init
         {
             if (value == null)
@@ -34,7 +34,7 @@ public sealed record class Error : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "name", value);
+            this._rawData.Set("name", value);
         }
     }
 
@@ -52,14 +52,14 @@ public sealed record class Error : JsonModel
 
     public Error(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Error(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

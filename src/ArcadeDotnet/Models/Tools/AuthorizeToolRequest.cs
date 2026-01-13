@@ -12,8 +12,8 @@ public sealed record class AuthorizeToolRequest : JsonModel
 {
     public required string ToolName
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "tool_name"); }
-        init { JsonModel.Set(this._rawData, "tool_name", value); }
+        get { return this._rawData.GetNotNullClass<string>("tool_name"); }
+        init { this._rawData.Set("tool_name", value); }
     }
 
     /// <summary>
@@ -21,7 +21,7 @@ public sealed record class AuthorizeToolRequest : JsonModel
     /// </summary>
     public string? NextUri
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "next_uri"); }
+        get { return this._rawData.GetNullableClass<string>("next_uri"); }
         init
         {
             if (value == null)
@@ -29,7 +29,7 @@ public sealed record class AuthorizeToolRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "next_uri", value);
+            this._rawData.Set("next_uri", value);
         }
     }
 
@@ -38,7 +38,7 @@ public sealed record class AuthorizeToolRequest : JsonModel
     /// </summary>
     public string? ToolVersion
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "tool_version"); }
+        get { return this._rawData.GetNullableClass<string>("tool_version"); }
         init
         {
             if (value == null)
@@ -46,7 +46,7 @@ public sealed record class AuthorizeToolRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "tool_version", value);
+            this._rawData.Set("tool_version", value);
         }
     }
 
@@ -55,7 +55,7 @@ public sealed record class AuthorizeToolRequest : JsonModel
     /// </summary>
     public string? UserID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "user_id"); }
+        get { return this._rawData.GetNullableClass<string>("user_id"); }
         init
         {
             if (value == null)
@@ -63,7 +63,7 @@ public sealed record class AuthorizeToolRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "user_id", value);
+            this._rawData.Set("user_id", value);
         }
     }
 
@@ -83,14 +83,14 @@ public sealed record class AuthorizeToolRequest : JsonModel
 
     public AuthorizeToolRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AuthorizeToolRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

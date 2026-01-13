@@ -12,7 +12,7 @@ public sealed record class HealthSchema : JsonModel
 {
     public bool? Healthy
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "healthy"); }
+        get { return this._rawData.GetNullableStruct<bool>("healthy"); }
         init
         {
             if (value == null)
@@ -20,7 +20,7 @@ public sealed record class HealthSchema : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "healthy", value);
+            this._rawData.Set("healthy", value);
         }
     }
 
@@ -37,14 +37,14 @@ public sealed record class HealthSchema : JsonModel
 
     public HealthSchema(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     HealthSchema(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

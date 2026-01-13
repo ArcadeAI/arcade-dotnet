@@ -20,8 +20,8 @@ public sealed record class AuthStatusParams : ParamsBase
     /// </summary>
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawQueryData, "id"); }
-        init { JsonModel.Set(this._rawQueryData, "id", value); }
+        get { return this._rawQueryData.GetNotNullClass<string>("id"); }
+        init { this._rawQueryData.Set("id", value); }
     }
 
     /// <summary>
@@ -29,7 +29,7 @@ public sealed record class AuthStatusParams : ParamsBase
     /// </summary>
     public long? Wait
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "wait"); }
+        get { return this._rawQueryData.GetNullableStruct<long>("wait"); }
         init
         {
             if (value == null)
@@ -37,7 +37,7 @@ public sealed record class AuthStatusParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "wait", value);
+            this._rawQueryData.Set("wait", value);
         }
     }
 
@@ -51,8 +51,8 @@ public sealed record class AuthStatusParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 
 #pragma warning disable CS8618
@@ -62,8 +62,8 @@ public sealed record class AuthStatusParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 #pragma warning restore CS8618
 

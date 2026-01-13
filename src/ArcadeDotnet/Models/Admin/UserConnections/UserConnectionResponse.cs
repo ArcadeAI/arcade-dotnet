@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -12,7 +13,7 @@ public sealed record class UserConnectionResponse : JsonModel
 {
     public string? ID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        get { return this._rawData.GetNullableClass<string>("id"); }
         init
         {
             if (value == null)
@@ -20,13 +21,13 @@ public sealed record class UserConnectionResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "id", value);
+            this._rawData.Set("id", value);
         }
     }
 
     public string? ConnectionID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "connection_id"); }
+        get { return this._rawData.GetNullableClass<string>("connection_id"); }
         init
         {
             if (value == null)
@@ -34,13 +35,13 @@ public sealed record class UserConnectionResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "connection_id", value);
+            this._rawData.Set("connection_id", value);
         }
     }
 
     public string? ConnectionStatus
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "connection_status"); }
+        get { return this._rawData.GetNullableClass<string>("connection_status"); }
         init
         {
             if (value == null)
@@ -48,13 +49,13 @@ public sealed record class UserConnectionResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "connection_status", value);
+            this._rawData.Set("connection_status", value);
         }
     }
 
     public string? ProviderDescription
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "provider_description"); }
+        get { return this._rawData.GetNullableClass<string>("provider_description"); }
         init
         {
             if (value == null)
@@ -62,13 +63,13 @@ public sealed record class UserConnectionResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "provider_description", value);
+            this._rawData.Set("provider_description", value);
         }
     }
 
     public string? ProviderID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "provider_id"); }
+        get { return this._rawData.GetNullableClass<string>("provider_id"); }
         init
         {
             if (value == null)
@@ -76,13 +77,13 @@ public sealed record class UserConnectionResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "provider_id", value);
+            this._rawData.Set("provider_id", value);
         }
     }
 
     public string? ProviderType
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "provider_type"); }
+        get { return this._rawData.GetNullableClass<string>("provider_type"); }
         init
         {
             if (value == null)
@@ -90,13 +91,13 @@ public sealed record class UserConnectionResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "provider_type", value);
+            this._rawData.Set("provider_type", value);
         }
     }
 
     public JsonElement? ProviderUserInfo
     {
-        get { return JsonModel.GetNullableStruct<JsonElement>(this.RawData, "provider_user_info"); }
+        get { return this._rawData.GetNullableStruct<JsonElement>("provider_user_info"); }
         init
         {
             if (value == null)
@@ -104,13 +105,13 @@ public sealed record class UserConnectionResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "provider_user_info", value);
+            this._rawData.Set("provider_user_info", value);
         }
     }
 
     public IReadOnlyList<string>? Scopes
     {
-        get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "scopes"); }
+        get { return this._rawData.GetNullableStruct<ImmutableArray<string>>("scopes"); }
         init
         {
             if (value == null)
@@ -118,13 +119,16 @@ public sealed record class UserConnectionResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "scopes", value);
+            this._rawData.Set<ImmutableArray<string>?>(
+                "scopes",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
     public string? UserID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "user_id"); }
+        get { return this._rawData.GetNullableClass<string>("user_id"); }
         init
         {
             if (value == null)
@@ -132,7 +136,7 @@ public sealed record class UserConnectionResponse : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "user_id", value);
+            this._rawData.Set("user_id", value);
         }
     }
 
@@ -157,14 +161,14 @@ public sealed record class UserConnectionResponse : JsonModel
 
     public UserConnectionResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     UserConnectionResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

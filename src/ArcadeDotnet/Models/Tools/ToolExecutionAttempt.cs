@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -14,7 +15,7 @@ public sealed record class ToolExecutionAttempt : JsonModel
 {
     public string? ID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        get { return this._rawData.GetNullableClass<string>("id"); }
         init
         {
             if (value == null)
@@ -22,13 +23,13 @@ public sealed record class ToolExecutionAttempt : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "id", value);
+            this._rawData.Set("id", value);
         }
     }
 
     public string? FinishedAt
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "finished_at"); }
+        get { return this._rawData.GetNullableClass<string>("finished_at"); }
         init
         {
             if (value == null)
@@ -36,16 +37,13 @@ public sealed record class ToolExecutionAttempt : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "finished_at", value);
+            this._rawData.Set("finished_at", value);
         }
     }
 
     public ToolExecutionAttemptOutput? Output
     {
-        get
-        {
-            return JsonModel.GetNullableClass<ToolExecutionAttemptOutput>(this.RawData, "output");
-        }
+        get { return this._rawData.GetNullableClass<ToolExecutionAttemptOutput>("output"); }
         init
         {
             if (value == null)
@@ -53,13 +51,13 @@ public sealed record class ToolExecutionAttempt : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "output", value);
+            this._rawData.Set("output", value);
         }
     }
 
     public string? StartedAt
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "started_at"); }
+        get { return this._rawData.GetNullableClass<string>("started_at"); }
         init
         {
             if (value == null)
@@ -67,13 +65,13 @@ public sealed record class ToolExecutionAttempt : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "started_at", value);
+            this._rawData.Set("started_at", value);
         }
     }
 
     public bool? Success
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "success"); }
+        get { return this._rawData.GetNullableStruct<bool>("success"); }
         init
         {
             if (value == null)
@@ -81,13 +79,13 @@ public sealed record class ToolExecutionAttempt : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "success", value);
+            this._rawData.Set("success", value);
         }
     }
 
     public string? SystemErrorMessage
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "system_error_message"); }
+        get { return this._rawData.GetNullableClass<string>("system_error_message"); }
         init
         {
             if (value == null)
@@ -95,7 +93,7 @@ public sealed record class ToolExecutionAttempt : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "system_error_message", value);
+            this._rawData.Set("system_error_message", value);
         }
     }
 
@@ -117,14 +115,14 @@ public sealed record class ToolExecutionAttempt : JsonModel
 
     public ToolExecutionAttempt(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ToolExecutionAttempt(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -152,10 +150,7 @@ public sealed record class ToolExecutionAttemptOutput : JsonModel
 {
     public AuthorizationResponse? Authorization
     {
-        get
-        {
-            return JsonModel.GetNullableClass<AuthorizationResponse>(this.RawData, "authorization");
-        }
+        get { return this._rawData.GetNullableClass<AuthorizationResponse>("authorization"); }
         init
         {
             if (value == null)
@@ -163,19 +158,13 @@ public sealed record class ToolExecutionAttemptOutput : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "authorization", value);
+            this._rawData.Set("authorization", value);
         }
     }
 
     public ToolExecutionAttemptOutputError? Error
     {
-        get
-        {
-            return JsonModel.GetNullableClass<ToolExecutionAttemptOutputError>(
-                this.RawData,
-                "error"
-            );
-        }
+        get { return this._rawData.GetNullableClass<ToolExecutionAttemptOutputError>("error"); }
         init
         {
             if (value == null)
@@ -183,7 +172,7 @@ public sealed record class ToolExecutionAttemptOutput : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "error", value);
+            this._rawData.Set("error", value);
         }
     }
 
@@ -191,8 +180,7 @@ public sealed record class ToolExecutionAttemptOutput : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<List<ToolExecutionAttemptOutputLog>>(
-                this.RawData,
+            return this._rawData.GetNullableStruct<ImmutableArray<ToolExecutionAttemptOutputLog>>(
                 "logs"
             );
         }
@@ -203,13 +191,16 @@ public sealed record class ToolExecutionAttemptOutput : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "logs", value);
+            this._rawData.Set<ImmutableArray<ToolExecutionAttemptOutputLog>?>(
+                "logs",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
     public JsonElement? Value
     {
-        get { return JsonModel.GetNullableStruct<JsonElement>(this.RawData, "value"); }
+        get { return this._rawData.GetNullableStruct<JsonElement>("value"); }
         init
         {
             if (value == null)
@@ -217,7 +208,7 @@ public sealed record class ToolExecutionAttemptOutput : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "value", value);
+            this._rawData.Set("value", value);
         }
     }
 
@@ -240,14 +231,14 @@ public sealed record class ToolExecutionAttemptOutput : JsonModel
 
     public ToolExecutionAttemptOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ToolExecutionAttemptOutput(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -278,34 +269,30 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
 {
     public required bool CanRetry
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "can_retry"); }
-        init { JsonModel.Set(this._rawData, "can_retry", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("can_retry"); }
+        init { this._rawData.Set("can_retry", value); }
     }
 
     public required ApiEnum<string, ToolExecutionAttemptOutputErrorKind> Kind
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, ToolExecutionAttemptOutputErrorKind>>(
-                this.RawData,
-                "kind"
-            );
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, ToolExecutionAttemptOutputErrorKind>
+            >("kind");
         }
-        init { JsonModel.Set(this._rawData, "kind", value); }
+        init { this._rawData.Set("kind", value); }
     }
 
     public required string Message
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "message"); }
-        init { JsonModel.Set(this._rawData, "message", value); }
+        get { return this._rawData.GetNotNullClass<string>("message"); }
+        init { this._rawData.Set("message", value); }
     }
 
     public string? AdditionalPromptContent
     {
-        get
-        {
-            return JsonModel.GetNullableClass<string>(this.RawData, "additional_prompt_content");
-        }
+        get { return this._rawData.GetNullableClass<string>("additional_prompt_content"); }
         init
         {
             if (value == null)
@@ -313,13 +300,13 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "additional_prompt_content", value);
+            this._rawData.Set("additional_prompt_content", value);
         }
     }
 
     public string? DeveloperMessage
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "developer_message"); }
+        get { return this._rawData.GetNullableClass<string>("developer_message"); }
         init
         {
             if (value == null)
@@ -327,7 +314,7 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "developer_message", value);
+            this._rawData.Set("developer_message", value);
         }
     }
 
@@ -335,10 +322,7 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<Dictionary<string, JsonElement>>(
-                this.RawData,
-                "extra"
-            );
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>("extra");
         }
         init
         {
@@ -347,13 +331,16 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "extra", value);
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "extra",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
     public long? RetryAfterMs
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "retry_after_ms"); }
+        get { return this._rawData.GetNullableStruct<long>("retry_after_ms"); }
         init
         {
             if (value == null)
@@ -361,13 +348,13 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "retry_after_ms", value);
+            this._rawData.Set("retry_after_ms", value);
         }
     }
 
     public string? Stacktrace
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "stacktrace"); }
+        get { return this._rawData.GetNullableClass<string>("stacktrace"); }
         init
         {
             if (value == null)
@@ -375,13 +362,13 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "stacktrace", value);
+            this._rawData.Set("stacktrace", value);
         }
     }
 
     public long? StatusCode
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "status_code"); }
+        get { return this._rawData.GetNullableStruct<long>("status_code"); }
         init
         {
             if (value == null)
@@ -389,7 +376,7 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "status_code", value);
+            this._rawData.Set("status_code", value);
         }
     }
 
@@ -416,14 +403,14 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
 
     public ToolExecutionAttemptOutputError(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ToolExecutionAttemptOutputError(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -572,19 +559,19 @@ public sealed record class ToolExecutionAttemptOutputLog : JsonModel
 {
     public required string Level
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "level"); }
-        init { JsonModel.Set(this._rawData, "level", value); }
+        get { return this._rawData.GetNotNullClass<string>("level"); }
+        init { this._rawData.Set("level", value); }
     }
 
     public required string Message
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "message"); }
-        init { JsonModel.Set(this._rawData, "message", value); }
+        get { return this._rawData.GetNotNullClass<string>("message"); }
+        init { this._rawData.Set("message", value); }
     }
 
     public string? Subtype
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "subtype"); }
+        get { return this._rawData.GetNullableClass<string>("subtype"); }
         init
         {
             if (value == null)
@@ -592,7 +579,7 @@ public sealed record class ToolExecutionAttemptOutputLog : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "subtype", value);
+            this._rawData.Set("subtype", value);
         }
     }
 
@@ -613,14 +600,14 @@ public sealed record class ToolExecutionAttemptOutputLog : JsonModel
 
     public ToolExecutionAttemptOutputLog(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ToolExecutionAttemptOutputLog(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

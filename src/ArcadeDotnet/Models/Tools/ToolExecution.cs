@@ -12,7 +12,7 @@ public sealed record class ToolExecution : JsonModel
 {
     public string? ID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        get { return this._rawData.GetNullableClass<string>("id"); }
         init
         {
             if (value == null)
@@ -20,13 +20,13 @@ public sealed record class ToolExecution : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "id", value);
+            this._rawData.Set("id", value);
         }
     }
 
     public string? CreatedAt
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "created_at"); }
+        get { return this._rawData.GetNullableClass<string>("created_at"); }
         init
         {
             if (value == null)
@@ -34,13 +34,13 @@ public sealed record class ToolExecution : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "created_at", value);
+            this._rawData.Set("created_at", value);
         }
     }
 
     public string? ExecutionStatus
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "execution_status"); }
+        get { return this._rawData.GetNullableClass<string>("execution_status"); }
         init
         {
             if (value == null)
@@ -48,13 +48,13 @@ public sealed record class ToolExecution : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "execution_status", value);
+            this._rawData.Set("execution_status", value);
         }
     }
 
     public string? ExecutionType
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "execution_type"); }
+        get { return this._rawData.GetNullableClass<string>("execution_type"); }
         init
         {
             if (value == null)
@@ -62,13 +62,13 @@ public sealed record class ToolExecution : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "execution_type", value);
+            this._rawData.Set("execution_type", value);
         }
     }
 
     public string? FinishedAt
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "finished_at"); }
+        get { return this._rawData.GetNullableClass<string>("finished_at"); }
         init
         {
             if (value == null)
@@ -76,13 +76,13 @@ public sealed record class ToolExecution : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "finished_at", value);
+            this._rawData.Set("finished_at", value);
         }
     }
 
     public string? RunAt
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "run_at"); }
+        get { return this._rawData.GetNullableClass<string>("run_at"); }
         init
         {
             if (value == null)
@@ -90,13 +90,13 @@ public sealed record class ToolExecution : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "run_at", value);
+            this._rawData.Set("run_at", value);
         }
     }
 
     public string? StartedAt
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "started_at"); }
+        get { return this._rawData.GetNullableClass<string>("started_at"); }
         init
         {
             if (value == null)
@@ -104,13 +104,13 @@ public sealed record class ToolExecution : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "started_at", value);
+            this._rawData.Set("started_at", value);
         }
     }
 
     public string? ToolName
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "tool_name"); }
+        get { return this._rawData.GetNullableClass<string>("tool_name"); }
         init
         {
             if (value == null)
@@ -118,13 +118,13 @@ public sealed record class ToolExecution : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "tool_name", value);
+            this._rawData.Set("tool_name", value);
         }
     }
 
     public string? ToolkitName
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "toolkit_name"); }
+        get { return this._rawData.GetNullableClass<string>("toolkit_name"); }
         init
         {
             if (value == null)
@@ -132,13 +132,13 @@ public sealed record class ToolExecution : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "toolkit_name", value);
+            this._rawData.Set("toolkit_name", value);
         }
     }
 
     public string? ToolkitVersion
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "toolkit_version"); }
+        get { return this._rawData.GetNullableClass<string>("toolkit_version"); }
         init
         {
             if (value == null)
@@ -146,13 +146,13 @@ public sealed record class ToolExecution : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "toolkit_version", value);
+            this._rawData.Set("toolkit_version", value);
         }
     }
 
     public string? UpdatedAt
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "updated_at"); }
+        get { return this._rawData.GetNullableClass<string>("updated_at"); }
         init
         {
             if (value == null)
@@ -160,13 +160,13 @@ public sealed record class ToolExecution : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "updated_at", value);
+            this._rawData.Set("updated_at", value);
         }
     }
 
     public string? UserID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "user_id"); }
+        get { return this._rawData.GetNullableClass<string>("user_id"); }
         init
         {
             if (value == null)
@@ -174,7 +174,7 @@ public sealed record class ToolExecution : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "user_id", value);
+            this._rawData.Set("user_id", value);
         }
     }
 
@@ -202,14 +202,14 @@ public sealed record class ToolExecution : JsonModel
 
     public ToolExecution(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ToolExecution(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

@@ -14,7 +14,7 @@ namespace ArcadeDotnet.Models.Tools;
 /// </summary>
 public sealed record class ToolExecuteParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -22,8 +22,8 @@ public sealed record class ToolExecuteParams : ParamsBase
 
     public required string ToolName
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "tool_name"); }
-        init { JsonModel.Set(this._rawBodyData, "tool_name", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("tool_name"); }
+        init { this._rawBodyData.Set("tool_name", value); }
     }
 
     /// <summary>
@@ -32,10 +32,7 @@ public sealed record class ToolExecuteParams : ParamsBase
     /// </summary>
     public bool? IncludeErrorStacktrace
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "include_error_stacktrace");
-        }
+        get { return this._rawBodyData.GetNullableStruct<bool>("include_error_stacktrace"); }
         init
         {
             if (value == null)
@@ -43,7 +40,7 @@ public sealed record class ToolExecuteParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "include_error_stacktrace", value);
+            this._rawBodyData.Set("include_error_stacktrace", value);
         }
     }
 
@@ -54,8 +51,7 @@ public sealed record class ToolExecuteParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableClass<Dictionary<string, JsonElement>>(
-                this.RawBodyData,
+            return this._rawBodyData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
                 "input"
             );
         }
@@ -66,7 +62,10 @@ public sealed record class ToolExecuteParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "input", value);
+            this._rawBodyData.Set<FrozenDictionary<string, JsonElement>?>(
+                "input",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
@@ -76,7 +75,7 @@ public sealed record class ToolExecuteParams : ParamsBase
     /// </summary>
     public string? RunAt
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "run_at"); }
+        get { return this._rawBodyData.GetNullableClass<string>("run_at"); }
         init
         {
             if (value == null)
@@ -84,7 +83,7 @@ public sealed record class ToolExecuteParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "run_at", value);
+            this._rawBodyData.Set("run_at", value);
         }
     }
 
@@ -93,7 +92,7 @@ public sealed record class ToolExecuteParams : ParamsBase
     /// </summary>
     public string? ToolVersion
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "tool_version"); }
+        get { return this._rawBodyData.GetNullableClass<string>("tool_version"); }
         init
         {
             if (value == null)
@@ -101,13 +100,13 @@ public sealed record class ToolExecuteParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "tool_version", value);
+            this._rawBodyData.Set("tool_version", value);
         }
     }
 
     public string? UserID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "user_id"); }
+        get { return this._rawBodyData.GetNullableClass<string>("user_id"); }
         init
         {
             if (value == null)
@@ -115,7 +114,7 @@ public sealed record class ToolExecuteParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "user_id", value);
+            this._rawBodyData.Set("user_id", value);
         }
     }
 
@@ -124,7 +123,7 @@ public sealed record class ToolExecuteParams : ParamsBase
     public ToolExecuteParams(ToolExecuteParams toolExecuteParams)
         : base(toolExecuteParams)
     {
-        this._rawBodyData = [.. toolExecuteParams._rawBodyData];
+        this._rawBodyData = new(toolExecuteParams._rawBodyData);
     }
 
     public ToolExecuteParams(
@@ -133,9 +132,9 @@ public sealed record class ToolExecuteParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -146,9 +145,9 @@ public sealed record class ToolExecuteParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

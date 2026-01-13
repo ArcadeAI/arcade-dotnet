@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
@@ -16,7 +17,7 @@ namespace ArcadeDotnet.Models.Chat.Completions;
 /// </summary>
 public sealed record class CompletionCreateParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -24,7 +25,7 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public double? FrequencyPenalty
     {
-        get { return JsonModel.GetNullableStruct<double>(this.RawBodyData, "frequency_penalty"); }
+        get { return this._rawBodyData.GetNullableStruct<double>("frequency_penalty"); }
         init
         {
             if (value == null)
@@ -32,7 +33,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "frequency_penalty", value);
+            this._rawBodyData.Set("frequency_penalty", value);
         }
     }
 
@@ -45,10 +46,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableClass<Dictionary<string, long>>(
-                this.RawBodyData,
-                "logit_bias"
-            );
+            return this._rawBodyData.GetNullableClass<FrozenDictionary<string, long>>("logit_bias");
         }
         init
         {
@@ -57,7 +55,10 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "logit_bias", value);
+            this._rawBodyData.Set<FrozenDictionary<string, long>?>(
+                "logit_bias",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
@@ -68,7 +69,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     /// </summary>
     public bool? Logprobs
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "logprobs"); }
+        get { return this._rawBodyData.GetNullableStruct<bool>("logprobs"); }
         init
         {
             if (value == null)
@@ -76,13 +77,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "logprobs", value);
+            this._rawBodyData.Set("logprobs", value);
         }
     }
 
     public long? MaxTokens
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "max_tokens"); }
+        get { return this._rawBodyData.GetNullableStruct<long>("max_tokens"); }
         init
         {
             if (value == null)
@@ -90,13 +91,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "max_tokens", value);
+            this._rawBodyData.Set("max_tokens", value);
         }
     }
 
     public IReadOnlyList<ChatMessage>? Messages
     {
-        get { return JsonModel.GetNullableClass<List<ChatMessage>>(this.RawBodyData, "messages"); }
+        get { return this._rawBodyData.GetNullableStruct<ImmutableArray<ChatMessage>>("messages"); }
         init
         {
             if (value == null)
@@ -104,13 +105,16 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "messages", value);
+            this._rawBodyData.Set<ImmutableArray<ChatMessage>?>(
+                "messages",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
     public string? Model
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "model"); }
+        get { return this._rawBodyData.GetNullableClass<string>("model"); }
         init
         {
             if (value == null)
@@ -118,13 +122,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "model", value);
+            this._rawBodyData.Set("model", value);
         }
     }
 
     public long? N
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "n"); }
+        get { return this._rawBodyData.GetNullableStruct<long>("n"); }
         init
         {
             if (value == null)
@@ -132,7 +136,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "n", value);
+            this._rawBodyData.Set("n", value);
         }
     }
 
@@ -141,7 +145,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     /// </summary>
     public bool? ParallelToolCalls
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "parallel_tool_calls"); }
+        get { return this._rawBodyData.GetNullableStruct<bool>("parallel_tool_calls"); }
         init
         {
             if (value == null)
@@ -149,13 +153,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "parallel_tool_calls", value);
+            this._rawBodyData.Set("parallel_tool_calls", value);
         }
     }
 
     public double? PresencePenalty
     {
-        get { return JsonModel.GetNullableStruct<double>(this.RawBodyData, "presence_penalty"); }
+        get { return this._rawBodyData.GetNullableStruct<double>("presence_penalty"); }
         init
         {
             if (value == null)
@@ -163,7 +167,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "presence_penalty", value);
+            this._rawBodyData.Set("presence_penalty", value);
         }
     }
 
@@ -171,8 +175,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableClass<global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat>(
-                this.RawBodyData,
+            return this._rawBodyData.GetNullableClass<global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat>(
                 "response_format"
             );
         }
@@ -183,13 +186,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "response_format", value);
+            this._rawBodyData.Set("response_format", value);
         }
     }
 
     public long? Seed
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "seed"); }
+        get { return this._rawBodyData.GetNullableStruct<long>("seed"); }
         init
         {
             if (value == null)
@@ -197,13 +200,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "seed", value);
+            this._rawBodyData.Set("seed", value);
         }
     }
 
     public IReadOnlyList<string>? Stop
     {
-        get { return JsonModel.GetNullableClass<List<string>>(this.RawBodyData, "stop"); }
+        get { return this._rawBodyData.GetNullableStruct<ImmutableArray<string>>("stop"); }
         init
         {
             if (value == null)
@@ -211,13 +214,16 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "stop", value);
+            this._rawBodyData.Set<ImmutableArray<string>?>(
+                "stop",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
     public bool? Stream
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "stream"); }
+        get { return this._rawBodyData.GetNullableStruct<bool>("stream"); }
         init
         {
             if (value == null)
@@ -225,7 +231,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "stream", value);
+            this._rawBodyData.Set("stream", value);
         }
     }
 
@@ -236,8 +242,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableClass<global::ArcadeDotnet.Models.Chat.Completions.StreamOptions>(
-                this.RawBodyData,
+            return this._rawBodyData.GetNullableClass<global::ArcadeDotnet.Models.Chat.Completions.StreamOptions>(
                 "stream_options"
             );
         }
@@ -248,13 +253,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "stream_options", value);
+            this._rawBodyData.Set("stream_options", value);
         }
     }
 
     public double? Temperature
     {
-        get { return JsonModel.GetNullableStruct<double>(this.RawBodyData, "temperature"); }
+        get { return this._rawBodyData.GetNullableStruct<double>("temperature"); }
         init
         {
             if (value == null)
@@ -262,7 +267,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "temperature", value);
+            this._rawBodyData.Set("temperature", value);
         }
     }
 
@@ -271,7 +276,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     /// </summary>
     public JsonElement? ToolChoice
     {
-        get { return JsonModel.GetNullableStruct<JsonElement>(this.RawBodyData, "tool_choice"); }
+        get { return this._rawBodyData.GetNullableStruct<JsonElement>("tool_choice"); }
         init
         {
             if (value == null)
@@ -279,13 +284,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "tool_choice", value);
+            this._rawBodyData.Set("tool_choice", value);
         }
     }
 
     public JsonElement? Tools
     {
-        get { return JsonModel.GetNullableStruct<JsonElement>(this.RawBodyData, "tools"); }
+        get { return this._rawBodyData.GetNullableStruct<JsonElement>("tools"); }
         init
         {
             if (value == null)
@@ -293,7 +298,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "tools", value);
+            this._rawBodyData.Set("tools", value);
         }
     }
 
@@ -304,7 +309,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     /// </summary>
     public long? TopLogprobs
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "top_logprobs"); }
+        get { return this._rawBodyData.GetNullableStruct<long>("top_logprobs"); }
         init
         {
             if (value == null)
@@ -312,13 +317,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "top_logprobs", value);
+            this._rawBodyData.Set("top_logprobs", value);
         }
     }
 
     public double? TopP
     {
-        get { return JsonModel.GetNullableStruct<double>(this.RawBodyData, "top_p"); }
+        get { return this._rawBodyData.GetNullableStruct<double>("top_p"); }
         init
         {
             if (value == null)
@@ -326,13 +331,13 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "top_p", value);
+            this._rawBodyData.Set("top_p", value);
         }
     }
 
     public string? User
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "user"); }
+        get { return this._rawBodyData.GetNullableClass<string>("user"); }
         init
         {
             if (value == null)
@@ -340,7 +345,7 @@ public sealed record class CompletionCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "user", value);
+            this._rawBodyData.Set("user", value);
         }
     }
 
@@ -349,7 +354,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     public CompletionCreateParams(CompletionCreateParams completionCreateParams)
         : base(completionCreateParams)
     {
-        this._rawBodyData = [.. completionCreateParams._rawBodyData];
+        this._rawBodyData = new(completionCreateParams._rawBodyData);
     }
 
     public CompletionCreateParams(
@@ -358,9 +363,9 @@ public sealed record class CompletionCreateParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -371,9 +376,9 @@ public sealed record class CompletionCreateParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 
@@ -432,9 +437,9 @@ public sealed record class ResponseFormat : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<
+            return this._rawData.GetNullableClass<
                 ApiEnum<string, global::ArcadeDotnet.Models.Chat.Completions.Type>
-            >(this.RawData, "type");
+            >("type");
         }
         init
         {
@@ -443,7 +448,7 @@ public sealed record class ResponseFormat : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "type", value);
+            this._rawData.Set("type", value);
         }
     }
 
@@ -462,14 +467,14 @@ public sealed record class ResponseFormat : JsonModel
 
     public ResponseFormat(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ResponseFormat(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -554,7 +559,7 @@ public sealed record class StreamOptions : JsonModel
     /// </summary>
     public bool? IncludeUsage
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "include_usage"); }
+        get { return this._rawData.GetNullableStruct<bool>("include_usage"); }
         init
         {
             if (value == null)
@@ -562,7 +567,7 @@ public sealed record class StreamOptions : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "include_usage", value);
+            this._rawData.Set("include_usage", value);
         }
     }
 
@@ -579,14 +584,14 @@ public sealed record class StreamOptions : JsonModel
 
     public StreamOptions(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     StreamOptions(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -17,8 +18,8 @@ public sealed record class ChatMessage : JsonModel
     /// </summary>
     public required string Content
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "content"); }
-        init { JsonModel.Set(this._rawData, "content", value); }
+        get { return this._rawData.GetNotNullClass<string>("content"); }
+        init { this._rawData.Set("content", value); }
     }
 
     /// <summary>
@@ -26,8 +27,8 @@ public sealed record class ChatMessage : JsonModel
     /// </summary>
     public required string Role
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "role"); }
-        init { JsonModel.Set(this._rawData, "role", value); }
+        get { return this._rawData.GetNotNullClass<string>("role"); }
+        init { this._rawData.Set("role", value); }
     }
 
     /// <summary>
@@ -35,7 +36,7 @@ public sealed record class ChatMessage : JsonModel
     /// </summary>
     public string? Name
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "name"); }
+        get { return this._rawData.GetNullableClass<string>("name"); }
         init
         {
             if (value == null)
@@ -43,7 +44,7 @@ public sealed record class ChatMessage : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "name", value);
+            this._rawData.Set("name", value);
         }
     }
 
@@ -52,7 +53,7 @@ public sealed record class ChatMessage : JsonModel
     /// </summary>
     public string? ToolCallID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "tool_call_id"); }
+        get { return this._rawData.GetNullableClass<string>("tool_call_id"); }
         init
         {
             if (value == null)
@@ -60,7 +61,7 @@ public sealed record class ChatMessage : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "tool_call_id", value);
+            this._rawData.Set("tool_call_id", value);
         }
     }
 
@@ -69,7 +70,7 @@ public sealed record class ChatMessage : JsonModel
     /// </summary>
     public IReadOnlyList<ToolCall>? ToolCalls
     {
-        get { return JsonModel.GetNullableClass<List<ToolCall>>(this.RawData, "tool_calls"); }
+        get { return this._rawData.GetNullableStruct<ImmutableArray<ToolCall>>("tool_calls"); }
         init
         {
             if (value == null)
@@ -77,7 +78,10 @@ public sealed record class ChatMessage : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "tool_calls", value);
+            this._rawData.Set<ImmutableArray<ToolCall>?>(
+                "tool_calls",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -101,14 +105,14 @@ public sealed record class ChatMessage : JsonModel
 
     public ChatMessage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ChatMessage(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -131,7 +135,7 @@ public sealed record class ToolCall : JsonModel
 {
     public string? ID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        get { return this._rawData.GetNullableClass<string>("id"); }
         init
         {
             if (value == null)
@@ -139,13 +143,13 @@ public sealed record class ToolCall : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "id", value);
+            this._rawData.Set("id", value);
         }
     }
 
     public Function? Function
     {
-        get { return JsonModel.GetNullableClass<Function>(this.RawData, "function"); }
+        get { return this._rawData.GetNullableClass<Function>("function"); }
         init
         {
             if (value == null)
@@ -153,7 +157,7 @@ public sealed record class ToolCall : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "function", value);
+            this._rawData.Set("function", value);
         }
     }
 
@@ -161,9 +165,9 @@ public sealed record class ToolCall : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<
+            return this._rawData.GetNullableClass<
                 ApiEnum<string, global::ArcadeDotnet.Models.Chat.Type>
-            >(this.RawData, "type");
+            >("type");
         }
         init
         {
@@ -172,7 +176,7 @@ public sealed record class ToolCall : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "type", value);
+            this._rawData.Set("type", value);
         }
     }
 
@@ -191,14 +195,14 @@ public sealed record class ToolCall : JsonModel
 
     public ToolCall(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ToolCall(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -221,7 +225,7 @@ public sealed record class Function : JsonModel
 {
     public string? Arguments
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "arguments"); }
+        get { return this._rawData.GetNullableClass<string>("arguments"); }
         init
         {
             if (value == null)
@@ -229,13 +233,13 @@ public sealed record class Function : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "arguments", value);
+            this._rawData.Set("arguments", value);
         }
     }
 
     public string? Name
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "name"); }
+        get { return this._rawData.GetNullableClass<string>("name"); }
         init
         {
             if (value == null)
@@ -243,7 +247,7 @@ public sealed record class Function : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "name", value);
+            this._rawData.Set("name", value);
         }
     }
 
@@ -261,14 +265,14 @@ public sealed record class Function : JsonModel
 
     public Function(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Function(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

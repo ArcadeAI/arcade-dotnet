@@ -12,7 +12,7 @@ public sealed record class Usage : JsonModel
 {
     public long? CompletionTokens
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "completion_tokens"); }
+        get { return this._rawData.GetNullableStruct<long>("completion_tokens"); }
         init
         {
             if (value == null)
@@ -20,13 +20,13 @@ public sealed record class Usage : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "completion_tokens", value);
+            this._rawData.Set("completion_tokens", value);
         }
     }
 
     public long? PromptTokens
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "prompt_tokens"); }
+        get { return this._rawData.GetNullableStruct<long>("prompt_tokens"); }
         init
         {
             if (value == null)
@@ -34,13 +34,13 @@ public sealed record class Usage : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "prompt_tokens", value);
+            this._rawData.Set("prompt_tokens", value);
         }
     }
 
     public long? TotalTokens
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "total_tokens"); }
+        get { return this._rawData.GetNullableStruct<long>("total_tokens"); }
         init
         {
             if (value == null)
@@ -48,7 +48,7 @@ public sealed record class Usage : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "total_tokens", value);
+            this._rawData.Set("total_tokens", value);
         }
     }
 
@@ -67,14 +67,14 @@ public sealed record class Usage : JsonModel
 
     public Usage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Usage(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

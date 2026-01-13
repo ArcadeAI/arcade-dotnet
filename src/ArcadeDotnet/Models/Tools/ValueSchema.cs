@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -12,13 +13,13 @@ public sealed record class ValueSchema : JsonModel
 {
     public required string ValType
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "val_type"); }
-        init { JsonModel.Set(this._rawData, "val_type", value); }
+        get { return this._rawData.GetNotNullClass<string>("val_type"); }
+        init { this._rawData.Set("val_type", value); }
     }
 
     public IReadOnlyList<string>? Enum
     {
-        get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "enum"); }
+        get { return this._rawData.GetNullableStruct<ImmutableArray<string>>("enum"); }
         init
         {
             if (value == null)
@@ -26,13 +27,16 @@ public sealed record class ValueSchema : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "enum", value);
+            this._rawData.Set<ImmutableArray<string>?>(
+                "enum",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
     public string? InnerValType
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "inner_val_type"); }
+        get { return this._rawData.GetNullableClass<string>("inner_val_type"); }
         init
         {
             if (value == null)
@@ -40,7 +44,7 @@ public sealed record class ValueSchema : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "inner_val_type", value);
+            this._rawData.Set("inner_val_type", value);
         }
     }
 
@@ -59,14 +63,14 @@ public sealed record class ValueSchema : JsonModel
 
     public ValueSchema(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ValueSchema(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

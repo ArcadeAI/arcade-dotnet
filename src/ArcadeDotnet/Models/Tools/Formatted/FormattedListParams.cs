@@ -19,7 +19,7 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public string? Format
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "format"); }
+        get { return this._rawQueryData.GetNullableClass<string>("format"); }
         init
         {
             if (value == null)
@@ -27,7 +27,7 @@ public sealed record class FormattedListParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "format", value);
+            this._rawQueryData.Set("format", value);
         }
     }
 
@@ -36,7 +36,7 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public bool? IncludeAllVersions
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawQueryData, "include_all_versions"); }
+        get { return this._rawQueryData.GetNullableStruct<bool>("include_all_versions"); }
         init
         {
             if (value == null)
@@ -44,7 +44,7 @@ public sealed record class FormattedListParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "include_all_versions", value);
+            this._rawQueryData.Set("include_all_versions", value);
         }
     }
 
@@ -53,7 +53,7 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "limit"); }
+        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
         init
         {
             if (value == null)
@@ -61,7 +61,7 @@ public sealed record class FormattedListParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "limit", value);
+            this._rawQueryData.Set("limit", value);
         }
     }
 
@@ -70,7 +70,7 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public long? Offset
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "offset"); }
+        get { return this._rawQueryData.GetNullableStruct<long>("offset"); }
         init
         {
             if (value == null)
@@ -78,7 +78,7 @@ public sealed record class FormattedListParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "offset", value);
+            this._rawQueryData.Set("offset", value);
         }
     }
 
@@ -87,7 +87,7 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public string? Toolkit
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "toolkit"); }
+        get { return this._rawQueryData.GetNullableClass<string>("toolkit"); }
         init
         {
             if (value == null)
@@ -95,7 +95,7 @@ public sealed record class FormattedListParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "toolkit", value);
+            this._rawQueryData.Set("toolkit", value);
         }
     }
 
@@ -104,7 +104,7 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public string? UserID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "user_id"); }
+        get { return this._rawQueryData.GetNullableClass<string>("user_id"); }
         init
         {
             if (value == null)
@@ -112,7 +112,7 @@ public sealed record class FormattedListParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "user_id", value);
+            this._rawQueryData.Set("user_id", value);
         }
     }
 
@@ -126,8 +126,8 @@ public sealed record class FormattedListParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 
 #pragma warning disable CS8618
@@ -137,8 +137,8 @@ public sealed record class FormattedListParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 #pragma warning restore CS8618
 

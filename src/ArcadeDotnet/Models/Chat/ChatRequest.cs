@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -14,7 +15,7 @@ public sealed record class ChatRequest : JsonModel
 {
     public double? FrequencyPenalty
     {
-        get { return JsonModel.GetNullableStruct<double>(this.RawData, "frequency_penalty"); }
+        get { return this._rawData.GetNullableStruct<double>("frequency_penalty"); }
         init
         {
             if (value == null)
@@ -22,7 +23,7 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "frequency_penalty", value);
+            this._rawData.Set("frequency_penalty", value);
         }
     }
 
@@ -33,10 +34,7 @@ public sealed record class ChatRequest : JsonModel
     /// </summary>
     public IReadOnlyDictionary<string, long>? LogitBias
     {
-        get
-        {
-            return JsonModel.GetNullableClass<Dictionary<string, long>>(this.RawData, "logit_bias");
-        }
+        get { return this._rawData.GetNullableClass<FrozenDictionary<string, long>>("logit_bias"); }
         init
         {
             if (value == null)
@@ -44,7 +42,10 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "logit_bias", value);
+            this._rawData.Set<FrozenDictionary<string, long>?>(
+                "logit_bias",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
@@ -55,7 +56,7 @@ public sealed record class ChatRequest : JsonModel
     /// </summary>
     public bool? Logprobs
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "logprobs"); }
+        get { return this._rawData.GetNullableStruct<bool>("logprobs"); }
         init
         {
             if (value == null)
@@ -63,13 +64,13 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "logprobs", value);
+            this._rawData.Set("logprobs", value);
         }
     }
 
     public long? MaxTokens
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "max_tokens"); }
+        get { return this._rawData.GetNullableStruct<long>("max_tokens"); }
         init
         {
             if (value == null)
@@ -77,13 +78,13 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "max_tokens", value);
+            this._rawData.Set("max_tokens", value);
         }
     }
 
     public IReadOnlyList<ChatMessage>? Messages
     {
-        get { return JsonModel.GetNullableClass<List<ChatMessage>>(this.RawData, "messages"); }
+        get { return this._rawData.GetNullableStruct<ImmutableArray<ChatMessage>>("messages"); }
         init
         {
             if (value == null)
@@ -91,13 +92,16 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "messages", value);
+            this._rawData.Set<ImmutableArray<ChatMessage>?>(
+                "messages",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
     public string? Model
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "model"); }
+        get { return this._rawData.GetNullableClass<string>("model"); }
         init
         {
             if (value == null)
@@ -105,13 +109,13 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "model", value);
+            this._rawData.Set("model", value);
         }
     }
 
     public long? N
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "n"); }
+        get { return this._rawData.GetNullableStruct<long>("n"); }
         init
         {
             if (value == null)
@@ -119,7 +123,7 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "n", value);
+            this._rawData.Set("n", value);
         }
     }
 
@@ -128,7 +132,7 @@ public sealed record class ChatRequest : JsonModel
     /// </summary>
     public bool? ParallelToolCalls
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "parallel_tool_calls"); }
+        get { return this._rawData.GetNullableStruct<bool>("parallel_tool_calls"); }
         init
         {
             if (value == null)
@@ -136,13 +140,13 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "parallel_tool_calls", value);
+            this._rawData.Set("parallel_tool_calls", value);
         }
     }
 
     public double? PresencePenalty
     {
-        get { return JsonModel.GetNullableStruct<double>(this.RawData, "presence_penalty"); }
+        get { return this._rawData.GetNullableStruct<double>("presence_penalty"); }
         init
         {
             if (value == null)
@@ -150,13 +154,13 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "presence_penalty", value);
+            this._rawData.Set("presence_penalty", value);
         }
     }
 
     public ResponseFormat? ResponseFormat
     {
-        get { return JsonModel.GetNullableClass<ResponseFormat>(this.RawData, "response_format"); }
+        get { return this._rawData.GetNullableClass<ResponseFormat>("response_format"); }
         init
         {
             if (value == null)
@@ -164,13 +168,13 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "response_format", value);
+            this._rawData.Set("response_format", value);
         }
     }
 
     public long? Seed
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "seed"); }
+        get { return this._rawData.GetNullableStruct<long>("seed"); }
         init
         {
             if (value == null)
@@ -178,13 +182,13 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "seed", value);
+            this._rawData.Set("seed", value);
         }
     }
 
     public IReadOnlyList<string>? Stop
     {
-        get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "stop"); }
+        get { return this._rawData.GetNullableStruct<ImmutableArray<string>>("stop"); }
         init
         {
             if (value == null)
@@ -192,13 +196,16 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "stop", value);
+            this._rawData.Set<ImmutableArray<string>?>(
+                "stop",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
     public bool? Stream
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "stream"); }
+        get { return this._rawData.GetNullableStruct<bool>("stream"); }
         init
         {
             if (value == null)
@@ -206,7 +213,7 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "stream", value);
+            this._rawData.Set("stream", value);
         }
     }
 
@@ -215,7 +222,7 @@ public sealed record class ChatRequest : JsonModel
     /// </summary>
     public StreamOptions? StreamOptions
     {
-        get { return JsonModel.GetNullableClass<StreamOptions>(this.RawData, "stream_options"); }
+        get { return this._rawData.GetNullableClass<StreamOptions>("stream_options"); }
         init
         {
             if (value == null)
@@ -223,13 +230,13 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "stream_options", value);
+            this._rawData.Set("stream_options", value);
         }
     }
 
     public double? Temperature
     {
-        get { return JsonModel.GetNullableStruct<double>(this.RawData, "temperature"); }
+        get { return this._rawData.GetNullableStruct<double>("temperature"); }
         init
         {
             if (value == null)
@@ -237,7 +244,7 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "temperature", value);
+            this._rawData.Set("temperature", value);
         }
     }
 
@@ -246,7 +253,7 @@ public sealed record class ChatRequest : JsonModel
     /// </summary>
     public JsonElement? ToolChoice
     {
-        get { return JsonModel.GetNullableStruct<JsonElement>(this.RawData, "tool_choice"); }
+        get { return this._rawData.GetNullableStruct<JsonElement>("tool_choice"); }
         init
         {
             if (value == null)
@@ -254,13 +261,13 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "tool_choice", value);
+            this._rawData.Set("tool_choice", value);
         }
     }
 
     public JsonElement? Tools
     {
-        get { return JsonModel.GetNullableStruct<JsonElement>(this.RawData, "tools"); }
+        get { return this._rawData.GetNullableStruct<JsonElement>("tools"); }
         init
         {
             if (value == null)
@@ -268,7 +275,7 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "tools", value);
+            this._rawData.Set("tools", value);
         }
     }
 
@@ -279,7 +286,7 @@ public sealed record class ChatRequest : JsonModel
     /// </summary>
     public long? TopLogprobs
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "top_logprobs"); }
+        get { return this._rawData.GetNullableStruct<long>("top_logprobs"); }
         init
         {
             if (value == null)
@@ -287,13 +294,13 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "top_logprobs", value);
+            this._rawData.Set("top_logprobs", value);
         }
     }
 
     public double? TopP
     {
-        get { return JsonModel.GetNullableStruct<double>(this.RawData, "top_p"); }
+        get { return this._rawData.GetNullableStruct<double>("top_p"); }
         init
         {
             if (value == null)
@@ -301,13 +308,13 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "top_p", value);
+            this._rawData.Set("top_p", value);
         }
     }
 
     public string? User
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "user"); }
+        get { return this._rawData.GetNullableClass<string>("user"); }
         init
         {
             if (value == null)
@@ -315,7 +322,7 @@ public sealed record class ChatRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "user", value);
+            this._rawData.Set("user", value);
         }
     }
 
@@ -354,14 +361,14 @@ public sealed record class ChatRequest : JsonModel
 
     public ChatRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ChatRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -384,13 +391,7 @@ public sealed record class ResponseFormat : JsonModel
 {
     public ApiEnum<string, ResponseFormatType>? Type
     {
-        get
-        {
-            return JsonModel.GetNullableClass<ApiEnum<string, ResponseFormatType>>(
-                this.RawData,
-                "type"
-            );
-        }
+        get { return this._rawData.GetNullableClass<ApiEnum<string, ResponseFormatType>>("type"); }
         init
         {
             if (value == null)
@@ -398,7 +399,7 @@ public sealed record class ResponseFormat : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "type", value);
+            this._rawData.Set("type", value);
         }
     }
 
@@ -415,14 +416,14 @@ public sealed record class ResponseFormat : JsonModel
 
     public ResponseFormat(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ResponseFormat(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -498,7 +499,7 @@ public sealed record class StreamOptions : JsonModel
     /// </summary>
     public bool? IncludeUsage
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "include_usage"); }
+        get { return this._rawData.GetNullableStruct<bool>("include_usage"); }
         init
         {
             if (value == null)
@@ -506,7 +507,7 @@ public sealed record class StreamOptions : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "include_usage", value);
+            this._rawData.Set("include_usage", value);
         }
     }
 
@@ -523,14 +524,14 @@ public sealed record class StreamOptions : JsonModel
 
     public StreamOptions(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     StreamOptions(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

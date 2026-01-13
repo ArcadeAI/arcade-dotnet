@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
@@ -24,10 +25,9 @@ public sealed record class ToolGetParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableClass<List<ApiEnum<string, ToolGetParamsIncludeFormat>>>(
-                this.RawQueryData,
-                "include_format"
-            );
+            return this._rawQueryData.GetNullableStruct<
+                ImmutableArray<ApiEnum<string, ToolGetParamsIncludeFormat>>
+            >("include_format");
         }
         init
         {
@@ -36,7 +36,10 @@ public sealed record class ToolGetParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "include_format", value);
+            this._rawQueryData.Set<ImmutableArray<ApiEnum<string, ToolGetParamsIncludeFormat>>?>(
+                "include_format",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -45,7 +48,7 @@ public sealed record class ToolGetParams : ParamsBase
     /// </summary>
     public string? UserID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "user_id"); }
+        get { return this._rawQueryData.GetNullableClass<string>("user_id"); }
         init
         {
             if (value == null)
@@ -53,7 +56,7 @@ public sealed record class ToolGetParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "user_id", value);
+            this._rawQueryData.Set("user_id", value);
         }
     }
 
@@ -70,8 +73,8 @@ public sealed record class ToolGetParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 
 #pragma warning disable CS8618
@@ -81,8 +84,8 @@ public sealed record class ToolGetParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 #pragma warning restore CS8618
 

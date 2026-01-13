@@ -12,7 +12,7 @@ public sealed record class AuthorizationContext : JsonModel
 {
     public string? Token
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "token"); }
+        get { return this._rawData.GetNullableClass<string>("token"); }
         init
         {
             if (value == null)
@@ -20,7 +20,7 @@ public sealed record class AuthorizationContext : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "token", value);
+            this._rawData.Set("token", value);
         }
     }
 
@@ -28,8 +28,7 @@ public sealed record class AuthorizationContext : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<Dictionary<string, JsonElement>>(
-                this.RawData,
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
                 "user_info"
             );
         }
@@ -40,7 +39,10 @@ public sealed record class AuthorizationContext : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "user_info", value);
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "user_info",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
@@ -58,14 +60,14 @@ public sealed record class AuthorizationContext : JsonModel
 
     public AuthorizationContext(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AuthorizationContext(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

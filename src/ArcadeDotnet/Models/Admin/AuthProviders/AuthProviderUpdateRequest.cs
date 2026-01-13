@@ -16,7 +16,7 @@ public sealed record class AuthProviderUpdateRequest : JsonModel
 {
     public string? ID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        get { return this._rawData.GetNullableClass<string>("id"); }
         init
         {
             if (value == null)
@@ -24,13 +24,13 @@ public sealed record class AuthProviderUpdateRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "id", value);
+            this._rawData.Set("id", value);
         }
     }
 
     public string? Description
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        get { return this._rawData.GetNullableClass<string>("description"); }
         init
         {
             if (value == null)
@@ -38,19 +38,13 @@ public sealed record class AuthProviderUpdateRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "description", value);
+            this._rawData.Set("description", value);
         }
     }
 
     public AuthProviderUpdateRequestOauth2? Oauth2
     {
-        get
-        {
-            return JsonModel.GetNullableClass<AuthProviderUpdateRequestOauth2>(
-                this.RawData,
-                "oauth2"
-            );
-        }
+        get { return this._rawData.GetNullableClass<AuthProviderUpdateRequestOauth2>("oauth2"); }
         init
         {
             if (value == null)
@@ -58,13 +52,13 @@ public sealed record class AuthProviderUpdateRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "oauth2", value);
+            this._rawData.Set("oauth2", value);
         }
     }
 
     public string? ProviderID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "provider_id"); }
+        get { return this._rawData.GetNullableClass<string>("provider_id"); }
         init
         {
             if (value == null)
@@ -72,13 +66,13 @@ public sealed record class AuthProviderUpdateRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "provider_id", value);
+            this._rawData.Set("provider_id", value);
         }
     }
 
     public string? Status
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "status"); }
+        get { return this._rawData.GetNullableClass<string>("status"); }
         init
         {
             if (value == null)
@@ -86,13 +80,13 @@ public sealed record class AuthProviderUpdateRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "status", value);
+            this._rawData.Set("status", value);
         }
     }
 
     public string? Type
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "type"); }
+        get { return this._rawData.GetNullableClass<string>("type"); }
         init
         {
             if (value == null)
@@ -100,7 +94,7 @@ public sealed record class AuthProviderUpdateRequest : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "type", value);
+            this._rawData.Set("type", value);
         }
     }
 
@@ -122,14 +116,14 @@ public sealed record class AuthProviderUpdateRequest : JsonModel
 
     public AuthProviderUpdateRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AuthProviderUpdateRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -162,8 +156,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<AuthProviderUpdateRequestOauth2AuthorizeRequest>(
-                this.RawData,
+            return this._rawData.GetNullableClass<AuthProviderUpdateRequestOauth2AuthorizeRequest>(
                 "authorize_request"
             );
         }
@@ -174,13 +167,13 @@ public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "authorize_request", value);
+            this._rawData.Set("authorize_request", value);
         }
     }
 
     public string? ClientID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "client_id"); }
+        get { return this._rawData.GetNullableClass<string>("client_id"); }
         init
         {
             if (value == null)
@@ -188,13 +181,13 @@ public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "client_id", value);
+            this._rawData.Set("client_id", value);
         }
     }
 
     public string? ClientSecret
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "client_secret"); }
+        get { return this._rawData.GetNullableClass<string>("client_secret"); }
         init
         {
             if (value == null)
@@ -202,19 +195,13 @@ public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "client_secret", value);
+            this._rawData.Set("client_secret", value);
         }
     }
 
     public AuthProviderUpdateRequestOauth2Pkce? Pkce
     {
-        get
-        {
-            return JsonModel.GetNullableClass<AuthProviderUpdateRequestOauth2Pkce>(
-                this.RawData,
-                "pkce"
-            );
-        }
+        get { return this._rawData.GetNullableClass<AuthProviderUpdateRequestOauth2Pkce>("pkce"); }
         init
         {
             if (value == null)
@@ -222,7 +209,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "pkce", value);
+            this._rawData.Set("pkce", value);
         }
     }
 
@@ -230,8 +217,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<AuthProviderUpdateRequestOauth2RefreshRequest>(
-                this.RawData,
+            return this._rawData.GetNullableClass<AuthProviderUpdateRequestOauth2RefreshRequest>(
                 "refresh_request"
             );
         }
@@ -242,7 +228,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "refresh_request", value);
+            this._rawData.Set("refresh_request", value);
         }
     }
 
@@ -250,9 +236,9 @@ public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<
+            return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2ScopeDelimiter>
-            >(this.RawData, "scope_delimiter");
+            >("scope_delimiter");
         }
         init
         {
@@ -261,7 +247,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "scope_delimiter", value);
+            this._rawData.Set("scope_delimiter", value);
         }
     }
 
@@ -269,8 +255,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<AuthProviderUpdateRequestOauth2TokenRequest>(
-                this.RawData,
+            return this._rawData.GetNullableClass<AuthProviderUpdateRequestOauth2TokenRequest>(
                 "token_request"
             );
         }
@@ -281,7 +266,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "token_request", value);
+            this._rawData.Set("token_request", value);
         }
     }
 
@@ -289,8 +274,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<AuthProviderUpdateRequestOauth2UserInfoRequest>(
-                this.RawData,
+            return this._rawData.GetNullableClass<AuthProviderUpdateRequestOauth2UserInfoRequest>(
                 "user_info_request"
             );
         }
@@ -301,7 +285,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "user_info_request", value);
+            this._rawData.Set("user_info_request", value);
         }
     }
 
@@ -327,14 +311,14 @@ public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
 
     public AuthProviderUpdateRequestOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AuthProviderUpdateRequestOauth2(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -365,7 +349,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Jso
 {
     public string? AuthHeaderValueFormat
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "auth_header_value_format"); }
+        get { return this._rawData.GetNullableClass<string>("auth_header_value_format"); }
         init
         {
             if (value == null)
@@ -373,13 +357,13 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Jso
                 return;
             }
 
-            JsonModel.Set(this._rawData, "auth_header_value_format", value);
+            this._rawData.Set("auth_header_value_format", value);
         }
     }
 
     public string? AuthMethod
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "auth_method"); }
+        get { return this._rawData.GetNullableClass<string>("auth_method"); }
         init
         {
             if (value == null)
@@ -387,13 +371,13 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Jso
                 return;
             }
 
-            JsonModel.Set(this._rawData, "auth_method", value);
+            this._rawData.Set("auth_method", value);
         }
     }
 
     public string? Endpoint
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "endpoint"); }
+        get { return this._rawData.GetNullableClass<string>("endpoint"); }
         init
         {
             if (value == null)
@@ -401,13 +385,13 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Jso
                 return;
             }
 
-            JsonModel.Set(this._rawData, "endpoint", value);
+            this._rawData.Set("endpoint", value);
         }
     }
 
     public string? Method
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "method"); }
+        get { return this._rawData.GetNullableClass<string>("method"); }
         init
         {
             if (value == null)
@@ -415,16 +399,13 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Jso
                 return;
             }
 
-            JsonModel.Set(this._rawData, "method", value);
+            this._rawData.Set("method", value);
         }
     }
 
     public IReadOnlyDictionary<string, string>? Params
     {
-        get
-        {
-            return JsonModel.GetNullableClass<Dictionary<string, string>>(this.RawData, "params");
-        }
+        get { return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("params"); }
         init
         {
             if (value == null)
@@ -432,7 +413,10 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Jso
                 return;
             }
 
-            JsonModel.Set(this._rawData, "params", value);
+            this._rawData.Set<FrozenDictionary<string, string>?>(
+                "params",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
@@ -443,9 +427,9 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Jso
     {
         get
         {
-            return JsonModel.GetNullableClass<
+            return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType>
-            >(this.RawData, "request_content_type");
+            >("request_content_type");
         }
         init
         {
@@ -454,7 +438,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Jso
                 return;
             }
 
-            JsonModel.Set(this._rawData, "request_content_type", value);
+            this._rawData.Set("request_content_type", value);
         }
     }
 
@@ -465,9 +449,9 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Jso
     {
         get
         {
-            return JsonModel.GetNullableClass<
+            return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType>
-            >(this.RawData, "response_content_type");
+            >("response_content_type");
         }
         init
         {
@@ -476,7 +460,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Jso
                 return;
             }
 
-            JsonModel.Set(this._rawData, "response_content_type", value);
+            this._rawData.Set("response_content_type", value);
         }
     }
 
@@ -484,10 +468,7 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Jso
     {
         get
         {
-            return JsonModel.GetNullableClass<Dictionary<string, string>>(
-                this.RawData,
-                "response_map"
-            );
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("response_map");
         }
         init
         {
@@ -496,7 +477,10 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Jso
                 return;
             }
 
-            JsonModel.Set(this._rawData, "response_map", value);
+            this._rawData.Set<FrozenDictionary<string, string>?>(
+                "response_map",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
@@ -524,14 +508,14 @@ public sealed record class AuthProviderUpdateRequestOauth2AuthorizeRequest : Jso
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AuthProviderUpdateRequestOauth2AuthorizeRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -661,7 +645,7 @@ public sealed record class AuthProviderUpdateRequestOauth2Pkce : JsonModel
 {
     public string? CodeChallengeMethod
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "code_challenge_method"); }
+        get { return this._rawData.GetNullableClass<string>("code_challenge_method"); }
         init
         {
             if (value == null)
@@ -669,13 +653,13 @@ public sealed record class AuthProviderUpdateRequestOauth2Pkce : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "code_challenge_method", value);
+            this._rawData.Set("code_challenge_method", value);
         }
     }
 
     public bool? Enabled
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "enabled"); }
+        get { return this._rawData.GetNullableStruct<bool>("enabled"); }
         init
         {
             if (value == null)
@@ -683,7 +667,7 @@ public sealed record class AuthProviderUpdateRequestOauth2Pkce : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "enabled", value);
+            this._rawData.Set("enabled", value);
         }
     }
 
@@ -703,14 +687,14 @@ public sealed record class AuthProviderUpdateRequestOauth2Pkce : JsonModel
 
     public AuthProviderUpdateRequestOauth2Pkce(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AuthProviderUpdateRequestOauth2Pkce(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -741,7 +725,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : JsonM
 {
     public string? AuthHeaderValueFormat
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "auth_header_value_format"); }
+        get { return this._rawData.GetNullableClass<string>("auth_header_value_format"); }
         init
         {
             if (value == null)
@@ -749,13 +733,13 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : JsonM
                 return;
             }
 
-            JsonModel.Set(this._rawData, "auth_header_value_format", value);
+            this._rawData.Set("auth_header_value_format", value);
         }
     }
 
     public string? AuthMethod
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "auth_method"); }
+        get { return this._rawData.GetNullableClass<string>("auth_method"); }
         init
         {
             if (value == null)
@@ -763,13 +747,13 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : JsonM
                 return;
             }
 
-            JsonModel.Set(this._rawData, "auth_method", value);
+            this._rawData.Set("auth_method", value);
         }
     }
 
     public string? Endpoint
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "endpoint"); }
+        get { return this._rawData.GetNullableClass<string>("endpoint"); }
         init
         {
             if (value == null)
@@ -777,13 +761,13 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : JsonM
                 return;
             }
 
-            JsonModel.Set(this._rawData, "endpoint", value);
+            this._rawData.Set("endpoint", value);
         }
     }
 
     public string? Method
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "method"); }
+        get { return this._rawData.GetNullableClass<string>("method"); }
         init
         {
             if (value == null)
@@ -791,16 +775,13 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : JsonM
                 return;
             }
 
-            JsonModel.Set(this._rawData, "method", value);
+            this._rawData.Set("method", value);
         }
     }
 
     public IReadOnlyDictionary<string, string>? Params
     {
-        get
-        {
-            return JsonModel.GetNullableClass<Dictionary<string, string>>(this.RawData, "params");
-        }
+        get { return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("params"); }
         init
         {
             if (value == null)
@@ -808,7 +789,10 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : JsonM
                 return;
             }
 
-            JsonModel.Set(this._rawData, "params", value);
+            this._rawData.Set<FrozenDictionary<string, string>?>(
+                "params",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
@@ -819,9 +803,9 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : JsonM
     {
         get
         {
-            return JsonModel.GetNullableClass<
+            return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType>
-            >(this.RawData, "request_content_type");
+            >("request_content_type");
         }
         init
         {
@@ -830,7 +814,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : JsonM
                 return;
             }
 
-            JsonModel.Set(this._rawData, "request_content_type", value);
+            this._rawData.Set("request_content_type", value);
         }
     }
 
@@ -841,9 +825,9 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : JsonM
     {
         get
         {
-            return JsonModel.GetNullableClass<
+            return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType>
-            >(this.RawData, "response_content_type");
+            >("response_content_type");
         }
         init
         {
@@ -852,7 +836,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : JsonM
                 return;
             }
 
-            JsonModel.Set(this._rawData, "response_content_type", value);
+            this._rawData.Set("response_content_type", value);
         }
     }
 
@@ -860,10 +844,7 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : JsonM
     {
         get
         {
-            return JsonModel.GetNullableClass<Dictionary<string, string>>(
-                this.RawData,
-                "response_map"
-            );
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("response_map");
         }
         init
         {
@@ -872,7 +853,10 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : JsonM
                 return;
             }
 
-            JsonModel.Set(this._rawData, "response_map", value);
+            this._rawData.Set<FrozenDictionary<string, string>?>(
+                "response_map",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
@@ -900,14 +884,14 @@ public sealed record class AuthProviderUpdateRequestOauth2RefreshRequest : JsonM
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AuthProviderUpdateRequestOauth2RefreshRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -1082,7 +1066,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : JsonMod
 {
     public string? AuthHeaderValueFormat
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "auth_header_value_format"); }
+        get { return this._rawData.GetNullableClass<string>("auth_header_value_format"); }
         init
         {
             if (value == null)
@@ -1090,13 +1074,13 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : JsonMod
                 return;
             }
 
-            JsonModel.Set(this._rawData, "auth_header_value_format", value);
+            this._rawData.Set("auth_header_value_format", value);
         }
     }
 
     public string? AuthMethod
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "auth_method"); }
+        get { return this._rawData.GetNullableClass<string>("auth_method"); }
         init
         {
             if (value == null)
@@ -1104,13 +1088,13 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : JsonMod
                 return;
             }
 
-            JsonModel.Set(this._rawData, "auth_method", value);
+            this._rawData.Set("auth_method", value);
         }
     }
 
     public string? Endpoint
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "endpoint"); }
+        get { return this._rawData.GetNullableClass<string>("endpoint"); }
         init
         {
             if (value == null)
@@ -1118,13 +1102,13 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : JsonMod
                 return;
             }
 
-            JsonModel.Set(this._rawData, "endpoint", value);
+            this._rawData.Set("endpoint", value);
         }
     }
 
     public string? Method
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "method"); }
+        get { return this._rawData.GetNullableClass<string>("method"); }
         init
         {
             if (value == null)
@@ -1132,16 +1116,13 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : JsonMod
                 return;
             }
 
-            JsonModel.Set(this._rawData, "method", value);
+            this._rawData.Set("method", value);
         }
     }
 
     public IReadOnlyDictionary<string, string>? Params
     {
-        get
-        {
-            return JsonModel.GetNullableClass<Dictionary<string, string>>(this.RawData, "params");
-        }
+        get { return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("params"); }
         init
         {
             if (value == null)
@@ -1149,7 +1130,10 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : JsonMod
                 return;
             }
 
-            JsonModel.Set(this._rawData, "params", value);
+            this._rawData.Set<FrozenDictionary<string, string>?>(
+                "params",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
@@ -1160,9 +1144,9 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : JsonMod
     {
         get
         {
-            return JsonModel.GetNullableClass<
+            return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2TokenRequestRequestContentType>
-            >(this.RawData, "request_content_type");
+            >("request_content_type");
         }
         init
         {
@@ -1171,7 +1155,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : JsonMod
                 return;
             }
 
-            JsonModel.Set(this._rawData, "request_content_type", value);
+            this._rawData.Set("request_content_type", value);
         }
     }
 
@@ -1182,9 +1166,9 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : JsonMod
     {
         get
         {
-            return JsonModel.GetNullableClass<
+            return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2TokenRequestResponseContentType>
-            >(this.RawData, "response_content_type");
+            >("response_content_type");
         }
         init
         {
@@ -1193,7 +1177,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : JsonMod
                 return;
             }
 
-            JsonModel.Set(this._rawData, "response_content_type", value);
+            this._rawData.Set("response_content_type", value);
         }
     }
 
@@ -1201,10 +1185,7 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : JsonMod
     {
         get
         {
-            return JsonModel.GetNullableClass<Dictionary<string, string>>(
-                this.RawData,
-                "response_map"
-            );
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("response_map");
         }
         init
         {
@@ -1213,7 +1194,10 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : JsonMod
                 return;
             }
 
-            JsonModel.Set(this._rawData, "response_map", value);
+            this._rawData.Set<FrozenDictionary<string, string>?>(
+                "response_map",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
@@ -1241,14 +1225,14 @@ public sealed record class AuthProviderUpdateRequestOauth2TokenRequest : JsonMod
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AuthProviderUpdateRequestOauth2TokenRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -1378,7 +1362,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Json
 {
     public string? AuthHeaderValueFormat
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "auth_header_value_format"); }
+        get { return this._rawData.GetNullableClass<string>("auth_header_value_format"); }
         init
         {
             if (value == null)
@@ -1386,13 +1370,13 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Json
                 return;
             }
 
-            JsonModel.Set(this._rawData, "auth_header_value_format", value);
+            this._rawData.Set("auth_header_value_format", value);
         }
     }
 
     public string? AuthMethod
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "auth_method"); }
+        get { return this._rawData.GetNullableClass<string>("auth_method"); }
         init
         {
             if (value == null)
@@ -1400,13 +1384,13 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Json
                 return;
             }
 
-            JsonModel.Set(this._rawData, "auth_method", value);
+            this._rawData.Set("auth_method", value);
         }
     }
 
     public string? Endpoint
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "endpoint"); }
+        get { return this._rawData.GetNullableClass<string>("endpoint"); }
         init
         {
             if (value == null)
@@ -1414,13 +1398,13 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Json
                 return;
             }
 
-            JsonModel.Set(this._rawData, "endpoint", value);
+            this._rawData.Set("endpoint", value);
         }
     }
 
     public string? Method
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "method"); }
+        get { return this._rawData.GetNullableClass<string>("method"); }
         init
         {
             if (value == null)
@@ -1428,16 +1412,13 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Json
                 return;
             }
 
-            JsonModel.Set(this._rawData, "method", value);
+            this._rawData.Set("method", value);
         }
     }
 
     public IReadOnlyDictionary<string, string>? Params
     {
-        get
-        {
-            return JsonModel.GetNullableClass<Dictionary<string, string>>(this.RawData, "params");
-        }
+        get { return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("params"); }
         init
         {
             if (value == null)
@@ -1445,7 +1426,10 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Json
                 return;
             }
 
-            JsonModel.Set(this._rawData, "params", value);
+            this._rawData.Set<FrozenDictionary<string, string>?>(
+                "params",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
@@ -1456,9 +1440,9 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Json
     {
         get
         {
-            return JsonModel.GetNullableClass<
+            return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType>
-            >(this.RawData, "request_content_type");
+            >("request_content_type");
         }
         init
         {
@@ -1467,7 +1451,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Json
                 return;
             }
 
-            JsonModel.Set(this._rawData, "request_content_type", value);
+            this._rawData.Set("request_content_type", value);
         }
     }
 
@@ -1478,9 +1462,9 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Json
     {
         get
         {
-            return JsonModel.GetNullableClass<
+            return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType>
-            >(this.RawData, "response_content_type");
+            >("response_content_type");
         }
         init
         {
@@ -1489,7 +1473,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Json
                 return;
             }
 
-            JsonModel.Set(this._rawData, "response_content_type", value);
+            this._rawData.Set("response_content_type", value);
         }
     }
 
@@ -1497,10 +1481,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Json
     {
         get
         {
-            return JsonModel.GetNullableClass<Dictionary<string, string>>(
-                this.RawData,
-                "response_map"
-            );
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("response_map");
         }
         init
         {
@@ -1509,7 +1490,10 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Json
                 return;
             }
 
-            JsonModel.Set(this._rawData, "response_map", value);
+            this._rawData.Set<FrozenDictionary<string, string>?>(
+                "response_map",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
@@ -1517,8 +1501,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Json
     {
         get
         {
-            return JsonModel.GetNullableClass<AuthProviderUpdateRequestOauth2UserInfoRequestTriggers>(
-                this.RawData,
+            return this._rawData.GetNullableClass<AuthProviderUpdateRequestOauth2UserInfoRequestTriggers>(
                 "triggers"
             );
         }
@@ -1529,7 +1512,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Json
                 return;
             }
 
-            JsonModel.Set(this._rawData, "triggers", value);
+            this._rawData.Set("triggers", value);
         }
     }
 
@@ -1558,14 +1541,14 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequest : Json
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AuthProviderUpdateRequestOauth2UserInfoRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -1695,7 +1678,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTrigger
 {
     public bool? OnTokenGrant
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "on_token_grant"); }
+        get { return this._rawData.GetNullableStruct<bool>("on_token_grant"); }
         init
         {
             if (value == null)
@@ -1703,13 +1686,13 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTrigger
                 return;
             }
 
-            JsonModel.Set(this._rawData, "on_token_grant", value);
+            this._rawData.Set("on_token_grant", value);
         }
     }
 
     public bool? OnTokenRefresh
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "on_token_refresh"); }
+        get { return this._rawData.GetNullableStruct<bool>("on_token_refresh"); }
         init
         {
             if (value == null)
@@ -1717,7 +1700,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTrigger
                 return;
             }
 
-            JsonModel.Set(this._rawData, "on_token_refresh", value);
+            this._rawData.Set("on_token_refresh", value);
         }
     }
 
@@ -1739,7 +1722,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTrigger
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
@@ -1748,7 +1731,7 @@ public sealed record class AuthProviderUpdateRequestOauth2UserInfoRequestTrigger
         FrozenDictionary<string, JsonElement> rawData
     )
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

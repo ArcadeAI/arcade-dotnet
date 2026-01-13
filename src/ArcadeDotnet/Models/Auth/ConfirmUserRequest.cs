@@ -12,14 +12,14 @@ public sealed record class ConfirmUserRequest : JsonModel
 {
     public required string FlowID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "flow_id"); }
-        init { JsonModel.Set(this._rawData, "flow_id", value); }
+        get { return this._rawData.GetNotNullClass<string>("flow_id"); }
+        init { this._rawData.Set("flow_id", value); }
     }
 
     public required string UserID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "user_id"); }
-        init { JsonModel.Set(this._rawData, "user_id", value); }
+        get { return this._rawData.GetNotNullClass<string>("user_id"); }
+        init { this._rawData.Set("user_id", value); }
     }
 
     /// <inheritdoc/>
@@ -36,14 +36,14 @@ public sealed record class ConfirmUserRequest : JsonModel
 
     public ConfirmUserRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ConfirmUserRequest(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
