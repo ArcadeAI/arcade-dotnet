@@ -20,7 +20,11 @@ public sealed record class FormattedGetParams : ParamsBase
     /// </summary>
     public string? Format
     {
-        get { return this._rawQueryData.GetNullableClass<string>("format"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("format");
+        }
         init
         {
             if (value == null)
@@ -37,7 +41,11 @@ public sealed record class FormattedGetParams : ParamsBase
     /// </summary>
     public string? UserID
     {
-        get { return this._rawQueryData.GetNullableClass<string>("user_id"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("user_id");
+        }
         init
         {
             if (value == null)

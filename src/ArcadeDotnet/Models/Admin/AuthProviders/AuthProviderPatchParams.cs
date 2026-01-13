@@ -26,7 +26,11 @@ public sealed record class AuthProviderPatchParams : ParamsBase
 
     public string? IDValue
     {
-        get { return this._rawBodyData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("id");
+        }
         init
         {
             if (value == null)
@@ -40,7 +44,11 @@ public sealed record class AuthProviderPatchParams : ParamsBase
 
     public string? Description
     {
-        get { return this._rawBodyData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("description");
+        }
         init
         {
             if (value == null)
@@ -54,7 +62,11 @@ public sealed record class AuthProviderPatchParams : ParamsBase
 
     public AuthProviderPatchParamsOauth2? Oauth2
     {
-        get { return this._rawBodyData.GetNullableClass<AuthProviderPatchParamsOauth2>("oauth2"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<AuthProviderPatchParamsOauth2>("oauth2");
+        }
         init
         {
             if (value == null)
@@ -68,7 +80,11 @@ public sealed record class AuthProviderPatchParams : ParamsBase
 
     public string? ProviderID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("provider_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("provider_id");
+        }
         init
         {
             if (value == null)
@@ -82,7 +98,11 @@ public sealed record class AuthProviderPatchParams : ParamsBase
 
     public string? Status
     {
-        get { return this._rawBodyData.GetNullableClass<string>("status"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("status");
+        }
         init
         {
             if (value == null)
@@ -96,7 +116,11 @@ public sealed record class AuthProviderPatchParams : ParamsBase
 
     public string? Type
     {
-        get { return this._rawBodyData.GetNullableClass<string>("type"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("type");
+        }
         init
         {
             if (value == null)
@@ -196,6 +220,7 @@ public sealed record class AuthProviderPatchParamsOauth2 : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<AuthProviderPatchParamsOauth2AuthorizeRequest>(
                 "authorize_request"
             );
@@ -213,7 +238,11 @@ public sealed record class AuthProviderPatchParamsOauth2 : JsonModel
 
     public string? ClientID
     {
-        get { return this._rawData.GetNullableClass<string>("client_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("client_id");
+        }
         init
         {
             if (value == null)
@@ -227,7 +256,11 @@ public sealed record class AuthProviderPatchParamsOauth2 : JsonModel
 
     public string? ClientSecret
     {
-        get { return this._rawData.GetNullableClass<string>("client_secret"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("client_secret");
+        }
         init
         {
             if (value == null)
@@ -241,7 +274,11 @@ public sealed record class AuthProviderPatchParamsOauth2 : JsonModel
 
     public AuthProviderPatchParamsOauth2Pkce? Pkce
     {
-        get { return this._rawData.GetNullableClass<AuthProviderPatchParamsOauth2Pkce>("pkce"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<AuthProviderPatchParamsOauth2Pkce>("pkce");
+        }
         init
         {
             if (value == null)
@@ -257,6 +294,7 @@ public sealed record class AuthProviderPatchParamsOauth2 : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<AuthProviderPatchParamsOauth2RefreshRequest>(
                 "refresh_request"
             );
@@ -276,6 +314,7 @@ public sealed record class AuthProviderPatchParamsOauth2 : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderPatchParamsOauth2ScopeDelimiter>
             >("scope_delimiter");
@@ -295,6 +334,7 @@ public sealed record class AuthProviderPatchParamsOauth2 : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<AuthProviderPatchParamsOauth2TokenRequest>(
                 "token_request"
             );
@@ -314,6 +354,7 @@ public sealed record class AuthProviderPatchParamsOauth2 : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<AuthProviderPatchParamsOauth2UserInfoRequest>(
                 "user_info_request"
             );
@@ -389,7 +430,11 @@ public sealed record class AuthProviderPatchParamsOauth2AuthorizeRequest : JsonM
 {
     public string? AuthHeaderValueFormat
     {
-        get { return this._rawData.GetNullableClass<string>("auth_header_value_format"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("auth_header_value_format");
+        }
         init
         {
             if (value == null)
@@ -403,7 +448,11 @@ public sealed record class AuthProviderPatchParamsOauth2AuthorizeRequest : JsonM
 
     public string? AuthMethod
     {
-        get { return this._rawData.GetNullableClass<string>("auth_method"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("auth_method");
+        }
         init
         {
             if (value == null)
@@ -417,7 +466,11 @@ public sealed record class AuthProviderPatchParamsOauth2AuthorizeRequest : JsonM
 
     public string? Endpoint
     {
-        get { return this._rawData.GetNullableClass<string>("endpoint"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("endpoint");
+        }
         init
         {
             if (value == null)
@@ -431,7 +484,11 @@ public sealed record class AuthProviderPatchParamsOauth2AuthorizeRequest : JsonM
 
     public string? Method
     {
-        get { return this._rawData.GetNullableClass<string>("method"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("method");
+        }
         init
         {
             if (value == null)
@@ -445,7 +502,11 @@ public sealed record class AuthProviderPatchParamsOauth2AuthorizeRequest : JsonM
 
     public IReadOnlyDictionary<string, string>? Params
     {
-        get { return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("params"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("params");
+        }
         init
         {
             if (value == null)
@@ -467,6 +528,7 @@ public sealed record class AuthProviderPatchParamsOauth2AuthorizeRequest : JsonM
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType>
             >("request_content_type");
@@ -489,6 +551,7 @@ public sealed record class AuthProviderPatchParamsOauth2AuthorizeRequest : JsonM
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType>
             >("response_content_type");
@@ -508,6 +571,7 @@ public sealed record class AuthProviderPatchParamsOauth2AuthorizeRequest : JsonM
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("response_map");
         }
         init
@@ -685,7 +749,11 @@ public sealed record class AuthProviderPatchParamsOauth2Pkce : JsonModel
 {
     public string? CodeChallengeMethod
     {
-        get { return this._rawData.GetNullableClass<string>("code_challenge_method"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("code_challenge_method");
+        }
         init
         {
             if (value == null)
@@ -699,7 +767,11 @@ public sealed record class AuthProviderPatchParamsOauth2Pkce : JsonModel
 
     public bool? Enabled
     {
-        get { return this._rawData.GetNullableStruct<bool>("enabled"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("enabled");
+        }
         init
         {
             if (value == null)
@@ -765,7 +837,11 @@ public sealed record class AuthProviderPatchParamsOauth2RefreshRequest : JsonMod
 {
     public string? AuthHeaderValueFormat
     {
-        get { return this._rawData.GetNullableClass<string>("auth_header_value_format"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("auth_header_value_format");
+        }
         init
         {
             if (value == null)
@@ -779,7 +855,11 @@ public sealed record class AuthProviderPatchParamsOauth2RefreshRequest : JsonMod
 
     public string? AuthMethod
     {
-        get { return this._rawData.GetNullableClass<string>("auth_method"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("auth_method");
+        }
         init
         {
             if (value == null)
@@ -793,7 +873,11 @@ public sealed record class AuthProviderPatchParamsOauth2RefreshRequest : JsonMod
 
     public string? Endpoint
     {
-        get { return this._rawData.GetNullableClass<string>("endpoint"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("endpoint");
+        }
         init
         {
             if (value == null)
@@ -807,7 +891,11 @@ public sealed record class AuthProviderPatchParamsOauth2RefreshRequest : JsonMod
 
     public string? Method
     {
-        get { return this._rawData.GetNullableClass<string>("method"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("method");
+        }
         init
         {
             if (value == null)
@@ -821,7 +909,11 @@ public sealed record class AuthProviderPatchParamsOauth2RefreshRequest : JsonMod
 
     public IReadOnlyDictionary<string, string>? Params
     {
-        get { return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("params"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("params");
+        }
         init
         {
             if (value == null)
@@ -843,6 +935,7 @@ public sealed record class AuthProviderPatchParamsOauth2RefreshRequest : JsonMod
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderPatchParamsOauth2RefreshRequestRequestContentType>
             >("request_content_type");
@@ -865,6 +958,7 @@ public sealed record class AuthProviderPatchParamsOauth2RefreshRequest : JsonMod
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderPatchParamsOauth2RefreshRequestResponseContentType>
             >("response_content_type");
@@ -884,6 +978,7 @@ public sealed record class AuthProviderPatchParamsOauth2RefreshRequest : JsonMod
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("response_map");
         }
         init
@@ -1106,7 +1201,11 @@ public sealed record class AuthProviderPatchParamsOauth2TokenRequest : JsonModel
 {
     public string? AuthHeaderValueFormat
     {
-        get { return this._rawData.GetNullableClass<string>("auth_header_value_format"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("auth_header_value_format");
+        }
         init
         {
             if (value == null)
@@ -1120,7 +1219,11 @@ public sealed record class AuthProviderPatchParamsOauth2TokenRequest : JsonModel
 
     public string? AuthMethod
     {
-        get { return this._rawData.GetNullableClass<string>("auth_method"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("auth_method");
+        }
         init
         {
             if (value == null)
@@ -1134,7 +1237,11 @@ public sealed record class AuthProviderPatchParamsOauth2TokenRequest : JsonModel
 
     public string? Endpoint
     {
-        get { return this._rawData.GetNullableClass<string>("endpoint"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("endpoint");
+        }
         init
         {
             if (value == null)
@@ -1148,7 +1255,11 @@ public sealed record class AuthProviderPatchParamsOauth2TokenRequest : JsonModel
 
     public string? Method
     {
-        get { return this._rawData.GetNullableClass<string>("method"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("method");
+        }
         init
         {
             if (value == null)
@@ -1162,7 +1273,11 @@ public sealed record class AuthProviderPatchParamsOauth2TokenRequest : JsonModel
 
     public IReadOnlyDictionary<string, string>? Params
     {
-        get { return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("params"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("params");
+        }
         init
         {
             if (value == null)
@@ -1184,6 +1299,7 @@ public sealed record class AuthProviderPatchParamsOauth2TokenRequest : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderPatchParamsOauth2TokenRequestRequestContentType>
             >("request_content_type");
@@ -1206,6 +1322,7 @@ public sealed record class AuthProviderPatchParamsOauth2TokenRequest : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderPatchParamsOauth2TokenRequestResponseContentType>
             >("response_content_type");
@@ -1225,6 +1342,7 @@ public sealed record class AuthProviderPatchParamsOauth2TokenRequest : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("response_map");
         }
         init
@@ -1402,7 +1520,11 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequest : JsonMo
 {
     public string? AuthHeaderValueFormat
     {
-        get { return this._rawData.GetNullableClass<string>("auth_header_value_format"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("auth_header_value_format");
+        }
         init
         {
             if (value == null)
@@ -1416,7 +1538,11 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequest : JsonMo
 
     public string? AuthMethod
     {
-        get { return this._rawData.GetNullableClass<string>("auth_method"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("auth_method");
+        }
         init
         {
             if (value == null)
@@ -1430,7 +1556,11 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequest : JsonMo
 
     public string? Endpoint
     {
-        get { return this._rawData.GetNullableClass<string>("endpoint"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("endpoint");
+        }
         init
         {
             if (value == null)
@@ -1444,7 +1574,11 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequest : JsonMo
 
     public string? Method
     {
-        get { return this._rawData.GetNullableClass<string>("method"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("method");
+        }
         init
         {
             if (value == null)
@@ -1458,7 +1592,11 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequest : JsonMo
 
     public IReadOnlyDictionary<string, string>? Params
     {
-        get { return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("params"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("params");
+        }
         init
         {
             if (value == null)
@@ -1480,6 +1618,7 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequest : JsonMo
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType>
             >("request_content_type");
@@ -1502,6 +1641,7 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequest : JsonMo
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType>
             >("response_content_type");
@@ -1521,6 +1661,7 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequest : JsonMo
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("response_map");
         }
         init
@@ -1541,6 +1682,7 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequest : JsonMo
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<AuthProviderPatchParamsOauth2UserInfoRequestTriggers>(
                 "triggers"
             );
@@ -1718,7 +1860,11 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequestTriggers 
 {
     public bool? OnTokenGrant
     {
-        get { return this._rawData.GetNullableStruct<bool>("on_token_grant"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("on_token_grant");
+        }
         init
         {
             if (value == null)
@@ -1732,7 +1878,11 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequestTriggers 
 
     public bool? OnTokenRefresh
     {
-        get { return this._rawData.GetNullableStruct<bool>("on_token_refresh"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("on_token_refresh");
+        }
         init
         {
             if (value == null)

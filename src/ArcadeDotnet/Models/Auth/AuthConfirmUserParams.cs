@@ -22,13 +22,21 @@ public sealed record class AuthConfirmUserParams : ParamsBase
 
     public required string FlowID
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("flow_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("flow_id");
+        }
         init { this._rawBodyData.Set("flow_id", value); }
     }
 
     public required string UserID
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("user_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("user_id");
+        }
         init { this._rawBodyData.Set("user_id", value); }
     }
 

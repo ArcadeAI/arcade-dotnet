@@ -14,7 +14,11 @@ public sealed record class SecretResponse : JsonModel
 {
     public string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init
         {
             if (value == null)
@@ -28,7 +32,11 @@ public sealed record class SecretResponse : JsonModel
 
     public Binding? Binding
     {
-        get { return this._rawData.GetNullableClass<Binding>("binding"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Binding>("binding");
+        }
         init
         {
             if (value == null)
@@ -42,7 +50,11 @@ public sealed record class SecretResponse : JsonModel
 
     public string? CreatedAt
     {
-        get { return this._rawData.GetNullableClass<string>("created_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("created_at");
+        }
         init
         {
             if (value == null)
@@ -56,7 +68,11 @@ public sealed record class SecretResponse : JsonModel
 
     public string? Description
     {
-        get { return this._rawData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
         init
         {
             if (value == null)
@@ -70,7 +86,11 @@ public sealed record class SecretResponse : JsonModel
 
     public string? Hint
     {
-        get { return this._rawData.GetNullableClass<string>("hint"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("hint");
+        }
         init
         {
             if (value == null)
@@ -84,7 +104,11 @@ public sealed record class SecretResponse : JsonModel
 
     public string? Key
     {
-        get { return this._rawData.GetNullableClass<string>("key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("key");
+        }
         init
         {
             if (value == null)
@@ -98,7 +122,11 @@ public sealed record class SecretResponse : JsonModel
 
     public string? LastAccessedAt
     {
-        get { return this._rawData.GetNullableClass<string>("last_accessed_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("last_accessed_at");
+        }
         init
         {
             if (value == null)
@@ -112,7 +140,11 @@ public sealed record class SecretResponse : JsonModel
 
     public string? UpdatedAt
     {
-        get { return this._rawData.GetNullableClass<string>("updated_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("updated_at");
+        }
         init
         {
             if (value == null)
@@ -174,7 +206,11 @@ public sealed record class Binding : JsonModel
 {
     public string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init
         {
             if (value == null)
@@ -190,6 +226,7 @@ public sealed record class Binding : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, global::ArcadeDotnet.Models.Admin.Secrets.Type>
             >("type");

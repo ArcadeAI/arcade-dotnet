@@ -20,6 +20,7 @@ public sealed record class UserConnectionListPageResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<UserConnectionResponse>>("items");
         }
         init
@@ -38,7 +39,11 @@ public sealed record class UserConnectionListPageResponse : JsonModel
 
     public long? Limit
     {
-        get { return this._rawData.GetNullableStruct<long>("limit"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("limit");
+        }
         init
         {
             if (value == null)
@@ -52,7 +57,11 @@ public sealed record class UserConnectionListPageResponse : JsonModel
 
     public long? Offset
     {
-        get { return this._rawData.GetNullableStruct<long>("offset"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("offset");
+        }
         init
         {
             if (value == null)
@@ -66,7 +75,11 @@ public sealed record class UserConnectionListPageResponse : JsonModel
 
     public long? PageCount
     {
-        get { return this._rawData.GetNullableStruct<long>("page_count"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("page_count");
+        }
         init
         {
             if (value == null)
@@ -80,7 +93,11 @@ public sealed record class UserConnectionListPageResponse : JsonModel
 
     public long? TotalCount
     {
-        get { return this._rawData.GetNullableStruct<long>("total_count"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("total_count");
+        }
         init
         {
             if (value == null)

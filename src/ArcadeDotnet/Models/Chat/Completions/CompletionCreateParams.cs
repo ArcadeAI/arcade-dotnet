@@ -25,7 +25,11 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public double? FrequencyPenalty
     {
-        get { return this._rawBodyData.GetNullableStruct<double>("frequency_penalty"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<double>("frequency_penalty");
+        }
         init
         {
             if (value == null)
@@ -46,6 +50,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<FrozenDictionary<string, long>>("logit_bias");
         }
         init
@@ -69,7 +74,11 @@ public sealed record class CompletionCreateParams : ParamsBase
     /// </summary>
     public bool? Logprobs
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("logprobs"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("logprobs");
+        }
         init
         {
             if (value == null)
@@ -83,7 +92,11 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public long? MaxTokens
     {
-        get { return this._rawBodyData.GetNullableStruct<long>("max_tokens"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<long>("max_tokens");
+        }
         init
         {
             if (value == null)
@@ -97,7 +110,11 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public IReadOnlyList<ChatMessage>? Messages
     {
-        get { return this._rawBodyData.GetNullableStruct<ImmutableArray<ChatMessage>>("messages"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<ChatMessage>>("messages");
+        }
         init
         {
             if (value == null)
@@ -114,7 +131,11 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public string? Model
     {
-        get { return this._rawBodyData.GetNullableClass<string>("model"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("model");
+        }
         init
         {
             if (value == null)
@@ -128,7 +149,11 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public long? N
     {
-        get { return this._rawBodyData.GetNullableStruct<long>("n"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<long>("n");
+        }
         init
         {
             if (value == null)
@@ -145,7 +170,11 @@ public sealed record class CompletionCreateParams : ParamsBase
     /// </summary>
     public bool? ParallelToolCalls
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("parallel_tool_calls"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("parallel_tool_calls");
+        }
         init
         {
             if (value == null)
@@ -159,7 +188,11 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public double? PresencePenalty
     {
-        get { return this._rawBodyData.GetNullableStruct<double>("presence_penalty"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<double>("presence_penalty");
+        }
         init
         {
             if (value == null)
@@ -175,6 +208,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat>(
                 "response_format"
             );
@@ -192,7 +226,11 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public long? Seed
     {
-        get { return this._rawBodyData.GetNullableStruct<long>("seed"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<long>("seed");
+        }
         init
         {
             if (value == null)
@@ -206,7 +244,11 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public IReadOnlyList<string>? Stop
     {
-        get { return this._rawBodyData.GetNullableStruct<ImmutableArray<string>>("stop"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<string>>("stop");
+        }
         init
         {
             if (value == null)
@@ -223,7 +265,11 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public bool? Stream
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("stream"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("stream");
+        }
         init
         {
             if (value == null)
@@ -242,6 +288,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<global::ArcadeDotnet.Models.Chat.Completions.StreamOptions>(
                 "stream_options"
             );
@@ -259,7 +306,11 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public double? Temperature
     {
-        get { return this._rawBodyData.GetNullableStruct<double>("temperature"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<double>("temperature");
+        }
         init
         {
             if (value == null)
@@ -276,7 +327,11 @@ public sealed record class CompletionCreateParams : ParamsBase
     /// </summary>
     public JsonElement? ToolChoice
     {
-        get { return this._rawBodyData.GetNullableStruct<JsonElement>("tool_choice"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<JsonElement>("tool_choice");
+        }
         init
         {
             if (value == null)
@@ -290,7 +345,11 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public JsonElement? Tools
     {
-        get { return this._rawBodyData.GetNullableStruct<JsonElement>("tools"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<JsonElement>("tools");
+        }
         init
         {
             if (value == null)
@@ -309,7 +368,11 @@ public sealed record class CompletionCreateParams : ParamsBase
     /// </summary>
     public long? TopLogprobs
     {
-        get { return this._rawBodyData.GetNullableStruct<long>("top_logprobs"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<long>("top_logprobs");
+        }
         init
         {
             if (value == null)
@@ -323,7 +386,11 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public double? TopP
     {
-        get { return this._rawBodyData.GetNullableStruct<double>("top_p"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<double>("top_p");
+        }
         init
         {
             if (value == null)
@@ -337,7 +404,11 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public string? User
     {
-        get { return this._rawBodyData.GetNullableClass<string>("user"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("user");
+        }
         init
         {
             if (value == null)
@@ -437,6 +508,7 @@ public sealed record class ResponseFormat : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, global::ArcadeDotnet.Models.Chat.Completions.Type>
             >("type");
@@ -559,7 +631,11 @@ public sealed record class StreamOptions : JsonModel
     /// </summary>
     public bool? IncludeUsage
     {
-        get { return this._rawData.GetNullableStruct<bool>("include_usage"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("include_usage");
+        }
         init
         {
             if (value == null)

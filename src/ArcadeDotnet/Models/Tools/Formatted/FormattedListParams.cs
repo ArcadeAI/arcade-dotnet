@@ -19,7 +19,11 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public string? Format
     {
-        get { return this._rawQueryData.GetNullableClass<string>("format"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("format");
+        }
         init
         {
             if (value == null)
@@ -36,7 +40,11 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public bool? IncludeAllVersions
     {
-        get { return this._rawQueryData.GetNullableStruct<bool>("include_all_versions"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("include_all_versions");
+        }
         init
         {
             if (value == null)
@@ -53,7 +61,11 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
         init
         {
             if (value == null)
@@ -70,7 +82,11 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public long? Offset
     {
-        get { return this._rawQueryData.GetNullableStruct<long>("offset"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("offset");
+        }
         init
         {
             if (value == null)
@@ -87,7 +103,11 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public string? Toolkit
     {
-        get { return this._rawQueryData.GetNullableClass<string>("toolkit"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("toolkit");
+        }
         init
         {
             if (value == null)
@@ -104,7 +124,11 @@ public sealed record class FormattedListParams : ParamsBase
     /// </summary>
     public string? UserID
     {
-        get { return this._rawQueryData.GetNullableClass<string>("user_id"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("user_id");
+        }
         init
         {
             if (value == null)

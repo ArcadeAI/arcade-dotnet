@@ -15,7 +15,11 @@ public sealed record class ToolExecutionAttempt : JsonModel
 {
     public string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init
         {
             if (value == null)
@@ -29,7 +33,11 @@ public sealed record class ToolExecutionAttempt : JsonModel
 
     public string? FinishedAt
     {
-        get { return this._rawData.GetNullableClass<string>("finished_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("finished_at");
+        }
         init
         {
             if (value == null)
@@ -43,7 +51,11 @@ public sealed record class ToolExecutionAttempt : JsonModel
 
     public ToolExecutionAttemptOutput? Output
     {
-        get { return this._rawData.GetNullableClass<ToolExecutionAttemptOutput>("output"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ToolExecutionAttemptOutput>("output");
+        }
         init
         {
             if (value == null)
@@ -57,7 +69,11 @@ public sealed record class ToolExecutionAttempt : JsonModel
 
     public string? StartedAt
     {
-        get { return this._rawData.GetNullableClass<string>("started_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("started_at");
+        }
         init
         {
             if (value == null)
@@ -71,7 +87,11 @@ public sealed record class ToolExecutionAttempt : JsonModel
 
     public bool? Success
     {
-        get { return this._rawData.GetNullableStruct<bool>("success"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("success");
+        }
         init
         {
             if (value == null)
@@ -85,7 +105,11 @@ public sealed record class ToolExecutionAttempt : JsonModel
 
     public string? SystemErrorMessage
     {
-        get { return this._rawData.GetNullableClass<string>("system_error_message"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("system_error_message");
+        }
         init
         {
             if (value == null)
@@ -150,7 +174,11 @@ public sealed record class ToolExecutionAttemptOutput : JsonModel
 {
     public AuthorizationResponse? Authorization
     {
-        get { return this._rawData.GetNullableClass<AuthorizationResponse>("authorization"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<AuthorizationResponse>("authorization");
+        }
         init
         {
             if (value == null)
@@ -164,7 +192,11 @@ public sealed record class ToolExecutionAttemptOutput : JsonModel
 
     public ToolExecutionAttemptOutputError? Error
     {
-        get { return this._rawData.GetNullableClass<ToolExecutionAttemptOutputError>("error"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ToolExecutionAttemptOutputError>("error");
+        }
         init
         {
             if (value == null)
@@ -180,6 +212,7 @@ public sealed record class ToolExecutionAttemptOutput : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<ToolExecutionAttemptOutputLog>>(
                 "logs"
             );
@@ -200,7 +233,11 @@ public sealed record class ToolExecutionAttemptOutput : JsonModel
 
     public JsonElement? Value
     {
-        get { return this._rawData.GetNullableStruct<JsonElement>("value"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<JsonElement>("value");
+        }
         init
         {
             if (value == null)
@@ -269,7 +306,11 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
 {
     public required bool CanRetry
     {
-        get { return this._rawData.GetNotNullStruct<bool>("can_retry"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("can_retry");
+        }
         init { this._rawData.Set("can_retry", value); }
     }
 
@@ -277,6 +318,7 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, ToolExecutionAttemptOutputErrorKind>
             >("kind");
@@ -286,13 +328,21 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
 
     public required string Message
     {
-        get { return this._rawData.GetNotNullClass<string>("message"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("message");
+        }
         init { this._rawData.Set("message", value); }
     }
 
     public string? AdditionalPromptContent
     {
-        get { return this._rawData.GetNullableClass<string>("additional_prompt_content"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("additional_prompt_content");
+        }
         init
         {
             if (value == null)
@@ -306,7 +356,11 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
 
     public string? DeveloperMessage
     {
-        get { return this._rawData.GetNullableClass<string>("developer_message"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("developer_message");
+        }
         init
         {
             if (value == null)
@@ -322,6 +376,7 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>("extra");
         }
         init
@@ -340,7 +395,11 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
 
     public long? RetryAfterMs
     {
-        get { return this._rawData.GetNullableStruct<long>("retry_after_ms"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("retry_after_ms");
+        }
         init
         {
             if (value == null)
@@ -354,7 +413,11 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
 
     public string? Stacktrace
     {
-        get { return this._rawData.GetNullableClass<string>("stacktrace"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("stacktrace");
+        }
         init
         {
             if (value == null)
@@ -368,7 +431,11 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
 
     public long? StatusCode
     {
-        get { return this._rawData.GetNullableStruct<long>("status_code"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("status_code");
+        }
         init
         {
             if (value == null)
@@ -559,19 +626,31 @@ public sealed record class ToolExecutionAttemptOutputLog : JsonModel
 {
     public required string Level
     {
-        get { return this._rawData.GetNotNullClass<string>("level"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("level");
+        }
         init { this._rawData.Set("level", value); }
     }
 
     public required string Message
     {
-        get { return this._rawData.GetNotNullClass<string>("message"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("message");
+        }
         init { this._rawData.Set("message", value); }
     }
 
     public string? Subtype
     {
-        get { return this._rawData.GetNullableClass<string>("subtype"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("subtype");
+        }
         init
         {
             if (value == null)

@@ -20,7 +20,11 @@ public sealed record class AuthStatusParams : ParamsBase
     /// </summary>
     public required string ID
     {
-        get { return this._rawQueryData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNotNullClass<string>("id");
+        }
         init { this._rawQueryData.Set("id", value); }
     }
 
@@ -29,7 +33,11 @@ public sealed record class AuthStatusParams : ParamsBase
     /// </summary>
     public long? Wait
     {
-        get { return this._rawQueryData.GetNullableStruct<long>("wait"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("wait");
+        }
         init
         {
             if (value == null)

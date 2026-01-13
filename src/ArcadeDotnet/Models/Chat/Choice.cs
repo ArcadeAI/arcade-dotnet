@@ -13,7 +13,11 @@ public sealed record class Choice : JsonModel
 {
     public string? FinishReason
     {
-        get { return this._rawData.GetNullableClass<string>("finish_reason"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("finish_reason");
+        }
         init
         {
             if (value == null)
@@ -27,7 +31,11 @@ public sealed record class Choice : JsonModel
 
     public long? Index
     {
-        get { return this._rawData.GetNullableStruct<long>("index"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("index");
+        }
         init
         {
             if (value == null)
@@ -41,7 +49,11 @@ public sealed record class Choice : JsonModel
 
     public JsonElement? Logprobs
     {
-        get { return this._rawData.GetNullableStruct<JsonElement>("logprobs"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<JsonElement>("logprobs");
+        }
         init
         {
             if (value == null)
@@ -55,7 +67,11 @@ public sealed record class Choice : JsonModel
 
     public ChatMessage? Message
     {
-        get { return this._rawData.GetNullableClass<ChatMessage>("message"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ChatMessage>("message");
+        }
         init
         {
             if (value == null)
@@ -71,6 +87,7 @@ public sealed record class Choice : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<AuthorizationResponse>>(
                 "tool_authorizations"
             );
@@ -93,6 +110,7 @@ public sealed record class Choice : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<ChatMessage>>("tool_messages");
         }
         init

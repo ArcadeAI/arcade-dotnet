@@ -13,13 +13,21 @@ public sealed record class ValueSchema : JsonModel
 {
     public required string ValType
     {
-        get { return this._rawData.GetNotNullClass<string>("val_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("val_type");
+        }
         init { this._rawData.Set("val_type", value); }
     }
 
     public IReadOnlyList<string>? Enum
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<string>>("enum"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("enum");
+        }
         init
         {
             if (value == null)
@@ -36,7 +44,11 @@ public sealed record class ValueSchema : JsonModel
 
     public string? InnerValType
     {
-        get { return this._rawData.GetNullableClass<string>("inner_val_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("inner_val_type");
+        }
         init
         {
             if (value == null)

@@ -25,7 +25,11 @@ public sealed record class WorkerUpdateParams : ParamsBase
 
     public bool? Enabled
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("enabled"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("enabled");
+        }
         init
         {
             if (value == null)
@@ -39,7 +43,11 @@ public sealed record class WorkerUpdateParams : ParamsBase
 
     public WorkerUpdateParamsHttp? Http
     {
-        get { return this._rawBodyData.GetNullableClass<WorkerUpdateParamsHttp>("http"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<WorkerUpdateParamsHttp>("http");
+        }
         init
         {
             if (value == null)
@@ -53,7 +61,11 @@ public sealed record class WorkerUpdateParams : ParamsBase
 
     public WorkerUpdateParamsMcp? Mcp
     {
-        get { return this._rawBodyData.GetNullableClass<WorkerUpdateParamsMcp>("mcp"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<WorkerUpdateParamsMcp>("mcp");
+        }
         init
         {
             if (value == null)
@@ -148,7 +160,11 @@ public sealed record class WorkerUpdateParamsHttp : JsonModel
 {
     public long? Retry
     {
-        get { return this._rawData.GetNullableStruct<long>("retry"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("retry");
+        }
         init
         {
             if (value == null)
@@ -162,7 +178,11 @@ public sealed record class WorkerUpdateParamsHttp : JsonModel
 
     public string? Secret
     {
-        get { return this._rawData.GetNullableClass<string>("secret"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("secret");
+        }
         init
         {
             if (value == null)
@@ -176,7 +196,11 @@ public sealed record class WorkerUpdateParamsHttp : JsonModel
 
     public long? Timeout
     {
-        get { return this._rawData.GetNullableStruct<long>("timeout"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("timeout");
+        }
         init
         {
             if (value == null)
@@ -190,7 +214,11 @@ public sealed record class WorkerUpdateParamsHttp : JsonModel
 
     public string? Uri
     {
-        get { return this._rawData.GetNullableClass<string>("uri"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("uri");
+        }
         init
         {
             if (value == null)
@@ -251,7 +279,11 @@ public sealed record class WorkerUpdateParamsMcp : JsonModel
 {
     public IReadOnlyDictionary<string, string>? Headers
     {
-        get { return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("headers"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("headers");
+        }
         init
         {
             if (value == null)
@@ -268,7 +300,11 @@ public sealed record class WorkerUpdateParamsMcp : JsonModel
 
     public WorkerUpdateParamsMcpOauth2? Oauth2
     {
-        get { return this._rawData.GetNullableClass<WorkerUpdateParamsMcpOauth2>("oauth2"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<WorkerUpdateParamsMcpOauth2>("oauth2");
+        }
         init
         {
             if (value == null)
@@ -282,7 +318,11 @@ public sealed record class WorkerUpdateParamsMcp : JsonModel
 
     public long? Retry
     {
-        get { return this._rawData.GetNullableStruct<long>("retry"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("retry");
+        }
         init
         {
             if (value == null)
@@ -296,7 +336,11 @@ public sealed record class WorkerUpdateParamsMcp : JsonModel
 
     public IReadOnlyDictionary<string, string>? Secrets
     {
-        get { return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("secrets"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("secrets");
+        }
         init
         {
             if (value == null)
@@ -313,7 +357,11 @@ public sealed record class WorkerUpdateParamsMcp : JsonModel
 
     public long? Timeout
     {
-        get { return this._rawData.GetNullableStruct<long>("timeout"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("timeout");
+        }
         init
         {
             if (value == null)
@@ -327,7 +375,11 @@ public sealed record class WorkerUpdateParamsMcp : JsonModel
 
     public string? Uri
     {
-        get { return this._rawData.GetNullableClass<string>("uri"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("uri");
+        }
         init
         {
             if (value == null)
@@ -392,7 +444,11 @@ public sealed record class WorkerUpdateParamsMcpOauth2 : JsonModel
 {
     public string? AuthorizationUrl
     {
-        get { return this._rawData.GetNullableClass<string>("authorization_url"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("authorization_url");
+        }
         init
         {
             if (value == null)
@@ -406,7 +462,11 @@ public sealed record class WorkerUpdateParamsMcpOauth2 : JsonModel
 
     public string? ClientID
     {
-        get { return this._rawData.GetNullableClass<string>("client_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("client_id");
+        }
         init
         {
             if (value == null)
@@ -420,7 +480,11 @@ public sealed record class WorkerUpdateParamsMcpOauth2 : JsonModel
 
     public string? ClientSecret
     {
-        get { return this._rawData.GetNullableClass<string>("client_secret"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("client_secret");
+        }
         init
         {
             if (value == null)

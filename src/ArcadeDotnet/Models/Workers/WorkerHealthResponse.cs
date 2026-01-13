@@ -12,7 +12,11 @@ public sealed record class WorkerHealthResponse : JsonModel
 {
     public string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init
         {
             if (value == null)
@@ -26,7 +30,11 @@ public sealed record class WorkerHealthResponse : JsonModel
 
     public bool? Enabled
     {
-        get { return this._rawData.GetNullableStruct<bool>("enabled"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("enabled");
+        }
         init
         {
             if (value == null)
@@ -40,7 +48,11 @@ public sealed record class WorkerHealthResponse : JsonModel
 
     public bool? Healthy
     {
-        get { return this._rawData.GetNullableStruct<bool>("healthy"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("healthy");
+        }
         init
         {
             if (value == null)
@@ -54,7 +66,11 @@ public sealed record class WorkerHealthResponse : JsonModel
 
     public string? Message
     {
-        get { return this._rawData.GetNullableClass<string>("message"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("message");
+        }
         init
         {
             if (value == null)

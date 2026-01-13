@@ -12,13 +12,21 @@ public sealed record class CreateWorkerRequest : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
     public bool? Enabled
     {
-        get { return this._rawData.GetNullableStruct<bool>("enabled"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("enabled");
+        }
         init
         {
             if (value == null)
@@ -32,7 +40,11 @@ public sealed record class CreateWorkerRequest : JsonModel
 
     public CreateWorkerRequestHttp? Http
     {
-        get { return this._rawData.GetNullableClass<CreateWorkerRequestHttp>("http"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CreateWorkerRequestHttp>("http");
+        }
         init
         {
             if (value == null)
@@ -46,7 +58,11 @@ public sealed record class CreateWorkerRequest : JsonModel
 
     public CreateWorkerRequestMcp? Mcp
     {
-        get { return this._rawData.GetNullableClass<CreateWorkerRequestMcp>("mcp"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CreateWorkerRequestMcp>("mcp");
+        }
         init
         {
             if (value == null)
@@ -60,7 +76,11 @@ public sealed record class CreateWorkerRequest : JsonModel
 
     public string? Type
     {
-        get { return this._rawData.GetNullableClass<string>("type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("type");
+        }
         init
         {
             if (value == null)
@@ -128,25 +148,41 @@ public sealed record class CreateWorkerRequestHttp : JsonModel
 {
     public required long Retry
     {
-        get { return this._rawData.GetNotNullStruct<long>("retry"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("retry");
+        }
         init { this._rawData.Set("retry", value); }
     }
 
     public required string Secret
     {
-        get { return this._rawData.GetNotNullClass<string>("secret"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("secret");
+        }
         init { this._rawData.Set("secret", value); }
     }
 
     public required long Timeout
     {
-        get { return this._rawData.GetNotNullStruct<long>("timeout"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("timeout");
+        }
         init { this._rawData.Set("timeout", value); }
     }
 
     public required string Uri
     {
-        get { return this._rawData.GetNotNullClass<string>("uri"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("uri");
+        }
         init { this._rawData.Set("uri", value); }
     }
 
@@ -199,25 +235,41 @@ public sealed record class CreateWorkerRequestMcp : JsonModel
 {
     public required long Retry
     {
-        get { return this._rawData.GetNotNullStruct<long>("retry"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("retry");
+        }
         init { this._rawData.Set("retry", value); }
     }
 
     public required long Timeout
     {
-        get { return this._rawData.GetNotNullStruct<long>("timeout"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("timeout");
+        }
         init { this._rawData.Set("timeout", value); }
     }
 
     public required string Uri
     {
-        get { return this._rawData.GetNotNullClass<string>("uri"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("uri");
+        }
         init { this._rawData.Set("uri", value); }
     }
 
     public IReadOnlyDictionary<string, string>? Headers
     {
-        get { return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("headers"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("headers");
+        }
         init
         {
             if (value == null)
@@ -234,7 +286,11 @@ public sealed record class CreateWorkerRequestMcp : JsonModel
 
     public CreateWorkerRequestMcpOauth2? Oauth2
     {
-        get { return this._rawData.GetNullableClass<CreateWorkerRequestMcpOauth2>("oauth2"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CreateWorkerRequestMcpOauth2>("oauth2");
+        }
         init
         {
             if (value == null)
@@ -248,7 +304,11 @@ public sealed record class CreateWorkerRequestMcp : JsonModel
 
     public IReadOnlyDictionary<string, string>? Secrets
     {
-        get { return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("secrets"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("secrets");
+        }
         init
         {
             if (value == null)
@@ -316,7 +376,11 @@ public sealed record class CreateWorkerRequestMcpOauth2 : JsonModel
 {
     public string? AuthorizationUrl
     {
-        get { return this._rawData.GetNullableClass<string>("authorization_url"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("authorization_url");
+        }
         init
         {
             if (value == null)
@@ -330,7 +394,11 @@ public sealed record class CreateWorkerRequestMcpOauth2 : JsonModel
 
     public string? ClientID
     {
-        get { return this._rawData.GetNullableClass<string>("client_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("client_id");
+        }
         init
         {
             if (value == null)
@@ -344,7 +412,11 @@ public sealed record class CreateWorkerRequestMcpOauth2 : JsonModel
 
     public string? ClientSecret
     {
-        get { return this._rawData.GetNullableClass<string>("client_secret"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("client_secret");
+        }
         init
         {
             if (value == null)
@@ -358,7 +430,11 @@ public sealed record class CreateWorkerRequestMcpOauth2 : JsonModel
 
     public string? ExternalID
     {
-        get { return this._rawData.GetNullableClass<string>("external_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_id");
+        }
         init
         {
             if (value == null)

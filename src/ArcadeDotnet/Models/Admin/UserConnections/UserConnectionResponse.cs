@@ -13,7 +13,11 @@ public sealed record class UserConnectionResponse : JsonModel
 {
     public string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init
         {
             if (value == null)
@@ -27,7 +31,11 @@ public sealed record class UserConnectionResponse : JsonModel
 
     public string? ConnectionID
     {
-        get { return this._rawData.GetNullableClass<string>("connection_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("connection_id");
+        }
         init
         {
             if (value == null)
@@ -41,7 +49,11 @@ public sealed record class UserConnectionResponse : JsonModel
 
     public string? ConnectionStatus
     {
-        get { return this._rawData.GetNullableClass<string>("connection_status"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("connection_status");
+        }
         init
         {
             if (value == null)
@@ -55,7 +67,11 @@ public sealed record class UserConnectionResponse : JsonModel
 
     public string? ProviderDescription
     {
-        get { return this._rawData.GetNullableClass<string>("provider_description"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("provider_description");
+        }
         init
         {
             if (value == null)
@@ -69,7 +85,11 @@ public sealed record class UserConnectionResponse : JsonModel
 
     public string? ProviderID
     {
-        get { return this._rawData.GetNullableClass<string>("provider_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("provider_id");
+        }
         init
         {
             if (value == null)
@@ -83,7 +103,11 @@ public sealed record class UserConnectionResponse : JsonModel
 
     public string? ProviderType
     {
-        get { return this._rawData.GetNullableClass<string>("provider_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("provider_type");
+        }
         init
         {
             if (value == null)
@@ -97,7 +121,11 @@ public sealed record class UserConnectionResponse : JsonModel
 
     public JsonElement? ProviderUserInfo
     {
-        get { return this._rawData.GetNullableStruct<JsonElement>("provider_user_info"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<JsonElement>("provider_user_info");
+        }
         init
         {
             if (value == null)
@@ -111,7 +139,11 @@ public sealed record class UserConnectionResponse : JsonModel
 
     public IReadOnlyList<string>? Scopes
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<string>>("scopes"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("scopes");
+        }
         init
         {
             if (value == null)
@@ -128,7 +160,11 @@ public sealed record class UserConnectionResponse : JsonModel
 
     public string? UserID
     {
-        get { return this._rawData.GetNullableClass<string>("user_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("user_id");
+        }
         init
         {
             if (value == null)

@@ -13,7 +13,11 @@ public sealed record class ChatResponse : JsonModel
 {
     public string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init
         {
             if (value == null)
@@ -27,7 +31,11 @@ public sealed record class ChatResponse : JsonModel
 
     public IReadOnlyList<Choice>? Choices
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<Choice>>("choices"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<Choice>>("choices");
+        }
         init
         {
             if (value == null)
@@ -44,7 +52,11 @@ public sealed record class ChatResponse : JsonModel
 
     public long? Created
     {
-        get { return this._rawData.GetNullableStruct<long>("created"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("created");
+        }
         init
         {
             if (value == null)
@@ -58,7 +70,11 @@ public sealed record class ChatResponse : JsonModel
 
     public string? Model
     {
-        get { return this._rawData.GetNullableClass<string>("model"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("model");
+        }
         init
         {
             if (value == null)
@@ -72,7 +88,11 @@ public sealed record class ChatResponse : JsonModel
 
     public string? Object
     {
-        get { return this._rawData.GetNullableClass<string>("object"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("object");
+        }
         init
         {
             if (value == null)
@@ -86,7 +106,11 @@ public sealed record class ChatResponse : JsonModel
 
     public string? SystemFingerprint
     {
-        get { return this._rawData.GetNullableClass<string>("system_fingerprint"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("system_fingerprint");
+        }
         init
         {
             if (value == null)
@@ -100,7 +124,11 @@ public sealed record class ChatResponse : JsonModel
 
     public Usage? Usage
     {
-        get { return this._rawData.GetNullableClass<Usage>("usage"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Usage>("usage");
+        }
         init
         {
             if (value == null)

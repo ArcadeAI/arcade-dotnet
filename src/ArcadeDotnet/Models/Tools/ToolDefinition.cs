@@ -15,37 +15,61 @@ public sealed record class ToolDefinition : JsonModel
 {
     public required string FullyQualifiedName
     {
-        get { return this._rawData.GetNotNullClass<string>("fully_qualified_name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("fully_qualified_name");
+        }
         init { this._rawData.Set("fully_qualified_name", value); }
     }
 
     public required Input Input
     {
-        get { return this._rawData.GetNotNullClass<Input>("input"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<Input>("input");
+        }
         init { this._rawData.Set("input", value); }
     }
 
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
     public required string QualifiedName
     {
-        get { return this._rawData.GetNotNullClass<string>("qualified_name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("qualified_name");
+        }
         init { this._rawData.Set("qualified_name", value); }
     }
 
     public required Toolkit Toolkit
     {
-        get { return this._rawData.GetNotNullClass<Toolkit>("toolkit"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<Toolkit>("toolkit");
+        }
         init { this._rawData.Set("toolkit", value); }
     }
 
     public string? Description
     {
-        get { return this._rawData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
         init
         {
             if (value == null)
@@ -61,6 +85,7 @@ public sealed record class ToolDefinition : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
                 "formatted_schema"
             );
@@ -81,7 +106,11 @@ public sealed record class ToolDefinition : JsonModel
 
     public ToolDefinitionOutput? Output
     {
-        get { return this._rawData.GetNullableClass<ToolDefinitionOutput>("output"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ToolDefinitionOutput>("output");
+        }
         init
         {
             if (value == null)
@@ -95,7 +124,11 @@ public sealed record class ToolDefinition : JsonModel
 
     public Requirements? Requirements
     {
-        get { return this._rawData.GetNullableClass<Requirements>("requirements"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Requirements>("requirements");
+        }
         init
         {
             if (value == null)
@@ -158,7 +191,11 @@ public sealed record class Input : JsonModel
 {
     public IReadOnlyList<Parameter>? Parameters
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<Parameter>>("parameters"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<Parameter>>("parameters");
+        }
         init
         {
             if (value == null)
@@ -219,19 +256,31 @@ public sealed record class Parameter : JsonModel
 {
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
     public required ValueSchema ValueSchema
     {
-        get { return this._rawData.GetNotNullClass<ValueSchema>("value_schema"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ValueSchema>("value_schema");
+        }
         init { this._rawData.Set("value_schema", value); }
     }
 
     public string? Description
     {
-        get { return this._rawData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
         init
         {
             if (value == null)
@@ -245,7 +294,11 @@ public sealed record class Parameter : JsonModel
 
     public bool? Inferrable
     {
-        get { return this._rawData.GetNullableStruct<bool>("inferrable"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("inferrable");
+        }
         init
         {
             if (value == null)
@@ -259,7 +312,11 @@ public sealed record class Parameter : JsonModel
 
     public bool? Required
     {
-        get { return this._rawData.GetNullableStruct<bool>("required"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("required");
+        }
         init
         {
             if (value == null)
@@ -318,13 +375,21 @@ public sealed record class Toolkit : JsonModel
 {
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
     public string? Description
     {
-        get { return this._rawData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
         init
         {
             if (value == null)
@@ -338,7 +403,11 @@ public sealed record class Toolkit : JsonModel
 
     public string? Version
     {
-        get { return this._rawData.GetNullableClass<string>("version"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("version");
+        }
         init
         {
             if (value == null)
@@ -402,7 +471,11 @@ public sealed record class ToolDefinitionOutput : JsonModel
 {
     public IReadOnlyList<string>? AvailableModes
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<string>>("available_modes"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("available_modes");
+        }
         init
         {
             if (value == null)
@@ -419,7 +492,11 @@ public sealed record class ToolDefinitionOutput : JsonModel
 
     public string? Description
     {
-        get { return this._rawData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
         init
         {
             if (value == null)
@@ -433,7 +510,11 @@ public sealed record class ToolDefinitionOutput : JsonModel
 
     public ValueSchema? ValueSchema
     {
-        get { return this._rawData.GetNullableClass<ValueSchema>("value_schema"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ValueSchema>("value_schema");
+        }
         init
         {
             if (value == null)
@@ -493,7 +574,11 @@ public sealed record class Requirements : JsonModel
 {
     public Authorization? Authorization
     {
-        get { return this._rawData.GetNullableClass<Authorization>("authorization"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Authorization>("authorization");
+        }
         init
         {
             if (value == null)
@@ -507,7 +592,11 @@ public sealed record class Requirements : JsonModel
 
     public bool? Met
     {
-        get { return this._rawData.GetNullableStruct<bool>("met"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("met");
+        }
         init
         {
             if (value == null)
@@ -521,7 +610,11 @@ public sealed record class Requirements : JsonModel
 
     public IReadOnlyList<Secret>? Secrets
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<Secret>>("secrets"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<Secret>>("secrets");
+        }
         init
         {
             if (value == null)
@@ -584,7 +677,11 @@ public sealed record class Authorization : JsonModel
 {
     public string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init
         {
             if (value == null)
@@ -598,7 +695,11 @@ public sealed record class Authorization : JsonModel
 
     public Oauth2? Oauth2
     {
-        get { return this._rawData.GetNullableClass<Oauth2>("oauth2"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Oauth2>("oauth2");
+        }
         init
         {
             if (value == null)
@@ -612,7 +713,11 @@ public sealed record class Authorization : JsonModel
 
     public string? ProviderID
     {
-        get { return this._rawData.GetNullableClass<string>("provider_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("provider_id");
+        }
         init
         {
             if (value == null)
@@ -626,7 +731,11 @@ public sealed record class Authorization : JsonModel
 
     public string? ProviderType
     {
-        get { return this._rawData.GetNullableClass<string>("provider_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("provider_type");
+        }
         init
         {
             if (value == null)
@@ -642,6 +751,7 @@ public sealed record class Authorization : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, global::ArcadeDotnet.Models.Tools.Status>
             >("status");
@@ -659,7 +769,11 @@ public sealed record class Authorization : JsonModel
 
     public string? StatusReason
     {
-        get { return this._rawData.GetNullableClass<string>("status_reason"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("status_reason");
+        }
         init
         {
             if (value == null)
@@ -673,7 +787,11 @@ public sealed record class Authorization : JsonModel
 
     public ApiEnum<string, TokenStatus>? TokenStatus
     {
-        get { return this._rawData.GetNullableClass<ApiEnum<string, TokenStatus>>("token_status"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, TokenStatus>>("token_status");
+        }
         init
         {
             if (value == null)
@@ -734,7 +852,11 @@ public sealed record class Oauth2 : JsonModel
 {
     public IReadOnlyList<string>? Scopes
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<string>>("scopes"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("scopes");
+        }
         init
         {
             if (value == null)
@@ -886,13 +1008,21 @@ public sealed record class Secret : JsonModel
 {
     public required string Key
     {
-        get { return this._rawData.GetNotNullClass<string>("key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("key");
+        }
         init { this._rawData.Set("key", value); }
     }
 
     public bool? Met
     {
-        get { return this._rawData.GetNullableStruct<bool>("met"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("met");
+        }
         init
         {
             if (value == null)
@@ -906,7 +1036,11 @@ public sealed record class Secret : JsonModel
 
     public string? StatusReason
     {
-        get { return this._rawData.GetNullableClass<string>("status_reason"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("status_reason");
+        }
         init
         {
             if (value == null)

@@ -24,13 +24,21 @@ public sealed record class SecretCreateParams : ParamsBase
 
     public required string Value
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("value"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("value");
+        }
         init { this._rawBodyData.Set("value", value); }
     }
 
     public string? Description
     {
-        get { return this._rawBodyData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("description");
+        }
         init
         {
             if (value == null)

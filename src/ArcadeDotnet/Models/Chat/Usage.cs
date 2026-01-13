@@ -12,7 +12,11 @@ public sealed record class Usage : JsonModel
 {
     public long? CompletionTokens
     {
-        get { return this._rawData.GetNullableStruct<long>("completion_tokens"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("completion_tokens");
+        }
         init
         {
             if (value == null)
@@ -26,7 +30,11 @@ public sealed record class Usage : JsonModel
 
     public long? PromptTokens
     {
-        get { return this._rawData.GetNullableStruct<long>("prompt_tokens"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("prompt_tokens");
+        }
         init
         {
             if (value == null)
@@ -40,7 +48,11 @@ public sealed record class Usage : JsonModel
 
     public long? TotalTokens
     {
-        get { return this._rawData.GetNullableStruct<long>("total_tokens"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("total_tokens");
+        }
         init
         {
             if (value == null)

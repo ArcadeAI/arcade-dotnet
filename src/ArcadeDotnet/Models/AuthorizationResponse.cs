@@ -15,7 +15,11 @@ public sealed record class AuthorizationResponse : JsonModel
 {
     public string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init
         {
             if (value == null)
@@ -29,7 +33,11 @@ public sealed record class AuthorizationResponse : JsonModel
 
     public AuthorizationContext? Context
     {
-        get { return this._rawData.GetNullableClass<AuthorizationContext>("context"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<AuthorizationContext>("context");
+        }
         init
         {
             if (value == null)
@@ -43,7 +51,11 @@ public sealed record class AuthorizationResponse : JsonModel
 
     public string? ProviderID
     {
-        get { return this._rawData.GetNullableClass<string>("provider_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("provider_id");
+        }
         init
         {
             if (value == null)
@@ -57,7 +69,11 @@ public sealed record class AuthorizationResponse : JsonModel
 
     public IReadOnlyList<string>? Scopes
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<string>>("scopes"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("scopes");
+        }
         init
         {
             if (value == null)
@@ -74,7 +90,11 @@ public sealed record class AuthorizationResponse : JsonModel
 
     public ApiEnum<string, Status>? Status
     {
-        get { return this._rawData.GetNullableClass<ApiEnum<string, Status>>("status"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, Status>>("status");
+        }
         init
         {
             if (value == null)
@@ -88,7 +108,11 @@ public sealed record class AuthorizationResponse : JsonModel
 
     public string? Url
     {
-        get { return this._rawData.GetNullableClass<string>("url"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("url");
+        }
         init
         {
             if (value == null)
@@ -102,7 +126,11 @@ public sealed record class AuthorizationResponse : JsonModel
 
     public string? UserID
     {
-        get { return this._rawData.GetNullableClass<string>("user_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("user_id");
+        }
         init
         {
             if (value == null)

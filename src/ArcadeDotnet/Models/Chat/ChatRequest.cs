@@ -15,7 +15,11 @@ public sealed record class ChatRequest : JsonModel
 {
     public double? FrequencyPenalty
     {
-        get { return this._rawData.GetNullableStruct<double>("frequency_penalty"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("frequency_penalty");
+        }
         init
         {
             if (value == null)
@@ -34,7 +38,11 @@ public sealed record class ChatRequest : JsonModel
     /// </summary>
     public IReadOnlyDictionary<string, long>? LogitBias
     {
-        get { return this._rawData.GetNullableClass<FrozenDictionary<string, long>>("logit_bias"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, long>>("logit_bias");
+        }
         init
         {
             if (value == null)
@@ -56,7 +64,11 @@ public sealed record class ChatRequest : JsonModel
     /// </summary>
     public bool? Logprobs
     {
-        get { return this._rawData.GetNullableStruct<bool>("logprobs"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("logprobs");
+        }
         init
         {
             if (value == null)
@@ -70,7 +82,11 @@ public sealed record class ChatRequest : JsonModel
 
     public long? MaxTokens
     {
-        get { return this._rawData.GetNullableStruct<long>("max_tokens"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("max_tokens");
+        }
         init
         {
             if (value == null)
@@ -84,7 +100,11 @@ public sealed record class ChatRequest : JsonModel
 
     public IReadOnlyList<ChatMessage>? Messages
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<ChatMessage>>("messages"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<ChatMessage>>("messages");
+        }
         init
         {
             if (value == null)
@@ -101,7 +121,11 @@ public sealed record class ChatRequest : JsonModel
 
     public string? Model
     {
-        get { return this._rawData.GetNullableClass<string>("model"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("model");
+        }
         init
         {
             if (value == null)
@@ -115,7 +139,11 @@ public sealed record class ChatRequest : JsonModel
 
     public long? N
     {
-        get { return this._rawData.GetNullableStruct<long>("n"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("n");
+        }
         init
         {
             if (value == null)
@@ -132,7 +160,11 @@ public sealed record class ChatRequest : JsonModel
     /// </summary>
     public bool? ParallelToolCalls
     {
-        get { return this._rawData.GetNullableStruct<bool>("parallel_tool_calls"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("parallel_tool_calls");
+        }
         init
         {
             if (value == null)
@@ -146,7 +178,11 @@ public sealed record class ChatRequest : JsonModel
 
     public double? PresencePenalty
     {
-        get { return this._rawData.GetNullableStruct<double>("presence_penalty"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("presence_penalty");
+        }
         init
         {
             if (value == null)
@@ -160,7 +196,11 @@ public sealed record class ChatRequest : JsonModel
 
     public ResponseFormat? ResponseFormat
     {
-        get { return this._rawData.GetNullableClass<ResponseFormat>("response_format"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ResponseFormat>("response_format");
+        }
         init
         {
             if (value == null)
@@ -174,7 +214,11 @@ public sealed record class ChatRequest : JsonModel
 
     public long? Seed
     {
-        get { return this._rawData.GetNullableStruct<long>("seed"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("seed");
+        }
         init
         {
             if (value == null)
@@ -188,7 +232,11 @@ public sealed record class ChatRequest : JsonModel
 
     public IReadOnlyList<string>? Stop
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<string>>("stop"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("stop");
+        }
         init
         {
             if (value == null)
@@ -205,7 +253,11 @@ public sealed record class ChatRequest : JsonModel
 
     public bool? Stream
     {
-        get { return this._rawData.GetNullableStruct<bool>("stream"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("stream");
+        }
         init
         {
             if (value == null)
@@ -222,7 +274,11 @@ public sealed record class ChatRequest : JsonModel
     /// </summary>
     public StreamOptions? StreamOptions
     {
-        get { return this._rawData.GetNullableClass<StreamOptions>("stream_options"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<StreamOptions>("stream_options");
+        }
         init
         {
             if (value == null)
@@ -236,7 +292,11 @@ public sealed record class ChatRequest : JsonModel
 
     public double? Temperature
     {
-        get { return this._rawData.GetNullableStruct<double>("temperature"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("temperature");
+        }
         init
         {
             if (value == null)
@@ -253,7 +313,11 @@ public sealed record class ChatRequest : JsonModel
     /// </summary>
     public JsonElement? ToolChoice
     {
-        get { return this._rawData.GetNullableStruct<JsonElement>("tool_choice"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<JsonElement>("tool_choice");
+        }
         init
         {
             if (value == null)
@@ -267,7 +331,11 @@ public sealed record class ChatRequest : JsonModel
 
     public JsonElement? Tools
     {
-        get { return this._rawData.GetNullableStruct<JsonElement>("tools"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<JsonElement>("tools");
+        }
         init
         {
             if (value == null)
@@ -286,7 +354,11 @@ public sealed record class ChatRequest : JsonModel
     /// </summary>
     public long? TopLogprobs
     {
-        get { return this._rawData.GetNullableStruct<long>("top_logprobs"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("top_logprobs");
+        }
         init
         {
             if (value == null)
@@ -300,7 +372,11 @@ public sealed record class ChatRequest : JsonModel
 
     public double? TopP
     {
-        get { return this._rawData.GetNullableStruct<double>("top_p"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("top_p");
+        }
         init
         {
             if (value == null)
@@ -314,7 +390,11 @@ public sealed record class ChatRequest : JsonModel
 
     public string? User
     {
-        get { return this._rawData.GetNullableClass<string>("user"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("user");
+        }
         init
         {
             if (value == null)
@@ -391,7 +471,11 @@ public sealed record class ResponseFormat : JsonModel
 {
     public ApiEnum<string, ResponseFormatType>? Type
     {
-        get { return this._rawData.GetNullableClass<ApiEnum<string, ResponseFormatType>>("type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, ResponseFormatType>>("type");
+        }
         init
         {
             if (value == null)
@@ -499,7 +583,11 @@ public sealed record class StreamOptions : JsonModel
     /// </summary>
     public bool? IncludeUsage
     {
-        get { return this._rawData.GetNullableStruct<bool>("include_usage"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("include_usage");
+        }
         init
         {
             if (value == null)

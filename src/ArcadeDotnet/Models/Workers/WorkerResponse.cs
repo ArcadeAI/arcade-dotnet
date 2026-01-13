@@ -14,7 +14,11 @@ public sealed record class WorkerResponse : JsonModel
 {
     public string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init
         {
             if (value == null)
@@ -28,7 +32,11 @@ public sealed record class WorkerResponse : JsonModel
 
     public Binding? Binding
     {
-        get { return this._rawData.GetNullableClass<Binding>("binding"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Binding>("binding");
+        }
         init
         {
             if (value == null)
@@ -42,7 +50,11 @@ public sealed record class WorkerResponse : JsonModel
 
     public bool? Enabled
     {
-        get { return this._rawData.GetNullableStruct<bool>("enabled"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("enabled");
+        }
         init
         {
             if (value == null)
@@ -56,7 +68,11 @@ public sealed record class WorkerResponse : JsonModel
 
     public WorkerResponseHttp? Http
     {
-        get { return this._rawData.GetNullableClass<WorkerResponseHttp>("http"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<WorkerResponseHttp>("http");
+        }
         init
         {
             if (value == null)
@@ -70,7 +86,11 @@ public sealed record class WorkerResponse : JsonModel
 
     public bool? Managed
     {
-        get { return this._rawData.GetNullableStruct<bool>("managed"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("managed");
+        }
         init
         {
             if (value == null)
@@ -84,7 +104,11 @@ public sealed record class WorkerResponse : JsonModel
 
     public WorkerResponseMcp? Mcp
     {
-        get { return this._rawData.GetNullableClass<WorkerResponseMcp>("mcp"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<WorkerResponseMcp>("mcp");
+        }
         init
         {
             if (value == null)
@@ -98,7 +122,11 @@ public sealed record class WorkerResponse : JsonModel
 
     public Requirements? Requirements
     {
-        get { return this._rawData.GetNullableClass<Requirements>("requirements"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Requirements>("requirements");
+        }
         init
         {
             if (value == null)
@@ -112,7 +140,11 @@ public sealed record class WorkerResponse : JsonModel
 
     public ApiEnum<string, WorkerResponseType>? Type
     {
-        get { return this._rawData.GetNullableClass<ApiEnum<string, WorkerResponseType>>("type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, WorkerResponseType>>("type");
+        }
         init
         {
             if (value == null)
@@ -174,7 +206,11 @@ public sealed record class Binding : JsonModel
 {
     public string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init
         {
             if (value == null)
@@ -190,6 +226,7 @@ public sealed record class Binding : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, global::ArcadeDotnet.Models.Workers.Type>
             >("type");
@@ -299,7 +336,11 @@ public sealed record class WorkerResponseHttp : JsonModel
 {
     public long? Retry
     {
-        get { return this._rawData.GetNullableStruct<long>("retry"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("retry");
+        }
         init
         {
             if (value == null)
@@ -313,7 +354,11 @@ public sealed record class WorkerResponseHttp : JsonModel
 
     public Secret? Secret
     {
-        get { return this._rawData.GetNullableClass<Secret>("secret"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Secret>("secret");
+        }
         init
         {
             if (value == null)
@@ -327,7 +372,11 @@ public sealed record class WorkerResponseHttp : JsonModel
 
     public long? Timeout
     {
-        get { return this._rawData.GetNullableStruct<long>("timeout"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("timeout");
+        }
         init
         {
             if (value == null)
@@ -341,7 +390,11 @@ public sealed record class WorkerResponseHttp : JsonModel
 
     public string? Uri
     {
-        get { return this._rawData.GetNullableClass<string>("uri"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("uri");
+        }
         init
         {
             if (value == null)
@@ -401,7 +454,11 @@ public sealed record class Secret : JsonModel
 {
     public ApiEnum<string, SecretBinding>? Binding
     {
-        get { return this._rawData.GetNullableClass<ApiEnum<string, SecretBinding>>("binding"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, SecretBinding>>("binding");
+        }
         init
         {
             if (value == null)
@@ -415,7 +472,11 @@ public sealed record class Secret : JsonModel
 
     public bool? Editable
     {
-        get { return this._rawData.GetNullableStruct<bool>("editable"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("editable");
+        }
         init
         {
             if (value == null)
@@ -429,7 +490,11 @@ public sealed record class Secret : JsonModel
 
     public bool? Exists
     {
-        get { return this._rawData.GetNullableStruct<bool>("exists"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("exists");
+        }
         init
         {
             if (value == null)
@@ -443,7 +508,11 @@ public sealed record class Secret : JsonModel
 
     public string? Hint
     {
-        get { return this._rawData.GetNullableClass<string>("hint"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("hint");
+        }
         init
         {
             if (value == null)
@@ -457,7 +526,11 @@ public sealed record class Secret : JsonModel
 
     public string? Value
     {
-        get { return this._rawData.GetNullableClass<string>("value"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("value");
+        }
         init
         {
             if (value == null)
@@ -566,7 +639,11 @@ public sealed record class WorkerResponseMcp : JsonModel
 {
     public IReadOnlyDictionary<string, string>? Headers
     {
-        get { return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("headers"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("headers");
+        }
         init
         {
             if (value == null)
@@ -583,7 +660,11 @@ public sealed record class WorkerResponseMcp : JsonModel
 
     public WorkerResponseMcpOauth2? Oauth2
     {
-        get { return this._rawData.GetNullableClass<WorkerResponseMcpOauth2>("oauth2"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<WorkerResponseMcpOauth2>("oauth2");
+        }
         init
         {
             if (value == null)
@@ -597,7 +678,11 @@ public sealed record class WorkerResponseMcp : JsonModel
 
     public long? Retry
     {
-        get { return this._rawData.GetNullableStruct<long>("retry"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("retry");
+        }
         init
         {
             if (value == null)
@@ -613,6 +698,7 @@ public sealed record class WorkerResponseMcp : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, SecretsItem>>("secrets");
         }
         init
@@ -631,7 +717,11 @@ public sealed record class WorkerResponseMcp : JsonModel
 
     public long? Timeout
     {
-        get { return this._rawData.GetNullableStruct<long>("timeout"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("timeout");
+        }
         init
         {
             if (value == null)
@@ -645,7 +735,11 @@ public sealed record class WorkerResponseMcp : JsonModel
 
     public string? Uri
     {
-        get { return this._rawData.GetNullableClass<string>("uri"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("uri");
+        }
         init
         {
             if (value == null)
@@ -713,7 +807,11 @@ public sealed record class WorkerResponseMcpOauth2 : JsonModel
 {
     public string? AuthorizationUrl
     {
-        get { return this._rawData.GetNullableClass<string>("authorization_url"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("authorization_url");
+        }
         init
         {
             if (value == null)
@@ -727,7 +825,11 @@ public sealed record class WorkerResponseMcpOauth2 : JsonModel
 
     public string? ClientID
     {
-        get { return this._rawData.GetNullableClass<string>("client_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("client_id");
+        }
         init
         {
             if (value == null)
@@ -741,7 +843,11 @@ public sealed record class WorkerResponseMcpOauth2 : JsonModel
 
     public ClientSecret? ClientSecret
     {
-        get { return this._rawData.GetNullableClass<ClientSecret>("client_secret"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ClientSecret>("client_secret");
+        }
         init
         {
             if (value == null)
@@ -755,7 +861,11 @@ public sealed record class WorkerResponseMcpOauth2 : JsonModel
 
     public string? RedirectUri
     {
-        get { return this._rawData.GetNullableClass<string>("redirect_uri"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("redirect_uri");
+        }
         init
         {
             if (value == null)
@@ -818,6 +928,7 @@ public sealed record class ClientSecret : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<ApiEnum<string, ClientSecretBinding>>("binding");
         }
         init
@@ -833,7 +944,11 @@ public sealed record class ClientSecret : JsonModel
 
     public bool? Editable
     {
-        get { return this._rawData.GetNullableStruct<bool>("editable"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("editable");
+        }
         init
         {
             if (value == null)
@@ -847,7 +962,11 @@ public sealed record class ClientSecret : JsonModel
 
     public bool? Exists
     {
-        get { return this._rawData.GetNullableStruct<bool>("exists"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("exists");
+        }
         init
         {
             if (value == null)
@@ -861,7 +980,11 @@ public sealed record class ClientSecret : JsonModel
 
     public string? Hint
     {
-        get { return this._rawData.GetNullableClass<string>("hint"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("hint");
+        }
         init
         {
             if (value == null)
@@ -875,7 +998,11 @@ public sealed record class ClientSecret : JsonModel
 
     public string? Value
     {
-        get { return this._rawData.GetNullableClass<string>("value"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("value");
+        }
         init
         {
             if (value == null)
@@ -986,6 +1113,7 @@ public sealed record class SecretsItem : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<ApiEnum<string, SecretsItemBinding>>("binding");
         }
         init
@@ -1001,7 +1129,11 @@ public sealed record class SecretsItem : JsonModel
 
     public bool? Editable
     {
-        get { return this._rawData.GetNullableStruct<bool>("editable"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("editable");
+        }
         init
         {
             if (value == null)
@@ -1015,7 +1147,11 @@ public sealed record class SecretsItem : JsonModel
 
     public bool? Exists
     {
-        get { return this._rawData.GetNullableStruct<bool>("exists"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("exists");
+        }
         init
         {
             if (value == null)
@@ -1029,7 +1165,11 @@ public sealed record class SecretsItem : JsonModel
 
     public string? Hint
     {
-        get { return this._rawData.GetNullableClass<string>("hint"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("hint");
+        }
         init
         {
             if (value == null)
@@ -1043,7 +1183,11 @@ public sealed record class SecretsItem : JsonModel
 
     public string? Value
     {
-        get { return this._rawData.GetNullableClass<string>("value"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("value");
+        }
         init
         {
             if (value == null)
@@ -1152,7 +1296,11 @@ public sealed record class Requirements : JsonModel
 {
     public Authorization? Authorization
     {
-        get { return this._rawData.GetNullableClass<Authorization>("authorization"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Authorization>("authorization");
+        }
         init
         {
             if (value == null)
@@ -1166,7 +1314,11 @@ public sealed record class Requirements : JsonModel
 
     public bool? Met
     {
-        get { return this._rawData.GetNullableStruct<bool>("met"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("met");
+        }
         init
         {
             if (value == null)
@@ -1222,7 +1374,11 @@ public sealed record class Authorization : JsonModel
 {
     public bool? Met
     {
-        get { return this._rawData.GetNullableStruct<bool>("met"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("met");
+        }
         init
         {
             if (value == null)
@@ -1236,7 +1392,11 @@ public sealed record class Authorization : JsonModel
 
     public AuthorizationOauth2? Oauth2
     {
-        get { return this._rawData.GetNullableClass<AuthorizationOauth2>("oauth2"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<AuthorizationOauth2>("oauth2");
+        }
         init
         {
             if (value == null)
@@ -1292,7 +1452,11 @@ public sealed record class AuthorizationOauth2 : JsonModel
 {
     public bool? Met
     {
-        get { return this._rawData.GetNullableStruct<bool>("met"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("met");
+        }
         init
         {
             if (value == null)

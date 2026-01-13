@@ -12,7 +12,11 @@ public sealed record class AuthorizationContext : JsonModel
 {
     public string? Token
     {
-        get { return this._rawData.GetNullableClass<string>("token"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("token");
+        }
         init
         {
             if (value == null)
@@ -28,6 +32,7 @@ public sealed record class AuthorizationContext : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
                 "user_info"
             );

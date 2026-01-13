@@ -25,6 +25,7 @@ public sealed record class ToolGetParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<
                 ImmutableArray<ApiEnum<string, ToolGetParamsIncludeFormat>>
             >("include_format");
@@ -48,7 +49,11 @@ public sealed record class ToolGetParams : ParamsBase
     /// </summary>
     public string? UserID
     {
-        get { return this._rawQueryData.GetNullableClass<string>("user_id"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("user_id");
+        }
         init
         {
             if (value == null)

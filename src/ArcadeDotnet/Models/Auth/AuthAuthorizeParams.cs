@@ -24,13 +24,21 @@ public sealed record class AuthAuthorizeParams : ParamsBase
 
     public required AuthRequirement AuthRequirement
     {
-        get { return this._rawBodyData.GetNotNullClass<AuthRequirement>("auth_requirement"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<AuthRequirement>("auth_requirement");
+        }
         init { this._rawBodyData.Set("auth_requirement", value); }
     }
 
     public required string UserID
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("user_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("user_id");
+        }
         init { this._rawBodyData.Set("user_id", value); }
     }
 
@@ -39,7 +47,11 @@ public sealed record class AuthAuthorizeParams : ParamsBase
     /// </summary>
     public string? NextUri
     {
-        get { return this._rawBodyData.GetNullableClass<string>("next_uri"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("next_uri");
+        }
         init
         {
             if (value == null)
@@ -133,7 +145,11 @@ public sealed record class AuthRequirement : JsonModel
     /// </summary>
     public string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init
         {
             if (value == null)
@@ -147,7 +163,11 @@ public sealed record class AuthRequirement : JsonModel
 
     public Oauth2? Oauth2
     {
-        get { return this._rawData.GetNullableClass<Oauth2>("oauth2"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Oauth2>("oauth2");
+        }
         init
         {
             if (value == null)
@@ -164,7 +184,11 @@ public sealed record class AuthRequirement : JsonModel
     /// </summary>
     public string? ProviderID
     {
-        get { return this._rawData.GetNullableClass<string>("provider_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("provider_id");
+        }
         init
         {
             if (value == null)
@@ -178,7 +202,11 @@ public sealed record class AuthRequirement : JsonModel
 
     public string? ProviderType
     {
-        get { return this._rawData.GetNullableClass<string>("provider_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("provider_type");
+        }
         init
         {
             if (value == null)
@@ -236,7 +264,11 @@ public sealed record class Oauth2 : JsonModel
 {
     public IReadOnlyList<string>? Scopes
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<string>>("scopes"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("scopes");
+        }
         init
         {
             if (value == null)

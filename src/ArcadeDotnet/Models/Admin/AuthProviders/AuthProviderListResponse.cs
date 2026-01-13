@@ -17,6 +17,7 @@ public sealed record class AuthProviderListResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<AuthProviderResponse>>("items");
         }
         init
@@ -35,7 +36,11 @@ public sealed record class AuthProviderListResponse : JsonModel
 
     public long? Limit
     {
-        get { return this._rawData.GetNullableStruct<long>("limit"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("limit");
+        }
         init
         {
             if (value == null)
@@ -49,7 +54,11 @@ public sealed record class AuthProviderListResponse : JsonModel
 
     public long? Offset
     {
-        get { return this._rawData.GetNullableStruct<long>("offset"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("offset");
+        }
         init
         {
             if (value == null)
@@ -63,7 +72,11 @@ public sealed record class AuthProviderListResponse : JsonModel
 
     public long? PageCount
     {
-        get { return this._rawData.GetNullableStruct<long>("page_count"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("page_count");
+        }
         init
         {
             if (value == null)
@@ -77,7 +90,11 @@ public sealed record class AuthProviderListResponse : JsonModel
 
     public long? TotalCount
     {
-        get { return this._rawData.GetNullableStruct<long>("total_count"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("total_count");
+        }
         init
         {
             if (value == null)

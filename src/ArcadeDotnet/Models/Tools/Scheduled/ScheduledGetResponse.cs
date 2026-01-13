@@ -13,7 +13,11 @@ public sealed record class ScheduledGetResponse : JsonModel
 {
     public string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init
         {
             if (value == null)
@@ -29,6 +33,7 @@ public sealed record class ScheduledGetResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<ToolExecutionAttempt>>(
                 "attempts"
             );
@@ -49,7 +54,11 @@ public sealed record class ScheduledGetResponse : JsonModel
 
     public string? CreatedAt
     {
-        get { return this._rawData.GetNullableClass<string>("created_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("created_at");
+        }
         init
         {
             if (value == null)
@@ -63,7 +72,11 @@ public sealed record class ScheduledGetResponse : JsonModel
 
     public string? ExecutionStatus
     {
-        get { return this._rawData.GetNullableClass<string>("execution_status"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("execution_status");
+        }
         init
         {
             if (value == null)
@@ -77,7 +90,11 @@ public sealed record class ScheduledGetResponse : JsonModel
 
     public string? ExecutionType
     {
-        get { return this._rawData.GetNullableClass<string>("execution_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("execution_type");
+        }
         init
         {
             if (value == null)
@@ -91,7 +108,11 @@ public sealed record class ScheduledGetResponse : JsonModel
 
     public string? FinishedAt
     {
-        get { return this._rawData.GetNullableClass<string>("finished_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("finished_at");
+        }
         init
         {
             if (value == null)
@@ -107,6 +128,7 @@ public sealed record class ScheduledGetResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>("input");
         }
         init
@@ -125,7 +147,11 @@ public sealed record class ScheduledGetResponse : JsonModel
 
     public string? RunAt
     {
-        get { return this._rawData.GetNullableClass<string>("run_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("run_at");
+        }
         init
         {
             if (value == null)
@@ -139,7 +165,11 @@ public sealed record class ScheduledGetResponse : JsonModel
 
     public string? StartedAt
     {
-        get { return this._rawData.GetNullableClass<string>("started_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("started_at");
+        }
         init
         {
             if (value == null)
@@ -153,7 +183,11 @@ public sealed record class ScheduledGetResponse : JsonModel
 
     public string? ToolName
     {
-        get { return this._rawData.GetNullableClass<string>("tool_name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("tool_name");
+        }
         init
         {
             if (value == null)
@@ -167,7 +201,11 @@ public sealed record class ScheduledGetResponse : JsonModel
 
     public string? ToolkitName
     {
-        get { return this._rawData.GetNullableClass<string>("toolkit_name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("toolkit_name");
+        }
         init
         {
             if (value == null)
@@ -181,7 +219,11 @@ public sealed record class ScheduledGetResponse : JsonModel
 
     public string? ToolkitVersion
     {
-        get { return this._rawData.GetNullableClass<string>("toolkit_version"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("toolkit_version");
+        }
         init
         {
             if (value == null)
@@ -195,7 +237,11 @@ public sealed record class ScheduledGetResponse : JsonModel
 
     public string? UpdatedAt
     {
-        get { return this._rawData.GetNullableClass<string>("updated_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("updated_at");
+        }
         init
         {
             if (value == null)
@@ -209,7 +255,11 @@ public sealed record class ScheduledGetResponse : JsonModel
 
     public string? UserID
     {
-        get { return this._rawData.GetNullableClass<string>("user_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("user_id");
+        }
         init
         {
             if (value == null)

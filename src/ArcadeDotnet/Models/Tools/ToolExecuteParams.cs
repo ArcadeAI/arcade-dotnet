@@ -22,7 +22,11 @@ public sealed record class ToolExecuteParams : ParamsBase
 
     public required string ToolName
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("tool_name"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("tool_name");
+        }
         init { this._rawBodyData.Set("tool_name", value); }
     }
 
@@ -32,7 +36,11 @@ public sealed record class ToolExecuteParams : ParamsBase
     /// </summary>
     public bool? IncludeErrorStacktrace
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("include_error_stacktrace"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("include_error_stacktrace");
+        }
         init
         {
             if (value == null)
@@ -51,6 +59,7 @@ public sealed record class ToolExecuteParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
                 "input"
             );
@@ -75,7 +84,11 @@ public sealed record class ToolExecuteParams : ParamsBase
     /// </summary>
     public string? RunAt
     {
-        get { return this._rawBodyData.GetNullableClass<string>("run_at"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("run_at");
+        }
         init
         {
             if (value == null)
@@ -92,7 +105,11 @@ public sealed record class ToolExecuteParams : ParamsBase
     /// </summary>
     public string? ToolVersion
     {
-        get { return this._rawBodyData.GetNullableClass<string>("tool_version"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("tool_version");
+        }
         init
         {
             if (value == null)
@@ -106,7 +123,11 @@ public sealed record class ToolExecuteParams : ParamsBase
 
     public string? UserID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("user_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("user_id");
+        }
         init
         {
             if (value == null)

@@ -22,7 +22,11 @@ public sealed record class ToolAuthorizeParams : ParamsBase
 
     public required string ToolName
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("tool_name"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("tool_name");
+        }
         init { this._rawBodyData.Set("tool_name", value); }
     }
 
@@ -31,7 +35,11 @@ public sealed record class ToolAuthorizeParams : ParamsBase
     /// </summary>
     public string? NextUri
     {
-        get { return this._rawBodyData.GetNullableClass<string>("next_uri"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("next_uri");
+        }
         init
         {
             if (value == null)
@@ -48,7 +56,11 @@ public sealed record class ToolAuthorizeParams : ParamsBase
     /// </summary>
     public string? ToolVersion
     {
-        get { return this._rawBodyData.GetNullableClass<string>("tool_version"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("tool_version");
+        }
         init
         {
             if (value == null)
@@ -65,7 +77,11 @@ public sealed record class ToolAuthorizeParams : ParamsBase
     /// </summary>
     public string? UserID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("user_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("user_id");
+        }
         init
         {
             if (value == null)

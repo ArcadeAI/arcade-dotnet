@@ -19,7 +19,11 @@ public sealed record class UserConnectionListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
         init
         {
             if (value == null)
@@ -36,7 +40,11 @@ public sealed record class UserConnectionListParams : ParamsBase
     /// </summary>
     public long? Offset
     {
-        get { return this._rawQueryData.GetNullableStruct<long>("offset"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("offset");
+        }
         init
         {
             if (value == null)
@@ -50,7 +58,11 @@ public sealed record class UserConnectionListParams : ParamsBase
 
     public Provider? Provider
     {
-        get { return this._rawQueryData.GetNullableClass<Provider>("provider"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<Provider>("provider");
+        }
         init
         {
             if (value == null)
@@ -64,7 +76,11 @@ public sealed record class UserConnectionListParams : ParamsBase
 
     public User? User
     {
-        get { return this._rawQueryData.GetNullableClass<User>("user"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<User>("user");
+        }
         init
         {
             if (value == null)
@@ -142,7 +158,11 @@ public sealed record class Provider : JsonModel
     /// </summary>
     public string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init
         {
             if (value == null)
@@ -200,7 +220,11 @@ public sealed record class User : JsonModel
     /// </summary>
     public string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init
         {
             if (value == null)

@@ -12,7 +12,11 @@ public sealed record class Error : JsonModel
 {
     public string? Message
     {
-        get { return this._rawData.GetNullableClass<string>("message"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("message");
+        }
         init
         {
             if (value == null)
@@ -26,7 +30,11 @@ public sealed record class Error : JsonModel
 
     public string? Name
     {
-        get { return this._rawData.GetNullableClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("name");
+        }
         init
         {
             if (value == null)

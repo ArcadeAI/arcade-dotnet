@@ -18,7 +18,11 @@ public sealed record class ChatMessage : JsonModel
     /// </summary>
     public required string Content
     {
-        get { return this._rawData.GetNotNullClass<string>("content"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("content");
+        }
         init { this._rawData.Set("content", value); }
     }
 
@@ -27,7 +31,11 @@ public sealed record class ChatMessage : JsonModel
     /// </summary>
     public required string Role
     {
-        get { return this._rawData.GetNotNullClass<string>("role"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("role");
+        }
         init { this._rawData.Set("role", value); }
     }
 
@@ -36,7 +44,11 @@ public sealed record class ChatMessage : JsonModel
     /// </summary>
     public string? Name
     {
-        get { return this._rawData.GetNullableClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("name");
+        }
         init
         {
             if (value == null)
@@ -53,7 +65,11 @@ public sealed record class ChatMessage : JsonModel
     /// </summary>
     public string? ToolCallID
     {
-        get { return this._rawData.GetNullableClass<string>("tool_call_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("tool_call_id");
+        }
         init
         {
             if (value == null)
@@ -70,7 +86,11 @@ public sealed record class ChatMessage : JsonModel
     /// </summary>
     public IReadOnlyList<ToolCall>? ToolCalls
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<ToolCall>>("tool_calls"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<ToolCall>>("tool_calls");
+        }
         init
         {
             if (value == null)
@@ -135,7 +155,11 @@ public sealed record class ToolCall : JsonModel
 {
     public string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init
         {
             if (value == null)
@@ -149,7 +173,11 @@ public sealed record class ToolCall : JsonModel
 
     public Function? Function
     {
-        get { return this._rawData.GetNullableClass<Function>("function"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Function>("function");
+        }
         init
         {
             if (value == null)
@@ -165,6 +193,7 @@ public sealed record class ToolCall : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, global::ArcadeDotnet.Models.Chat.Type>
             >("type");
@@ -225,7 +254,11 @@ public sealed record class Function : JsonModel
 {
     public string? Arguments
     {
-        get { return this._rawData.GetNullableClass<string>("arguments"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("arguments");
+        }
         init
         {
             if (value == null)
@@ -239,7 +272,11 @@ public sealed record class Function : JsonModel
 
     public string? Name
     {
-        get { return this._rawData.GetNullableClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("name");
+        }
         init
         {
             if (value == null)

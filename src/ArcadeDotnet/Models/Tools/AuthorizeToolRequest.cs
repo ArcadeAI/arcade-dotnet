@@ -12,7 +12,11 @@ public sealed record class AuthorizeToolRequest : JsonModel
 {
     public required string ToolName
     {
-        get { return this._rawData.GetNotNullClass<string>("tool_name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("tool_name");
+        }
         init { this._rawData.Set("tool_name", value); }
     }
 
@@ -21,7 +25,11 @@ public sealed record class AuthorizeToolRequest : JsonModel
     /// </summary>
     public string? NextUri
     {
-        get { return this._rawData.GetNullableClass<string>("next_uri"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("next_uri");
+        }
         init
         {
             if (value == null)
@@ -38,7 +46,11 @@ public sealed record class AuthorizeToolRequest : JsonModel
     /// </summary>
     public string? ToolVersion
     {
-        get { return this._rawData.GetNullableClass<string>("tool_version"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("tool_version");
+        }
         init
         {
             if (value == null)
@@ -55,7 +67,11 @@ public sealed record class AuthorizeToolRequest : JsonModel
     /// </summary>
     public string? UserID
     {
-        get { return this._rawData.GetNullableClass<string>("user_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("user_id");
+        }
         init
         {
             if (value == null)

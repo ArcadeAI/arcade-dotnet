@@ -12,7 +12,11 @@ public sealed record class HealthSchema : JsonModel
 {
     public bool? Healthy
     {
-        get { return this._rawData.GetNullableStruct<bool>("healthy"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("healthy");
+        }
         init
         {
             if (value == null)

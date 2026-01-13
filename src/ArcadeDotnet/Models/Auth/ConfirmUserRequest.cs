@@ -12,13 +12,21 @@ public sealed record class ConfirmUserRequest : JsonModel
 {
     public required string FlowID
     {
-        get { return this._rawData.GetNotNullClass<string>("flow_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("flow_id");
+        }
         init { this._rawData.Set("flow_id", value); }
     }
 
     public required string UserID
     {
-        get { return this._rawData.GetNotNullClass<string>("user_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("user_id");
+        }
         init { this._rawData.Set("user_id", value); }
     }
 

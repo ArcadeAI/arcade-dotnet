@@ -12,7 +12,11 @@ public sealed record class ExecuteToolRequest : JsonModel
 {
     public required string ToolName
     {
-        get { return this._rawData.GetNotNullClass<string>("tool_name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("tool_name");
+        }
         init { this._rawData.Set("tool_name", value); }
     }
 
@@ -22,7 +26,11 @@ public sealed record class ExecuteToolRequest : JsonModel
     /// </summary>
     public bool? IncludeErrorStacktrace
     {
-        get { return this._rawData.GetNullableStruct<bool>("include_error_stacktrace"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("include_error_stacktrace");
+        }
         init
         {
             if (value == null)
@@ -41,6 +49,7 @@ public sealed record class ExecuteToolRequest : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>("input");
         }
         init
@@ -63,7 +72,11 @@ public sealed record class ExecuteToolRequest : JsonModel
     /// </summary>
     public string? RunAt
     {
-        get { return this._rawData.GetNullableClass<string>("run_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("run_at");
+        }
         init
         {
             if (value == null)
@@ -80,7 +93,11 @@ public sealed record class ExecuteToolRequest : JsonModel
     /// </summary>
     public string? ToolVersion
     {
-        get { return this._rawData.GetNullableClass<string>("tool_version"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("tool_version");
+        }
         init
         {
             if (value == null)
@@ -94,7 +111,11 @@ public sealed record class ExecuteToolRequest : JsonModel
 
     public string? UserID
     {
-        get { return this._rawData.GetNullableClass<string>("user_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("user_id");
+        }
         init
         {
             if (value == null)
