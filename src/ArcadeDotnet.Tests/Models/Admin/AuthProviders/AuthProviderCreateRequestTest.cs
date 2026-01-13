@@ -1492,10 +1492,7 @@ public class AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentTypeTe
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
@@ -1527,10 +1524,7 @@ public class AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentTypeTe
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestRequestContentType>
@@ -1562,10 +1556,7 @@ public class AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentTypeT
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
@@ -1597,10 +1588,7 @@ public class AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentTypeT
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2AuthorizeRequestResponseContentType>
@@ -1996,10 +1984,7 @@ public class AuthProviderCreateRequestOauth2RefreshRequestRequestContentTypeTest
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestRequestContentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
@@ -2031,10 +2016,7 @@ public class AuthProviderCreateRequestOauth2RefreshRequestRequestContentTypeTest
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestRequestContentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestRequestContentType>
@@ -2066,10 +2048,7 @@ public class AuthProviderCreateRequestOauth2RefreshRequestResponseContentTypeTes
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestResponseContentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
@@ -2101,10 +2080,7 @@ public class AuthProviderCreateRequestOauth2RefreshRequestResponseContentTypeTes
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestResponseContentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2RefreshRequestResponseContentType>
@@ -2131,10 +2107,7 @@ public class AuthProviderCreateRequestOauth2ScopeDelimiterTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2ScopeDelimiter>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
@@ -2161,10 +2134,7 @@ public class AuthProviderCreateRequestOauth2ScopeDelimiterTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2ScopeDelimiter>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2ScopeDelimiter>
@@ -2604,10 +2574,7 @@ public class AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestCont
                 string,
                 AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestContentType
             >
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
@@ -2649,10 +2616,7 @@ public class AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestCont
                 string,
                 AuthProviderCreateRequestOauth2TokenIntrospectionRequestRequestContentType
             >
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
@@ -2695,10 +2659,7 @@ public class AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseCon
                 string,
                 AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseContentType
             >
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
@@ -2740,10 +2701,7 @@ public class AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseCon
                 string,
                 AuthProviderCreateRequestOauth2TokenIntrospectionRequestResponseContentType
             >
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
@@ -3030,10 +2988,7 @@ public class AuthProviderCreateRequestOauth2TokenRequestRequestContentTypeTest :
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestRequestContentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
@@ -3065,10 +3020,7 @@ public class AuthProviderCreateRequestOauth2TokenRequestRequestContentTypeTest :
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestRequestContentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestRequestContentType>
@@ -3100,10 +3052,7 @@ public class AuthProviderCreateRequestOauth2TokenRequestResponseContentTypeTest 
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestResponseContentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
@@ -3135,10 +3084,7 @@ public class AuthProviderCreateRequestOauth2TokenRequestResponseContentTypeTest 
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestResponseContentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2TokenRequestResponseContentType>
@@ -3566,10 +3512,7 @@ public class AuthProviderCreateRequestOauth2UserInfoRequestRequestContentTypeTes
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestRequestContentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
@@ -3601,10 +3544,7 @@ public class AuthProviderCreateRequestOauth2UserInfoRequestRequestContentTypeTes
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestRequestContentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestRequestContentType>
@@ -3636,10 +3576,7 @@ public class AuthProviderCreateRequestOauth2UserInfoRequestResponseContentTypeTe
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestResponseContentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
@@ -3671,10 +3608,7 @@ public class AuthProviderCreateRequestOauth2UserInfoRequestResponseContentTypeTe
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestResponseContentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, AuthProviderCreateRequestOauth2UserInfoRequestResponseContentType>
