@@ -49,15 +49,12 @@ public sealed class UserConnectionService : IUserConnectionService
     }
 
     /// <inheritdoc/>
-    public async Task Delete(
+    public Task Delete(
         UserConnectionDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        using var response = await this
-            .WithRawResponse.Delete(parameters, cancellationToken)
-            .ConfigureAwait(false);
-        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+        return this.WithRawResponse.Delete(parameters, cancellationToken);
     }
 
     /// <inheritdoc/>

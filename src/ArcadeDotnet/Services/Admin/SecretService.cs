@@ -69,15 +69,9 @@ public sealed class SecretService : ISecretService
     }
 
     /// <inheritdoc/>
-    public async Task Delete(
-        SecretDeleteParams parameters,
-        CancellationToken cancellationToken = default
-    )
+    public Task Delete(SecretDeleteParams parameters, CancellationToken cancellationToken = default)
     {
-        using var response = await this
-            .WithRawResponse.Delete(parameters, cancellationToken)
-            .ConfigureAwait(false);
-        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+        return this.WithRawResponse.Delete(parameters, cancellationToken);
     }
 
     /// <inheritdoc/>
