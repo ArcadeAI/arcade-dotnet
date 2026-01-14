@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json;
+using ArcadeDotnet.Core;
 using ArcadeDotnet.Models.Workers;
 
 namespace ArcadeDotnet.Tests.Models.Workers;
@@ -92,8 +93,11 @@ public class UpdateWorkerRequestTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequest>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequest>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -127,8 +131,11 @@ public class UpdateWorkerRequestTest : TestBase
             },
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequest>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequest>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         bool expectedEnabled = true;
@@ -281,8 +288,11 @@ public class UpdateWorkerRequestHttpTest : TestBase
             Uri = "uri",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestHttp>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestHttp>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -298,8 +308,11 @@ public class UpdateWorkerRequestHttpTest : TestBase
             Uri = "uri",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestHttp>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestHttp>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         long expectedRetry = 0;
@@ -460,8 +473,11 @@ public class UpdateWorkerRequestMcpTest : TestBase
             Uri = "uri",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestMcp>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestMcp>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -484,8 +500,11 @@ public class UpdateWorkerRequestMcpTest : TestBase
             Uri = "uri",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestMcp>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestMcp>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         Dictionary<string, string> expectedHeaders = new() { { "foo", "string" } };
@@ -647,8 +666,11 @@ public class UpdateWorkerRequestMcpOauth2Test : TestBase
             ClientSecret = "client_secret",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestMcpOauth2>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestMcpOauth2>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -663,8 +685,11 @@ public class UpdateWorkerRequestMcpOauth2Test : TestBase
             ClientSecret = "client_secret",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestMcpOauth2>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<UpdateWorkerRequestMcpOauth2>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedAuthorizationUrl = "authorization_url";

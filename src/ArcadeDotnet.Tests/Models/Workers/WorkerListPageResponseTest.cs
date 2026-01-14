@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json;
+using ArcadeDotnet.Core;
 using ArcadeDotnet.Models.Workers;
 
 namespace ArcadeDotnet.Tests.Models.Workers;
@@ -252,8 +253,11 @@ public class WorkerListPageResponseTest : TestBase
             TotalCount = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<WorkerListPageResponse>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<WorkerListPageResponse>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -338,8 +342,11 @@ public class WorkerListPageResponseTest : TestBase
             TotalCount = 0,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<WorkerListPageResponse>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<WorkerListPageResponse>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         List<WorkerResponse> expectedItems =

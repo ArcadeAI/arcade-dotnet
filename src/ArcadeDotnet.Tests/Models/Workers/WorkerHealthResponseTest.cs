@@ -1,4 +1,5 @@
 using System.Text.Json;
+using ArcadeDotnet.Core;
 using ArcadeDotnet.Models.Workers;
 
 namespace ArcadeDotnet.Tests.Models.Workers;
@@ -38,8 +39,11 @@ public class WorkerHealthResponseTest : TestBase
             Message = "message",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<WorkerHealthResponse>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<WorkerHealthResponse>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -55,8 +59,11 @@ public class WorkerHealthResponseTest : TestBase
             Message = "message",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<WorkerHealthResponse>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<WorkerHealthResponse>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

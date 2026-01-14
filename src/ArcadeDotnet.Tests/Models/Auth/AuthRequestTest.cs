@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json;
+using ArcadeDotnet.Core;
 using ArcadeDotnet.Models.Auth;
 
 namespace ArcadeDotnet.Tests.Models.Auth;
@@ -53,8 +54,11 @@ public class AuthRequestTest : TestBase
             NextUri = "next_uri",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthRequest>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthRequest>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -75,8 +79,11 @@ public class AuthRequestTest : TestBase
             NextUri = "next_uri",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthRequest>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthRequest>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         AuthRequestAuthRequirement expectedAuthRequirement = new()
@@ -229,8 +236,11 @@ public class AuthRequestAuthRequirementTest : TestBase
             ProviderType = "provider_type",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthRequestAuthRequirement>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthRequestAuthRequirement>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -246,8 +256,11 @@ public class AuthRequestAuthRequirementTest : TestBase
             ProviderType = "provider_type",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthRequestAuthRequirement>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthRequestAuthRequirement>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -358,8 +371,11 @@ public class AuthRequestAuthRequirementOauth2Test : TestBase
     {
         var model = new AuthRequestAuthRequirementOauth2 { Scopes = ["string"] };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthRequestAuthRequirementOauth2>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthRequestAuthRequirementOauth2>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -369,8 +385,11 @@ public class AuthRequestAuthRequirementOauth2Test : TestBase
     {
         var model = new AuthRequestAuthRequirementOauth2 { Scopes = ["string"] };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthRequestAuthRequirementOauth2>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthRequestAuthRequirementOauth2>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         List<string> expectedScopes = ["string"];

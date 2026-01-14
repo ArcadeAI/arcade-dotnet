@@ -1,4 +1,5 @@
 using System.Text.Json;
+using ArcadeDotnet.Core;
 using ArcadeDotnet.Models.Tools;
 
 namespace ArcadeDotnet.Tests.Models.Tools;
@@ -38,8 +39,11 @@ public class AuthorizeToolRequestTest : TestBase
             UserID = "user_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthorizeToolRequest>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthorizeToolRequest>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -55,8 +59,11 @@ public class AuthorizeToolRequestTest : TestBase
             UserID = "user_id",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthorizeToolRequest>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthorizeToolRequest>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedToolName = "tool_name";

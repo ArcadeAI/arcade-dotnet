@@ -226,8 +226,11 @@ public class AuthProviderUpdateRequestTest : TestBase
             Type = "type",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthProviderUpdateRequest>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderUpdateRequest>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -304,8 +307,11 @@ public class AuthProviderUpdateRequestTest : TestBase
             Type = "type",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthProviderUpdateRequest>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderUpdateRequest>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -733,8 +739,11 @@ public class AuthProviderUpdateRequestOauth2Test : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -803,8 +812,11 @@ public class AuthProviderUpdateRequestOauth2Test : TestBase
             },
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         AuthProviderUpdateRequestOauth2AuthorizeRequest expectedAuthorizeRequest = new()
@@ -1109,9 +1121,12 @@ public class AuthProviderUpdateRequestOauth2AuthorizeRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2AuthorizeRequest>(json);
+            JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2AuthorizeRequest>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -1133,9 +1148,12 @@ public class AuthProviderUpdateRequestOauth2AuthorizeRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2AuthorizeRequest>(element);
+            JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2AuthorizeRequest>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         string expectedAuthHeaderValueFormat = "auth_header_value_format";
@@ -1439,8 +1457,11 @@ public class AuthProviderUpdateRequestOauth2PkceTest : TestBase
             Enabled = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2Pkce>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2Pkce>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1454,8 +1475,11 @@ public class AuthProviderUpdateRequestOauth2PkceTest : TestBase
             Enabled = true,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2Pkce>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2Pkce>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedCodeChallengeMethod = "code_challenge_method";
@@ -1603,9 +1627,12 @@ public class AuthProviderUpdateRequestOauth2RefreshRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2RefreshRequest>(json);
+            JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2RefreshRequest>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -1627,9 +1654,12 @@ public class AuthProviderUpdateRequestOauth2RefreshRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2RefreshRequest>(element);
+            JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2RefreshRequest>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         string expectedAuthHeaderValueFormat = "auth_header_value_format";
@@ -2037,9 +2067,10 @@ public class AuthProviderUpdateRequestOauth2TokenRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2TokenRequest>(
-            json
+            json,
+            ModelBase.SerializerOptions
         );
 
         Assert.Equal(model, deserialized);
@@ -2062,9 +2093,10 @@ public class AuthProviderUpdateRequestOauth2TokenRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2TokenRequest>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
@@ -2427,9 +2459,12 @@ public class AuthProviderUpdateRequestOauth2UserInfoRequestTest : TestBase
             Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2UserInfoRequest>(json);
+            JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2UserInfoRequest>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -2452,9 +2487,12 @@ public class AuthProviderUpdateRequestOauth2UserInfoRequestTest : TestBase
             Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2UserInfoRequest>(element);
+            JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2UserInfoRequest>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         string expectedAuthHeaderValueFormat = "auth_header_value_format";
@@ -2771,10 +2809,11 @@ public class AuthProviderUpdateRequestOauth2UserInfoRequestTriggersTest : TestBa
             OnTokenRefresh = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2UserInfoRequestTriggers>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -2789,10 +2828,11 @@ public class AuthProviderUpdateRequestOauth2UserInfoRequestTriggersTest : TestBa
             OnTokenRefresh = true,
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2UserInfoRequestTriggers>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 

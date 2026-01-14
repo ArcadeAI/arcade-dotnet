@@ -1,4 +1,5 @@
 using System.Text.Json;
+using ArcadeDotnet.Core;
 using ArcadeDotnet.Models.Health;
 
 namespace ArcadeDotnet.Tests.Models.Health;
@@ -20,8 +21,11 @@ public class HealthSchemaTest : TestBase
     {
         var model = new HealthSchema { Healthy = true };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<HealthSchema>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<HealthSchema>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -31,8 +35,11 @@ public class HealthSchemaTest : TestBase
     {
         var model = new HealthSchema { Healthy = true };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<HealthSchema>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<HealthSchema>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         bool expectedHealthy = true;

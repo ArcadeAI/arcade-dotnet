@@ -1,4 +1,5 @@
 using System.Text.Json;
+using ArcadeDotnet.Core;
 using ArcadeDotnet.Models;
 
 namespace ArcadeDotnet.Tests.Models;
@@ -22,8 +23,8 @@ public class ErrorTest : TestBase
     {
         var model = new Error { Message = "message", Name = "name" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Error>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Error>(json, ModelBase.SerializerOptions);
 
         Assert.Equal(model, deserialized);
     }
@@ -33,8 +34,8 @@ public class ErrorTest : TestBase
     {
         var model = new Error { Message = "message", Name = "name" };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Error>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Error>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
         string expectedMessage = "message";

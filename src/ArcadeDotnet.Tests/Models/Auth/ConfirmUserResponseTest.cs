@@ -1,4 +1,5 @@
 using System.Text.Json;
+using ArcadeDotnet.Core;
 using ArcadeDotnet.Models.Auth;
 
 namespace ArcadeDotnet.Tests.Models.Auth;
@@ -22,8 +23,11 @@ public class ConfirmUserResponseTest : TestBase
     {
         var model = new ConfirmUserResponse { AuthID = "auth_id", NextUri = "next_uri" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ConfirmUserResponse>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ConfirmUserResponse>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -33,8 +37,11 @@ public class ConfirmUserResponseTest : TestBase
     {
         var model = new ConfirmUserResponse { AuthID = "auth_id", NextUri = "next_uri" };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ConfirmUserResponse>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ConfirmUserResponse>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedAuthID = "auth_id";

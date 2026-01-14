@@ -272,8 +272,11 @@ public class AuthProviderCreateRequestTest : TestBase
             Type = "type",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthProviderCreateRequest>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderCreateRequest>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -365,8 +368,11 @@ public class AuthProviderCreateRequestTest : TestBase
             Type = "type",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthProviderCreateRequest>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderCreateRequest>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -873,8 +879,11 @@ public class AuthProviderCreateRequestOauth2Test : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -957,8 +966,11 @@ public class AuthProviderCreateRequestOauth2Test : TestBase
             },
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedClientID = "client_id";
@@ -1297,9 +1309,12 @@ public class AuthProviderCreateRequestOauth2AuthorizeRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2AuthorizeRequest>(json);
+            JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2AuthorizeRequest>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -1321,9 +1336,12 @@ public class AuthProviderCreateRequestOauth2AuthorizeRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2AuthorizeRequest>(element);
+            JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2AuthorizeRequest>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         string expectedEndpoint = "endpoint";
@@ -1625,8 +1643,11 @@ public class AuthProviderCreateRequestOauth2PkceTest : TestBase
             Enabled = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2Pkce>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2Pkce>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1640,8 +1661,11 @@ public class AuthProviderCreateRequestOauth2PkceTest : TestBase
             Enabled = true,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2Pkce>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2Pkce>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedCodeChallengeMethod = "code_challenge_method";
@@ -1789,9 +1813,12 @@ public class AuthProviderCreateRequestOauth2RefreshRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2RefreshRequest>(json);
+            JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2RefreshRequest>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -1813,9 +1840,12 @@ public class AuthProviderCreateRequestOauth2RefreshRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2RefreshRequest>(element);
+            JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2RefreshRequest>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         string expectedEndpoint = "endpoint";
@@ -2229,10 +2259,11 @@ public class AuthProviderCreateRequestOauth2TokenIntrospectionRequestTest : Test
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2TokenIntrospectionRequest>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -2256,10 +2287,11 @@ public class AuthProviderCreateRequestOauth2TokenIntrospectionRequestTest : Test
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2TokenIntrospectionRequest>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -2451,10 +2483,11 @@ public class AuthProviderCreateRequestOauth2TokenIntrospectionRequestTriggersTes
             OnTokenRefresh = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2TokenIntrospectionRequestTriggers>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -2469,10 +2502,11 @@ public class AuthProviderCreateRequestOauth2TokenIntrospectionRequestTriggersTes
             OnTokenRefresh = true,
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2TokenIntrospectionRequestTriggers>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -2791,9 +2825,10 @@ public class AuthProviderCreateRequestOauth2TokenRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2TokenRequest>(
-            json
+            json,
+            ModelBase.SerializerOptions
         );
 
         Assert.Equal(model, deserialized);
@@ -2816,9 +2851,10 @@ public class AuthProviderCreateRequestOauth2TokenRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2TokenRequest>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
@@ -3179,9 +3215,12 @@ public class AuthProviderCreateRequestOauth2UserInfoRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2UserInfoRequest>(json);
+            JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2UserInfoRequest>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -3204,9 +3243,12 @@ public class AuthProviderCreateRequestOauth2UserInfoRequestTest : TestBase
             ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2UserInfoRequest>(element);
+            JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2UserInfoRequest>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         string expectedEndpoint = "endpoint";
@@ -3397,10 +3439,11 @@ public class AuthProviderCreateRequestOauth2UserInfoRequestTriggersTest : TestBa
             OnTokenRefresh = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2UserInfoRequestTriggers>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -3415,10 +3458,11 @@ public class AuthProviderCreateRequestOauth2UserInfoRequestTriggersTest : TestBa
             OnTokenRefresh = true,
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<AuthProviderCreateRequestOauth2UserInfoRequestTriggers>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 

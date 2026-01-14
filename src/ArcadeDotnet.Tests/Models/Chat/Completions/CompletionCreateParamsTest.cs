@@ -283,8 +283,11 @@ public class ResponseFormatTest : TestBase
     {
         var model = new Completions::ResponseFormat { Type = Completions::Type.JsonObject };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Completions::ResponseFormat>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Completions::ResponseFormat>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -294,8 +297,11 @@ public class ResponseFormatTest : TestBase
     {
         var model = new Completions::ResponseFormat { Type = Completions::Type.JsonObject };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Completions::ResponseFormat>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Completions::ResponseFormat>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, Completions::Type> expectedType = Completions::Type.JsonObject;
@@ -429,8 +435,11 @@ public class StreamOptionsTest : TestBase
     {
         var model = new Completions::StreamOptions { IncludeUsage = true };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Completions::StreamOptions>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Completions::StreamOptions>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -440,8 +449,11 @@ public class StreamOptionsTest : TestBase
     {
         var model = new Completions::StreamOptions { IncludeUsage = true };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Completions::StreamOptions>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Completions::StreamOptions>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         bool expectedIncludeUsage = true;

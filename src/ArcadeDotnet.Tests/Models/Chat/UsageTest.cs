@@ -1,4 +1,5 @@
 using System.Text.Json;
+using ArcadeDotnet.Core;
 using ArcadeDotnet.Models.Chat;
 
 namespace ArcadeDotnet.Tests.Models.Chat;
@@ -34,8 +35,8 @@ public class UsageTest : TestBase
             TotalTokens = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Usage>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Usage>(json, ModelBase.SerializerOptions);
 
         Assert.Equal(model, deserialized);
     }
@@ -50,8 +51,8 @@ public class UsageTest : TestBase
             TotalTokens = 0,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Usage>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Usage>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
         long expectedCompletionTokens = 0;

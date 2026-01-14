@@ -182,8 +182,11 @@ public class ToolExecutionAttemptTest : TestBase
             SystemErrorMessage = "system_error_message",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttempt>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttempt>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -245,8 +248,11 @@ public class ToolExecutionAttemptTest : TestBase
             SystemErrorMessage = "system_error_message",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttempt>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttempt>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -596,8 +602,11 @@ public class ToolExecutionAttemptOutputTest : TestBase
             Value = JsonSerializer.Deserialize<JsonElement>("{}"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutput>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutput>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -651,8 +660,11 @@ public class ToolExecutionAttemptOutputTest : TestBase
             Value = JsonSerializer.Deserialize<JsonElement>("{}"),
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutput>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutput>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         Models::AuthorizationResponse expectedAuthorization = new()
@@ -895,8 +907,11 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
             StatusCode = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutputError>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutputError>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -920,8 +935,11 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
             StatusCode = 0,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutputError>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutputError>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         bool expectedCanRetry = true;
@@ -1186,8 +1204,11 @@ public class ToolExecutionAttemptOutputLogTest : TestBase
             Subtype = "subtype",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutputLog>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutputLog>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1202,8 +1223,11 @@ public class ToolExecutionAttemptOutputLogTest : TestBase
             Subtype = "subtype",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutputLog>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ToolExecutionAttemptOutputLog>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedLevel = "level";
