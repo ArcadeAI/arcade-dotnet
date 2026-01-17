@@ -204,14 +204,12 @@ public sealed record class CompletionCreateParams : ParamsBase
         }
     }
 
-    public global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat? ResponseFormat
+    public ResponseFormat? ResponseFormat
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat>(
-                "response_format"
-            );
+            return this._rawBodyData.GetNullableClass<ResponseFormat>("response_format");
         }
         init
         {
@@ -284,14 +282,12 @@ public sealed record class CompletionCreateParams : ParamsBase
     /// <summary>
     /// Options for streaming response. Only set this when you set stream: true.
     /// </summary>
-    public global::ArcadeDotnet.Models.Chat.Completions.StreamOptions? StreamOptions
+    public StreamOptions? StreamOptions
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<global::ArcadeDotnet.Models.Chat.Completions.StreamOptions>(
-                "stream_options"
-            );
+            return this._rawBodyData.GetNullableClass<StreamOptions>("stream_options");
         }
         init
         {
@@ -496,12 +492,7 @@ public sealed record class CompletionCreateParams : ParamsBase
     }
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat,
-        global::ArcadeDotnet.Models.Chat.Completions.ResponseFormatFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<ResponseFormat, ResponseFormatFromRaw>))]
 public sealed record class ResponseFormat : JsonModel
 {
     public ApiEnum<string, global::ArcadeDotnet.Models.Chat.Completions.Type>? Type
@@ -532,9 +523,7 @@ public sealed record class ResponseFormat : JsonModel
 
     public ResponseFormat() { }
 
-    public ResponseFormat(
-        global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat responseFormat
-    )
+    public ResponseFormat(ResponseFormat responseFormat)
         : base(responseFormat) { }
 
     public ResponseFormat(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -550,25 +539,21 @@ public sealed record class ResponseFormat : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::ArcadeDotnet.Models.Chat.Completions.ResponseFormatFromRaw.FromRawUnchecked"/>
-    public static global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="ResponseFormatFromRaw.FromRawUnchecked"/>
+    public static ResponseFormat FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class ResponseFormatFromRaw
-    : IFromRawJson<global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat>
+class ResponseFormatFromRaw : IFromRawJson<ResponseFormat>
 {
     /// <inheritdoc/>
-    public global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::ArcadeDotnet.Models.Chat.Completions.ResponseFormat.FromRawUnchecked(rawData);
+    public ResponseFormat FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ResponseFormat.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::ArcadeDotnet.Models.Chat.Completions.TypeConverter))]
+[JsonConverter(typeof(TypeConverter))]
 public enum Type
 {
     JsonObject,
@@ -615,12 +600,7 @@ sealed class TypeConverter : JsonConverter<global::ArcadeDotnet.Models.Chat.Comp
 /// <summary>
 /// Options for streaming response. Only set this when you set stream: true.
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::ArcadeDotnet.Models.Chat.Completions.StreamOptions,
-        global::ArcadeDotnet.Models.Chat.Completions.StreamOptionsFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<StreamOptions, StreamOptionsFromRaw>))]
 public sealed record class StreamOptions : JsonModel
 {
     /// <summary>
@@ -655,7 +635,7 @@ public sealed record class StreamOptions : JsonModel
 
     public StreamOptions() { }
 
-    public StreamOptions(global::ArcadeDotnet.Models.Chat.Completions.StreamOptions streamOptions)
+    public StreamOptions(StreamOptions streamOptions)
         : base(streamOptions) { }
 
     public StreamOptions(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -671,20 +651,16 @@ public sealed record class StreamOptions : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::ArcadeDotnet.Models.Chat.Completions.StreamOptionsFromRaw.FromRawUnchecked"/>
-    public static global::ArcadeDotnet.Models.Chat.Completions.StreamOptions FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="StreamOptionsFromRaw.FromRawUnchecked"/>
+    public static StreamOptions FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class StreamOptionsFromRaw
-    : IFromRawJson<global::ArcadeDotnet.Models.Chat.Completions.StreamOptions>
+class StreamOptionsFromRaw : IFromRawJson<StreamOptions>
 {
     /// <inheritdoc/>
-    public global::ArcadeDotnet.Models.Chat.Completions.StreamOptions FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::ArcadeDotnet.Models.Chat.Completions.StreamOptions.FromRawUnchecked(rawData);
+    public StreamOptions FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        StreamOptions.FromRawUnchecked(rawData);
 }

@@ -747,14 +747,12 @@ public sealed record class Authorization : JsonModel
         }
     }
 
-    public ApiEnum<string, global::ArcadeDotnet.Models.Tools.Status>? Status
+    public ApiEnum<string, Status>? Status
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<
-                ApiEnum<string, global::ArcadeDotnet.Models.Tools.Status>
-            >("status");
+            return this._rawData.GetNullableClass<ApiEnum<string, Status>>("status");
         }
         init
         {
@@ -909,16 +907,16 @@ class Oauth2FromRaw : IFromRawJson<Oauth2>
         Oauth2.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::ArcadeDotnet.Models.Tools.StatusConverter))]
+[JsonConverter(typeof(StatusConverter))]
 public enum Status
 {
     Active,
     Inactive,
 }
 
-sealed class StatusConverter : JsonConverter<global::ArcadeDotnet.Models.Tools.Status>
+sealed class StatusConverter : JsonConverter<Status>
 {
-    public override global::ArcadeDotnet.Models.Tools.Status Read(
+    public override Status Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -926,24 +924,20 @@ sealed class StatusConverter : JsonConverter<global::ArcadeDotnet.Models.Tools.S
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "active" => global::ArcadeDotnet.Models.Tools.Status.Active,
-            "inactive" => global::ArcadeDotnet.Models.Tools.Status.Inactive,
-            _ => (global::ArcadeDotnet.Models.Tools.Status)(-1),
+            "active" => Status.Active,
+            "inactive" => Status.Inactive,
+            _ => (Status)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::ArcadeDotnet.Models.Tools.Status value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Status value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::ArcadeDotnet.Models.Tools.Status.Active => "active",
-                global::ArcadeDotnet.Models.Tools.Status.Inactive => "inactive",
+                Status.Active => "active",
+                Status.Inactive => "inactive",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

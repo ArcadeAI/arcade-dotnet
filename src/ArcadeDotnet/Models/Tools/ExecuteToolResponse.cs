@@ -249,12 +249,12 @@ public sealed record class Output : JsonModel
         }
     }
 
-    public global::ArcadeDotnet.Models.Tools.Error? Error
+    public Error? Error
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<global::ArcadeDotnet.Models.Tools.Error>("error");
+            return this._rawData.GetNullableClass<Error>("error");
         }
         init
         {
@@ -350,12 +350,7 @@ class OutputFromRaw : IFromRawJson<Output>
         Output.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::ArcadeDotnet.Models.Tools.Error,
-        global::ArcadeDotnet.Models.Tools.ErrorFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<Error, ErrorFromRaw>))]
 public sealed record class Error : JsonModel
 {
     public required bool CanRetry
@@ -515,7 +510,7 @@ public sealed record class Error : JsonModel
 
     public Error() { }
 
-    public Error(global::ArcadeDotnet.Models.Tools.Error error)
+    public Error(Error error)
         : base(error) { }
 
     public Error(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -531,21 +526,18 @@ public sealed record class Error : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::ArcadeDotnet.Models.Tools.ErrorFromRaw.FromRawUnchecked"/>
-    public static global::ArcadeDotnet.Models.Tools.Error FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="ErrorFromRaw.FromRawUnchecked"/>
+    public static Error FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class ErrorFromRaw : IFromRawJson<global::ArcadeDotnet.Models.Tools.Error>
+class ErrorFromRaw : IFromRawJson<Error>
 {
     /// <inheritdoc/>
-    public global::ArcadeDotnet.Models.Tools.Error FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::ArcadeDotnet.Models.Tools.Error.FromRawUnchecked(rawData);
+    public Error FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Error.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(KindConverter))]
