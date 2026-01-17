@@ -101,4 +101,25 @@ public class ToolExecuteParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/tools/execute"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ToolExecuteParams
+        {
+            ToolName = "tool_name",
+            IncludeErrorStacktrace = true,
+            Input = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            RunAt = "run_at",
+            ToolVersion = "tool_version",
+            UserID = "user_id",
+        };
+
+        ToolExecuteParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

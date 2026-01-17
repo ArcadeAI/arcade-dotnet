@@ -102,4 +102,22 @@ public class FormattedListParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new FormattedListParams
+        {
+            Format = "format",
+            IncludeAllVersions = true,
+            Limit = 0,
+            Offset = 0,
+            Toolkit = "toolkit",
+            UserID = "user_id",
+        };
+
+        FormattedListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

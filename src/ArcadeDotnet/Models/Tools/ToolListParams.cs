@@ -13,8 +13,12 @@ namespace ArcadeDotnet.Models.Tools;
 
 /// <summary>
 /// Returns a page of tools from the engine configuration, optionally filtered by toolkit
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class ToolListParams : ParamsBase
+public record class ToolListParams : ParamsBase
 {
     /// <summary>
     /// Include all versions of each tool
@@ -149,8 +153,11 @@ public sealed record class ToolListParams : ParamsBase
 
     public ToolListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ToolListParams(ToolListParams toolListParams)
         : base(toolListParams) { }
+#pragma warning restore CS8618
 
     public ToolListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -185,6 +192,26 @@ public sealed record class ToolListParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(ToolListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/v1/tools")
@@ -200,6 +227,11 @@ public sealed record class ToolListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

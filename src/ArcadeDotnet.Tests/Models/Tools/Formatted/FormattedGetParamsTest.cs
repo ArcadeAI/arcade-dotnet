@@ -70,4 +70,19 @@ public class FormattedGetParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new FormattedGetParams
+        {
+            Name = "name",
+            Format = "format",
+            UserID = "user_id",
+        };
+
+        FormattedGetParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

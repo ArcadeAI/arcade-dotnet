@@ -86,6 +86,22 @@ public class UserConnectionListParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new UserConnectionListParams
+        {
+            Limit = 0,
+            Offset = 0,
+            Provider = new() { ID = "id" },
+            User = new() { ID = "id" },
+        };
+
+        UserConnectionListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class ProviderTest : TestBase

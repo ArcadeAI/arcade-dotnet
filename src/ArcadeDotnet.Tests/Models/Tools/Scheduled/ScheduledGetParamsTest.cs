@@ -24,4 +24,14 @@ public class ScheduledGetParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/scheduled_tools/id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ScheduledGetParams { ID = "id" };
+
+        ScheduledGetParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

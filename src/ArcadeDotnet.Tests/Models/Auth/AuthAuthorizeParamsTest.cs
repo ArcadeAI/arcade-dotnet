@@ -99,6 +99,27 @@ public class AuthAuthorizeParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/auth/authorize"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new AuthAuthorizeParams
+        {
+            AuthRequirement = new()
+            {
+                ID = "id",
+                Oauth2 = new() { Scopes = ["string"] },
+                ProviderID = "provider_id",
+                ProviderType = "provider_type",
+            },
+            UserID = "user_id",
+            NextUri = "next_uri",
+        };
+
+        AuthAuthorizeParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class AuthRequirementTest : TestBase

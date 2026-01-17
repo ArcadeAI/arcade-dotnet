@@ -14,8 +14,12 @@ namespace ArcadeDotnet.Models.Chat.Completions;
 
 /// <summary>
 /// Interact with language models via OpenAI's chat completions API
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class CompletionCreateParams : ParamsBase
+public record class CompletionCreateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -418,11 +422,14 @@ public sealed record class CompletionCreateParams : ParamsBase
 
     public CompletionCreateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CompletionCreateParams(CompletionCreateParams completionCreateParams)
         : base(completionCreateParams)
     {
         this._rawBodyData = new(completionCreateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public CompletionCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -463,6 +470,28 @@ public sealed record class CompletionCreateParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(CompletionCreateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
@@ -489,6 +518,11 @@ public sealed record class CompletionCreateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

@@ -13,8 +13,12 @@ namespace ArcadeDotnet.Models.Tools;
 
 /// <summary>
 /// Returns the arcade tool specification for a specific tool
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class ToolGetParams : ParamsBase
+public record class ToolGetParams : ParamsBase
 {
     public string? Name { get; init; }
 
@@ -67,11 +71,14 @@ public sealed record class ToolGetParams : ParamsBase
 
     public ToolGetParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ToolGetParams(ToolGetParams toolGetParams)
         : base(toolGetParams)
     {
         this.Name = toolGetParams.Name;
     }
+#pragma warning restore CS8618
 
     public ToolGetParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -106,6 +113,28 @@ public sealed record class ToolGetParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["Name"] = this.Name,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(ToolGetParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.Name?.Equals(other.Name) ?? other.Name == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
@@ -123,6 +152,11 @@ public sealed record class ToolGetParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

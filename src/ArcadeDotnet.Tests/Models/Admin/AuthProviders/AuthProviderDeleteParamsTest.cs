@@ -24,4 +24,14 @@ public class AuthProviderDeleteParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/admin/auth_providers/id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new AuthProviderDeleteParams { ID = "id" };
+
+        AuthProviderDeleteParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

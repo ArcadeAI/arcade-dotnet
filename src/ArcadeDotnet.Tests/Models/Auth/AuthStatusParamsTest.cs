@@ -50,4 +50,14 @@ public class AuthStatusParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/auth/status?id=id&wait=0"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new AuthStatusParams { ID = "id", Wait = 0 };
+
+        AuthStatusParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

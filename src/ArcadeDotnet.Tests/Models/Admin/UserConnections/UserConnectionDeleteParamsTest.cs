@@ -24,4 +24,14 @@ public class UserConnectionDeleteParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/admin/user_connections/id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new UserConnectionDeleteParams { ID = "id" };
+
+        UserConnectionDeleteParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

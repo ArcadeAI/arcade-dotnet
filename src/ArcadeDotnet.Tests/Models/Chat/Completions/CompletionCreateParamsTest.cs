@@ -264,6 +264,56 @@ public class CompletionCreateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/chat/completions"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new Completions::CompletionCreateParams
+        {
+            FrequencyPenalty = 0,
+            LogitBias = new Dictionary<string, long>() { { "foo", 0 } },
+            Logprobs = true,
+            MaxTokens = 0,
+            Messages =
+            [
+                new()
+                {
+                    Content = "content",
+                    Role = "role",
+                    Name = "name",
+                    ToolCallID = "tool_call_id",
+                    ToolCalls =
+                    [
+                        new()
+                        {
+                            ID = "id",
+                            Function = new() { Arguments = "arguments", Name = "name" },
+                            Type = Chat::Type.Function,
+                        },
+                    ],
+                },
+            ],
+            Model = "model",
+            N = 0,
+            ParallelToolCalls = true,
+            PresencePenalty = 0,
+            ResponseFormat = new() { Type = Completions::Type.JsonObject },
+            Seed = 0,
+            Stop = ["string"],
+            Stream = true,
+            StreamOptions = new() { IncludeUsage = true },
+            Temperature = 0,
+            ToolChoice = JsonSerializer.Deserialize<JsonElement>("{}"),
+            Tools = JsonSerializer.Deserialize<JsonElement>("{}"),
+            TopLogprobs = 0,
+            TopP = 0,
+            User = "user",
+        };
+
+        Completions::CompletionCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class ResponseFormatTest : TestBase

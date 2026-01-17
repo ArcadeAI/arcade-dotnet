@@ -121,6 +121,43 @@ public class WorkerCreateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/workers"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new WorkerCreateParams
+        {
+            ID = "id",
+            Enabled = true,
+            Http = new()
+            {
+                Retry = 0,
+                Secret = "secret",
+                Timeout = 1,
+                Uri = "uri",
+            },
+            Mcp = new()
+            {
+                Retry = 0,
+                Timeout = 1,
+                Uri = "uri",
+                Headers = new Dictionary<string, string>() { { "foo", "string" } },
+                Oauth2 = new()
+                {
+                    AuthorizationUrl = "authorization_url",
+                    ClientID = "client_id",
+                    ClientSecret = "client_secret",
+                    ExternalID = "external_id",
+                },
+                Secrets = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            Type = "type",
+        };
+
+        WorkerCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class HttpTest : TestBase

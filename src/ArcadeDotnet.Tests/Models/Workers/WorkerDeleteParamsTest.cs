@@ -24,4 +24,14 @@ public class WorkerDeleteParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/workers/id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new WorkerDeleteParams { ID = "id" };
+
+        WorkerDeleteParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

@@ -70,4 +70,20 @@ public class ToolAuthorizeParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/tools/authorize"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ToolAuthorizeParams
+        {
+            ToolName = "tool_name",
+            NextUri = "next_uri",
+            ToolVersion = "tool_version",
+            UserID = "user_id",
+        };
+
+        ToolAuthorizeParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

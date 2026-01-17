@@ -82,6 +82,21 @@ public class ToolGetParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ToolGetParams
+        {
+            Name = "name",
+            IncludeFormat = [ToolGetParamsIncludeFormat.Arcade],
+            UserID = "user_id",
+        };
+
+        ToolGetParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class ToolGetParamsIncludeFormatTest : TestBase

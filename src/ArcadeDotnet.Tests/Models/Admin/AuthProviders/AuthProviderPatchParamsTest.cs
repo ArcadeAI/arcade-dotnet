@@ -216,6 +216,84 @@ public class AuthProviderPatchParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/admin/auth_providers/id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new AuthProviderPatchParams
+        {
+            ID = "id",
+            IDValue = "id",
+            Description = "description",
+            Oauth2 = new()
+            {
+                AuthorizeRequest = new()
+                {
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Endpoint = "endpoint",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        AuthProviderPatchParamsOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        AuthProviderPatchParamsOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                },
+                ClientID = "client_id",
+                ClientSecret = "client_secret",
+                Pkce = new() { CodeChallengeMethod = "code_challenge_method", Enabled = true },
+                RefreshRequest = new()
+                {
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Endpoint = "endpoint",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        AuthProviderPatchParamsOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        AuthProviderPatchParamsOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                },
+                ScopeDelimiter = AuthProviderPatchParamsOauth2ScopeDelimiter.Undefined,
+                TokenRequest = new()
+                {
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Endpoint = "endpoint",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        AuthProviderPatchParamsOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        AuthProviderPatchParamsOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                },
+                UserInfoRequest = new()
+                {
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Endpoint = "endpoint",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        AuthProviderPatchParamsOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        AuthProviderPatchParamsOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                    Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                },
+            },
+            ProviderID = "provider_id",
+            Status = "status",
+            Type = "type",
+        };
+
+        AuthProviderPatchParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class AuthProviderPatchParamsOauth2Test : TestBase

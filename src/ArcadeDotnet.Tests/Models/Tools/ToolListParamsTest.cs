@@ -111,6 +111,24 @@ public class ToolListParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ToolListParams
+        {
+            IncludeAllVersions = true,
+            IncludeFormat = [IncludeFormat.Arcade],
+            Limit = 0,
+            Offset = 0,
+            Toolkit = "toolkit",
+            UserID = "user_id",
+        };
+
+        ToolListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class IncludeFormatTest : TestBase

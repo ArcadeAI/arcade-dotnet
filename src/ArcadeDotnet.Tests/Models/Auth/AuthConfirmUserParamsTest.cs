@@ -26,4 +26,14 @@ public class AuthConfirmUserParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/auth/confirm_user"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new AuthConfirmUserParams { FlowID = "flow_id", UserID = "user_id" };
+
+        AuthConfirmUserParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

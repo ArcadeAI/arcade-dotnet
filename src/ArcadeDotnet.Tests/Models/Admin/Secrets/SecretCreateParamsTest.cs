@@ -58,4 +58,19 @@ public class SecretCreateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/admin/secrets/secret_key"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SecretCreateParams
+        {
+            SecretKey = "secret_key",
+            Value = "value",
+            Description = "description",
+        };
+
+        SecretCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

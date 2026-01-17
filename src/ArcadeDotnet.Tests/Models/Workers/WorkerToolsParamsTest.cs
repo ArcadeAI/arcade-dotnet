@@ -67,4 +67,19 @@ public class WorkerToolsParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/workers/id/tools?limit=0&offset=0"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new WorkerToolsParams
+        {
+            ID = "id",
+            Limit = 0,
+            Offset = 0,
+        };
+
+        WorkerToolsParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

@@ -24,4 +24,14 @@ public class SecretDeleteParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/admin/secrets/secret_id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SecretDeleteParams { SecretID = "secret_id" };
+
+        SecretDeleteParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

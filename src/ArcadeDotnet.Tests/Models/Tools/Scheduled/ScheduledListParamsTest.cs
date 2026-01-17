@@ -53,4 +53,14 @@ public class ScheduledListParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/scheduled_tools?limit=0&offset=0"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ScheduledListParams { Limit = 0, Offset = 0 };
+
+        ScheduledListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

@@ -237,6 +237,96 @@ public class AuthProviderCreateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.arcade.dev/v1/admin/auth_providers"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new AuthProviderCreateParams
+        {
+            ID = "id",
+            Description = "description",
+            ExternalID = "external_id",
+            Oauth2 = new()
+            {
+                ClientID = "client_id",
+                AuthorizeRequest = new()
+                {
+                    Endpoint = "endpoint",
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType = RequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType = ResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                },
+                ClientSecret = "client_secret",
+                Pkce = new() { CodeChallengeMethod = "code_challenge_method", Enabled = true },
+                RefreshRequest = new()
+                {
+                    Endpoint = "endpoint",
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                },
+                ScopeDelimiter = ScopeDelimiter.Undefined,
+                TokenIntrospectionRequest = new()
+                {
+                    Endpoint = "endpoint",
+                    Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                },
+                TokenRequest = new()
+                {
+                    Endpoint = "endpoint",
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                },
+                UserInfoRequest = new()
+                {
+                    Endpoint = "endpoint",
+                    Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                },
+            },
+            ProviderID = "provider_id",
+            Status = "status",
+            Type = "type",
+        };
+
+        AuthProviderCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class Oauth2Test : TestBase
