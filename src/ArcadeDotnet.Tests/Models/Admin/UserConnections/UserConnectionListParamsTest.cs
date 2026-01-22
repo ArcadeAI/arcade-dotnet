@@ -193,6 +193,16 @@ public class ProviderTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Provider { ID = "id" };
+
+        Provider copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class UserTest : TestBase
@@ -280,5 +290,15 @@ public class UserTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new User { ID = "id" };
+
+        User copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

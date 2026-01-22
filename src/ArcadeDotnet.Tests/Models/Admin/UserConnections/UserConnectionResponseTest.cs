@@ -235,4 +235,25 @@ public class UserConnectionResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UserConnectionResponse
+        {
+            ID = "id",
+            ConnectionID = "connection_id",
+            ConnectionStatus = "connection_status",
+            ProviderDescription = "provider_description",
+            ProviderID = "provider_id",
+            ProviderType = "provider_type",
+            ProviderUserInfo = JsonSerializer.Deserialize<JsonElement>("{}"),
+            Scopes = ["string"],
+            UserID = "user_id",
+        };
+
+        UserConnectionResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

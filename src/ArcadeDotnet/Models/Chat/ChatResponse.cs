@@ -157,8 +157,11 @@ public sealed record class ChatResponse : JsonModel
 
     public ChatResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ChatResponse(ChatResponse chatResponse)
         : base(chatResponse) { }
+#pragma warning restore CS8618
 
     public ChatResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

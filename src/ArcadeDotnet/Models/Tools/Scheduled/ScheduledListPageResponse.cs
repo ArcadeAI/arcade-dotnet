@@ -121,8 +121,11 @@ public sealed record class ScheduledListPageResponse : JsonModel
 
     public ScheduledListPageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScheduledListPageResponse(ScheduledListPageResponse scheduledListPageResponse)
         : base(scheduledListPageResponse) { }
+#pragma warning restore CS8618
 
     public ScheduledListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

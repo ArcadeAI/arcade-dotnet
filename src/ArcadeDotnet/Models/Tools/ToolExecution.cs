@@ -245,8 +245,11 @@ public sealed record class ToolExecution : JsonModel
 
     public ToolExecution() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ToolExecution(ToolExecution toolExecution)
         : base(toolExecution) { }
+#pragma warning restore CS8618
 
     public ToolExecution(IReadOnlyDictionary<string, JsonElement> rawData)
     {

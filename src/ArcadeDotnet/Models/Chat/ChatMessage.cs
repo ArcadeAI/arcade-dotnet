@@ -120,8 +120,11 @@ public sealed record class ChatMessage : JsonModel
 
     public ChatMessage() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ChatMessage(ChatMessage chatMessage)
         : base(chatMessage) { }
+#pragma warning restore CS8618
 
     public ChatMessage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -219,8 +222,11 @@ public sealed record class ToolCall : JsonModel
 
     public ToolCall() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ToolCall(ToolCall toolCall)
         : base(toolCall) { }
+#pragma warning restore CS8618
 
     public ToolCall(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -297,8 +303,11 @@ public sealed record class Function : JsonModel
 
     public Function() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Function(Function function)
         : base(function) { }
+#pragma warning restore CS8618
 
     public Function(IReadOnlyDictionary<string, JsonElement> rawData)
     {

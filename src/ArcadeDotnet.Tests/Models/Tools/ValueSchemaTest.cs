@@ -145,4 +145,19 @@ public class ValueSchemaTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ValueSchema
+        {
+            ValType = "val_type",
+            Enum = ["string"],
+            InnerValType = "inner_val_type",
+        };
+
+        ValueSchema copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

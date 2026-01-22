@@ -408,6 +408,16 @@ public class ResponseFormatTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Completions::ResponseFormat { Type = Completions::Type.JsonObject };
+
+        Completions::ResponseFormat copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TypeTest : TestBase
@@ -559,5 +569,15 @@ public class StreamOptionsTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Completions::StreamOptions { IncludeUsage = true };
+
+        Completions::StreamOptions copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

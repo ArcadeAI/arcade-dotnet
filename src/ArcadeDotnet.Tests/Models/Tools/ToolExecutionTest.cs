@@ -262,4 +262,28 @@ public class ToolExecutionTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ToolExecution
+        {
+            ID = "id",
+            CreatedAt = "created_at",
+            ExecutionStatus = "execution_status",
+            ExecutionType = "execution_type",
+            FinishedAt = "finished_at",
+            RunAt = "run_at",
+            StartedAt = "started_at",
+            ToolName = "tool_name",
+            ToolkitName = "toolkit_name",
+            ToolkitVersion = "toolkit_version",
+            UpdatedAt = "updated_at",
+            UserID = "user_id",
+        };
+
+        ToolExecution copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

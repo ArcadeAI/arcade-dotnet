@@ -445,6 +445,68 @@ public class ToolExecutionAttemptTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ToolExecutionAttempt
+        {
+            ID = "id",
+            FinishedAt = "finished_at",
+            Output = new()
+            {
+                Authorization = new()
+                {
+                    ID = "id",
+                    Context = new()
+                    {
+                        Token = "token",
+                        UserInfo = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                    },
+                    ProviderID = "provider_id",
+                    Scopes = ["string"],
+                    Status = Models::Status.NotStarted,
+                    Url = "url",
+                    UserID = "user_id",
+                },
+                Error = new()
+                {
+                    CanRetry = true,
+                    Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+                    Message = "message",
+                    AdditionalPromptContent = "additional_prompt_content",
+                    DeveloperMessage = "developer_message",
+                    Extra = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    RetryAfterMs = 0,
+                    Stacktrace = "stacktrace",
+                    StatusCode = 0,
+                },
+                Logs =
+                [
+                    new()
+                    {
+                        Level = "level",
+                        Message = "message",
+                        Subtype = "subtype",
+                    },
+                ],
+                Value = JsonSerializer.Deserialize<JsonElement>("{}"),
+            },
+            StartedAt = "started_at",
+            Success = true,
+            SystemErrorMessage = "system_error_message",
+        };
+
+        ToolExecutionAttempt copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ToolExecutionAttemptOutputTest : TestBase
@@ -833,6 +895,60 @@ public class ToolExecutionAttemptOutputTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ToolExecutionAttemptOutput
+        {
+            Authorization = new()
+            {
+                ID = "id",
+                Context = new()
+                {
+                    Token = "token",
+                    UserInfo = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                },
+                ProviderID = "provider_id",
+                Scopes = ["string"],
+                Status = Models::Status.NotStarted,
+                Url = "url",
+                UserID = "user_id",
+            },
+            Error = new()
+            {
+                CanRetry = true,
+                Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+                Message = "message",
+                AdditionalPromptContent = "additional_prompt_content",
+                DeveloperMessage = "developer_message",
+                Extra = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                RetryAfterMs = 0,
+                Stacktrace = "stacktrace",
+                StatusCode = 0,
+            },
+            Logs =
+            [
+                new()
+                {
+                    Level = "level",
+                    Message = "message",
+                    Subtype = "subtype",
+                },
+            ],
+            Value = JsonSerializer.Deserialize<JsonElement>("{}"),
+        };
+
+        ToolExecutionAttemptOutput copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ToolExecutionAttemptOutputErrorTest : TestBase
@@ -1085,6 +1201,30 @@ public class ToolExecutionAttemptOutputErrorTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ToolExecutionAttemptOutputError
+        {
+            CanRetry = true,
+            Kind = ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+            Message = "message",
+            AdditionalPromptContent = "additional_prompt_content",
+            DeveloperMessage = "developer_message",
+            Extra = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            RetryAfterMs = 0,
+            Stacktrace = "stacktrace",
+            StatusCode = 0,
+        };
+
+        ToolExecutionAttemptOutputError copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ToolExecutionAttemptOutputErrorKindTest : TestBase
@@ -1302,5 +1442,20 @@ public class ToolExecutionAttemptOutputLogTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ToolExecutionAttemptOutputLog
+        {
+            Level = "level",
+            Message = "message",
+            Subtype = "subtype",
+        };
+
+        ToolExecutionAttemptOutputLog copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

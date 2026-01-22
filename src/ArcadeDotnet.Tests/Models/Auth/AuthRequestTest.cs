@@ -199,6 +199,27 @@ public class AuthRequestTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthRequest
+        {
+            AuthRequirement = new()
+            {
+                ID = "id",
+                Oauth2 = new() { Scopes = ["string"] },
+                ProviderID = "provider_id",
+                ProviderType = "provider_type",
+            },
+            UserID = "user_id",
+            NextUri = "next_uri",
+        };
+
+        AuthRequest copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AuthRequestAuthRequirementTest : TestBase
@@ -347,6 +368,22 @@ public class AuthRequestAuthRequirementTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthRequestAuthRequirement
+        {
+            ID = "id",
+            Oauth2 = new() { Scopes = ["string"] },
+            ProviderID = "provider_id",
+            ProviderType = "provider_type",
+        };
+
+        AuthRequestAuthRequirement copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AuthRequestAuthRequirementOauth2Test : TestBase
@@ -450,5 +487,15 @@ public class AuthRequestAuthRequirementOauth2Test : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthRequestAuthRequirementOauth2 { Scopes = ["string"] };
+
+        AuthRequestAuthRequirementOauth2 copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

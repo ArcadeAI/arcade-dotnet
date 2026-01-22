@@ -522,6 +522,56 @@ public class ChatRequestTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ChatRequest
+        {
+            FrequencyPenalty = 0,
+            LogitBias = new Dictionary<string, long>() { { "foo", 0 } },
+            Logprobs = true,
+            MaxTokens = 0,
+            Messages =
+            [
+                new()
+                {
+                    Content = "content",
+                    Role = "role",
+                    Name = "name",
+                    ToolCallID = "tool_call_id",
+                    ToolCalls =
+                    [
+                        new()
+                        {
+                            ID = "id",
+                            Function = new() { Arguments = "arguments", Name = "name" },
+                            Type = Type.Function,
+                        },
+                    ],
+                },
+            ],
+            Model = "model",
+            N = 0,
+            ParallelToolCalls = true,
+            PresencePenalty = 0,
+            ResponseFormat = new() { Type = ResponseFormatType.JsonObject },
+            Seed = 0,
+            Stop = ["string"],
+            Stream = true,
+            StreamOptions = new() { IncludeUsage = true },
+            Temperature = 0,
+            ToolChoice = JsonSerializer.Deserialize<JsonElement>("{}"),
+            Tools = JsonSerializer.Deserialize<JsonElement>("{}"),
+            TopLogprobs = 0,
+            TopP = 0,
+            User = "user",
+        };
+
+        ChatRequest copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ResponseFormatTest : TestBase
@@ -615,6 +665,16 @@ public class ResponseFormatTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ResponseFormat { Type = ResponseFormatType.JsonObject };
+
+        ResponseFormat copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -767,5 +827,15 @@ public class StreamOptionsTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new StreamOptions { IncludeUsage = true };
+
+        StreamOptions copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

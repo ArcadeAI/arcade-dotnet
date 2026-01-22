@@ -146,8 +146,11 @@ public sealed record class Choice : JsonModel
 
     public Choice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Choice(Choice choice)
         : base(choice) { }
+#pragma warning restore CS8618
 
     public Choice(IReadOnlyDictionary<string, JsonElement> rawData)
     {

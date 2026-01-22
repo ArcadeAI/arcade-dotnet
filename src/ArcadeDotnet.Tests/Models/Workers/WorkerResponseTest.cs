@@ -538,6 +538,81 @@ public class WorkerResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new WorkerResponse
+        {
+            ID = "id",
+            Binding = new() { ID = "id", Type = Type.Static },
+            Enabled = true,
+            Http = new()
+            {
+                Retry = 0,
+                Secret = new()
+                {
+                    Binding = SecretBinding.Static,
+                    Editable = true,
+                    Exists = true,
+                    Hint = "hint",
+                    Value = "value",
+                },
+                Timeout = 0,
+                Uri = "uri",
+            },
+            Managed = true,
+            Mcp = new()
+            {
+                Headers = new Dictionary<string, string>() { { "foo", "string" } },
+                Oauth2 = new()
+                {
+                    AuthorizationUrl = "authorization_url",
+                    ClientID = "client_id",
+                    ClientSecret = new()
+                    {
+                        Binding = ClientSecretBinding.Static,
+                        Editable = true,
+                        Exists = true,
+                        Hint = "hint",
+                        Value = "value",
+                    },
+                    RedirectUri = "redirect_uri",
+                },
+                Retry = 0,
+                Secrets = new Dictionary<string, SecretsItem>()
+                {
+                    {
+                        "foo",
+                        new()
+                        {
+                            Binding = SecretsItemBinding.Static,
+                            Editable = true,
+                            Exists = true,
+                            Hint = "hint",
+                            Value = "value",
+                        }
+                    },
+                },
+                Timeout = 0,
+                Uri = "uri",
+            },
+            Requirements = new()
+            {
+                Authorization = new()
+                {
+                    Met = true,
+                    Oauth2 = new() { Met = true },
+                },
+                Met = true,
+            },
+            Type = WorkerResponseType.Http,
+        };
+
+        WorkerResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class BindingTest : TestBase
@@ -638,6 +713,16 @@ public class BindingTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Binding { ID = "id", Type = Type.Static };
+
+        Binding copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -891,6 +976,29 @@ public class WorkerResponseHttpTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new WorkerResponseHttp
+        {
+            Retry = 0,
+            Secret = new()
+            {
+                Binding = SecretBinding.Static,
+                Editable = true,
+                Exists = true,
+                Hint = "hint",
+                Value = "value",
+            },
+            Timeout = 0,
+            Uri = "uri",
+        };
+
+        WorkerResponseHttp copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class SecretTest : TestBase
@@ -1046,6 +1154,23 @@ public class SecretTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Secret
+        {
+            Binding = SecretBinding.Static,
+            Editable = true,
+            Exists = true,
+            Hint = "hint",
+            Value = "value",
+        };
+
+        Secret copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1469,6 +1594,50 @@ public class WorkerResponseMcpTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new WorkerResponseMcp
+        {
+            Headers = new Dictionary<string, string>() { { "foo", "string" } },
+            Oauth2 = new()
+            {
+                AuthorizationUrl = "authorization_url",
+                ClientID = "client_id",
+                ClientSecret = new()
+                {
+                    Binding = ClientSecretBinding.Static,
+                    Editable = true,
+                    Exists = true,
+                    Hint = "hint",
+                    Value = "value",
+                },
+                RedirectUri = "redirect_uri",
+            },
+            Retry = 0,
+            Secrets = new Dictionary<string, SecretsItem>()
+            {
+                {
+                    "foo",
+                    new()
+                    {
+                        Binding = SecretsItemBinding.Static,
+                        Editable = true,
+                        Exists = true,
+                        Hint = "hint",
+                        Value = "value",
+                    }
+                },
+            },
+            Timeout = 0,
+            Uri = "uri",
+        };
+
+        WorkerResponseMcp copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class WorkerResponseMcpOauth2Test : TestBase
@@ -1659,6 +1828,29 @@ public class WorkerResponseMcpOauth2Test : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new WorkerResponseMcpOauth2
+        {
+            AuthorizationUrl = "authorization_url",
+            ClientID = "client_id",
+            ClientSecret = new()
+            {
+                Binding = ClientSecretBinding.Static,
+                Editable = true,
+                Exists = true,
+                Hint = "hint",
+                Value = "value",
+            },
+            RedirectUri = "redirect_uri",
+        };
+
+        WorkerResponseMcpOauth2 copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ClientSecretTest : TestBase
@@ -1820,6 +2012,23 @@ public class ClientSecretTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ClientSecret
+        {
+            Binding = ClientSecretBinding.Static,
+            Editable = true,
+            Exists = true,
+            Hint = "hint",
+            Value = "value",
+        };
+
+        ClientSecret copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -2045,6 +2254,23 @@ public class SecretsItemTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SecretsItem
+        {
+            Binding = SecretsItemBinding.Static,
+            Editable = true,
+            Exists = true,
+            Hint = "hint",
+            Value = "value",
+        };
+
+        SecretsItem copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class SecretsItemBindingTest : TestBase
@@ -2251,6 +2477,24 @@ public class RequirementsTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Requirements
+        {
+            Authorization = new()
+            {
+                Met = true,
+                Oauth2 = new() { Met = true },
+            },
+            Met = true,
+        };
+
+        Requirements copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AuthorizationTest : TestBase
@@ -2371,6 +2615,20 @@ public class AuthorizationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Authorization
+        {
+            Met = true,
+            Oauth2 = new() { Met = true },
+        };
+
+        Authorization copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AuthorizationOauth2Test : TestBase
@@ -2464,6 +2722,16 @@ public class AuthorizationOauth2Test : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthorizationOauth2 { Met = true };
+
+        AuthorizationOauth2 copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

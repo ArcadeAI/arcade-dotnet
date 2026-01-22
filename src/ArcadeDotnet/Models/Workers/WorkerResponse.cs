@@ -171,8 +171,11 @@ public sealed record class WorkerResponse : JsonModel
 
     public WorkerResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public WorkerResponse(WorkerResponse workerResponse)
         : base(workerResponse) { }
+#pragma warning restore CS8618
 
     public WorkerResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -251,8 +254,11 @@ public sealed record class Binding : JsonModel
 
     public Binding() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Binding(Binding binding)
         : base(binding) { }
+#pragma warning restore CS8618
 
     public Binding(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -417,8 +423,11 @@ public sealed record class WorkerResponseHttp : JsonModel
 
     public WorkerResponseHttp() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public WorkerResponseHttp(WorkerResponseHttp workerResponseHttp)
         : base(workerResponseHttp) { }
+#pragma warning restore CS8618
 
     public WorkerResponseHttp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -554,8 +563,11 @@ public sealed record class Secret : JsonModel
 
     public Secret() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Secret(Secret secret)
         : base(secret) { }
+#pragma warning restore CS8618
 
     public Secret(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -770,8 +782,11 @@ public sealed record class WorkerResponseMcp : JsonModel
 
     public WorkerResponseMcp() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public WorkerResponseMcp(WorkerResponseMcp workerResponseMcp)
         : base(workerResponseMcp) { }
+#pragma warning restore CS8618
 
     public WorkerResponseMcp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -888,8 +903,11 @@ public sealed record class WorkerResponseMcpOauth2 : JsonModel
 
     public WorkerResponseMcpOauth2() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public WorkerResponseMcpOauth2(WorkerResponseMcpOauth2 workerResponseMcpOauth2)
         : base(workerResponseMcpOauth2) { }
+#pragma warning restore CS8618
 
     public WorkerResponseMcpOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1026,8 +1044,11 @@ public sealed record class ClientSecret : JsonModel
 
     public ClientSecret() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ClientSecret(ClientSecret clientSecret)
         : base(clientSecret) { }
+#pragma warning restore CS8618
 
     public ClientSecret(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1211,8 +1232,11 @@ public sealed record class SecretsItem : JsonModel
 
     public SecretsItem() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SecretsItem(SecretsItem secretsItem)
         : base(secretsItem) { }
+#pragma warning restore CS8618
 
     public SecretsItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1339,8 +1363,11 @@ public sealed record class Requirements : JsonModel
 
     public Requirements() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Requirements(Requirements requirements)
         : base(requirements) { }
+#pragma warning restore CS8618
 
     public Requirements(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1417,8 +1444,11 @@ public sealed record class Authorization : JsonModel
 
     public Authorization() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Authorization(Authorization authorization)
         : base(authorization) { }
+#pragma warning restore CS8618
 
     public Authorization(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1476,8 +1506,11 @@ public sealed record class AuthorizationOauth2 : JsonModel
 
     public AuthorizationOauth2() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthorizationOauth2(AuthorizationOauth2 authorizationOauth2)
         : base(authorizationOauth2) { }
+#pragma warning restore CS8618
 
     public AuthorizationOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {

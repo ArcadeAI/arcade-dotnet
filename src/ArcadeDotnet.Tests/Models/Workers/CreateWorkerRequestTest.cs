@@ -283,6 +283,43 @@ public class CreateWorkerRequestTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CreateWorkerRequest
+        {
+            ID = "id",
+            Enabled = true,
+            Http = new()
+            {
+                Retry = 0,
+                Secret = "secret",
+                Timeout = 1,
+                Uri = "uri",
+            },
+            Mcp = new()
+            {
+                Retry = 0,
+                Timeout = 1,
+                Uri = "uri",
+                Headers = new Dictionary<string, string>() { { "foo", "string" } },
+                Oauth2 = new()
+                {
+                    AuthorizationUrl = "authorization_url",
+                    ClientID = "client_id",
+                    ClientSecret = "client_secret",
+                    ExternalID = "external_id",
+                },
+                Secrets = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            Type = "type",
+        };
+
+        CreateWorkerRequest copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CreateWorkerRequestHttpTest : TestBase
@@ -370,6 +407,22 @@ public class CreateWorkerRequestHttpTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CreateWorkerRequestHttp
+        {
+            Retry = 0,
+            Secret = "secret",
+            Timeout = 1,
+            Uri = "uri",
+        };
+
+        CreateWorkerRequestHttp copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -611,6 +664,30 @@ public class CreateWorkerRequestMcpTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CreateWorkerRequestMcp
+        {
+            Retry = 0,
+            Timeout = 1,
+            Uri = "uri",
+            Headers = new Dictionary<string, string>() { { "foo", "string" } },
+            Oauth2 = new()
+            {
+                AuthorizationUrl = "authorization_url",
+                ClientID = "client_id",
+                ClientSecret = "client_secret",
+                ExternalID = "external_id",
+            },
+            Secrets = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        CreateWorkerRequestMcp copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CreateWorkerRequestMcpOauth2Test : TestBase
@@ -758,5 +835,21 @@ public class CreateWorkerRequestMcpOauth2Test : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CreateWorkerRequestMcpOauth2
+        {
+            AuthorizationUrl = "authorization_url",
+            ClientID = "client_id",
+            ClientSecret = "client_secret",
+            ExternalID = "external_id",
+        };
+
+        CreateWorkerRequestMcpOauth2 copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

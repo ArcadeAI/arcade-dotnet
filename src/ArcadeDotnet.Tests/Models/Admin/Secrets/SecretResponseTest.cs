@@ -207,6 +207,26 @@ public class SecretResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SecretResponse
+        {
+            ID = "id",
+            Binding = new() { ID = "id", Type = Type.Static },
+            CreatedAt = "created_at",
+            Description = "description",
+            Hint = "hint",
+            Key = "key",
+            LastAccessedAt = "last_accessed_at",
+            UpdatedAt = "updated_at",
+        };
+
+        SecretResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class BindingTest : TestBase
@@ -307,6 +327,16 @@ public class BindingTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Binding { ID = "id", Type = Type.Static };
+
+        Binding copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

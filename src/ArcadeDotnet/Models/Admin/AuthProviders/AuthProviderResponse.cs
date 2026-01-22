@@ -190,8 +190,11 @@ public sealed record class AuthProviderResponse : JsonModel
 
     public AuthProviderResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderResponse(AuthProviderResponse authProviderResponse)
         : base(authProviderResponse) { }
+#pragma warning restore CS8618
 
     public AuthProviderResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -273,8 +276,11 @@ public sealed record class Binding : JsonModel
 
     public Binding() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Binding(Binding binding)
         : base(binding) { }
+#pragma warning restore CS8618
 
     public Binding(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -568,8 +574,11 @@ public sealed record class AuthProviderResponseOauth2 : JsonModel
 
     public AuthProviderResponseOauth2() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderResponseOauth2(AuthProviderResponseOauth2 authProviderResponseOauth2)
         : base(authProviderResponseOauth2) { }
+#pragma warning restore CS8618
 
     public AuthProviderResponseOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -793,10 +802,13 @@ public sealed record class AuthProviderResponseOauth2AuthorizeRequest : JsonMode
 
     public AuthProviderResponseOauth2AuthorizeRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderResponseOauth2AuthorizeRequest(
         AuthProviderResponseOauth2AuthorizeRequest authProviderResponseOauth2AuthorizeRequest
     )
         : base(authProviderResponseOauth2AuthorizeRequest) { }
+#pragma warning restore CS8618
 
     public AuthProviderResponseOauth2AuthorizeRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -936,8 +948,11 @@ public sealed record class ClientSecret : JsonModel
 
     public ClientSecret() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ClientSecret(ClientSecret clientSecret)
         : base(clientSecret) { }
+#pragma warning restore CS8618
 
     public ClientSecret(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1069,10 +1084,13 @@ public sealed record class AuthProviderResponseOauth2Pkce : JsonModel
 
     public AuthProviderResponseOauth2Pkce() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderResponseOauth2Pkce(
         AuthProviderResponseOauth2Pkce authProviderResponseOauth2Pkce
     )
         : base(authProviderResponseOauth2Pkce) { }
+#pragma warning restore CS8618
 
     public AuthProviderResponseOauth2Pkce(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1296,10 +1314,13 @@ public sealed record class AuthProviderResponseOauth2RefreshRequest : JsonModel
 
     public AuthProviderResponseOauth2RefreshRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderResponseOauth2RefreshRequest(
         AuthProviderResponseOauth2RefreshRequest authProviderResponseOauth2RefreshRequest
     )
         : base(authProviderResponseOauth2RefreshRequest) { }
+#pragma warning restore CS8618
 
     public AuthProviderResponseOauth2RefreshRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1566,10 +1587,13 @@ public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequest :
 
     public AuthProviderResponseOauth2TokenIntrospectionRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderResponseOauth2TokenIntrospectionRequest(
         AuthProviderResponseOauth2TokenIntrospectionRequest authProviderResponseOauth2TokenIntrospectionRequest
     )
         : base(authProviderResponseOauth2TokenIntrospectionRequest) { }
+#pragma warning restore CS8618
 
     public AuthProviderResponseOauth2TokenIntrospectionRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1659,10 +1683,13 @@ public sealed record class AuthProviderResponseOauth2TokenIntrospectionRequestTr
 
     public AuthProviderResponseOauth2TokenIntrospectionRequestTriggers() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderResponseOauth2TokenIntrospectionRequestTriggers(
         AuthProviderResponseOauth2TokenIntrospectionRequestTriggers authProviderResponseOauth2TokenIntrospectionRequestTriggers
     )
         : base(authProviderResponseOauth2TokenIntrospectionRequestTriggers) { }
+#pragma warning restore CS8618
 
     public AuthProviderResponseOauth2TokenIntrospectionRequestTriggers(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1891,10 +1918,13 @@ public sealed record class AuthProviderResponseOauth2TokenRequest : JsonModel
 
     public AuthProviderResponseOauth2TokenRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderResponseOauth2TokenRequest(
         AuthProviderResponseOauth2TokenRequest authProviderResponseOauth2TokenRequest
     )
         : base(authProviderResponseOauth2TokenRequest) { }
+#pragma warning restore CS8618
 
     public AuthProviderResponseOauth2TokenRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2140,10 +2170,13 @@ public sealed record class AuthProviderResponseOauth2UserInfoRequest : JsonModel
 
     public AuthProviderResponseOauth2UserInfoRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderResponseOauth2UserInfoRequest(
         AuthProviderResponseOauth2UserInfoRequest authProviderResponseOauth2UserInfoRequest
     )
         : base(authProviderResponseOauth2UserInfoRequest) { }
+#pragma warning restore CS8618
 
     public AuthProviderResponseOauth2UserInfoRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -2231,10 +2264,13 @@ public sealed record class AuthProviderResponseOauth2UserInfoRequestTriggers : J
 
     public AuthProviderResponseOauth2UserInfoRequestTriggers() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderResponseOauth2UserInfoRequestTriggers(
         AuthProviderResponseOauth2UserInfoRequestTriggers authProviderResponseOauth2UserInfoRequestTriggers
     )
         : base(authProviderResponseOauth2UserInfoRequestTriggers) { }
+#pragma warning restore CS8618
 
     public AuthProviderResponseOauth2UserInfoRequestTriggers(
         IReadOnlyDictionary<string, JsonElement> rawData

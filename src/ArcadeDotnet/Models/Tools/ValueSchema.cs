@@ -70,8 +70,11 @@ public sealed record class ValueSchema : JsonModel
 
     public ValueSchema() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ValueSchema(ValueSchema valueSchema)
         : base(valueSchema) { }
+#pragma warning restore CS8618
 
     public ValueSchema(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -55,8 +55,11 @@ public sealed record class Error : JsonModel
 
     public Error() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Error(Error error)
         : base(error) { }
+#pragma warning restore CS8618
 
     public Error(IReadOnlyDictionary<string, JsonElement> rawData)
     {

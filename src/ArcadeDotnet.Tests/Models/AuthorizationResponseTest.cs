@@ -246,6 +246,32 @@ public class AuthorizationResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthorizationResponse
+        {
+            ID = "id",
+            Context = new()
+            {
+                Token = "token",
+                UserInfo = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+            },
+            ProviderID = "provider_id",
+            Scopes = ["string"],
+            Status = Status.NotStarted,
+            Url = "url",
+            UserID = "user_id",
+        };
+
+        AuthorizationResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class StatusTest : TestBase

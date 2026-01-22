@@ -58,4 +58,14 @@ public class ConfirmUserRequestTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ConfirmUserRequest { FlowID = "flow_id", UserID = "user_id" };
+
+        ConfirmUserRequest copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

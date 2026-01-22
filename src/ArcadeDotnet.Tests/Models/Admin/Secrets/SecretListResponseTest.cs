@@ -253,4 +253,34 @@ public class SecretListResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SecretListResponse
+        {
+            Items =
+            [
+                new()
+                {
+                    ID = "id",
+                    Binding = new() { ID = "id", Type = Type.Static },
+                    CreatedAt = "created_at",
+                    Description = "description",
+                    Hint = "hint",
+                    Key = "key",
+                    LastAccessedAt = "last_accessed_at",
+                    UpdatedAt = "updated_at",
+                },
+            ],
+            Limit = 0,
+            Offset = 0,
+            PageCount = 0,
+            TotalCount = 0,
+        };
+
+        SecretListResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

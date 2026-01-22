@@ -60,8 +60,11 @@ public sealed record class AuthorizationContext : JsonModel
 
     public AuthorizationContext() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthorizationContext(AuthorizationContext authorizationContext)
         : base(authorizationContext) { }
+#pragma warning restore CS8618
 
     public AuthorizationContext(IReadOnlyDictionary<string, JsonElement> rawData)
     {

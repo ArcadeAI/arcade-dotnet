@@ -295,8 +295,11 @@ public sealed record class ScheduledGetResponse : JsonModel
 
     public ScheduledGetResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScheduledGetResponse(ScheduledGetResponse scheduledGetResponse)
         : base(scheduledGetResponse) { }
+#pragma warning restore CS8618
 
     public ScheduledGetResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

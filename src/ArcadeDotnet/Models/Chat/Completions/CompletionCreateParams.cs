@@ -557,8 +557,11 @@ public sealed record class ResponseFormat : JsonModel
 
     public ResponseFormat() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ResponseFormat(ResponseFormat responseFormat)
         : base(responseFormat) { }
+#pragma warning restore CS8618
 
     public ResponseFormat(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -669,8 +672,11 @@ public sealed record class StreamOptions : JsonModel
 
     public StreamOptions() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public StreamOptions(StreamOptions streamOptions)
         : base(streamOptions) { }
+#pragma warning restore CS8618
 
     public StreamOptions(IReadOnlyDictionary<string, JsonElement> rawData)
     {

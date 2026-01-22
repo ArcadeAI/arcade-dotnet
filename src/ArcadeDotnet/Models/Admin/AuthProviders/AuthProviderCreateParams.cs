@@ -430,8 +430,11 @@ public sealed record class Oauth2 : JsonModel
 
     public Oauth2() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Oauth2(Oauth2 oauth2)
         : base(oauth2) { }
+#pragma warning restore CS8618
 
     public Oauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -631,8 +634,11 @@ public sealed record class AuthorizeRequest : JsonModel
 
     public AuthorizeRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthorizeRequest(AuthorizeRequest authorizeRequest)
         : base(authorizeRequest) { }
+#pragma warning restore CS8618
 
     public AuthorizeRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -809,8 +815,11 @@ public sealed record class Pkce : JsonModel
 
     public Pkce() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Pkce(Pkce pkce)
         : base(pkce) { }
+#pragma warning restore CS8618
 
     public Pkce(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1003,8 +1012,11 @@ public sealed record class RefreshRequest : JsonModel
 
     public RefreshRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public RefreshRequest(RefreshRequest refreshRequest)
         : base(refreshRequest) { }
+#pragma warning restore CS8618
 
     public RefreshRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1355,8 +1367,11 @@ public sealed record class TokenIntrospectionRequest : JsonModel
 
     public TokenIntrospectionRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TokenIntrospectionRequest(TokenIntrospectionRequest tokenIntrospectionRequest)
         : base(tokenIntrospectionRequest) { }
+#pragma warning restore CS8618
 
     public TokenIntrospectionRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1436,8 +1451,11 @@ public sealed record class Triggers : JsonModel
 
     public Triggers() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Triggers(Triggers triggers)
         : base(triggers) { }
+#pragma warning restore CS8618
 
     public Triggers(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1724,8 +1742,11 @@ public sealed record class TokenRequest : JsonModel
 
     public TokenRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TokenRequest(TokenRequest tokenRequest)
         : base(tokenRequest) { }
+#pragma warning restore CS8618
 
     public TokenRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2029,8 +2050,11 @@ public sealed record class UserInfoRequest : JsonModel
 
     public UserInfoRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UserInfoRequest(UserInfoRequest userInfoRequest)
         : base(userInfoRequest) { }
+#pragma warning restore CS8618
 
     public UserInfoRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2107,8 +2131,11 @@ public sealed record class UserInfoRequestTriggers : JsonModel
 
     public UserInfoRequestTriggers() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UserInfoRequestTriggers(UserInfoRequestTriggers userInfoRequestTriggers)
         : base(userInfoRequestTriggers) { }
+#pragma warning restore CS8618
 
     public UserInfoRequestTriggers(IReadOnlyDictionary<string, JsonElement> rawData)
     {

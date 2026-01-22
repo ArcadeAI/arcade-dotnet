@@ -665,4 +665,88 @@ public class ScheduledGetResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ScheduledGetResponse
+        {
+            ID = "id",
+            Attempts =
+            [
+                new()
+                {
+                    ID = "id",
+                    FinishedAt = "finished_at",
+                    Output = new()
+                    {
+                        Authorization = new()
+                        {
+                            ID = "id",
+                            Context = new()
+                            {
+                                Token = "token",
+                                UserInfo = new Dictionary<string, JsonElement>()
+                                {
+                                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                                },
+                            },
+                            ProviderID = "provider_id",
+                            Scopes = ["string"],
+                            Status = Status.NotStarted,
+                            Url = "url",
+                            UserID = "user_id",
+                        },
+                        Error = new()
+                        {
+                            CanRetry = true,
+                            Kind = Tools::ToolExecutionAttemptOutputErrorKind.ToolkitLoadFailed,
+                            Message = "message",
+                            AdditionalPromptContent = "additional_prompt_content",
+                            DeveloperMessage = "developer_message",
+                            Extra = new Dictionary<string, JsonElement>()
+                            {
+                                { "foo", JsonSerializer.SerializeToElement("bar") },
+                            },
+                            RetryAfterMs = 0,
+                            Stacktrace = "stacktrace",
+                            StatusCode = 0,
+                        },
+                        Logs =
+                        [
+                            new()
+                            {
+                                Level = "level",
+                                Message = "message",
+                                Subtype = "subtype",
+                            },
+                        ],
+                        Value = JsonSerializer.Deserialize<JsonElement>("{}"),
+                    },
+                    StartedAt = "started_at",
+                    Success = true,
+                    SystemErrorMessage = "system_error_message",
+                },
+            ],
+            CreatedAt = "created_at",
+            ExecutionStatus = "execution_status",
+            ExecutionType = "execution_type",
+            FinishedAt = "finished_at",
+            Input = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            RunAt = "run_at",
+            StartedAt = "started_at",
+            ToolName = "tool_name",
+            ToolkitName = "toolkit_name",
+            ToolkitVersion = "toolkit_version",
+            UpdatedAt = "updated_at",
+            UserID = "user_id",
+        };
+
+        ScheduledGetResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

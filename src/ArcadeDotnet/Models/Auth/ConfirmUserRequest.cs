@@ -39,8 +39,11 @@ public sealed record class ConfirmUserRequest : JsonModel
 
     public ConfirmUserRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ConfirmUserRequest(ConfirmUserRequest confirmUserRequest)
         : base(confirmUserRequest) { }
+#pragma warning restore CS8618
 
     public ConfirmUserRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {

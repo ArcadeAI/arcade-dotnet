@@ -134,8 +134,11 @@ public sealed record class ToolExecutionAttempt : JsonModel
 
     public ToolExecutionAttempt() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ToolExecutionAttempt(ToolExecutionAttempt toolExecutionAttempt)
         : base(toolExecutionAttempt) { }
+#pragma warning restore CS8618
 
     public ToolExecutionAttempt(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -263,8 +266,11 @@ public sealed record class ToolExecutionAttemptOutput : JsonModel
 
     public ToolExecutionAttemptOutput() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ToolExecutionAttemptOutput(ToolExecutionAttemptOutput toolExecutionAttemptOutput)
         : base(toolExecutionAttemptOutput) { }
+#pragma warning restore CS8618
 
     public ToolExecutionAttemptOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -463,10 +469,13 @@ public sealed record class ToolExecutionAttemptOutputError : JsonModel
 
     public ToolExecutionAttemptOutputError() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ToolExecutionAttemptOutputError(
         ToolExecutionAttemptOutputError toolExecutionAttemptOutputError
     )
         : base(toolExecutionAttemptOutputError) { }
+#pragma warning restore CS8618
 
     public ToolExecutionAttemptOutputError(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -678,10 +687,13 @@ public sealed record class ToolExecutionAttemptOutputLog : JsonModel
 
     public ToolExecutionAttemptOutputLog() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ToolExecutionAttemptOutputLog(
         ToolExecutionAttemptOutputLog toolExecutionAttemptOutputLog
     )
         : base(toolExecutionAttemptOutputLog) { }
+#pragma warning restore CS8618
 
     public ToolExecutionAttemptOutputLog(IReadOnlyDictionary<string, JsonElement> rawData)
     {

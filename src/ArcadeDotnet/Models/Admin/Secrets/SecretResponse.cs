@@ -171,8 +171,11 @@ public sealed record class SecretResponse : JsonModel
 
     public SecretResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SecretResponse(SecretResponse secretResponse)
         : base(secretResponse) { }
+#pragma warning restore CS8618
 
     public SecretResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -251,8 +254,11 @@ public sealed record class Binding : JsonModel
 
     public Binding() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Binding(Binding binding)
         : base(binding) { }
+#pragma warning restore CS8618
 
     public Binding(IReadOnlyDictionary<string, JsonElement> rawData)
     {

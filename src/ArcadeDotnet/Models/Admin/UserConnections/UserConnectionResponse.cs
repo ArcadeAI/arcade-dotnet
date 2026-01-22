@@ -192,8 +192,11 @@ public sealed record class UserConnectionResponse : JsonModel
 
     public UserConnectionResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UserConnectionResponse(UserConnectionResponse userConnectionResponse)
         : base(userConnectionResponse) { }
+#pragma warning restore CS8618
 
     public UserConnectionResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

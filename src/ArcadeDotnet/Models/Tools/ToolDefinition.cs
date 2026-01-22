@@ -156,8 +156,11 @@ public sealed record class ToolDefinition : JsonModel
 
     public ToolDefinition() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ToolDefinition(ToolDefinition toolDefinition)
         : base(toolDefinition) { }
+#pragma warning restore CS8618
 
     public ToolDefinition(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -221,8 +224,11 @@ public sealed record class Input : JsonModel
 
     public Input() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Input(Input input)
         : base(input) { }
+#pragma warning restore CS8618
 
     public Input(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -340,8 +346,11 @@ public sealed record class Parameter : JsonModel
 
     public Parameter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Parameter(Parameter parameter)
         : base(parameter) { }
+#pragma warning restore CS8618
 
     public Parameter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -429,8 +438,11 @@ public sealed record class Toolkit : JsonModel
 
     public Toolkit() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Toolkit(Toolkit toolkit)
         : base(toolkit) { }
+#pragma warning restore CS8618
 
     public Toolkit(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -536,8 +548,11 @@ public sealed record class ToolDefinitionOutput : JsonModel
 
     public ToolDefinitionOutput() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ToolDefinitionOutput(ToolDefinitionOutput toolDefinitionOutput)
         : base(toolDefinitionOutput) { }
+#pragma warning restore CS8618
 
     public ToolDefinitionOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -642,8 +657,11 @@ public sealed record class Requirements : JsonModel
 
     public Requirements() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Requirements(Requirements requirements)
         : base(requirements) { }
+#pragma warning restore CS8618
 
     public Requirements(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -815,8 +833,11 @@ public sealed record class Authorization : JsonModel
 
     public Authorization() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Authorization(Authorization authorization)
         : base(authorization) { }
+#pragma warning restore CS8618
 
     public Authorization(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -877,8 +898,11 @@ public sealed record class Oauth2 : JsonModel
 
     public Oauth2() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Oauth2(Oauth2 oauth2)
         : base(oauth2) { }
+#pragma warning restore CS8618
 
     public Oauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1056,8 +1080,11 @@ public sealed record class Secret : JsonModel
 
     public Secret() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Secret(Secret secret)
         : base(secret) { }
+#pragma warning restore CS8618
 
     public Secret(IReadOnlyDictionary<string, JsonElement> rawData)
     {

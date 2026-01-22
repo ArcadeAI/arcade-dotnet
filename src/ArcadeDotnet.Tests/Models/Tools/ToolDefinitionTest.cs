@@ -672,6 +672,85 @@ public class ToolDefinitionTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ToolDefinition
+        {
+            FullyQualifiedName = "fully_qualified_name",
+            Input = new()
+            {
+                Parameters =
+                [
+                    new()
+                    {
+                        Name = "name",
+                        ValueSchema = new()
+                        {
+                            ValType = "val_type",
+                            Enum = ["string"],
+                            InnerValType = "inner_val_type",
+                        },
+                        Description = "description",
+                        Inferrable = true,
+                        Required = true,
+                    },
+                ],
+            },
+            Name = "name",
+            QualifiedName = "qualified_name",
+            Toolkit = new()
+            {
+                Name = "name",
+                Description = "description",
+                Version = "version",
+            },
+            Description = "description",
+            FormattedSchema = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            Output = new()
+            {
+                AvailableModes = ["string"],
+                Description = "description",
+                ValueSchema = new()
+                {
+                    ValType = "val_type",
+                    Enum = ["string"],
+                    InnerValType = "inner_val_type",
+                },
+            },
+            Requirements = new()
+            {
+                Authorization = new()
+                {
+                    ID = "id",
+                    Oauth2 = new() { Scopes = ["string"] },
+                    ProviderID = "provider_id",
+                    ProviderType = "provider_type",
+                    Status = Status.Active,
+                    StatusReason = "status_reason",
+                    TokenStatus = TokenStatus.NotStarted,
+                },
+                Met = true,
+                Secrets =
+                [
+                    new()
+                    {
+                        Key = "key",
+                        Met = true,
+                        StatusReason = "status_reason",
+                    },
+                ],
+            },
+        };
+
+        ToolDefinition copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class InputTest : TestBase
@@ -871,6 +950,34 @@ public class InputTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Input
+        {
+            Parameters =
+            [
+                new()
+                {
+                    Name = "name",
+                    ValueSchema = new()
+                    {
+                        ValType = "val_type",
+                        Enum = ["string"],
+                        InnerValType = "inner_val_type",
+                    },
+                    Description = "description",
+                    Inferrable = true,
+                    Required = true,
+                },
+            ],
+        };
+
+        Input copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1083,6 +1190,28 @@ public class ParameterTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Parameter
+        {
+            Name = "name",
+            ValueSchema = new()
+            {
+                ValType = "val_type",
+                Enum = ["string"],
+                InnerValType = "inner_val_type",
+            },
+            Description = "description",
+            Inferrable = true,
+            Required = true,
+        };
+
+        Parameter copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ToolkitTest : TestBase
@@ -1211,6 +1340,21 @@ public class ToolkitTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Toolkit
+        {
+            Name = "name",
+            Description = "description",
+            Version = "version",
+        };
+
+        Toolkit copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1385,6 +1529,26 @@ public class ToolDefinitionOutputTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ToolDefinitionOutput
+        {
+            AvailableModes = ["string"],
+            Description = "description",
+            ValueSchema = new()
+            {
+                ValType = "val_type",
+                Enum = ["string"],
+                InnerValType = "inner_val_type",
+            },
+        };
+
+        ToolDefinitionOutput copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1632,6 +1796,38 @@ public class RequirementsTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Requirements
+        {
+            Authorization = new()
+            {
+                ID = "id",
+                Oauth2 = new() { Scopes = ["string"] },
+                ProviderID = "provider_id",
+                ProviderType = "provider_type",
+                Status = Status.Active,
+                StatusReason = "status_reason",
+                TokenStatus = TokenStatus.NotStarted,
+            },
+            Met = true,
+            Secrets =
+            [
+                new()
+                {
+                    Key = "key",
+                    Met = true,
+                    StatusReason = "status_reason",
+                },
+            ],
+        };
+
+        Requirements copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AuthorizationTest : TestBase
@@ -1822,6 +2018,25 @@ public class AuthorizationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Authorization
+        {
+            ID = "id",
+            Oauth2 = new() { Scopes = ["string"] },
+            ProviderID = "provider_id",
+            ProviderType = "provider_type",
+            Status = Status.Active,
+            StatusReason = "status_reason",
+            TokenStatus = TokenStatus.NotStarted,
+        };
+
+        Authorization copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class Oauth2Test : TestBase
@@ -1919,6 +2134,16 @@ public class Oauth2Test : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Oauth2 { Scopes = ["string"] };
+
+        Oauth2 copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -2165,5 +2390,20 @@ public class SecretTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Secret
+        {
+            Key = "key",
+            Met = true,
+            StatusReason = "status_reason",
+        };
+
+        Secret copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

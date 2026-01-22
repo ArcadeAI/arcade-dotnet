@@ -259,4 +259,35 @@ public class UserConnectionListPageResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UserConnectionListPageResponse
+        {
+            Items =
+            [
+                new()
+                {
+                    ID = "id",
+                    ConnectionID = "connection_id",
+                    ConnectionStatus = "connection_status",
+                    ProviderDescription = "provider_description",
+                    ProviderID = "provider_id",
+                    ProviderType = "provider_type",
+                    ProviderUserInfo = JsonSerializer.Deserialize<JsonElement>("{}"),
+                    Scopes = ["string"],
+                    UserID = "user_id",
+                },
+            ],
+            Limit = 0,
+            Offset = 0,
+            PageCount = 0,
+            TotalCount = 0,
+        };
+
+        UserConnectionListPageResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

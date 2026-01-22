@@ -487,6 +487,71 @@ public class ExecuteToolResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ExecuteToolResponse
+        {
+            ID = "id",
+            Duration = 0,
+            ExecutionID = "execution_id",
+            ExecutionType = "execution_type",
+            FinishedAt = "finished_at",
+            Output = new()
+            {
+                Authorization = new()
+                {
+                    ID = "id",
+                    Context = new()
+                    {
+                        Token = "token",
+                        UserInfo = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                    },
+                    ProviderID = "provider_id",
+                    Scopes = ["string"],
+                    Status = Models::Status.NotStarted,
+                    Url = "url",
+                    UserID = "user_id",
+                },
+                Error = new()
+                {
+                    CanRetry = true,
+                    Kind = Kind.ToolkitLoadFailed,
+                    Message = "message",
+                    AdditionalPromptContent = "additional_prompt_content",
+                    DeveloperMessage = "developer_message",
+                    Extra = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    RetryAfterMs = 0,
+                    Stacktrace = "stacktrace",
+                    StatusCode = 0,
+                },
+                Logs =
+                [
+                    new()
+                    {
+                        Level = "level",
+                        Message = "message",
+                        Subtype = "subtype",
+                    },
+                ],
+                Value = JsonSerializer.Deserialize<JsonElement>("{}"),
+            },
+            RunAt = "run_at",
+            Status = "status",
+            Success = true,
+        };
+
+        ExecuteToolResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class OutputTest : TestBase
@@ -869,6 +934,60 @@ public class OutputTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Output
+        {
+            Authorization = new()
+            {
+                ID = "id",
+                Context = new()
+                {
+                    Token = "token",
+                    UserInfo = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                },
+                ProviderID = "provider_id",
+                Scopes = ["string"],
+                Status = Models::Status.NotStarted,
+                Url = "url",
+                UserID = "user_id",
+            },
+            Error = new()
+            {
+                CanRetry = true,
+                Kind = Kind.ToolkitLoadFailed,
+                Message = "message",
+                AdditionalPromptContent = "additional_prompt_content",
+                DeveloperMessage = "developer_message",
+                Extra = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                RetryAfterMs = 0,
+                Stacktrace = "stacktrace",
+                StatusCode = 0,
+            },
+            Logs =
+            [
+                new()
+                {
+                    Level = "level",
+                    Message = "message",
+                    Subtype = "subtype",
+                },
+            ],
+            Value = JsonSerializer.Deserialize<JsonElement>("{}"),
+        };
+
+        Output copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ErrorTest : TestBase
@@ -1113,6 +1232,30 @@ public class ErrorTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Error
+        {
+            CanRetry = true,
+            Kind = Kind.ToolkitLoadFailed,
+            Message = "message",
+            AdditionalPromptContent = "additional_prompt_content",
+            DeveloperMessage = "developer_message",
+            Extra = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            RetryAfterMs = 0,
+            Stacktrace = "stacktrace",
+            StatusCode = 0,
+        };
+
+        Error copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class KindTest : TestBase
@@ -1328,5 +1471,20 @@ public class LogTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Log
+        {
+            Level = "level",
+            Message = "message",
+            Subtype = "subtype",
+        };
+
+        Log copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

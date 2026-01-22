@@ -94,8 +94,11 @@ public sealed record class AuthorizeToolRequest : JsonModel
 
     public AuthorizeToolRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthorizeToolRequest(AuthorizeToolRequest authorizeToolRequest)
         : base(authorizeToolRequest) { }
+#pragma warning restore CS8618
 
     public AuthorizeToolRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {

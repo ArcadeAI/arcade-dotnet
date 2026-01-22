@@ -140,8 +140,11 @@ public sealed record class ExecuteToolRequest : JsonModel
 
     public ExecuteToolRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ExecuteToolRequest(ExecuteToolRequest executeToolRequest)
         : base(executeToolRequest) { }
+#pragma warning restore CS8618
 
     public ExecuteToolRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {

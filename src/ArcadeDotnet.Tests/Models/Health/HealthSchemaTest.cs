@@ -96,4 +96,14 @@ public class HealthSchemaTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new HealthSchema { Healthy = true };
+
+        HealthSchema copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

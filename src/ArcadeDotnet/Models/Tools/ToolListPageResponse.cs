@@ -119,8 +119,11 @@ public sealed record class ToolListPageResponse : JsonModel
 
     public ToolListPageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ToolListPageResponse(ToolListPageResponse toolListPageResponse)
         : base(toolListPageResponse) { }
+#pragma warning restore CS8618
 
     public ToolListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

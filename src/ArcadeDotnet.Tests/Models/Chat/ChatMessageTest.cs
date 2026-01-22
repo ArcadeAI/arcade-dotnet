@@ -218,6 +218,31 @@ public class ChatMessageTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ChatMessage
+        {
+            Content = "content",
+            Role = "role",
+            Name = "name",
+            ToolCallID = "tool_call_id",
+            ToolCalls =
+            [
+                new()
+                {
+                    ID = "id",
+                    Function = new() { Arguments = "arguments", Name = "name" },
+                    Type = Type.Function,
+                },
+            ],
+        };
+
+        ChatMessage copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ToolCallTest : TestBase
@@ -349,6 +374,21 @@ public class ToolCallTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ToolCall
+        {
+            ID = "id",
+            Function = new() { Arguments = "arguments", Name = "name" },
+            Type = Type.Function,
+        };
+
+        ToolCall copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class FunctionTest : TestBase
@@ -449,6 +489,16 @@ public class FunctionTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Function { Arguments = "arguments", Name = "name" };
+
+        Function copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

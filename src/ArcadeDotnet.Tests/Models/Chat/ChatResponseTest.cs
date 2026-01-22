@@ -612,4 +612,91 @@ public class ChatResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ChatResponse
+        {
+            ID = "id",
+            Choices =
+            [
+                new()
+                {
+                    FinishReason = "finish_reason",
+                    Index = 0,
+                    Logprobs = JsonSerializer.Deserialize<JsonElement>("{}"),
+                    Message = new()
+                    {
+                        Content = "content",
+                        Role = "role",
+                        Name = "name",
+                        ToolCallID = "tool_call_id",
+                        ToolCalls =
+                        [
+                            new()
+                            {
+                                ID = "id",
+                                Function = new() { Arguments = "arguments", Name = "name" },
+                                Type = Type.Function,
+                            },
+                        ],
+                    },
+                    ToolAuthorizations =
+                    [
+                        new()
+                        {
+                            ID = "id",
+                            Context = new()
+                            {
+                                Token = "token",
+                                UserInfo = new Dictionary<string, JsonElement>()
+                                {
+                                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                                },
+                            },
+                            ProviderID = "provider_id",
+                            Scopes = ["string"],
+                            Status = Status.NotStarted,
+                            Url = "url",
+                            UserID = "user_id",
+                        },
+                    ],
+                    ToolMessages =
+                    [
+                        new()
+                        {
+                            Content = "content",
+                            Role = "role",
+                            Name = "name",
+                            ToolCallID = "tool_call_id",
+                            ToolCalls =
+                            [
+                                new()
+                                {
+                                    ID = "id",
+                                    Function = new() { Arguments = "arguments", Name = "name" },
+                                    Type = Type.Function,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+            Created = 0,
+            Model = "model",
+            Object = "object",
+            SystemFingerprint = "system_fingerprint",
+            Usage = new()
+            {
+                CompletionTokens = 0,
+                PromptTokens = 0,
+                TotalTokens = 0,
+            },
+        };
+
+        ChatResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

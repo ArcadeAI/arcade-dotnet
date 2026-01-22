@@ -156,8 +156,11 @@ public sealed record class AuthorizationResponse : JsonModel
 
     public AuthorizationResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthorizationResponse(AuthorizationResponse authorizationResponse)
         : base(authorizationResponse) { }
+#pragma warning restore CS8618
 
     public AuthorizationResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

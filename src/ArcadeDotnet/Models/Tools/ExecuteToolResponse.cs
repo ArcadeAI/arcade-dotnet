@@ -196,8 +196,11 @@ public sealed record class ExecuteToolResponse : JsonModel
 
     public ExecuteToolResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ExecuteToolResponse(ExecuteToolResponse executeToolResponse)
         : base(executeToolResponse) { }
+#pragma warning restore CS8618
 
     public ExecuteToolResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -320,8 +323,11 @@ public sealed record class Output : JsonModel
 
     public Output() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Output(Output output)
         : base(output) { }
+#pragma warning restore CS8618
 
     public Output(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -510,8 +516,11 @@ public sealed record class Error : JsonModel
 
     public Error() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Error(Error error)
         : base(error) { }
+#pragma warning restore CS8618
 
     public Error(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -685,8 +694,11 @@ public sealed record class Log : JsonModel
 
     public Log() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Log(Log log)
         : base(log) { }
+#pragma warning restore CS8618
 
     public Log(IReadOnlyDictionary<string, JsonElement> rawData)
     {

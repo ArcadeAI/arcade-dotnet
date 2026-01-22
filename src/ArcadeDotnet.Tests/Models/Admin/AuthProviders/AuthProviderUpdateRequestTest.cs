@@ -534,6 +534,83 @@ public class AuthProviderUpdateRequestTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthProviderUpdateRequest
+        {
+            ID = "id",
+            Description = "description",
+            Oauth2 = new()
+            {
+                AuthorizeRequest = new()
+                {
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Endpoint = "endpoint",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                },
+                ClientID = "client_id",
+                ClientSecret = "client_secret",
+                Pkce = new() { CodeChallengeMethod = "code_challenge_method", Enabled = true },
+                RefreshRequest = new()
+                {
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Endpoint = "endpoint",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                },
+                ScopeDelimiter = AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined,
+                TokenRequest = new()
+                {
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Endpoint = "endpoint",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        AuthProviderUpdateRequestOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        AuthProviderUpdateRequestOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                },
+                UserInfoRequest = new()
+                {
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Endpoint = "endpoint",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                    Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                },
+            },
+            ProviderID = "provider_id",
+            Status = "status",
+            Type = "type",
+        };
+
+        AuthProviderUpdateRequest copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AuthProviderUpdateRequestOauth2Test : TestBase
@@ -1042,6 +1119,75 @@ public class AuthProviderUpdateRequestOauth2Test : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2
+        {
+            AuthorizeRequest = new()
+            {
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Endpoint = "endpoint",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            ClientID = "client_id",
+            ClientSecret = "client_secret",
+            Pkce = new() { CodeChallengeMethod = "code_challenge_method", Enabled = true },
+            RefreshRequest = new()
+            {
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Endpoint = "endpoint",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            ScopeDelimiter = AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined,
+            TokenRequest = new()
+            {
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Endpoint = "endpoint",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    AuthProviderUpdateRequestOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    AuthProviderUpdateRequestOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            UserInfoRequest = new()
+            {
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Endpoint = "endpoint",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            },
+        };
+
+        AuthProviderUpdateRequestOauth2 copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AuthProviderUpdateRequestOauth2AuthorizeRequestTest : TestBase
@@ -1300,6 +1446,28 @@ public class AuthProviderUpdateRequestOauth2AuthorizeRequestTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2AuthorizeRequest
+        {
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Endpoint = "endpoint",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType =
+                AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType =
+                AuthProviderUpdateRequestOauth2AuthorizeRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        AuthProviderUpdateRequestOauth2AuthorizeRequest copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AuthProviderUpdateRequestOauth2AuthorizeRequestRequestContentTypeTest : TestBase
@@ -1547,6 +1715,20 @@ public class AuthProviderUpdateRequestOauth2PkceTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2Pkce
+        {
+            CodeChallengeMethod = "code_challenge_method",
+            Enabled = true,
+        };
+
+        AuthProviderUpdateRequestOauth2Pkce copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1805,6 +1987,28 @@ public class AuthProviderUpdateRequestOauth2RefreshRequestTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2RefreshRequest
+        {
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Endpoint = "endpoint",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType =
+                AuthProviderUpdateRequestOauth2RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType =
+                AuthProviderUpdateRequestOauth2RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        AuthProviderUpdateRequestOauth2RefreshRequest copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -2244,6 +2448,28 @@ public class AuthProviderUpdateRequestOauth2TokenRequestTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenRequest
+        {
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Endpoint = "endpoint",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType =
+                AuthProviderUpdateRequestOauth2TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType =
+                AuthProviderUpdateRequestOauth2TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        AuthProviderUpdateRequestOauth2TokenRequest copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AuthProviderUpdateRequestOauth2TokenRequestRequestContentTypeTest : TestBase
@@ -2652,6 +2878,29 @@ public class AuthProviderUpdateRequestOauth2UserInfoRequestTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2UserInfoRequest
+        {
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Endpoint = "endpoint",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType =
+                AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType =
+                AuthProviderUpdateRequestOauth2UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+        };
+
+        AuthProviderUpdateRequestOauth2UserInfoRequest copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AuthProviderUpdateRequestOauth2UserInfoRequestRequestContentTypeTest : TestBase
@@ -2901,5 +3150,19 @@ public class AuthProviderUpdateRequestOauth2UserInfoRequestTriggersTest : TestBa
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2UserInfoRequestTriggers
+        {
+            OnTokenGrant = true,
+            OnTokenRefresh = true,
+        };
+
+        AuthProviderUpdateRequestOauth2UserInfoRequestTriggers copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

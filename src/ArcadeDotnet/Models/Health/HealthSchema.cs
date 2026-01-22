@@ -36,8 +36,11 @@ public sealed record class HealthSchema : JsonModel
 
     public HealthSchema() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public HealthSchema(HealthSchema healthSchema)
         : base(healthSchema) { }
+#pragma warning restore CS8618
 
     public HealthSchema(IReadOnlyDictionary<string, JsonElement> rawData)
     {

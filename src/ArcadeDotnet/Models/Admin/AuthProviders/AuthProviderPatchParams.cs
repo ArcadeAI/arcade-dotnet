@@ -421,10 +421,13 @@ public sealed record class AuthProviderPatchParamsOauth2 : JsonModel
 
     public AuthProviderPatchParamsOauth2() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderPatchParamsOauth2(
         AuthProviderPatchParamsOauth2 authProviderPatchParamsOauth2
     )
         : base(authProviderPatchParamsOauth2) { }
+#pragma warning restore CS8618
 
     public AuthProviderPatchParamsOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -639,10 +642,13 @@ public sealed record class AuthProviderPatchParamsOauth2AuthorizeRequest : JsonM
 
     public AuthProviderPatchParamsOauth2AuthorizeRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderPatchParamsOauth2AuthorizeRequest(
         AuthProviderPatchParamsOauth2AuthorizeRequest authProviderPatchParamsOauth2AuthorizeRequest
     )
         : base(authProviderPatchParamsOauth2AuthorizeRequest) { }
+#pragma warning restore CS8618
 
     public AuthProviderPatchParamsOauth2AuthorizeRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -828,10 +834,13 @@ public sealed record class AuthProviderPatchParamsOauth2Pkce : JsonModel
 
     public AuthProviderPatchParamsOauth2Pkce() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderPatchParamsOauth2Pkce(
         AuthProviderPatchParamsOauth2Pkce authProviderPatchParamsOauth2Pkce
     )
         : base(authProviderPatchParamsOauth2Pkce) { }
+#pragma warning restore CS8618
 
     public AuthProviderPatchParamsOauth2Pkce(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1046,10 +1055,13 @@ public sealed record class AuthProviderPatchParamsOauth2RefreshRequest : JsonMod
 
     public AuthProviderPatchParamsOauth2RefreshRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderPatchParamsOauth2RefreshRequest(
         AuthProviderPatchParamsOauth2RefreshRequest authProviderPatchParamsOauth2RefreshRequest
     )
         : base(authProviderPatchParamsOauth2RefreshRequest) { }
+#pragma warning restore CS8618
 
     public AuthProviderPatchParamsOauth2RefreshRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1410,10 +1422,13 @@ public sealed record class AuthProviderPatchParamsOauth2TokenRequest : JsonModel
 
     public AuthProviderPatchParamsOauth2TokenRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderPatchParamsOauth2TokenRequest(
         AuthProviderPatchParamsOauth2TokenRequest authProviderPatchParamsOauth2TokenRequest
     )
         : base(authProviderPatchParamsOauth2TokenRequest) { }
+#pragma warning restore CS8618
 
     public AuthProviderPatchParamsOauth2TokenRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1750,10 +1765,13 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequest : JsonMo
 
     public AuthProviderPatchParamsOauth2UserInfoRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderPatchParamsOauth2UserInfoRequest(
         AuthProviderPatchParamsOauth2UserInfoRequest authProviderPatchParamsOauth2UserInfoRequest
     )
         : base(authProviderPatchParamsOauth2UserInfoRequest) { }
+#pragma warning restore CS8618
 
     public AuthProviderPatchParamsOauth2UserInfoRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1939,10 +1957,13 @@ public sealed record class AuthProviderPatchParamsOauth2UserInfoRequestTriggers 
 
     public AuthProviderPatchParamsOauth2UserInfoRequestTriggers() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderPatchParamsOauth2UserInfoRequestTriggers(
         AuthProviderPatchParamsOauth2UserInfoRequestTriggers authProviderPatchParamsOauth2UserInfoRequestTriggers
     )
         : base(authProviderPatchParamsOauth2UserInfoRequestTriggers) { }
+#pragma warning restore CS8618
 
     public AuthProviderPatchParamsOauth2UserInfoRequestTriggers(
         IReadOnlyDictionary<string, JsonElement> rawData

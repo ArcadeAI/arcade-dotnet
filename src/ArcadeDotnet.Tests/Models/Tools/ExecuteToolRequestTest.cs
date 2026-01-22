@@ -209,4 +209,25 @@ public class ExecuteToolRequestTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ExecuteToolRequest
+        {
+            ToolName = "tool_name",
+            IncludeErrorStacktrace = true,
+            Input = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            RunAt = "run_at",
+            ToolVersion = "tool_version",
+            UserID = "user_id",
+        };
+
+        ExecuteToolRequest copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

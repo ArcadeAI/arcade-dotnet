@@ -100,4 +100,14 @@ public class ErrorTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Error { Message = "message", Name = "name" };
+
+        Error copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

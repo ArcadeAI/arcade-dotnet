@@ -93,8 +93,11 @@ public sealed record class WorkerHealthResponse : JsonModel
 
     public WorkerHealthResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public WorkerHealthResponse(WorkerHealthResponse workerHealthResponse)
         : base(workerHealthResponse) { }
+#pragma warning restore CS8618
 
     public WorkerHealthResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

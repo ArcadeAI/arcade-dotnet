@@ -175,4 +175,21 @@ public class FormattedListPageResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new FormattedListPageResponse
+        {
+            Items = [JsonSerializer.Deserialize<JsonElement>("{}")],
+            Limit = 0,
+            Offset = 0,
+            PageCount = 0,
+            TotalCount = 0,
+        };
+
+        FormattedListPageResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

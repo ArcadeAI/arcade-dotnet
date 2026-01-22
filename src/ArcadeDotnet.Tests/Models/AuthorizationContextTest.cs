@@ -155,4 +155,21 @@ public class AuthorizationContextTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthorizationContext
+        {
+            Token = "token",
+            UserInfo = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+        };
+
+        AuthorizationContext copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

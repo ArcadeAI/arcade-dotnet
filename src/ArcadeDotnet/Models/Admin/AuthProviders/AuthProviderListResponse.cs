@@ -121,8 +121,11 @@ public sealed record class AuthProviderListResponse : JsonModel
 
     public AuthProviderListResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthProviderListResponse(AuthProviderListResponse authProviderListResponse)
         : base(authProviderListResponse) { }
+#pragma warning restore CS8618
 
     public AuthProviderListResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

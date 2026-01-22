@@ -294,6 +294,22 @@ public class WorkerUpdateParamsHttpTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new WorkerUpdateParamsHttp
+        {
+            Retry = 0,
+            Secret = "secret",
+            Timeout = 1,
+            Uri = "uri",
+        };
+
+        WorkerUpdateParamsHttp copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class WorkerUpdateParamsMcpTest : TestBase
@@ -528,6 +544,29 @@ public class WorkerUpdateParamsMcpTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new WorkerUpdateParamsMcp
+        {
+            Headers = new Dictionary<string, string>() { { "foo", "string" } },
+            Oauth2 = new()
+            {
+                AuthorizationUrl = "authorization_url",
+                ClientID = "client_id",
+                ClientSecret = "client_secret",
+            },
+            Retry = 0,
+            Secrets = new Dictionary<string, string>() { { "foo", "string" } },
+            Timeout = 1,
+            Uri = "uri",
+        };
+
+        WorkerUpdateParamsMcp copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class WorkerUpdateParamsMcpOauth2Test : TestBase
@@ -661,5 +700,20 @@ public class WorkerUpdateParamsMcpOauth2Test : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new WorkerUpdateParamsMcpOauth2
+        {
+            AuthorizationUrl = "authorization_url",
+            ClientID = "client_id",
+            ClientSecret = "client_secret",
+        };
+
+        WorkerUpdateParamsMcpOauth2 copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

@@ -130,4 +130,19 @@ public class UsageTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Usage
+        {
+            CompletionTokens = 0,
+            PromptTokens = 0,
+            TotalTokens = 0,
+        };
+
+        Usage copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

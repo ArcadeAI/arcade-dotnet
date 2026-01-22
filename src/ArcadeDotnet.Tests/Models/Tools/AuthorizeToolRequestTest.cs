@@ -148,4 +148,20 @@ public class AuthorizeToolRequestTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthorizeToolRequest
+        {
+            ToolName = "tool_name",
+            NextUri = "next_uri",
+            ToolVersion = "tool_version",
+            UserID = "user_id",
+        };
+
+        AuthorizeToolRequest copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

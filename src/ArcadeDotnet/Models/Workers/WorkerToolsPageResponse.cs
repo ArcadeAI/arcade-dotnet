@@ -120,8 +120,11 @@ public sealed record class WorkerToolsPageResponse : JsonModel
 
     public WorkerToolsPageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public WorkerToolsPageResponse(WorkerToolsPageResponse workerToolsPageResponse)
         : base(workerToolsPageResponse) { }
+#pragma warning restore CS8618
 
     public WorkerToolsPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

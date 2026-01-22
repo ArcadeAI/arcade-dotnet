@@ -277,8 +277,11 @@ public sealed record class WorkerUpdateParamsHttp : JsonModel
 
     public WorkerUpdateParamsHttp() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public WorkerUpdateParamsHttp(WorkerUpdateParamsHttp workerUpdateParamsHttp)
         : base(workerUpdateParamsHttp) { }
+#pragma warning restore CS8618
 
     public WorkerUpdateParamsHttp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -440,8 +443,11 @@ public sealed record class WorkerUpdateParamsMcp : JsonModel
 
     public WorkerUpdateParamsMcp() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public WorkerUpdateParamsMcp(WorkerUpdateParamsMcp workerUpdateParamsMcp)
         : base(workerUpdateParamsMcp) { }
+#pragma warning restore CS8618
 
     public WorkerUpdateParamsMcp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -542,8 +548,11 @@ public sealed record class WorkerUpdateParamsMcpOauth2 : JsonModel
 
     public WorkerUpdateParamsMcpOauth2() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public WorkerUpdateParamsMcpOauth2(WorkerUpdateParamsMcpOauth2 workerUpdateParamsMcpOauth2)
         : base(workerUpdateParamsMcpOauth2) { }
+#pragma warning restore CS8618
 
     public WorkerUpdateParamsMcpOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {

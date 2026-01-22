@@ -583,4 +583,89 @@ public class WorkerListPageResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new WorkerListPageResponse
+        {
+            Items =
+            [
+                new()
+                {
+                    ID = "id",
+                    Binding = new() { ID = "id", Type = Type.Static },
+                    Enabled = true,
+                    Http = new()
+                    {
+                        Retry = 0,
+                        Secret = new()
+                        {
+                            Binding = SecretBinding.Static,
+                            Editable = true,
+                            Exists = true,
+                            Hint = "hint",
+                            Value = "value",
+                        },
+                        Timeout = 0,
+                        Uri = "uri",
+                    },
+                    Managed = true,
+                    Mcp = new()
+                    {
+                        Headers = new Dictionary<string, string>() { { "foo", "string" } },
+                        Oauth2 = new()
+                        {
+                            AuthorizationUrl = "authorization_url",
+                            ClientID = "client_id",
+                            ClientSecret = new()
+                            {
+                                Binding = ClientSecretBinding.Static,
+                                Editable = true,
+                                Exists = true,
+                                Hint = "hint",
+                                Value = "value",
+                            },
+                            RedirectUri = "redirect_uri",
+                        },
+                        Retry = 0,
+                        Secrets = new Dictionary<string, SecretsItem>()
+                        {
+                            {
+                                "foo",
+                                new()
+                                {
+                                    Binding = SecretsItemBinding.Static,
+                                    Editable = true,
+                                    Exists = true,
+                                    Hint = "hint",
+                                    Value = "value",
+                                }
+                            },
+                        },
+                        Timeout = 0,
+                        Uri = "uri",
+                    },
+                    Requirements = new()
+                    {
+                        Authorization = new()
+                        {
+                            Met = true,
+                            Oauth2 = new() { Met = true },
+                        },
+                        Met = true,
+                    },
+                    Type = WorkerResponseType.Http,
+                },
+            ],
+            Limit = 0,
+            Offset = 0,
+            PageCount = 0,
+            TotalCount = 0,
+        };
+
+        WorkerListPageResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

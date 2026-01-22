@@ -150,4 +150,20 @@ public class WorkerHealthResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new WorkerHealthResponse
+        {
+            ID = "id",
+            Enabled = true,
+            Healthy = true,
+            Message = "message",
+        };
+
+        WorkerHealthResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

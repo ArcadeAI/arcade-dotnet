@@ -104,8 +104,11 @@ public sealed record class CreateWorkerRequest : JsonModel
 
     public CreateWorkerRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreateWorkerRequest(CreateWorkerRequest createWorkerRequest)
         : base(createWorkerRequest) { }
+#pragma warning restore CS8618
 
     public CreateWorkerRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -197,8 +200,11 @@ public sealed record class CreateWorkerRequestHttp : JsonModel
 
     public CreateWorkerRequestHttp() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreateWorkerRequestHttp(CreateWorkerRequestHttp createWorkerRequestHttp)
         : base(createWorkerRequestHttp) { }
+#pragma warning restore CS8618
 
     public CreateWorkerRequestHttp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -336,8 +342,11 @@ public sealed record class CreateWorkerRequestMcp : JsonModel
 
     public CreateWorkerRequestMcp() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreateWorkerRequestMcp(CreateWorkerRequestMcp createWorkerRequestMcp)
         : base(createWorkerRequestMcp) { }
+#pragma warning restore CS8618
 
     public CreateWorkerRequestMcp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -457,8 +466,11 @@ public sealed record class CreateWorkerRequestMcpOauth2 : JsonModel
 
     public CreateWorkerRequestMcpOauth2() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreateWorkerRequestMcpOauth2(CreateWorkerRequestMcpOauth2 createWorkerRequestMcpOauth2)
         : base(createWorkerRequestMcpOauth2) { }
+#pragma warning restore CS8618
 
     public CreateWorkerRequestMcpOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {

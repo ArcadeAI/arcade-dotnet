@@ -873,6 +873,84 @@ public class Oauth2Test : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Oauth2
+        {
+            ClientID = "client_id",
+            AuthorizeRequest = new()
+            {
+                Endpoint = "endpoint",
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType = RequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType = ResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            ClientSecret = "client_secret",
+            Pkce = new() { CodeChallengeMethod = "code_challenge_method", Enabled = true },
+            RefreshRequest = new()
+            {
+                Endpoint = "endpoint",
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType = RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            ScopeDelimiter = ScopeDelimiter.Undefined,
+            TokenIntrospectionRequest = new()
+            {
+                Endpoint = "endpoint",
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            TokenRequest = new()
+            {
+                Endpoint = "endpoint",
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType = TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType = TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+            UserInfoRequest = new()
+            {
+                Endpoint = "endpoint",
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            },
+        };
+
+        Oauth2 copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AuthorizeRequestTest : TestBase
@@ -1107,6 +1185,26 @@ public class AuthorizeRequestTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthorizeRequest
+        {
+            Endpoint = "endpoint",
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = RequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = ResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        AuthorizeRequest copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class RequestContentTypeTest : TestBase
@@ -1320,6 +1418,16 @@ public class PkceTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Pkce { CodeChallengeMethod = "code_challenge_method", Enabled = true };
+
+        Pkce copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1554,6 +1662,26 @@ public class RefreshRequestTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new RefreshRequest
+        {
+            Endpoint = "endpoint",
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = RefreshRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = RefreshRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        RefreshRequest copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1985,6 +2113,29 @@ public class TokenIntrospectionRequestTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TokenIntrospectionRequest
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType =
+                TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType =
+                TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        TokenIntrospectionRequest copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TriggersTest : TestBase
@@ -2085,6 +2236,16 @@ public class TriggersTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Triggers { OnTokenGrant = true, OnTokenRefresh = true };
+
+        Triggers copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -2427,6 +2588,26 @@ public class TokenRequestTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TokenRequest
+        {
+            Endpoint = "endpoint",
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = TokenRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = TokenRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        TokenRequest copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -2800,6 +2981,27 @@ public class UserInfoRequestTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UserInfoRequest
+        {
+            Endpoint = "endpoint",
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType = UserInfoRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType = UserInfoRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        UserInfoRequest copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class UserInfoRequestTriggersTest : TestBase
@@ -2903,6 +3105,16 @@ public class UserInfoRequestTriggersTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UserInfoRequestTriggers { OnTokenGrant = true, OnTokenRefresh = true };
+
+        UserInfoRequestTriggers copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

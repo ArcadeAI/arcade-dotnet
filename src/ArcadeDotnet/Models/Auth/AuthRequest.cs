@@ -62,8 +62,11 @@ public sealed record class AuthRequest : JsonModel
 
     public AuthRequest() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthRequest(AuthRequest authRequest)
         : base(authRequest) { }
+#pragma warning restore CS8618
 
     public AuthRequest(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -186,8 +189,11 @@ public sealed record class AuthRequestAuthRequirement : JsonModel
 
     public AuthRequestAuthRequirement() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthRequestAuthRequirement(AuthRequestAuthRequirement authRequestAuthRequirement)
         : base(authRequestAuthRequirement) { }
+#pragma warning restore CS8618
 
     public AuthRequestAuthRequirement(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -256,10 +262,13 @@ public sealed record class AuthRequestAuthRequirementOauth2 : JsonModel
 
     public AuthRequestAuthRequirementOauth2() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AuthRequestAuthRequirementOauth2(
         AuthRequestAuthRequirementOauth2 authRequestAuthRequirementOauth2
     )
         : base(authRequestAuthRequirementOauth2) { }
+#pragma warning restore CS8618
 
     public AuthRequestAuthRequirementOauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {

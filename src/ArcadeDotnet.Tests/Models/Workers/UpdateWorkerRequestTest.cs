@@ -251,6 +251,40 @@ public class UpdateWorkerRequestTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UpdateWorkerRequest
+        {
+            Enabled = true,
+            Http = new()
+            {
+                Retry = 0,
+                Secret = "secret",
+                Timeout = 1,
+                Uri = "uri",
+            },
+            Mcp = new()
+            {
+                Headers = new Dictionary<string, string>() { { "foo", "string" } },
+                Oauth2 = new()
+                {
+                    AuthorizationUrl = "authorization_url",
+                    ClientID = "client_id",
+                    ClientSecret = "client_secret",
+                },
+                Retry = 0,
+                Secrets = new Dictionary<string, string>() { { "foo", "string" } },
+                Timeout = 1,
+                Uri = "uri",
+            },
+        };
+
+        UpdateWorkerRequest copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class UpdateWorkerRequestHttpTest : TestBase
@@ -398,6 +432,22 @@ public class UpdateWorkerRequestHttpTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UpdateWorkerRequestHttp
+        {
+            Retry = 0,
+            Secret = "secret",
+            Timeout = 1,
+            Uri = "uri",
+        };
+
+        UpdateWorkerRequestHttp copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -633,6 +683,29 @@ public class UpdateWorkerRequestMcpTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UpdateWorkerRequestMcp
+        {
+            Headers = new Dictionary<string, string>() { { "foo", "string" } },
+            Oauth2 = new()
+            {
+                AuthorizationUrl = "authorization_url",
+                ClientID = "client_id",
+                ClientSecret = "client_secret",
+            },
+            Retry = 0,
+            Secrets = new Dictionary<string, string>() { { "foo", "string" } },
+            Timeout = 1,
+            Uri = "uri",
+        };
+
+        UpdateWorkerRequestMcp copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class UpdateWorkerRequestMcpOauth2Test : TestBase
@@ -766,5 +839,20 @@ public class UpdateWorkerRequestMcpOauth2Test : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UpdateWorkerRequestMcpOauth2
+        {
+            AuthorizationUrl = "authorization_url",
+            ClientID = "client_id",
+            ClientSecret = "client_secret",
+        };
+
+        UpdateWorkerRequestMcpOauth2 copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

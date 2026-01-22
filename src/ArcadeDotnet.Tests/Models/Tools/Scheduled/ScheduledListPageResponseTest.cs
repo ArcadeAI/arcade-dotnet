@@ -278,4 +278,38 @@ public class ScheduledListPageResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ScheduledListPageResponse
+        {
+            Items =
+            [
+                new()
+                {
+                    ID = "id",
+                    CreatedAt = "created_at",
+                    ExecutionStatus = "execution_status",
+                    ExecutionType = "execution_type",
+                    FinishedAt = "finished_at",
+                    RunAt = "run_at",
+                    StartedAt = "started_at",
+                    ToolName = "tool_name",
+                    ToolkitName = "toolkit_name",
+                    ToolkitVersion = "toolkit_version",
+                    UpdatedAt = "updated_at",
+                    UserID = "user_id",
+                },
+            ],
+            Limit = 0,
+            Offset = 0,
+            PageCount = 0,
+            TotalCount = 0,
+        };
+
+        ScheduledListPageResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

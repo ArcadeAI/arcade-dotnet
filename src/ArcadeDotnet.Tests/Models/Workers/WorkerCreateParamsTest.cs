@@ -240,6 +240,22 @@ public class HttpTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Http
+        {
+            Retry = 0,
+            Secret = "secret",
+            Timeout = 1,
+            Uri = "uri",
+        };
+
+        Http copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class McpTest : TestBase
@@ -474,6 +490,30 @@ public class McpTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Mcp
+        {
+            Retry = 0,
+            Timeout = 1,
+            Uri = "uri",
+            Headers = new Dictionary<string, string>() { { "foo", "string" } },
+            Oauth2 = new()
+            {
+                AuthorizationUrl = "authorization_url",
+                ClientID = "client_id",
+                ClientSecret = "client_secret",
+                ExternalID = "external_id",
+            },
+            Secrets = new Dictionary<string, string>() { { "foo", "string" } },
+        };
+
+        Mcp copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class Oauth2Test : TestBase
@@ -615,5 +655,21 @@ public class Oauth2Test : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Oauth2
+        {
+            AuthorizationUrl = "authorization_url",
+            ClientID = "client_id",
+            ClientSecret = "client_secret",
+            ExternalID = "external_id",
+        };
+
+        Oauth2 copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

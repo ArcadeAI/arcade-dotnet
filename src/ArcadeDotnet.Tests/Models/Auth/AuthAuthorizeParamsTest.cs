@@ -268,6 +268,22 @@ public class AuthRequirementTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthRequirement
+        {
+            ID = "id",
+            Oauth2 = new() { Scopes = ["string"] },
+            ProviderID = "provider_id",
+            ProviderType = "provider_type",
+        };
+
+        AuthRequirement copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class Oauth2Test : TestBase
@@ -365,5 +381,15 @@ public class Oauth2Test : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Oauth2 { Scopes = ["string"] };
+
+        Oauth2 copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

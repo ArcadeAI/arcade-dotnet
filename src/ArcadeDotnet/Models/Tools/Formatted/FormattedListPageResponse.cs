@@ -118,8 +118,11 @@ public sealed record class FormattedListPageResponse : JsonModel
 
     public FormattedListPageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public FormattedListPageResponse(FormattedListPageResponse formattedListPageResponse)
         : base(formattedListPageResponse) { }
+#pragma warning restore CS8618
 
     public FormattedListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -214,8 +214,11 @@ public sealed record class Provider : JsonModel
 
     public Provider() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Provider(Provider provider)
         : base(provider) { }
+#pragma warning restore CS8618
 
     public Provider(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -276,8 +279,11 @@ public sealed record class User : JsonModel
 
     public User() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public User(User user)
         : base(user) { }
+#pragma warning restore CS8618
 
     public User(IReadOnlyDictionary<string, JsonElement> rawData)
     {

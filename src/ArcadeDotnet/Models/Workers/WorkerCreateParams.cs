@@ -265,8 +265,11 @@ public sealed record class Http : JsonModel
 
     public Http() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Http(Http http)
         : base(http) { }
+#pragma warning restore CS8618
 
     public Http(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -401,8 +404,11 @@ public sealed record class Mcp : JsonModel
 
     public Mcp() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Mcp(Mcp mcp)
         : base(mcp) { }
+#pragma warning restore CS8618
 
     public Mcp(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -517,8 +523,11 @@ public sealed record class Oauth2 : JsonModel
 
     public Oauth2() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Oauth2(Oauth2 oauth2)
         : base(oauth2) { }
+#pragma warning restore CS8618
 
     public Oauth2(IReadOnlyDictionary<string, JsonElement> rawData)
     {
