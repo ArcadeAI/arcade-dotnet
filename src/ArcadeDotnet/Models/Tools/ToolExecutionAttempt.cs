@@ -511,6 +511,8 @@ public enum ToolExecutionAttemptOutputErrorKind
     ToolRuntimeRetry,
     ToolRuntimeContextRequired,
     ToolRuntimeFatal,
+    ContextCheckFailed,
+    ContextDenied,
     UpstreamRuntimeBadRequest,
     UpstreamRuntimeAuthError,
     UpstreamRuntimeNotFound,
@@ -549,6 +551,8 @@ sealed class ToolExecutionAttemptOutputErrorKindConverter
             "TOOL_RUNTIME_CONTEXT_REQUIRED" =>
                 ToolExecutionAttemptOutputErrorKind.ToolRuntimeContextRequired,
             "TOOL_RUNTIME_FATAL" => ToolExecutionAttemptOutputErrorKind.ToolRuntimeFatal,
+            "CONTEXT_CHECK_FAILED" => ToolExecutionAttemptOutputErrorKind.ContextCheckFailed,
+            "CONTEXT_DENIED" => ToolExecutionAttemptOutputErrorKind.ContextDenied,
             "UPSTREAM_RUNTIME_BAD_REQUEST" =>
                 ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeBadRequest,
             "UPSTREAM_RUNTIME_AUTH_ERROR" =>
@@ -595,6 +599,8 @@ sealed class ToolExecutionAttemptOutputErrorKindConverter
                 ToolExecutionAttemptOutputErrorKind.ToolRuntimeContextRequired =>
                     "TOOL_RUNTIME_CONTEXT_REQUIRED",
                 ToolExecutionAttemptOutputErrorKind.ToolRuntimeFatal => "TOOL_RUNTIME_FATAL",
+                ToolExecutionAttemptOutputErrorKind.ContextCheckFailed => "CONTEXT_CHECK_FAILED",
+                ToolExecutionAttemptOutputErrorKind.ContextDenied => "CONTEXT_DENIED",
                 ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeBadRequest =>
                     "UPSTREAM_RUNTIME_BAD_REQUEST",
                 ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeAuthError =>
