@@ -12,14 +12,26 @@ public class FormattedListPageResponseTest : TestBase
     {
         var model = new FormattedListPageResponse
         {
-            Items = [JsonSerializer.Deserialize<JsonElement>("{}")],
+            Items =
+            [
+                new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+            ],
             Limit = 0,
             Offset = 0,
             PageCount = 0,
             TotalCount = 0,
         };
 
-        List<JsonElement> expectedItems = [JsonSerializer.Deserialize<JsonElement>("{}")];
+        List<Dictionary<string, JsonElement>> expectedItems =
+        [
+            new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+        ];
         long expectedLimit = 0;
         long expectedOffset = 0;
         long expectedPageCount = 0;
@@ -29,7 +41,13 @@ public class FormattedListPageResponseTest : TestBase
         Assert.Equal(expectedItems.Count, model.Items.Count);
         for (int i = 0; i < expectedItems.Count; i++)
         {
-            Assert.True(JsonElement.DeepEquals(expectedItems[i], model.Items[i]));
+            Assert.Equal(expectedItems[i].Count, model.Items[i].Count);
+            foreach (var item in expectedItems[i])
+            {
+                Assert.True(model.Items[i].TryGetValue(item.Key, out var value));
+
+                Assert.True(JsonElement.DeepEquals(value, model.Items[i][item.Key]));
+            }
         }
         Assert.Equal(expectedLimit, model.Limit);
         Assert.Equal(expectedOffset, model.Offset);
@@ -42,7 +60,13 @@ public class FormattedListPageResponseTest : TestBase
     {
         var model = new FormattedListPageResponse
         {
-            Items = [JsonSerializer.Deserialize<JsonElement>("{}")],
+            Items =
+            [
+                new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+            ],
             Limit = 0,
             Offset = 0,
             PageCount = 0,
@@ -63,7 +87,13 @@ public class FormattedListPageResponseTest : TestBase
     {
         var model = new FormattedListPageResponse
         {
-            Items = [JsonSerializer.Deserialize<JsonElement>("{}")],
+            Items =
+            [
+                new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+            ],
             Limit = 0,
             Offset = 0,
             PageCount = 0,
@@ -77,7 +107,13 @@ public class FormattedListPageResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        List<JsonElement> expectedItems = [JsonSerializer.Deserialize<JsonElement>("{}")];
+        List<Dictionary<string, JsonElement>> expectedItems =
+        [
+            new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+        ];
         long expectedLimit = 0;
         long expectedOffset = 0;
         long expectedPageCount = 0;
@@ -87,7 +123,13 @@ public class FormattedListPageResponseTest : TestBase
         Assert.Equal(expectedItems.Count, deserialized.Items.Count);
         for (int i = 0; i < expectedItems.Count; i++)
         {
-            Assert.True(JsonElement.DeepEquals(expectedItems[i], deserialized.Items[i]));
+            Assert.Equal(expectedItems[i].Count, deserialized.Items[i].Count);
+            foreach (var item in expectedItems[i])
+            {
+                Assert.True(deserialized.Items[i].TryGetValue(item.Key, out var value));
+
+                Assert.True(JsonElement.DeepEquals(value, deserialized.Items[i][item.Key]));
+            }
         }
         Assert.Equal(expectedLimit, deserialized.Limit);
         Assert.Equal(expectedOffset, deserialized.Offset);
@@ -100,7 +142,13 @@ public class FormattedListPageResponseTest : TestBase
     {
         var model = new FormattedListPageResponse
         {
-            Items = [JsonSerializer.Deserialize<JsonElement>("{}")],
+            Items =
+            [
+                new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+            ],
             Limit = 0,
             Offset = 0,
             PageCount = 0,
@@ -181,7 +229,13 @@ public class FormattedListPageResponseTest : TestBase
     {
         var model = new FormattedListPageResponse
         {
-            Items = [JsonSerializer.Deserialize<JsonElement>("{}")],
+            Items =
+            [
+                new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+            ],
             Limit = 0,
             Offset = 0,
             PageCount = 0,
