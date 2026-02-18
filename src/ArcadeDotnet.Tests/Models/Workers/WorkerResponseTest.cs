@@ -24,7 +24,6 @@ public class WorkerResponseTest : TestBase
                     Binding = SecretBinding.Static,
                     Editable = true,
                     Exists = true,
-                    Hint = "hint",
                     Value = "value",
                 },
                 Timeout = 0,
@@ -43,7 +42,6 @@ public class WorkerResponseTest : TestBase
                         Binding = ClientSecretBinding.Static,
                         Editable = true,
                         Exists = true,
-                        Hint = "hint",
                         Value = "value",
                     },
                     RedirectUri = "redirect_uri",
@@ -58,7 +56,6 @@ public class WorkerResponseTest : TestBase
                             Binding = SecretsItemBinding.Static,
                             Editable = true,
                             Exists = true,
-                            Hint = "hint",
                             Value = "value",
                         }
                     },
@@ -89,7 +86,6 @@ public class WorkerResponseTest : TestBase
                 Binding = SecretBinding.Static,
                 Editable = true,
                 Exists = true,
-                Hint = "hint",
                 Value = "value",
             },
             Timeout = 0,
@@ -108,7 +104,6 @@ public class WorkerResponseTest : TestBase
                     Binding = ClientSecretBinding.Static,
                     Editable = true,
                     Exists = true,
-                    Hint = "hint",
                     Value = "value",
                 },
                 RedirectUri = "redirect_uri",
@@ -123,7 +118,6 @@ public class WorkerResponseTest : TestBase
                         Binding = SecretsItemBinding.Static,
                         Editable = true,
                         Exists = true,
-                        Hint = "hint",
                         Value = "value",
                     }
                 },
@@ -168,7 +162,6 @@ public class WorkerResponseTest : TestBase
                     Binding = SecretBinding.Static,
                     Editable = true,
                     Exists = true,
-                    Hint = "hint",
                     Value = "value",
                 },
                 Timeout = 0,
@@ -187,7 +180,6 @@ public class WorkerResponseTest : TestBase
                         Binding = ClientSecretBinding.Static,
                         Editable = true,
                         Exists = true,
-                        Hint = "hint",
                         Value = "value",
                     },
                     RedirectUri = "redirect_uri",
@@ -202,7 +194,6 @@ public class WorkerResponseTest : TestBase
                             Binding = SecretsItemBinding.Static,
                             Editable = true,
                             Exists = true,
-                            Hint = "hint",
                             Value = "value",
                         }
                     },
@@ -247,7 +238,6 @@ public class WorkerResponseTest : TestBase
                     Binding = SecretBinding.Static,
                     Editable = true,
                     Exists = true,
-                    Hint = "hint",
                     Value = "value",
                 },
                 Timeout = 0,
@@ -266,7 +256,6 @@ public class WorkerResponseTest : TestBase
                         Binding = ClientSecretBinding.Static,
                         Editable = true,
                         Exists = true,
-                        Hint = "hint",
                         Value = "value",
                     },
                     RedirectUri = "redirect_uri",
@@ -281,7 +270,6 @@ public class WorkerResponseTest : TestBase
                             Binding = SecretsItemBinding.Static,
                             Editable = true,
                             Exists = true,
-                            Hint = "hint",
                             Value = "value",
                         }
                     },
@@ -319,7 +307,6 @@ public class WorkerResponseTest : TestBase
                 Binding = SecretBinding.Static,
                 Editable = true,
                 Exists = true,
-                Hint = "hint",
                 Value = "value",
             },
             Timeout = 0,
@@ -338,7 +325,6 @@ public class WorkerResponseTest : TestBase
                     Binding = ClientSecretBinding.Static,
                     Editable = true,
                     Exists = true,
-                    Hint = "hint",
                     Value = "value",
                 },
                 RedirectUri = "redirect_uri",
@@ -353,7 +339,6 @@ public class WorkerResponseTest : TestBase
                         Binding = SecretsItemBinding.Static,
                         Editable = true,
                         Exists = true,
-                        Hint = "hint",
                         Value = "value",
                     }
                 },
@@ -398,7 +383,6 @@ public class WorkerResponseTest : TestBase
                     Binding = SecretBinding.Static,
                     Editable = true,
                     Exists = true,
-                    Hint = "hint",
                     Value = "value",
                 },
                 Timeout = 0,
@@ -417,7 +401,6 @@ public class WorkerResponseTest : TestBase
                         Binding = ClientSecretBinding.Static,
                         Editable = true,
                         Exists = true,
-                        Hint = "hint",
                         Value = "value",
                     },
                     RedirectUri = "redirect_uri",
@@ -432,7 +415,6 @@ public class WorkerResponseTest : TestBase
                             Binding = SecretsItemBinding.Static,
                             Editable = true,
                             Exists = true,
-                            Hint = "hint",
                             Value = "value",
                         }
                     },
@@ -555,7 +537,6 @@ public class WorkerResponseTest : TestBase
                     Binding = SecretBinding.Static,
                     Editable = true,
                     Exists = true,
-                    Hint = "hint",
                     Value = "value",
                 },
                 Timeout = 0,
@@ -574,7 +555,6 @@ public class WorkerResponseTest : TestBase
                         Binding = ClientSecretBinding.Static,
                         Editable = true,
                         Exists = true,
-                        Hint = "hint",
                         Value = "value",
                     },
                     RedirectUri = "redirect_uri",
@@ -589,7 +569,6 @@ public class WorkerResponseTest : TestBase
                             Binding = SecretsItemBinding.Static,
                             Editable = true,
                             Exists = true,
-                            Hint = "hint",
                             Value = "value",
                         }
                     },
@@ -801,7 +780,6 @@ public class WorkerResponseHttpTest : TestBase
                 Binding = SecretBinding.Static,
                 Editable = true,
                 Exists = true,
-                Hint = "hint",
                 Value = "value",
             },
             Timeout = 0,
@@ -814,7 +792,6 @@ public class WorkerResponseHttpTest : TestBase
             Binding = SecretBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
         long expectedTimeout = 0;
@@ -837,7 +814,6 @@ public class WorkerResponseHttpTest : TestBase
                 Binding = SecretBinding.Static,
                 Editable = true,
                 Exists = true,
-                Hint = "hint",
                 Value = "value",
             },
             Timeout = 0,
@@ -864,7 +840,6 @@ public class WorkerResponseHttpTest : TestBase
                 Binding = SecretBinding.Static,
                 Editable = true,
                 Exists = true,
-                Hint = "hint",
                 Value = "value",
             },
             Timeout = 0,
@@ -884,7 +859,6 @@ public class WorkerResponseHttpTest : TestBase
             Binding = SecretBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
         long expectedTimeout = 0;
@@ -907,7 +881,6 @@ public class WorkerResponseHttpTest : TestBase
                 Binding = SecretBinding.Static,
                 Editable = true,
                 Exists = true,
-                Hint = "hint",
                 Value = "value",
             },
             Timeout = 0,
@@ -988,7 +961,6 @@ public class WorkerResponseHttpTest : TestBase
                 Binding = SecretBinding.Static,
                 Editable = true,
                 Exists = true,
-                Hint = "hint",
                 Value = "value",
             },
             Timeout = 0,
@@ -1011,20 +983,17 @@ public class SecretTest : TestBase
             Binding = SecretBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
 
         ApiEnum<string, SecretBinding> expectedBinding = SecretBinding.Static;
         bool expectedEditable = true;
         bool expectedExists = true;
-        string expectedHint = "hint";
         string expectedValue = "value";
 
         Assert.Equal(expectedBinding, model.Binding);
         Assert.Equal(expectedEditable, model.Editable);
         Assert.Equal(expectedExists, model.Exists);
-        Assert.Equal(expectedHint, model.Hint);
         Assert.Equal(expectedValue, model.Value);
     }
 
@@ -1036,7 +1005,6 @@ public class SecretTest : TestBase
             Binding = SecretBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
 
@@ -1054,7 +1022,6 @@ public class SecretTest : TestBase
             Binding = SecretBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
 
@@ -1065,13 +1032,11 @@ public class SecretTest : TestBase
         ApiEnum<string, SecretBinding> expectedBinding = SecretBinding.Static;
         bool expectedEditable = true;
         bool expectedExists = true;
-        string expectedHint = "hint";
         string expectedValue = "value";
 
         Assert.Equal(expectedBinding, deserialized.Binding);
         Assert.Equal(expectedEditable, deserialized.Editable);
         Assert.Equal(expectedExists, deserialized.Exists);
-        Assert.Equal(expectedHint, deserialized.Hint);
         Assert.Equal(expectedValue, deserialized.Value);
     }
 
@@ -1083,7 +1048,6 @@ public class SecretTest : TestBase
             Binding = SecretBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
 
@@ -1101,8 +1065,6 @@ public class SecretTest : TestBase
         Assert.False(model.RawData.ContainsKey("editable"));
         Assert.Null(model.Exists);
         Assert.False(model.RawData.ContainsKey("exists"));
-        Assert.Null(model.Hint);
-        Assert.False(model.RawData.ContainsKey("hint"));
         Assert.Null(model.Value);
         Assert.False(model.RawData.ContainsKey("value"));
     }
@@ -1124,7 +1086,6 @@ public class SecretTest : TestBase
             Binding = null,
             Editable = null,
             Exists = null,
-            Hint = null,
             Value = null,
         };
 
@@ -1134,8 +1095,6 @@ public class SecretTest : TestBase
         Assert.False(model.RawData.ContainsKey("editable"));
         Assert.Null(model.Exists);
         Assert.False(model.RawData.ContainsKey("exists"));
-        Assert.Null(model.Hint);
-        Assert.False(model.RawData.ContainsKey("hint"));
         Assert.Null(model.Value);
         Assert.False(model.RawData.ContainsKey("value"));
     }
@@ -1149,7 +1108,6 @@ public class SecretTest : TestBase
             Binding = null,
             Editable = null,
             Exists = null,
-            Hint = null,
             Value = null,
         };
 
@@ -1164,7 +1122,6 @@ public class SecretTest : TestBase
             Binding = SecretBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
 
@@ -1253,7 +1210,6 @@ public class WorkerResponseMcpTest : TestBase
                     Binding = ClientSecretBinding.Static,
                     Editable = true,
                     Exists = true,
-                    Hint = "hint",
                     Value = "value",
                 },
                 RedirectUri = "redirect_uri",
@@ -1268,7 +1224,6 @@ public class WorkerResponseMcpTest : TestBase
                         Binding = SecretsItemBinding.Static,
                         Editable = true,
                         Exists = true,
-                        Hint = "hint",
                         Value = "value",
                     }
                 },
@@ -1287,7 +1242,6 @@ public class WorkerResponseMcpTest : TestBase
                 Binding = ClientSecretBinding.Static,
                 Editable = true,
                 Exists = true,
-                Hint = "hint",
                 Value = "value",
             },
             RedirectUri = "redirect_uri",
@@ -1302,7 +1256,6 @@ public class WorkerResponseMcpTest : TestBase
                     Binding = SecretsItemBinding.Static,
                     Editable = true,
                     Exists = true,
-                    Hint = "hint",
                     Value = "value",
                 }
             },
@@ -1347,7 +1300,6 @@ public class WorkerResponseMcpTest : TestBase
                     Binding = ClientSecretBinding.Static,
                     Editable = true,
                     Exists = true,
-                    Hint = "hint",
                     Value = "value",
                 },
                 RedirectUri = "redirect_uri",
@@ -1362,7 +1314,6 @@ public class WorkerResponseMcpTest : TestBase
                         Binding = SecretsItemBinding.Static,
                         Editable = true,
                         Exists = true,
-                        Hint = "hint",
                         Value = "value",
                     }
                 },
@@ -1395,7 +1346,6 @@ public class WorkerResponseMcpTest : TestBase
                     Binding = ClientSecretBinding.Static,
                     Editable = true,
                     Exists = true,
-                    Hint = "hint",
                     Value = "value",
                 },
                 RedirectUri = "redirect_uri",
@@ -1410,7 +1360,6 @@ public class WorkerResponseMcpTest : TestBase
                         Binding = SecretsItemBinding.Static,
                         Editable = true,
                         Exists = true,
-                        Hint = "hint",
                         Value = "value",
                     }
                 },
@@ -1436,7 +1385,6 @@ public class WorkerResponseMcpTest : TestBase
                 Binding = ClientSecretBinding.Static,
                 Editable = true,
                 Exists = true,
-                Hint = "hint",
                 Value = "value",
             },
             RedirectUri = "redirect_uri",
@@ -1451,7 +1399,6 @@ public class WorkerResponseMcpTest : TestBase
                     Binding = SecretsItemBinding.Static,
                     Editable = true,
                     Exists = true,
-                    Hint = "hint",
                     Value = "value",
                 }
             },
@@ -1496,7 +1443,6 @@ public class WorkerResponseMcpTest : TestBase
                     Binding = ClientSecretBinding.Static,
                     Editable = true,
                     Exists = true,
-                    Hint = "hint",
                     Value = "value",
                 },
                 RedirectUri = "redirect_uri",
@@ -1511,7 +1457,6 @@ public class WorkerResponseMcpTest : TestBase
                         Binding = SecretsItemBinding.Static,
                         Editable = true,
                         Exists = true,
-                        Hint = "hint",
                         Value = "value",
                     }
                 },
@@ -1610,7 +1555,6 @@ public class WorkerResponseMcpTest : TestBase
                     Binding = ClientSecretBinding.Static,
                     Editable = true,
                     Exists = true,
-                    Hint = "hint",
                     Value = "value",
                 },
                 RedirectUri = "redirect_uri",
@@ -1625,7 +1569,6 @@ public class WorkerResponseMcpTest : TestBase
                         Binding = SecretsItemBinding.Static,
                         Editable = true,
                         Exists = true,
-                        Hint = "hint",
                         Value = "value",
                     }
                 },
@@ -1654,7 +1597,6 @@ public class WorkerResponseMcpOauth2Test : TestBase
                 Binding = ClientSecretBinding.Static,
                 Editable = true,
                 Exists = true,
-                Hint = "hint",
                 Value = "value",
             },
             RedirectUri = "redirect_uri",
@@ -1667,7 +1609,6 @@ public class WorkerResponseMcpOauth2Test : TestBase
             Binding = ClientSecretBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
         string expectedRedirectUri = "redirect_uri";
@@ -1690,7 +1631,6 @@ public class WorkerResponseMcpOauth2Test : TestBase
                 Binding = ClientSecretBinding.Static,
                 Editable = true,
                 Exists = true,
-                Hint = "hint",
                 Value = "value",
             },
             RedirectUri = "redirect_uri",
@@ -1717,7 +1657,6 @@ public class WorkerResponseMcpOauth2Test : TestBase
                 Binding = ClientSecretBinding.Static,
                 Editable = true,
                 Exists = true,
-                Hint = "hint",
                 Value = "value",
             },
             RedirectUri = "redirect_uri",
@@ -1737,7 +1676,6 @@ public class WorkerResponseMcpOauth2Test : TestBase
             Binding = ClientSecretBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
         string expectedRedirectUri = "redirect_uri";
@@ -1760,7 +1698,6 @@ public class WorkerResponseMcpOauth2Test : TestBase
                 Binding = ClientSecretBinding.Static,
                 Editable = true,
                 Exists = true,
-                Hint = "hint",
                 Value = "value",
             },
             RedirectUri = "redirect_uri",
@@ -1841,7 +1778,6 @@ public class WorkerResponseMcpOauth2Test : TestBase
                 Binding = ClientSecretBinding.Static,
                 Editable = true,
                 Exists = true,
-                Hint = "hint",
                 Value = "value",
             },
             RedirectUri = "redirect_uri",
@@ -1863,20 +1799,17 @@ public class ClientSecretTest : TestBase
             Binding = ClientSecretBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
 
         ApiEnum<string, ClientSecretBinding> expectedBinding = ClientSecretBinding.Static;
         bool expectedEditable = true;
         bool expectedExists = true;
-        string expectedHint = "hint";
         string expectedValue = "value";
 
         Assert.Equal(expectedBinding, model.Binding);
         Assert.Equal(expectedEditable, model.Editable);
         Assert.Equal(expectedExists, model.Exists);
-        Assert.Equal(expectedHint, model.Hint);
         Assert.Equal(expectedValue, model.Value);
     }
 
@@ -1888,7 +1821,6 @@ public class ClientSecretTest : TestBase
             Binding = ClientSecretBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
 
@@ -1909,7 +1841,6 @@ public class ClientSecretTest : TestBase
             Binding = ClientSecretBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
 
@@ -1923,13 +1854,11 @@ public class ClientSecretTest : TestBase
         ApiEnum<string, ClientSecretBinding> expectedBinding = ClientSecretBinding.Static;
         bool expectedEditable = true;
         bool expectedExists = true;
-        string expectedHint = "hint";
         string expectedValue = "value";
 
         Assert.Equal(expectedBinding, deserialized.Binding);
         Assert.Equal(expectedEditable, deserialized.Editable);
         Assert.Equal(expectedExists, deserialized.Exists);
-        Assert.Equal(expectedHint, deserialized.Hint);
         Assert.Equal(expectedValue, deserialized.Value);
     }
 
@@ -1941,7 +1870,6 @@ public class ClientSecretTest : TestBase
             Binding = ClientSecretBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
 
@@ -1959,8 +1887,6 @@ public class ClientSecretTest : TestBase
         Assert.False(model.RawData.ContainsKey("editable"));
         Assert.Null(model.Exists);
         Assert.False(model.RawData.ContainsKey("exists"));
-        Assert.Null(model.Hint);
-        Assert.False(model.RawData.ContainsKey("hint"));
         Assert.Null(model.Value);
         Assert.False(model.RawData.ContainsKey("value"));
     }
@@ -1982,7 +1908,6 @@ public class ClientSecretTest : TestBase
             Binding = null,
             Editable = null,
             Exists = null,
-            Hint = null,
             Value = null,
         };
 
@@ -1992,8 +1917,6 @@ public class ClientSecretTest : TestBase
         Assert.False(model.RawData.ContainsKey("editable"));
         Assert.Null(model.Exists);
         Assert.False(model.RawData.ContainsKey("exists"));
-        Assert.Null(model.Hint);
-        Assert.False(model.RawData.ContainsKey("hint"));
         Assert.Null(model.Value);
         Assert.False(model.RawData.ContainsKey("value"));
     }
@@ -2007,7 +1930,6 @@ public class ClientSecretTest : TestBase
             Binding = null,
             Editable = null,
             Exists = null,
-            Hint = null,
             Value = null,
         };
 
@@ -2022,7 +1944,6 @@ public class ClientSecretTest : TestBase
             Binding = ClientSecretBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
 
@@ -2104,20 +2025,17 @@ public class SecretsItemTest : TestBase
             Binding = SecretsItemBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
 
         ApiEnum<string, SecretsItemBinding> expectedBinding = SecretsItemBinding.Static;
         bool expectedEditable = true;
         bool expectedExists = true;
-        string expectedHint = "hint";
         string expectedValue = "value";
 
         Assert.Equal(expectedBinding, model.Binding);
         Assert.Equal(expectedEditable, model.Editable);
         Assert.Equal(expectedExists, model.Exists);
-        Assert.Equal(expectedHint, model.Hint);
         Assert.Equal(expectedValue, model.Value);
     }
 
@@ -2129,7 +2047,6 @@ public class SecretsItemTest : TestBase
             Binding = SecretsItemBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
 
@@ -2150,7 +2067,6 @@ public class SecretsItemTest : TestBase
             Binding = SecretsItemBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
 
@@ -2164,13 +2080,11 @@ public class SecretsItemTest : TestBase
         ApiEnum<string, SecretsItemBinding> expectedBinding = SecretsItemBinding.Static;
         bool expectedEditable = true;
         bool expectedExists = true;
-        string expectedHint = "hint";
         string expectedValue = "value";
 
         Assert.Equal(expectedBinding, deserialized.Binding);
         Assert.Equal(expectedEditable, deserialized.Editable);
         Assert.Equal(expectedExists, deserialized.Exists);
-        Assert.Equal(expectedHint, deserialized.Hint);
         Assert.Equal(expectedValue, deserialized.Value);
     }
 
@@ -2182,7 +2096,6 @@ public class SecretsItemTest : TestBase
             Binding = SecretsItemBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
 
@@ -2200,8 +2113,6 @@ public class SecretsItemTest : TestBase
         Assert.False(model.RawData.ContainsKey("editable"));
         Assert.Null(model.Exists);
         Assert.False(model.RawData.ContainsKey("exists"));
-        Assert.Null(model.Hint);
-        Assert.False(model.RawData.ContainsKey("hint"));
         Assert.Null(model.Value);
         Assert.False(model.RawData.ContainsKey("value"));
     }
@@ -2223,7 +2134,6 @@ public class SecretsItemTest : TestBase
             Binding = null,
             Editable = null,
             Exists = null,
-            Hint = null,
             Value = null,
         };
 
@@ -2233,8 +2143,6 @@ public class SecretsItemTest : TestBase
         Assert.False(model.RawData.ContainsKey("editable"));
         Assert.Null(model.Exists);
         Assert.False(model.RawData.ContainsKey("exists"));
-        Assert.Null(model.Hint);
-        Assert.False(model.RawData.ContainsKey("hint"));
         Assert.Null(model.Value);
         Assert.False(model.RawData.ContainsKey("value"));
     }
@@ -2248,7 +2156,6 @@ public class SecretsItemTest : TestBase
             Binding = null,
             Editable = null,
             Exists = null,
-            Hint = null,
             Value = null,
         };
 
@@ -2263,7 +2170,6 @@ public class SecretsItemTest : TestBase
             Binding = SecretsItemBinding.Static,
             Editable = true,
             Exists = true,
-            Hint = "hint",
             Value = "value",
         };
 
