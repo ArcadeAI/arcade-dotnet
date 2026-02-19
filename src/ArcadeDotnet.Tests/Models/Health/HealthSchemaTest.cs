@@ -9,17 +9,19 @@ public class HealthSchemaTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new HealthSchema { Healthy = true };
+        var model = new HealthSchema { Healthy = true, Reason = "reason" };
 
         bool expectedHealthy = true;
+        string expectedReason = "reason";
 
         Assert.Equal(expectedHealthy, model.Healthy);
+        Assert.Equal(expectedReason, model.Reason);
     }
 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new HealthSchema { Healthy = true };
+        var model = new HealthSchema { Healthy = true, Reason = "reason" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<HealthSchema>(
@@ -33,7 +35,7 @@ public class HealthSchemaTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new HealthSchema { Healthy = true };
+        var model = new HealthSchema { Healthy = true, Reason = "reason" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<HealthSchema>(
@@ -43,14 +45,16 @@ public class HealthSchemaTest : TestBase
         Assert.NotNull(deserialized);
 
         bool expectedHealthy = true;
+        string expectedReason = "reason";
 
         Assert.Equal(expectedHealthy, deserialized.Healthy);
+        Assert.Equal(expectedReason, deserialized.Reason);
     }
 
     [Fact]
     public void Validation_Works()
     {
-        var model = new HealthSchema { Healthy = true };
+        var model = new HealthSchema { Healthy = true, Reason = "reason" };
 
         model.Validate();
     }
@@ -62,6 +66,8 @@ public class HealthSchemaTest : TestBase
 
         Assert.Null(model.Healthy);
         Assert.False(model.RawData.ContainsKey("healthy"));
+        Assert.Null(model.Reason);
+        Assert.False(model.RawData.ContainsKey("reason"));
     }
 
     [Fact]
@@ -79,10 +85,13 @@ public class HealthSchemaTest : TestBase
         {
             // Null should be interpreted as omitted for these properties
             Healthy = null,
+            Reason = null,
         };
 
         Assert.Null(model.Healthy);
         Assert.False(model.RawData.ContainsKey("healthy"));
+        Assert.Null(model.Reason);
+        Assert.False(model.RawData.ContainsKey("reason"));
     }
 
     [Fact]
@@ -92,6 +101,7 @@ public class HealthSchemaTest : TestBase
         {
             // Null should be interpreted as omitted for these properties
             Healthy = null,
+            Reason = null,
         };
 
         model.Validate();
@@ -100,7 +110,7 @@ public class HealthSchemaTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new HealthSchema { Healthy = true };
+        var model = new HealthSchema { Healthy = true, Reason = "reason" };
 
         HealthSchema copied = new(model);
 
