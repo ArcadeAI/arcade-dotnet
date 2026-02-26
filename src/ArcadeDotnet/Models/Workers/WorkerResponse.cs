@@ -856,6 +856,24 @@ public sealed record class WorkerResponseMcpOauth2 : JsonModel
         }
     }
 
+    public string? ExternalID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_id");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("external_id", value);
+        }
+    }
+
     public string? RedirectUri
     {
         get
@@ -901,6 +919,7 @@ public sealed record class WorkerResponseMcpOauth2 : JsonModel
         _ = this.AuthorizationUrl;
         _ = this.ClientID;
         this.ClientSecret?.Validate();
+        _ = this.ExternalID;
         _ = this.RedirectUri;
         _ = this.SupportedScopes;
     }

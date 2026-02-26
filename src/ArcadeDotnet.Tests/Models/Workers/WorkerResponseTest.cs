@@ -44,6 +44,7 @@ public class WorkerResponseTest : TestBase
                         Exists = true,
                         Value = "value",
                     },
+                    ExternalID = "external_id",
                     RedirectUri = "redirect_uri",
                     SupportedScopes = ["string"],
                 },
@@ -107,6 +108,7 @@ public class WorkerResponseTest : TestBase
                     Exists = true,
                     Value = "value",
                 },
+                ExternalID = "external_id",
                 RedirectUri = "redirect_uri",
                 SupportedScopes = ["string"],
             },
@@ -184,6 +186,7 @@ public class WorkerResponseTest : TestBase
                         Exists = true,
                         Value = "value",
                     },
+                    ExternalID = "external_id",
                     RedirectUri = "redirect_uri",
                     SupportedScopes = ["string"],
                 },
@@ -261,6 +264,7 @@ public class WorkerResponseTest : TestBase
                         Exists = true,
                         Value = "value",
                     },
+                    ExternalID = "external_id",
                     RedirectUri = "redirect_uri",
                     SupportedScopes = ["string"],
                 },
@@ -331,6 +335,7 @@ public class WorkerResponseTest : TestBase
                     Exists = true,
                     Value = "value",
                 },
+                ExternalID = "external_id",
                 RedirectUri = "redirect_uri",
                 SupportedScopes = ["string"],
             },
@@ -408,6 +413,7 @@ public class WorkerResponseTest : TestBase
                         Exists = true,
                         Value = "value",
                     },
+                    ExternalID = "external_id",
                     RedirectUri = "redirect_uri",
                     SupportedScopes = ["string"],
                 },
@@ -563,6 +569,7 @@ public class WorkerResponseTest : TestBase
                         Exists = true,
                         Value = "value",
                     },
+                    ExternalID = "external_id",
                     RedirectUri = "redirect_uri",
                     SupportedScopes = ["string"],
                 },
@@ -1219,6 +1226,7 @@ public class WorkerResponseMcpTest : TestBase
                     Exists = true,
                     Value = "value",
                 },
+                ExternalID = "external_id",
                 RedirectUri = "redirect_uri",
                 SupportedScopes = ["string"],
             },
@@ -1252,6 +1260,7 @@ public class WorkerResponseMcpTest : TestBase
                 Exists = true,
                 Value = "value",
             },
+            ExternalID = "external_id",
             RedirectUri = "redirect_uri",
             SupportedScopes = ["string"],
         };
@@ -1311,6 +1320,7 @@ public class WorkerResponseMcpTest : TestBase
                     Exists = true,
                     Value = "value",
                 },
+                ExternalID = "external_id",
                 RedirectUri = "redirect_uri",
                 SupportedScopes = ["string"],
             },
@@ -1358,6 +1368,7 @@ public class WorkerResponseMcpTest : TestBase
                     Exists = true,
                     Value = "value",
                 },
+                ExternalID = "external_id",
                 RedirectUri = "redirect_uri",
                 SupportedScopes = ["string"],
             },
@@ -1398,6 +1409,7 @@ public class WorkerResponseMcpTest : TestBase
                 Exists = true,
                 Value = "value",
             },
+            ExternalID = "external_id",
             RedirectUri = "redirect_uri",
             SupportedScopes = ["string"],
         };
@@ -1457,6 +1469,7 @@ public class WorkerResponseMcpTest : TestBase
                     Exists = true,
                     Value = "value",
                 },
+                ExternalID = "external_id",
                 RedirectUri = "redirect_uri",
                 SupportedScopes = ["string"],
             },
@@ -1570,6 +1583,7 @@ public class WorkerResponseMcpTest : TestBase
                     Exists = true,
                     Value = "value",
                 },
+                ExternalID = "external_id",
                 RedirectUri = "redirect_uri",
                 SupportedScopes = ["string"],
             },
@@ -1613,6 +1627,7 @@ public class WorkerResponseMcpOauth2Test : TestBase
                 Exists = true,
                 Value = "value",
             },
+            ExternalID = "external_id",
             RedirectUri = "redirect_uri",
             SupportedScopes = ["string"],
         };
@@ -1626,12 +1641,14 @@ public class WorkerResponseMcpOauth2Test : TestBase
             Exists = true,
             Value = "value",
         };
+        string expectedExternalID = "external_id";
         string expectedRedirectUri = "redirect_uri";
         List<string> expectedSupportedScopes = ["string"];
 
         Assert.Equal(expectedAuthorizationUrl, model.AuthorizationUrl);
         Assert.Equal(expectedClientID, model.ClientID);
         Assert.Equal(expectedClientSecret, model.ClientSecret);
+        Assert.Equal(expectedExternalID, model.ExternalID);
         Assert.Equal(expectedRedirectUri, model.RedirectUri);
         Assert.NotNull(model.SupportedScopes);
         Assert.Equal(expectedSupportedScopes.Count, model.SupportedScopes.Count);
@@ -1655,6 +1672,7 @@ public class WorkerResponseMcpOauth2Test : TestBase
                 Exists = true,
                 Value = "value",
             },
+            ExternalID = "external_id",
             RedirectUri = "redirect_uri",
             SupportedScopes = ["string"],
         };
@@ -1682,6 +1700,7 @@ public class WorkerResponseMcpOauth2Test : TestBase
                 Exists = true,
                 Value = "value",
             },
+            ExternalID = "external_id",
             RedirectUri = "redirect_uri",
             SupportedScopes = ["string"],
         };
@@ -1702,12 +1721,14 @@ public class WorkerResponseMcpOauth2Test : TestBase
             Exists = true,
             Value = "value",
         };
+        string expectedExternalID = "external_id";
         string expectedRedirectUri = "redirect_uri";
         List<string> expectedSupportedScopes = ["string"];
 
         Assert.Equal(expectedAuthorizationUrl, deserialized.AuthorizationUrl);
         Assert.Equal(expectedClientID, deserialized.ClientID);
         Assert.Equal(expectedClientSecret, deserialized.ClientSecret);
+        Assert.Equal(expectedExternalID, deserialized.ExternalID);
         Assert.Equal(expectedRedirectUri, deserialized.RedirectUri);
         Assert.NotNull(deserialized.SupportedScopes);
         Assert.Equal(expectedSupportedScopes.Count, deserialized.SupportedScopes.Count);
@@ -1731,6 +1752,7 @@ public class WorkerResponseMcpOauth2Test : TestBase
                 Exists = true,
                 Value = "value",
             },
+            ExternalID = "external_id",
             RedirectUri = "redirect_uri",
             SupportedScopes = ["string"],
         };
@@ -1749,6 +1771,8 @@ public class WorkerResponseMcpOauth2Test : TestBase
         Assert.False(model.RawData.ContainsKey("client_id"));
         Assert.Null(model.ClientSecret);
         Assert.False(model.RawData.ContainsKey("client_secret"));
+        Assert.Null(model.ExternalID);
+        Assert.False(model.RawData.ContainsKey("external_id"));
         Assert.Null(model.RedirectUri);
         Assert.False(model.RawData.ContainsKey("redirect_uri"));
         Assert.Null(model.SupportedScopes);
@@ -1772,6 +1796,7 @@ public class WorkerResponseMcpOauth2Test : TestBase
             AuthorizationUrl = null,
             ClientID = null,
             ClientSecret = null,
+            ExternalID = null,
             RedirectUri = null,
             SupportedScopes = null,
         };
@@ -1782,6 +1807,8 @@ public class WorkerResponseMcpOauth2Test : TestBase
         Assert.False(model.RawData.ContainsKey("client_id"));
         Assert.Null(model.ClientSecret);
         Assert.False(model.RawData.ContainsKey("client_secret"));
+        Assert.Null(model.ExternalID);
+        Assert.False(model.RawData.ContainsKey("external_id"));
         Assert.Null(model.RedirectUri);
         Assert.False(model.RawData.ContainsKey("redirect_uri"));
         Assert.Null(model.SupportedScopes);
@@ -1797,6 +1824,7 @@ public class WorkerResponseMcpOauth2Test : TestBase
             AuthorizationUrl = null,
             ClientID = null,
             ClientSecret = null,
+            ExternalID = null,
             RedirectUri = null,
             SupportedScopes = null,
         };
@@ -1818,6 +1846,7 @@ public class WorkerResponseMcpOauth2Test : TestBase
                 Exists = true,
                 Value = "value",
             },
+            ExternalID = "external_id",
             RedirectUri = "redirect_uri",
             SupportedScopes = ["string"],
         };
