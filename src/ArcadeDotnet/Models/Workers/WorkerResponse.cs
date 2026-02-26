@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -873,6 +874,27 @@ public sealed record class WorkerResponseMcpOauth2 : JsonModel
         }
     }
 
+    public IReadOnlyList<string>? SupportedScopes
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("supported_scopes");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "supported_scopes",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -880,6 +902,7 @@ public sealed record class WorkerResponseMcpOauth2 : JsonModel
         _ = this.ClientID;
         this.ClientSecret?.Validate();
         _ = this.RedirectUri;
+        _ = this.SupportedScopes;
     }
 
     public WorkerResponseMcpOauth2() { }

@@ -45,6 +45,7 @@ public class WorkerResponseTest : TestBase
                         Value = "value",
                     },
                     RedirectUri = "redirect_uri",
+                    SupportedScopes = ["string"],
                 },
                 Retry = 0,
                 Secrets = new Dictionary<string, SecretsItem>()
@@ -107,6 +108,7 @@ public class WorkerResponseTest : TestBase
                     Value = "value",
                 },
                 RedirectUri = "redirect_uri",
+                SupportedScopes = ["string"],
             },
             Retry = 0,
             Secrets = new Dictionary<string, SecretsItem>()
@@ -183,6 +185,7 @@ public class WorkerResponseTest : TestBase
                         Value = "value",
                     },
                     RedirectUri = "redirect_uri",
+                    SupportedScopes = ["string"],
                 },
                 Retry = 0,
                 Secrets = new Dictionary<string, SecretsItem>()
@@ -259,6 +262,7 @@ public class WorkerResponseTest : TestBase
                         Value = "value",
                     },
                     RedirectUri = "redirect_uri",
+                    SupportedScopes = ["string"],
                 },
                 Retry = 0,
                 Secrets = new Dictionary<string, SecretsItem>()
@@ -328,6 +332,7 @@ public class WorkerResponseTest : TestBase
                     Value = "value",
                 },
                 RedirectUri = "redirect_uri",
+                SupportedScopes = ["string"],
             },
             Retry = 0,
             Secrets = new Dictionary<string, SecretsItem>()
@@ -404,6 +409,7 @@ public class WorkerResponseTest : TestBase
                         Value = "value",
                     },
                     RedirectUri = "redirect_uri",
+                    SupportedScopes = ["string"],
                 },
                 Retry = 0,
                 Secrets = new Dictionary<string, SecretsItem>()
@@ -558,6 +564,7 @@ public class WorkerResponseTest : TestBase
                         Value = "value",
                     },
                     RedirectUri = "redirect_uri",
+                    SupportedScopes = ["string"],
                 },
                 Retry = 0,
                 Secrets = new Dictionary<string, SecretsItem>()
@@ -1213,6 +1220,7 @@ public class WorkerResponseMcpTest : TestBase
                     Value = "value",
                 },
                 RedirectUri = "redirect_uri",
+                SupportedScopes = ["string"],
             },
             Retry = 0,
             Secrets = new Dictionary<string, SecretsItem>()
@@ -1245,6 +1253,7 @@ public class WorkerResponseMcpTest : TestBase
                 Value = "value",
             },
             RedirectUri = "redirect_uri",
+            SupportedScopes = ["string"],
         };
         long expectedRetry = 0;
         Dictionary<string, SecretsItem> expectedSecrets = new()
@@ -1303,6 +1312,7 @@ public class WorkerResponseMcpTest : TestBase
                     Value = "value",
                 },
                 RedirectUri = "redirect_uri",
+                SupportedScopes = ["string"],
             },
             Retry = 0,
             Secrets = new Dictionary<string, SecretsItem>()
@@ -1349,6 +1359,7 @@ public class WorkerResponseMcpTest : TestBase
                     Value = "value",
                 },
                 RedirectUri = "redirect_uri",
+                SupportedScopes = ["string"],
             },
             Retry = 0,
             Secrets = new Dictionary<string, SecretsItem>()
@@ -1388,6 +1399,7 @@ public class WorkerResponseMcpTest : TestBase
                 Value = "value",
             },
             RedirectUri = "redirect_uri",
+            SupportedScopes = ["string"],
         };
         long expectedRetry = 0;
         Dictionary<string, SecretsItem> expectedSecrets = new()
@@ -1446,6 +1458,7 @@ public class WorkerResponseMcpTest : TestBase
                     Value = "value",
                 },
                 RedirectUri = "redirect_uri",
+                SupportedScopes = ["string"],
             },
             Retry = 0,
             Secrets = new Dictionary<string, SecretsItem>()
@@ -1558,6 +1571,7 @@ public class WorkerResponseMcpTest : TestBase
                     Value = "value",
                 },
                 RedirectUri = "redirect_uri",
+                SupportedScopes = ["string"],
             },
             Retry = 0,
             Secrets = new Dictionary<string, SecretsItem>()
@@ -1600,6 +1614,7 @@ public class WorkerResponseMcpOauth2Test : TestBase
                 Value = "value",
             },
             RedirectUri = "redirect_uri",
+            SupportedScopes = ["string"],
         };
 
         string expectedAuthorizationUrl = "authorization_url";
@@ -1612,11 +1627,18 @@ public class WorkerResponseMcpOauth2Test : TestBase
             Value = "value",
         };
         string expectedRedirectUri = "redirect_uri";
+        List<string> expectedSupportedScopes = ["string"];
 
         Assert.Equal(expectedAuthorizationUrl, model.AuthorizationUrl);
         Assert.Equal(expectedClientID, model.ClientID);
         Assert.Equal(expectedClientSecret, model.ClientSecret);
         Assert.Equal(expectedRedirectUri, model.RedirectUri);
+        Assert.NotNull(model.SupportedScopes);
+        Assert.Equal(expectedSupportedScopes.Count, model.SupportedScopes.Count);
+        for (int i = 0; i < expectedSupportedScopes.Count; i++)
+        {
+            Assert.Equal(expectedSupportedScopes[i], model.SupportedScopes[i]);
+        }
     }
 
     [Fact]
@@ -1634,6 +1656,7 @@ public class WorkerResponseMcpOauth2Test : TestBase
                 Value = "value",
             },
             RedirectUri = "redirect_uri",
+            SupportedScopes = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -1660,6 +1683,7 @@ public class WorkerResponseMcpOauth2Test : TestBase
                 Value = "value",
             },
             RedirectUri = "redirect_uri",
+            SupportedScopes = ["string"],
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -1679,11 +1703,18 @@ public class WorkerResponseMcpOauth2Test : TestBase
             Value = "value",
         };
         string expectedRedirectUri = "redirect_uri";
+        List<string> expectedSupportedScopes = ["string"];
 
         Assert.Equal(expectedAuthorizationUrl, deserialized.AuthorizationUrl);
         Assert.Equal(expectedClientID, deserialized.ClientID);
         Assert.Equal(expectedClientSecret, deserialized.ClientSecret);
         Assert.Equal(expectedRedirectUri, deserialized.RedirectUri);
+        Assert.NotNull(deserialized.SupportedScopes);
+        Assert.Equal(expectedSupportedScopes.Count, deserialized.SupportedScopes.Count);
+        for (int i = 0; i < expectedSupportedScopes.Count; i++)
+        {
+            Assert.Equal(expectedSupportedScopes[i], deserialized.SupportedScopes[i]);
+        }
     }
 
     [Fact]
@@ -1701,6 +1732,7 @@ public class WorkerResponseMcpOauth2Test : TestBase
                 Value = "value",
             },
             RedirectUri = "redirect_uri",
+            SupportedScopes = ["string"],
         };
 
         model.Validate();
@@ -1719,6 +1751,8 @@ public class WorkerResponseMcpOauth2Test : TestBase
         Assert.False(model.RawData.ContainsKey("client_secret"));
         Assert.Null(model.RedirectUri);
         Assert.False(model.RawData.ContainsKey("redirect_uri"));
+        Assert.Null(model.SupportedScopes);
+        Assert.False(model.RawData.ContainsKey("supported_scopes"));
     }
 
     [Fact]
@@ -1739,6 +1773,7 @@ public class WorkerResponseMcpOauth2Test : TestBase
             ClientID = null,
             ClientSecret = null,
             RedirectUri = null,
+            SupportedScopes = null,
         };
 
         Assert.Null(model.AuthorizationUrl);
@@ -1749,6 +1784,8 @@ public class WorkerResponseMcpOauth2Test : TestBase
         Assert.False(model.RawData.ContainsKey("client_secret"));
         Assert.Null(model.RedirectUri);
         Assert.False(model.RawData.ContainsKey("redirect_uri"));
+        Assert.Null(model.SupportedScopes);
+        Assert.False(model.RawData.ContainsKey("supported_scopes"));
     }
 
     [Fact]
@@ -1761,6 +1798,7 @@ public class WorkerResponseMcpOauth2Test : TestBase
             ClientID = null,
             ClientSecret = null,
             RedirectUri = null,
+            SupportedScopes = null,
         };
 
         model.Validate();
@@ -1781,6 +1819,7 @@ public class WorkerResponseMcpOauth2Test : TestBase
                 Value = "value",
             },
             RedirectUri = "redirect_uri",
+            SupportedScopes = ["string"],
         };
 
         WorkerResponseMcpOauth2 copied = new(model);

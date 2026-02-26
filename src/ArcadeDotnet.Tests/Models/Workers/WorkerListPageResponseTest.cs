@@ -48,6 +48,7 @@ public class WorkerListPageResponseTest : TestBase
                                 Value = "value",
                             },
                             RedirectUri = "redirect_uri",
+                            SupportedScopes = ["string"],
                         },
                         Retry = 0,
                         Secrets = new Dictionary<string, SecretsItem>()
@@ -120,6 +121,7 @@ public class WorkerListPageResponseTest : TestBase
                             Value = "value",
                         },
                         RedirectUri = "redirect_uri",
+                        SupportedScopes = ["string"],
                     },
                     Retry = 0,
                     Secrets = new Dictionary<string, SecretsItem>()
@@ -208,6 +210,7 @@ public class WorkerListPageResponseTest : TestBase
                                 Value = "value",
                             },
                             RedirectUri = "redirect_uri",
+                            SupportedScopes = ["string"],
                         },
                         Retry = 0,
                         Secrets = new Dictionary<string, SecretsItem>()
@@ -294,6 +297,7 @@ public class WorkerListPageResponseTest : TestBase
                                 Value = "value",
                             },
                             RedirectUri = "redirect_uri",
+                            SupportedScopes = ["string"],
                         },
                         Retry = 0,
                         Secrets = new Dictionary<string, SecretsItem>()
@@ -373,6 +377,7 @@ public class WorkerListPageResponseTest : TestBase
                             Value = "value",
                         },
                         RedirectUri = "redirect_uri",
+                        SupportedScopes = ["string"],
                     },
                     Retry = 0,
                     Secrets = new Dictionary<string, SecretsItem>()
@@ -461,6 +466,7 @@ public class WorkerListPageResponseTest : TestBase
                                 Value = "value",
                             },
                             RedirectUri = "redirect_uri",
+                            SupportedScopes = ["string"],
                         },
                         Retry = 0,
                         Secrets = new Dictionary<string, SecretsItem>()
@@ -607,6 +613,7 @@ public class WorkerListPageResponseTest : TestBase
                                 Value = "value",
                             },
                             RedirectUri = "redirect_uri",
+                            SupportedScopes = ["string"],
                         },
                         Retry = 0,
                         Secrets = new Dictionary<string, SecretsItem>()
