@@ -46,22 +46,6 @@ public class ToolDefinitionTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
-            Metadata = new()
-            {
-                Behavior = new()
-                {
-                    Destructive = true,
-                    Idempotent = true,
-                    OpenWorld = true,
-                    Operations = ["string"],
-                    ReadOnly = true,
-                },
-                Classification = new() { ServiceDomains = ["string"] },
-                Extras = new Dictionary<string, JsonElement>()
-                {
-                    { "foo", JsonSerializer.SerializeToElement("bar") },
-                },
-            },
             Output = new()
             {
                 AvailableModes = ["string"],
@@ -131,22 +115,6 @@ public class ToolDefinitionTest : TestBase
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
-        Metadata expectedMetadata = new()
-        {
-            Behavior = new()
-            {
-                Destructive = true,
-                Idempotent = true,
-                OpenWorld = true,
-                Operations = ["string"],
-                ReadOnly = true,
-            },
-            Classification = new() { ServiceDomains = ["string"] },
-            Extras = new Dictionary<string, JsonElement>()
-            {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
-            },
-        };
         ToolDefinitionOutput expectedOutput = new()
         {
             AvailableModes = ["string"],
@@ -196,7 +164,6 @@ public class ToolDefinitionTest : TestBase
 
             Assert.True(JsonElement.DeepEquals(value, model.FormattedSchema[item.Key]));
         }
-        Assert.Equal(expectedMetadata, model.Metadata);
         Assert.Equal(expectedOutput, model.Output);
         Assert.Equal(expectedRequirements, model.Requirements);
     }
@@ -238,22 +205,6 @@ public class ToolDefinitionTest : TestBase
             FormattedSchema = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
-            },
-            Metadata = new()
-            {
-                Behavior = new()
-                {
-                    Destructive = true,
-                    Idempotent = true,
-                    OpenWorld = true,
-                    Operations = ["string"],
-                    ReadOnly = true,
-                },
-                Classification = new() { ServiceDomains = ["string"] },
-                Extras = new Dictionary<string, JsonElement>()
-                {
-                    { "foo", JsonSerializer.SerializeToElement("bar") },
-                },
             },
             Output = new()
             {
@@ -338,22 +289,6 @@ public class ToolDefinitionTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
-            Metadata = new()
-            {
-                Behavior = new()
-                {
-                    Destructive = true,
-                    Idempotent = true,
-                    OpenWorld = true,
-                    Operations = ["string"],
-                    ReadOnly = true,
-                },
-                Classification = new() { ServiceDomains = ["string"] },
-                Extras = new Dictionary<string, JsonElement>()
-                {
-                    { "foo", JsonSerializer.SerializeToElement("bar") },
-                },
-            },
             Output = new()
             {
                 AvailableModes = ["string"],
@@ -430,22 +365,6 @@ public class ToolDefinitionTest : TestBase
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
-        Metadata expectedMetadata = new()
-        {
-            Behavior = new()
-            {
-                Destructive = true,
-                Idempotent = true,
-                OpenWorld = true,
-                Operations = ["string"],
-                ReadOnly = true,
-            },
-            Classification = new() { ServiceDomains = ["string"] },
-            Extras = new Dictionary<string, JsonElement>()
-            {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
-            },
-        };
         ToolDefinitionOutput expectedOutput = new()
         {
             AvailableModes = ["string"],
@@ -495,7 +414,6 @@ public class ToolDefinitionTest : TestBase
 
             Assert.True(JsonElement.DeepEquals(value, deserialized.FormattedSchema[item.Key]));
         }
-        Assert.Equal(expectedMetadata, deserialized.Metadata);
         Assert.Equal(expectedOutput, deserialized.Output);
         Assert.Equal(expectedRequirements, deserialized.Requirements);
     }
@@ -537,22 +455,6 @@ public class ToolDefinitionTest : TestBase
             FormattedSchema = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
-            },
-            Metadata = new()
-            {
-                Behavior = new()
-                {
-                    Destructive = true,
-                    Idempotent = true,
-                    OpenWorld = true,
-                    Operations = ["string"],
-                    ReadOnly = true,
-                },
-                Classification = new() { ServiceDomains = ["string"] },
-                Extras = new Dictionary<string, JsonElement>()
-                {
-                    { "foo", JsonSerializer.SerializeToElement("bar") },
-                },
             },
             Output = new()
             {
@@ -632,8 +534,6 @@ public class ToolDefinitionTest : TestBase
         Assert.False(model.RawData.ContainsKey("description"));
         Assert.Null(model.FormattedSchema);
         Assert.False(model.RawData.ContainsKey("formatted_schema"));
-        Assert.Null(model.Metadata);
-        Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.Output);
         Assert.False(model.RawData.ContainsKey("output"));
         Assert.Null(model.Requirements);
@@ -715,7 +615,6 @@ public class ToolDefinitionTest : TestBase
             // Null should be interpreted as omitted for these properties
             Description = null,
             FormattedSchema = null,
-            Metadata = null,
             Output = null,
             Requirements = null,
         };
@@ -724,8 +623,6 @@ public class ToolDefinitionTest : TestBase
         Assert.False(model.RawData.ContainsKey("description"));
         Assert.Null(model.FormattedSchema);
         Assert.False(model.RawData.ContainsKey("formatted_schema"));
-        Assert.Null(model.Metadata);
-        Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.Output);
         Assert.False(model.RawData.ContainsKey("output"));
         Assert.Null(model.Requirements);
@@ -769,7 +666,6 @@ public class ToolDefinitionTest : TestBase
             // Null should be interpreted as omitted for these properties
             Description = null,
             FormattedSchema = null,
-            Metadata = null,
             Output = null,
             Requirements = null,
         };
@@ -814,22 +710,6 @@ public class ToolDefinitionTest : TestBase
             FormattedSchema = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
-            },
-            Metadata = new()
-            {
-                Behavior = new()
-                {
-                    Destructive = true,
-                    Idempotent = true,
-                    OpenWorld = true,
-                    Operations = ["string"],
-                    ReadOnly = true,
-                },
-                Classification = new() { ServiceDomains = ["string"] },
-                Extras = new Dictionary<string, JsonElement>()
-                {
-                    { "foo", JsonSerializer.SerializeToElement("bar") },
-                },
             },
             Output = new()
             {
@@ -1473,536 +1353,6 @@ public class ToolkitTest : TestBase
         };
 
         Toolkit copied = new(model);
-
-        Assert.Equal(model, copied);
-    }
-}
-
-public class MetadataTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new Metadata
-        {
-            Behavior = new()
-            {
-                Destructive = true,
-                Idempotent = true,
-                OpenWorld = true,
-                Operations = ["string"],
-                ReadOnly = true,
-            },
-            Classification = new() { ServiceDomains = ["string"] },
-            Extras = new Dictionary<string, JsonElement>()
-            {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
-            },
-        };
-
-        Behavior expectedBehavior = new()
-        {
-            Destructive = true,
-            Idempotent = true,
-            OpenWorld = true,
-            Operations = ["string"],
-            ReadOnly = true,
-        };
-        Classification expectedClassification = new() { ServiceDomains = ["string"] };
-        Dictionary<string, JsonElement> expectedExtras = new()
-        {
-            { "foo", JsonSerializer.SerializeToElement("bar") },
-        };
-
-        Assert.Equal(expectedBehavior, model.Behavior);
-        Assert.Equal(expectedClassification, model.Classification);
-        Assert.NotNull(model.Extras);
-        Assert.Equal(expectedExtras.Count, model.Extras.Count);
-        foreach (var item in expectedExtras)
-        {
-            Assert.True(model.Extras.TryGetValue(item.Key, out var value));
-
-            Assert.True(JsonElement.DeepEquals(value, model.Extras[item.Key]));
-        }
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new Metadata
-        {
-            Behavior = new()
-            {
-                Destructive = true,
-                Idempotent = true,
-                OpenWorld = true,
-                Operations = ["string"],
-                ReadOnly = true,
-            },
-            Classification = new() { ServiceDomains = ["string"] },
-            Extras = new Dictionary<string, JsonElement>()
-            {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
-            },
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Metadata>(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new Metadata
-        {
-            Behavior = new()
-            {
-                Destructive = true,
-                Idempotent = true,
-                OpenWorld = true,
-                Operations = ["string"],
-                ReadOnly = true,
-            },
-            Classification = new() { ServiceDomains = ["string"] },
-            Extras = new Dictionary<string, JsonElement>()
-            {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
-            },
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Metadata>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        Behavior expectedBehavior = new()
-        {
-            Destructive = true,
-            Idempotent = true,
-            OpenWorld = true,
-            Operations = ["string"],
-            ReadOnly = true,
-        };
-        Classification expectedClassification = new() { ServiceDomains = ["string"] };
-        Dictionary<string, JsonElement> expectedExtras = new()
-        {
-            { "foo", JsonSerializer.SerializeToElement("bar") },
-        };
-
-        Assert.Equal(expectedBehavior, deserialized.Behavior);
-        Assert.Equal(expectedClassification, deserialized.Classification);
-        Assert.NotNull(deserialized.Extras);
-        Assert.Equal(expectedExtras.Count, deserialized.Extras.Count);
-        foreach (var item in expectedExtras)
-        {
-            Assert.True(deserialized.Extras.TryGetValue(item.Key, out var value));
-
-            Assert.True(JsonElement.DeepEquals(value, deserialized.Extras[item.Key]));
-        }
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new Metadata
-        {
-            Behavior = new()
-            {
-                Destructive = true,
-                Idempotent = true,
-                OpenWorld = true,
-                Operations = ["string"],
-                ReadOnly = true,
-            },
-            Classification = new() { ServiceDomains = ["string"] },
-            Extras = new Dictionary<string, JsonElement>()
-            {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
-            },
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new Metadata { };
-
-        Assert.Null(model.Behavior);
-        Assert.False(model.RawData.ContainsKey("behavior"));
-        Assert.Null(model.Classification);
-        Assert.False(model.RawData.ContainsKey("classification"));
-        Assert.Null(model.Extras);
-        Assert.False(model.RawData.ContainsKey("extras"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new Metadata { };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new Metadata
-        {
-            // Null should be interpreted as omitted for these properties
-            Behavior = null,
-            Classification = null,
-            Extras = null,
-        };
-
-        Assert.Null(model.Behavior);
-        Assert.False(model.RawData.ContainsKey("behavior"));
-        Assert.Null(model.Classification);
-        Assert.False(model.RawData.ContainsKey("classification"));
-        Assert.Null(model.Extras);
-        Assert.False(model.RawData.ContainsKey("extras"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new Metadata
-        {
-            // Null should be interpreted as omitted for these properties
-            Behavior = null,
-            Classification = null,
-            Extras = null,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new Metadata
-        {
-            Behavior = new()
-            {
-                Destructive = true,
-                Idempotent = true,
-                OpenWorld = true,
-                Operations = ["string"],
-                ReadOnly = true,
-            },
-            Classification = new() { ServiceDomains = ["string"] },
-            Extras = new Dictionary<string, JsonElement>()
-            {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
-            },
-        };
-
-        Metadata copied = new(model);
-
-        Assert.Equal(model, copied);
-    }
-}
-
-public class BehaviorTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new Behavior
-        {
-            Destructive = true,
-            Idempotent = true,
-            OpenWorld = true,
-            Operations = ["string"],
-            ReadOnly = true,
-        };
-
-        bool expectedDestructive = true;
-        bool expectedIdempotent = true;
-        bool expectedOpenWorld = true;
-        List<string> expectedOperations = ["string"];
-        bool expectedReadOnly = true;
-
-        Assert.Equal(expectedDestructive, model.Destructive);
-        Assert.Equal(expectedIdempotent, model.Idempotent);
-        Assert.Equal(expectedOpenWorld, model.OpenWorld);
-        Assert.NotNull(model.Operations);
-        Assert.Equal(expectedOperations.Count, model.Operations.Count);
-        for (int i = 0; i < expectedOperations.Count; i++)
-        {
-            Assert.Equal(expectedOperations[i], model.Operations[i]);
-        }
-        Assert.Equal(expectedReadOnly, model.ReadOnly);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new Behavior
-        {
-            Destructive = true,
-            Idempotent = true,
-            OpenWorld = true,
-            Operations = ["string"],
-            ReadOnly = true,
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Behavior>(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new Behavior
-        {
-            Destructive = true,
-            Idempotent = true,
-            OpenWorld = true,
-            Operations = ["string"],
-            ReadOnly = true,
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Behavior>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        bool expectedDestructive = true;
-        bool expectedIdempotent = true;
-        bool expectedOpenWorld = true;
-        List<string> expectedOperations = ["string"];
-        bool expectedReadOnly = true;
-
-        Assert.Equal(expectedDestructive, deserialized.Destructive);
-        Assert.Equal(expectedIdempotent, deserialized.Idempotent);
-        Assert.Equal(expectedOpenWorld, deserialized.OpenWorld);
-        Assert.NotNull(deserialized.Operations);
-        Assert.Equal(expectedOperations.Count, deserialized.Operations.Count);
-        for (int i = 0; i < expectedOperations.Count; i++)
-        {
-            Assert.Equal(expectedOperations[i], deserialized.Operations[i]);
-        }
-        Assert.Equal(expectedReadOnly, deserialized.ReadOnly);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new Behavior
-        {
-            Destructive = true,
-            Idempotent = true,
-            OpenWorld = true,
-            Operations = ["string"],
-            ReadOnly = true,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new Behavior { };
-
-        Assert.Null(model.Destructive);
-        Assert.False(model.RawData.ContainsKey("destructive"));
-        Assert.Null(model.Idempotent);
-        Assert.False(model.RawData.ContainsKey("idempotent"));
-        Assert.Null(model.OpenWorld);
-        Assert.False(model.RawData.ContainsKey("open_world"));
-        Assert.Null(model.Operations);
-        Assert.False(model.RawData.ContainsKey("operations"));
-        Assert.Null(model.ReadOnly);
-        Assert.False(model.RawData.ContainsKey("read_only"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new Behavior { };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new Behavior
-        {
-            // Null should be interpreted as omitted for these properties
-            Destructive = null,
-            Idempotent = null,
-            OpenWorld = null,
-            Operations = null,
-            ReadOnly = null,
-        };
-
-        Assert.Null(model.Destructive);
-        Assert.False(model.RawData.ContainsKey("destructive"));
-        Assert.Null(model.Idempotent);
-        Assert.False(model.RawData.ContainsKey("idempotent"));
-        Assert.Null(model.OpenWorld);
-        Assert.False(model.RawData.ContainsKey("open_world"));
-        Assert.Null(model.Operations);
-        Assert.False(model.RawData.ContainsKey("operations"));
-        Assert.Null(model.ReadOnly);
-        Assert.False(model.RawData.ContainsKey("read_only"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new Behavior
-        {
-            // Null should be interpreted as omitted for these properties
-            Destructive = null,
-            Idempotent = null,
-            OpenWorld = null,
-            Operations = null,
-            ReadOnly = null,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new Behavior
-        {
-            Destructive = true,
-            Idempotent = true,
-            OpenWorld = true,
-            Operations = ["string"],
-            ReadOnly = true,
-        };
-
-        Behavior copied = new(model);
-
-        Assert.Equal(model, copied);
-    }
-}
-
-public class ClassificationTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new Classification { ServiceDomains = ["string"] };
-
-        List<string> expectedServiceDomains = ["string"];
-
-        Assert.NotNull(model.ServiceDomains);
-        Assert.Equal(expectedServiceDomains.Count, model.ServiceDomains.Count);
-        for (int i = 0; i < expectedServiceDomains.Count; i++)
-        {
-            Assert.Equal(expectedServiceDomains[i], model.ServiceDomains[i]);
-        }
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new Classification { ServiceDomains = ["string"] };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Classification>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new Classification { ServiceDomains = ["string"] };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Classification>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        List<string> expectedServiceDomains = ["string"];
-
-        Assert.NotNull(deserialized.ServiceDomains);
-        Assert.Equal(expectedServiceDomains.Count, deserialized.ServiceDomains.Count);
-        for (int i = 0; i < expectedServiceDomains.Count; i++)
-        {
-            Assert.Equal(expectedServiceDomains[i], deserialized.ServiceDomains[i]);
-        }
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new Classification { ServiceDomains = ["string"] };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new Classification { };
-
-        Assert.Null(model.ServiceDomains);
-        Assert.False(model.RawData.ContainsKey("service_domains"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new Classification { };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new Classification
-        {
-            // Null should be interpreted as omitted for these properties
-            ServiceDomains = null,
-        };
-
-        Assert.Null(model.ServiceDomains);
-        Assert.False(model.RawData.ContainsKey("service_domains"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new Classification
-        {
-            // Null should be interpreted as omitted for these properties
-            ServiceDomains = null,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new Classification { ServiceDomains = ["string"] };
-
-        Classification copied = new(model);
 
         Assert.Equal(model, copied);
     }

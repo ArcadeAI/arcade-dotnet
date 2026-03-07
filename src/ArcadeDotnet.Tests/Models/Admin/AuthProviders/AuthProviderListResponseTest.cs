@@ -40,6 +40,7 @@ public class AuthProviderListResponseTest : TestBase
                             Binding = ClientSecretBinding.Static,
                             Editable = true,
                             Exists = true,
+                            Hint = "hint",
                             Value = "value",
                         },
                         Pkce = new()
@@ -141,6 +142,7 @@ public class AuthProviderListResponseTest : TestBase
                         Binding = ClientSecretBinding.Static,
                         Editable = true,
                         Exists = true,
+                        Hint = "hint",
                         Value = "value",
                     },
                     Pkce = new() { CodeChallengeMethod = "code_challenge_method", Enabled = true },
@@ -254,6 +256,7 @@ public class AuthProviderListResponseTest : TestBase
                             Binding = ClientSecretBinding.Static,
                             Editable = true,
                             Exists = true,
+                            Hint = "hint",
                             Value = "value",
                         },
                         Pkce = new()
@@ -369,6 +372,7 @@ public class AuthProviderListResponseTest : TestBase
                             Binding = ClientSecretBinding.Static,
                             Editable = true,
                             Exists = true,
+                            Hint = "hint",
                             Value = "value",
                         },
                         Pkce = new()
@@ -477,6 +481,7 @@ public class AuthProviderListResponseTest : TestBase
                         Binding = ClientSecretBinding.Static,
                         Editable = true,
                         Exists = true,
+                        Hint = "hint",
                         Value = "value",
                     },
                     Pkce = new() { CodeChallengeMethod = "code_challenge_method", Enabled = true },
@@ -590,6 +595,7 @@ public class AuthProviderListResponseTest : TestBase
                             Binding = ClientSecretBinding.Static,
                             Editable = true,
                             Exists = true,
+                            Hint = "hint",
                             Value = "value",
                         },
                         Pkce = new()
@@ -765,6 +771,7 @@ public class AuthProviderListResponseTest : TestBase
                             Binding = ClientSecretBinding.Static,
                             Editable = true,
                             Exists = true,
+                            Hint = "hint",
                             Value = "value",
                         },
                         Pkce = new()

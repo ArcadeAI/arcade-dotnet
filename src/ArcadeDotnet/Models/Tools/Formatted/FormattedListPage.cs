@@ -16,10 +16,10 @@ public sealed class FormattedListPage(
     IFormattedServiceWithRawResponse service,
     FormattedListParams parameters,
     FormattedListPageResponse response
-) : IPage<IReadOnlyDictionary<string, JsonElement>>
+) : IPage<JsonElement>
 {
     /// <inheritdoc/>
-    public IReadOnlyList<IReadOnlyDictionary<string, JsonElement>> Items
+    public IReadOnlyList<JsonElement> Items
     {
         get { return response.Items ?? []; }
     }
@@ -49,9 +49,7 @@ public sealed class FormattedListPage(
     }
 
     /// <inheritdoc/>
-    async Task<IPage<IReadOnlyDictionary<string, JsonElement>>> IPage<
-        IReadOnlyDictionary<string, JsonElement>
-    >.Next(CancellationToken cancellationToken) =>
+    async Task<IPage<JsonElement>> IPage<JsonElement>.Next(CancellationToken cancellationToken) =>
         await this.Next(cancellationToken).ConfigureAwait(false);
 
     /// <inheritdoc cref="IPage{T}.Next"/>

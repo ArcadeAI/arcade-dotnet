@@ -84,6 +84,24 @@ public sealed record class SecretResponse : JsonModel
         }
     }
 
+    public string? Hint
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("hint");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("hint", value);
+        }
+    }
+
     public string? Key
     {
         get
@@ -145,6 +163,7 @@ public sealed record class SecretResponse : JsonModel
         this.Binding?.Validate();
         _ = this.CreatedAt;
         _ = this.Description;
+        _ = this.Hint;
         _ = this.Key;
         _ = this.LastAccessedAt;
         _ = this.UpdatedAt;

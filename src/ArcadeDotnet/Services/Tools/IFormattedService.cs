@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -40,13 +39,13 @@ public interface IFormattedService
     /// <summary>
     /// Returns the formatted tool specification for a specific tool, given a provider
     /// </summary>
-    Task<Dictionary<string, JsonElement>> Get(
+    Task<JsonElement> Get(
         FormattedGetParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Get(FormattedGetParams, CancellationToken)"/>
-    Task<Dictionary<string, JsonElement>> Get(
+    Task<JsonElement> Get(
         string name,
         FormattedGetParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -79,13 +78,13 @@ public interface IFormattedServiceWithRawResponse
     /// Returns a raw HTTP response for `get /v1/formatted_tools/{name}`, but is otherwise the
     /// same as <see cref="IFormattedService.Get(FormattedGetParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<Dictionary<string, JsonElement>>> Get(
+    Task<HttpResponse<JsonElement>> Get(
         FormattedGetParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Get(FormattedGetParams, CancellationToken)"/>
-    Task<HttpResponse<Dictionary<string, JsonElement>>> Get(
+    Task<HttpResponse<JsonElement>> Get(
         string name,
         FormattedGetParams? parameters = null,
         CancellationToken cancellationToken = default
