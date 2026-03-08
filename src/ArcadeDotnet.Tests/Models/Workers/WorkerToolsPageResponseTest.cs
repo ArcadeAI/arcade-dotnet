@@ -50,6 +50,22 @@ public class WorkerToolsPageResponseTest : TestBase
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Metadata = new()
+                    {
+                        Behavior = new()
+                        {
+                            Destructive = true,
+                            Idempotent = true,
+                            OpenWorld = true,
+                            Operations = ["string"],
+                            ReadOnly = true,
+                        },
+                        Classification = new() { ServiceDomains = ["string"] },
+                        Extras = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                    },
                     Output = new()
                     {
                         AvailableModes = ["string"],
@@ -128,6 +144,22 @@ public class WorkerToolsPageResponseTest : TestBase
                 FormattedSchema = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Metadata = new()
+                {
+                    Behavior = new()
+                    {
+                        Destructive = true,
+                        Idempotent = true,
+                        OpenWorld = true,
+                        Operations = ["string"],
+                        ReadOnly = true,
+                    },
+                    Classification = new() { ServiceDomains = ["string"] },
+                    Extras = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                 },
                 Output = new()
                 {
@@ -224,6 +256,22 @@ public class WorkerToolsPageResponseTest : TestBase
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Metadata = new()
+                    {
+                        Behavior = new()
+                        {
+                            Destructive = true,
+                            Idempotent = true,
+                            OpenWorld = true,
+                            Operations = ["string"],
+                            ReadOnly = true,
+                        },
+                        Classification = new() { ServiceDomains = ["string"] },
+                        Extras = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                    },
                     Output = new()
                     {
                         AvailableModes = ["string"],
@@ -317,6 +365,22 @@ public class WorkerToolsPageResponseTest : TestBase
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Metadata = new()
+                    {
+                        Behavior = new()
+                        {
+                            Destructive = true,
+                            Idempotent = true,
+                            OpenWorld = true,
+                            Operations = ["string"],
+                            ReadOnly = true,
+                        },
+                        Classification = new() { ServiceDomains = ["string"] },
+                        Extras = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                    },
                     Output = new()
                     {
                         AvailableModes = ["string"],
@@ -402,6 +466,22 @@ public class WorkerToolsPageResponseTest : TestBase
                 FormattedSchema = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Metadata = new()
+                {
+                    Behavior = new()
+                    {
+                        Destructive = true,
+                        Idempotent = true,
+                        OpenWorld = true,
+                        Operations = ["string"],
+                        ReadOnly = true,
+                    },
+                    Classification = new() { ServiceDomains = ["string"] },
+                    Extras = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                 },
                 Output = new()
                 {
@@ -497,6 +577,22 @@ public class WorkerToolsPageResponseTest : TestBase
                     FormattedSchema = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Metadata = new()
+                    {
+                        Behavior = new()
+                        {
+                            Destructive = true,
+                            Idempotent = true,
+                            OpenWorld = true,
+                            Operations = ["string"],
+                            ReadOnly = true,
+                        },
+                        Classification = new() { ServiceDomains = ["string"] },
+                        Extras = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
                     },
                     Output = new()
                     {
@@ -650,6 +746,22 @@ public class WorkerToolsPageResponseTest : TestBase
                     FormattedSchema = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Metadata = new()
+                    {
+                        Behavior = new()
+                        {
+                            Destructive = true,
+                            Idempotent = true,
+                            OpenWorld = true,
+                            Operations = ["string"],
+                            ReadOnly = true,
+                        },
+                        Classification = new() { ServiceDomains = ["string"] },
+                        Extras = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
                     },
                     Output = new()
                     {

@@ -16,7 +16,6 @@ public class SecretResponseTest : TestBase
             Binding = new() { ID = "id", Type = Type.Static },
             CreatedAt = "created_at",
             Description = "description",
-            Hint = "hint",
             Key = "key",
             LastAccessedAt = "last_accessed_at",
             UpdatedAt = "updated_at",
@@ -26,7 +25,6 @@ public class SecretResponseTest : TestBase
         Binding expectedBinding = new() { ID = "id", Type = Type.Static };
         string expectedCreatedAt = "created_at";
         string expectedDescription = "description";
-        string expectedHint = "hint";
         string expectedKey = "key";
         string expectedLastAccessedAt = "last_accessed_at";
         string expectedUpdatedAt = "updated_at";
@@ -35,7 +33,6 @@ public class SecretResponseTest : TestBase
         Assert.Equal(expectedBinding, model.Binding);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.Equal(expectedDescription, model.Description);
-        Assert.Equal(expectedHint, model.Hint);
         Assert.Equal(expectedKey, model.Key);
         Assert.Equal(expectedLastAccessedAt, model.LastAccessedAt);
         Assert.Equal(expectedUpdatedAt, model.UpdatedAt);
@@ -50,7 +47,6 @@ public class SecretResponseTest : TestBase
             Binding = new() { ID = "id", Type = Type.Static },
             CreatedAt = "created_at",
             Description = "description",
-            Hint = "hint",
             Key = "key",
             LastAccessedAt = "last_accessed_at",
             UpdatedAt = "updated_at",
@@ -74,7 +70,6 @@ public class SecretResponseTest : TestBase
             Binding = new() { ID = "id", Type = Type.Static },
             CreatedAt = "created_at",
             Description = "description",
-            Hint = "hint",
             Key = "key",
             LastAccessedAt = "last_accessed_at",
             UpdatedAt = "updated_at",
@@ -91,7 +86,6 @@ public class SecretResponseTest : TestBase
         Binding expectedBinding = new() { ID = "id", Type = Type.Static };
         string expectedCreatedAt = "created_at";
         string expectedDescription = "description";
-        string expectedHint = "hint";
         string expectedKey = "key";
         string expectedLastAccessedAt = "last_accessed_at";
         string expectedUpdatedAt = "updated_at";
@@ -100,7 +94,6 @@ public class SecretResponseTest : TestBase
         Assert.Equal(expectedBinding, deserialized.Binding);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.Equal(expectedDescription, deserialized.Description);
-        Assert.Equal(expectedHint, deserialized.Hint);
         Assert.Equal(expectedKey, deserialized.Key);
         Assert.Equal(expectedLastAccessedAt, deserialized.LastAccessedAt);
         Assert.Equal(expectedUpdatedAt, deserialized.UpdatedAt);
@@ -115,7 +108,6 @@ public class SecretResponseTest : TestBase
             Binding = new() { ID = "id", Type = Type.Static },
             CreatedAt = "created_at",
             Description = "description",
-            Hint = "hint",
             Key = "key",
             LastAccessedAt = "last_accessed_at",
             UpdatedAt = "updated_at",
@@ -137,8 +129,6 @@ public class SecretResponseTest : TestBase
         Assert.False(model.RawData.ContainsKey("created_at"));
         Assert.Null(model.Description);
         Assert.False(model.RawData.ContainsKey("description"));
-        Assert.Null(model.Hint);
-        Assert.False(model.RawData.ContainsKey("hint"));
         Assert.Null(model.Key);
         Assert.False(model.RawData.ContainsKey("key"));
         Assert.Null(model.LastAccessedAt);
@@ -165,7 +155,6 @@ public class SecretResponseTest : TestBase
             Binding = null,
             CreatedAt = null,
             Description = null,
-            Hint = null,
             Key = null,
             LastAccessedAt = null,
             UpdatedAt = null,
@@ -179,8 +168,6 @@ public class SecretResponseTest : TestBase
         Assert.False(model.RawData.ContainsKey("created_at"));
         Assert.Null(model.Description);
         Assert.False(model.RawData.ContainsKey("description"));
-        Assert.Null(model.Hint);
-        Assert.False(model.RawData.ContainsKey("hint"));
         Assert.Null(model.Key);
         Assert.False(model.RawData.ContainsKey("key"));
         Assert.Null(model.LastAccessedAt);
@@ -199,7 +186,6 @@ public class SecretResponseTest : TestBase
             Binding = null,
             CreatedAt = null,
             Description = null,
-            Hint = null,
             Key = null,
             LastAccessedAt = null,
             UpdatedAt = null,
@@ -217,7 +203,6 @@ public class SecretResponseTest : TestBase
             Binding = new() { ID = "id", Type = Type.Static },
             CreatedAt = "created_at",
             Description = "description",
-            Hint = "hint",
             Key = "key",
             LastAccessedAt = "last_accessed_at",
             UpdatedAt = "updated_at",

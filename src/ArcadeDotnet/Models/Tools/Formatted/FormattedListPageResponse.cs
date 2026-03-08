@@ -2,6 +2,7 @@ using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
@@ -13,12 +14,14 @@ namespace ArcadeDotnet.Models.Tools.Formatted;
 )]
 public sealed record class FormattedListPageResponse : JsonModel
 {
-    public IReadOnlyList<JsonElement>? Items
+    public IReadOnlyList<IReadOnlyDictionary<string, JsonElement>>? Items
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<ImmutableArray<JsonElement>>("items");
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<FrozenDictionary<string, JsonElement>>
+            >("items");
         }
         init
         {
@@ -27,9 +30,16 @@ public sealed record class FormattedListPageResponse : JsonModel
                 return;
             }
 
-            this._rawData.Set<ImmutableArray<JsonElement>?>(
+            this._rawData.Set<ImmutableArray<FrozenDictionary<string, JsonElement>>?>(
                 "items",
-                value == null ? null : ImmutableArray.ToImmutableArray(value)
+                value == null
+                    ? null
+                    : ImmutableArray.ToImmutableArray(
+                        Enumerable.Select(
+                            value,
+                            (item) => FrozenDictionary.ToFrozenDictionary(item)
+                        )
+                    )
             );
         }
     }

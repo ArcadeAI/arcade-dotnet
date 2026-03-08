@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using ArcadeDotnet.Core;
 
 namespace ArcadeDotnet.Models.Admin.UserConnections;
@@ -60,12 +59,15 @@ public record class UserConnectionListParams : ParamsBase
         }
     }
 
-    public Provider? Provider
+    /// <summary>
+    /// Provider ID
+    /// </summary>
+    public string? ProviderID
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableClass<Provider>("provider");
+            return this._rawQueryData.GetNullableClass<string>("provider_id");
         }
         init
         {
@@ -74,16 +76,19 @@ public record class UserConnectionListParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData.Set("provider", value);
+            this._rawQueryData.Set("provider_id", value);
         }
     }
 
-    public User? User
+    /// <summary>
+    /// User ID
+    /// </summary>
+    public string? UserID
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableClass<User>("user");
+            return this._rawQueryData.GetNullableClass<string>("user_id");
         }
         init
         {
@@ -92,7 +97,7 @@ public record class UserConnectionListParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData.Set("user", value);
+            this._rawQueryData.Set("user_id", value);
         }
     }
 
@@ -186,134 +191,4 @@ public record class UserConnectionListParams : ParamsBase
     {
         return 0;
     }
-}
-
-[JsonConverter(typeof(JsonModelConverter<Provider, ProviderFromRaw>))]
-public sealed record class Provider : JsonModel
-{
-    /// <summary>
-    /// Provider ID
-    /// </summary>
-    public string? ID
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("id");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("id", value);
-        }
-    }
-
-    /// <inheritdoc/>
-    public override void Validate()
-    {
-        _ = this.ID;
-    }
-
-    public Provider() { }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    public Provider(Provider provider)
-        : base(provider) { }
-#pragma warning restore CS8618
-
-    public Provider(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    Provider(FrozenDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-#pragma warning restore CS8618
-
-    /// <inheritdoc cref="ProviderFromRaw.FromRawUnchecked"/>
-    public static Provider FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-}
-
-class ProviderFromRaw : IFromRawJson<Provider>
-{
-    /// <inheritdoc/>
-    public Provider FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Provider.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(JsonModelConverter<User, UserFromRaw>))]
-public sealed record class User : JsonModel
-{
-    /// <summary>
-    /// User ID
-    /// </summary>
-    public string? ID
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("id");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("id", value);
-        }
-    }
-
-    /// <inheritdoc/>
-    public override void Validate()
-    {
-        _ = this.ID;
-    }
-
-    public User() { }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    public User(User user)
-        : base(user) { }
-#pragma warning restore CS8618
-
-    public User(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    User(FrozenDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-#pragma warning restore CS8618
-
-    /// <inheritdoc cref="UserFromRaw.FromRawUnchecked"/>
-    public static User FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-}
-
-class UserFromRaw : IFromRawJson<User>
-{
-    /// <inheritdoc/>
-    public User FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        User.FromRawUnchecked(rawData);
 }

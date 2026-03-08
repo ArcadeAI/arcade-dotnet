@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -515,24 +516,6 @@ public sealed record class Secret : JsonModel
         }
     }
 
-    public string? Hint
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("hint");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("hint", value);
-        }
-    }
-
     public string? Value
     {
         get
@@ -557,7 +540,6 @@ public sealed record class Secret : JsonModel
         this.Binding?.Validate();
         _ = this.Editable;
         _ = this.Exists;
-        _ = this.Hint;
         _ = this.Value;
     }
 
@@ -874,6 +856,24 @@ public sealed record class WorkerResponseMcpOauth2 : JsonModel
         }
     }
 
+    public string? ExternalID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_id");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("external_id", value);
+        }
+    }
+
     public string? RedirectUri
     {
         get
@@ -892,13 +892,36 @@ public sealed record class WorkerResponseMcpOauth2 : JsonModel
         }
     }
 
+    public IReadOnlyList<string>? SupportedScopes
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("supported_scopes");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "supported_scopes",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AuthorizationUrl;
         _ = this.ClientID;
         this.ClientSecret?.Validate();
+        _ = this.ExternalID;
         _ = this.RedirectUri;
+        _ = this.SupportedScopes;
     }
 
     public WorkerResponseMcpOauth2() { }
@@ -996,24 +1019,6 @@ public sealed record class ClientSecret : JsonModel
         }
     }
 
-    public string? Hint
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("hint");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("hint", value);
-        }
-    }
-
     public string? Value
     {
         get
@@ -1038,7 +1043,6 @@ public sealed record class ClientSecret : JsonModel
         this.Binding?.Validate();
         _ = this.Editable;
         _ = this.Exists;
-        _ = this.Hint;
         _ = this.Value;
     }
 
@@ -1184,24 +1188,6 @@ public sealed record class SecretsItem : JsonModel
         }
     }
 
-    public string? Hint
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("hint");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("hint", value);
-        }
-    }
-
     public string? Value
     {
         get
@@ -1226,7 +1212,6 @@ public sealed record class SecretsItem : JsonModel
         this.Binding?.Validate();
         _ = this.Editable;
         _ = this.Exists;
-        _ = this.Hint;
         _ = this.Value;
     }
 

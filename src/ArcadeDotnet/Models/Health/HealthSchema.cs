@@ -28,10 +28,32 @@ public sealed record class HealthSchema : JsonModel
         }
     }
 
+    /// <summary>
+    /// Optional: explains why unhealthy
+    /// </summary>
+    public string? Reason
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reason");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("reason", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Healthy;
+        _ = this.Reason;
     }
 
     public HealthSchema() { }

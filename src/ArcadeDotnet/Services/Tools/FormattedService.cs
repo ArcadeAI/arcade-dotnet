@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
@@ -48,7 +49,7 @@ public sealed class FormattedService : IFormattedService
     }
 
     /// <inheritdoc/>
-    public async Task<JsonElement> Get(
+    public async Task<Dictionary<string, JsonElement>> Get(
         FormattedGetParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -60,7 +61,7 @@ public sealed class FormattedService : IFormattedService
     }
 
     /// <inheritdoc/>
-    public Task<JsonElement> Get(
+    public Task<Dictionary<string, JsonElement>> Get(
         string name,
         FormattedGetParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -119,7 +120,7 @@ public sealed class FormattedServiceWithRawResponse : IFormattedServiceWithRawRe
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<JsonElement>> Get(
+    public async Task<HttpResponse<Dictionary<string, JsonElement>>> Get(
         FormattedGetParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -139,13 +140,15 @@ public sealed class FormattedServiceWithRawResponse : IFormattedServiceWithRawRe
             response,
             async (token) =>
             {
-                return await response.Deserialize<JsonElement>(token).ConfigureAwait(false);
+                return await response
+                    .Deserialize<Dictionary<string, JsonElement>>(token)
+                    .ConfigureAwait(false);
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<JsonElement>> Get(
+    public Task<HttpResponse<Dictionary<string, JsonElement>>> Get(
         string name,
         FormattedGetParams? parameters = null,
         CancellationToken cancellationToken = default
