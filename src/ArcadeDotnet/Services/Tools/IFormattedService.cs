@@ -29,8 +29,8 @@ public interface IFormattedService
     IFormattedService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a page of tools from the engine configuration, optionally filtered
-    /// by toolkit, formatted for a specific provider
+    /// Returns a page of tools from the engine configuration, optionally filtered by
+    /// toolkit, formatted for a specific provider
     /// </summary>
     Task<FormattedListPage> List(
         FormattedListParams? parameters = null,
@@ -67,7 +67,7 @@ public interface IFormattedServiceWithRawResponse
     IFormattedServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/formatted_tools`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/formatted_tools</c>, but is otherwise the
     /// same as <see cref="IFormattedService.List(FormattedListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<FormattedListPage>> List(
@@ -76,7 +76,7 @@ public interface IFormattedServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/formatted_tools/{name}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/formatted_tools/{name}</c>, but is otherwise the
     /// same as <see cref="IFormattedService.Get(FormattedGetParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Dictionary<string, JsonElement>>> Get(

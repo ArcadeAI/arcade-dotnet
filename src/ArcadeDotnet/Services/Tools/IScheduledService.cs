@@ -64,7 +64,7 @@ public interface IScheduledServiceWithRawResponse
     IScheduledServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/scheduled_tools`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/scheduled_tools</c>, but is otherwise the
     /// same as <see cref="IScheduledService.List(ScheduledListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<ScheduledListPage>> List(
@@ -73,7 +73,7 @@ public interface IScheduledServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/scheduled_tools/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/scheduled_tools/{id}</c>, but is otherwise the
     /// same as <see cref="IScheduledService.Get(ScheduledGetParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<ScheduledGetResponse>> Get(

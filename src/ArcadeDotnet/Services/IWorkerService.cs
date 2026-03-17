@@ -129,7 +129,7 @@ public interface IWorkerServiceWithRawResponse
     IWorkerServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/workers`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/workers</c>, but is otherwise the
     /// same as <see cref="IWorkerService.Create(WorkerCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<WorkerResponse>> Create(
@@ -138,7 +138,7 @@ public interface IWorkerServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `patch /v1/workers/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>patch /v1/workers/{id}</c>, but is otherwise the
     /// same as <see cref="IWorkerService.Update(WorkerUpdateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<WorkerResponse>> Update(
@@ -154,7 +154,7 @@ public interface IWorkerServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/workers`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/workers</c>, but is otherwise the
     /// same as <see cref="IWorkerService.List(WorkerListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<WorkerListPage>> List(
@@ -163,7 +163,7 @@ public interface IWorkerServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `delete /v1/workers/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /v1/workers/{id}</c>, but is otherwise the
     /// same as <see cref="IWorkerService.Delete(WorkerDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse> Delete(
@@ -179,7 +179,7 @@ public interface IWorkerServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/workers/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/workers/{id}</c>, but is otherwise the
     /// same as <see cref="IWorkerService.Get(WorkerGetParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<WorkerResponse>> Get(
@@ -195,7 +195,7 @@ public interface IWorkerServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/workers/{id}/health`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/workers/{id}/health</c>, but is otherwise the
     /// same as <see cref="IWorkerService.Health(WorkerHealthParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<WorkerHealthResponse>> Health(
@@ -211,7 +211,7 @@ public interface IWorkerServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/workers/{id}/tools`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/workers/{id}/tools</c>, but is otherwise the
     /// same as <see cref="IWorkerService.Tools(WorkerToolsParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<WorkerToolsPage>> Tools(

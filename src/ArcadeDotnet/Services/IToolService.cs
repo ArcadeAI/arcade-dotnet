@@ -33,8 +33,8 @@ public interface IToolService
     IFormattedService Formatted { get; }
 
     /// <summary>
-    /// Returns a page of tools from the engine configuration, optionally filtered
-    /// by toolkit
+    /// Returns a page of tools from the engine configuration, optionally filtered by
+    /// toolkit
     /// </summary>
     Task<ToolListPage> List(
         ToolListParams? parameters = null,
@@ -91,7 +91,7 @@ public interface IToolServiceWithRawResponse
     IFormattedServiceWithRawResponse Formatted { get; }
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/tools`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/tools</c>, but is otherwise the
     /// same as <see cref="IToolService.List(ToolListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<ToolListPage>> List(
@@ -100,7 +100,7 @@ public interface IToolServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/tools/authorize`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/tools/authorize</c>, but is otherwise the
     /// same as <see cref="IToolService.Authorize(ToolAuthorizeParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<AuthorizationResponse>> Authorize(
@@ -109,7 +109,7 @@ public interface IToolServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/tools/execute`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/tools/execute</c>, but is otherwise the
     /// same as <see cref="IToolService.Execute(ToolExecuteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<ExecuteToolResponse>> Execute(
@@ -118,7 +118,7 @@ public interface IToolServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/tools/{name}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/tools/{name}</c>, but is otherwise the
     /// same as <see cref="IToolService.Get(ToolGetParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<ToolDefinition>> Get(

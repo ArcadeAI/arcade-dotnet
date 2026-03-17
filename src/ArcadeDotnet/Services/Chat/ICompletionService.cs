@@ -50,7 +50,7 @@ public interface ICompletionServiceWithRawResponse
     ICompletionServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/chat/completions`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/chat/completions</c>, but is otherwise the
     /// same as <see cref="ICompletionService.Create(CompletionCreateParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<ChatResponse>> Create(

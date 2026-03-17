@@ -76,7 +76,7 @@ public interface ISecretServiceWithRawResponse
     ISecretServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/admin/secrets/{secret_key}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/admin/secrets/{secret_key}</c>, but is otherwise the
     /// same as <see cref="ISecretService.Create(SecretCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<SecretResponse>> Create(
@@ -92,7 +92,7 @@ public interface ISecretServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/admin/secrets`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/admin/secrets</c>, but is otherwise the
     /// same as <see cref="ISecretService.List(SecretListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<SecretListResponse>> List(
@@ -101,7 +101,7 @@ public interface ISecretServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `delete /v1/admin/secrets/{secret_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /v1/admin/secrets/{secret_id}</c>, but is otherwise the
     /// same as <see cref="ISecretService.Delete(SecretDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse> Delete(

@@ -44,9 +44,9 @@ public interface IAuthService
     );
 
     /// <summary>
-    /// Checks the status of an ongoing authorization process for a specific tool.
-    /// If 'wait' param is present, does not respond until either the auth status
-    /// becomes completed or the timeout is reached.
+    /// Checks the status of an ongoing authorization process for a specific tool. If
+    /// 'wait' param is present, does not respond until either the auth status becomes
+    /// completed or the timeout is reached.
     /// </summary>
     Task<AuthorizationResponse> Status(
         AuthStatusParams parameters,
@@ -68,7 +68,7 @@ public interface IAuthServiceWithRawResponse
     IAuthServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/auth/authorize`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/auth/authorize</c>, but is otherwise the
     /// same as <see cref="IAuthService.Authorize(AuthAuthorizeParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<AuthorizationResponse>> Authorize(
@@ -77,7 +77,7 @@ public interface IAuthServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/auth/confirm_user`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/auth/confirm_user</c>, but is otherwise the
     /// same as <see cref="IAuthService.ConfirmUser(AuthConfirmUserParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<ConfirmUserResponse>> ConfirmUser(
@@ -86,7 +86,7 @@ public interface IAuthServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/auth/status`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/auth/status</c>, but is otherwise the
     /// same as <see cref="IAuthService.Status(AuthStatusParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<AuthorizationResponse>> Status(

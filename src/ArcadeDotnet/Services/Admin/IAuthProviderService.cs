@@ -102,7 +102,7 @@ public interface IAuthProviderServiceWithRawResponse
     IAuthProviderServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/admin/auth_providers`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/admin/auth_providers</c>, but is otherwise the
     /// same as <see cref="IAuthProviderService.Create(AuthProviderCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<AuthProviderResponse>> Create(
@@ -111,7 +111,7 @@ public interface IAuthProviderServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/admin/auth_providers`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/admin/auth_providers</c>, but is otherwise the
     /// same as <see cref="IAuthProviderService.List(AuthProviderListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<AuthProviderListResponse>> List(
@@ -120,7 +120,7 @@ public interface IAuthProviderServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `delete /v1/admin/auth_providers/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /v1/admin/auth_providers/{id}</c>, but is otherwise the
     /// same as <see cref="IAuthProviderService.Delete(AuthProviderDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<AuthProviderResponse>> Delete(
@@ -136,7 +136,7 @@ public interface IAuthProviderServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/admin/auth_providers/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/admin/auth_providers/{id}</c>, but is otherwise the
     /// same as <see cref="IAuthProviderService.Get(AuthProviderGetParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<AuthProviderResponse>> Get(
@@ -152,7 +152,7 @@ public interface IAuthProviderServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `patch /v1/admin/auth_providers/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>patch /v1/admin/auth_providers/{id}</c>, but is otherwise the
     /// same as <see cref="IAuthProviderService.Patch(AuthProviderPatchParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<AuthProviderResponse>> Patch(

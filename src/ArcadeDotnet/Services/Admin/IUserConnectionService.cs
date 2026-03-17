@@ -64,7 +64,7 @@ public interface IUserConnectionServiceWithRawResponse
     IUserConnectionServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/admin/user_connections`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/admin/user_connections</c>, but is otherwise the
     /// same as <see cref="IUserConnectionService.List(UserConnectionListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<UserConnectionListPage>> List(
@@ -73,7 +73,7 @@ public interface IUserConnectionServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `delete /v1/admin/user_connections/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /v1/admin/user_connections/{id}</c>, but is otherwise the
     /// same as <see cref="IUserConnectionService.Delete(UserConnectionDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse> Delete(
