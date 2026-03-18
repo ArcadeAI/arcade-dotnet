@@ -14,6 +14,7 @@ public class ToolListParamsTest : TestBase
     {
         var parameters = new ToolListParams
         {
+            Filter = "filter",
             IncludeAllVersions = true,
             IncludeFormat = [IncludeFormat.Arcade],
             Limit = 0,
@@ -22,6 +23,7 @@ public class ToolListParamsTest : TestBase
             UserID = "user_id",
         };
 
+        string expectedFilter = "filter";
         bool expectedIncludeAllVersions = true;
         List<ApiEnum<string, IncludeFormat>> expectedIncludeFormat = [IncludeFormat.Arcade];
         long expectedLimit = 0;
@@ -29,6 +31,7 @@ public class ToolListParamsTest : TestBase
         string expectedToolkit = "toolkit";
         string expectedUserID = "user_id";
 
+        Assert.Equal(expectedFilter, parameters.Filter);
         Assert.Equal(expectedIncludeAllVersions, parameters.IncludeAllVersions);
         Assert.NotNull(parameters.IncludeFormat);
         Assert.Equal(expectedIncludeFormat.Count, parameters.IncludeFormat.Count);
@@ -47,6 +50,8 @@ public class ToolListParamsTest : TestBase
     {
         var parameters = new ToolListParams { };
 
+        Assert.Null(parameters.Filter);
+        Assert.False(parameters.RawQueryData.ContainsKey("filter"));
         Assert.Null(parameters.IncludeAllVersions);
         Assert.False(parameters.RawQueryData.ContainsKey("include_all_versions"));
         Assert.Null(parameters.IncludeFormat);
@@ -67,6 +72,7 @@ public class ToolListParamsTest : TestBase
         var parameters = new ToolListParams
         {
             // Null should be interpreted as omitted for these properties
+            Filter = null,
             IncludeAllVersions = null,
             IncludeFormat = null,
             Limit = null,
@@ -75,6 +81,8 @@ public class ToolListParamsTest : TestBase
             UserID = null,
         };
 
+        Assert.Null(parameters.Filter);
+        Assert.False(parameters.RawQueryData.ContainsKey("filter"));
         Assert.Null(parameters.IncludeAllVersions);
         Assert.False(parameters.RawQueryData.ContainsKey("include_all_versions"));
         Assert.Null(parameters.IncludeFormat);
@@ -94,6 +102,7 @@ public class ToolListParamsTest : TestBase
     {
         ToolListParams parameters = new()
         {
+            Filter = "filter",
             IncludeAllVersions = true,
             IncludeFormat = [IncludeFormat.Arcade],
             Limit = 0,
@@ -106,7 +115,7 @@ public class ToolListParamsTest : TestBase
 
         Assert.Equal(
             new Uri(
-                "https://api.arcade.dev/v1/tools?include_all_versions=true&include_format=arcade&limit=0&offset=0&toolkit=toolkit&user_id=user_id"
+                "https://api.arcade.dev/v1/tools?filter=filter&include_all_versions=true&include_format=arcade&limit=0&offset=0&toolkit=toolkit&user_id=user_id"
             ),
             url
         );
@@ -117,6 +126,7 @@ public class ToolListParamsTest : TestBase
     {
         var parameters = new ToolListParams
         {
+            Filter = "filter",
             IncludeAllVersions = true,
             IncludeFormat = [IncludeFormat.Arcade],
             Limit = 0,

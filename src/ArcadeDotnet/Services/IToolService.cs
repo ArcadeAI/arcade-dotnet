@@ -34,7 +34,7 @@ public interface IToolService
 
     /// <summary>
     /// Returns a page of tools from the engine configuration, optionally filtered by
-    /// toolkit
+    /// toolkit and/or metadata
     /// </summary>
     Task<ToolListPage> List(
         ToolListParams? parameters = null,

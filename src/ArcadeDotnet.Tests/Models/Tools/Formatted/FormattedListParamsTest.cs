@@ -10,6 +10,7 @@ public class FormattedListParamsTest : TestBase
     {
         var parameters = new FormattedListParams
         {
+            Filter = "filter",
             Format = "format",
             IncludeAllVersions = true,
             Limit = 0,
@@ -18,6 +19,7 @@ public class FormattedListParamsTest : TestBase
             UserID = "user_id",
         };
 
+        string expectedFilter = "filter";
         string expectedFormat = "format";
         bool expectedIncludeAllVersions = true;
         long expectedLimit = 0;
@@ -25,6 +27,7 @@ public class FormattedListParamsTest : TestBase
         string expectedToolkit = "toolkit";
         string expectedUserID = "user_id";
 
+        Assert.Equal(expectedFilter, parameters.Filter);
         Assert.Equal(expectedFormat, parameters.Format);
         Assert.Equal(expectedIncludeAllVersions, parameters.IncludeAllVersions);
         Assert.Equal(expectedLimit, parameters.Limit);
@@ -38,6 +41,8 @@ public class FormattedListParamsTest : TestBase
     {
         var parameters = new FormattedListParams { };
 
+        Assert.Null(parameters.Filter);
+        Assert.False(parameters.RawQueryData.ContainsKey("filter"));
         Assert.Null(parameters.Format);
         Assert.False(parameters.RawQueryData.ContainsKey("format"));
         Assert.Null(parameters.IncludeAllVersions);
@@ -58,6 +63,7 @@ public class FormattedListParamsTest : TestBase
         var parameters = new FormattedListParams
         {
             // Null should be interpreted as omitted for these properties
+            Filter = null,
             Format = null,
             IncludeAllVersions = null,
             Limit = null,
@@ -66,6 +72,8 @@ public class FormattedListParamsTest : TestBase
             UserID = null,
         };
 
+        Assert.Null(parameters.Filter);
+        Assert.False(parameters.RawQueryData.ContainsKey("filter"));
         Assert.Null(parameters.Format);
         Assert.False(parameters.RawQueryData.ContainsKey("format"));
         Assert.Null(parameters.IncludeAllVersions);
@@ -85,6 +93,7 @@ public class FormattedListParamsTest : TestBase
     {
         FormattedListParams parameters = new()
         {
+            Filter = "filter",
             Format = "format",
             IncludeAllVersions = true,
             Limit = 0,
@@ -97,7 +106,7 @@ public class FormattedListParamsTest : TestBase
 
         Assert.Equal(
             new Uri(
-                "https://api.arcade.dev/v1/formatted_tools?format=format&include_all_versions=true&limit=0&offset=0&toolkit=toolkit&user_id=user_id"
+                "https://api.arcade.dev/v1/formatted_tools?filter=filter&format=format&include_all_versions=true&limit=0&offset=0&toolkit=toolkit&user_id=user_id"
             ),
             url
         );
@@ -108,6 +117,7 @@ public class FormattedListParamsTest : TestBase
     {
         var parameters = new FormattedListParams
         {
+            Filter = "filter",
             Format = "format",
             IncludeAllVersions = true,
             Limit = 0,
