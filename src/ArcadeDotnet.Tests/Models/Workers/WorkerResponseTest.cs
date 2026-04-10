@@ -32,6 +32,7 @@ public class WorkerResponseTest : TestBase
             Managed = true,
             Mcp = new()
             {
+                ExternalID = "external_id",
                 Headers = new Dictionary<string, string>() { { "foo", "string" } },
                 Oauth2 = new()
                 {
@@ -48,6 +49,7 @@ public class WorkerResponseTest : TestBase
                     RedirectUri = "redirect_uri",
                     SupportedScopes = ["string"],
                 },
+                RedirectUri = "redirect_uri",
                 Retry = 0,
                 Secrets = new Dictionary<string, SecretsItem>()
                 {
@@ -96,6 +98,7 @@ public class WorkerResponseTest : TestBase
         bool expectedManaged = true;
         WorkerResponseMcp expectedMcp = new()
         {
+            ExternalID = "external_id",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
@@ -112,6 +115,7 @@ public class WorkerResponseTest : TestBase
                 RedirectUri = "redirect_uri",
                 SupportedScopes = ["string"],
             },
+            RedirectUri = "redirect_uri",
             Retry = 0,
             Secrets = new Dictionary<string, SecretsItem>()
             {
@@ -174,6 +178,7 @@ public class WorkerResponseTest : TestBase
             Managed = true,
             Mcp = new()
             {
+                ExternalID = "external_id",
                 Headers = new Dictionary<string, string>() { { "foo", "string" } },
                 Oauth2 = new()
                 {
@@ -190,6 +195,7 @@ public class WorkerResponseTest : TestBase
                     RedirectUri = "redirect_uri",
                     SupportedScopes = ["string"],
                 },
+                RedirectUri = "redirect_uri",
                 Retry = 0,
                 Secrets = new Dictionary<string, SecretsItem>()
                 {
@@ -252,6 +258,7 @@ public class WorkerResponseTest : TestBase
             Managed = true,
             Mcp = new()
             {
+                ExternalID = "external_id",
                 Headers = new Dictionary<string, string>() { { "foo", "string" } },
                 Oauth2 = new()
                 {
@@ -268,6 +275,7 @@ public class WorkerResponseTest : TestBase
                     RedirectUri = "redirect_uri",
                     SupportedScopes = ["string"],
                 },
+                RedirectUri = "redirect_uri",
                 Retry = 0,
                 Secrets = new Dictionary<string, SecretsItem>()
                 {
@@ -323,6 +331,7 @@ public class WorkerResponseTest : TestBase
         bool expectedManaged = true;
         WorkerResponseMcp expectedMcp = new()
         {
+            ExternalID = "external_id",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
@@ -339,6 +348,7 @@ public class WorkerResponseTest : TestBase
                 RedirectUri = "redirect_uri",
                 SupportedScopes = ["string"],
             },
+            RedirectUri = "redirect_uri",
             Retry = 0,
             Secrets = new Dictionary<string, SecretsItem>()
             {
@@ -401,6 +411,7 @@ public class WorkerResponseTest : TestBase
             Managed = true,
             Mcp = new()
             {
+                ExternalID = "external_id",
                 Headers = new Dictionary<string, string>() { { "foo", "string" } },
                 Oauth2 = new()
                 {
@@ -417,6 +428,7 @@ public class WorkerResponseTest : TestBase
                     RedirectUri = "redirect_uri",
                     SupportedScopes = ["string"],
                 },
+                RedirectUri = "redirect_uri",
                 Retry = 0,
                 Secrets = new Dictionary<string, SecretsItem>()
                 {
@@ -557,6 +569,7 @@ public class WorkerResponseTest : TestBase
             Managed = true,
             Mcp = new()
             {
+                ExternalID = "external_id",
                 Headers = new Dictionary<string, string>() { { "foo", "string" } },
                 Oauth2 = new()
                 {
@@ -573,6 +586,7 @@ public class WorkerResponseTest : TestBase
                     RedirectUri = "redirect_uri",
                     SupportedScopes = ["string"],
                 },
+                RedirectUri = "redirect_uri",
                 Retry = 0,
                 Secrets = new Dictionary<string, SecretsItem>()
                 {
@@ -1214,6 +1228,7 @@ public class WorkerResponseMcpTest : TestBase
     {
         var model = new WorkerResponseMcp
         {
+            ExternalID = "external_id",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
@@ -1230,6 +1245,7 @@ public class WorkerResponseMcpTest : TestBase
                 RedirectUri = "redirect_uri",
                 SupportedScopes = ["string"],
             },
+            RedirectUri = "redirect_uri",
             Retry = 0,
             Secrets = new Dictionary<string, SecretsItem>()
             {
@@ -1248,6 +1264,7 @@ public class WorkerResponseMcpTest : TestBase
             Uri = "uri",
         };
 
+        string expectedExternalID = "external_id";
         Dictionary<string, string> expectedHeaders = new() { { "foo", "string" } };
         WorkerResponseMcpOauth2 expectedOauth2 = new()
         {
@@ -1264,6 +1281,7 @@ public class WorkerResponseMcpTest : TestBase
             RedirectUri = "redirect_uri",
             SupportedScopes = ["string"],
         };
+        string expectedRedirectUri = "redirect_uri";
         long expectedRetry = 0;
         Dictionary<string, SecretsItem> expectedSecrets = new()
         {
@@ -1281,6 +1299,7 @@ public class WorkerResponseMcpTest : TestBase
         long expectedTimeout = 0;
         string expectedUri = "uri";
 
+        Assert.Equal(expectedExternalID, model.ExternalID);
         Assert.NotNull(model.Headers);
         Assert.Equal(expectedHeaders.Count, model.Headers.Count);
         foreach (var item in expectedHeaders)
@@ -1290,6 +1309,7 @@ public class WorkerResponseMcpTest : TestBase
             Assert.Equal(value, model.Headers[item.Key]);
         }
         Assert.Equal(expectedOauth2, model.Oauth2);
+        Assert.Equal(expectedRedirectUri, model.RedirectUri);
         Assert.Equal(expectedRetry, model.Retry);
         Assert.NotNull(model.Secrets);
         Assert.Equal(expectedSecrets.Count, model.Secrets.Count);
@@ -1308,6 +1328,7 @@ public class WorkerResponseMcpTest : TestBase
     {
         var model = new WorkerResponseMcp
         {
+            ExternalID = "external_id",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
@@ -1324,6 +1345,7 @@ public class WorkerResponseMcpTest : TestBase
                 RedirectUri = "redirect_uri",
                 SupportedScopes = ["string"],
             },
+            RedirectUri = "redirect_uri",
             Retry = 0,
             Secrets = new Dictionary<string, SecretsItem>()
             {
@@ -1356,6 +1378,7 @@ public class WorkerResponseMcpTest : TestBase
     {
         var model = new WorkerResponseMcp
         {
+            ExternalID = "external_id",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
@@ -1372,6 +1395,7 @@ public class WorkerResponseMcpTest : TestBase
                 RedirectUri = "redirect_uri",
                 SupportedScopes = ["string"],
             },
+            RedirectUri = "redirect_uri",
             Retry = 0,
             Secrets = new Dictionary<string, SecretsItem>()
             {
@@ -1397,6 +1421,7 @@ public class WorkerResponseMcpTest : TestBase
         );
         Assert.NotNull(deserialized);
 
+        string expectedExternalID = "external_id";
         Dictionary<string, string> expectedHeaders = new() { { "foo", "string" } };
         WorkerResponseMcpOauth2 expectedOauth2 = new()
         {
@@ -1413,6 +1438,7 @@ public class WorkerResponseMcpTest : TestBase
             RedirectUri = "redirect_uri",
             SupportedScopes = ["string"],
         };
+        string expectedRedirectUri = "redirect_uri";
         long expectedRetry = 0;
         Dictionary<string, SecretsItem> expectedSecrets = new()
         {
@@ -1430,6 +1456,7 @@ public class WorkerResponseMcpTest : TestBase
         long expectedTimeout = 0;
         string expectedUri = "uri";
 
+        Assert.Equal(expectedExternalID, deserialized.ExternalID);
         Assert.NotNull(deserialized.Headers);
         Assert.Equal(expectedHeaders.Count, deserialized.Headers.Count);
         foreach (var item in expectedHeaders)
@@ -1439,6 +1466,7 @@ public class WorkerResponseMcpTest : TestBase
             Assert.Equal(value, deserialized.Headers[item.Key]);
         }
         Assert.Equal(expectedOauth2, deserialized.Oauth2);
+        Assert.Equal(expectedRedirectUri, deserialized.RedirectUri);
         Assert.Equal(expectedRetry, deserialized.Retry);
         Assert.NotNull(deserialized.Secrets);
         Assert.Equal(expectedSecrets.Count, deserialized.Secrets.Count);
@@ -1457,6 +1485,7 @@ public class WorkerResponseMcpTest : TestBase
     {
         var model = new WorkerResponseMcp
         {
+            ExternalID = "external_id",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
@@ -1473,6 +1502,7 @@ public class WorkerResponseMcpTest : TestBase
                 RedirectUri = "redirect_uri",
                 SupportedScopes = ["string"],
             },
+            RedirectUri = "redirect_uri",
             Retry = 0,
             Secrets = new Dictionary<string, SecretsItem>()
             {
@@ -1499,10 +1529,14 @@ public class WorkerResponseMcpTest : TestBase
     {
         var model = new WorkerResponseMcp { };
 
+        Assert.Null(model.ExternalID);
+        Assert.False(model.RawData.ContainsKey("external_id"));
         Assert.Null(model.Headers);
         Assert.False(model.RawData.ContainsKey("headers"));
         Assert.Null(model.Oauth2);
         Assert.False(model.RawData.ContainsKey("oauth2"));
+        Assert.Null(model.RedirectUri);
+        Assert.False(model.RawData.ContainsKey("redirect_uri"));
         Assert.Null(model.Retry);
         Assert.False(model.RawData.ContainsKey("retry"));
         Assert.Null(model.Secrets);
@@ -1527,18 +1561,24 @@ public class WorkerResponseMcpTest : TestBase
         var model = new WorkerResponseMcp
         {
             // Null should be interpreted as omitted for these properties
+            ExternalID = null,
             Headers = null,
             Oauth2 = null,
+            RedirectUri = null,
             Retry = null,
             Secrets = null,
             Timeout = null,
             Uri = null,
         };
 
+        Assert.Null(model.ExternalID);
+        Assert.False(model.RawData.ContainsKey("external_id"));
         Assert.Null(model.Headers);
         Assert.False(model.RawData.ContainsKey("headers"));
         Assert.Null(model.Oauth2);
         Assert.False(model.RawData.ContainsKey("oauth2"));
+        Assert.Null(model.RedirectUri);
+        Assert.False(model.RawData.ContainsKey("redirect_uri"));
         Assert.Null(model.Retry);
         Assert.False(model.RawData.ContainsKey("retry"));
         Assert.Null(model.Secrets);
@@ -1555,8 +1595,10 @@ public class WorkerResponseMcpTest : TestBase
         var model = new WorkerResponseMcp
         {
             // Null should be interpreted as omitted for these properties
+            ExternalID = null,
             Headers = null,
             Oauth2 = null,
+            RedirectUri = null,
             Retry = null,
             Secrets = null,
             Timeout = null,
@@ -1571,6 +1613,7 @@ public class WorkerResponseMcpTest : TestBase
     {
         var model = new WorkerResponseMcp
         {
+            ExternalID = "external_id",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
             {
@@ -1587,6 +1630,7 @@ public class WorkerResponseMcpTest : TestBase
                 RedirectUri = "redirect_uri",
                 SupportedScopes = ["string"],
             },
+            RedirectUri = "redirect_uri",
             Retry = 0,
             Secrets = new Dictionary<string, SecretsItem>()
             {

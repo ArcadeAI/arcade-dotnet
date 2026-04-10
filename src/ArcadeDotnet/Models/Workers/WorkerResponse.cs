@@ -631,6 +631,24 @@ sealed class SecretBindingConverter : JsonConverter<SecretBinding>
 [JsonConverter(typeof(JsonModelConverter<WorkerResponseMcp, WorkerResponseMcpFromRaw>))]
 public sealed record class WorkerResponseMcp : JsonModel
 {
+    public string? ExternalID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_id");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("external_id", value);
+        }
+    }
+
     public IReadOnlyDictionary<string, string>? Headers
     {
         get
@@ -667,6 +685,24 @@ public sealed record class WorkerResponseMcp : JsonModel
             }
 
             this._rawData.Set("oauth2", value);
+        }
+    }
+
+    public string? RedirectUri
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("redirect_uri");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("redirect_uri", value);
         }
     }
 
@@ -748,8 +784,10 @@ public sealed record class WorkerResponseMcp : JsonModel
     /// <inheritdoc/>
     public override void Validate()
     {
+        _ = this.ExternalID;
         _ = this.Headers;
         this.Oauth2?.Validate();
+        _ = this.RedirectUri;
         _ = this.Retry;
         if (this.Secrets != null)
         {

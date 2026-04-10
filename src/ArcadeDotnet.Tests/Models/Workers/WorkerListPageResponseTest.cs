@@ -35,6 +35,7 @@ public class WorkerListPageResponseTest : TestBase
                     Managed = true,
                     Mcp = new()
                     {
+                        ExternalID = "external_id",
                         Headers = new Dictionary<string, string>() { { "foo", "string" } },
                         Oauth2 = new()
                         {
@@ -51,6 +52,7 @@ public class WorkerListPageResponseTest : TestBase
                             RedirectUri = "redirect_uri",
                             SupportedScopes = ["string"],
                         },
+                        RedirectUri = "redirect_uri",
                         Retry = 0,
                         Secrets = new Dictionary<string, SecretsItem>()
                         {
@@ -109,6 +111,7 @@ public class WorkerListPageResponseTest : TestBase
                 Managed = true,
                 Mcp = new()
                 {
+                    ExternalID = "external_id",
                     Headers = new Dictionary<string, string>() { { "foo", "string" } },
                     Oauth2 = new()
                     {
@@ -125,6 +128,7 @@ public class WorkerListPageResponseTest : TestBase
                         RedirectUri = "redirect_uri",
                         SupportedScopes = ["string"],
                     },
+                    RedirectUri = "redirect_uri",
                     Retry = 0,
                     Secrets = new Dictionary<string, SecretsItem>()
                     {
@@ -199,6 +203,7 @@ public class WorkerListPageResponseTest : TestBase
                     Managed = true,
                     Mcp = new()
                     {
+                        ExternalID = "external_id",
                         Headers = new Dictionary<string, string>() { { "foo", "string" } },
                         Oauth2 = new()
                         {
@@ -215,6 +220,7 @@ public class WorkerListPageResponseTest : TestBase
                             RedirectUri = "redirect_uri",
                             SupportedScopes = ["string"],
                         },
+                        RedirectUri = "redirect_uri",
                         Retry = 0,
                         Secrets = new Dictionary<string, SecretsItem>()
                         {
@@ -287,6 +293,7 @@ public class WorkerListPageResponseTest : TestBase
                     Managed = true,
                     Mcp = new()
                     {
+                        ExternalID = "external_id",
                         Headers = new Dictionary<string, string>() { { "foo", "string" } },
                         Oauth2 = new()
                         {
@@ -303,6 +310,7 @@ public class WorkerListPageResponseTest : TestBase
                             RedirectUri = "redirect_uri",
                             SupportedScopes = ["string"],
                         },
+                        RedirectUri = "redirect_uri",
                         Retry = 0,
                         Secrets = new Dictionary<string, SecretsItem>()
                         {
@@ -368,6 +376,7 @@ public class WorkerListPageResponseTest : TestBase
                 Managed = true,
                 Mcp = new()
                 {
+                    ExternalID = "external_id",
                     Headers = new Dictionary<string, string>() { { "foo", "string" } },
                     Oauth2 = new()
                     {
@@ -384,6 +393,7 @@ public class WorkerListPageResponseTest : TestBase
                         RedirectUri = "redirect_uri",
                         SupportedScopes = ["string"],
                     },
+                    RedirectUri = "redirect_uri",
                     Retry = 0,
                     Secrets = new Dictionary<string, SecretsItem>()
                     {
@@ -458,6 +468,7 @@ public class WorkerListPageResponseTest : TestBase
                     Managed = true,
                     Mcp = new()
                     {
+                        ExternalID = "external_id",
                         Headers = new Dictionary<string, string>() { { "foo", "string" } },
                         Oauth2 = new()
                         {
@@ -474,6 +485,7 @@ public class WorkerListPageResponseTest : TestBase
                             RedirectUri = "redirect_uri",
                             SupportedScopes = ["string"],
                         },
+                        RedirectUri = "redirect_uri",
                         Retry = 0,
                         Secrets = new Dictionary<string, SecretsItem>()
                         {
@@ -606,6 +618,7 @@ public class WorkerListPageResponseTest : TestBase
                     Managed = true,
                     Mcp = new()
                     {
+                        ExternalID = "external_id",
                         Headers = new Dictionary<string, string>() { { "foo", "string" } },
                         Oauth2 = new()
                         {
@@ -622,6 +635,7 @@ public class WorkerListPageResponseTest : TestBase
                             RedirectUri = "redirect_uri",
                             SupportedScopes = ["string"],
                         },
+                        RedirectUri = "redirect_uri",
                         Retry = 0,
                         Secrets = new Dictionary<string, SecretsItem>()
                         {
