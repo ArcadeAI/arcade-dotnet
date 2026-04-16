@@ -119,7 +119,7 @@ public class WorkerCreateParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.arcade.dev/v1/workers"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://api.arcade.dev/v1/workers"), url));
     }
 
     [Fact]

@@ -113,11 +113,13 @@ public class ToolListParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.arcade.dev/v1/tools?filter=filter&include_all_versions=true&include_format=arcade&limit=0&offset=0&toolkit=toolkit&user_id=user_id"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.arcade.dev/v1/tools?filter=filter&include_all_versions=true&include_format=arcade&limit=0&offset=0&toolkit=toolkit&user_id=user_id"
+                ),
+                url
+            )
         );
     }
 

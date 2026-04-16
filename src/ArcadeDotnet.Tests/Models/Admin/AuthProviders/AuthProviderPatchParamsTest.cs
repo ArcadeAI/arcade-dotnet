@@ -214,7 +214,9 @@ public class AuthProviderPatchParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.arcade.dev/v1/admin/auth_providers/id"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://api.arcade.dev/v1/admin/auth_providers/id"), url)
+        );
     }
 
     [Fact]

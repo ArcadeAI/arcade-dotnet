@@ -22,7 +22,9 @@ public class ScheduledGetParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.arcade.dev/v1/scheduled_tools/id"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://api.arcade.dev/v1/scheduled_tools/id"), url)
+        );
     }
 
     [Fact]

@@ -65,9 +65,13 @@ public class FormattedGetParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://api.arcade.dev/v1/formatted_tools/name?format=format&user_id=user_id"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.arcade.dev/v1/formatted_tools/name?format=format&user_id=user_id"
+                ),
+                url
+            )
         );
     }
 

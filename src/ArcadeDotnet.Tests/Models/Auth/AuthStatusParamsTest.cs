@@ -48,7 +48,9 @@ public class AuthStatusParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.arcade.dev/v1/auth/status?id=id&wait=0"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://api.arcade.dev/v1/auth/status?id=id&wait=0"), url)
+        );
     }
 
     [Fact]

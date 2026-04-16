@@ -77,9 +77,13 @@ public class ToolGetParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://api.arcade.dev/v1/tools/name?include_format=arcade&user_id=user_id"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.arcade.dev/v1/tools/name?include_format=arcade&user_id=user_id"
+                ),
+                url
+            )
         );
     }
 
