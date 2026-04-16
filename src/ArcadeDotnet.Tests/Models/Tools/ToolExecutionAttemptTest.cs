@@ -1249,6 +1249,9 @@ public class ToolExecutionAttemptOutputErrorKindTest : TestBase
     [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeRateLimit)]
     [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeServerError)]
     [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeUnmapped)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.NetworkTransportRuntimeTimeout)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.NetworkTransportRuntimeUnreachable)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.NetworkTransportRuntimeUnmapped)]
     [InlineData(ToolExecutionAttemptOutputErrorKind.Unknown)]
     public void Validation_Works(ToolExecutionAttemptOutputErrorKind rawValue)
     {
@@ -1288,6 +1291,9 @@ public class ToolExecutionAttemptOutputErrorKindTest : TestBase
     [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeRateLimit)]
     [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeServerError)]
     [InlineData(ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeUnmapped)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.NetworkTransportRuntimeTimeout)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.NetworkTransportRuntimeUnreachable)]
+    [InlineData(ToolExecutionAttemptOutputErrorKind.NetworkTransportRuntimeUnmapped)]
     [InlineData(ToolExecutionAttemptOutputErrorKind.Unknown)]
     public void SerializationRoundtrip_Works(ToolExecutionAttemptOutputErrorKind rawValue)
     {

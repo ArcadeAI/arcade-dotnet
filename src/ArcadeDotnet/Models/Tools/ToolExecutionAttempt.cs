@@ -529,6 +529,9 @@ public enum ToolExecutionAttemptOutputErrorKind
     UpstreamRuntimeRateLimit,
     UpstreamRuntimeServerError,
     UpstreamRuntimeUnmapped,
+    NetworkTransportRuntimeTimeout,
+    NetworkTransportRuntimeUnreachable,
+    NetworkTransportRuntimeUnmapped,
     Unknown,
 }
 
@@ -576,6 +579,12 @@ sealed class ToolExecutionAttemptOutputErrorKindConverter
                 ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeServerError,
             "UPSTREAM_RUNTIME_UNMAPPED" =>
                 ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeUnmapped,
+            "NETWORK_TRANSPORT_RUNTIME_TIMEOUT" =>
+                ToolExecutionAttemptOutputErrorKind.NetworkTransportRuntimeTimeout,
+            "NETWORK_TRANSPORT_RUNTIME_UNREACHABLE" =>
+                ToolExecutionAttemptOutputErrorKind.NetworkTransportRuntimeUnreachable,
+            "NETWORK_TRANSPORT_RUNTIME_UNMAPPED" =>
+                ToolExecutionAttemptOutputErrorKind.NetworkTransportRuntimeUnmapped,
             "UNKNOWN" => ToolExecutionAttemptOutputErrorKind.Unknown,
             _ => (ToolExecutionAttemptOutputErrorKind)(-1),
         };
@@ -624,6 +633,12 @@ sealed class ToolExecutionAttemptOutputErrorKindConverter
                     "UPSTREAM_RUNTIME_SERVER_ERROR",
                 ToolExecutionAttemptOutputErrorKind.UpstreamRuntimeUnmapped =>
                     "UPSTREAM_RUNTIME_UNMAPPED",
+                ToolExecutionAttemptOutputErrorKind.NetworkTransportRuntimeTimeout =>
+                    "NETWORK_TRANSPORT_RUNTIME_TIMEOUT",
+                ToolExecutionAttemptOutputErrorKind.NetworkTransportRuntimeUnreachable =>
+                    "NETWORK_TRANSPORT_RUNTIME_UNREACHABLE",
+                ToolExecutionAttemptOutputErrorKind.NetworkTransportRuntimeUnmapped =>
+                    "NETWORK_TRANSPORT_RUNTIME_UNMAPPED",
                 ToolExecutionAttemptOutputErrorKind.Unknown => "UNKNOWN",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))

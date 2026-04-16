@@ -571,6 +571,9 @@ public enum Kind
     UpstreamRuntimeRateLimit,
     UpstreamRuntimeServerError,
     UpstreamRuntimeUnmapped,
+    NetworkTransportRuntimeTimeout,
+    NetworkTransportRuntimeUnreachable,
+    NetworkTransportRuntimeUnmapped,
     Unknown,
 }
 
@@ -603,6 +606,9 @@ sealed class KindConverter : JsonConverter<Kind>
             "UPSTREAM_RUNTIME_RATE_LIMIT" => Kind.UpstreamRuntimeRateLimit,
             "UPSTREAM_RUNTIME_SERVER_ERROR" => Kind.UpstreamRuntimeServerError,
             "UPSTREAM_RUNTIME_UNMAPPED" => Kind.UpstreamRuntimeUnmapped,
+            "NETWORK_TRANSPORT_RUNTIME_TIMEOUT" => Kind.NetworkTransportRuntimeTimeout,
+            "NETWORK_TRANSPORT_RUNTIME_UNREACHABLE" => Kind.NetworkTransportRuntimeUnreachable,
+            "NETWORK_TRANSPORT_RUNTIME_UNMAPPED" => Kind.NetworkTransportRuntimeUnmapped,
             "UNKNOWN" => Kind.Unknown,
             _ => (Kind)(-1),
         };
@@ -633,6 +639,9 @@ sealed class KindConverter : JsonConverter<Kind>
                 Kind.UpstreamRuntimeRateLimit => "UPSTREAM_RUNTIME_RATE_LIMIT",
                 Kind.UpstreamRuntimeServerError => "UPSTREAM_RUNTIME_SERVER_ERROR",
                 Kind.UpstreamRuntimeUnmapped => "UPSTREAM_RUNTIME_UNMAPPED",
+                Kind.NetworkTransportRuntimeTimeout => "NETWORK_TRANSPORT_RUNTIME_TIMEOUT",
+                Kind.NetworkTransportRuntimeUnreachable => "NETWORK_TRANSPORT_RUNTIME_UNREACHABLE",
+                Kind.NetworkTransportRuntimeUnmapped => "NETWORK_TRANSPORT_RUNTIME_UNMAPPED",
                 Kind.Unknown => "UNKNOWN",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))

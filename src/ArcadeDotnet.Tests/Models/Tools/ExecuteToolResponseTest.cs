@@ -1280,6 +1280,9 @@ public class KindTest : TestBase
     [InlineData(Kind.UpstreamRuntimeRateLimit)]
     [InlineData(Kind.UpstreamRuntimeServerError)]
     [InlineData(Kind.UpstreamRuntimeUnmapped)]
+    [InlineData(Kind.NetworkTransportRuntimeTimeout)]
+    [InlineData(Kind.NetworkTransportRuntimeUnreachable)]
+    [InlineData(Kind.NetworkTransportRuntimeUnmapped)]
     [InlineData(Kind.Unknown)]
     public void Validation_Works(Kind rawValue)
     {
@@ -1320,6 +1323,9 @@ public class KindTest : TestBase
     [InlineData(Kind.UpstreamRuntimeRateLimit)]
     [InlineData(Kind.UpstreamRuntimeServerError)]
     [InlineData(Kind.UpstreamRuntimeUnmapped)]
+    [InlineData(Kind.NetworkTransportRuntimeTimeout)]
+    [InlineData(Kind.NetworkTransportRuntimeUnreachable)]
+    [InlineData(Kind.NetworkTransportRuntimeUnmapped)]
     [InlineData(Kind.Unknown)]
     public void SerializationRoundtrip_Works(Kind rawValue)
     {
