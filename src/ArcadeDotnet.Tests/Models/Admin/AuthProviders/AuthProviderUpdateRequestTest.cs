@@ -47,6 +47,20 @@ public class AuthProviderUpdateRequestTest : TestBase
                     ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
                 },
                 ScopeDelimiter = AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined,
+                TokenIntrospectionRequest = new()
+                {
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Endpoint = "endpoint",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                    Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                },
                 TokenRequest = new()
                 {
                     AuthHeaderValueFormat = "auth_header_value_format",
@@ -114,6 +128,20 @@ public class AuthProviderUpdateRequestTest : TestBase
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
             ScopeDelimiter = AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined,
+            TokenIntrospectionRequest = new()
+            {
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Endpoint = "endpoint",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            },
             TokenRequest = new()
             {
                 AuthHeaderValueFormat = "auth_header_value_format",
@@ -193,6 +221,20 @@ public class AuthProviderUpdateRequestTest : TestBase
                     ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
                 },
                 ScopeDelimiter = AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined,
+                TokenIntrospectionRequest = new()
+                {
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Endpoint = "endpoint",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                    Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                },
                 TokenRequest = new()
                 {
                     AuthHeaderValueFormat = "auth_header_value_format",
@@ -274,6 +316,20 @@ public class AuthProviderUpdateRequestTest : TestBase
                     ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
                 },
                 ScopeDelimiter = AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined,
+                TokenIntrospectionRequest = new()
+                {
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Endpoint = "endpoint",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                    Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                },
                 TokenRequest = new()
                 {
                     AuthHeaderValueFormat = "auth_header_value_format",
@@ -348,6 +404,20 @@ public class AuthProviderUpdateRequestTest : TestBase
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
             ScopeDelimiter = AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined,
+            TokenIntrospectionRequest = new()
+            {
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Endpoint = "endpoint",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            },
             TokenRequest = new()
             {
                 AuthHeaderValueFormat = "auth_header_value_format",
@@ -427,6 +497,20 @@ public class AuthProviderUpdateRequestTest : TestBase
                     ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
                 },
                 ScopeDelimiter = AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined,
+                TokenIntrospectionRequest = new()
+                {
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Endpoint = "endpoint",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                    Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                },
                 TokenRequest = new()
                 {
                     AuthHeaderValueFormat = "auth_header_value_format",
@@ -574,6 +658,20 @@ public class AuthProviderUpdateRequestTest : TestBase
                     ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
                 },
                 ScopeDelimiter = AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined,
+                TokenIntrospectionRequest = new()
+                {
+                    AuthHeaderValueFormat = "auth_header_value_format",
+                    AuthMethod = "auth_method",
+                    Endpoint = "endpoint",
+                    Method = "method",
+                    Params = new Dictionary<string, string>() { { "foo", "string" } },
+                    RequestContentType =
+                        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseContentType =
+                        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                    ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                    Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+                },
                 TokenRequest = new()
                 {
                     AuthHeaderValueFormat = "auth_header_value_format",
@@ -650,6 +748,20 @@ public class AuthProviderUpdateRequestOauth2Test : TestBase
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
             ScopeDelimiter = AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined,
+            TokenIntrospectionRequest = new()
+            {
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Endpoint = "endpoint",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            },
             TokenRequest = new()
             {
                 AuthHeaderValueFormat = "auth_header_value_format",
@@ -714,6 +826,21 @@ public class AuthProviderUpdateRequestOauth2Test : TestBase
         };
         ApiEnum<string, AuthProviderUpdateRequestOauth2ScopeDelimiter> expectedScopeDelimiter =
             AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined;
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequest expectedTokenIntrospectionRequest =
+            new()
+            {
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Endpoint = "endpoint",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            };
         AuthProviderUpdateRequestOauth2TokenRequest expectedTokenRequest = new()
         {
             AuthHeaderValueFormat = "auth_header_value_format",
@@ -748,6 +875,7 @@ public class AuthProviderUpdateRequestOauth2Test : TestBase
         Assert.Equal(expectedPkce, model.Pkce);
         Assert.Equal(expectedRefreshRequest, model.RefreshRequest);
         Assert.Equal(expectedScopeDelimiter, model.ScopeDelimiter);
+        Assert.Equal(expectedTokenIntrospectionRequest, model.TokenIntrospectionRequest);
         Assert.Equal(expectedTokenRequest, model.TokenRequest);
         Assert.Equal(expectedUserInfoRequest, model.UserInfoRequest);
     }
@@ -787,6 +915,20 @@ public class AuthProviderUpdateRequestOauth2Test : TestBase
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
             ScopeDelimiter = AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined,
+            TokenIntrospectionRequest = new()
+            {
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Endpoint = "endpoint",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            },
             TokenRequest = new()
             {
                 AuthHeaderValueFormat = "auth_header_value_format",
@@ -860,6 +1002,20 @@ public class AuthProviderUpdateRequestOauth2Test : TestBase
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
             ScopeDelimiter = AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined,
+            TokenIntrospectionRequest = new()
+            {
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Endpoint = "endpoint",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            },
             TokenRequest = new()
             {
                 AuthHeaderValueFormat = "auth_header_value_format",
@@ -931,6 +1087,21 @@ public class AuthProviderUpdateRequestOauth2Test : TestBase
         };
         ApiEnum<string, AuthProviderUpdateRequestOauth2ScopeDelimiter> expectedScopeDelimiter =
             AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined;
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequest expectedTokenIntrospectionRequest =
+            new()
+            {
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Endpoint = "endpoint",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            };
         AuthProviderUpdateRequestOauth2TokenRequest expectedTokenRequest = new()
         {
             AuthHeaderValueFormat = "auth_header_value_format",
@@ -965,6 +1136,7 @@ public class AuthProviderUpdateRequestOauth2Test : TestBase
         Assert.Equal(expectedPkce, deserialized.Pkce);
         Assert.Equal(expectedRefreshRequest, deserialized.RefreshRequest);
         Assert.Equal(expectedScopeDelimiter, deserialized.ScopeDelimiter);
+        Assert.Equal(expectedTokenIntrospectionRequest, deserialized.TokenIntrospectionRequest);
         Assert.Equal(expectedTokenRequest, deserialized.TokenRequest);
         Assert.Equal(expectedUserInfoRequest, deserialized.UserInfoRequest);
     }
@@ -1004,6 +1176,20 @@ public class AuthProviderUpdateRequestOauth2Test : TestBase
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
             ScopeDelimiter = AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined,
+            TokenIntrospectionRequest = new()
+            {
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Endpoint = "endpoint",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            },
             TokenRequest = new()
             {
                 AuthHeaderValueFormat = "auth_header_value_format",
@@ -1053,6 +1239,8 @@ public class AuthProviderUpdateRequestOauth2Test : TestBase
         Assert.False(model.RawData.ContainsKey("refresh_request"));
         Assert.Null(model.ScopeDelimiter);
         Assert.False(model.RawData.ContainsKey("scope_delimiter"));
+        Assert.Null(model.TokenIntrospectionRequest);
+        Assert.False(model.RawData.ContainsKey("token_introspection_request"));
         Assert.Null(model.TokenRequest);
         Assert.False(model.RawData.ContainsKey("token_request"));
         Assert.Null(model.UserInfoRequest);
@@ -1079,6 +1267,7 @@ public class AuthProviderUpdateRequestOauth2Test : TestBase
             Pkce = null,
             RefreshRequest = null,
             ScopeDelimiter = null,
+            TokenIntrospectionRequest = null,
             TokenRequest = null,
             UserInfoRequest = null,
         };
@@ -1095,6 +1284,8 @@ public class AuthProviderUpdateRequestOauth2Test : TestBase
         Assert.False(model.RawData.ContainsKey("refresh_request"));
         Assert.Null(model.ScopeDelimiter);
         Assert.False(model.RawData.ContainsKey("scope_delimiter"));
+        Assert.Null(model.TokenIntrospectionRequest);
+        Assert.False(model.RawData.ContainsKey("token_introspection_request"));
         Assert.Null(model.TokenRequest);
         Assert.False(model.RawData.ContainsKey("token_request"));
         Assert.Null(model.UserInfoRequest);
@@ -1113,6 +1304,7 @@ public class AuthProviderUpdateRequestOauth2Test : TestBase
             Pkce = null,
             RefreshRequest = null,
             ScopeDelimiter = null,
+            TokenIntrospectionRequest = null,
             TokenRequest = null,
             UserInfoRequest = null,
         };
@@ -1155,6 +1347,20 @@ public class AuthProviderUpdateRequestOauth2Test : TestBase
                 ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
             },
             ScopeDelimiter = AuthProviderUpdateRequestOauth2ScopeDelimiter.Undefined,
+            TokenIntrospectionRequest = new()
+            {
+                AuthHeaderValueFormat = "auth_header_value_format",
+                AuthMethod = "auth_method",
+                Endpoint = "endpoint",
+                Method = "method",
+                Params = new Dictionary<string, string>() { { "foo", "string" } },
+                RequestContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+                ResponseContentType =
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+                ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+                Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+            },
             TokenRequest = new()
             {
                 AuthHeaderValueFormat = "auth_header_value_format",
@@ -2191,6 +2397,615 @@ public class AuthProviderUpdateRequestOauth2ScopeDelimiterTest : TestBase
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
+    }
+}
+
+public class AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequest
+        {
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Endpoint = "endpoint",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType =
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType =
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+        };
+
+        string expectedAuthHeaderValueFormat = "auth_header_value_format";
+        string expectedAuthMethod = "auth_method";
+        string expectedEndpoint = "endpoint";
+        string expectedMethod = "method";
+        Dictionary<string, string> expectedParams = new() { { "foo", "string" } };
+        ApiEnum<
+            string,
+            AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType
+        > expectedRequestContentType =
+            AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<
+            string,
+            AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType
+        > expectedResponseContentType =
+            AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded;
+        Dictionary<string, string> expectedResponseMap = new() { { "foo", "string" } };
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers expectedTriggers = new()
+        {
+            OnTokenGrant = true,
+            OnTokenRefresh = true,
+        };
+
+        Assert.Equal(expectedAuthHeaderValueFormat, model.AuthHeaderValueFormat);
+        Assert.Equal(expectedAuthMethod, model.AuthMethod);
+        Assert.Equal(expectedEndpoint, model.Endpoint);
+        Assert.Equal(expectedMethod, model.Method);
+        Assert.NotNull(model.Params);
+        Assert.Equal(expectedParams.Count, model.Params.Count);
+        foreach (var item in expectedParams)
+        {
+            Assert.True(model.Params.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, model.Params[item.Key]);
+        }
+        Assert.Equal(expectedRequestContentType, model.RequestContentType);
+        Assert.Equal(expectedResponseContentType, model.ResponseContentType);
+        Assert.NotNull(model.ResponseMap);
+        Assert.Equal(expectedResponseMap.Count, model.ResponseMap.Count);
+        foreach (var item in expectedResponseMap)
+        {
+            Assert.True(model.ResponseMap.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, model.ResponseMap[item.Key]);
+        }
+        Assert.Equal(expectedTriggers, model.Triggers);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequest
+        {
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Endpoint = "endpoint",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType =
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType =
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2TokenIntrospectionRequest>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequest
+        {
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Endpoint = "endpoint",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType =
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType =
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2TokenIntrospectionRequest>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        string expectedAuthHeaderValueFormat = "auth_header_value_format";
+        string expectedAuthMethod = "auth_method";
+        string expectedEndpoint = "endpoint";
+        string expectedMethod = "method";
+        Dictionary<string, string> expectedParams = new() { { "foo", "string" } };
+        ApiEnum<
+            string,
+            AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType
+        > expectedRequestContentType =
+            AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded;
+        ApiEnum<
+            string,
+            AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType
+        > expectedResponseContentType =
+            AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded;
+        Dictionary<string, string> expectedResponseMap = new() { { "foo", "string" } };
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers expectedTriggers = new()
+        {
+            OnTokenGrant = true,
+            OnTokenRefresh = true,
+        };
+
+        Assert.Equal(expectedAuthHeaderValueFormat, deserialized.AuthHeaderValueFormat);
+        Assert.Equal(expectedAuthMethod, deserialized.AuthMethod);
+        Assert.Equal(expectedEndpoint, deserialized.Endpoint);
+        Assert.Equal(expectedMethod, deserialized.Method);
+        Assert.NotNull(deserialized.Params);
+        Assert.Equal(expectedParams.Count, deserialized.Params.Count);
+        foreach (var item in expectedParams)
+        {
+            Assert.True(deserialized.Params.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Params[item.Key]);
+        }
+        Assert.Equal(expectedRequestContentType, deserialized.RequestContentType);
+        Assert.Equal(expectedResponseContentType, deserialized.ResponseContentType);
+        Assert.NotNull(deserialized.ResponseMap);
+        Assert.Equal(expectedResponseMap.Count, deserialized.ResponseMap.Count);
+        foreach (var item in expectedResponseMap)
+        {
+            Assert.True(deserialized.ResponseMap.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.ResponseMap[item.Key]);
+        }
+        Assert.Equal(expectedTriggers, deserialized.Triggers);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequest
+        {
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Endpoint = "endpoint",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType =
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType =
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequest { };
+
+        Assert.Null(model.AuthHeaderValueFormat);
+        Assert.False(model.RawData.ContainsKey("auth_header_value_format"));
+        Assert.Null(model.AuthMethod);
+        Assert.False(model.RawData.ContainsKey("auth_method"));
+        Assert.Null(model.Endpoint);
+        Assert.False(model.RawData.ContainsKey("endpoint"));
+        Assert.Null(model.Method);
+        Assert.False(model.RawData.ContainsKey("method"));
+        Assert.Null(model.Params);
+        Assert.False(model.RawData.ContainsKey("params"));
+        Assert.Null(model.RequestContentType);
+        Assert.False(model.RawData.ContainsKey("request_content_type"));
+        Assert.Null(model.ResponseContentType);
+        Assert.False(model.RawData.ContainsKey("response_content_type"));
+        Assert.Null(model.ResponseMap);
+        Assert.False(model.RawData.ContainsKey("response_map"));
+        Assert.Null(model.Triggers);
+        Assert.False(model.RawData.ContainsKey("triggers"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequest { };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequest
+        {
+            // Null should be interpreted as omitted for these properties
+            AuthHeaderValueFormat = null,
+            AuthMethod = null,
+            Endpoint = null,
+            Method = null,
+            Params = null,
+            RequestContentType = null,
+            ResponseContentType = null,
+            ResponseMap = null,
+            Triggers = null,
+        };
+
+        Assert.Null(model.AuthHeaderValueFormat);
+        Assert.False(model.RawData.ContainsKey("auth_header_value_format"));
+        Assert.Null(model.AuthMethod);
+        Assert.False(model.RawData.ContainsKey("auth_method"));
+        Assert.Null(model.Endpoint);
+        Assert.False(model.RawData.ContainsKey("endpoint"));
+        Assert.Null(model.Method);
+        Assert.False(model.RawData.ContainsKey("method"));
+        Assert.Null(model.Params);
+        Assert.False(model.RawData.ContainsKey("params"));
+        Assert.Null(model.RequestContentType);
+        Assert.False(model.RawData.ContainsKey("request_content_type"));
+        Assert.Null(model.ResponseContentType);
+        Assert.False(model.RawData.ContainsKey("response_content_type"));
+        Assert.Null(model.ResponseMap);
+        Assert.False(model.RawData.ContainsKey("response_map"));
+        Assert.Null(model.Triggers);
+        Assert.False(model.RawData.ContainsKey("triggers"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequest
+        {
+            // Null should be interpreted as omitted for these properties
+            AuthHeaderValueFormat = null,
+            AuthMethod = null,
+            Endpoint = null,
+            Method = null,
+            Params = null,
+            RequestContentType = null,
+            ResponseContentType = null,
+            ResponseMap = null,
+            Triggers = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequest
+        {
+            AuthHeaderValueFormat = "auth_header_value_format",
+            AuthMethod = "auth_method",
+            Endpoint = "endpoint",
+            Method = "method",
+            Params = new Dictionary<string, string>() { { "foo", "string" } },
+            RequestContentType =
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            ResponseContentType =
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            ResponseMap = new Dictionary<string, string>() { { "foo", "string" } },
+            Triggers = new() { OnTokenGrant = true, OnTokenRefresh = true },
+        };
+
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequest copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentTypeTest
+    : TestBase
+{
+    [Theory]
+    [InlineData(
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationJson
+    )]
+    public void Validation_Works(
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType
+        > value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationJson
+    )]
+    public void SerializationRoundtrip_Works(
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType
+        > value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentTypeTest
+    : TestBase
+{
+    [Theory]
+    [InlineData(
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationJson
+    )]
+    public void Validation_Works(
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType
+        > value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<ArcadeInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded
+    )]
+    [InlineData(
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationJson
+    )]
+    public void SerializationRoundtrip_Works(
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType
+        > value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggersTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers
+        {
+            OnTokenGrant = true,
+            OnTokenRefresh = true,
+        };
+
+        bool expectedOnTokenGrant = true;
+        bool expectedOnTokenRefresh = true;
+
+        Assert.Equal(expectedOnTokenGrant, model.OnTokenGrant);
+        Assert.Equal(expectedOnTokenRefresh, model.OnTokenRefresh);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers
+        {
+            OnTokenGrant = true,
+            OnTokenRefresh = true,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers
+        {
+            OnTokenGrant = true,
+            OnTokenRefresh = true,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        bool expectedOnTokenGrant = true;
+        bool expectedOnTokenRefresh = true;
+
+        Assert.Equal(expectedOnTokenGrant, deserialized.OnTokenGrant);
+        Assert.Equal(expectedOnTokenRefresh, deserialized.OnTokenRefresh);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers
+        {
+            OnTokenGrant = true,
+            OnTokenRefresh = true,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers { };
+
+        Assert.Null(model.OnTokenGrant);
+        Assert.False(model.RawData.ContainsKey("on_token_grant"));
+        Assert.Null(model.OnTokenRefresh);
+        Assert.False(model.RawData.ContainsKey("on_token_refresh"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers { };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers
+        {
+            // Null should be interpreted as omitted for these properties
+            OnTokenGrant = null,
+            OnTokenRefresh = null,
+        };
+
+        Assert.Null(model.OnTokenGrant);
+        Assert.False(model.RawData.ContainsKey("on_token_grant"));
+        Assert.Null(model.OnTokenRefresh);
+        Assert.False(model.RawData.ContainsKey("on_token_refresh"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers
+        {
+            // Null should be interpreted as omitted for these properties
+            OnTokenGrant = null,
+            OnTokenRefresh = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers
+        {
+            OnTokenGrant = true,
+            OnTokenRefresh = true,
+        };
+
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

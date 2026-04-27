@@ -293,6 +293,26 @@ public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
         }
     }
 
+    public AuthProviderUpdateRequestOauth2TokenIntrospectionRequest? TokenIntrospectionRequest
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<AuthProviderUpdateRequestOauth2TokenIntrospectionRequest>(
+                "token_introspection_request"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("token_introspection_request", value);
+        }
+    }
+
     public AuthProviderUpdateRequestOauth2TokenRequest? TokenRequest
     {
         get
@@ -342,6 +362,7 @@ public sealed record class AuthProviderUpdateRequestOauth2 : JsonModel
         this.Pkce?.Validate();
         this.RefreshRequest?.Validate();
         this.ScopeDelimiter?.Validate();
+        this.TokenIntrospectionRequest?.Validate();
         this.TokenRequest?.Validate();
         this.UserInfoRequest?.Validate();
     }
@@ -1164,6 +1185,458 @@ sealed class AuthProviderUpdateRequestOauth2ScopeDelimiterConverter
             options
         );
     }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequest,
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestFromRaw
+    >)
+)]
+public sealed record class AuthProviderUpdateRequestOauth2TokenIntrospectionRequest : JsonModel
+{
+    public string? AuthHeaderValueFormat
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("auth_header_value_format");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("auth_header_value_format", value);
+        }
+    }
+
+    public string? AuthMethod
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("auth_method");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("auth_method", value);
+        }
+    }
+
+    public string? Endpoint
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("endpoint");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("endpoint", value);
+        }
+    }
+
+    public string? Method
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("method");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("method", value);
+        }
+    }
+
+    public IReadOnlyDictionary<string, string>? Params
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("params");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<FrozenDictionary<string, string>?>(
+                "params",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    public ApiEnum<
+        string,
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType
+    >? RequestContentType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<
+                ApiEnum<
+                    string,
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType
+                >
+            >("request_content_type");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("request_content_type", value);
+        }
+    }
+
+    public ApiEnum<
+        string,
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType
+    >? ResponseContentType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<
+                ApiEnum<
+                    string,
+                    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType
+                >
+            >("response_content_type");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("response_content_type", value);
+        }
+    }
+
+    public IReadOnlyDictionary<string, string>? ResponseMap
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string>>("response_map");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<FrozenDictionary<string, string>?>(
+                "response_map",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    public AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers? Triggers
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers>(
+                "triggers"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("triggers", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.AuthHeaderValueFormat;
+        _ = this.AuthMethod;
+        _ = this.Endpoint;
+        _ = this.Method;
+        _ = this.Params;
+        this.RequestContentType?.Validate();
+        this.ResponseContentType?.Validate();
+        _ = this.ResponseMap;
+        this.Triggers?.Validate();
+    }
+
+    public AuthProviderUpdateRequestOauth2TokenIntrospectionRequest() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public AuthProviderUpdateRequestOauth2TokenIntrospectionRequest(
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequest authProviderUpdateRequestOauth2TokenIntrospectionRequest
+    )
+        : base(authProviderUpdateRequestOauth2TokenIntrospectionRequest) { }
+#pragma warning restore CS8618
+
+    public AuthProviderUpdateRequestOauth2TokenIntrospectionRequest(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AuthProviderUpdateRequestOauth2TokenIntrospectionRequest(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="AuthProviderUpdateRequestOauth2TokenIntrospectionRequestFromRaw.FromRawUnchecked"/>
+    public static AuthProviderUpdateRequestOauth2TokenIntrospectionRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class AuthProviderUpdateRequestOauth2TokenIntrospectionRequestFromRaw
+    : IFromRawJson<AuthProviderUpdateRequestOauth2TokenIntrospectionRequest>
+{
+    /// <inheritdoc/>
+    public AuthProviderUpdateRequestOauth2TokenIntrospectionRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthProviderUpdateRequestOauth2TokenIntrospectionRequest.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentTypeConverter)
+)]
+public enum AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType
+{
+    ApplicationXWwwFormUrlencoded,
+    ApplicationJson,
+}
+
+sealed class AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentTypeConverter
+    : JsonConverter<AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType>
+{
+    public override AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "application/x-www-form-urlencoded" =>
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationJson,
+            _ => (AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationXWwwFormUrlencoded =>
+                    "application/x-www-form-urlencoded",
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType.ApplicationJson =>
+                    "application/json",
+                _ => throw new ArcadeInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(
+    typeof(AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentTypeConverter)
+)]
+public enum AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType
+{
+    ApplicationXWwwFormUrlencoded,
+    ApplicationJson,
+}
+
+sealed class AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentTypeConverter
+    : JsonConverter<AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType>
+{
+    public override AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "application/x-www-form-urlencoded" =>
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded,
+            "application/json" =>
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationJson,
+            _ => (AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationXWwwFormUrlencoded =>
+                    "application/x-www-form-urlencoded",
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType.ApplicationJson =>
+                    "application/json",
+                _ => throw new ArcadeInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers,
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggersFromRaw
+    >)
+)]
+public sealed record class AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers
+    : JsonModel
+{
+    public bool? OnTokenGrant
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("on_token_grant");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("on_token_grant", value);
+        }
+    }
+
+    public bool? OnTokenRefresh
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("on_token_refresh");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("on_token_refresh", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.OnTokenGrant;
+        _ = this.OnTokenRefresh;
+    }
+
+    public AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers(
+        AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers authProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers
+    )
+        : base(authProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers) { }
+#pragma warning restore CS8618
+
+    public AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggersFromRaw.FromRawUnchecked"/>
+    public static AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggersFromRaw
+    : IFromRawJson<AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers>
+{
+    /// <inheritdoc/>
+    public AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AuthProviderUpdateRequestOauth2TokenIntrospectionRequestTriggers.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(

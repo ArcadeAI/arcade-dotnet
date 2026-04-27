@@ -90,6 +90,14 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, AuthProviderUpdateRequestOauth2ScopeDelimiter>(),
             new ApiEnumConverter<
                 string,
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestRequestContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviderUpdateRequestOauth2TokenIntrospectionRequestResponseContentType
+            >(),
+            new ApiEnumConverter<
+                string,
                 AuthProviderUpdateRequestOauth2TokenRequestRequestContentType
             >(),
             new ApiEnumConverter<
@@ -132,6 +140,14 @@ public abstract record class ModelBase
                 AuthProviderPatchParamsOauth2RefreshRequestResponseContentType
             >(),
             new ApiEnumConverter<string, AuthProviderPatchParamsOauth2ScopeDelimiter>(),
+            new ApiEnumConverter<
+                string,
+                AuthProviderPatchParamsOauth2TokenIntrospectionRequestRequestContentType
+            >(),
+            new ApiEnumConverter<
+                string,
+                AuthProviderPatchParamsOauth2TokenIntrospectionRequestResponseContentType
+            >(),
             new ApiEnumConverter<
                 string,
                 AuthProviderPatchParamsOauth2TokenRequestRequestContentType
