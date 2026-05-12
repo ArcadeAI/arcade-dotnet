@@ -17,7 +17,7 @@ public class UpdateWorkerRequestTest : TestBase
             {
                 Retry = 0,
                 Secret = "secret",
-                Timeout = 1,
+                Timeout = 0,
                 Uri = "uri",
             },
             Mcp = new()
@@ -31,7 +31,7 @@ public class UpdateWorkerRequestTest : TestBase
                 },
                 Retry = 0,
                 Secrets = new Dictionary<string, string>() { { "foo", "string" } },
-                Timeout = 1,
+                Timeout = 0,
                 Uri = "uri",
             },
         };
@@ -41,7 +41,7 @@ public class UpdateWorkerRequestTest : TestBase
         {
             Retry = 0,
             Secret = "secret",
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
         UpdateWorkerRequestMcp expectedMcp = new()
@@ -55,7 +55,7 @@ public class UpdateWorkerRequestTest : TestBase
             },
             Retry = 0,
             Secrets = new Dictionary<string, string>() { { "foo", "string" } },
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
@@ -74,7 +74,7 @@ public class UpdateWorkerRequestTest : TestBase
             {
                 Retry = 0,
                 Secret = "secret",
-                Timeout = 1,
+                Timeout = 0,
                 Uri = "uri",
             },
             Mcp = new()
@@ -88,7 +88,7 @@ public class UpdateWorkerRequestTest : TestBase
                 },
                 Retry = 0,
                 Secrets = new Dictionary<string, string>() { { "foo", "string" } },
-                Timeout = 1,
+                Timeout = 0,
                 Uri = "uri",
             },
         };
@@ -112,7 +112,7 @@ public class UpdateWorkerRequestTest : TestBase
             {
                 Retry = 0,
                 Secret = "secret",
-                Timeout = 1,
+                Timeout = 0,
                 Uri = "uri",
             },
             Mcp = new()
@@ -126,7 +126,7 @@ public class UpdateWorkerRequestTest : TestBase
                 },
                 Retry = 0,
                 Secrets = new Dictionary<string, string>() { { "foo", "string" } },
-                Timeout = 1,
+                Timeout = 0,
                 Uri = "uri",
             },
         };
@@ -143,7 +143,7 @@ public class UpdateWorkerRequestTest : TestBase
         {
             Retry = 0,
             Secret = "secret",
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
         UpdateWorkerRequestMcp expectedMcp = new()
@@ -157,7 +157,7 @@ public class UpdateWorkerRequestTest : TestBase
             },
             Retry = 0,
             Secrets = new Dictionary<string, string>() { { "foo", "string" } },
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
@@ -176,7 +176,7 @@ public class UpdateWorkerRequestTest : TestBase
             {
                 Retry = 0,
                 Secret = "secret",
-                Timeout = 1,
+                Timeout = 0,
                 Uri = "uri",
             },
             Mcp = new()
@@ -190,7 +190,7 @@ public class UpdateWorkerRequestTest : TestBase
                 },
                 Retry = 0,
                 Secrets = new Dictionary<string, string>() { { "foo", "string" } },
-                Timeout = 1,
+                Timeout = 0,
                 Uri = "uri",
             },
         };
@@ -262,7 +262,7 @@ public class UpdateWorkerRequestTest : TestBase
             {
                 Retry = 0,
                 Secret = "secret",
-                Timeout = 1,
+                Timeout = 0,
                 Uri = "uri",
             },
             Mcp = new()
@@ -276,7 +276,7 @@ public class UpdateWorkerRequestTest : TestBase
                 },
                 Retry = 0,
                 Secrets = new Dictionary<string, string>() { { "foo", "string" } },
-                Timeout = 1,
+                Timeout = 0,
                 Uri = "uri",
             },
         };
@@ -296,13 +296,13 @@ public class UpdateWorkerRequestHttpTest : TestBase
         {
             Retry = 0,
             Secret = "secret",
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
         long expectedRetry = 0;
         string expectedSecret = "secret";
-        long expectedTimeout = 1;
+        long expectedTimeout = 0;
         string expectedUri = "uri";
 
         Assert.Equal(expectedRetry, model.Retry);
@@ -318,7 +318,7 @@ public class UpdateWorkerRequestHttpTest : TestBase
         {
             Retry = 0,
             Secret = "secret",
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
@@ -338,7 +338,7 @@ public class UpdateWorkerRequestHttpTest : TestBase
         {
             Retry = 0,
             Secret = "secret",
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
@@ -351,7 +351,7 @@ public class UpdateWorkerRequestHttpTest : TestBase
 
         long expectedRetry = 0;
         string expectedSecret = "secret";
-        long expectedTimeout = 1;
+        long expectedTimeout = 0;
         string expectedUri = "uri";
 
         Assert.Equal(expectedRetry, deserialized.Retry);
@@ -367,7 +367,7 @@ public class UpdateWorkerRequestHttpTest : TestBase
         {
             Retry = 0,
             Secret = "secret",
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
@@ -441,7 +441,7 @@ public class UpdateWorkerRequestHttpTest : TestBase
         {
             Retry = 0,
             Secret = "secret",
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
@@ -467,7 +467,7 @@ public class UpdateWorkerRequestMcpTest : TestBase
             },
             Retry = 0,
             Secrets = new Dictionary<string, string>() { { "foo", "string" } },
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
@@ -480,7 +480,7 @@ public class UpdateWorkerRequestMcpTest : TestBase
         };
         long expectedRetry = 0;
         Dictionary<string, string> expectedSecrets = new() { { "foo", "string" } };
-        long expectedTimeout = 1;
+        long expectedTimeout = 0;
         string expectedUri = "uri";
 
         Assert.NotNull(model.Headers);
@@ -519,7 +519,7 @@ public class UpdateWorkerRequestMcpTest : TestBase
             },
             Retry = 0,
             Secrets = new Dictionary<string, string>() { { "foo", "string" } },
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
@@ -546,7 +546,7 @@ public class UpdateWorkerRequestMcpTest : TestBase
             },
             Retry = 0,
             Secrets = new Dictionary<string, string>() { { "foo", "string" } },
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
@@ -566,7 +566,7 @@ public class UpdateWorkerRequestMcpTest : TestBase
         };
         long expectedRetry = 0;
         Dictionary<string, string> expectedSecrets = new() { { "foo", "string" } };
-        long expectedTimeout = 1;
+        long expectedTimeout = 0;
         string expectedUri = "uri";
 
         Assert.NotNull(deserialized.Headers);
@@ -605,7 +605,7 @@ public class UpdateWorkerRequestMcpTest : TestBase
             },
             Retry = 0,
             Secrets = new Dictionary<string, string>() { { "foo", "string" } },
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
@@ -698,7 +698,7 @@ public class UpdateWorkerRequestMcpTest : TestBase
             },
             Retry = 0,
             Secrets = new Dictionary<string, string>() { { "foo", "string" } },
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 

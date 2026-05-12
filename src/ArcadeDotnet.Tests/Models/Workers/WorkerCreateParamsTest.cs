@@ -19,13 +19,13 @@ public class WorkerCreateParamsTest : TestBase
             {
                 Retry = 0,
                 Secret = "secret",
-                Timeout = 1,
+                Timeout = 0,
                 Uri = "uri",
             },
             Mcp = new()
             {
                 Retry = 0,
-                Timeout = 1,
+                Timeout = 0,
                 Uri = "uri",
                 Headers = new Dictionary<string, string>() { { "foo", "string" } },
                 Oauth2 = new()
@@ -46,13 +46,13 @@ public class WorkerCreateParamsTest : TestBase
         {
             Retry = 0,
             Secret = "secret",
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
         Mcp expectedMcp = new()
         {
             Retry = 0,
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
@@ -133,13 +133,13 @@ public class WorkerCreateParamsTest : TestBase
             {
                 Retry = 0,
                 Secret = "secret",
-                Timeout = 1,
+                Timeout = 0,
                 Uri = "uri",
             },
             Mcp = new()
             {
                 Retry = 0,
-                Timeout = 1,
+                Timeout = 0,
                 Uri = "uri",
                 Headers = new Dictionary<string, string>() { { "foo", "string" } },
                 Oauth2 = new()
@@ -169,13 +169,13 @@ public class HttpTest : TestBase
         {
             Retry = 0,
             Secret = "secret",
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
         long expectedRetry = 0;
         string expectedSecret = "secret";
-        long expectedTimeout = 1;
+        long expectedTimeout = 0;
         string expectedUri = "uri";
 
         Assert.Equal(expectedRetry, model.Retry);
@@ -191,7 +191,7 @@ public class HttpTest : TestBase
         {
             Retry = 0,
             Secret = "secret",
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
@@ -208,7 +208,7 @@ public class HttpTest : TestBase
         {
             Retry = 0,
             Secret = "secret",
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
@@ -218,7 +218,7 @@ public class HttpTest : TestBase
 
         long expectedRetry = 0;
         string expectedSecret = "secret";
-        long expectedTimeout = 1;
+        long expectedTimeout = 0;
         string expectedUri = "uri";
 
         Assert.Equal(expectedRetry, deserialized.Retry);
@@ -234,7 +234,7 @@ public class HttpTest : TestBase
         {
             Retry = 0,
             Secret = "secret",
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
@@ -248,7 +248,7 @@ public class HttpTest : TestBase
         {
             Retry = 0,
             Secret = "secret",
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
@@ -266,7 +266,7 @@ public class McpTest : TestBase
         var model = new Mcp
         {
             Retry = 0,
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
@@ -280,7 +280,7 @@ public class McpTest : TestBase
         };
 
         long expectedRetry = 0;
-        long expectedTimeout = 1;
+        long expectedTimeout = 0;
         string expectedUri = "uri";
         Dictionary<string, string> expectedHeaders = new() { { "foo", "string" } };
         Oauth2 expectedOauth2 = new()
@@ -320,7 +320,7 @@ public class McpTest : TestBase
         var model = new Mcp
         {
             Retry = 0,
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
@@ -345,7 +345,7 @@ public class McpTest : TestBase
         var model = new Mcp
         {
             Retry = 0,
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
@@ -363,7 +363,7 @@ public class McpTest : TestBase
         Assert.NotNull(deserialized);
 
         long expectedRetry = 0;
-        long expectedTimeout = 1;
+        long expectedTimeout = 0;
         string expectedUri = "uri";
         Dictionary<string, string> expectedHeaders = new() { { "foo", "string" } };
         Oauth2 expectedOauth2 = new()
@@ -403,7 +403,7 @@ public class McpTest : TestBase
         var model = new Mcp
         {
             Retry = 0,
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
@@ -425,7 +425,7 @@ public class McpTest : TestBase
         var model = new Mcp
         {
             Retry = 0,
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
@@ -443,7 +443,7 @@ public class McpTest : TestBase
         var model = new Mcp
         {
             Retry = 0,
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
         };
 
@@ -456,7 +456,7 @@ public class McpTest : TestBase
         var model = new Mcp
         {
             Retry = 0,
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
 
             // Null should be interpreted as omitted for these properties
@@ -479,7 +479,7 @@ public class McpTest : TestBase
         var model = new Mcp
         {
             Retry = 0,
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
 
             // Null should be interpreted as omitted for these properties
@@ -497,7 +497,7 @@ public class McpTest : TestBase
         var model = new Mcp
         {
             Retry = 0,
-            Timeout = 1,
+            Timeout = 0,
             Uri = "uri",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
