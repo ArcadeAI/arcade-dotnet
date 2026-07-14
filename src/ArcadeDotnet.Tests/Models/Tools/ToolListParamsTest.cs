@@ -149,6 +149,7 @@ public class IncludeFormatTest : TestBase
     [InlineData(IncludeFormat.Arcade)]
     [InlineData(IncludeFormat.OpenAI)]
     [InlineData(IncludeFormat.Anthropic)]
+    [InlineData(IncludeFormat.Mcp)]
     public void Validation_Works(IncludeFormat rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -172,6 +173,7 @@ public class IncludeFormatTest : TestBase
     [InlineData(IncludeFormat.Arcade)]
     [InlineData(IncludeFormat.OpenAI)]
     [InlineData(IncludeFormat.Anthropic)]
+    [InlineData(IncludeFormat.Mcp)]
     public void SerializationRoundtrip_Works(IncludeFormat rawValue)
     {
         // force implicit conversion because Theory can't do that for us

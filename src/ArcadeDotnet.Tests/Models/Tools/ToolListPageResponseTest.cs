@@ -27,8 +27,14 @@ public class ToolListPageResponseTest : TestBase
                                 ValueSchema = new()
                                 {
                                     ValType = "val_type",
+                                    Description = "description",
                                     Enum = ["string"],
+                                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                                    InnerRequiredKeys = ["string"],
                                     InnerValType = "inner_val_type",
+                                    Nullable = true,
+                                    Properties = new Dictionary<string, ValueSchema>(),
+                                    RequiredKeys = ["string"],
                                 },
                                 Description = "description",
                                 Inferrable = true,
@@ -72,8 +78,14 @@ public class ToolListPageResponseTest : TestBase
                         ValueSchema = new()
                         {
                             ValType = "val_type",
+                            Description = "description",
                             Enum = ["string"],
+                            InnerProperties = new Dictionary<string, ValueSchema>(),
+                            InnerRequiredKeys = ["string"],
                             InnerValType = "inner_val_type",
+                            Nullable = true,
+                            Properties = new Dictionary<string, ValueSchema>(),
+                            RequiredKeys = ["string"],
                         },
                     },
                     Requirements = new()
@@ -122,8 +134,14 @@ public class ToolListPageResponseTest : TestBase
                             ValueSchema = new()
                             {
                                 ValType = "val_type",
+                                Description = "description",
                                 Enum = ["string"],
+                                InnerProperties = new Dictionary<string, ValueSchema>(),
+                                InnerRequiredKeys = ["string"],
                                 InnerValType = "inner_val_type",
+                                Nullable = true,
+                                Properties = new Dictionary<string, ValueSchema>(),
+                                RequiredKeys = ["string"],
                             },
                             Description = "description",
                             Inferrable = true,
@@ -167,8 +185,14 @@ public class ToolListPageResponseTest : TestBase
                     ValueSchema = new()
                     {
                         ValType = "val_type",
+                        Description = "description",
                         Enum = ["string"],
+                        InnerProperties = new Dictionary<string, ValueSchema>(),
+                        InnerRequiredKeys = ["string"],
                         InnerValType = "inner_val_type",
+                        Nullable = true,
+                        Properties = new Dictionary<string, ValueSchema>(),
+                        RequiredKeys = ["string"],
                     },
                 },
                 Requirements = new()
@@ -233,8 +257,14 @@ public class ToolListPageResponseTest : TestBase
                                 ValueSchema = new()
                                 {
                                     ValType = "val_type",
+                                    Description = "description",
                                     Enum = ["string"],
+                                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                                    InnerRequiredKeys = ["string"],
                                     InnerValType = "inner_val_type",
+                                    Nullable = true,
+                                    Properties = new Dictionary<string, ValueSchema>(),
+                                    RequiredKeys = ["string"],
                                 },
                                 Description = "description",
                                 Inferrable = true,
@@ -278,8 +308,14 @@ public class ToolListPageResponseTest : TestBase
                         ValueSchema = new()
                         {
                             ValType = "val_type",
+                            Description = "description",
                             Enum = ["string"],
+                            InnerProperties = new Dictionary<string, ValueSchema>(),
+                            InnerRequiredKeys = ["string"],
                             InnerValType = "inner_val_type",
+                            Nullable = true,
+                            Properties = new Dictionary<string, ValueSchema>(),
+                            RequiredKeys = ["string"],
                         },
                     },
                     Requirements = new()
@@ -342,8 +378,14 @@ public class ToolListPageResponseTest : TestBase
                                 ValueSchema = new()
                                 {
                                     ValType = "val_type",
+                                    Description = "description",
                                     Enum = ["string"],
+                                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                                    InnerRequiredKeys = ["string"],
                                     InnerValType = "inner_val_type",
+                                    Nullable = true,
+                                    Properties = new Dictionary<string, ValueSchema>(),
+                                    RequiredKeys = ["string"],
                                 },
                                 Description = "description",
                                 Inferrable = true,
@@ -387,8 +429,14 @@ public class ToolListPageResponseTest : TestBase
                         ValueSchema = new()
                         {
                             ValType = "val_type",
+                            Description = "description",
                             Enum = ["string"],
+                            InnerProperties = new Dictionary<string, ValueSchema>(),
+                            InnerRequiredKeys = ["string"],
                             InnerValType = "inner_val_type",
+                            Nullable = true,
+                            Properties = new Dictionary<string, ValueSchema>(),
+                            RequiredKeys = ["string"],
                         },
                     },
                     Requirements = new()
@@ -444,8 +492,14 @@ public class ToolListPageResponseTest : TestBase
                             ValueSchema = new()
                             {
                                 ValType = "val_type",
+                                Description = "description",
                                 Enum = ["string"],
+                                InnerProperties = new Dictionary<string, ValueSchema>(),
+                                InnerRequiredKeys = ["string"],
                                 InnerValType = "inner_val_type",
+                                Nullable = true,
+                                Properties = new Dictionary<string, ValueSchema>(),
+                                RequiredKeys = ["string"],
                             },
                             Description = "description",
                             Inferrable = true,
@@ -489,8 +543,14 @@ public class ToolListPageResponseTest : TestBase
                     ValueSchema = new()
                     {
                         ValType = "val_type",
+                        Description = "description",
                         Enum = ["string"],
+                        InnerProperties = new Dictionary<string, ValueSchema>(),
+                        InnerRequiredKeys = ["string"],
                         InnerValType = "inner_val_type",
+                        Nullable = true,
+                        Properties = new Dictionary<string, ValueSchema>(),
+                        RequiredKeys = ["string"],
                     },
                 },
                 Requirements = new()
@@ -555,8 +615,14 @@ public class ToolListPageResponseTest : TestBase
                                 ValueSchema = new()
                                 {
                                     ValType = "val_type",
+                                    Description = "description",
                                     Enum = ["string"],
+                                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                                    InnerRequiredKeys = ["string"],
                                     InnerValType = "inner_val_type",
+                                    Nullable = true,
+                                    Properties = new Dictionary<string, ValueSchema>(),
+                                    RequiredKeys = ["string"],
                                 },
                                 Description = "description",
                                 Inferrable = true,
@@ -600,8 +666,14 @@ public class ToolListPageResponseTest : TestBase
                         ValueSchema = new()
                         {
                             ValType = "val_type",
+                            Description = "description",
                             Enum = ["string"],
+                            InnerProperties = new Dictionary<string, ValueSchema>(),
+                            InnerRequiredKeys = ["string"],
                             InnerValType = "inner_val_type",
+                            Nullable = true,
+                            Properties = new Dictionary<string, ValueSchema>(),
+                            RequiredKeys = ["string"],
                         },
                     },
                     Requirements = new()
@@ -724,8 +796,14 @@ public class ToolListPageResponseTest : TestBase
                                 ValueSchema = new()
                                 {
                                     ValType = "val_type",
+                                    Description = "description",
                                     Enum = ["string"],
+                                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                                    InnerRequiredKeys = ["string"],
                                     InnerValType = "inner_val_type",
+                                    Nullable = true,
+                                    Properties = new Dictionary<string, ValueSchema>(),
+                                    RequiredKeys = ["string"],
                                 },
                                 Description = "description",
                                 Inferrable = true,
@@ -769,8 +847,14 @@ public class ToolListPageResponseTest : TestBase
                         ValueSchema = new()
                         {
                             ValType = "val_type",
+                            Description = "description",
                             Enum = ["string"],
+                            InnerProperties = new Dictionary<string, ValueSchema>(),
+                            InnerRequiredKeys = ["string"],
                             InnerValType = "inner_val_type",
+                            Nullable = true,
+                            Properties = new Dictionary<string, ValueSchema>(),
+                            RequiredKeys = ["string"],
                         },
                     },
                     Requirements = new()

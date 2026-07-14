@@ -21,6 +21,24 @@ public sealed record class ValueSchema : JsonModel
         init { this._rawData.Set("val_type", value); }
     }
 
+    public string? Description
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("description", value);
+        }
+    }
+
     public IReadOnlyList<string>? Enum
     {
         get
@@ -37,6 +55,50 @@ public sealed record class ValueSchema : JsonModel
 
             this._rawData.Set<ImmutableArray<string>?>(
                 "enum",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    public IReadOnlyDictionary<string, ValueSchema>? InnerProperties
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, ValueSchema>>(
+                "inner_properties"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<FrozenDictionary<string, ValueSchema>?>(
+                "inner_properties",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    public IReadOnlyList<string>? InnerRequiredKeys
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("inner_required_keys");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "inner_required_keys",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
         }
@@ -60,12 +122,111 @@ public sealed record class ValueSchema : JsonModel
         }
     }
 
+    public ValueSchema? Items
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ValueSchema>("items");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("items", value);
+        }
+    }
+
+    public bool? Nullable
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("nullable");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("nullable", value);
+        }
+    }
+
+    public IReadOnlyDictionary<string, ValueSchema>? Properties
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, ValueSchema>>(
+                "properties"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<FrozenDictionary<string, ValueSchema>?>(
+                "properties",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    public IReadOnlyList<string>? RequiredKeys
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("required_keys");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "required_keys",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ValType;
+        _ = this.Description;
         _ = this.Enum;
+        if (this.InnerProperties != null)
+        {
+            foreach (var item in this.InnerProperties.Values)
+            {
+                item.Validate();
+            }
+        }
+        _ = this.InnerRequiredKeys;
         _ = this.InnerValType;
+        this.Items?.Validate();
+        _ = this.Nullable;
+        if (this.Properties != null)
+        {
+            foreach (var item in this.Properties.Values)
+            {
+                item.Validate();
+            }
+        }
+        _ = this.RequiredKeys;
     }
 
     public ValueSchema() { }

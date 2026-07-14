@@ -24,8 +24,14 @@ public class ToolDefinitionTest : TestBase
                         ValueSchema = new()
                         {
                             ValType = "val_type",
+                            Description = "description",
                             Enum = ["string"],
+                            InnerProperties = new Dictionary<string, ValueSchema>(),
+                            InnerRequiredKeys = ["string"],
                             InnerValType = "inner_val_type",
+                            Nullable = true,
+                            Properties = new Dictionary<string, ValueSchema>(),
+                            RequiredKeys = ["string"],
                         },
                         Description = "description",
                         Inferrable = true,
@@ -69,8 +75,14 @@ public class ToolDefinitionTest : TestBase
                 ValueSchema = new()
                 {
                     ValType = "val_type",
+                    Description = "description",
                     Enum = ["string"],
+                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                    InnerRequiredKeys = ["string"],
                     InnerValType = "inner_val_type",
+                    Nullable = true,
+                    Properties = new Dictionary<string, ValueSchema>(),
+                    RequiredKeys = ["string"],
                 },
             },
             Requirements = new()
@@ -109,8 +121,14 @@ public class ToolDefinitionTest : TestBase
                     ValueSchema = new()
                     {
                         ValType = "val_type",
+                        Description = "description",
                         Enum = ["string"],
+                        InnerProperties = new Dictionary<string, ValueSchema>(),
+                        InnerRequiredKeys = ["string"],
                         InnerValType = "inner_val_type",
+                        Nullable = true,
+                        Properties = new Dictionary<string, ValueSchema>(),
+                        RequiredKeys = ["string"],
                     },
                     Description = "description",
                     Inferrable = true,
@@ -154,8 +172,14 @@ public class ToolDefinitionTest : TestBase
             ValueSchema = new()
             {
                 ValType = "val_type",
+                Description = "description",
                 Enum = ["string"],
+                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
+                Nullable = true,
+                Properties = new Dictionary<string, ValueSchema>(),
+                RequiredKeys = ["string"],
             },
         };
         Requirements expectedRequirements = new()
@@ -217,8 +241,14 @@ public class ToolDefinitionTest : TestBase
                         ValueSchema = new()
                         {
                             ValType = "val_type",
+                            Description = "description",
                             Enum = ["string"],
+                            InnerProperties = new Dictionary<string, ValueSchema>(),
+                            InnerRequiredKeys = ["string"],
                             InnerValType = "inner_val_type",
+                            Nullable = true,
+                            Properties = new Dictionary<string, ValueSchema>(),
+                            RequiredKeys = ["string"],
                         },
                         Description = "description",
                         Inferrable = true,
@@ -262,8 +292,14 @@ public class ToolDefinitionTest : TestBase
                 ValueSchema = new()
                 {
                     ValType = "val_type",
+                    Description = "description",
                     Enum = ["string"],
+                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                    InnerRequiredKeys = ["string"],
                     InnerValType = "inner_val_type",
+                    Nullable = true,
+                    Properties = new Dictionary<string, ValueSchema>(),
+                    RequiredKeys = ["string"],
                 },
             },
             Requirements = new()
@@ -316,8 +352,14 @@ public class ToolDefinitionTest : TestBase
                         ValueSchema = new()
                         {
                             ValType = "val_type",
+                            Description = "description",
                             Enum = ["string"],
+                            InnerProperties = new Dictionary<string, ValueSchema>(),
+                            InnerRequiredKeys = ["string"],
                             InnerValType = "inner_val_type",
+                            Nullable = true,
+                            Properties = new Dictionary<string, ValueSchema>(),
+                            RequiredKeys = ["string"],
                         },
                         Description = "description",
                         Inferrable = true,
@@ -361,8 +403,14 @@ public class ToolDefinitionTest : TestBase
                 ValueSchema = new()
                 {
                     ValType = "val_type",
+                    Description = "description",
                     Enum = ["string"],
+                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                    InnerRequiredKeys = ["string"],
                     InnerValType = "inner_val_type",
+                    Nullable = true,
+                    Properties = new Dictionary<string, ValueSchema>(),
+                    RequiredKeys = ["string"],
                 },
             },
             Requirements = new()
@@ -408,8 +456,14 @@ public class ToolDefinitionTest : TestBase
                     ValueSchema = new()
                     {
                         ValType = "val_type",
+                        Description = "description",
                         Enum = ["string"],
+                        InnerProperties = new Dictionary<string, ValueSchema>(),
+                        InnerRequiredKeys = ["string"],
                         InnerValType = "inner_val_type",
+                        Nullable = true,
+                        Properties = new Dictionary<string, ValueSchema>(),
+                        RequiredKeys = ["string"],
                     },
                     Description = "description",
                     Inferrable = true,
@@ -453,8 +507,14 @@ public class ToolDefinitionTest : TestBase
             ValueSchema = new()
             {
                 ValType = "val_type",
+                Description = "description",
                 Enum = ["string"],
+                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
+                Nullable = true,
+                Properties = new Dictionary<string, ValueSchema>(),
+                RequiredKeys = ["string"],
             },
         };
         Requirements expectedRequirements = new()
@@ -516,8 +576,14 @@ public class ToolDefinitionTest : TestBase
                         ValueSchema = new()
                         {
                             ValType = "val_type",
+                            Description = "description",
                             Enum = ["string"],
+                            InnerProperties = new Dictionary<string, ValueSchema>(),
+                            InnerRequiredKeys = ["string"],
                             InnerValType = "inner_val_type",
+                            Nullable = true,
+                            Properties = new Dictionary<string, ValueSchema>(),
+                            RequiredKeys = ["string"],
                         },
                         Description = "description",
                         Inferrable = true,
@@ -561,8 +627,14 @@ public class ToolDefinitionTest : TestBase
                 ValueSchema = new()
                 {
                     ValType = "val_type",
+                    Description = "description",
                     Enum = ["string"],
+                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                    InnerRequiredKeys = ["string"],
                     InnerValType = "inner_val_type",
+                    Nullable = true,
+                    Properties = new Dictionary<string, ValueSchema>(),
+                    RequiredKeys = ["string"],
                 },
             },
             Requirements = new()
@@ -609,8 +681,14 @@ public class ToolDefinitionTest : TestBase
                         ValueSchema = new()
                         {
                             ValType = "val_type",
+                            Description = "description",
                             Enum = ["string"],
+                            InnerProperties = new Dictionary<string, ValueSchema>(),
+                            InnerRequiredKeys = ["string"],
                             InnerValType = "inner_val_type",
+                            Nullable = true,
+                            Properties = new Dictionary<string, ValueSchema>(),
+                            RequiredKeys = ["string"],
                         },
                         Description = "description",
                         Inferrable = true,
@@ -656,8 +734,14 @@ public class ToolDefinitionTest : TestBase
                         ValueSchema = new()
                         {
                             ValType = "val_type",
+                            Description = "description",
                             Enum = ["string"],
+                            InnerProperties = new Dictionary<string, ValueSchema>(),
+                            InnerRequiredKeys = ["string"],
                             InnerValType = "inner_val_type",
+                            Nullable = true,
+                            Properties = new Dictionary<string, ValueSchema>(),
+                            RequiredKeys = ["string"],
                         },
                         Description = "description",
                         Inferrable = true,
@@ -694,8 +778,14 @@ public class ToolDefinitionTest : TestBase
                         ValueSchema = new()
                         {
                             ValType = "val_type",
+                            Description = "description",
                             Enum = ["string"],
+                            InnerProperties = new Dictionary<string, ValueSchema>(),
+                            InnerRequiredKeys = ["string"],
                             InnerValType = "inner_val_type",
+                            Nullable = true,
+                            Properties = new Dictionary<string, ValueSchema>(),
+                            RequiredKeys = ["string"],
                         },
                         Description = "description",
                         Inferrable = true,
@@ -748,8 +838,14 @@ public class ToolDefinitionTest : TestBase
                         ValueSchema = new()
                         {
                             ValType = "val_type",
+                            Description = "description",
                             Enum = ["string"],
+                            InnerProperties = new Dictionary<string, ValueSchema>(),
+                            InnerRequiredKeys = ["string"],
                             InnerValType = "inner_val_type",
+                            Nullable = true,
+                            Properties = new Dictionary<string, ValueSchema>(),
+                            RequiredKeys = ["string"],
                         },
                         Description = "description",
                         Inferrable = true,
@@ -793,8 +889,14 @@ public class ToolDefinitionTest : TestBase
                         ValueSchema = new()
                         {
                             ValType = "val_type",
+                            Description = "description",
                             Enum = ["string"],
+                            InnerProperties = new Dictionary<string, ValueSchema>(),
+                            InnerRequiredKeys = ["string"],
                             InnerValType = "inner_val_type",
+                            Nullable = true,
+                            Properties = new Dictionary<string, ValueSchema>(),
+                            RequiredKeys = ["string"],
                         },
                         Description = "description",
                         Inferrable = true,
@@ -838,8 +940,14 @@ public class ToolDefinitionTest : TestBase
                 ValueSchema = new()
                 {
                     ValType = "val_type",
+                    Description = "description",
                     Enum = ["string"],
+                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                    InnerRequiredKeys = ["string"],
                     InnerValType = "inner_val_type",
+                    Nullable = true,
+                    Properties = new Dictionary<string, ValueSchema>(),
+                    RequiredKeys = ["string"],
                 },
             },
             Requirements = new()
@@ -888,8 +996,14 @@ public class InputTest : TestBase
                     ValueSchema = new()
                     {
                         ValType = "val_type",
+                        Description = "description",
                         Enum = ["string"],
+                        InnerProperties = new Dictionary<string, ValueSchema>(),
+                        InnerRequiredKeys = ["string"],
                         InnerValType = "inner_val_type",
+                        Nullable = true,
+                        Properties = new Dictionary<string, ValueSchema>(),
+                        RequiredKeys = ["string"],
                     },
                     Description = "description",
                     Inferrable = true,
@@ -906,8 +1020,14 @@ public class InputTest : TestBase
                 ValueSchema = new()
                 {
                     ValType = "val_type",
+                    Description = "description",
                     Enum = ["string"],
+                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                    InnerRequiredKeys = ["string"],
                     InnerValType = "inner_val_type",
+                    Nullable = true,
+                    Properties = new Dictionary<string, ValueSchema>(),
+                    RequiredKeys = ["string"],
                 },
                 Description = "description",
                 Inferrable = true,
@@ -936,8 +1056,14 @@ public class InputTest : TestBase
                     ValueSchema = new()
                     {
                         ValType = "val_type",
+                        Description = "description",
                         Enum = ["string"],
+                        InnerProperties = new Dictionary<string, ValueSchema>(),
+                        InnerRequiredKeys = ["string"],
                         InnerValType = "inner_val_type",
+                        Nullable = true,
+                        Properties = new Dictionary<string, ValueSchema>(),
+                        RequiredKeys = ["string"],
                     },
                     Description = "description",
                     Inferrable = true,
@@ -965,8 +1091,14 @@ public class InputTest : TestBase
                     ValueSchema = new()
                     {
                         ValType = "val_type",
+                        Description = "description",
                         Enum = ["string"],
+                        InnerProperties = new Dictionary<string, ValueSchema>(),
+                        InnerRequiredKeys = ["string"],
                         InnerValType = "inner_val_type",
+                        Nullable = true,
+                        Properties = new Dictionary<string, ValueSchema>(),
+                        RequiredKeys = ["string"],
                     },
                     Description = "description",
                     Inferrable = true,
@@ -987,8 +1119,14 @@ public class InputTest : TestBase
                 ValueSchema = new()
                 {
                     ValType = "val_type",
+                    Description = "description",
                     Enum = ["string"],
+                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                    InnerRequiredKeys = ["string"],
                     InnerValType = "inner_val_type",
+                    Nullable = true,
+                    Properties = new Dictionary<string, ValueSchema>(),
+                    RequiredKeys = ["string"],
                 },
                 Description = "description",
                 Inferrable = true,
@@ -1017,8 +1155,14 @@ public class InputTest : TestBase
                     ValueSchema = new()
                     {
                         ValType = "val_type",
+                        Description = "description",
                         Enum = ["string"],
+                        InnerProperties = new Dictionary<string, ValueSchema>(),
+                        InnerRequiredKeys = ["string"],
                         InnerValType = "inner_val_type",
+                        Nullable = true,
+                        Properties = new Dictionary<string, ValueSchema>(),
+                        RequiredKeys = ["string"],
                     },
                     Description = "description",
                     Inferrable = true,
@@ -1085,8 +1229,14 @@ public class InputTest : TestBase
                     ValueSchema = new()
                     {
                         ValType = "val_type",
+                        Description = "description",
                         Enum = ["string"],
+                        InnerProperties = new Dictionary<string, ValueSchema>(),
+                        InnerRequiredKeys = ["string"],
                         InnerValType = "inner_val_type",
+                        Nullable = true,
+                        Properties = new Dictionary<string, ValueSchema>(),
+                        RequiredKeys = ["string"],
                     },
                     Description = "description",
                     Inferrable = true,
@@ -1112,8 +1262,14 @@ public class ParameterTest : TestBase
             ValueSchema = new()
             {
                 ValType = "val_type",
+                Description = "description",
                 Enum = ["string"],
+                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
+                Nullable = true,
+                Properties = new Dictionary<string, ValueSchema>(),
+                RequiredKeys = ["string"],
             },
             Description = "description",
             Inferrable = true,
@@ -1124,8 +1280,14 @@ public class ParameterTest : TestBase
         ValueSchema expectedValueSchema = new()
         {
             ValType = "val_type",
+            Description = "description",
             Enum = ["string"],
+            InnerProperties = new Dictionary<string, ValueSchema>(),
+            InnerRequiredKeys = ["string"],
             InnerValType = "inner_val_type",
+            Nullable = true,
+            Properties = new Dictionary<string, ValueSchema>(),
+            RequiredKeys = ["string"],
         };
         string expectedDescription = "description";
         bool expectedInferrable = true;
@@ -1147,8 +1309,14 @@ public class ParameterTest : TestBase
             ValueSchema = new()
             {
                 ValType = "val_type",
+                Description = "description",
                 Enum = ["string"],
+                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
+                Nullable = true,
+                Properties = new Dictionary<string, ValueSchema>(),
+                RequiredKeys = ["string"],
             },
             Description = "description",
             Inferrable = true,
@@ -1170,8 +1338,14 @@ public class ParameterTest : TestBase
             ValueSchema = new()
             {
                 ValType = "val_type",
+                Description = "description",
                 Enum = ["string"],
+                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
+                Nullable = true,
+                Properties = new Dictionary<string, ValueSchema>(),
+                RequiredKeys = ["string"],
             },
             Description = "description",
             Inferrable = true,
@@ -1189,8 +1363,14 @@ public class ParameterTest : TestBase
         ValueSchema expectedValueSchema = new()
         {
             ValType = "val_type",
+            Description = "description",
             Enum = ["string"],
+            InnerProperties = new Dictionary<string, ValueSchema>(),
+            InnerRequiredKeys = ["string"],
             InnerValType = "inner_val_type",
+            Nullable = true,
+            Properties = new Dictionary<string, ValueSchema>(),
+            RequiredKeys = ["string"],
         };
         string expectedDescription = "description";
         bool expectedInferrable = true;
@@ -1212,8 +1392,14 @@ public class ParameterTest : TestBase
             ValueSchema = new()
             {
                 ValType = "val_type",
+                Description = "description",
                 Enum = ["string"],
+                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
+                Nullable = true,
+                Properties = new Dictionary<string, ValueSchema>(),
+                RequiredKeys = ["string"],
             },
             Description = "description",
             Inferrable = true,
@@ -1232,8 +1418,14 @@ public class ParameterTest : TestBase
             ValueSchema = new()
             {
                 ValType = "val_type",
+                Description = "description",
                 Enum = ["string"],
+                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
+                Nullable = true,
+                Properties = new Dictionary<string, ValueSchema>(),
+                RequiredKeys = ["string"],
             },
         };
 
@@ -1254,8 +1446,14 @@ public class ParameterTest : TestBase
             ValueSchema = new()
             {
                 ValType = "val_type",
+                Description = "description",
                 Enum = ["string"],
+                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
+                Nullable = true,
+                Properties = new Dictionary<string, ValueSchema>(),
+                RequiredKeys = ["string"],
             },
         };
 
@@ -1271,8 +1469,14 @@ public class ParameterTest : TestBase
             ValueSchema = new()
             {
                 ValType = "val_type",
+                Description = "description",
                 Enum = ["string"],
+                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
+                Nullable = true,
+                Properties = new Dictionary<string, ValueSchema>(),
+                RequiredKeys = ["string"],
             },
 
             // Null should be interpreted as omitted for these properties
@@ -1298,8 +1502,14 @@ public class ParameterTest : TestBase
             ValueSchema = new()
             {
                 ValType = "val_type",
+                Description = "description",
                 Enum = ["string"],
+                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
+                Nullable = true,
+                Properties = new Dictionary<string, ValueSchema>(),
+                RequiredKeys = ["string"],
             },
 
             // Null should be interpreted as omitted for these properties
@@ -1320,8 +1530,14 @@ public class ParameterTest : TestBase
             ValueSchema = new()
             {
                 ValType = "val_type",
+                Description = "description",
                 Enum = ["string"],
+                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
+                Nullable = true,
+                Properties = new Dictionary<string, ValueSchema>(),
+                RequiredKeys = ["string"],
             },
             Description = "description",
             Inferrable = true,
@@ -2020,8 +2236,14 @@ public class ToolDefinitionOutputTest : TestBase
             ValueSchema = new()
             {
                 ValType = "val_type",
+                Description = "description",
                 Enum = ["string"],
+                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
+                Nullable = true,
+                Properties = new Dictionary<string, ValueSchema>(),
+                RequiredKeys = ["string"],
             },
         };
 
@@ -2030,8 +2252,14 @@ public class ToolDefinitionOutputTest : TestBase
         ValueSchema expectedValueSchema = new()
         {
             ValType = "val_type",
+            Description = "description",
             Enum = ["string"],
+            InnerProperties = new Dictionary<string, ValueSchema>(),
+            InnerRequiredKeys = ["string"],
             InnerValType = "inner_val_type",
+            Nullable = true,
+            Properties = new Dictionary<string, ValueSchema>(),
+            RequiredKeys = ["string"],
         };
 
         Assert.NotNull(model.AvailableModes);
@@ -2054,8 +2282,14 @@ public class ToolDefinitionOutputTest : TestBase
             ValueSchema = new()
             {
                 ValType = "val_type",
+                Description = "description",
                 Enum = ["string"],
+                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
+                Nullable = true,
+                Properties = new Dictionary<string, ValueSchema>(),
+                RequiredKeys = ["string"],
             },
         };
 
@@ -2078,8 +2312,14 @@ public class ToolDefinitionOutputTest : TestBase
             ValueSchema = new()
             {
                 ValType = "val_type",
+                Description = "description",
                 Enum = ["string"],
+                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
+                Nullable = true,
+                Properties = new Dictionary<string, ValueSchema>(),
+                RequiredKeys = ["string"],
             },
         };
 
@@ -2095,8 +2335,14 @@ public class ToolDefinitionOutputTest : TestBase
         ValueSchema expectedValueSchema = new()
         {
             ValType = "val_type",
+            Description = "description",
             Enum = ["string"],
+            InnerProperties = new Dictionary<string, ValueSchema>(),
+            InnerRequiredKeys = ["string"],
             InnerValType = "inner_val_type",
+            Nullable = true,
+            Properties = new Dictionary<string, ValueSchema>(),
+            RequiredKeys = ["string"],
         };
 
         Assert.NotNull(deserialized.AvailableModes);
@@ -2119,8 +2365,14 @@ public class ToolDefinitionOutputTest : TestBase
             ValueSchema = new()
             {
                 ValType = "val_type",
+                Description = "description",
                 Enum = ["string"],
+                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
+                Nullable = true,
+                Properties = new Dictionary<string, ValueSchema>(),
+                RequiredKeys = ["string"],
             },
         };
 
@@ -2191,8 +2443,14 @@ public class ToolDefinitionOutputTest : TestBase
             ValueSchema = new()
             {
                 ValType = "val_type",
+                Description = "description",
                 Enum = ["string"],
+                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
+                Nullable = true,
+                Properties = new Dictionary<string, ValueSchema>(),
+                RequiredKeys = ["string"],
             },
         };
 

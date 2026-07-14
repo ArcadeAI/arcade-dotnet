@@ -109,6 +109,7 @@ public class ToolGetParamsIncludeFormatTest : TestBase
     [InlineData(ToolGetParamsIncludeFormat.Arcade)]
     [InlineData(ToolGetParamsIncludeFormat.OpenAI)]
     [InlineData(ToolGetParamsIncludeFormat.Anthropic)]
+    [InlineData(ToolGetParamsIncludeFormat.Mcp)]
     public void Validation_Works(ToolGetParamsIncludeFormat rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -132,6 +133,7 @@ public class ToolGetParamsIncludeFormatTest : TestBase
     [InlineData(ToolGetParamsIncludeFormat.Arcade)]
     [InlineData(ToolGetParamsIncludeFormat.OpenAI)]
     [InlineData(ToolGetParamsIncludeFormat.Anthropic)]
+    [InlineData(ToolGetParamsIncludeFormat.Mcp)]
     public void SerializationRoundtrip_Works(ToolGetParamsIncludeFormat rawValue)
     {
         // force implicit conversion because Theory can't do that for us

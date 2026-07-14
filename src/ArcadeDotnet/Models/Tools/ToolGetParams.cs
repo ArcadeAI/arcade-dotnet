@@ -176,6 +176,7 @@ public enum ToolGetParamsIncludeFormat
     Arcade,
     OpenAI,
     Anthropic,
+    Mcp,
 }
 
 sealed class ToolGetParamsIncludeFormatConverter : JsonConverter<ToolGetParamsIncludeFormat>
@@ -191,6 +192,7 @@ sealed class ToolGetParamsIncludeFormatConverter : JsonConverter<ToolGetParamsIn
             "arcade" => ToolGetParamsIncludeFormat.Arcade,
             "openai" => ToolGetParamsIncludeFormat.OpenAI,
             "anthropic" => ToolGetParamsIncludeFormat.Anthropic,
+            "mcp" => ToolGetParamsIncludeFormat.Mcp,
             _ => (ToolGetParamsIncludeFormat)(-1),
         };
     }
@@ -208,6 +210,7 @@ sealed class ToolGetParamsIncludeFormatConverter : JsonConverter<ToolGetParamsIn
                 ToolGetParamsIncludeFormat.Arcade => "arcade",
                 ToolGetParamsIncludeFormat.OpenAI => "openai",
                 ToolGetParamsIncludeFormat.Anthropic => "anthropic",
+                ToolGetParamsIncludeFormat.Mcp => "mcp",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

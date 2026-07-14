@@ -272,6 +272,7 @@ public enum IncludeFormat
     Arcade,
     OpenAI,
     Anthropic,
+    Mcp,
 }
 
 sealed class IncludeFormatConverter : JsonConverter<IncludeFormat>
@@ -287,6 +288,7 @@ sealed class IncludeFormatConverter : JsonConverter<IncludeFormat>
             "arcade" => IncludeFormat.Arcade,
             "openai" => IncludeFormat.OpenAI,
             "anthropic" => IncludeFormat.Anthropic,
+            "mcp" => IncludeFormat.Mcp,
             _ => (IncludeFormat)(-1),
         };
     }
@@ -304,6 +306,7 @@ sealed class IncludeFormatConverter : JsonConverter<IncludeFormat>
                 IncludeFormat.Arcade => "arcade",
                 IncludeFormat.OpenAI => "openai",
                 IncludeFormat.Anthropic => "anthropic",
+                IncludeFormat.Mcp => "mcp",
                 _ => throw new ArcadeInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
