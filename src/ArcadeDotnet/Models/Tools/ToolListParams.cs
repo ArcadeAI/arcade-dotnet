@@ -135,6 +135,29 @@ public record class ToolListParams : ParamsBase
     }
 
     /// <summary>
+    /// Case-insensitive literal substring matched against each tool's name, MCP server
+    /// name, qualified name, and description; multiple whitespace-separated terms
+    /// must all match. Max 2000 characters.
+    /// </summary>
+    public string? Search
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("search");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("search", value);
+        }
+    }
+
+    /// <summary>
     /// Toolkit name
     /// </summary>
     public string? Toolkit

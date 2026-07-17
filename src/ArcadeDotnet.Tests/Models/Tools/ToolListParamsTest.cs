@@ -19,6 +19,7 @@ public class ToolListParamsTest : TestBase
             IncludeFormat = [IncludeFormat.Arcade],
             Limit = 0,
             Offset = 0,
+            Search = "search",
             Toolkit = "toolkit",
             UserID = "user_id",
         };
@@ -28,6 +29,7 @@ public class ToolListParamsTest : TestBase
         List<ApiEnum<string, IncludeFormat>> expectedIncludeFormat = [IncludeFormat.Arcade];
         long expectedLimit = 0;
         long expectedOffset = 0;
+        string expectedSearch = "search";
         string expectedToolkit = "toolkit";
         string expectedUserID = "user_id";
 
@@ -41,6 +43,7 @@ public class ToolListParamsTest : TestBase
         }
         Assert.Equal(expectedLimit, parameters.Limit);
         Assert.Equal(expectedOffset, parameters.Offset);
+        Assert.Equal(expectedSearch, parameters.Search);
         Assert.Equal(expectedToolkit, parameters.Toolkit);
         Assert.Equal(expectedUserID, parameters.UserID);
     }
@@ -60,6 +63,8 @@ public class ToolListParamsTest : TestBase
         Assert.False(parameters.RawQueryData.ContainsKey("limit"));
         Assert.Null(parameters.Offset);
         Assert.False(parameters.RawQueryData.ContainsKey("offset"));
+        Assert.Null(parameters.Search);
+        Assert.False(parameters.RawQueryData.ContainsKey("search"));
         Assert.Null(parameters.Toolkit);
         Assert.False(parameters.RawQueryData.ContainsKey("toolkit"));
         Assert.Null(parameters.UserID);
@@ -77,6 +82,7 @@ public class ToolListParamsTest : TestBase
             IncludeFormat = null,
             Limit = null,
             Offset = null,
+            Search = null,
             Toolkit = null,
             UserID = null,
         };
@@ -91,6 +97,8 @@ public class ToolListParamsTest : TestBase
         Assert.False(parameters.RawQueryData.ContainsKey("limit"));
         Assert.Null(parameters.Offset);
         Assert.False(parameters.RawQueryData.ContainsKey("offset"));
+        Assert.Null(parameters.Search);
+        Assert.False(parameters.RawQueryData.ContainsKey("search"));
         Assert.Null(parameters.Toolkit);
         Assert.False(parameters.RawQueryData.ContainsKey("toolkit"));
         Assert.Null(parameters.UserID);
@@ -107,6 +115,7 @@ public class ToolListParamsTest : TestBase
             IncludeFormat = [IncludeFormat.Arcade],
             Limit = 0,
             Offset = 0,
+            Search = "search",
             Toolkit = "toolkit",
             UserID = "user_id",
         };
@@ -116,7 +125,7 @@ public class ToolListParamsTest : TestBase
         Assert.True(
             TestBase.UrisEqual(
                 new Uri(
-                    "https://api.arcade.dev/v1/tools?filter=filter&include_all_versions=true&include_format=arcade&limit=0&offset=0&toolkit=toolkit&user_id=user_id"
+                    "https://api.arcade.dev/v1/tools?filter=filter&include_all_versions=true&include_format=arcade&limit=0&offset=0&search=search&toolkit=toolkit&user_id=user_id"
                 ),
                 url
             )
@@ -133,6 +142,7 @@ public class ToolListParamsTest : TestBase
             IncludeFormat = [IncludeFormat.Arcade],
             Limit = 0,
             Offset = 0,
+            Search = "search",
             Toolkit = "toolkit",
             UserID = "user_id",
         };
