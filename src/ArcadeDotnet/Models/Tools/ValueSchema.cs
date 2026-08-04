@@ -60,14 +60,12 @@ public sealed record class ValueSchema : JsonModel
         }
     }
 
-    public IReadOnlyDictionary<string, ValueSchema>? InnerProperties
+    public JsonElement? InnerProperties
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<FrozenDictionary<string, ValueSchema>>(
-                "inner_properties"
-            );
+            return this._rawData.GetNullableStruct<JsonElement>("inner_properties");
         }
         init
         {
@@ -76,10 +74,7 @@ public sealed record class ValueSchema : JsonModel
                 return;
             }
 
-            this._rawData.Set<FrozenDictionary<string, ValueSchema>?>(
-                "inner_properties",
-                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
-            );
+            this._rawData.Set("inner_properties", value);
         }
     }
 
@@ -158,14 +153,12 @@ public sealed record class ValueSchema : JsonModel
         }
     }
 
-    public IReadOnlyDictionary<string, ValueSchema>? Properties
+    public JsonElement? Properties
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<FrozenDictionary<string, ValueSchema>>(
-                "properties"
-            );
+            return this._rawData.GetNullableStruct<JsonElement>("properties");
         }
         init
         {
@@ -174,10 +167,7 @@ public sealed record class ValueSchema : JsonModel
                 return;
             }
 
-            this._rawData.Set<FrozenDictionary<string, ValueSchema>?>(
-                "properties",
-                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
-            );
+            this._rawData.Set("properties", value);
         }
     }
 
@@ -208,24 +198,12 @@ public sealed record class ValueSchema : JsonModel
         _ = this.ValType;
         _ = this.Description;
         _ = this.Enum;
-        if (this.InnerProperties != null)
-        {
-            foreach (var item in this.InnerProperties.Values)
-            {
-                item.Validate();
-            }
-        }
+        _ = this.InnerProperties;
         _ = this.InnerRequiredKeys;
         _ = this.InnerValType;
         this.Items?.Validate();
         _ = this.Nullable;
-        if (this.Properties != null)
-        {
-            foreach (var item in this.Properties.Values)
-            {
-                item.Validate();
-            }
-        }
+        _ = this.Properties;
         _ = this.RequiredKeys;
     }
 

@@ -15,24 +15,7 @@ public class ValueSchemaTest : TestBase
             ValType = "val_type",
             Description = "description",
             Enum = ["string"],
-            InnerProperties = new Dictionary<string, ValueSchema>()
-            {
-                {
-                    "foo",
-                    new()
-                    {
-                        ValType = "val_type",
-                        Description = "description",
-                        Enum = ["string"],
-                        InnerProperties = new Dictionary<string, ValueSchema>(),
-                        InnerRequiredKeys = ["string"],
-                        InnerValType = "inner_val_type",
-                        Nullable = true,
-                        Properties = new Dictionary<string, ValueSchema>(),
-                        RequiredKeys = ["string"],
-                    }
-                },
-            },
+            InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
             InnerRequiredKeys = ["string"],
             InnerValType = "inner_val_type",
             Items = new()
@@ -40,7 +23,7 @@ public class ValueSchemaTest : TestBase
                 ValType = "val_type",
                 Description = "description",
                 Enum = ["string"],
-                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
                 InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
                 Items = new()
@@ -48,60 +31,26 @@ public class ValueSchemaTest : TestBase
                     ValType = "val_type",
                     Description = "description",
                     Enum = ["string"],
-                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                    InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
                     InnerRequiredKeys = ["string"],
                     InnerValType = "inner_val_type",
                     Nullable = true,
-                    Properties = new Dictionary<string, ValueSchema>(),
+                    Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
                     RequiredKeys = ["string"],
                 },
                 Nullable = true,
-                Properties = new Dictionary<string, ValueSchema>(),
+                Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
                 RequiredKeys = ["string"],
             },
             Nullable = true,
-            Properties = new Dictionary<string, ValueSchema>()
-            {
-                {
-                    "foo",
-                    new()
-                    {
-                        ValType = "val_type",
-                        Description = "description",
-                        Enum = ["string"],
-                        InnerProperties = new Dictionary<string, ValueSchema>(),
-                        InnerRequiredKeys = ["string"],
-                        InnerValType = "inner_val_type",
-                        Nullable = true,
-                        Properties = new Dictionary<string, ValueSchema>(),
-                        RequiredKeys = ["string"],
-                    }
-                },
-            },
+            Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
             RequiredKeys = ["string"],
         };
 
         string expectedValType = "val_type";
         string expectedDescription = "description";
         List<string> expectedEnum = ["string"];
-        Dictionary<string, ValueSchema> expectedInnerProperties = new()
-        {
-            {
-                "foo",
-                new()
-                {
-                    ValType = "val_type",
-                    Description = "description",
-                    Enum = ["string"],
-                    InnerProperties = new Dictionary<string, ValueSchema>(),
-                    InnerRequiredKeys = ["string"],
-                    InnerValType = "inner_val_type",
-                    Nullable = true,
-                    Properties = new Dictionary<string, ValueSchema>(),
-                    RequiredKeys = ["string"],
-                }
-            },
-        };
+        JsonElement expectedInnerProperties = JsonSerializer.Deserialize<JsonElement>("{}");
         List<string> expectedInnerRequiredKeys = ["string"];
         string expectedInnerValType = "inner_val_type";
         ValueSchema expectedItems = new()
@@ -109,7 +58,7 @@ public class ValueSchemaTest : TestBase
             ValType = "val_type",
             Description = "description",
             Enum = ["string"],
-            InnerProperties = new Dictionary<string, ValueSchema>(),
+            InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
             InnerRequiredKeys = ["string"],
             InnerValType = "inner_val_type",
             Items = new()
@@ -117,36 +66,19 @@ public class ValueSchemaTest : TestBase
                 ValType = "val_type",
                 Description = "description",
                 Enum = ["string"],
-                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
                 InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
                 Nullable = true,
-                Properties = new Dictionary<string, ValueSchema>(),
+                Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
                 RequiredKeys = ["string"],
             },
             Nullable = true,
-            Properties = new Dictionary<string, ValueSchema>(),
+            Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
             RequiredKeys = ["string"],
         };
         bool expectedNullable = true;
-        Dictionary<string, ValueSchema> expectedProperties = new()
-        {
-            {
-                "foo",
-                new()
-                {
-                    ValType = "val_type",
-                    Description = "description",
-                    Enum = ["string"],
-                    InnerProperties = new Dictionary<string, ValueSchema>(),
-                    InnerRequiredKeys = ["string"],
-                    InnerValType = "inner_val_type",
-                    Nullable = true,
-                    Properties = new Dictionary<string, ValueSchema>(),
-                    RequiredKeys = ["string"],
-                }
-            },
-        };
+        JsonElement expectedProperties = JsonSerializer.Deserialize<JsonElement>("{}");
         List<string> expectedRequiredKeys = ["string"];
 
         Assert.Equal(expectedValType, model.ValType);
@@ -158,13 +90,7 @@ public class ValueSchemaTest : TestBase
             Assert.Equal(expectedEnum[i], model.Enum[i]);
         }
         Assert.NotNull(model.InnerProperties);
-        Assert.Equal(expectedInnerProperties.Count, model.InnerProperties.Count);
-        foreach (var item in expectedInnerProperties)
-        {
-            Assert.True(model.InnerProperties.TryGetValue(item.Key, out var value));
-
-            Assert.Equal(value, model.InnerProperties[item.Key]);
-        }
+        Assert.True(JsonElement.DeepEquals(expectedInnerProperties, model.InnerProperties.Value));
         Assert.NotNull(model.InnerRequiredKeys);
         Assert.Equal(expectedInnerRequiredKeys.Count, model.InnerRequiredKeys.Count);
         for (int i = 0; i < expectedInnerRequiredKeys.Count; i++)
@@ -175,13 +101,7 @@ public class ValueSchemaTest : TestBase
         Assert.Equal(expectedItems, model.Items);
         Assert.Equal(expectedNullable, model.Nullable);
         Assert.NotNull(model.Properties);
-        Assert.Equal(expectedProperties.Count, model.Properties.Count);
-        foreach (var item in expectedProperties)
-        {
-            Assert.True(model.Properties.TryGetValue(item.Key, out var value));
-
-            Assert.Equal(value, model.Properties[item.Key]);
-        }
+        Assert.True(JsonElement.DeepEquals(expectedProperties, model.Properties.Value));
         Assert.NotNull(model.RequiredKeys);
         Assert.Equal(expectedRequiredKeys.Count, model.RequiredKeys.Count);
         for (int i = 0; i < expectedRequiredKeys.Count; i++)
@@ -198,24 +118,7 @@ public class ValueSchemaTest : TestBase
             ValType = "val_type",
             Description = "description",
             Enum = ["string"],
-            InnerProperties = new Dictionary<string, ValueSchema>()
-            {
-                {
-                    "foo",
-                    new()
-                    {
-                        ValType = "val_type",
-                        Description = "description",
-                        Enum = ["string"],
-                        InnerProperties = new Dictionary<string, ValueSchema>(),
-                        InnerRequiredKeys = ["string"],
-                        InnerValType = "inner_val_type",
-                        Nullable = true,
-                        Properties = new Dictionary<string, ValueSchema>(),
-                        RequiredKeys = ["string"],
-                    }
-                },
-            },
+            InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
             InnerRequiredKeys = ["string"],
             InnerValType = "inner_val_type",
             Items = new()
@@ -223,7 +126,7 @@ public class ValueSchemaTest : TestBase
                 ValType = "val_type",
                 Description = "description",
                 Enum = ["string"],
-                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
                 InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
                 Items = new()
@@ -231,36 +134,19 @@ public class ValueSchemaTest : TestBase
                     ValType = "val_type",
                     Description = "description",
                     Enum = ["string"],
-                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                    InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
                     InnerRequiredKeys = ["string"],
                     InnerValType = "inner_val_type",
                     Nullable = true,
-                    Properties = new Dictionary<string, ValueSchema>(),
+                    Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
                     RequiredKeys = ["string"],
                 },
                 Nullable = true,
-                Properties = new Dictionary<string, ValueSchema>(),
+                Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
                 RequiredKeys = ["string"],
             },
             Nullable = true,
-            Properties = new Dictionary<string, ValueSchema>()
-            {
-                {
-                    "foo",
-                    new()
-                    {
-                        ValType = "val_type",
-                        Description = "description",
-                        Enum = ["string"],
-                        InnerProperties = new Dictionary<string, ValueSchema>(),
-                        InnerRequiredKeys = ["string"],
-                        InnerValType = "inner_val_type",
-                        Nullable = true,
-                        Properties = new Dictionary<string, ValueSchema>(),
-                        RequiredKeys = ["string"],
-                    }
-                },
-            },
+            Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
             RequiredKeys = ["string"],
         };
 
@@ -281,24 +167,7 @@ public class ValueSchemaTest : TestBase
             ValType = "val_type",
             Description = "description",
             Enum = ["string"],
-            InnerProperties = new Dictionary<string, ValueSchema>()
-            {
-                {
-                    "foo",
-                    new()
-                    {
-                        ValType = "val_type",
-                        Description = "description",
-                        Enum = ["string"],
-                        InnerProperties = new Dictionary<string, ValueSchema>(),
-                        InnerRequiredKeys = ["string"],
-                        InnerValType = "inner_val_type",
-                        Nullable = true,
-                        Properties = new Dictionary<string, ValueSchema>(),
-                        RequiredKeys = ["string"],
-                    }
-                },
-            },
+            InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
             InnerRequiredKeys = ["string"],
             InnerValType = "inner_val_type",
             Items = new()
@@ -306,7 +175,7 @@ public class ValueSchemaTest : TestBase
                 ValType = "val_type",
                 Description = "description",
                 Enum = ["string"],
-                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
                 InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
                 Items = new()
@@ -314,36 +183,19 @@ public class ValueSchemaTest : TestBase
                     ValType = "val_type",
                     Description = "description",
                     Enum = ["string"],
-                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                    InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
                     InnerRequiredKeys = ["string"],
                     InnerValType = "inner_val_type",
                     Nullable = true,
-                    Properties = new Dictionary<string, ValueSchema>(),
+                    Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
                     RequiredKeys = ["string"],
                 },
                 Nullable = true,
-                Properties = new Dictionary<string, ValueSchema>(),
+                Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
                 RequiredKeys = ["string"],
             },
             Nullable = true,
-            Properties = new Dictionary<string, ValueSchema>()
-            {
-                {
-                    "foo",
-                    new()
-                    {
-                        ValType = "val_type",
-                        Description = "description",
-                        Enum = ["string"],
-                        InnerProperties = new Dictionary<string, ValueSchema>(),
-                        InnerRequiredKeys = ["string"],
-                        InnerValType = "inner_val_type",
-                        Nullable = true,
-                        Properties = new Dictionary<string, ValueSchema>(),
-                        RequiredKeys = ["string"],
-                    }
-                },
-            },
+            Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
             RequiredKeys = ["string"],
         };
 
@@ -357,24 +209,7 @@ public class ValueSchemaTest : TestBase
         string expectedValType = "val_type";
         string expectedDescription = "description";
         List<string> expectedEnum = ["string"];
-        Dictionary<string, ValueSchema> expectedInnerProperties = new()
-        {
-            {
-                "foo",
-                new()
-                {
-                    ValType = "val_type",
-                    Description = "description",
-                    Enum = ["string"],
-                    InnerProperties = new Dictionary<string, ValueSchema>(),
-                    InnerRequiredKeys = ["string"],
-                    InnerValType = "inner_val_type",
-                    Nullable = true,
-                    Properties = new Dictionary<string, ValueSchema>(),
-                    RequiredKeys = ["string"],
-                }
-            },
-        };
+        JsonElement expectedInnerProperties = JsonSerializer.Deserialize<JsonElement>("{}");
         List<string> expectedInnerRequiredKeys = ["string"];
         string expectedInnerValType = "inner_val_type";
         ValueSchema expectedItems = new()
@@ -382,7 +217,7 @@ public class ValueSchemaTest : TestBase
             ValType = "val_type",
             Description = "description",
             Enum = ["string"],
-            InnerProperties = new Dictionary<string, ValueSchema>(),
+            InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
             InnerRequiredKeys = ["string"],
             InnerValType = "inner_val_type",
             Items = new()
@@ -390,36 +225,19 @@ public class ValueSchemaTest : TestBase
                 ValType = "val_type",
                 Description = "description",
                 Enum = ["string"],
-                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
                 InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
                 Nullable = true,
-                Properties = new Dictionary<string, ValueSchema>(),
+                Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
                 RequiredKeys = ["string"],
             },
             Nullable = true,
-            Properties = new Dictionary<string, ValueSchema>(),
+            Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
             RequiredKeys = ["string"],
         };
         bool expectedNullable = true;
-        Dictionary<string, ValueSchema> expectedProperties = new()
-        {
-            {
-                "foo",
-                new()
-                {
-                    ValType = "val_type",
-                    Description = "description",
-                    Enum = ["string"],
-                    InnerProperties = new Dictionary<string, ValueSchema>(),
-                    InnerRequiredKeys = ["string"],
-                    InnerValType = "inner_val_type",
-                    Nullable = true,
-                    Properties = new Dictionary<string, ValueSchema>(),
-                    RequiredKeys = ["string"],
-                }
-            },
-        };
+        JsonElement expectedProperties = JsonSerializer.Deserialize<JsonElement>("{}");
         List<string> expectedRequiredKeys = ["string"];
 
         Assert.Equal(expectedValType, deserialized.ValType);
@@ -431,13 +249,9 @@ public class ValueSchemaTest : TestBase
             Assert.Equal(expectedEnum[i], deserialized.Enum[i]);
         }
         Assert.NotNull(deserialized.InnerProperties);
-        Assert.Equal(expectedInnerProperties.Count, deserialized.InnerProperties.Count);
-        foreach (var item in expectedInnerProperties)
-        {
-            Assert.True(deserialized.InnerProperties.TryGetValue(item.Key, out var value));
-
-            Assert.Equal(value, deserialized.InnerProperties[item.Key]);
-        }
+        Assert.True(
+            JsonElement.DeepEquals(expectedInnerProperties, deserialized.InnerProperties.Value)
+        );
         Assert.NotNull(deserialized.InnerRequiredKeys);
         Assert.Equal(expectedInnerRequiredKeys.Count, deserialized.InnerRequiredKeys.Count);
         for (int i = 0; i < expectedInnerRequiredKeys.Count; i++)
@@ -448,13 +262,7 @@ public class ValueSchemaTest : TestBase
         Assert.Equal(expectedItems, deserialized.Items);
         Assert.Equal(expectedNullable, deserialized.Nullable);
         Assert.NotNull(deserialized.Properties);
-        Assert.Equal(expectedProperties.Count, deserialized.Properties.Count);
-        foreach (var item in expectedProperties)
-        {
-            Assert.True(deserialized.Properties.TryGetValue(item.Key, out var value));
-
-            Assert.Equal(value, deserialized.Properties[item.Key]);
-        }
+        Assert.True(JsonElement.DeepEquals(expectedProperties, deserialized.Properties.Value));
         Assert.NotNull(deserialized.RequiredKeys);
         Assert.Equal(expectedRequiredKeys.Count, deserialized.RequiredKeys.Count);
         for (int i = 0; i < expectedRequiredKeys.Count; i++)
@@ -471,24 +279,7 @@ public class ValueSchemaTest : TestBase
             ValType = "val_type",
             Description = "description",
             Enum = ["string"],
-            InnerProperties = new Dictionary<string, ValueSchema>()
-            {
-                {
-                    "foo",
-                    new()
-                    {
-                        ValType = "val_type",
-                        Description = "description",
-                        Enum = ["string"],
-                        InnerProperties = new Dictionary<string, ValueSchema>(),
-                        InnerRequiredKeys = ["string"],
-                        InnerValType = "inner_val_type",
-                        Nullable = true,
-                        Properties = new Dictionary<string, ValueSchema>(),
-                        RequiredKeys = ["string"],
-                    }
-                },
-            },
+            InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
             InnerRequiredKeys = ["string"],
             InnerValType = "inner_val_type",
             Items = new()
@@ -496,7 +287,7 @@ public class ValueSchemaTest : TestBase
                 ValType = "val_type",
                 Description = "description",
                 Enum = ["string"],
-                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
                 InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
                 Items = new()
@@ -504,36 +295,19 @@ public class ValueSchemaTest : TestBase
                     ValType = "val_type",
                     Description = "description",
                     Enum = ["string"],
-                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                    InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
                     InnerRequiredKeys = ["string"],
                     InnerValType = "inner_val_type",
                     Nullable = true,
-                    Properties = new Dictionary<string, ValueSchema>(),
+                    Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
                     RequiredKeys = ["string"],
                 },
                 Nullable = true,
-                Properties = new Dictionary<string, ValueSchema>(),
+                Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
                 RequiredKeys = ["string"],
             },
             Nullable = true,
-            Properties = new Dictionary<string, ValueSchema>()
-            {
-                {
-                    "foo",
-                    new()
-                    {
-                        ValType = "val_type",
-                        Description = "description",
-                        Enum = ["string"],
-                        InnerProperties = new Dictionary<string, ValueSchema>(),
-                        InnerRequiredKeys = ["string"],
-                        InnerValType = "inner_val_type",
-                        Nullable = true,
-                        Properties = new Dictionary<string, ValueSchema>(),
-                        RequiredKeys = ["string"],
-                    }
-                },
-            },
+            Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
             RequiredKeys = ["string"],
         };
 
@@ -642,24 +416,7 @@ public class ValueSchemaTest : TestBase
             ValType = "val_type",
             Description = "description",
             Enum = ["string"],
-            InnerProperties = new Dictionary<string, ValueSchema>()
-            {
-                {
-                    "foo",
-                    new()
-                    {
-                        ValType = "val_type",
-                        Description = "description",
-                        Enum = ["string"],
-                        InnerProperties = new Dictionary<string, ValueSchema>(),
-                        InnerRequiredKeys = ["string"],
-                        InnerValType = "inner_val_type",
-                        Nullable = true,
-                        Properties = new Dictionary<string, ValueSchema>(),
-                        RequiredKeys = ["string"],
-                    }
-                },
-            },
+            InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
             InnerRequiredKeys = ["string"],
             InnerValType = "inner_val_type",
             Items = new()
@@ -667,7 +424,7 @@ public class ValueSchemaTest : TestBase
                 ValType = "val_type",
                 Description = "description",
                 Enum = ["string"],
-                InnerProperties = new Dictionary<string, ValueSchema>(),
+                InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
                 InnerRequiredKeys = ["string"],
                 InnerValType = "inner_val_type",
                 Items = new()
@@ -675,36 +432,19 @@ public class ValueSchemaTest : TestBase
                     ValType = "val_type",
                     Description = "description",
                     Enum = ["string"],
-                    InnerProperties = new Dictionary<string, ValueSchema>(),
+                    InnerProperties = JsonSerializer.Deserialize<JsonElement>("{}"),
                     InnerRequiredKeys = ["string"],
                     InnerValType = "inner_val_type",
                     Nullable = true,
-                    Properties = new Dictionary<string, ValueSchema>(),
+                    Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
                     RequiredKeys = ["string"],
                 },
                 Nullable = true,
-                Properties = new Dictionary<string, ValueSchema>(),
+                Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
                 RequiredKeys = ["string"],
             },
             Nullable = true,
-            Properties = new Dictionary<string, ValueSchema>()
-            {
-                {
-                    "foo",
-                    new()
-                    {
-                        ValType = "val_type",
-                        Description = "description",
-                        Enum = ["string"],
-                        InnerProperties = new Dictionary<string, ValueSchema>(),
-                        InnerRequiredKeys = ["string"],
-                        InnerValType = "inner_val_type",
-                        Nullable = true,
-                        Properties = new Dictionary<string, ValueSchema>(),
-                        RequiredKeys = ["string"],
-                    }
-                },
-            },
+            Properties = JsonSerializer.Deserialize<JsonElement>("{}"),
             RequiredKeys = ["string"],
         };
 
