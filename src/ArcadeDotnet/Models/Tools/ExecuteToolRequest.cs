@@ -67,6 +67,29 @@ public sealed record class ExecuteToolRequest : JsonModel
     }
 
     /// <summary>
+    /// Optional Condex selection query_id that surfaced this tool. When set, the
+    /// execution is correlated to the selection query as training data. Ignored
+    /// if empty.
+    /// </summary>
+    public string? QueryID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("query_id");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("query_id", value);
+        }
+    }
+
+    /// <summary>
     /// The time at which the tool should be run (optional). If not provided, the
     /// tool is run immediately. Format ISO 8601: YYYY-MM-DDTHH:MM:SS
     /// </summary>
@@ -133,6 +156,7 @@ public sealed record class ExecuteToolRequest : JsonModel
         _ = this.ToolName;
         _ = this.IncludeErrorStacktrace;
         _ = this.Input;
+        _ = this.QueryID;
         _ = this.RunAt;
         _ = this.ToolVersion;
         _ = this.UserID;

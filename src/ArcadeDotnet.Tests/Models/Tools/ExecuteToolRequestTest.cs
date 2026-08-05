@@ -18,6 +18,7 @@ public class ExecuteToolRequestTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
+            QueryID = "query_id",
             RunAt = "run_at",
             ToolVersion = "tool_version",
             UserID = "user_id",
@@ -29,6 +30,7 @@ public class ExecuteToolRequestTest : TestBase
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
+        string expectedQueryID = "query_id";
         string expectedRunAt = "run_at";
         string expectedToolVersion = "tool_version";
         string expectedUserID = "user_id";
@@ -43,6 +45,7 @@ public class ExecuteToolRequestTest : TestBase
 
             Assert.True(JsonElement.DeepEquals(value, model.Input[item.Key]));
         }
+        Assert.Equal(expectedQueryID, model.QueryID);
         Assert.Equal(expectedRunAt, model.RunAt);
         Assert.Equal(expectedToolVersion, model.ToolVersion);
         Assert.Equal(expectedUserID, model.UserID);
@@ -59,6 +62,7 @@ public class ExecuteToolRequestTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
+            QueryID = "query_id",
             RunAt = "run_at",
             ToolVersion = "tool_version",
             UserID = "user_id",
@@ -84,6 +88,7 @@ public class ExecuteToolRequestTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
+            QueryID = "query_id",
             RunAt = "run_at",
             ToolVersion = "tool_version",
             UserID = "user_id",
@@ -102,6 +107,7 @@ public class ExecuteToolRequestTest : TestBase
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
+        string expectedQueryID = "query_id";
         string expectedRunAt = "run_at";
         string expectedToolVersion = "tool_version";
         string expectedUserID = "user_id";
@@ -116,6 +122,7 @@ public class ExecuteToolRequestTest : TestBase
 
             Assert.True(JsonElement.DeepEquals(value, deserialized.Input[item.Key]));
         }
+        Assert.Equal(expectedQueryID, deserialized.QueryID);
         Assert.Equal(expectedRunAt, deserialized.RunAt);
         Assert.Equal(expectedToolVersion, deserialized.ToolVersion);
         Assert.Equal(expectedUserID, deserialized.UserID);
@@ -132,6 +139,7 @@ public class ExecuteToolRequestTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
+            QueryID = "query_id",
             RunAt = "run_at",
             ToolVersion = "tool_version",
             UserID = "user_id",
@@ -149,6 +157,8 @@ public class ExecuteToolRequestTest : TestBase
         Assert.False(model.RawData.ContainsKey("include_error_stacktrace"));
         Assert.Null(model.Input);
         Assert.False(model.RawData.ContainsKey("input"));
+        Assert.Null(model.QueryID);
+        Assert.False(model.RawData.ContainsKey("query_id"));
         Assert.Null(model.RunAt);
         Assert.False(model.RawData.ContainsKey("run_at"));
         Assert.Null(model.ToolVersion);
@@ -175,6 +185,7 @@ public class ExecuteToolRequestTest : TestBase
             // Null should be interpreted as omitted for these properties
             IncludeErrorStacktrace = null,
             Input = null,
+            QueryID = null,
             RunAt = null,
             ToolVersion = null,
             UserID = null,
@@ -184,6 +195,8 @@ public class ExecuteToolRequestTest : TestBase
         Assert.False(model.RawData.ContainsKey("include_error_stacktrace"));
         Assert.Null(model.Input);
         Assert.False(model.RawData.ContainsKey("input"));
+        Assert.Null(model.QueryID);
+        Assert.False(model.RawData.ContainsKey("query_id"));
         Assert.Null(model.RunAt);
         Assert.False(model.RawData.ContainsKey("run_at"));
         Assert.Null(model.ToolVersion);
@@ -202,6 +215,7 @@ public class ExecuteToolRequestTest : TestBase
             // Null should be interpreted as omitted for these properties
             IncludeErrorStacktrace = null,
             Input = null,
+            QueryID = null,
             RunAt = null,
             ToolVersion = null,
             UserID = null,
@@ -221,6 +235,7 @@ public class ExecuteToolRequestTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
+            QueryID = "query_id",
             RunAt = "run_at",
             ToolVersion = "tool_version",
             UserID = "user_id",

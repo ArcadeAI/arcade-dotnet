@@ -83,6 +83,29 @@ public record class ToolExecuteParams : ParamsBase
     }
 
     /// <summary>
+    /// Optional Condex selection query_id that surfaced this tool. When set, the
+    /// execution is correlated to the selection query as training data. Ignored
+    /// if empty.
+    /// </summary>
+    public string? QueryID
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("query_id");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("query_id", value);
+        }
+    }
+
+    /// <summary>
     /// The time at which the tool should be run (optional). If not provided, the
     /// tool is run immediately. Format ISO 8601: YYYY-MM-DDTHH:MM:SS
     /// </summary>

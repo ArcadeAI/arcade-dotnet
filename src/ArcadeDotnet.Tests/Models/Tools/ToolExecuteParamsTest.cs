@@ -18,6 +18,7 @@ public class ToolExecuteParamsTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
+            QueryID = "query_id",
             RunAt = "run_at",
             ToolVersion = "tool_version",
             UserID = "user_id",
@@ -29,6 +30,7 @@ public class ToolExecuteParamsTest : TestBase
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
+        string expectedQueryID = "query_id";
         string expectedRunAt = "run_at";
         string expectedToolVersion = "tool_version";
         string expectedUserID = "user_id";
@@ -43,6 +45,7 @@ public class ToolExecuteParamsTest : TestBase
 
             Assert.True(JsonElement.DeepEquals(value, parameters.Input[item.Key]));
         }
+        Assert.Equal(expectedQueryID, parameters.QueryID);
         Assert.Equal(expectedRunAt, parameters.RunAt);
         Assert.Equal(expectedToolVersion, parameters.ToolVersion);
         Assert.Equal(expectedUserID, parameters.UserID);
@@ -57,6 +60,8 @@ public class ToolExecuteParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("include_error_stacktrace"));
         Assert.Null(parameters.Input);
         Assert.False(parameters.RawBodyData.ContainsKey("input"));
+        Assert.Null(parameters.QueryID);
+        Assert.False(parameters.RawBodyData.ContainsKey("query_id"));
         Assert.Null(parameters.RunAt);
         Assert.False(parameters.RawBodyData.ContainsKey("run_at"));
         Assert.Null(parameters.ToolVersion);
@@ -75,6 +80,7 @@ public class ToolExecuteParamsTest : TestBase
             // Null should be interpreted as omitted for these properties
             IncludeErrorStacktrace = null,
             Input = null,
+            QueryID = null,
             RunAt = null,
             ToolVersion = null,
             UserID = null,
@@ -84,6 +90,8 @@ public class ToolExecuteParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("include_error_stacktrace"));
         Assert.Null(parameters.Input);
         Assert.False(parameters.RawBodyData.ContainsKey("input"));
+        Assert.Null(parameters.QueryID);
+        Assert.False(parameters.RawBodyData.ContainsKey("query_id"));
         Assert.Null(parameters.RunAt);
         Assert.False(parameters.RawBodyData.ContainsKey("run_at"));
         Assert.Null(parameters.ToolVersion);
@@ -113,6 +121,7 @@ public class ToolExecuteParamsTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
+            QueryID = "query_id",
             RunAt = "run_at",
             ToolVersion = "tool_version",
             UserID = "user_id",
