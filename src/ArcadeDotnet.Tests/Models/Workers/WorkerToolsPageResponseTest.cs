@@ -56,6 +56,8 @@ public class WorkerToolsPageResponseTest : TestBase
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    IndexState = "index_state",
+                    LastIndexedAt = "last_indexed_at",
                     Metadata = new()
                     {
                         Behavior = new()
@@ -163,6 +165,8 @@ public class WorkerToolsPageResponseTest : TestBase
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
+                IndexState = "index_state",
+                LastIndexedAt = "last_indexed_at",
                 Metadata = new()
                 {
                     Behavior = new()
@@ -286,6 +290,8 @@ public class WorkerToolsPageResponseTest : TestBase
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    IndexState = "index_state",
+                    LastIndexedAt = "last_indexed_at",
                     Metadata = new()
                     {
                         Behavior = new()
@@ -407,6 +413,8 @@ public class WorkerToolsPageResponseTest : TestBase
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    IndexState = "index_state",
+                    LastIndexedAt = "last_indexed_at",
                     Metadata = new()
                     {
                         Behavior = new()
@@ -521,6 +529,8 @@ public class WorkerToolsPageResponseTest : TestBase
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
+                IndexState = "index_state",
+                LastIndexedAt = "last_indexed_at",
                 Metadata = new()
                 {
                     Behavior = new()
@@ -644,6 +654,8 @@ public class WorkerToolsPageResponseTest : TestBase
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    IndexState = "index_state",
+                    LastIndexedAt = "last_indexed_at",
                     Metadata = new()
                     {
                         Behavior = new()
@@ -825,6 +837,8 @@ public class WorkerToolsPageResponseTest : TestBase
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    IndexState = "index_state",
+                    LastIndexedAt = "last_indexed_at",
                     Metadata = new()
                     {
                         Behavior = new()

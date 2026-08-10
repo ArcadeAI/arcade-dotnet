@@ -104,6 +104,52 @@ public sealed record class ToolDefinition : JsonModel
         }
     }
 
+    /// <summary>
+    /// IndexState reports whether this tool is available through tool search yet
+    /// ("indexed" or "pending"). Populated only when tool search is active for the
+    /// org and Condex is reachable; otherwise omitted, so existing callers are unaffected.
+    /// The handler derives and injects this value — see the tool-listing enrichment path.
+    /// </summary>
+    public string? IndexState
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("index_state");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("index_state", value);
+        }
+    }
+
+    /// <summary>
+    /// LastIndexedAt is the tool's last successful index-write time, set only when
+    /// IndexState is "indexed" and Condex reported a timestamp.
+    /// </summary>
+    public string? LastIndexedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("last_indexed_at");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("last_indexed_at", value);
+        }
+    }
+
     public Metadata? Metadata
     {
         get
@@ -168,6 +214,8 @@ public sealed record class ToolDefinition : JsonModel
         this.Toolkit.Validate();
         _ = this.Description;
         _ = this.FormattedSchema;
+        _ = this.IndexState;
+        _ = this.LastIndexedAt;
         this.Metadata?.Validate();
         this.Output?.Validate();
         this.Requirements?.Validate();

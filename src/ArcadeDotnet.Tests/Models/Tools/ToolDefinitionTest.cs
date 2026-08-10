@@ -52,6 +52,8 @@ public class ToolDefinitionTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
+            IndexState = "index_state",
+            LastIndexedAt = "last_indexed_at",
             Metadata = new()
             {
                 Behavior = new()
@@ -149,6 +151,8 @@ public class ToolDefinitionTest : TestBase
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
+        string expectedIndexState = "index_state";
+        string expectedLastIndexedAt = "last_indexed_at";
         Metadata expectedMetadata = new()
         {
             Behavior = new()
@@ -220,6 +224,8 @@ public class ToolDefinitionTest : TestBase
 
             Assert.True(JsonElement.DeepEquals(value, model.FormattedSchema[item.Key]));
         }
+        Assert.Equal(expectedIndexState, model.IndexState);
+        Assert.Equal(expectedLastIndexedAt, model.LastIndexedAt);
         Assert.Equal(expectedMetadata, model.Metadata);
         Assert.Equal(expectedOutput, model.Output);
         Assert.Equal(expectedRequirements, model.Requirements);
@@ -269,6 +275,8 @@ public class ToolDefinitionTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
+            IndexState = "index_state",
+            LastIndexedAt = "last_indexed_at",
             Metadata = new()
             {
                 Behavior = new()
@@ -380,6 +388,8 @@ public class ToolDefinitionTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
+            IndexState = "index_state",
+            LastIndexedAt = "last_indexed_at",
             Metadata = new()
             {
                 Behavior = new()
@@ -484,6 +494,8 @@ public class ToolDefinitionTest : TestBase
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
+        string expectedIndexState = "index_state";
+        string expectedLastIndexedAt = "last_indexed_at";
         Metadata expectedMetadata = new()
         {
             Behavior = new()
@@ -555,6 +567,8 @@ public class ToolDefinitionTest : TestBase
 
             Assert.True(JsonElement.DeepEquals(value, deserialized.FormattedSchema[item.Key]));
         }
+        Assert.Equal(expectedIndexState, deserialized.IndexState);
+        Assert.Equal(expectedLastIndexedAt, deserialized.LastIndexedAt);
         Assert.Equal(expectedMetadata, deserialized.Metadata);
         Assert.Equal(expectedOutput, deserialized.Output);
         Assert.Equal(expectedRequirements, deserialized.Requirements);
@@ -604,6 +618,8 @@ public class ToolDefinitionTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
+            IndexState = "index_state",
+            LastIndexedAt = "last_indexed_at",
             Metadata = new()
             {
                 Behavior = new()
@@ -710,6 +726,10 @@ public class ToolDefinitionTest : TestBase
         Assert.False(model.RawData.ContainsKey("description"));
         Assert.Null(model.FormattedSchema);
         Assert.False(model.RawData.ContainsKey("formatted_schema"));
+        Assert.Null(model.IndexState);
+        Assert.False(model.RawData.ContainsKey("index_state"));
+        Assert.Null(model.LastIndexedAt);
+        Assert.False(model.RawData.ContainsKey("last_indexed_at"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.Output);
@@ -805,6 +825,8 @@ public class ToolDefinitionTest : TestBase
             // Null should be interpreted as omitted for these properties
             Description = null,
             FormattedSchema = null,
+            IndexState = null,
+            LastIndexedAt = null,
             Metadata = null,
             Output = null,
             Requirements = null,
@@ -814,6 +836,10 @@ public class ToolDefinitionTest : TestBase
         Assert.False(model.RawData.ContainsKey("description"));
         Assert.Null(model.FormattedSchema);
         Assert.False(model.RawData.ContainsKey("formatted_schema"));
+        Assert.Null(model.IndexState);
+        Assert.False(model.RawData.ContainsKey("index_state"));
+        Assert.Null(model.LastIndexedAt);
+        Assert.False(model.RawData.ContainsKey("last_indexed_at"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.Output);
@@ -865,6 +891,8 @@ public class ToolDefinitionTest : TestBase
             // Null should be interpreted as omitted for these properties
             Description = null,
             FormattedSchema = null,
+            IndexState = null,
+            LastIndexedAt = null,
             Metadata = null,
             Output = null,
             Requirements = null,
@@ -917,6 +945,8 @@ public class ToolDefinitionTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
+            IndexState = "index_state",
+            LastIndexedAt = "last_indexed_at",
             Metadata = new()
             {
                 Behavior = new()
