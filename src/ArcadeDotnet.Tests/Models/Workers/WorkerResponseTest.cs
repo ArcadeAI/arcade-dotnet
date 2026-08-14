@@ -32,6 +32,7 @@ public class WorkerResponseTest : TestBase
             Managed = true,
             Mcp = new()
             {
+                AuthorizedBy = "authorized_by",
                 ExternalID = "external_id",
                 Headers = new Dictionary<string, string>() { { "foo", "string" } },
                 Oauth2 = new()
@@ -98,6 +99,7 @@ public class WorkerResponseTest : TestBase
         bool expectedManaged = true;
         WorkerResponseMcp expectedMcp = new()
         {
+            AuthorizedBy = "authorized_by",
             ExternalID = "external_id",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
@@ -178,6 +180,7 @@ public class WorkerResponseTest : TestBase
             Managed = true,
             Mcp = new()
             {
+                AuthorizedBy = "authorized_by",
                 ExternalID = "external_id",
                 Headers = new Dictionary<string, string>() { { "foo", "string" } },
                 Oauth2 = new()
@@ -258,6 +261,7 @@ public class WorkerResponseTest : TestBase
             Managed = true,
             Mcp = new()
             {
+                AuthorizedBy = "authorized_by",
                 ExternalID = "external_id",
                 Headers = new Dictionary<string, string>() { { "foo", "string" } },
                 Oauth2 = new()
@@ -331,6 +335,7 @@ public class WorkerResponseTest : TestBase
         bool expectedManaged = true;
         WorkerResponseMcp expectedMcp = new()
         {
+            AuthorizedBy = "authorized_by",
             ExternalID = "external_id",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
@@ -411,6 +416,7 @@ public class WorkerResponseTest : TestBase
             Managed = true,
             Mcp = new()
             {
+                AuthorizedBy = "authorized_by",
                 ExternalID = "external_id",
                 Headers = new Dictionary<string, string>() { { "foo", "string" } },
                 Oauth2 = new()
@@ -569,6 +575,7 @@ public class WorkerResponseTest : TestBase
             Managed = true,
             Mcp = new()
             {
+                AuthorizedBy = "authorized_by",
                 ExternalID = "external_id",
                 Headers = new Dictionary<string, string>() { { "foo", "string" } },
                 Oauth2 = new()
@@ -1228,6 +1235,7 @@ public class WorkerResponseMcpTest : TestBase
     {
         var model = new WorkerResponseMcp
         {
+            AuthorizedBy = "authorized_by",
             ExternalID = "external_id",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
@@ -1264,6 +1272,7 @@ public class WorkerResponseMcpTest : TestBase
             Uri = "uri",
         };
 
+        string expectedAuthorizedBy = "authorized_by";
         string expectedExternalID = "external_id";
         Dictionary<string, string> expectedHeaders = new() { { "foo", "string" } };
         WorkerResponseMcpOauth2 expectedOauth2 = new()
@@ -1299,6 +1308,7 @@ public class WorkerResponseMcpTest : TestBase
         long expectedTimeout = 0;
         string expectedUri = "uri";
 
+        Assert.Equal(expectedAuthorizedBy, model.AuthorizedBy);
         Assert.Equal(expectedExternalID, model.ExternalID);
         Assert.NotNull(model.Headers);
         Assert.Equal(expectedHeaders.Count, model.Headers.Count);
@@ -1328,6 +1338,7 @@ public class WorkerResponseMcpTest : TestBase
     {
         var model = new WorkerResponseMcp
         {
+            AuthorizedBy = "authorized_by",
             ExternalID = "external_id",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
@@ -1378,6 +1389,7 @@ public class WorkerResponseMcpTest : TestBase
     {
         var model = new WorkerResponseMcp
         {
+            AuthorizedBy = "authorized_by",
             ExternalID = "external_id",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
@@ -1421,6 +1433,7 @@ public class WorkerResponseMcpTest : TestBase
         );
         Assert.NotNull(deserialized);
 
+        string expectedAuthorizedBy = "authorized_by";
         string expectedExternalID = "external_id";
         Dictionary<string, string> expectedHeaders = new() { { "foo", "string" } };
         WorkerResponseMcpOauth2 expectedOauth2 = new()
@@ -1456,6 +1469,7 @@ public class WorkerResponseMcpTest : TestBase
         long expectedTimeout = 0;
         string expectedUri = "uri";
 
+        Assert.Equal(expectedAuthorizedBy, deserialized.AuthorizedBy);
         Assert.Equal(expectedExternalID, deserialized.ExternalID);
         Assert.NotNull(deserialized.Headers);
         Assert.Equal(expectedHeaders.Count, deserialized.Headers.Count);
@@ -1485,6 +1499,7 @@ public class WorkerResponseMcpTest : TestBase
     {
         var model = new WorkerResponseMcp
         {
+            AuthorizedBy = "authorized_by",
             ExternalID = "external_id",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()
@@ -1529,6 +1544,8 @@ public class WorkerResponseMcpTest : TestBase
     {
         var model = new WorkerResponseMcp { };
 
+        Assert.Null(model.AuthorizedBy);
+        Assert.False(model.RawData.ContainsKey("authorized_by"));
         Assert.Null(model.ExternalID);
         Assert.False(model.RawData.ContainsKey("external_id"));
         Assert.Null(model.Headers);
@@ -1561,6 +1578,7 @@ public class WorkerResponseMcpTest : TestBase
         var model = new WorkerResponseMcp
         {
             // Null should be interpreted as omitted for these properties
+            AuthorizedBy = null,
             ExternalID = null,
             Headers = null,
             Oauth2 = null,
@@ -1571,6 +1589,8 @@ public class WorkerResponseMcpTest : TestBase
             Uri = null,
         };
 
+        Assert.Null(model.AuthorizedBy);
+        Assert.False(model.RawData.ContainsKey("authorized_by"));
         Assert.Null(model.ExternalID);
         Assert.False(model.RawData.ContainsKey("external_id"));
         Assert.Null(model.Headers);
@@ -1595,6 +1615,7 @@ public class WorkerResponseMcpTest : TestBase
         var model = new WorkerResponseMcp
         {
             // Null should be interpreted as omitted for these properties
+            AuthorizedBy = null,
             ExternalID = null,
             Headers = null,
             Oauth2 = null,
@@ -1613,6 +1634,7 @@ public class WorkerResponseMcpTest : TestBase
     {
         var model = new WorkerResponseMcp
         {
+            AuthorizedBy = "authorized_by",
             ExternalID = "external_id",
             Headers = new Dictionary<string, string>() { { "foo", "string" } },
             Oauth2 = new()

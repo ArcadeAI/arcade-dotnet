@@ -35,6 +35,7 @@ public class WorkerListPageResponseTest : TestBase
                     Managed = true,
                     Mcp = new()
                     {
+                        AuthorizedBy = "authorized_by",
                         ExternalID = "external_id",
                         Headers = new Dictionary<string, string>() { { "foo", "string" } },
                         Oauth2 = new()
@@ -111,6 +112,7 @@ public class WorkerListPageResponseTest : TestBase
                 Managed = true,
                 Mcp = new()
                 {
+                    AuthorizedBy = "authorized_by",
                     ExternalID = "external_id",
                     Headers = new Dictionary<string, string>() { { "foo", "string" } },
                     Oauth2 = new()
@@ -203,6 +205,7 @@ public class WorkerListPageResponseTest : TestBase
                     Managed = true,
                     Mcp = new()
                     {
+                        AuthorizedBy = "authorized_by",
                         ExternalID = "external_id",
                         Headers = new Dictionary<string, string>() { { "foo", "string" } },
                         Oauth2 = new()
@@ -293,6 +296,7 @@ public class WorkerListPageResponseTest : TestBase
                     Managed = true,
                     Mcp = new()
                     {
+                        AuthorizedBy = "authorized_by",
                         ExternalID = "external_id",
                         Headers = new Dictionary<string, string>() { { "foo", "string" } },
                         Oauth2 = new()
@@ -376,6 +380,7 @@ public class WorkerListPageResponseTest : TestBase
                 Managed = true,
                 Mcp = new()
                 {
+                    AuthorizedBy = "authorized_by",
                     ExternalID = "external_id",
                     Headers = new Dictionary<string, string>() { { "foo", "string" } },
                     Oauth2 = new()
@@ -468,6 +473,7 @@ public class WorkerListPageResponseTest : TestBase
                     Managed = true,
                     Mcp = new()
                     {
+                        AuthorizedBy = "authorized_by",
                         ExternalID = "external_id",
                         Headers = new Dictionary<string, string>() { { "foo", "string" } },
                         Oauth2 = new()
@@ -618,6 +624,7 @@ public class WorkerListPageResponseTest : TestBase
                     Managed = true,
                     Mcp = new()
                     {
+                        AuthorizedBy = "authorized_by",
                         ExternalID = "external_id",
                         Headers = new Dictionary<string, string>() { { "foo", "string" } },
                         Oauth2 = new()

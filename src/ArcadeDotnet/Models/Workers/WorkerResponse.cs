@@ -631,6 +631,24 @@ sealed class SecretBindingConverter : JsonConverter<SecretBinding>
 [JsonConverter(typeof(JsonModelConverter<WorkerResponseMcp, WorkerResponseMcpFromRaw>))]
 public sealed record class WorkerResponseMcp : JsonModel
 {
+    public string? AuthorizedBy
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("authorized_by");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("authorized_by", value);
+        }
+    }
+
     public string? ExternalID
     {
         get
@@ -784,6 +802,7 @@ public sealed record class WorkerResponseMcp : JsonModel
     /// <inheritdoc/>
     public override void Validate()
     {
+        _ = this.AuthorizedBy;
         _ = this.ExternalID;
         _ = this.Headers;
         this.Oauth2?.Validate();
