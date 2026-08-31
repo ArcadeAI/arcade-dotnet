@@ -28,8 +28,6 @@ public interface IToolService
     /// </summary>
     IToolService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
-    IScheduledService Scheduled { get; }
-
     IFormattedService Formatted { get; }
 
     /// <summary>
@@ -85,8 +83,6 @@ public interface IToolServiceWithRawResponse
     /// <para>The original service is not modified.</para>
     /// </summary>
     IToolServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
-
-    IScheduledServiceWithRawResponse Scheduled { get; }
 
     IFormattedServiceWithRawResponse Formatted { get; }
 

@@ -34,14 +34,7 @@ public sealed class ToolService : IToolService
         _client = client;
 
         _withRawResponse = new(() => new ToolServiceWithRawResponse(client.WithRawResponse));
-        _scheduled = new(() => new ScheduledService(client));
         _formatted = new(() => new FormattedService(client));
-    }
-
-    readonly Lazy<IScheduledService> _scheduled;
-    public IScheduledService Scheduled
-    {
-        get { return _scheduled.Value; }
     }
 
     readonly Lazy<IFormattedService> _formatted;
@@ -126,14 +119,7 @@ public sealed class ToolServiceWithRawResponse : IToolServiceWithRawResponse
     {
         _client = client;
 
-        _scheduled = new(() => new ScheduledServiceWithRawResponse(client));
         _formatted = new(() => new FormattedServiceWithRawResponse(client));
-    }
-
-    readonly Lazy<IScheduledServiceWithRawResponse> _scheduled;
-    public IScheduledServiceWithRawResponse Scheduled
-    {
-        get { return _scheduled.Value; }
     }
 
     readonly Lazy<IFormattedServiceWithRawResponse> _formatted;
